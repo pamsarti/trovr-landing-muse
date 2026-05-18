@@ -72,14 +72,14 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "Lovable Generated Project" },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "Lovable Generated Project" },
+      { title: "Trovr — Travel to find, not to escape" },
+      { name: "description", content: "A curated marketplace of immersive trips, for people who travel to feel. Launching Fall 2026." },
+      { name: "author", content: "Trovr" },
+      { property: "og:title", content: "Trovr — Travel to find, not to escape" },
+      { property: "og:description", content: "A curated marketplace of immersive trips, for people who travel to feel." },
       { property: "og:type", content: "website" },
+      { property: "og:image", content: "/og-image.jpg" },
       { name: "twitter:card", content: "summary" },
-      { name: "twitter:site", content: "@Lovable" },
     ],
     links: [
       {
