@@ -39,12 +39,28 @@ const TRIPS = [
 function Index() {
   return (
     <main className="bg-paper text-ink font-sans antialiased">
+      <Header />
       <Hero />
       <Manifesto />
       <Trips />
       <Newsletter />
       <Footer />
     </main>
+  );
+}
+
+function Header() {
+  return (
+    <header className="absolute top-0 left-0 right-0 z-20">
+      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
+        <a href="#" className="font-serif text-2xl lowercase text-paper sm:text-3xl">
+          trovr
+        </a>
+        <span className="text-[10px] uppercase tracking-[0.2em] text-paper/70">
+          Fall 2026
+        </span>
+      </div>
+    </header>
   );
 }
 
