@@ -1,4 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { useState, type FormEvent } from "react";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -29,6 +30,7 @@ function AboutPage() {
       <WhyExists />
       <FounderNote />
       <HowWeCurate />
+      <Newsletter />
       <Footer />
     </main>
   );
@@ -38,12 +40,15 @@ function AboutHeader() {
   return (
     <header className="border-b border-stone/15">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
-        <a href="/" className="font-serif text-2xl lowercase text-ink sm:text-3xl">
+        <Link to="/" className="font-serif text-2xl lowercase text-ink sm:text-3xl">
           trovr
-        </a>
-        <span className="text-[10px] uppercase tracking-[0.2em] text-stone">
-          About
-        </span>
+        </Link>
+        <Link
+          to="/"
+          className="text-[11px] uppercase tracking-[0.2em] text-stone transition-colors hover:text-ink"
+        >
+          Home
+        </Link>
       </div>
     </header>
   );
@@ -129,27 +134,26 @@ function FounderNote() {
 }
 
 function HowWeCurate() {
-  // TODO: replace these four principles with the final copy from the brief.
   const principles = [
     {
-      title: "We travel before we list.",
+      title: "Operators, not aggregators.",
       body:
-        "No operator appears on Trovr unless someone on our team has done the trip themselves, on a normal date, in normal conditions.",
+        "We work directly with the people running the trips. Every operator on Trovr is someone we've talked to, vetted, and would travel with ourselves.",
     },
     {
-      title: "We choose operators, not destinations.",
+      title: "Compliance, in practice.",
       body:
-        "The location matters less than the person running the trip. A great guide in an unremarkable place beats a flashy itinerary led by someone going through the motions.",
+        "MLC certification, valid insurance, safety equipment within date, captains with verifiable hours. The boring parts that turn out to be the important ones.",
     },
     {
-      title: "We write what we'd want to read.",
+      title: "Track record over branding.",
       body:
-        "Every trip page is editorial, not promotional. We name the hard parts, the trade-offs, and who the trip isn't for.",
+        "We choose operations that have been running long enough to know what goes wrong, and small enough to still care when it does.",
     },
     {
-      title: "We keep the catalog small.",
+      title: "Trips that earn the word 'immersive.'",
       body:
-        "Curation is a position, not a feature. If a trip stops meeting our bar, it comes off the site.",
+        "No mass logistics. No printed itineraries that don't bend. Small groups, real terrain, local context.",
     },
   ];
 
@@ -176,13 +180,59 @@ function HowWeCurate() {
   );
 }
 
+function Newsletter() {
+  const [email, setEmail] = useState("");
+  const [done, setDone] = useState(false);
+
+  const onSubmit = async (e: FormEvent) => {
+    e.preventDefault();
+    // TODO: wire to Resend or Formspree endpoint (same as homepage)
+    setDone(true);
+  };
+
+  return (
+    <section className="border-t border-stone/20 px-6 py-32 sm:py-40">
+      <div className="mx-auto max-w-[480px] text-center">
+        <h2 className="font-serif text-4xl leading-tight sm:text-5xl">Leave your email.</h2>
+        <p className="mt-5 text-base text-stone sm:text-lg">
+          We'll write when the first trips open.
+        </p>
+        {done ? (
+          <p className="mt-10 font-serif text-xl italic text-ink">
+            Thank you. We'll be in touch.
+          </p>
+        ) : (
+          <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-3 sm:flex-row">
+            <input
+              type="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="your@email.com"
+              className="flex-1 border border-stone/40 bg-transparent px-4 py-3 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+              style={{ borderRadius: 2 }}
+            />
+            <button
+              type="submit"
+              className="border border-ink bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-ink transition-colors hover:bg-ink/5"
+              style={{ borderRadius: 2 }}
+            >
+              Subscribe
+            </button>
+          </form>
+        )}
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer className="border-t border-stone/20 px-6 py-20">
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-        <a href="/" className="font-serif text-5xl lowercase text-ink sm:text-6xl">
+        <Link to="/" className="font-serif text-5xl lowercase text-ink sm:text-6xl">
           trovr
-        </a>
+        </Link>
         <p className="font-serif text-base italic text-stone sm:text-lg">
           Travel to find, not to escape.
         </p>

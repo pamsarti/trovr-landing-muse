@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 
 export const Route = createFileRoute("/")({
@@ -53,12 +53,15 @@ function Header() {
   return (
     <header className="absolute top-0 left-0 right-0 z-20">
       <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
-        <a href="#" className="font-serif text-2xl lowercase text-paper sm:text-3xl">
+        <Link to="/" className="font-serif text-2xl lowercase text-paper sm:text-3xl">
           trovr
-        </a>
-        <span className="text-[10px] uppercase tracking-[0.2em] text-paper/70">
-          Fall 2026
-        </span>
+        </Link>
+        <Link
+          to="/about"
+          className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
+        >
+          About
+        </Link>
       </div>
     </header>
   );
