@@ -56,15 +56,15 @@ function AboutHeader() {
 
 function Hero() {
   return (
-    <section className="flex min-h-[70vh] items-center justify-center px-6 py-24">
+    <section className="flex min-h-[70vh] items-center justify-center px-6 py-24 sm:py-32">
       <div className="mx-auto max-w-3xl text-center">
-        <h1 className="font-serif text-[2.25rem] leading-[1.15] text-ink sm:text-5xl md:text-6xl">
+        <h1 className="font-serif text-4xl leading-[1.15] text-ink sm:text-5xl md:text-6xl">
           We started with a single question.
           <br />
           <br />
           What does it actually mean to travel?
         </h1>
-        <p className="mx-auto mt-10 max-w-xl text-base text-stone sm:text-lg">
+        <p className="mx-auto mt-8 max-w-xl text-base leading-[1.6] text-stone sm:mt-10 sm:text-lg">
           This page is the answer we've been working on.
         </p>
       </div>
@@ -79,10 +79,10 @@ function WhyExists() {
     "Trovr is that middle ground. We find the operators we'd travel with ourselves — and put them in one place, with the context that helps you choose.",
   ];
   return (
-    <section className="border-t border-stone/15 px-6 py-32 sm:py-40">
+    <section className="border-t border-stone/15 px-6 py-24 sm:py-32 md:py-40">
       <div className="mx-auto max-w-[720px] space-y-8">
         {paragraphs.map((p, i) => (
-          <p key={i} className="font-serif text-xl leading-[1.6] text-ink sm:text-[22px]">
+          <p key={i} className="font-serif text-lg leading-[1.6] text-ink sm:text-xl md:text-[22px]">
             {p}
           </p>
         ))}
@@ -93,10 +93,10 @@ function WhyExists() {
 
 function FounderNote() {
   return (
-    <section className="border-t border-stone/15 px-6 py-32 sm:py-40">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-5 md:gap-16">
+    <section className="border-t border-stone/15 px-6 py-24 sm:py-32 md:py-40">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 sm:gap-12 md:grid-cols-5 md:gap-16">
         <div className="md:col-span-2">
-          <div className="aspect-[4/5] overflow-hidden bg-stone/20">
+          <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-stone/20 md:max-w-none">
             {/* TODO: replace with founder photo */}
             <img
               src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80"
@@ -107,13 +107,13 @@ function FounderNote() {
           </div>
         </div>
         <div className="md:col-span-3">
-          <p className="font-serif text-2xl italic leading-[1.4] text-ink sm:text-3xl">
+          <p className="font-serif text-xl italic leading-[1.4] text-ink sm:text-2xl md:text-3xl">
             "I left finance after seven years and started kiting full-time."
           </p>
-          <p className="mt-3 text-sm tracking-wide text-stone">— Pamela Sarti</p>
+          <p className="mt-3 text-xs tracking-wide text-stone sm:text-sm">— Pamela Sarti</p>
 
           {/* TODO: replace placeholder text with Pamela's final version */}
-          <div className="mt-10 space-y-6 text-base leading-[1.75] text-ink sm:text-[17px]">
+          <div className="mt-8 space-y-6 text-base leading-[1.75] text-ink sm:mt-10 sm:text-[17px]">
             <p>
               In six years of chasing wind across Brazil, the Red Sea, the Mediterranean,
               and Saudi Arabia, one thing became obvious: the trips that changed me
@@ -158,15 +158,15 @@ function HowWeCurate() {
   ];
 
   return (
-    <section className="border-t border-stone/15 px-6 py-32 sm:py-40">
+    <section className="border-t border-stone/15 px-6 py-24 sm:py-32 md:py-40">
       <div className="mx-auto max-w-[720px]">
-        <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
+        <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
           How we curate.
         </h2>
-        <div className="mt-16 space-y-12">
+        <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">
           {principles.map((p) => (
             <div key={p.title}>
-              <p className="font-serif text-2xl italic leading-[1.35] text-ink sm:text-[26px]">
+              <p className="font-serif text-xl italic leading-[1.35] text-ink sm:text-2xl md:text-[26px]">
                 {p.title}
               </p>
               <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
@@ -191,10 +191,10 @@ function Newsletter() {
   };
 
   return (
-    <section className="border-t border-stone/20 px-6 py-32 sm:py-40">
+    <section className="border-t border-stone/20 px-6 py-24 sm:py-32 md:py-40">
       <div className="mx-auto max-w-[480px] text-center">
-        <h2 className="font-serif text-4xl leading-tight sm:text-5xl">Leave your email.</h2>
-        <p className="mt-5 text-base text-stone sm:text-lg">
+        <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">Leave your email.</h2>
+        <p className="mt-5 text-base leading-[1.6] text-stone sm:text-lg">
           We'll write when the first trips open.
         </p>
         {done ? (
