@@ -43,12 +43,20 @@ function AboutHeader() {
         <Link to="/" className="font-serif text-2xl lowercase text-ink sm:text-3xl">
           trovr
         </Link>
-        <Link
-          to="/"
-          className="text-[11px] uppercase tracking-[0.2em] text-stone transition-colors hover:text-ink"
-        >
-          Home
-        </Link>
+        <nav className="flex items-center gap-6 sm:gap-8">
+          <Link
+            to="/spots"
+            className="text-[11px] uppercase tracking-[0.2em] text-stone transition-colors hover:text-ink"
+          >
+            Spots
+          </Link>
+          <Link
+            to="/"
+            className="text-[11px] uppercase tracking-[0.2em] text-stone transition-colors hover:text-ink"
+          >
+            Home
+          </Link>
+        </nav>
       </div>
     </header>
   );
