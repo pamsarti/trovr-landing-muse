@@ -9,9 +9,16 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SpotsRouteImport } from './routes/spots'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SpotsCountrySpotRouteImport } from './routes/spots.$country.$spot'
 
+const SpotsRoute = SpotsRouteImport.update({
+  id: '/spots',
+  path: '/spots',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -22,35 +29,54 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpotsCountrySpotRoute = SpotsCountrySpotRouteImport.update({
+  id: '/$country/$spot',
+  path: '/$country/$spot',
+  getParentRoute: () => SpotsRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/spots': typeof SpotsRouteWithChildren
+  '/spots/$country/$spot': typeof SpotsCountrySpotRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/spots': typeof SpotsRouteWithChildren
+  '/spots/$country/$spot': typeof SpotsCountrySpotRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/spots': typeof SpotsRouteWithChildren
+  '/spots/$country/$spot': typeof SpotsCountrySpotRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths: '/' | '/about' | '/spots' | '/spots/$country/$spot'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to: '/' | '/about' | '/spots' | '/spots/$country/$spot'
+  id: '__root__' | '/' | '/about' | '/spots' | '/spots/$country/$spot'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  SpotsRoute: typeof SpotsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/spots': {
+      id: '/spots'
+      path: '/spots'
+      fullPath: '/spots'
+      preLoaderRoute: typeof SpotsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -65,12 +91,30 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/spots/$country/$spot': {
+      id: '/spots/$country/$spot'
+      path: '/$country/$spot'
+      fullPath: '/spots/$country/$spot'
+      preLoaderRoute: typeof SpotsCountrySpotRouteImport
+      parentRoute: typeof SpotsRoute
+    }
   }
 }
+
+interface SpotsRouteChildren {
+  SpotsCountrySpotRoute: typeof SpotsCountrySpotRoute
+}
+
+const SpotsRouteChildren: SpotsRouteChildren = {
+  SpotsCountrySpotRoute: SpotsCountrySpotRoute,
+}
+
+const SpotsRouteWithChildren = SpotsRoute._addFileChildren(SpotsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  SpotsRoute: SpotsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
