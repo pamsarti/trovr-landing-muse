@@ -15,11 +15,31 @@ export const Route = createFileRoute("/spots")({
       {
         property: "og:description",
         content:
-          "A growing guide to the world's best kitesurf spots. Kitesurf first. More to come.",
+          "A growing guide to the world's best kitesurf spots. Conditions, seasons, and editorial notes from people who've been there.",
       },
-      { property: "og:url", content: "/spots" },
+      { property: "og:type", content: "website" },
+      { property: "og:url", content: "https://trovr-landing-muse.lovable.app/spots" },
+      {
+        property: "og:image",
+        content:
+          "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80",
+      },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Spots — Trovr" },
+      {
+        name: "twitter:description",
+        content:
+          "A growing guide to the world's best kitesurf spots. Conditions, seasons, and editorial notes from people who've been there.",
+      },
+      {
+        name: "twitter:image",
+        content:
+          "https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1200&q=80",
+      },
     ],
-    links: [{ rel: "canonical", href: "/spots" }],
+    links: [
+      { rel: "canonical", href: "https://trovr-landing-muse.lovable.app/spots" },
+    ],
   }),
   component: SpotsPage,
 });
