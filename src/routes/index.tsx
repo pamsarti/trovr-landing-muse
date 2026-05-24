@@ -56,12 +56,20 @@ function Header() {
         <Link to="/" className="font-serif text-2xl lowercase text-paper sm:text-3xl">
           trovr
         </Link>
-        <Link
-          to="/about"
-          className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
-        >
-          About
-        </Link>
+        <nav className="flex items-center gap-6 sm:gap-8">
+          <Link
+            to="/spots"
+            className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
+          >
+            Spots
+          </Link>
+          <Link
+            to="/about"
+            className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
+          >
+            About
+          </Link>
+        </nav>
       </div>
     </header>
   );
