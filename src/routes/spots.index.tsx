@@ -6,7 +6,7 @@ import {
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
 
-export const Route = createFileRoute("/spots")({
+export const Route = createFileRoute("/spots/")({
   head: () => ({
     meta: [
       { title: "Spots — A guide to the world's kitesurf spots | Trovr" },
