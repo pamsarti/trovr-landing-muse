@@ -9,9 +9,18 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SpotsRouteImport } from './routes/spots'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as SpotsContinentRouteImport } from './routes/spots.$continent'
+import { Route as SpotsContinentRegionRouteImport } from './routes/spots.$continent.$region'
+import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
+const SpotsRoute = SpotsRouteImport.update({
+  id: '/spots',
+  path: '/spots',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -22,35 +31,90 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpotsContinentRoute = SpotsContinentRouteImport.update({
+  id: '/$continent',
+  path: '/$continent',
+  getParentRoute: () => SpotsRoute,
+} as any)
+const SpotsContinentRegionRoute = SpotsContinentRegionRouteImport.update({
+  id: '/$region',
+  path: '/$region',
+  getParentRoute: () => SpotsContinentRoute,
+} as any)
+const SpotsContinentRegionSpotRoute =
+  SpotsContinentRegionSpotRouteImport.update({
+    id: '/$spot',
+    path: '/$spot',
+    getParentRoute: () => SpotsContinentRegionRoute,
+  } as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/spots': typeof SpotsRouteWithChildren
+  '/spots/$continent': typeof SpotsContinentRouteWithChildren
+  '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
+  '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/spots': typeof SpotsRouteWithChildren
+  '/spots/$continent': typeof SpotsContinentRouteWithChildren
+  '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
+  '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/spots': typeof SpotsRouteWithChildren
+  '/spots/$continent': typeof SpotsContinentRouteWithChildren
+  '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
+  '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/about'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/spots'
+    | '/spots/$continent'
+    | '/spots/$continent/$region'
+    | '/spots/$continent/$region/$spot'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/about'
-  id: '__root__' | '/' | '/about'
+  to:
+    | '/'
+    | '/about'
+    | '/spots'
+    | '/spots/$continent'
+    | '/spots/$continent/$region'
+    | '/spots/$continent/$region/$spot'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/spots'
+    | '/spots/$continent'
+    | '/spots/$continent/$region'
+    | '/spots/$continent/$region/$spot'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  SpotsRoute: typeof SpotsRouteWithChildren
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/spots': {
+      id: '/spots'
+      path: '/spots'
+      fullPath: '/spots'
+      preLoaderRoute: typeof SpotsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -65,12 +129,67 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/spots/$continent': {
+      id: '/spots/$continent'
+      path: '/$continent'
+      fullPath: '/spots/$continent'
+      preLoaderRoute: typeof SpotsContinentRouteImport
+      parentRoute: typeof SpotsRoute
+    }
+    '/spots/$continent/$region': {
+      id: '/spots/$continent/$region'
+      path: '/$region'
+      fullPath: '/spots/$continent/$region'
+      preLoaderRoute: typeof SpotsContinentRegionRouteImport
+      parentRoute: typeof SpotsContinentRoute
+    }
+    '/spots/$continent/$region/$spot': {
+      id: '/spots/$continent/$region/$spot'
+      path: '/$spot'
+      fullPath: '/spots/$continent/$region/$spot'
+      preLoaderRoute: typeof SpotsContinentRegionSpotRouteImport
+      parentRoute: typeof SpotsContinentRegionRoute
+    }
   }
 }
+
+interface SpotsContinentRegionRouteChildren {
+  SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
+}
+
+const SpotsContinentRegionRouteChildren: SpotsContinentRegionRouteChildren = {
+  SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
+}
+
+const SpotsContinentRegionRouteWithChildren =
+  SpotsContinentRegionRoute._addFileChildren(SpotsContinentRegionRouteChildren)
+
+interface SpotsContinentRouteChildren {
+  SpotsContinentRegionRoute: typeof SpotsContinentRegionRouteWithChildren
+}
+
+const SpotsContinentRouteChildren: SpotsContinentRouteChildren = {
+  SpotsContinentRegionRoute: SpotsContinentRegionRouteWithChildren,
+}
+
+const SpotsContinentRouteWithChildren = SpotsContinentRoute._addFileChildren(
+  SpotsContinentRouteChildren,
+)
+
+interface SpotsRouteChildren {
+  SpotsContinentRoute: typeof SpotsContinentRouteWithChildren
+}
+
+const SpotsRouteChildren: SpotsRouteChildren = {
+  SpotsContinentRoute: SpotsContinentRouteWithChildren,
+}
+
+const SpotsRouteWithChildren = SpotsRoute._addFileChildren(SpotsRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  SpotsRoute: SpotsRouteWithChildren,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
