@@ -1,5 +1,5 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { findContinent, getRegions } from "@/lib/spots-data";
+import { findContinent, getRegions, type RegionGroup } from "@/lib/spots-data";
 import {
   Breadcrumbs,
   SpotsFooter,
@@ -86,7 +86,7 @@ function ContinentPage() {
 
       <section className="px-6 pb-24">
         <ul className="mx-auto max-w-3xl divide-y divide-stone/15 border-y border-stone/15">
-          {regions.map((r) => (
+          {regions.map((r: RegionGroup) => (
             <li key={r.slug}>
               <Link
                 to="/spots/$continent/$region"

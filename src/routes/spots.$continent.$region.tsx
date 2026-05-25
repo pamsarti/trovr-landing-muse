@@ -4,6 +4,7 @@ import {
   findRegion,
   getSpotsInRegion,
   slugify,
+  type Spot,
 } from "@/lib/spots-data";
 import {
   Breadcrumbs,
@@ -112,7 +113,7 @@ function RegionPage() {
 
       <section className="px-6 pb-24">
         <ul className="mx-auto max-w-3xl divide-y divide-stone/15 border-y border-stone/15">
-          {spots.map((s) => (
+          {spots.map((s: Spot) => (
             <li key={s.id}>
               <Link
                 to="/spots/$continent/$region/$spot"
