@@ -37,9 +37,9 @@ const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpotsContinentRegionRoute = SpotsContinentRegionRouteImport.update({
-  id: '/$region',
-  path: '/$region',
-  getParentRoute: () => SpotsContinentRoute,
+  id: '/spots/$continent/$region',
+  path: '/spots/$continent/$region',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const SpotsContinentRegionSpotRoute =
   SpotsContinentRegionSpotRouteImport.update({
@@ -104,6 +104,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
+  SpotsContinentRegionRoute: typeof SpotsContinentRegionRouteWithChildren
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
 }
 
@@ -139,10 +140,10 @@ declare module '@tanstack/react-router' {
     }
     '/spots/$continent/$region': {
       id: '/spots/$continent/$region'
-      path: '/$region'
+      path: '/spots/$continent/$region'
       fullPath: '/spots/$continent/$region'
       preLoaderRoute: typeof SpotsContinentRegionRouteImport
-      parentRoute: typeof SpotsContinentRoute
+      parentRoute: typeof rootRouteImport
     }
     '/spots/$continent/$region/$spot': {
       id: '/spots/$continent/$region/$spot'
@@ -154,22 +155,24 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface SpotsContinentRegionRouteChildren {
+  SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
+}
+
+const SpotsContinentRegionRouteChildren: SpotsContinentRegionRouteChildren = {
+  SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
+}
+
+const SpotsContinentRegionRouteWithChildren =
+  SpotsContinentRegionRoute._addFileChildren(SpotsContinentRegionRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   SpotsIndexRoute: SpotsIndexRoute,
+  SpotsContinentRegionRoute: SpotsContinentRegionRouteWithChildren,
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}
