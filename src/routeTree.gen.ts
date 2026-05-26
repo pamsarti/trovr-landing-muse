@@ -12,7 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
-import { Route as SpotsContinentRouteImport } from './routes/spots.$continent'
+import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as SpotsContinentRegionRouteImport } from './routes/spots.$continent.$region'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
@@ -31,9 +31,9 @@ const SpotsIndexRoute = SpotsIndexRouteImport.update({
   path: '/spots/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SpotsContinentRoute = SpotsContinentRouteImport.update({
-  id: '/spots/$continent',
-  path: '/spots/$continent',
+const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
+  id: '/spots/$continent/',
+  path: '/spots/$continent/',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpotsContinentRegionRoute = SpotsContinentRegionRouteImport.update({
@@ -51,26 +51,26 @@ const SpotsContinentRegionSpotRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/spots/$continent': typeof SpotsContinentRouteWithChildren
   '/spots/': typeof SpotsIndexRoute
   '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
+  '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/spots/$continent': typeof SpotsContinentRouteWithChildren
   '/spots': typeof SpotsIndexRoute
   '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
+  '/spots/$continent': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/spots/$continent': typeof SpotsContinentRouteWithChildren
   '/spots/': typeof SpotsIndexRoute
   '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
+  '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
 }
 export interface FileRouteTypes {
@@ -78,33 +78,33 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/spots/$continent'
     | '/spots/'
     | '/spots/$continent/$region'
+    | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/about'
-    | '/spots/$continent'
     | '/spots'
     | '/spots/$continent/$region'
+    | '/spots/$continent'
     | '/spots/$continent/$region/$spot'
   id:
     | '__root__'
     | '/'
     | '/about'
-    | '/spots/$continent'
     | '/spots/'
     | '/spots/$continent/$region'
+    | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  SpotsContinentRoute: typeof SpotsContinentRouteWithChildren
   SpotsIndexRoute: typeof SpotsIndexRoute
+  SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -130,11 +130,11 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/spots/$continent': {
-      id: '/spots/$continent'
+    '/spots/$continent/': {
+      id: '/spots/$continent/'
       path: '/spots/$continent'
-      fullPath: '/spots/$continent'
-      preLoaderRoute: typeof SpotsContinentRouteImport
+      fullPath: '/spots/$continent/'
+      preLoaderRoute: typeof SpotsContinentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/spots/$continent/$region': {
@@ -154,34 +154,11 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface SpotsContinentRegionRouteChildren {
-  SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
-}
-
-const SpotsContinentRegionRouteChildren: SpotsContinentRegionRouteChildren = {
-  SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
-}
-
-const SpotsContinentRegionRouteWithChildren =
-  SpotsContinentRegionRoute._addFileChildren(SpotsContinentRegionRouteChildren)
-
-interface SpotsContinentRouteChildren {
-  SpotsContinentRegionRoute: typeof SpotsContinentRegionRouteWithChildren
-}
-
-const SpotsContinentRouteChildren: SpotsContinentRouteChildren = {
-  SpotsContinentRegionRoute: SpotsContinentRegionRouteWithChildren,
-}
-
-const SpotsContinentRouteWithChildren = SpotsContinentRoute._addFileChildren(
-  SpotsContinentRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  SpotsContinentRoute: SpotsContinentRouteWithChildren,
   SpotsIndexRoute: SpotsIndexRoute,
+  SpotsContinentIndexRoute: SpotsContinentIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

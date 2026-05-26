@@ -6,7 +6,7 @@ import {
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
 
-export const Route = createFileRoute("/spots/$continent")({
+export const Route = createFileRoute("/spots/$continent/")({
   head: ({ params }) => {
     const continent = findContinent("kite", params.continent);
     const title = continent ? `${continent.name} — Spots | Trovr` : "Spots | Trovr";
