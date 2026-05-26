@@ -12,7 +12,7 @@ import {
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
 
-export const Route = createFileRoute("/spots/$continent/$region")({
+export const Route = createFileRoute("/spots/$continent/$region/")({
   head: ({ params }) => {
     const continent = findContinent("kite", params.continent);
     const region = continent ? findRegion("kite", continent.name, params.region) : null;
