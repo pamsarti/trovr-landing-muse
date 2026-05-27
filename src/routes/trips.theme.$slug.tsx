@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { findTheme, tripsByTheme } from "@/lib/trips-data";
+import type { Theme, Trip } from "@/lib/trips-data";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 
 export const Route = createFileRoute("/trips/theme/$slug")({
@@ -42,7 +43,7 @@ export const Route = createFileRoute("/trips/theme/$slug")({
 });
 
 function ThemePage() {
-  const { theme, trips } = Route.useLoaderData();
+  const { theme, trips } = Route.useLoaderData() as { theme: Theme; trips: Trip[] };
   return (
     <main className="bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" />

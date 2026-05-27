@@ -11,8 +11,11 @@
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
+import { Route as TripsIdRouteImport } from './routes/trips.$id'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
+import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
 import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
@@ -26,14 +29,29 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TripsIndexRoute = TripsIndexRouteImport.update({
+  id: '/trips/',
+  path: '/trips/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpotsIndexRoute = SpotsIndexRouteImport.update({
   id: '/spots/',
   path: '/spots/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const TripsIdRoute = TripsIdRouteImport.update({
+  id: '/trips/$id',
+  path: '/trips/$id',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
   id: '/spots/$continent/',
   path: '/spots/$continent/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const TripsThemeSlugRoute = TripsThemeSlugRouteImport.update({
+  id: '/trips/theme/$slug',
+  path: '/trips/theme/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpotsContinentRegionIndexRoute =
@@ -52,7 +70,10 @@ const SpotsContinentRegionSpotRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
+  '/trips/': typeof TripsIndexRoute
+  '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
@@ -60,7 +81,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/trips/$id': typeof TripsIdRoute
   '/spots': typeof SpotsIndexRoute
+  '/trips': typeof TripsIndexRoute
+  '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region': typeof SpotsContinentRegionIndexRoute
@@ -69,7 +93,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
+  '/trips/': typeof TripsIndexRoute
+  '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
@@ -79,7 +106,10 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/trips/$id'
     | '/spots/'
+    | '/trips/'
+    | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region/'
@@ -87,7 +117,10 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/trips/$id'
     | '/spots'
+    | '/trips'
+    | '/trips/theme/$slug'
     | '/spots/$continent'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region'
@@ -95,7 +128,10 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/trips/$id'
     | '/spots/'
+    | '/trips/'
+    | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region/'
@@ -104,7 +140,10 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  TripsIdRoute: typeof TripsIdRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
+  TripsIndexRoute: typeof TripsIndexRoute
+  TripsThemeSlugRoute: typeof TripsThemeSlugRoute
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
   SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
   SpotsContinentRegionIndexRoute: typeof SpotsContinentRegionIndexRoute
@@ -126,6 +165,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trips/': {
+      id: '/trips/'
+      path: '/trips'
+      fullPath: '/trips/'
+      preLoaderRoute: typeof TripsIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/spots/': {
       id: '/spots/'
       path: '/spots'
@@ -133,11 +179,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/trips/$id': {
+      id: '/trips/$id'
+      path: '/trips/$id'
+      fullPath: '/trips/$id'
+      preLoaderRoute: typeof TripsIdRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/spots/$continent/': {
       id: '/spots/$continent/'
       path: '/spots/$continent'
       fullPath: '/spots/$continent/'
       preLoaderRoute: typeof SpotsContinentIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/trips/theme/$slug': {
+      id: '/trips/theme/$slug'
+      path: '/trips/theme/$slug'
+      fullPath: '/trips/theme/$slug'
+      preLoaderRoute: typeof TripsThemeSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/spots/$continent/$region/': {
@@ -160,7 +220,10 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  TripsIdRoute: TripsIdRoute,
   SpotsIndexRoute: SpotsIndexRoute,
+  TripsIndexRoute: TripsIndexRoute,
+  TripsThemeSlugRoute: TripsThemeSlugRoute,
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
   SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
   SpotsContinentRegionIndexRoute: SpotsContinentRegionIndexRoute,

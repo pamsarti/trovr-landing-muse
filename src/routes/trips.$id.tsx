@@ -57,7 +57,7 @@ function editorialParagraph(trip: Trip): string {
 }
 
 function TripDetail() {
-  const { trip } = Route.useLoaderData();
+  const { trip } = Route.useLoaderData() as { trip: Trip };
   const extra = tripExtraImages(trip);
   const related = relatedTrips(trip);
 
