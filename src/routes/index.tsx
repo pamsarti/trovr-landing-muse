@@ -64,6 +64,12 @@ function Header() {
             Spots
           </Link>
           <Link
+            to="/trips"
+            className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
+          >
+            Trips
+          </Link>
+          <Link
             to="/about"
             className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
           >

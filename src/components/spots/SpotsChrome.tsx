@@ -16,6 +16,9 @@ export function SpotsHeader() {
           <Link to="/spots" className="text-ink">
             Spots
           </Link>
+          <Link to="/trips" className="transition-colors hover:text-ink">
+            Trips
+          </Link>
           <Link to="/about" className="transition-colors hover:text-ink">
             About
           </Link>
