@@ -15,6 +15,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
 import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
@@ -51,6 +52,11 @@ const TripsIdRoute = TripsIdRouteImport.update({
   path: '/trips/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
   id: '/spots/$continent/',
   path: '/spots/$continent/',
@@ -83,6 +89,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
@@ -96,6 +103,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
@@ -110,6 +118,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/login': typeof LoginRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
@@ -125,6 +134,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/login'
+    | '/admin/leads'
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
@@ -138,6 +148,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/login'
+    | '/admin/leads'
     | '/trips/$id'
     | '/spots'
     | '/trips'
@@ -151,6 +162,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/login'
+    | '/admin/leads'
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
@@ -165,6 +177,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   LoginRoute: typeof LoginRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   TripsIdRoute: typeof TripsIdRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
   TripsIndexRoute: typeof TripsIndexRoute
@@ -219,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/spots/$continent/': {
       id: '/spots/$continent/'
       path: '/spots/$continent'
@@ -261,6 +281,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   LoginRoute: LoginRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   TripsIdRoute: TripsIdRoute,
   SpotsIndexRoute: SpotsIndexRoute,
   TripsIndexRoute: TripsIndexRoute,
