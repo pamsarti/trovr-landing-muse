@@ -40,14 +40,14 @@ export function TripCard({ trip }: { trip: Trip }) {
     <Link
       to="/trips/$id"
       params={{ id: trip.id }}
-      className="group block border border-transparent transition-colors hover:border-stone/40"
+      className="group block border border-transparent transition-colors duration-300 hover:border-stone/30"
     >
       <div className="aspect-video w-full overflow-hidden bg-stone/10">
         <img
           src={tripImage(trip, 800, 450)}
           alt={trip.destination}
           loading="lazy"
-          className="h-full w-full object-cover"
+          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
         />
       </div>
       <div className="px-1 py-4">
@@ -55,7 +55,7 @@ export function TripCard({ trip }: { trip: Trip }) {
         <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-stone">
           {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)}
         </p>
-        <p className="mt-3 font-serif text-sm italic leading-relaxed text-ink/80 line-clamp-2">
+        <p className="mt-3 font-serif text-sm italic leading-[1.35] text-ink/80 line-clamp-2">
           {trip.summary}
         </p>
       </div>
