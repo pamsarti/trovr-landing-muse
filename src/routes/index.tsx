@@ -12,36 +12,29 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const TRIPS = [
+type HomeTrip = {
+  trip: Trip;
+  line: string;
+};
+
+const HOME_TRIPS: HomeTrip[] = [
   {
-    place: "Patagonia",
-    days: "04",
-    tagline: "Six hundred kilometers of wind. It shuts you up.",
-    img: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1600&q=80",
-    alt: "Patagonian peaks at dusk",
+    trip: findTrip("egypt-kite-dragonfly")!,
+    line: "Wind that lasts longer than your fear of it.",
   },
   {
-    place: "Iceland",
-    days: "03",
-    tagline: "Active volcano. Three days walking around it.",
-    img: "https://images.unsplash.com/photo-1500380804539-4e1e8c1e7118?auto=format&fit=crop&w=1600&q=80",
-    alt: "Icelandic volcanic landscape",
+    trip: findTrip("maldives-surf-surftribe")!,
+    line: "An ocean that pays in a currency the office doesn't accept.",
   },
   {
-    place: "Atacama",
-    days: "05",
-    tagline: "Four thousand meters up. The sky moves closer.",
-    img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80",
-    alt: "Atacama desert plateau",
+    trip: findTrip("kyrgyzstan-horse-tatosh")!,
+    line: "Where the steppe still belongs to the people who cross it.",
   },
   {
-    place: "Lofoten",
-    days: "07",
-    tagline: "Light that doesn't behave like light anywhere else.",
-    img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=80",
-    alt: "Lofoten islands coastline",
+    trip: findTrip("alaska-wildlife-geographic")!,
+    line: "Quiet is its own kind of cathedral.",
   },
-];
+].filter((t): t is HomeTrip => !!t.trip);
 
 function Index() {
   return (
