@@ -1,40 +1,40 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import {
+  findTrip,
+  durationLabel,
+  ACTIVITY_LABEL,
+  tripImage,
+  type Trip,
+} from "@/lib/trips-data";
 
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const TRIPS = [
+type HomeTrip = {
+  trip: Trip;
+  line: string;
+};
+
+const HOME_TRIPS: HomeTrip[] = [
   {
-    place: "Patagonia",
-    days: "04",
-    tagline: "Six hundred kilometers of wind. It shuts you up.",
-    img: "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1600&q=80",
-    alt: "Patagonian peaks at dusk",
+    trip: findTrip("egypt-kite-dragonfly")!,
+    line: "Wind that lasts longer than your fear of it.",
   },
   {
-    place: "Iceland",
-    days: "03",
-    tagline: "Active volcano. Three days walking around it.",
-    img: "https://images.unsplash.com/photo-1500380804539-4e1e8c1e7118?auto=format&fit=crop&w=1600&q=80",
-    alt: "Icelandic volcanic landscape",
+    trip: findTrip("maldives-surf-surftribe")!,
+    line: "An ocean that pays in a currency the office doesn't accept.",
   },
   {
-    place: "Atacama",
-    days: "05",
-    tagline: "Four thousand meters up. The sky moves closer.",
-    img: "https://images.unsplash.com/photo-1469854523086-cc02fe5d8800?auto=format&fit=crop&w=1600&q=80",
-    alt: "Atacama desert plateau",
+    trip: findTrip("kyrgyzstan-horse-tatosh")!,
+    line: "Where the steppe still belongs to the people who cross it.",
   },
   {
-    place: "Lofoten",
-    days: "07",
-    tagline: "Light that doesn't behave like light anywhere else.",
-    img: "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=1600&q=80",
-    alt: "Lofoten islands coastline",
+    trip: findTrip("alaska-wildlife-geographic")!,
+    line: "Quiet is its own kind of cathedral.",
   },
-];
+].filter((t): t is HomeTrip => !!t.trip);
 
 function Index() {
   return (
@@ -43,6 +43,7 @@ function Index() {
       <Hero />
       <Manifesto />
       <Trips />
+      <Atlas />
       <Newsletter />
       <Footer />
     </main>
@@ -132,12 +133,17 @@ function Trips() {
           First trips. Fall 2026.
         </h2>
         <div className="grid grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-2">
-          {TRIPS.map((t) => (
-            <article key={t.place} className="group">
+          {HOME_TRIPS.map(({ trip, line }) => (
+            <Link
+              key={trip.id}
+              to="/trips/$id"
+              params={{ id: trip.id }}
+              className="group block"
+            >
               <div className="aspect-[16/9] overflow-hidden bg-stone/20">
                 <img
-                  src={t.img}
-                  alt={t.alt}
+                  src={tripImage(trip, 1600, 900)}
+                  alt={trip.destination}
                   loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
                   style={{ filter: "saturate(0.7)" }}
@@ -145,14 +151,37 @@ function Trips() {
               </div>
               <div className="mt-5">
                 <p className="font-sans text-sm tracking-wide text-ink">
-                  {t.place} · {t.days} days
+                  {trip.country} · {durationLabel(trip)} · {ACTIVITY_LABEL[trip.activity]}
                 </p>
                 <p className="mt-2 font-serif text-lg italic text-stone sm:text-xl">
-                  {t.tagline}
+                  {line}
                 </p>
               </div>
-            </article>
+            </Link>
           ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function Atlas() {
+  return (
+    <section className="border-t border-stone/20 px-6 py-32 sm:py-40">
+      <div className="mx-auto max-w-6xl">
+        <h2 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
+          A growing atlas.
+        </h2>
+        <p className="mt-5 max-w-xl text-base text-stone sm:text-lg">
+          Six hundred kite spots mapped. More every week.
+        </p>
+        <div className="mt-8">
+          <Link
+            to="/spots"
+            className="text-[11px] uppercase tracking-[0.2em] text-ink underline-offset-4 hover:underline"
+          >
+            Explore the map →
+          </Link>
         </div>
       </div>
     </section>
