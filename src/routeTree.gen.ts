@@ -16,6 +16,7 @@ import { Route as SpotsIndexRouteImport } from './routes/spots.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
+import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
 import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
@@ -54,6 +55,11 @@ const TripsThemeSlugRoute = TripsThemeSlugRouteImport.update({
   path: '/trips/theme/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const ApiPublicLeadsRoute = ApiPublicLeadsRouteImport.update({
+  id: '/api/public/leads',
+  path: '/api/public/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpotsContinentRegionIndexRoute =
   SpotsContinentRegionIndexRouteImport.update({
     id: '/spots/$continent/$region/',
@@ -73,6 +79,7 @@ export interface FileRoutesByFullPath {
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
+  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
@@ -84,6 +91,7 @@ export interface FileRoutesByTo {
   '/trips/$id': typeof TripsIdRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
+  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
@@ -96,6 +104,7 @@ export interface FileRoutesById {
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
+  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
@@ -109,6 +118,7 @@ export interface FileRouteTypes {
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
+    | '/api/public/leads'
     | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
@@ -120,6 +130,7 @@ export interface FileRouteTypes {
     | '/trips/$id'
     | '/spots'
     | '/trips'
+    | '/api/public/leads'
     | '/trips/theme/$slug'
     | '/spots/$continent'
     | '/spots/$continent/$region/$spot'
@@ -131,6 +142,7 @@ export interface FileRouteTypes {
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
+    | '/api/public/leads'
     | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
@@ -143,6 +155,7 @@ export interface RootRouteChildren {
   TripsIdRoute: typeof TripsIdRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
   TripsIndexRoute: typeof TripsIndexRoute
+  ApiPublicLeadsRoute: typeof ApiPublicLeadsRoute
   TripsThemeSlugRoute: typeof TripsThemeSlugRoute
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
   SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
@@ -200,6 +213,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsThemeSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/api/public/leads': {
+      id: '/api/public/leads'
+      path: '/api/public/leads'
+      fullPath: '/api/public/leads'
+      preLoaderRoute: typeof ApiPublicLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/spots/$continent/$region/': {
       id: '/spots/$continent/$region/'
       path: '/spots/$continent/$region'
@@ -223,6 +243,7 @@ const rootRouteChildren: RootRouteChildren = {
   TripsIdRoute: TripsIdRoute,
   SpotsIndexRoute: SpotsIndexRoute,
   TripsIndexRoute: TripsIndexRoute,
+  ApiPublicLeadsRoute: ApiPublicLeadsRoute,
   TripsThemeSlugRoute: TripsThemeSlugRoute,
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
   SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
