@@ -9,16 +9,24 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as LoginRouteImport } from './routes/login'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
+import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
+import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
 import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
+const LoginRoute = LoginRouteImport.update({
+  id: '/login',
+  path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -44,6 +52,11 @@ const TripsIdRoute = TripsIdRouteImport.update({
   path: '/trips/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminLeadsRoute = AdminLeadsRouteImport.update({
+  id: '/admin/leads',
+  path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
   id: '/spots/$continent/',
   path: '/spots/$continent/',
@@ -52,6 +65,11 @@ const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
 const TripsThemeSlugRoute = TripsThemeSlugRouteImport.update({
   id: '/trips/theme/$slug',
   path: '/trips/theme/$slug',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ApiPublicLeadsRoute = ApiPublicLeadsRouteImport.update({
+  id: '/api/public/leads',
+  path: '/api/public/leads',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpotsContinentRegionIndexRoute =
@@ -70,9 +88,12 @@ const SpotsContinentRegionSpotRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
+  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
@@ -81,9 +102,12 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
+  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
@@ -93,9 +117,12 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
+  '/login': typeof LoginRoute
+  '/admin/leads': typeof AdminLeadsRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
+  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
@@ -106,9 +133,12 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
+    | '/login'
+    | '/admin/leads'
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
+    | '/api/public/leads'
     | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
@@ -117,9 +147,12 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
+    | '/login'
+    | '/admin/leads'
     | '/trips/$id'
     | '/spots'
     | '/trips'
+    | '/api/public/leads'
     | '/trips/theme/$slug'
     | '/spots/$continent'
     | '/spots/$continent/$region/$spot'
@@ -128,9 +161,12 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
+    | '/login'
+    | '/admin/leads'
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
+    | '/api/public/leads'
     | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
@@ -140,9 +176,12 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
+  LoginRoute: typeof LoginRoute
+  AdminLeadsRoute: typeof AdminLeadsRoute
   TripsIdRoute: typeof TripsIdRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
   TripsIndexRoute: typeof TripsIndexRoute
+  ApiPublicLeadsRoute: typeof ApiPublicLeadsRoute
   TripsThemeSlugRoute: typeof TripsThemeSlugRoute
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
   SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
@@ -151,6 +190,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/login': {
+      id: '/login'
+      path: '/login'
+      fullPath: '/login'
+      preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -186,6 +232,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/leads': {
+      id: '/admin/leads'
+      path: '/admin/leads'
+      fullPath: '/admin/leads'
+      preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/spots/$continent/': {
       id: '/spots/$continent/'
       path: '/spots/$continent'
@@ -198,6 +251,13 @@ declare module '@tanstack/react-router' {
       path: '/trips/theme/$slug'
       fullPath: '/trips/theme/$slug'
       preLoaderRoute: typeof TripsThemeSlugRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/api/public/leads': {
+      id: '/api/public/leads'
+      path: '/api/public/leads'
+      fullPath: '/api/public/leads'
+      preLoaderRoute: typeof ApiPublicLeadsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/spots/$continent/$region/': {
@@ -220,9 +280,12 @@ declare module '@tanstack/react-router' {
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
+  LoginRoute: LoginRoute,
+  AdminLeadsRoute: AdminLeadsRoute,
   TripsIdRoute: TripsIdRoute,
   SpotsIndexRoute: SpotsIndexRoute,
   TripsIndexRoute: TripsIndexRoute,
+  ApiPublicLeadsRoute: ApiPublicLeadsRoute,
   TripsThemeSlugRoute: TripsThemeSlugRoute,
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
   SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
