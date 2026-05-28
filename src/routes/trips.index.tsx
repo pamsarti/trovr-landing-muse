@@ -220,11 +220,12 @@ function AllTripsSection() {
   }, [filters]);
 
   const clearAll = () => setFilters(emptyFilters());
-  const hasAny =
-    filters.activities.size ||
-    filters.continents.size ||
-    filters.countries.size ||
+  const activeCount =
+    filters.activities.size +
+    filters.continents.size +
+    filters.countries.size +
     filters.durations.size;
+  const hasAny = activeCount > 0;
 
   return (
     <section className="px-6 py-20 sm:py-28">
@@ -233,9 +234,14 @@ function AllTripsSection() {
           <h2 className="font-serif text-3xl text-ink sm:text-4xl">All trips.</h2>
           <button
             onClick={() => setDrawerOpen((v) => !v)}
-            className="text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink lg:hidden"
+            className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink lg:hidden"
           >
             {drawerOpen ? "Hide filters" : "Filters"}
+            {hasAny ? (
+              <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ink px-1.5 text-[10px] tracking-normal text-paper">
+                {activeCount}
+              </span>
+            ) : null}
           </button>
         </div>
 
@@ -243,6 +249,18 @@ function AllTripsSection() {
           <aside
             className={`${drawerOpen ? "block" : "hidden"} lg:block`}
           >
+            <div className="mb-6 flex items-center justify-between lg:mb-8">
+              <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink">
+                Filters
+              </h3>
+              <button
+                onClick={clearAll}
+                disabled={!hasAny}
+                className="text-[11px] uppercase tracking-[0.2em] text-stone underline-offset-4 transition-colors enabled:hover:text-ink enabled:hover:underline disabled:cursor-not-allowed disabled:opacity-40"
+              >
+                Clear all
+              </button>
+            </div>
             <FilterGroup
               title="Activity"
               options={allActivities().map((a) => ({ id: a, label: ACTIVITY_LABEL[a] }))}
@@ -275,21 +293,34 @@ function AllTripsSection() {
                 setFilters((f) => toggle(f, "durations", v as DurationBucket))
               }
             />
-            {hasAny ? (
+            <div className="mt-2 flex items-center justify-between gap-3 border-t border-stone/15 pt-6 lg:hidden">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
+                {trips.length} {trips.length === 1 ? "trip" : "trips"}
+              </p>
               <button
-                onClick={clearAll}
-                className="mt-2 text-[11px] uppercase tracking-[0.2em] text-stone underline-offset-4 hover:text-ink hover:underline"
+                onClick={() => setDrawerOpen(false)}
+                className="bg-ink px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-paper hover:bg-ink/85"
               >
-                Clear all
+                Show results
               </button>
-            ) : null}
+            </div>
           </aside>
 
           <div>
             {trips.length === 0 ? (
-              <p className="font-serif italic text-stone">
-                No trips match these filters.
-              </p>
+              <div className="flex flex-col items-start gap-4 py-8">
+                <p className="font-serif italic text-stone">
+                  No trips match these filters.
+                </p>
+                {hasAny ? (
+                  <button
+                    onClick={clearAll}
+                    className="text-[11px] uppercase tracking-[0.2em] text-ink underline underline-offset-4 hover:opacity-70"
+                  >
+                    Clear all filters
+                  </button>
+                ) : null}
+              </div>
             ) : (
               <div className="grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
                 {trips.map((t: Trip) => (
@@ -326,18 +357,43 @@ function FilterGroup({
   return (
     <div className="mb-8">
       <h4 className="text-[11px] uppercase tracking-[0.2em] text-stone">{title}</h4>
-      <ul className="mt-3 space-y-2">
+      <ul className="mt-3 space-y-1.5">
         {options.map((o) => {
           const on = selected.has(o.id);
           return (
             <li key={o.id}>
               <button
+                type="button"
+                role="checkbox"
+                aria-checked={on}
                 onClick={() => onToggle(o.id)}
-                className={`text-left text-sm transition-colors ${
-                  on ? "text-ink underline underline-offset-4" : "text-stone hover:text-ink"
+                className={`group flex w-full items-center gap-2.5 py-1 text-left text-sm transition-colors ${
+                  on ? "text-ink" : "text-stone hover:text-ink"
                 }`}
               >
-                {o.label}
+                <span
+                  aria-hidden="true"
+                  className={`flex h-4 w-4 flex-none items-center justify-center border transition-colors ${
+                    on
+                      ? "border-ink bg-ink text-paper"
+                      : "border-stone/40 bg-transparent group-hover:border-ink"
+                  }`}
+                >
+                  {on ? (
+                    <svg
+                      viewBox="0 0 12 12"
+                      className="h-2.5 w-2.5"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                    >
+                      <path d="M2.5 6.5l2.5 2.5L9.5 3.5" />
+                    </svg>
+                  ) : null}
+                </span>
+                <span className="flex-1">{o.label}</span>
               </button>
             </li>
           );
