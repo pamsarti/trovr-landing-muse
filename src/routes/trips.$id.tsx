@@ -141,25 +141,39 @@ function Fact({ label, value }: { label: string; value: string }) {
 function InquireForm({ tripId, tripName }: { tripId: string; tripName: string }) {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   async function onSubmit(e: FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setSubmitting(true);
+    setError(null);
     const data = new FormData(e.currentTarget);
     const payload = {
-      tripId,
-      tripName,
-      name: data.get("name"),
-      email: data.get("email"),
-      phone: data.get("phone"),
-      when: data.get("when"),
-      about: data.get("about"),
+      trip_id: tripId,
+      trip_name: tripName,
+      source_page: typeof window !== "undefined" ? window.location.href : null,
+      name: String(data.get("name") ?? ""),
+      email: String(data.get("email") ?? ""),
+      phone: String(data.get("phone") ?? "") || null,
+      preferred_when: String(data.get("when") ?? "") || null,
+      message: String(data.get("about") ?? "") || null,
     };
-    // TODO: wire to real inquiry endpoint
-    console.log("inquiry", payload);
-    await new Promise((r) => setTimeout(r, 400));
-    setSent(true);
-    setSubmitting(false);
+    try {
+      const res = await fetch("/api/public/leads", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) {
+        const body = await res.json().catch(() => ({}));
+        throw new Error(body?.error ?? "Failed to send inquiry");
+      }
+      setSent(true);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Something went wrong");
+    } finally {
+      setSubmitting(false);
+    }
   }
 
   if (sent) {
@@ -191,6 +205,7 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
           className="mt-2 w-full border border-stone/30 bg-transparent px-3 py-2 font-serif text-base text-ink focus:border-ink focus:outline-none"
         />
       </div>
+      {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
       <button
         type="submit"
         disabled={submitting}
