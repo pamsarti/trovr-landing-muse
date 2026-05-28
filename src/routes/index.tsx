@@ -1,5 +1,12 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import {
+  findTrip,
+  durationLabel,
+  ACTIVITY_LABEL,
+  tripImage,
+  type Trip,
+} from "@/lib/trips-data";
 
 export const Route = createFileRoute("/")({
   component: Index,
