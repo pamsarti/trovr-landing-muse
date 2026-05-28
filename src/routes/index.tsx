@@ -43,6 +43,7 @@ function Index() {
       <Hero />
       <Manifesto />
       <Trips />
+      <Atlas />
       <Newsletter />
       <Footer />
     </main>
