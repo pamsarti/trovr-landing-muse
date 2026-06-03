@@ -9,7 +9,6 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as LoginRouteImport } from './routes/login'
 import { Route as JournalRouteImport } from './routes/journal'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -34,11 +33,6 @@ import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
 import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
-const LoginRoute = LoginRouteImport.update({
-  id: '/login',
-  path: '/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const JournalRoute = JournalRouteImport.update({
   id: '/journal',
   path: '/journal',
@@ -161,7 +155,6 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
-  '/login': typeof LoginRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/homepage': typeof AdminHomepageRoute
   '/admin/journal': typeof AdminJournalRoute
@@ -187,7 +180,6 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
-  '/login': typeof LoginRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/homepage': typeof AdminHomepageRoute
   '/admin/journal': typeof AdminJournalRoute
@@ -214,7 +206,6 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
-  '/login': typeof LoginRoute
   '/admin/about': typeof AdminAboutRoute
   '/admin/homepage': typeof AdminHomepageRoute
   '/admin/journal': typeof AdminJournalRoute
@@ -242,7 +233,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/journal'
-    | '/login'
     | '/admin/about'
     | '/admin/homepage'
     | '/admin/journal'
@@ -268,7 +258,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/journal'
-    | '/login'
     | '/admin/about'
     | '/admin/homepage'
     | '/admin/journal'
@@ -294,7 +283,6 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/journal'
-    | '/login'
     | '/admin/about'
     | '/admin/homepage'
     | '/admin/journal'
@@ -321,7 +309,6 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   JournalRoute: typeof JournalRouteWithChildren
-  LoginRoute: typeof LoginRoute
   AdminAboutRoute: typeof AdminAboutRoute
   AdminHomepageRoute: typeof AdminHomepageRoute
   AdminJournalRoute: typeof AdminJournalRoute
@@ -345,13 +332,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/login': {
-      id: '/login'
-      path: '/login'
-      fullPath: '/login'
-      preLoaderRoute: typeof LoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/journal': {
       id: '/journal'
       path: '/journal'
@@ -531,7 +511,6 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   JournalRoute: JournalRouteWithChildren,
-  LoginRoute: LoginRoute,
   AdminAboutRoute: AdminAboutRoute,
   AdminHomepageRoute: AdminHomepageRoute,
   AdminJournalRoute: AdminJournalRoute,
