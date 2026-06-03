@@ -15,9 +15,19 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
+import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
+import { Route as AdminTripsRouteImport } from './routes/admin.trips'
+import { Route as AdminSpotsRouteImport } from './routes/admin.spots'
+import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
+import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
+import { Route as AdminMediaRouteImport } from './routes/admin.media'
+import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
+import { Route as AdminJournalRouteImport } from './routes/admin.journal'
+import { Route as AdminHomepageRouteImport } from './routes/admin.homepage'
+import { Route as AdminAboutRouteImport } from './routes/admin.about'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
 import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
@@ -54,6 +64,11 @@ const SpotsIndexRoute = SpotsIndexRouteImport.update({
   path: '/spots/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminIndexRoute = AdminIndexRouteImport.update({
+  id: '/admin/',
+  path: '/admin/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const TripsIdRoute = TripsIdRouteImport.update({
   id: '/trips/$id',
   path: '/trips/$id',
@@ -64,9 +79,54 @@ const JournalSlugRoute = JournalSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => JournalRoute,
 } as any)
+const AdminTripsRoute = AdminTripsRouteImport.update({
+  id: '/admin/trips',
+  path: '/admin/trips',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSpotsRoute = AdminSpotsRouteImport.update({
+  id: '/admin/spots',
+  path: '/admin/spots',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminSettingsRoute = AdminSettingsRouteImport.update({
+  id: '/admin/settings',
+  path: '/admin/settings',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
+  id: '/admin/reset-password',
+  path: '/admin/reset-password',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminMediaRoute = AdminMediaRouteImport.update({
+  id: '/admin/media',
+  path: '/admin/media',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminLoginRoute = AdminLoginRouteImport.update({
+  id: '/admin/login',
+  path: '/admin/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminLeadsRoute = AdminLeadsRouteImport.update({
   id: '/admin/leads',
   path: '/admin/leads',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminJournalRoute = AdminJournalRouteImport.update({
+  id: '/admin/journal',
+  path: '/admin/journal',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminHomepageRoute = AdminHomepageRouteImport.update({
+  id: '/admin/homepage',
+  path: '/admin/homepage',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AdminAboutRoute = AdminAboutRouteImport.update({
+  id: '/admin/about',
+  path: '/admin/about',
   getParentRoute: () => rootRouteImport,
 } as any)
 const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
@@ -102,9 +162,19 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/about': typeof AdminAboutRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/journal': typeof AdminJournalRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/spots': typeof AdminSpotsRoute
+  '/admin/trips': typeof AdminTripsRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
@@ -118,9 +188,19 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/about': typeof AdminAboutRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/journal': typeof AdminJournalRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/spots': typeof AdminSpotsRoute
+  '/admin/trips': typeof AdminTripsRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
+  '/admin': typeof AdminIndexRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
@@ -135,9 +215,19 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
+  '/admin/about': typeof AdminAboutRoute
+  '/admin/homepage': typeof AdminHomepageRoute
+  '/admin/journal': typeof AdminJournalRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/admin/login': typeof AdminLoginRoute
+  '/admin/media': typeof AdminMediaRoute
+  '/admin/reset-password': typeof AdminResetPasswordRoute
+  '/admin/settings': typeof AdminSettingsRoute
+  '/admin/spots': typeof AdminSpotsRoute
+  '/admin/trips': typeof AdminTripsRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
+  '/admin/': typeof AdminIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
@@ -153,9 +243,19 @@ export interface FileRouteTypes {
     | '/about'
     | '/journal'
     | '/login'
+    | '/admin/about'
+    | '/admin/homepage'
+    | '/admin/journal'
     | '/admin/leads'
+    | '/admin/login'
+    | '/admin/media'
+    | '/admin/reset-password'
+    | '/admin/settings'
+    | '/admin/spots'
+    | '/admin/trips'
     | '/journal/$slug'
     | '/trips/$id'
+    | '/admin/'
     | '/spots/'
     | '/trips/'
     | '/api/public/leads'
@@ -169,9 +269,19 @@ export interface FileRouteTypes {
     | '/about'
     | '/journal'
     | '/login'
+    | '/admin/about'
+    | '/admin/homepage'
+    | '/admin/journal'
     | '/admin/leads'
+    | '/admin/login'
+    | '/admin/media'
+    | '/admin/reset-password'
+    | '/admin/settings'
+    | '/admin/spots'
+    | '/admin/trips'
     | '/journal/$slug'
     | '/trips/$id'
+    | '/admin'
     | '/spots'
     | '/trips'
     | '/api/public/leads'
@@ -185,9 +295,19 @@ export interface FileRouteTypes {
     | '/about'
     | '/journal'
     | '/login'
+    | '/admin/about'
+    | '/admin/homepage'
+    | '/admin/journal'
     | '/admin/leads'
+    | '/admin/login'
+    | '/admin/media'
+    | '/admin/reset-password'
+    | '/admin/settings'
+    | '/admin/spots'
+    | '/admin/trips'
     | '/journal/$slug'
     | '/trips/$id'
+    | '/admin/'
     | '/spots/'
     | '/trips/'
     | '/api/public/leads'
@@ -202,8 +322,18 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   JournalRoute: typeof JournalRouteWithChildren
   LoginRoute: typeof LoginRoute
+  AdminAboutRoute: typeof AdminAboutRoute
+  AdminHomepageRoute: typeof AdminHomepageRoute
+  AdminJournalRoute: typeof AdminJournalRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
+  AdminLoginRoute: typeof AdminLoginRoute
+  AdminMediaRoute: typeof AdminMediaRoute
+  AdminResetPasswordRoute: typeof AdminResetPasswordRoute
+  AdminSettingsRoute: typeof AdminSettingsRoute
+  AdminSpotsRoute: typeof AdminSpotsRoute
+  AdminTripsRoute: typeof AdminTripsRoute
   TripsIdRoute: typeof TripsIdRoute
+  AdminIndexRoute: typeof AdminIndexRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
   TripsIndexRoute: typeof TripsIndexRoute
   ApiPublicLeadsRoute: typeof ApiPublicLeadsRoute
@@ -257,6 +387,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/': {
+      id: '/admin/'
+      path: '/admin'
+      fullPath: '/admin/'
+      preLoaderRoute: typeof AdminIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/trips/$id': {
       id: '/trips/$id'
       path: '/trips/$id'
@@ -271,11 +408,74 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalSlugRouteImport
       parentRoute: typeof JournalRoute
     }
+    '/admin/trips': {
+      id: '/admin/trips'
+      path: '/admin/trips'
+      fullPath: '/admin/trips'
+      preLoaderRoute: typeof AdminTripsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/spots': {
+      id: '/admin/spots'
+      path: '/admin/spots'
+      fullPath: '/admin/spots'
+      preLoaderRoute: typeof AdminSpotsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/settings': {
+      id: '/admin/settings'
+      path: '/admin/settings'
+      fullPath: '/admin/settings'
+      preLoaderRoute: typeof AdminSettingsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/reset-password': {
+      id: '/admin/reset-password'
+      path: '/admin/reset-password'
+      fullPath: '/admin/reset-password'
+      preLoaderRoute: typeof AdminResetPasswordRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/media': {
+      id: '/admin/media'
+      path: '/admin/media'
+      fullPath: '/admin/media'
+      preLoaderRoute: typeof AdminMediaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/login': {
+      id: '/admin/login'
+      path: '/admin/login'
+      fullPath: '/admin/login'
+      preLoaderRoute: typeof AdminLoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/leads': {
       id: '/admin/leads'
       path: '/admin/leads'
       fullPath: '/admin/leads'
       preLoaderRoute: typeof AdminLeadsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/journal': {
+      id: '/admin/journal'
+      path: '/admin/journal'
+      fullPath: '/admin/journal'
+      preLoaderRoute: typeof AdminJournalRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/homepage': {
+      id: '/admin/homepage'
+      path: '/admin/homepage'
+      fullPath: '/admin/homepage'
+      preLoaderRoute: typeof AdminHomepageRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/admin/about': {
+      id: '/admin/about'
+      path: '/admin/about'
+      fullPath: '/admin/about'
+      preLoaderRoute: typeof AdminAboutRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/spots/$continent/': {
@@ -332,8 +532,18 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   JournalRoute: JournalRouteWithChildren,
   LoginRoute: LoginRoute,
+  AdminAboutRoute: AdminAboutRoute,
+  AdminHomepageRoute: AdminHomepageRoute,
+  AdminJournalRoute: AdminJournalRoute,
   AdminLeadsRoute: AdminLeadsRoute,
+  AdminLoginRoute: AdminLoginRoute,
+  AdminMediaRoute: AdminMediaRoute,
+  AdminResetPasswordRoute: AdminResetPasswordRoute,
+  AdminSettingsRoute: AdminSettingsRoute,
+  AdminSpotsRoute: AdminSpotsRoute,
+  AdminTripsRoute: AdminTripsRoute,
   TripsIdRoute: TripsIdRoute,
+  AdminIndexRoute: AdminIndexRoute,
   SpotsIndexRoute: SpotsIndexRoute,
   TripsIndexRoute: TripsIndexRoute,
   ApiPublicLeadsRoute: ApiPublicLeadsRoute,
@@ -345,3 +555,13 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}

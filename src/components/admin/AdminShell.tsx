@@ -14,7 +14,7 @@ import {
   LogOut,
 } from "lucide-react";
 
-const NAV = [
+const NAV: ReadonlyArray<{ to: string; label: string; icon: typeof LayoutDashboard; exact?: boolean }> = [
   { to: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { to: "/admin/homepage", label: "Homepage", icon: Home },
   { to: "/admin/trips", label: "Trips", icon: Plane },
@@ -24,7 +24,7 @@ const NAV = [
   { to: "/admin/media", label: "Media", icon: ImageIcon },
   { to: "/admin/leads", label: "Leads", icon: Inbox },
   { to: "/admin/settings", label: "Settings", icon: Settings },
-] as const;
+];
 
 export function AdminShell({
   title,
@@ -59,7 +59,7 @@ export function AdminShell({
             return (
               <Link
                 key={item.to}
-                to={item.to}
+                to={item.to as any}
                 className={`flex items-center gap-2.5 px-3 py-1.5 rounded-md text-sm transition-colors ${
                   active
                     ? "bg-[#f1f1f1] text-[#1a1a1a] font-medium"
