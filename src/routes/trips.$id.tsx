@@ -4,11 +4,12 @@ import {
   ACTIVITY_LABEL,
   durationLabel,
   findTrip,
-  relatedTrips,
+  ALL_TRIPS,
   tripExtraImages,
   tripImage,
   type Trip,
 } from "@/lib/trips-data";
+import { editorialFor, priceSymbol } from "@/data/trip-editorials";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 
 export const Route = createFileRoute("/trips/$id")({
@@ -50,16 +51,28 @@ export const Route = createFileRoute("/trips/$id")({
   component: TripDetail,
 });
 
-function editorialParagraph(trip: Trip): string {
-  // Simple editorial paragraph anchored to facts in summary.
-  const facts = trip.summary.replace(/\s+/g, " ").trim();
-  return `${facts} The days find their own shape — wind, water, light, the slow learning of a place. You leave with less than you brought, and more than you came for.`;
+function relatedFor(trip: Trip, n = 3): Trip[] {
+  const others = ALL_TRIPS.filter((t) => t.id !== trip.id);
+  const sameActivityDiffCountry = others.filter(
+    (t) => t.activity === trip.activity && t.country !== trip.country,
+  );
+  const sameContinentDiffActivity = others.filter(
+    (t) => t.continent === trip.continent && t.activity !== trip.activity,
+  );
+  const picked: Trip[] = [];
+  const push = (t: Trip) => {
+    if (picked.length < n && !picked.find((p) => p.id === t.id)) picked.push(t);
+  };
+  sameActivityDiffCountry.forEach(push);
+  sameContinentDiffActivity.forEach(push);
+  others.forEach(push);
+  return picked.slice(0, n);
 }
 
 function TripDetail() {
   const { trip } = Route.useLoaderData() as { trip: Trip };
   const extra = tripExtraImages(trip);
-  const related = relatedTrips(trip);
+  const related = relatedFor(trip);
 
   return (
     <main className="bg-paper text-ink font-sans antialiased">
@@ -77,22 +90,21 @@ function TripDetail() {
 
       <article className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
         <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)} ·{" "}
-          {trip.level}
+          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)} · {trip.level}
         </p>
         <h1 className="mt-4 font-serif text-4xl leading-tight text-ink sm:text-5xl">
           {trip.destination}
         </h1>
         <p className="mt-8 font-serif text-lg leading-relaxed text-ink/90 sm:text-xl">
-          {editorialParagraph(trip)}
+          {editorialFor(trip.id)}
         </p>
 
         <dl className="mt-12 grid grid-cols-1 gap-y-6 border-y border-stone/20 py-10 sm:grid-cols-2">
           <Fact label="Operator" value={trip.operator} />
           <Fact label="Season" value={trip.season} />
           <Fact label="Level" value={trip.level} />
-          <Fact label="Price range" value={trip.price_range} />
-          <Fact label="Languages" value="English (confirm with operator)" />
+          <Fact label="Duration" value={durationLabel(trip)} />
+          <Fact label="Price range" value={priceSymbol(trip.price_range)} />
         </dl>
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
