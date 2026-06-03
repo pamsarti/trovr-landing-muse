@@ -36,11 +36,12 @@ export function findArticle(slug: string): JournalArticle | undefined {
 }
 
 export function formatDate(iso: string): string {
-  return new Date(iso).toLocaleDateString("en-US", {
+  return new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",
-  });
+    timeZone: "UTC",
+  }).format(new Date(iso));
 }
 
 /**
