@@ -122,9 +122,9 @@ function Hero() {
               An atlas for those who travel to feel
             </p>
             <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
-              Viajar para <em className="italic font-normal">encontrar.</em>
+              Travel to <em className="italic font-normal">find.</em>
               <br />
-              Não para fugir.
+              Not to escape.
             </h1>
             <div className="mt-10 flex items-center gap-5">
               <a
@@ -190,9 +190,9 @@ function ManifestoStrip() {
             The manifesto
           </p>
           <h2 className="font-serif text-[2rem] leading-[1.15] text-ink sm:text-5xl">
-            Algumas pessoas sentem a{" "}
-            <em className="italic font-normal">intensidade</em> como necessidade, não
-            preferência.
+            Some people feel{" "}
+            <em className="italic font-normal">intensity</em> as a necessity, not a
+            preference.
           </h2>
         </div>
         <div className="md:pt-12">
@@ -230,7 +230,7 @@ function Expeditions() {
               Fall 2026
             </p>
             <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
-              Primeiras <em className="italic font-normal">expedições.</em>
+              First <em className="italic font-normal">expeditions.</em>
             </h2>
           </div>
           <Link
@@ -314,10 +314,10 @@ function ExpeditionCard({
 /* ---------- Stats Bar ---------- */
 
 const STATS = [
-  { value: "600", sup: "+", label: "Spots mapeados" },
-  { value: "5", sup: "", label: "Continentes" },
-  { value: "12", sup: "", label: "Modalidades" },
-  { value: "2026", sup: "", label: "Primeira temporada" },
+  { value: "600", sup: "+", label: "Spots mapped" },
+  { value: "5", sup: "", label: "Continents" },
+  { value: "12", sup: "", label: "Activities" },
+  { value: "2026", sup: "", label: "First season" },
 ];
 
 function StatsBar() {
@@ -377,16 +377,16 @@ function Newsletter() {
           Early access
         </p>
         <h2 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl">
-          Quando as <em className="italic font-normal">primeiras</em> expedições
-          abrirem, você será o primeiro a saber.
+          When the <em className="italic font-normal">first</em> expeditions
+          open, you'll be the first to know.
         </h2>
         <p className="mt-6 text-base text-mid sm:text-lg">
-          Sem ruído. Apenas as cartas que importam.
+          No noise. Only the letters that matter.
         </p>
 
         {done ? (
           <p className="mt-12 font-serif text-xl italic text-sage">
-            Obrigado. Em breve falaremos.
+            Thank you. We'll be in touch soon.
           </p>
         ) : (
           <form
