@@ -120,7 +120,7 @@ function TripDetail() {
           ))}
         </div>
 
-        <InquireForm tripId={trip.id} tripName={trip.destination} />
+        <InquireForm tripId={trip.id} tripName={trip.destination} operator={trip.operator} />
       </article>
 
       {related.length > 0 && (
@@ -150,7 +150,15 @@ function Fact({ label, value }: { label: string; value: string }) {
   );
 }
 
-function InquireForm({ tripId, tripName }: { tripId: string; tripName: string }) {
+function InquireForm({
+  tripId,
+  tripName,
+  operator,
+}: {
+  tripId: string;
+  tripName: string;
+  operator: string;
+}) {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -160,6 +168,8 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
     setSubmitting(true);
     setError(null);
     const data = new FormData(e.currentTarget);
+    const userMessage = String(data.get("about") ?? "").trim();
+    const composedMessage = `[Operator: ${operator}]${userMessage ? `\n\n${userMessage}` : ""}`;
     const payload = {
       trip_id: tripId,
       trip_name: tripName,
@@ -168,7 +178,7 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
       email: String(data.get("email") ?? ""),
       phone: String(data.get("phone") ?? "") || null,
       preferred_when: String(data.get("when") ?? "") || null,
-      message: String(data.get("about") ?? "") || null,
+      message: composedMessage,
     };
     try {
       const res = await fetch("/api/public/leads", {
