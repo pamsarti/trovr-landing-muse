@@ -179,7 +179,7 @@ function Hero() {
 
 /* ---------- Manifesto Strip ---------- */
 
-const TAGS = ["Surf", "Kite", "Trekking", "Horseback", "Wildlife"];
+const TAGS = ["Kite", "Surf", "Horseback", "Wildlife", "Martial Arts", "River Cruise"];
 
 function ManifestoStrip() {
   return (
