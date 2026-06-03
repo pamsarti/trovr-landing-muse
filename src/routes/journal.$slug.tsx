@@ -83,7 +83,7 @@ function ErrorView() {
 }
 
 function ArticlePage() {
-  const { article } = Route.useLoaderData();
+  const { article } = Route.useLoaderData() as { article: JournalArticle };
   const all = getPublishedArticles();
   const others = all.filter((a) => a.id !== article.id);
   const sameCategory = others.filter((a) => a.category === article.category);
