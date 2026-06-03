@@ -16,6 +16,7 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
+import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
@@ -58,6 +59,11 @@ const TripsIdRoute = TripsIdRouteImport.update({
   path: '/trips/$id',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalSlugRoute = JournalSlugRouteImport.update({
+  id: '/$slug',
+  path: '/$slug',
+  getParentRoute: () => JournalRoute,
+} as any)
 const AdminLeadsRoute = AdminLeadsRouteImport.update({
   id: '/admin/leads',
   path: '/admin/leads',
@@ -94,9 +100,10 @@ const SpotsContinentRegionSpotRoute =
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
@@ -109,9 +116,10 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
@@ -125,9 +133,10 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRoute
+  '/journal': typeof JournalRouteWithChildren
   '/login': typeof LoginRoute
   '/admin/leads': typeof AdminLeadsRoute
+  '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
@@ -145,6 +154,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/admin/leads'
+    | '/journal/$slug'
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
@@ -160,6 +170,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/admin/leads'
+    | '/journal/$slug'
     | '/trips/$id'
     | '/spots'
     | '/trips'
@@ -175,6 +186,7 @@ export interface FileRouteTypes {
     | '/journal'
     | '/login'
     | '/admin/leads'
+    | '/journal/$slug'
     | '/trips/$id'
     | '/spots/'
     | '/trips/'
@@ -188,7 +200,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  JournalRoute: typeof JournalRoute
+  JournalRoute: typeof JournalRouteWithChildren
   LoginRoute: typeof LoginRoute
   AdminLeadsRoute: typeof AdminLeadsRoute
   TripsIdRoute: typeof TripsIdRoute
@@ -252,6 +264,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsIdRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/$slug': {
+      id: '/journal/$slug'
+      path: '/$slug'
+      fullPath: '/journal/$slug'
+      preLoaderRoute: typeof JournalSlugRouteImport
+      parentRoute: typeof JournalRoute
+    }
     '/admin/leads': {
       id: '/admin/leads'
       path: '/admin/leads'
@@ -297,10 +316,21 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface JournalRouteChildren {
+  JournalSlugRoute: typeof JournalSlugRoute
+}
+
+const JournalRouteChildren: JournalRouteChildren = {
+  JournalSlugRoute: JournalSlugRoute,
+}
+
+const JournalRouteWithChildren =
+  JournalRoute._addFileChildren(JournalRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  JournalRoute: JournalRoute,
+  JournalRoute: JournalRouteWithChildren,
   LoginRoute: LoginRoute,
   AdminLeadsRoute: AdminLeadsRoute,
   TripsIdRoute: TripsIdRoute,
