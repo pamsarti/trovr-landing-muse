@@ -18,7 +18,7 @@ function isActive(pathname: string, match: string) {
   return pathname === match || pathname.startsWith(match + "/");
 }
 
-export function SiteHeader() {
+export function SiteHeader({ transparent = false }: { transparent?: boolean } = {}) {
   const pathname = useActivePath();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -46,20 +46,22 @@ export function SiteHeader() {
     <>
       <header
         className={[
-          "fixed top-0 left-0 right-0 z-40 transition-colors duration-300",
-          scrolled
-            ? "border-b border-[var(--line)]"
-            : "border-b border-transparent",
+          "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+          scrolled ? "border-b border-[var(--line)]" : "border-b border-transparent",
         ].join(" ")}
         style={{
-          background: "rgba(244,241,236,0.9)",
-          backdropFilter: "blur(20px)",
+          background:
+            transparent && !scrolled ? "transparent" : "rgba(244,241,236,0.9)",
+          backdropFilter: transparent && !scrolled ? "none" : "blur(20px)",
         }}
       >
         <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:py-5">
           <Link
             to="/"
-            className="font-serif text-2xl lowercase tracking-tight text-ink sm:text-[28px]"
+            className={[
+              "font-serif text-2xl lowercase tracking-tight sm:text-[28px] transition-colors",
+              transparent && !scrolled ? "text-white" : "text-ink",
+            ].join(" ")}
           >
             trovr
           </Link>
@@ -72,9 +74,13 @@ export function SiteHeader() {
                   to={item.to}
                   className={[
                     "text-[10.5px] uppercase tracking-[0.22em] transition-colors",
-                    active
-                      ? "text-ink"
-                      : "text-mid hover:text-ink",
+                    transparent && !scrolled
+                      ? active
+                        ? "text-white"
+                        : "text-white/70 hover:text-white"
+                      : active
+                        ? "text-ink"
+                        : "text-mid hover:text-ink",
                   ].join(" ")}
                 >
                   {item.label}
@@ -93,14 +99,17 @@ export function SiteHeader() {
             aria-label="Open menu"
             aria-expanded={open}
             onClick={() => setOpen(true)}
-            className="md:hidden inline-flex items-center justify-center p-2 -mr-2 text-ink"
+            className={[
+              "md:hidden inline-flex items-center justify-center p-2 -mr-2",
+              transparent && !scrolled ? "text-white" : "text-ink",
+            ].join(" ")}
           >
             <Menu className="h-5 w-5" />
           </button>
         </div>
       </header>
-      {/* Spacer to offset fixed header */}
-      <div aria-hidden className="h-[64px] sm:h-[72px]" />
+      {/* Spacer to offset fixed header (skipped when transparent overlay is used) */}
+      {!transparent && <div aria-hidden className="h-[64px] sm:h-[72px]" />}
 
       {open && (
         <div className="fixed inset-0 z-50 bg-paper md:hidden">
