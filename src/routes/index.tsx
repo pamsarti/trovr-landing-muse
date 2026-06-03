@@ -179,7 +179,7 @@ function Hero() {
 
 /* ---------- Manifesto Strip ---------- */
 
-const TAGS = ["Surf", "Kite", "Trekking", "Horseback", "Wildlife"];
+const TAGS = ["Kite", "Surf", "Horseback", "Wildlife", "Martial Arts", "River Cruise"];
 
 function ManifestoStrip() {
   return (
@@ -196,12 +196,17 @@ function ManifestoStrip() {
           </h2>
         </div>
         <div className="md:pt-12">
-          <p className="text-base leading-[1.75] text-mid sm:text-lg">
-            Big waves. Long crossings. Places without signal. We curate trips for
-            those people — the seasoned ones, and the ones just starting to
-            recognize the pull. Adrenaline is the path. What you find along the way
-            is the destination.
-          </p>
+          <div className="space-y-8">
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">
+              Big waves. Long crossings. Places without signal.
+            </p>
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">
+              We curate trips for those people — the seasoned ones, and the ones just starting to recognize the pull.
+            </p>
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">
+              Adrenaline is the path. What you find along the way is the destination.
+            </p>
+          </div>
           <ul className="mt-8 flex flex-wrap gap-2.5">
             {TAGS.map((t) => (
               <li
@@ -316,7 +321,7 @@ function ExpeditionCard({
 const STATS = [
   { value: "600", sup: "+", label: "Spots mapped" },
   { value: "5", sup: "", label: "Continents" },
-  { value: "12", sup: "", label: "Activities" },
+  { value: "41", sup: "", label: "Trips" },
   { value: "2026", sup: "", label: "First season" },
 ];
 
