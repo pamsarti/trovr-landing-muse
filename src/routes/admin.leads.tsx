@@ -1,6 +1,8 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
-import { useEffect, useState, useCallback } from "react";
+import { createFileRoute } from "@tanstack/react-router";
+import { useCallback, useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
+import { AdminGate } from "@/components/admin/AdminGate";
+import { AdminShell } from "@/components/admin/AdminShell";
 
 type Lead = {
   id: string;
@@ -17,14 +19,15 @@ type Lead = {
 };
 
 export const Route = createFileRoute("/admin/leads")({
-  component: AdminLeadsPage,
+  component: () => (
+    <AdminGate>
+      <Leads />
+    </AdminGate>
+  ),
 });
 
-function AdminLeadsPage() {
-  const navigate = useNavigate();
+function Leads() {
   const [leads, setLeads] = useState<Lead[] | null>(null);
-  const [authChecked, setAuthChecked] = useState(false);
-  const [authorized, setAuthorized] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "new" | "read" | "archived">("all");
 
@@ -42,19 +45,8 @@ function AdminLeadsPage() {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      const { data } = await supabase.auth.getSession();
-      if (!data.session) {
-        navigate({ to: "/login", replace: true });
-        return;
-      }
-      const email = data.session.user.email;
-      const ok = email === "pamela.ssarti@gmail.com";
-      setAuthorized(ok);
-      setAuthChecked(true);
-      if (ok) await load();
-    })();
-  }, [load, navigate]);
+    load();
+  }, [load]);
 
   async function updateStatus(id: string, status: string) {
     const { error } = await supabase.from("leads").update({ status }).eq("id", id);
@@ -65,123 +57,81 @@ function AdminLeadsPage() {
     await load();
   }
 
-  async function signOut() {
-    await supabase.auth.signOut();
-    navigate({ to: "/login", replace: true });
-  }
-
-  if (!authChecked) {
-    return (
-      <main className="min-h-screen bg-paper text-ink font-sans flex items-center justify-center">
-        <p className="text-stone">Loading…</p>
-      </main>
-    );
-  }
-
-  if (!authorized) {
-    return (
-      <main className="min-h-screen bg-paper text-ink font-sans flex items-center justify-center px-6">
-        <div className="text-center">
-          <h1 className="font-serif text-2xl">Not authorized</h1>
-          <p className="mt-3 text-sm text-stone">
-            This account doesn't have access. Sign in with the admin account.
-          </p>
-          <button onClick={signOut} className="mt-6 underline text-sm text-stone">
-            Sign out
-          </button>
-        </div>
-      </main>
-    );
-  }
-
   const filtered = (leads ?? []).filter((l) => filter === "all" || l.status === filter);
 
   return (
-    <main className="min-h-screen bg-paper text-ink font-sans">
-      <header className="border-b border-stone/20 px-6 py-6 flex items-center justify-between">
-        <h1 className="font-serif text-2xl">Leads</h1>
-        <div className="flex items-center gap-4 text-xs uppercase tracking-[0.2em] text-stone">
-          <span>{leads?.length ?? 0} total</span>
-          <button onClick={signOut} className="underline">Sign out</button>
-        </div>
-      </header>
-
-      <div className="px-6 py-4 flex gap-2 text-xs uppercase tracking-[0.2em]">
+    <AdminShell title="Leads">
+      <div className="flex items-center gap-2 mb-4">
         {(["all", "new", "read", "archived"] as const).map((f) => (
           <button
             key={f}
             onClick={() => setFilter(f)}
-            className={`px-3 py-1 border ${
-              filter === f ? "border-ink text-ink" : "border-stone/30 text-stone"
+            className={`px-3 py-1 rounded-md text-xs font-medium border ${
+              filter === f
+                ? "bg-[#1a1a1a] text-white border-[#1a1a1a]"
+                : "bg-white text-[#525252] border-[#d4d4d4] hover:bg-[#fafafa]"
             }`}
           >
             {f}
           </button>
         ))}
+        <span className="ml-auto text-xs text-[#737373]">{leads?.length ?? 0} total</span>
       </div>
 
-      {error && <p className="px-6 text-sm text-red-600">{error}</p>}
+      {error && (
+        <div className="rounded-md bg-[#fef2f2] border border-[#fecaca] px-3 py-2 text-xs text-[#b91c1c] mb-4">
+          {error}
+        </div>
+      )}
 
-      <div className="px-6 pb-20">
+      <div className="bg-white border border-[#e5e5e5] rounded-lg">
         {leads === null ? (
-          <p className="text-stone">Loading leads…</p>
+          <p className="p-6 text-sm text-[#737373]">Loading…</p>
         ) : filtered.length === 0 ? (
-          <p className="text-stone py-12 text-center">No leads yet.</p>
+          <p className="p-6 text-sm text-[#737373] text-center">No leads.</p>
         ) : (
-          <ul className="divide-y divide-stone/20">
+          <ul className="divide-y divide-[#f1f1f1]">
             {filtered.map((l) => (
-              <li key={l.id} className="py-6">
-                <div className="flex flex-wrap items-baseline gap-x-4 gap-y-1">
-                  <span className="font-serif text-lg">{l.name}</span>
-                  <a href={`mailto:${l.email}`} className="text-sm underline text-ink/80">
+              <li key={l.id} className="p-4">
+                <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
+                  <span className="font-medium text-sm">{l.name}</span>
+                  <a href={`mailto:${l.email}`} className="text-xs text-[#525252] underline">
                     {l.email}
                   </a>
-                  {l.phone && <span className="text-sm text-stone">{l.phone}</span>}
-                  <span className="ml-auto text-[11px] uppercase tracking-[0.2em] text-stone">
+                  {l.phone && <span className="text-xs text-[#737373]">{l.phone}</span>}
+                  <span className="ml-auto text-xs text-[#a3a3a3]">
                     {new Date(l.created_at).toLocaleString()}
                   </span>
                 </div>
-                <div className="mt-2 text-sm text-stone">
+                <div className="mt-1.5 text-xs text-[#737373]">
                   Trip:{" "}
                   {l.trip_name ? (
-                    <a href={`/trips/${l.trip_id}`} className="underline text-ink/80">
+                    <a href={`/trips/${l.trip_id}`} className="underline text-[#525252]">
                       {l.trip_name}
                     </a>
                   ) : (
-                    <span>—</span>
+                    "—"
                   )}
-                  {l.source_page && (
-                    <>
-                      {" · "}
-                      <span>From: {l.source_page}</span>
-                    </>
-                  )}
-                  {l.preferred_when && (
-                    <>
-                      {" · "}
-                      <span>When: {l.preferred_when}</span>
-                    </>
-                  )}
+                  {l.source_page && <> · From: {l.source_page}</>}
+                  {l.preferred_when && <> · When: {l.preferred_when}</>}
                 </div>
                 {l.message && (
-                  <p className="mt-3 font-serif text-base text-ink whitespace-pre-wrap">
-                    {l.message}
-                  </p>
+                  <p className="mt-2 text-sm text-[#1a1a1a] whitespace-pre-wrap">{l.message}</p>
                 )}
-                <div className="mt-3 flex gap-2 text-[11px] uppercase tracking-[0.2em]">
-                  <span className="px-2 py-1 border border-stone/30 text-stone">{l.status}</span>
+                <div className="mt-2 flex gap-2 items-center text-xs">
+                  <span className="px-2 py-0.5 rounded bg-[#f1f1f1] text-[#525252]">{l.status}</span>
                   {l.status !== "read" && (
-                    <button onClick={() => updateStatus(l.id, "read")} className="underline text-stone">
+                    <button onClick={() => updateStatus(l.id, "read")} className="text-[#525252] underline">
                       Mark read
                     </button>
                   )}
                   {l.status !== "archived" && (
-                    <button onClick={() => updateStatus(l.id, "archived")} className="underline text-stone">
+                    <button onClick={() => updateStatus(l.id, "archived")} className="text-[#525252] underline">
                       Archive
                     </button>
                   )}
                   {l.status !== "new" && (
-                    <button onClick={() => updateStatus(l.id, "new")} className="underline text-stone">
+                    <button onClick={() => updateStatus(l.id, "new")} className="text-[#525252] underline">
                       Reopen
                     </button>
                   )}
@@ -191,6 +141,6 @@ function AdminLeadsPage() {
           </ul>
         )}
       </div>
-    </main>
+    </AdminShell>
   );
 }
