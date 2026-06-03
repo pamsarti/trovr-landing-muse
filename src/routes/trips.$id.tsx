@@ -190,22 +190,26 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
 
   if (sent) {
     return (
-      <div className="mt-16 border border-stone/30 px-6 py-10 text-center">
-        <p className="font-serif text-xl italic text-ink">
-          Thanks. We'll get in touch within 24 hours.
+      <div className="mt-16 border border-stone/30 px-6 py-14 text-center">
+        <p className="font-serif text-xl italic text-ink sm:text-2xl">
+          Thank you. We'll get back to you within 48 hours.
         </p>
+        <p className="mt-8 font-serif text-3xl lowercase text-ink">trovr</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={onSubmit} className="mt-16">
-      <h2 className="font-serif text-2xl text-ink sm:text-3xl">Inquire about this trip.</h2>
+      <h2 className="font-serif text-3xl text-ink sm:text-4xl">Interested?</h2>
+      <p className="mt-3 text-sm text-stone">
+        Tell us about you. We'll come back with details.
+      </p>
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Field name="name" label="Name" required />
         <Field name="email" label="Email" type="email" required />
         <Field name="phone" label="Phone (optional)" />
-        <Field name="when" label="When you'd like to go" placeholder="e.g. October 2026" />
+        <Field name="when" label="When are you thinking?" placeholder="e.g. August 2026 or flexible" />
       </div>
       <div className="mt-6">
         <label className="text-[11px] uppercase tracking-[0.2em] text-stone">
@@ -214,6 +218,7 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
         <textarea
           name="about"
           rows={4}
+          placeholder="Anything we should know — experience level, who's coming with you, what you're after."
           className="mt-2 w-full border border-stone/30 bg-transparent px-3 py-2 font-serif text-base text-ink focus:border-ink focus:outline-none"
         />
       </div>
@@ -221,9 +226,9 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
       <button
         type="submit"
         disabled={submitting}
-        className="mt-8 w-full border border-ink px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-50 sm:w-auto"
+        className="mt-8 w-full border border-ink px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-50"
       >
-        {submitting ? "Sending…" : "Inquire"}
+        {submitting ? "Sending…" : "Submit inquiry"}
       </button>
     </form>
   );
