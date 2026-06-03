@@ -46,20 +46,24 @@ export function SiteHeader() {
     <>
       <header
         className={[
-          "sticky top-0 z-40 transition-colors duration-200",
+          "fixed top-0 left-0 right-0 z-40 transition-colors duration-300",
           scrolled
-            ? "bg-paper/95 backdrop-blur border-b border-stone/20"
-            : "bg-paper border-b border-transparent",
+            ? "border-b border-[var(--line)]"
+            : "border-b border-transparent",
         ].join(" ")}
+        style={{
+          background: "rgba(244,241,236,0.9)",
+          backdropFilter: "blur(20px)",
+        }}
       >
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5 sm:py-6">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:py-5">
           <Link
             to="/"
-            className="font-serif text-2xl lowercase text-ink sm:text-3xl"
+            className="font-serif text-2xl lowercase tracking-tight text-ink sm:text-[28px]"
           >
             trovr
           </Link>
-          <nav className="hidden items-center gap-8 md:flex">
+          <nav className="hidden items-center gap-10 md:flex">
             {NAV.map((item) => {
               const active = isActive(pathname, item.match);
               return (
@@ -67,16 +71,22 @@ export function SiteHeader() {
                   key={item.to}
                   to={item.to}
                   className={[
-                    "text-[11px] uppercase tracking-[0.2em] transition-colors",
+                    "text-[10.5px] uppercase tracking-[0.22em] transition-colors",
                     active
-                      ? "text-ink underline underline-offset-[6px] decoration-stone/60"
-                      : "text-stone hover:text-ink",
+                      ? "text-ink"
+                      : "text-mid hover:text-ink",
                   ].join(" ")}
                 >
                   {item.label}
                 </Link>
               );
             })}
+            <a
+              href="/#newsletter"
+              className="ml-2 inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
+            >
+              Early access
+            </a>
           </nav>
           <button
             type="button"
@@ -89,6 +99,8 @@ export function SiteHeader() {
           </button>
         </div>
       </header>
+      {/* Spacer to offset fixed header */}
+      <div aria-hidden className="h-[64px] sm:h-[72px]" />
 
       {open && (
         <div className="fixed inset-0 z-50 bg-paper md:hidden">
@@ -118,14 +130,21 @@ export function SiteHeader() {
                   to={item.to}
                   onClick={() => setOpen(false)}
                   className={[
-                    "font-serif text-3xl lowercase",
-                    active ? "text-ink underline underline-offset-[8px] decoration-stone/60" : "text-stone",
+                    "font-serif text-3xl lowercase tracking-tight",
+                    active ? "text-ink" : "text-mid",
                   ].join(" ")}
                 >
                   {item.label}
                 </Link>
               );
             })}
+            <a
+              href="/#newsletter"
+              onClick={() => setOpen(false)}
+              className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white"
+            >
+              Early access
+            </a>
           </nav>
         </div>
       )}
