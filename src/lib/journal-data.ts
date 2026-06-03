@@ -23,7 +23,7 @@ export const CATEGORY_LABEL: Record<JournalCategory, string> = {
   manifesto: "Manifesto",
 };
 
-const ALL = articlesJson as JournalArticle[];
+const ALL = articlesJson as unknown as JournalArticle[];
 
 export function getPublishedArticles(): JournalArticle[] {
   return ALL.filter((a) => a.status === "published").sort(
