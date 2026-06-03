@@ -14,6 +14,81 @@ export type Database = {
   }
   public: {
     Tables: {
+      activity_log: {
+        Row: {
+          action: string
+          actor_email: string | null
+          created_at: string
+          entity_id: string | null
+          entity_type: string | null
+          id: string
+        }
+        Insert: {
+          action: string
+          actor_email?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+        }
+        Update: {
+          action?: string
+          actor_email?: string | null
+          created_at?: string
+          entity_id?: string | null
+          entity_type?: string | null
+          id?: string
+        }
+        Relationships: []
+      }
+      journal_articles: {
+        Row: {
+          author: string | null
+          body: string | null
+          category: string
+          created_at: string
+          dek: string | null
+          hero_image_url: string | null
+          id: string
+          published_date: string | null
+          read_time_minutes: number | null
+          slug: string
+          status: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          author?: string | null
+          body?: string | null
+          category: string
+          created_at?: string
+          dek?: string | null
+          hero_image_url?: string | null
+          id?: string
+          published_date?: string | null
+          read_time_minutes?: number | null
+          slug: string
+          status?: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          author?: string | null
+          body?: string | null
+          category?: string
+          created_at?: string
+          dek?: string | null
+          hero_image_url?: string | null
+          id?: string
+          published_date?: string | null
+          read_time_minutes?: number | null
+          slug?: string
+          status?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
       leads: {
         Row: {
           created_at: string
@@ -53,6 +128,156 @@ export type Database = {
           status?: string
           trip_id?: string | null
           trip_name?: string | null
+        }
+        Relationships: []
+      }
+      site_config: {
+        Row: {
+          key: string
+          updated_at: string
+          value: Json
+        }
+        Insert: {
+          key: string
+          updated_at?: string
+          value: Json
+        }
+        Update: {
+          key?: string
+          updated_at?: string
+          value?: Json
+        }
+        Relationships: []
+      }
+      spots: {
+        Row: {
+          activity: string
+          city: string | null
+          conditions: Json | null
+          country: string
+          created_at: string
+          description: string | null
+          description_raw: string | null
+          hero_image_url: string | null
+          id: string
+          lat: number | null
+          lng: number | null
+          name: string
+          region: string | null
+          source_url: string | null
+          spot_id: string
+          status: string
+          updated_at: string
+        }
+        Insert: {
+          activity: string
+          city?: string | null
+          conditions?: Json | null
+          country: string
+          created_at?: string
+          description?: string | null
+          description_raw?: string | null
+          hero_image_url?: string | null
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          name: string
+          region?: string | null
+          source_url?: string | null
+          spot_id: string
+          status?: string
+          updated_at?: string
+        }
+        Update: {
+          activity?: string
+          city?: string | null
+          conditions?: Json | null
+          country?: string
+          created_at?: string
+          description?: string | null
+          description_raw?: string | null
+          hero_image_url?: string | null
+          id?: string
+          lat?: number | null
+          lng?: number | null
+          name?: string
+          region?: string | null
+          source_url?: string | null
+          spot_id?: string
+          status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      trips: {
+        Row: {
+          activity: string
+          continent: string
+          country: string
+          created_at: string
+          destination: string
+          duration_days: string | null
+          editorial_paragraph: string | null
+          hero_image_url: string | null
+          id: string
+          level: string | null
+          operator: string | null
+          operator_url: string | null
+          photo_urls: string[] | null
+          price_range: string | null
+          season: string | null
+          sort_order: number | null
+          source_url: string | null
+          status: string
+          summary: string | null
+          trip_id: string
+          updated_at: string
+        }
+        Insert: {
+          activity: string
+          continent: string
+          country: string
+          created_at?: string
+          destination: string
+          duration_days?: string | null
+          editorial_paragraph?: string | null
+          hero_image_url?: string | null
+          id?: string
+          level?: string | null
+          operator?: string | null
+          operator_url?: string | null
+          photo_urls?: string[] | null
+          price_range?: string | null
+          season?: string | null
+          sort_order?: number | null
+          source_url?: string | null
+          status?: string
+          summary?: string | null
+          trip_id: string
+          updated_at?: string
+        }
+        Update: {
+          activity?: string
+          continent?: string
+          country?: string
+          created_at?: string
+          destination?: string
+          duration_days?: string | null
+          editorial_paragraph?: string | null
+          hero_image_url?: string | null
+          id?: string
+          level?: string | null
+          operator?: string | null
+          operator_url?: string | null
+          photo_urls?: string[] | null
+          price_range?: string | null
+          season?: string | null
+          sort_order?: number | null
+          source_url?: string | null
+          status?: string
+          summary?: string | null
+          trip_id?: string
+          updated_at?: string
         }
         Relationships: []
       }
