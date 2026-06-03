@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 import {
   findTrip,
   durationLabel,
@@ -13,120 +14,242 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type HomeTrip = {
-  trip: Trip;
-  line: string;
-};
+/* ---------- Data ---------- */
+
+type HomeTrip = { trip: Trip; line: string; span: string };
 
 const HOME_TRIPS: HomeTrip[] = [
   {
     trip: findTrip("egypt-kite-dragonfly")!,
     line: "Wind that lasts longer than your fear of it.",
+    span: "md:col-span-7 md:row-span-2",
   },
   {
     trip: findTrip("maldives-surf-surftribe")!,
     line: "An ocean that pays in a currency the office doesn't accept.",
+    span: "md:col-span-5 md:row-span-1",
   },
   {
     trip: findTrip("kyrgyzstan-horse-tatosh")!,
     line: "Where the steppe still belongs to the people who cross it.",
+    span: "md:col-span-5 md:row-span-1",
   },
   {
     trip: findTrip("alaska-wildlife-geographic")!,
     line: "Quiet is its own kind of cathedral.",
+    span: "md:col-span-12 md:row-span-1",
   },
 ].filter((t): t is HomeTrip => !!t.trip);
+
+const HERO_SLIDES = [
+  {
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80",
+    alt: "Mountain dawn",
+    caption: "Patagonia · trekking",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=2400&q=80",
+    alt: "Surfer at golden hour",
+    caption: "Maldives · surf",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2400&q=80",
+    alt: "Open steppe at sunset",
+    caption: "Kyrgyzstan · horseback",
+  },
+];
+
+/* ---------- Page ---------- */
 
 function Index() {
   return (
     <main className="bg-paper text-ink font-sans antialiased">
-      <SiteHeader />
+      <SiteHeader transparent />
       <Hero />
-      <Manifesto />
-      <Trips />
-      <Atlas />
+      <ManifestoStrip />
+      <Expeditions />
+      <StatsBar />
       <Newsletter />
       <Footer />
     </main>
   );
 }
 
+/* ---------- Hero ---------- */
+
 function Hero() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
-    <section className="relative flex min-h-screen items-center justify-center overflow-hidden">
-      <img
-        src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80"
-        alt="Mountain dawn"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ filter: "saturate(0.55) brightness(0.78)" }}
+    <section className="relative h-[100svh] w-full overflow-hidden bg-ink">
+      {HERO_SLIDES.map((s, idx) => {
+        const active = idx === i;
+        return (
+          <div
+            key={s.src}
+            className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
+            style={{ opacity: active ? 1 : 0 }}
+            aria-hidden={!active}
+          >
+            <img
+              src={s.src}
+              alt={s.alt}
+              className={`h-full w-full object-cover ${active ? "animate-pan" : ""}`}
+              style={{ filter: "brightness(0.82)" }}
+            />
+          </div>
+        );
+      })}
+
+      {/* Subtle linear gradient for text legibility */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.55) 100%)",
+        }}
       />
-      <div className="absolute inset-0 bg-ink/25" />
-      <div className="relative z-10 mx-auto max-w-3xl px-6 text-center text-paper">
-        <h1 className="font-serif text-[2.5rem] leading-[1.05] tracking-tight sm:text-6xl md:text-7xl">
-          Travel to find.
-          <br />
-          Not to escape.
-        </h1>
-        <p className="mx-auto mt-8 max-w-xl text-base text-paper/80 sm:text-lg">
-          A curated marketplace of immersive trips, for people who travel to feel.
-        </p>
-      </div>
-    </section>
-  );
-}
 
-function Manifesto() {
-  const paragraphs = [
-    "Some people feel intensity as a necessity, not a preference. Big waves. Long crossings. Places without signal.",
-    "We curate trips for those people — the seasoned ones, and the ones just starting to recognize the pull.",
-    "Adrenaline is the path. What you find along the way is the destination.",
-  ];
-  return (
-    <section className="px-6 py-32 sm:py-40">
-      <div className="mx-auto max-w-[640px] space-y-10 text-center">
-        {paragraphs.map((p, i) => (
-          <p key={i} className="font-serif text-2xl leading-[1.5] text-ink sm:text-[28px]">
-            {p}
-          </p>
-        ))}
-      </div>
-    </section>
-  );
-}
+      {/* Content */}
+      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
+          <div className="max-w-2xl">
+            <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
+              An atlas for those who travel to feel
+            </p>
+            <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
+              Viajar para <em className="italic font-normal">encontrar.</em>
+              <br />
+              Não para fugir.
+            </h1>
+            <div className="mt-10 flex items-center gap-5">
+              <a
+                href="#expeditions"
+                className="group inline-flex items-center gap-3 rounded-full bg-paper-card px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-ink transition-colors hover:bg-white"
+              >
+                See expeditions
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+              </a>
+              <a
+                href="#newsletter"
+                className="text-[11px] uppercase tracking-[0.22em] text-white/80 hover:text-white"
+              >
+                Early access →
+              </a>
+            </div>
+          </div>
 
-function Trips() {
-  return (
-    <section className="px-6 py-32 sm:py-40">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="mb-16 font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
-          First trips. Fall 2026.
-        </h2>
-        <div className="grid grid-cols-1 gap-x-10 gap-y-16 md:grid-cols-2">
-          {HOME_TRIPS.map(({ trip, line }) => (
-            <Link
-              key={trip.id}
-              to="/trips/$id"
-              params={{ id: trip.id }}
-              className="group block"
-            >
-              <div className="aspect-[16/9] overflow-hidden bg-stone/20">
-                <img
-                  src={tripImage(trip, 1600, 900)}
-                  alt={trip.destination}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
-                  style={{ filter: "saturate(0.7)" }}
+          {/* Right: slide indicator */}
+          <div className="flex flex-col items-start gap-4 md:items-end">
+            <div className="font-serif text-2xl tracking-wide text-white">
+              <span className="text-white">{String(i + 1).padStart(2, "0")}</span>
+              <span className="mx-2 text-white/40">/</span>
+              <span className="text-white/60">
+                {String(HERO_SLIDES.length).padStart(2, "0")}
+              </span>
+            </div>
+            <div className="flex items-center gap-2">
+              {HERO_SLIDES.map((_, idx) => (
+                <button
+                  key={idx}
+                  onClick={() => setI(idx)}
+                  aria-label={`Slide ${idx + 1}`}
+                  className="h-[2px] transition-all duration-500"
+                  style={{
+                    width: idx === i ? 40 : 16,
+                    background:
+                      idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
+                  }}
                 />
-              </div>
-              <div className="mt-5">
-                <p className="font-sans text-sm tracking-wide text-ink">
-                  {trip.country} · {durationLabel(trip)} · {ACTIVITY_LABEL[trip.activity]}
-                </p>
-                <p className="mt-2 font-serif text-lg italic text-stone sm:text-xl">
-                  {line}
-                </p>
-              </div>
-            </Link>
+              ))}
+            </div>
+            <p className="text-[10.5px] uppercase tracking-[0.22em] text-white/70">
+              {HERO_SLIDES[i].caption}
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Manifesto Strip ---------- */
+
+const TAGS = ["Surf", "Kite", "Trekking", "Horseback", "Wildlife"];
+
+function ManifestoStrip() {
+  return (
+    <section className="px-6 py-28 sm:py-36">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
+        <div>
+          <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+            The manifesto
+          </p>
+          <h2 className="font-serif text-[2rem] leading-[1.15] text-ink sm:text-5xl">
+            Algumas pessoas sentem a{" "}
+            <em className="italic font-normal">intensidade</em> como necessidade, não
+            preferência.
+          </h2>
+        </div>
+        <div className="md:pt-12">
+          <p className="text-base leading-[1.75] text-mid sm:text-lg">
+            Big waves. Long crossings. Places without signal. We curate trips for
+            those people — the seasoned ones, and the ones just starting to
+            recognize the pull. Adrenaline is the path. What you find along the way
+            is the destination.
+          </p>
+          <ul className="mt-8 flex flex-wrap gap-2.5">
+            {TAGS.map((t) => (
+              <li
+                key={t}
+                className="rounded-full bg-sage-bg px-4 py-1.5 text-xs tracking-wide text-sage"
+              >
+                {t}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* ---------- Expeditions Masonry ---------- */
+
+function Expeditions() {
+  return (
+    <section id="expeditions" className="px-6 py-24 sm:py-32">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+              Fall 2026
+            </p>
+            <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
+              Primeiras <em className="italic font-normal">expedições.</em>
+            </h2>
+          </div>
+          <Link
+            to="/trips"
+            className="hidden text-[10.5px] uppercase tracking-[0.22em] text-mid hover:text-ink md:inline-flex"
+          >
+            All expeditions →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[280px] lg:auto-rows-[320px]">
+          {HOME_TRIPS.map(({ trip, line, span }, idx) => (
+            <ExpeditionCard
+              key={trip.id}
+              trip={trip}
+              line={line}
+              span={span}
+              ratio={idx === 0 ? "aspect-[4/5] md:aspect-auto" : "aspect-[4/3] md:aspect-auto"}
+            />
           ))}
         </div>
       </div>
@@ -134,65 +257,154 @@ function Trips() {
   );
 }
 
-function Atlas() {
+function ExpeditionCard({
+  trip,
+  line,
+  span,
+  ratio,
+}: {
+  trip: Trip;
+  line: string;
+  span: string;
+  ratio: string;
+}) {
   return (
-    <section className="border-t border-stone/20 px-6 py-32 sm:py-40">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-4xl leading-tight sm:text-5xl md:text-6xl">
-          A growing atlas.
-        </h2>
-        <p className="mt-5 max-w-xl text-base text-stone sm:text-lg">
-          Six hundred kite spots mapped. More every week.
+    <Link
+      to="/trips/$id"
+      params={{ id: trip.id }}
+      className={`group relative block overflow-hidden rounded-[4px] bg-ink ${span} ${ratio} md:h-full`}
+    >
+      <img
+        src={tripImage(trip, 1600, 1000)}
+        alt={trip.destination}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.06]"
+        style={{ filter: "brightness(0.95)" }}
+      />
+      {/* Bottom info gradient */}
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
+        }}
+      />
+
+      {/* Floating button */}
+      <span
+        aria-hidden
+        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 items-center justify-center rounded-full bg-white opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100"
+      >
+        <ArrowUpRight className="h-4 w-4 text-ink" />
+      </span>
+
+      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+        <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">
+          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)}
         </p>
-        <div className="mt-8">
-          <Link
-            to="/spots"
-            className="text-[11px] uppercase tracking-[0.2em] text-ink underline-offset-4 hover:underline"
-          >
-            Explore the map →
-          </Link>
+        <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
+          {trip.destination}
+        </h3>
+        <p className="mt-1.5 max-w-md font-serif italic text-white/80">{line}</p>
+      </div>
+    </Link>
+  );
+}
+
+/* ---------- Stats Bar ---------- */
+
+const STATS = [
+  { value: "600", sup: "+", label: "Spots mapeados" },
+  { value: "5", sup: "", label: "Continentes" },
+  { value: "12", sup: "", label: "Modalidades" },
+  { value: "2026", sup: "", label: "Primeira temporada" },
+];
+
+function StatsBar() {
+  return (
+    <section className="px-6 pb-8">
+      <div className="mx-auto max-w-7xl rounded-[4px] bg-paper-card">
+        <div className="grid grid-cols-2 md:grid-cols-4">
+          {STATS.map((s, idx) => (
+            <div
+              key={s.label}
+              className={`group relative px-6 py-10 sm:py-12 ${
+                idx > 0 ? "md:border-l border-[var(--line)]" : ""
+              } ${idx >= 2 ? "border-t md:border-t-0 border-[var(--line)]" : ""} ${
+                idx % 2 === 1 ? "border-l md:border-l border-[var(--line)]" : ""
+              }`}
+            >
+              <div className="flex items-baseline gap-1">
+                <span className="font-serif text-4xl text-ink sm:text-5xl">
+                  {s.value}
+                </span>
+                {s.sup && (
+                  <span className="font-serif text-xl text-sage sm:text-2xl">
+                    {s.sup}
+                  </span>
+                )}
+              </div>
+              <p className="mt-3 text-[10.5px] uppercase tracking-[0.22em] text-mid">
+                {s.label}
+              </p>
+              <span
+                aria-hidden
+                className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-sage transition-all duration-500 group-hover:w-full"
+              />
+            </div>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
+/* ---------- Newsletter ---------- */
+
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = (e: FormEvent) => {
     e.preventDefault();
-    // TODO: wire to Resend or Formspree endpoint
     setDone(true);
   };
 
   return (
-    <section className="border-t border-stone/20 px-6 py-32 sm:py-40">
-      <div className="mx-auto max-w-[480px] text-center">
-        <h2 className="font-serif text-4xl leading-tight sm:text-5xl">Leave your email.</h2>
-        <p className="mt-5 text-base text-stone sm:text-lg">
-          We'll write when the first trips open.
+    <section id="newsletter" className="px-6 py-28 sm:py-36">
+      <div className="mx-auto max-w-2xl text-center">
+        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+          Early access
         </p>
+        <h2 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl">
+          Quando as <em className="italic font-normal">primeiras</em> expedições
+          abrirem, você será o primeiro a saber.
+        </h2>
+        <p className="mt-6 text-base text-mid sm:text-lg">
+          Sem ruído. Apenas as cartas que importam.
+        </p>
+
         {done ? (
-          <p className="mt-10 font-serif text-xl italic text-ink">
-            Thank you. We'll be in touch.
+          <p className="mt-12 font-serif text-xl italic text-sage">
+            Obrigado. Em breve falaremos.
           </p>
         ) : (
-          <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <form
+            onSubmit={onSubmit}
+            className="mx-auto mt-12 flex max-w-xl items-center gap-2 rounded-full bg-paper-card p-2 pl-6"
+            style={{ boxShadow: "0 12px 40px -20px rgba(28,25,22,0.18)" }}
+          >
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="flex-1 border border-stone/40 bg-transparent px-4 py-3 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
-              style={{ borderRadius: 2 }}
+              className="flex-1 bg-transparent text-base text-ink placeholder:text-mid/70 focus:outline-none"
             />
             <button
               type="submit"
-              className="border border-ink bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-ink transition-colors hover:bg-ink/5"
-              style={{ borderRadius: 2 }}
+              className="rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
             >
               Subscribe
             </button>
@@ -203,17 +415,24 @@ function Newsletter() {
   );
 }
 
+/* ---------- Footer ---------- */
+
 function Footer() {
   return (
-    <footer className="border-t border-stone/20 px-6 py-20">
-      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-        <p className="font-serif text-5xl lowercase text-ink sm:text-6xl">trovr</p>
-        <p className="font-serif text-base italic text-stone sm:text-lg">
-          Travel to find, not to escape.
-        </p>
-        <p className="text-xs tracking-wide text-stone">
-          © 2026 · hello@trovr.agency
-        </p>
+    <footer className="border-t border-[var(--line)] px-6 py-16">
+      <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left">
+        <div>
+          <p className="font-serif text-5xl lowercase text-ink sm:text-6xl">trovr</p>
+          <p className="mt-2 font-serif text-base italic text-mid">
+            Travel to find, not to escape.
+          </p>
+        </div>
+        <div className="flex flex-col gap-2 text-[10.5px] uppercase tracking-[0.22em] text-mid md:items-end">
+          <a href="mailto:hello@trovr.agency" className="hover:text-ink">
+            hello@trovr.agency
+          </a>
+          <span>© 2026 trovr</span>
+        </div>
       </div>
     </footer>
   );
