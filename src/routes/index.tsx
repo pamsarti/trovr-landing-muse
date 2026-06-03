@@ -196,12 +196,17 @@ function ManifestoStrip() {
           </h2>
         </div>
         <div className="md:pt-12">
-          <p className="text-base leading-[1.75] text-mid sm:text-lg">
-            Big waves. Long crossings. Places without signal. We curate trips for
-            those people — the seasoned ones, and the ones just starting to
-            recognize the pull. Adrenaline is the path. What you find along the way
-            is the destination.
-          </p>
+          <div className="space-y-8">
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">
+              Some people feel intensity as a necessity, not a preference. Big waves. Long crossings. Places without signal.
+            </p>
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">
+              We curate trips for those people — the seasoned ones, and the ones just starting to recognize the pull.
+            </p>
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">
+              Adrenaline is the path. What you find along the way is the destination.
+            </p>
+          </div>
           <ul className="mt-8 flex flex-wrap gap-2.5">
             {TAGS.map((t) => (
               <li
