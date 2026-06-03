@@ -4,11 +4,12 @@ import {
   ACTIVITY_LABEL,
   durationLabel,
   findTrip,
-  relatedTrips,
+  ALL_TRIPS,
   tripExtraImages,
   tripImage,
   type Trip,
 } from "@/lib/trips-data";
+import { editorialFor, priceSymbol } from "@/data/trip-editorials";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 
 export const Route = createFileRoute("/trips/$id")({
@@ -50,16 +51,28 @@ export const Route = createFileRoute("/trips/$id")({
   component: TripDetail,
 });
 
-function editorialParagraph(trip: Trip): string {
-  // Simple editorial paragraph anchored to facts in summary.
-  const facts = trip.summary.replace(/\s+/g, " ").trim();
-  return `${facts} The days find their own shape — wind, water, light, the slow learning of a place. You leave with less than you brought, and more than you came for.`;
+function relatedFor(trip: Trip, n = 3): Trip[] {
+  const others = ALL_TRIPS.filter((t) => t.id !== trip.id);
+  const sameActivityDiffCountry = others.filter(
+    (t) => t.activity === trip.activity && t.country !== trip.country,
+  );
+  const sameContinentDiffActivity = others.filter(
+    (t) => t.continent === trip.continent && t.activity !== trip.activity,
+  );
+  const picked: Trip[] = [];
+  const push = (t: Trip) => {
+    if (picked.length < n && !picked.find((p) => p.id === t.id)) picked.push(t);
+  };
+  sameActivityDiffCountry.forEach(push);
+  sameContinentDiffActivity.forEach(push);
+  others.forEach(push);
+  return picked.slice(0, n);
 }
 
 function TripDetail() {
   const { trip } = Route.useLoaderData() as { trip: Trip };
   const extra = tripExtraImages(trip);
-  const related = relatedTrips(trip);
+  const related = relatedFor(trip);
 
   return (
     <main className="bg-paper text-ink font-sans antialiased">
@@ -77,22 +90,21 @@ function TripDetail() {
 
       <article className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
         <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)} ·{" "}
-          {trip.level}
+          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)} · {trip.level}
         </p>
         <h1 className="mt-4 font-serif text-4xl leading-tight text-ink sm:text-5xl">
           {trip.destination}
         </h1>
         <p className="mt-8 font-serif text-lg leading-relaxed text-ink/90 sm:text-xl">
-          {editorialParagraph(trip)}
+          {editorialFor(trip.id)}
         </p>
 
         <dl className="mt-12 grid grid-cols-1 gap-y-6 border-y border-stone/20 py-10 sm:grid-cols-2">
           <Fact label="Operator" value={trip.operator} />
           <Fact label="Season" value={trip.season} />
           <Fact label="Level" value={trip.level} />
-          <Fact label="Price range" value={trip.price_range} />
-          <Fact label="Languages" value="English (confirm with operator)" />
+          <Fact label="Duration" value={durationLabel(trip)} />
+          <Fact label="Price range" value={priceSymbol(trip.price_range)} />
         </dl>
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
@@ -108,7 +120,7 @@ function TripDetail() {
           ))}
         </div>
 
-        <InquireForm tripId={trip.id} tripName={trip.destination} />
+        <InquireForm tripId={trip.id} tripName={trip.destination} operator={trip.operator} />
       </article>
 
       {related.length > 0 && (
@@ -138,7 +150,15 @@ function Fact({ label, value }: { label: string; value: string }) {
   );
 }
 
-function InquireForm({ tripId, tripName }: { tripId: string; tripName: string }) {
+function InquireForm({
+  tripId,
+  tripName,
+  operator,
+}: {
+  tripId: string;
+  tripName: string;
+  operator: string;
+}) {
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -148,6 +168,8 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
     setSubmitting(true);
     setError(null);
     const data = new FormData(e.currentTarget);
+    const userMessage = String(data.get("about") ?? "").trim();
+    const composedMessage = `[Operator: ${operator}]${userMessage ? `\n\n${userMessage}` : ""}`;
     const payload = {
       trip_id: tripId,
       trip_name: tripName,
@@ -156,7 +178,7 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
       email: String(data.get("email") ?? ""),
       phone: String(data.get("phone") ?? "") || null,
       preferred_when: String(data.get("when") ?? "") || null,
-      message: String(data.get("about") ?? "") || null,
+      message: composedMessage,
     };
     try {
       const res = await fetch("/api/public/leads", {
@@ -178,22 +200,26 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
 
   if (sent) {
     return (
-      <div className="mt-16 border border-stone/30 px-6 py-10 text-center">
-        <p className="font-serif text-xl italic text-ink">
-          Thanks. We'll get in touch within 24 hours.
+      <div className="mt-16 border border-stone/30 px-6 py-14 text-center">
+        <p className="font-serif text-xl italic text-ink sm:text-2xl">
+          Thank you. We'll get back to you within 48 hours.
         </p>
+        <p className="mt-8 font-serif text-3xl lowercase text-ink">trovr</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={onSubmit} className="mt-16">
-      <h2 className="font-serif text-2xl text-ink sm:text-3xl">Inquire about this trip.</h2>
+      <h2 className="font-serif text-3xl text-ink sm:text-4xl">Interested?</h2>
+      <p className="mt-3 text-sm text-stone">
+        Tell us about you. We'll come back with details.
+      </p>
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
         <Field name="name" label="Name" required />
         <Field name="email" label="Email" type="email" required />
         <Field name="phone" label="Phone (optional)" />
-        <Field name="when" label="When you'd like to go" placeholder="e.g. October 2026" />
+        <Field name="when" label="When are you thinking?" placeholder="e.g. August 2026 or flexible" />
       </div>
       <div className="mt-6">
         <label className="text-[11px] uppercase tracking-[0.2em] text-stone">
@@ -202,6 +228,7 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
         <textarea
           name="about"
           rows={4}
+          placeholder="Anything we should know — experience level, who's coming with you, what you're after."
           className="mt-2 w-full border border-stone/30 bg-transparent px-3 py-2 font-serif text-base text-ink focus:border-ink focus:outline-none"
         />
       </div>
@@ -209,9 +236,9 @@ function InquireForm({ tripId, tripName }: { tripId: string; tripName: string })
       <button
         type="submit"
         disabled={submitting}
-        className="mt-8 w-full border border-ink px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-50 sm:w-auto"
+        className="mt-8 w-full border border-ink px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-50"
       >
-        {submitting ? "Sending…" : "Inquire"}
+        {submitting ? "Sending…" : "Submit inquiry"}
       </button>
     </form>
   );
