@@ -198,7 +198,7 @@ function ManifestoStrip() {
         <div className="md:pt-12">
           <div className="space-y-8">
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              Some people feel intensity as a necessity, not a preference. Big waves. Long crossings. Places without signal.
+              Big waves. Long crossings. Places without signal.
             </p>
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
               We curate trips for those people — the seasoned ones, and the ones just starting to recognize the pull.
