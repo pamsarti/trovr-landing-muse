@@ -1,25 +1,10 @@
 import { Link } from "@tanstack/react-router";
 import type { Trip } from "@/lib/trips-data";
 import { tripImage, tripTag, ACTIVITY_LABEL, durationLabel } from "@/lib/trips-data";
+import { SiteHeader } from "@/components/SiteHeader";
 
-export function TripsHeader({ current }: { current?: "trips" | "spots" | "about" | "home" }) {
-  const link = (active: boolean) =>
-    active ? "text-ink" : "text-stone transition-colors hover:text-ink";
-  return (
-    <header className="border-b border-stone/15">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
-        <Link to="/" className="font-serif text-2xl lowercase text-ink sm:text-3xl">
-          trovr
-        </Link>
-        <nav className="flex items-center gap-6 text-[11px] uppercase tracking-[0.2em]">
-          <Link to="/" className={link(current === "home")}>Home</Link>
-          <Link to="/spots" className={link(current === "spots")}>Spots</Link>
-          <Link to="/trips" className={link(current === "trips")}>Trips</Link>
-          <Link to="/about" className={link(current === "about")}>About</Link>
-        </nav>
-      </div>
-    </header>
-  );
+export function TripsHeader(_props?: { current?: string }) {
+  return <SiteHeader />;
 }
 
 export function TripsFooter() {
