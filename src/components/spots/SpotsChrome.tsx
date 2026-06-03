@@ -1,32 +1,9 @@
 import { Link } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ACTIVITIES, type Activity } from "@/lib/spots-data";
+import { SiteHeader } from "@/components/SiteHeader";
 
-export function SpotsHeader() {
-  return (
-    <header className="border-b border-stone/15">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
-        <Link to="/" className="font-serif text-2xl lowercase text-ink sm:text-3xl">
-          trovr
-        </Link>
-        <nav className="flex items-center gap-6 text-[11px] uppercase tracking-[0.2em] text-stone">
-          <Link to="/" className="transition-colors hover:text-ink">
-            Home
-          </Link>
-          <Link to="/spots" className="text-ink">
-            Spots
-          </Link>
-          <Link to="/trips" className="transition-colors hover:text-ink">
-            Trips
-          </Link>
-          <Link to="/about" className="transition-colors hover:text-ink">
-            About
-          </Link>
-        </nav>
-      </div>
-    </header>
-  );
-}
+export { SiteHeader as SpotsHeader };
 
 export function SpotsFooter() {
   return (

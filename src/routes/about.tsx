@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -25,7 +26,7 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <main className="bg-paper text-ink font-sans antialiased">
-      <AboutHeader />
+      <SiteHeader />
       <Hero />
       <WhyExists />
       <FounderNote />
@@ -33,32 +34,6 @@ function AboutPage() {
       <Newsletter />
       <Footer />
     </main>
-  );
-}
-
-function AboutHeader() {
-  return (
-    <header className="border-b border-stone/15">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
-        <Link to="/" className="font-serif text-2xl lowercase text-ink sm:text-3xl">
-          trovr
-        </Link>
-        <nav className="flex items-center gap-6 sm:gap-8">
-          <Link
-            to="/spots"
-            className="text-[11px] uppercase tracking-[0.2em] text-stone transition-colors hover:text-ink"
-          >
-            Spots
-          </Link>
-          <Link
-            to="/"
-            className="text-[11px] uppercase tracking-[0.2em] text-stone transition-colors hover:text-ink"
-          >
-            Home
-          </Link>
-        </nav>
-      </div>
-    </header>
   );
 }
 

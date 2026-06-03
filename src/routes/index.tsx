@@ -7,6 +7,7 @@ import {
   tripImage,
   type Trip,
 } from "@/lib/trips-data";
+import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/")({
   component: Index,
@@ -39,7 +40,7 @@ const HOME_TRIPS: HomeTrip[] = [
 function Index() {
   return (
     <main className="bg-paper text-ink font-sans antialiased">
-      <Header />
+      <SiteHeader />
       <Hero />
       <Manifesto />
       <Trips />
@@ -47,38 +48,6 @@ function Index() {
       <Newsletter />
       <Footer />
     </main>
-  );
-}
-
-function Header() {
-  return (
-    <header className="absolute top-0 left-0 right-0 z-20">
-      <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-6 sm:py-8">
-        <Link to="/" className="font-serif text-2xl lowercase text-paper sm:text-3xl">
-          trovr
-        </Link>
-        <nav className="flex items-center gap-6 sm:gap-8">
-          <Link
-            to="/spots"
-            className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
-          >
-            Spots
-          </Link>
-          <Link
-            to="/trips"
-            className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
-          >
-            Trips
-          </Link>
-          <Link
-            to="/about"
-            className="text-[11px] uppercase tracking-[0.2em] text-paper/80 transition-colors hover:text-paper"
-          >
-            About
-          </Link>
-        </nav>
-      </div>
-    </header>
   );
 }
 
