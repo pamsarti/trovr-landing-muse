@@ -71,7 +71,7 @@ function TripsList() {
     setCreating(true);
     try {
       const { id } = await create();
-      navigate({ to: "/admin/trips/$id" as any, params: { id } });
+      navigate({ to: "/admin/trips/$id" as any, params: { id } as any });
     } catch (e: any) {
       setErr(e?.message ?? "Failed to create");
       setCreating(false);
@@ -129,12 +129,12 @@ function TripsList() {
             {filtered.map((r) => (
               <tr key={r.id} className="hover:bg-[#fafafa]">
                 <td className="px-3 py-2">
-                  <Link to={"/admin/trips/$id" as any} params={{ id: r.id }} className="block">
+                  <Link to={"/admin/trips/$id" as any} params={{ id: r.id } as any} className="block">
                     <ImagePreview path={r.hero_image_url} className="h-10 w-10 object-cover rounded border border-[#e5e5e5] bg-[#fafafa]" />
                   </Link>
                 </td>
                 <td className="px-3 py-2">
-                  <Link to={"/admin/trips/$id" as any} params={{ id: r.id }} className="text-[#1a1a1a] font-medium hover:underline">
+                  <Link to={"/admin/trips/$id" as any} params={{ id: r.id } as any} className="text-[#1a1a1a] font-medium hover:underline">
                     {r.destination}
                   </Link>
                   <div className="text-xs text-[#a3a3a3]">{r.operator ?? "—"}</div>
