@@ -8,7 +8,7 @@ import { listTrips, createTrip } from "@/lib/admin/trips.functions";
 import { ImagePreview } from "@/components/admin/ImageUpload";
 import { Plus, Search } from "lucide-react";
 
-export const Route = createFileRoute("/admin/trips")({
+export const Route = createFileRoute("/admin/trips/")({
   component: () => (
     <AdminGate>
       <TripsList />
