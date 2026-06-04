@@ -28,8 +28,10 @@ import { Route as AdminJournalRouteImport } from './routes/admin.journal'
 import { Route as AdminHomepageRouteImport } from './routes/admin.homepage'
 import { Route as AdminAboutRouteImport } from './routes/admin.about'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
+import { Route as AdminTripsIndexRouteImport } from './routes/admin.trips.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
 import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
+import { Route as AdminTripsIdRouteImport } from './routes/admin.trips.$id'
 import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
@@ -128,6 +130,11 @@ const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
   path: '/spots/$continent/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const AdminTripsIndexRoute = AdminTripsIndexRouteImport.update({
+  id: '/',
+  path: '/',
+  getParentRoute: () => AdminTripsRoute,
+} as any)
 const TripsThemeSlugRoute = TripsThemeSlugRouteImport.update({
   id: '/trips/theme/$slug',
   path: '/trips/theme/$slug',
@@ -137,6 +144,11 @@ const ApiPublicLeadsRoute = ApiPublicLeadsRouteImport.update({
   id: '/api/public/leads',
   path: '/api/public/leads',
   getParentRoute: () => rootRouteImport,
+} as any)
+const AdminTripsIdRoute = AdminTripsIdRouteImport.update({
+  id: '/$id',
+  path: '/$id',
+  getParentRoute: () => AdminTripsRoute,
 } as any)
 const SpotsContinentRegionIndexRoute =
   SpotsContinentRegionIndexRouteImport.update({
@@ -164,14 +176,16 @@ export interface FileRoutesByFullPath {
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/spots': typeof AdminSpotsRoute
-  '/admin/trips': typeof AdminTripsRoute
+  '/admin/trips': typeof AdminTripsRouteWithChildren
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/admin/': typeof AdminIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
+  '/admin/trips/$id': typeof AdminTripsIdRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
+  '/admin/trips/': typeof AdminTripsIndexRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
@@ -189,14 +203,15 @@ export interface FileRoutesByTo {
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/spots': typeof AdminSpotsRoute
-  '/admin/trips': typeof AdminTripsRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/admin': typeof AdminIndexRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
+  '/admin/trips/$id': typeof AdminTripsIdRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
+  '/admin/trips': typeof AdminTripsIndexRoute
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region': typeof SpotsContinentRegionIndexRoute
@@ -215,14 +230,16 @@ export interface FileRoutesById {
   '/admin/reset-password': typeof AdminResetPasswordRoute
   '/admin/settings': typeof AdminSettingsRoute
   '/admin/spots': typeof AdminSpotsRoute
-  '/admin/trips': typeof AdminTripsRoute
+  '/admin/trips': typeof AdminTripsRouteWithChildren
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/admin/': typeof AdminIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
+  '/admin/trips/$id': typeof AdminTripsIdRoute
   '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
+  '/admin/trips/': typeof AdminTripsIndexRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
@@ -248,8 +265,10 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/spots/'
     | '/trips/'
+    | '/admin/trips/$id'
     | '/api/public/leads'
     | '/trips/theme/$slug'
+    | '/admin/trips/'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region/'
@@ -267,14 +286,15 @@ export interface FileRouteTypes {
     | '/admin/reset-password'
     | '/admin/settings'
     | '/admin/spots'
-    | '/admin/trips'
     | '/journal/$slug'
     | '/trips/$id'
     | '/admin'
     | '/spots'
     | '/trips'
+    | '/admin/trips/$id'
     | '/api/public/leads'
     | '/trips/theme/$slug'
+    | '/admin/trips'
     | '/spots/$continent'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region'
@@ -298,8 +318,10 @@ export interface FileRouteTypes {
     | '/admin/'
     | '/spots/'
     | '/trips/'
+    | '/admin/trips/$id'
     | '/api/public/leads'
     | '/trips/theme/$slug'
+    | '/admin/trips/'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region/'
@@ -318,7 +340,7 @@ export interface RootRouteChildren {
   AdminResetPasswordRoute: typeof AdminResetPasswordRoute
   AdminSettingsRoute: typeof AdminSettingsRoute
   AdminSpotsRoute: typeof AdminSpotsRoute
-  AdminTripsRoute: typeof AdminTripsRoute
+  AdminTripsRoute: typeof AdminTripsRouteWithChildren
   TripsIdRoute: typeof TripsIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
@@ -465,6 +487,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsContinentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/admin/trips/': {
+      id: '/admin/trips/'
+      path: '/'
+      fullPath: '/admin/trips/'
+      preLoaderRoute: typeof AdminTripsIndexRouteImport
+      parentRoute: typeof AdminTripsRoute
+    }
     '/trips/theme/$slug': {
       id: '/trips/theme/$slug'
       path: '/trips/theme/$slug'
@@ -478,6 +507,13 @@ declare module '@tanstack/react-router' {
       fullPath: '/api/public/leads'
       preLoaderRoute: typeof ApiPublicLeadsRouteImport
       parentRoute: typeof rootRouteImport
+    }
+    '/admin/trips/$id': {
+      id: '/admin/trips/$id'
+      path: '/$id'
+      fullPath: '/admin/trips/$id'
+      preLoaderRoute: typeof AdminTripsIdRouteImport
+      parentRoute: typeof AdminTripsRoute
     }
     '/spots/$continent/$region/': {
       id: '/spots/$continent/$region/'
@@ -507,6 +543,20 @@ const JournalRouteChildren: JournalRouteChildren = {
 const JournalRouteWithChildren =
   JournalRoute._addFileChildren(JournalRouteChildren)
 
+interface AdminTripsRouteChildren {
+  AdminTripsIdRoute: typeof AdminTripsIdRoute
+  AdminTripsIndexRoute: typeof AdminTripsIndexRoute
+}
+
+const AdminTripsRouteChildren: AdminTripsRouteChildren = {
+  AdminTripsIdRoute: AdminTripsIdRoute,
+  AdminTripsIndexRoute: AdminTripsIndexRoute,
+}
+
+const AdminTripsRouteWithChildren = AdminTripsRoute._addFileChildren(
+  AdminTripsRouteChildren,
+)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
@@ -520,7 +570,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminResetPasswordRoute: AdminResetPasswordRoute,
   AdminSettingsRoute: AdminSettingsRoute,
   AdminSpotsRoute: AdminSpotsRoute,
-  AdminTripsRoute: AdminTripsRoute,
+  AdminTripsRoute: AdminTripsRouteWithChildren,
   TripsIdRoute: TripsIdRoute,
   AdminIndexRoute: AdminIndexRoute,
   SpotsIndexRoute: SpotsIndexRoute,
@@ -534,13 +584,3 @@ const rootRouteChildren: RootRouteChildren = {
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
-
-import type { getRouter } from './router.tsx'
-import type { startInstance } from './start.ts'
-declare module '@tanstack/react-start' {
-  interface Register {
-    ssr: true
-    router: Awaited<ReturnType<typeof getRouter>>
-    config: Awaited<ReturnType<typeof startInstance.getOptions>>
-  }
-}

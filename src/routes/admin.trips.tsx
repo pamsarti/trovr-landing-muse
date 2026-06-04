@@ -1,11 +1,5 @@
-import { createFileRoute } from "@tanstack/react-router";
-import { AdminGate } from "@/components/admin/AdminGate";
-import { PlaceholderPage } from "@/components/admin/AdminShell";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/admin/trips")({
-  component: () => (
-    <AdminGate>
-      <PlaceholderPage title="Trips" />
-    </AdminGate>
-  ),
+  component: () => <Outlet />,
 });

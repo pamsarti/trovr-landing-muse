@@ -1,0 +1,4 @@
+CREATE POLICY "Admins read trovr-media" ON storage.objects FOR SELECT TO authenticated USING (bucket_id = 'trovr-media' AND public.is_admin());
+CREATE POLICY "Admins insert trovr-media" ON storage.objects FOR INSERT TO authenticated WITH CHECK (bucket_id = 'trovr-media' AND public.is_admin());
+CREATE POLICY "Admins update trovr-media" ON storage.objects FOR UPDATE TO authenticated USING (bucket_id = 'trovr-media' AND public.is_admin()) WITH CHECK (bucket_id = 'trovr-media' AND public.is_admin());
+CREATE POLICY "Admins delete trovr-media" ON storage.objects FOR DELETE TO authenticated USING (bucket_id = 'trovr-media' AND public.is_admin());
