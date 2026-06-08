@@ -9,7 +9,6 @@ import {
 import { useAutoSave } from "@/hooks/use-auto-save";
 import { SaveStatus } from "@/components/admin/SaveStatus";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
-import { ImageUpload } from "@/components/admin/ImageUpload";
 import { MarkdownEditor } from "@/components/admin/MarkdownEditor";
 import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
 import { lastEditFor } from "@/lib/admin/activity.functions";
