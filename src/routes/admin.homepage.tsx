@@ -8,6 +8,7 @@ import { useAutoSave } from "@/hooks/use-auto-save";
 import { SaveStatus } from "@/components/admin/SaveStatus";
 import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
 import { ExternalLink, Plus, Trash2, GripVertical } from "lucide-react";
+import { HomepageInline } from "@/components/admin/HomepageInline";
 
 export const Route = createFileRoute("/admin/homepage")({
   component: () => (
@@ -23,6 +24,7 @@ function HomepageEditor() {
   const fetchAll = useServerFn(getAllConfig);
   const [config, setConfigState] = useState<Record<string, any> | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [view, setView] = useState<"inline" | "form">("inline");
 
   useEffect(() => {
     fetchAll().then((r) => setConfigState(r.config)).catch((e) => setErr(e.message));
@@ -34,11 +36,24 @@ function HomepageEditor() {
   return (
     <AdminShell title="Homepage">
       <div className="flex items-center justify-between mb-5">
-        <p className="text-sm text-[#737373]">Edits auto-save. Public site shows changes on next refresh.</p>
-        <a href="/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-[#1a1a1a] hover:underline">
-          Preview homepage <ExternalLink className="h-3.5 w-3.5" />
-        </a>
+        <p className="text-sm text-[#737373]">
+          {view === "inline"
+            ? "Click any text to edit. Click outside to save."
+            : "Edits auto-save. Public site shows changes on next refresh."}
+        </p>
+        <div className="flex items-center gap-3">
+          <ViewToggle value={view} onChange={setView} />
+          <a href="/" target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-[#1a1a1a] hover:underline">
+            Open site <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </div>
       </div>
+      {view === "inline" ? (
+        <HomepageInline
+          config={config}
+          setLocal={(k, v) => updateLocal(setConfigState, k, v)}
+        />
+      ) : (
       <div className="grid gap-5 max-w-3xl">
         <Section title="Hero">
           <Field cfgKey="homepage_hero_headline" label="Headline" value={config.homepage_hero_headline ?? ""} setLocal={(v) => updateLocal(setConfigState, "homepage_hero_headline", v)} multiline />
@@ -67,7 +82,33 @@ function HomepageEditor() {
           <Field cfgKey="footer_text" label="Tagline / copyright" value={config.footer_text ?? ""} setLocal={(v) => updateLocal(setConfigState, "footer_text", v)} />
         </Section>
       </div>
+      )}
     </AdminShell>
+  );
+}
+
+function ViewToggle({
+  value,
+  onChange,
+}: {
+  value: "inline" | "form";
+  onChange: (v: "inline" | "form") => void;
+}) {
+  return (
+    <div className="inline-flex rounded-md border border-[#e5e5e5] bg-white p-0.5">
+      {(["inline", "form"] as const).map((opt) => (
+        <button
+          key={opt}
+          type="button"
+          onClick={() => onChange(opt)}
+          className={`px-3 py-1 text-xs rounded-[4px] transition-colors ${
+            value === opt ? "bg-[#1a1a1a] text-white" : "text-[#525252] hover:bg-[#f5f5f5]"
+          }`}
+        >
+          {opt === "inline" ? "Inline view" : "Form view"}
+        </button>
+      ))}
+    </div>
   );
 }
 
