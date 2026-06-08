@@ -6,6 +6,7 @@ import { useServerFn } from "@tanstack/react-start";
 import { getAllConfig, setConfig } from "@/lib/admin/site-config.functions";
 import { useAutoSave } from "@/hooks/use-auto-save";
 import { SaveStatus } from "@/components/admin/SaveStatus";
+import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
 import { ExternalLink, Plus, Trash2, GripVertical } from "lucide-react";
 
 export const Route = createFileRoute("/admin/homepage")({
@@ -106,6 +107,7 @@ function Field({
   const { state, error } = useAutoSave(value, async (v) => {
     await save({ data: { key: cfgKey, value: v } });
   });
+  useUnsavedChanges(state === "saving");
   return (
     <div>
       <div className="flex items-center justify-between mb-1">
@@ -135,6 +137,7 @@ function StatsEditor({ value, setLocal }: { value: Stat[]; setLocal: (v: Stat[])
   const { state, error } = useAutoSave(value, async (v) => {
     await save({ data: { key: "homepage_stats", value: v } });
   });
+  useUnsavedChanges(state === "saving");
   function move(from: number, to: number) {
     if (to < 0 || to >= value.length) return;
     const next = value.slice();
