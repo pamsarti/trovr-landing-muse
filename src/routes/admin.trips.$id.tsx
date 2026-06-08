@@ -14,6 +14,9 @@ import { MarkdownEditor } from "@/components/admin/MarkdownEditor";
 import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
 import { lastEditFor } from "@/lib/admin/activity.functions";
 import { ArrowLeft, ExternalLink, Copy, Trash2 } from "lucide-react";
+import { InlineImage } from "@/components/admin/InlineImage";
+import { PreviewPane } from "@/components/admin/PreviewPane";
+import { TripPreview } from "@/components/admin/TripPreview";
 
 export const Route = createFileRoute("/admin/trips/$id")({
   component: () => (
@@ -77,6 +80,7 @@ function TripEditor() {
         editorial_paragraph: trip.editorial_paragraph ?? "",
         hero_image_url: trip.hero_image_url ?? null,
         status: trip.status ?? "draft",
+        photo_urls: Array.isArray(trip.photo_urls) ? trip.photo_urls : [],
       }
     : null;
 
@@ -88,6 +92,15 @@ function TripEditor() {
 
   function set<K extends string>(key: K, value: any) {
     setTrip((p: any) => (p ? { ...p, [key]: value } : p));
+  }
+  function setPhoto(i: number, path: string | null) {
+    setTrip((p: any) => {
+      if (!p) return p;
+      const next = Array.isArray(p.photo_urls) ? [...p.photo_urls] : [];
+      while (next.length <= i) next.push("");
+      next[i] = path ?? "";
+      return { ...p, photo_urls: next };
+    });
   }
 
   if (err) return <AdminShell title="Trip"><div className="rounded-md bg-[#fef2f2] border border-[#fecaca] px-3 py-2 text-xs text-[#b91c1c]">{err}</div></AdminShell>;
@@ -133,70 +146,145 @@ function TripEditor() {
         </div>
       </div>
 
-      <div className="grid gap-5 max-w-3xl">
-        <Card title="Basics">
-          <Row><Input label="Destination" required value={patch.destination} onChange={(v) => set("destination", v)} /></Row>
-          <Row>
-            <Input label="Country" required value={patch.country} onChange={(v) => set("country", v)} />
-            <Select label="Continent" required value={patch.continent} onChange={(v) => set("continent", v)} options={CONTINENTS} />
-          </Row>
-          <Row>
-            <Select label="Activity" required value={patch.activity} onChange={(v) => set("activity", v)} options={ACTIVITIES} />
-            <Input label="Duration (e.g. 7 or 5-7)" value={patch.duration_days} onChange={(v) => set("duration_days", v)} />
-          </Row>
-          <Row>
-            <Input label="Season" value={patch.season} onChange={(v) => set("season", v)} />
-            <Input label="Level" value={patch.level} onChange={(v) => set("level", v)} />
-            <Select label="Price range" value={patch.price_range} onChange={(v) => set("price_range", v)} options={PRICE_RANGES} />
-          </Row>
-        </Card>
+      <PreviewPane
+        previewLabel="Preview"
+        preview={<TripPreview draft={{ ...patch, trip_id: trip.trip_id }} />}
+        form={
+          <div className="bg-white border border-[#e5e5e5] rounded-lg overflow-hidden">
+            {/* Hero image — 16:9 at the top, click-to-replace */}
+            <div className="aspect-video w-full bg-[#fafafa]">
+              <InlineImage
+                value={patch.hero_image_url}
+                onChange={(p) => set("hero_image_url", p)}
+                folder={`trips/${trip.id}`}
+                className="h-full w-full"
+                alt={patch.destination}
+              />
+            </div>
 
-        <Card title="Content">
-          <Row><Textarea label="Summary (internal)" value={patch.summary} onChange={(v) => set("summary", v)} rows={3} /></Row>
-          <div>
-            <label className="block text-xs font-medium text-[#525252] mb-1">Editorial paragraph (public, markdown)</label>
-            <MarkdownEditor value={patch.editorial_paragraph} onChange={(v) => set("editorial_paragraph", v)} height={300} />
+            <div className="mx-auto max-w-3xl px-6 py-10 font-sans">
+              {/* Tag row inputs */}
+              <div className="grid grid-cols-2 gap-x-4 gap-y-3 sm:grid-cols-4">
+                <TagField label="Country" value={patch.country} onChange={(v) => set("country", v)} required />
+                <TagSelect label="Activity" value={patch.activity} onChange={(v) => set("activity", v)} options={ACTIVITIES} required />
+                <TagField label="Duration" value={String(patch.duration_days ?? "")} onChange={(v) => set("duration_days", v)} placeholder="7 or 5-7" />
+                <TagField label="Level" value={patch.level} onChange={(v) => set("level", v)} />
+              </div>
+
+              {/* Destination — serif h1 */}
+              <div className="mt-6">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3] mb-2">
+                  Destination
+                </label>
+                <input
+                  value={patch.destination}
+                  onChange={(e) => set("destination", e.target.value)}
+                  placeholder="Destination"
+                  className="w-full bg-transparent border-0 border-b border-dashed border-[#e5e5e5] focus:border-[#1a1a1a] focus:outline-none font-serif text-4xl leading-tight text-[#1a1a1a] sm:text-5xl py-2"
+                  style={{ fontFamily: "'Fraunces', 'Cormorant Garamond', serif" }}
+                />
+              </div>
+
+              {/* Continent (helper) */}
+              <div className="mt-4 max-w-xs">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3] mb-1">Continent</label>
+                <select
+                  value={patch.continent}
+                  onChange={(e) => set("continent", e.target.value)}
+                  className="w-full px-2 py-1.5 text-sm border border-[#e5e5e5] rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-[#737373]"
+                >
+                  <option value="">—</option>
+                  {CONTINENTS.map((o) => (<option key={o} value={o}>{o}</option>))}
+                </select>
+              </div>
+
+              {/* Editorial paragraph — serif body styling */}
+              <div className="mt-10">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3] mb-2">
+                  Editorial paragraph (public · markdown)
+                </label>
+                <div className="font-serif">
+                  <MarkdownEditor
+                    value={patch.editorial_paragraph}
+                    onChange={(v) => set("editorial_paragraph", v)}
+                    height={260}
+                  />
+                </div>
+              </div>
+
+              {/* Summary — internal only */}
+              <div className="mt-6">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3] mb-2">
+                  Summary (internal — used on list cards)
+                </label>
+                <textarea
+                  value={patch.summary}
+                  onChange={(e) => set("summary", e.target.value)}
+                  rows={3}
+                  className="w-full px-3 py-2 text-sm border border-[#e5e5e5] rounded-md focus:outline-none focus:ring-1 focus:ring-[#737373]"
+                />
+              </div>
+
+              {/* Fact block — 2-column grid like the public page */}
+              <div className="mt-10 grid grid-cols-1 gap-y-5 border-y border-[#e5e5e5] py-8 sm:grid-cols-2">
+                <FactField label="Operator" value={patch.operator} onChange={(v) => set("operator", v)} />
+                <FactField label="Operator URL" value={patch.operator_url} onChange={(v) => set("operator_url", v)} type="url" />
+                <FactField label="Season" value={patch.season} onChange={(v) => set("season", v)} />
+                <FactSelect label="Price range" value={patch.price_range} onChange={(v) => set("price_range", v)} options={PRICE_RANGES} />
+                <FactField label="Source URL (internal)" value={patch.source_url} onChange={(v) => set("source_url", v)} type="url" />
+              </div>
+
+              {/* Photo strip — 3 slots */}
+              <div className="mt-10">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3] mb-3">
+                  Photo strip
+                </label>
+                <div className="grid grid-cols-3 gap-3">
+                  {[0, 1, 2].map((i) => (
+                    <div key={i} className="aspect-square overflow-hidden rounded-[2px] border border-dashed border-[#e5e5e5] bg-[#fafafa]">
+                      <InlineImage
+                        value={patch.photo_urls?.[i] || null}
+                        onChange={(p) => setPhoto(i, p)}
+                        folder={`trips/${trip.id}/photos`}
+                        className="h-full w-full"
+                      />
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Status + actions */}
+              <div className="mt-10 pt-6 border-t border-[#e5e5e5]">
+                <label className="block text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3] mb-3">
+                  Status
+                </label>
+                <div className="flex flex-wrap gap-4">
+                  {STATUSES.map((s) => (
+                    <label key={s} className="inline-flex items-center gap-2 text-sm text-[#1a1a1a]">
+                      <input type="radio" name="status" checked={patch.status === s} onChange={() => set("status", s)} />
+                      {s}
+                    </label>
+                  ))}
+                </div>
+
+                <div className="mt-6 flex flex-wrap items-center gap-2">
+                  {canPreview && (
+                    <a href={previewHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-[#e5e5e5] rounded-md hover:bg-[#f5f5f5]">
+                      Open public page <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  )}
+                  <button onClick={onDuplicate} disabled={working} className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-[#e5e5e5] rounded-md hover:bg-[#f5f5f5] disabled:opacity-50">
+                    <Copy className="h-3.5 w-3.5" /> Duplicate
+                  </button>
+                  <button onClick={() => setConfirmDelete(true)} disabled={working} className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-[#b91c1c] border border-[#fecaca] rounded-md hover:bg-[#fef2f2]">
+                    <Trash2 className="h-3.5 w-3.5" /> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
           </div>
-          <Row>
-            <Input label="Operator name" value={patch.operator} onChange={(v) => set("operator", v)} />
-            <Input label="Operator URL" type="url" value={patch.operator_url} onChange={(v) => set("operator_url", v)} />
-          </Row>
-          <Row><Input label="Source URL (internal)" type="url" value={patch.source_url} onChange={(v) => set("source_url", v)} /></Row>
-        </Card>
-
-        <Card title="Hero image">
-          <ImageUpload
-            value={patch.hero_image_url}
-            onChange={(p) => set("hero_image_url", p)}
-            folder={`trips/${trip.id}`}
-          />
-        </Card>
-
-        <Card title="Status">
-          <div className="flex gap-4">
-            {STATUSES.map((s) => (
-              <label key={s} className="inline-flex items-center gap-2 text-sm text-[#1a1a1a]">
-                <input type="radio" name="status" checked={patch.status === s} onChange={() => set("status", s)} />
-                {s}
-              </label>
-            ))}
-          </div>
-        </Card>
-
-        <div className="flex items-center gap-2 pt-2 border-t border-[#e5e5e5]">
-          {canPreview && (
-            <a href={previewHref} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-[#e5e5e5] rounded-md hover:bg-[#f5f5f5]">
-              Preview <ExternalLink className="h-3.5 w-3.5" />
-            </a>
-          )}
-          <button onClick={onDuplicate} disabled={working} className="inline-flex items-center gap-1.5 px-3 py-1.5 text-sm border border-[#e5e5e5] rounded-md hover:bg-[#f5f5f5] disabled:opacity-50">
-            <Copy className="h-3.5 w-3.5" /> Duplicate
-          </button>
-          <button onClick={() => setConfirmDelete(true)} disabled={working} className="ml-auto inline-flex items-center gap-1.5 px-3 py-1.5 text-sm text-[#b91c1c] border border-[#fecaca] rounded-md hover:bg-[#fef2f2]">
-            <Trash2 className="h-3.5 w-3.5" /> Delete
-          </button>
-        </div>
-      </div>
+        }
+      />
 
       <ConfirmDialog
         open={confirmDelete}
@@ -210,46 +298,79 @@ function TripEditor() {
   );
 }
 
-function Card({ title, children }: { title: string; children: React.ReactNode }) {
+/* ---------- Small-caps tag row inputs (mirrors public chip line) ---------- */
+
+function TagField({
+  label, value, onChange, required, placeholder,
+}: { label: string; value: string; onChange: (v: string) => void; required?: boolean; placeholder?: string }) {
   return (
-    <div className="bg-white border border-[#e5e5e5] rounded-lg">
-      <div className="px-4 py-3 border-b border-[#e5e5e5]"><h2 className="text-sm font-medium">{title}</h2></div>
-      <div className="p-4 space-y-4">{children}</div>
+    <div>
+      <div className="text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3]">
+        {label}{required && <span> *</span>}
+      </div>
+      <input
+        value={value}
+        placeholder={placeholder ?? "—"}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-1 w-full bg-transparent border-0 border-b border-dashed border-[#e5e5e5] focus:border-[#1a1a1a] focus:outline-none text-[11px] uppercase tracking-[0.2em] text-[#525252] py-1"
+      />
     </div>
   );
 }
-function Row({ children }: { children: React.ReactNode }) {
-  return <div className="grid gap-3" style={{ gridTemplateColumns: `repeat(${Array.isArray(children) ? children.length : 1}, minmax(0, 1fr))` }}>{children}</div>;
-}
-function Input({ label, required, value, onChange, type = "text" }: { label: string; required?: boolean; value: string; onChange: (v: string) => void; type?: string }) {
+
+function TagSelect({
+  label, value, onChange, options, required,
+}: { label: string; value: string; onChange: (v: string) => void; options: string[]; required?: boolean }) {
   return (
     <div>
-      <label className="block text-xs font-medium text-[#525252] mb-1">{label}{required && <span className="text-[#a3a3a3]"> *</span>}</label>
-      <input
-        type={type}
+      <div className="text-[10px] uppercase tracking-[0.2em] text-[#a3a3a3]">
+        {label}{required && <span> *</span>}
+      </div>
+      <select
         value={value}
         onChange={(e) => onChange(e.target.value)}
-        className={`w-full px-3 py-2 text-sm border rounded-md focus:outline-none focus:ring-1 focus:ring-[#737373] ${required && !value ? "border-[#a3a3a3]" : "border-[#e5e5e5]"}`}
-      />
-      {required && !value && <p className="mt-1 text-xs text-[#a3a3a3]">Required</p>}
-    </div>
-  );
-}
-function Textarea({ label, value, onChange, rows = 4 }: { label: string; value: string; onChange: (v: string) => void; rows?: number }) {
-  return (
-    <div>
-      <label className="block text-xs font-medium text-[#525252] mb-1">{label}</label>
-      <textarea value={value} onChange={(e) => onChange(e.target.value)} rows={rows} className="w-full px-3 py-2 text-sm border border-[#e5e5e5] rounded-md focus:outline-none focus:ring-1 focus:ring-[#737373]" />
-    </div>
-  );
-}
-function Select({ label, required, value, onChange, options }: { label: string; required?: boolean; value: string; onChange: (v: string) => void; options: string[] }) {
-  return (
-    <div>
-      <label className="block text-xs font-medium text-[#525252] mb-1">{label}{required && <span className="text-[#a3a3a3]"> *</span>}</label>
-      <select value={value} onChange={(e) => onChange(e.target.value)} className="w-full px-3 py-2 text-sm border border-[#e5e5e5] rounded-md bg-white focus:outline-none focus:ring-1 focus:ring-[#737373]">
+        className="mt-1 w-full bg-transparent border-0 border-b border-dashed border-[#e5e5e5] focus:border-[#1a1a1a] focus:outline-none text-[11px] uppercase tracking-[0.2em] text-[#525252] py-1"
+      >
         <option value="">—</option>
-        {options.map((o) => <option key={o} value={o}>{o}</option>)}
+        {options.map((o) => (<option key={o} value={o}>{o}</option>))}
+      </select>
+    </div>
+  );
+}
+
+/* ---------- Fact block fields (mirrors public dl) ---------- */
+
+function FactField({
+  label, value, onChange, type = "text",
+}: { label: string; value: string; onChange: (v: string) => void; type?: string }) {
+  return (
+    <div>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-[#a3a3a3]">{label}</div>
+      <input
+        type={type}
+        value={value || ""}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-2 w-full bg-transparent border-0 border-b border-dashed border-[#e5e5e5] focus:border-[#1a1a1a] focus:outline-none font-serif text-base text-[#1a1a1a] py-1"
+        style={{ fontFamily: "'Fraunces', 'Cormorant Garamond', serif" }}
+      />
+    </div>
+  );
+}
+
+function FactSelect({
+  label, value, onChange, options,
+}: { label: string; value: string; onChange: (v: string) => void; options: string[] }) {
+  return (
+    <div>
+      <div className="text-[11px] uppercase tracking-[0.2em] text-[#a3a3a3]">{label}</div>
+      <select
+        value={value || ""}
+        onChange={(e) => onChange(e.target.value)}
+        className="mt-2 w-full bg-transparent border-0 border-b border-dashed border-[#e5e5e5] focus:border-[#1a1a1a] focus:outline-none font-serif text-base text-[#1a1a1a] py-1"
+        style={{ fontFamily: "'Fraunces', 'Cormorant Garamond', serif" }}
+      >
+        <option value="">—</option>
+        {options.map((o) => (<option key={o} value={o}>{o}</option>))}
       </select>
     </div>
   );
