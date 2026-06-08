@@ -11,6 +11,8 @@ import { SaveStatus } from "@/components/admin/SaveStatus";
 import { ConfirmDialog } from "@/components/admin/ConfirmDialog";
 import { ImageUpload } from "@/components/admin/ImageUpload";
 import { MarkdownEditor } from "@/components/admin/MarkdownEditor";
+import { useUnsavedChanges } from "@/hooks/use-unsaved-changes";
+import { lastEditFor } from "@/lib/admin/activity.functions";
 import { ArrowLeft, ExternalLink, Copy, Trash2 } from "lucide-react";
 
 export const Route = createFileRoute("/admin/trips/$id")({
@@ -43,12 +45,20 @@ function TripEditor() {
   const [err, setErr] = useState<string | null>(null);
   const [confirmDelete, setConfirmDelete] = useState(false);
   const [working, setWorking] = useState(false);
+  const fetchLastEdit = useServerFn(lastEditFor);
+  const [lastEdit, setLastEdit] = useState<any>(null);
 
   useEffect(() => {
     fetchTrip({ data: { id } })
       .then((r) => setTrip(r.trip))
       .catch((e) => setErr(e.message));
   }, [fetchTrip, id]);
+
+  useEffect(() => {
+    fetchLastEdit({ data: { entity_type: "trip", entity_id: id } })
+      .then((r) => setLastEdit(r.entry))
+      .catch(() => {});
+  }, [fetchLastEdit, id]);
 
   const patch = trip
     ? {
@@ -74,6 +84,7 @@ function TripEditor() {
     if (!v) return;
     await save({ data: { id, patch: v as any } });
   });
+  useUnsavedChanges(state === "saving");
 
   function set<K extends string>(key: K, value: any) {
     setTrip((p: any) => (p ? { ...p, [key]: value } : p));
@@ -111,7 +122,15 @@ function TripEditor() {
         <Link to="/admin/trips" className="inline-flex items-center gap-1 text-sm text-[#525252] hover:text-[#1a1a1a]">
           <ArrowLeft className="h-3.5 w-3.5" /> All trips
         </Link>
-        <SaveStatus state={state} error={error} />
+        <div className="flex items-center gap-3">
+          {lastEdit && (
+            <span className="text-xs text-[#a3a3a3]">
+              Last edited {new Date(lastEdit.created_at).toLocaleString()}
+              {lastEdit.actor_email ? ` · ${lastEdit.actor_email}` : ""}
+            </span>
+          )}
+          <SaveStatus state={state} error={error} />
+        </div>
       </div>
 
       <div className="grid gap-5 max-w-3xl">

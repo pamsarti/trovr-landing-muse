@@ -94,6 +94,7 @@ export type Database = {
           created_at: string
           email: string
           id: string
+          internal_notes: string | null
           message: string | null
           name: string
           phone: string | null
@@ -102,11 +103,13 @@ export type Database = {
           status: string
           trip_id: string | null
           trip_name: string | null
+          updated_at: string
         }
         Insert: {
           created_at?: string
           email: string
           id?: string
+          internal_notes?: string | null
           message?: string | null
           name: string
           phone?: string | null
@@ -115,11 +118,13 @@ export type Database = {
           status?: string
           trip_id?: string | null
           trip_name?: string | null
+          updated_at?: string
         }
         Update: {
           created_at?: string
           email?: string
           id?: string
+          internal_notes?: string | null
           message?: string | null
           name?: string
           phone?: string | null
@@ -128,6 +133,7 @@ export type Database = {
           status?: string
           trip_id?: string | null
           trip_name?: string | null
+          updated_at?: string
         }
         Relationships: []
       }
@@ -205,6 +211,39 @@ export type Database = {
           source_url?: string | null
           spot_id?: string
           status?: string
+          updated_at?: string
+        }
+        Relationships: []
+      }
+      subscribers: {
+        Row: {
+          created_at: string
+          email: string
+          id: string
+          notes: string | null
+          source_page: string | null
+          status: string
+          unsubscribed_at: string | null
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          email: string
+          id?: string
+          notes?: string | null
+          source_page?: string | null
+          status?: string
+          unsubscribed_at?: string | null
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          email?: string
+          id?: string
+          notes?: string | null
+          source_page?: string | null
+          status?: string
+          unsubscribed_at?: string | null
           updated_at?: string
         }
         Relationships: []

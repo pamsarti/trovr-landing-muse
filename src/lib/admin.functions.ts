@@ -18,11 +18,13 @@ export const getAdminStats = createServerFn({ method: "GET" })
     const { supabase, userId } = context;
     await assertAdmin(supabase, userId);
 
-    const [trips, spots, articles, leads, activity] = await Promise.all([
+    const [trips, spots, articles, leads, newLeads, subs, activity] = await Promise.all([
       supabase.from("trips").select("*", { count: "exact", head: true }),
       supabase.from("spots").select("*", { count: "exact", head: true }),
       supabase.from("journal_articles").select("*", { count: "exact", head: true }),
       supabase.from("leads").select("*", { count: "exact", head: true }),
+      supabase.from("leads").select("*", { count: "exact", head: true }).eq("status", "new"),
+      (supabase as any).from("subscribers").select("*", { count: "exact", head: true }).eq("status", "active"),
       supabase
         .from("activity_log")
         .select("*")
@@ -36,7 +38,8 @@ export const getAdminStats = createServerFn({ method: "GET" })
         spots: spots.count ?? 0,
         articles: articles.count ?? 0,
         leads: leads.count ?? 0,
-        media: 0,
+        newInquiries: newLeads.count ?? 0,
+        subscribers: subs.count ?? 0,
       },
       activity: (activity.data ?? []) as Array<{
         id: string;
