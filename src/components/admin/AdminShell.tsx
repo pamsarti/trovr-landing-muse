@@ -10,6 +10,7 @@ import {
   Info,
   Image as ImageIcon,
   Inbox,
+  Mail,
   Settings,
   LogOut,
 } from "lucide-react";
@@ -22,7 +23,8 @@ const NAV: ReadonlyArray<{ to: string; label: string; icon: typeof LayoutDashboa
   { to: "/admin/journal", label: "Journal", icon: BookOpen },
   { to: "/admin/about", label: "About", icon: Info },
   { to: "/admin/media", label: "Media", icon: ImageIcon },
-  { to: "/admin/leads", label: "Leads", icon: Inbox },
+  { to: "/admin/inquiries", label: "Inquiries", icon: Inbox },
+  { to: "/admin/subscribers", label: "Subscribers", icon: Mail },
   { to: "/admin/settings", label: "Settings", icon: Settings },
 ];
 
