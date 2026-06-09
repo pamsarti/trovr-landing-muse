@@ -114,6 +114,16 @@ function Hero() {
         }}
       />
 
+      {/* Bottom "melt" — dissolve image into the paper background of the next section */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[38%]"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(244,241,236,0) 0%, rgba(244,241,236,0.35) 55%, rgba(244,241,236,0.85) 85%, #f4f1ec 100%)",
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
@@ -183,7 +193,7 @@ const TAGS = ["Kite", "Surf", "Horseback", "Wildlife", "Martial Arts", "River Cr
 
 function ManifestoStrip() {
   return (
-    <section className="px-6 py-28 sm:py-36">
+    <section className="relative -mt-24 sm:-mt-32 px-6 pt-8 pb-28 sm:pt-12 sm:pb-36">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
         <div>
           <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
