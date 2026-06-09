@@ -193,7 +193,7 @@ const TAGS = ["Kite", "Surf", "Horseback", "Wildlife", "Martial Arts", "River Cr
 
 function ManifestoStrip() {
   return (
-    <section className="px-6 py-28 sm:py-36">
+    <section className="relative -mt-24 sm:-mt-32 px-6 pt-8 pb-28 sm:pt-12 sm:pb-36">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
         <div>
           <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
