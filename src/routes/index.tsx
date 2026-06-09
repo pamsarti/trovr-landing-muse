@@ -114,6 +114,16 @@ function Hero() {
         }}
       />
 
+      {/* Bottom "melt" — dissolve image into the paper background of the next section */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[38%]"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(244,241,236,0) 0%, rgba(244,241,236,0.35) 55%, rgba(244,241,236,0.85) 85%, #f4f1ec 100%)",
+        }}
+      />
+
       {/* Content */}
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
