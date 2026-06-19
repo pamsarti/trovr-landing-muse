@@ -9,7 +9,13 @@
     "build:dev": "vite build --mode development",
     "preview": "vite preview",
     "lint": "eslint .",
-    "format": "prettier --write ."
+    "format": "prettier --write .",
+    "seed:gen": "tsx scripts/generate-seed.ts",
+    "seed:admin": "node scripts/seed-admin.mjs",
+    "db:start": "supabase start",
+    "db:stop": "supabase stop",
+    "db:reset": "supabase db reset",
+    "db:setup": "npm run seed:gen && supabase start && supabase db reset && npm run seed:admin"
   },
   "dependencies": {
     "@cloudflare/vite-plugin": "^1.25.5",
@@ -86,6 +92,8 @@
     "eslint-plugin-react-refresh": "^0.4.20",
     "globals": "^15.15.0",
     "prettier": "^3.7.3",
+    "supabase": "^2.107.0",
+    "tsx": "^4.22.4",
     "typescript": "^5.8.3",
     "typescript-eslint": "^8.56.1",
     "vite": "^7.3.1",

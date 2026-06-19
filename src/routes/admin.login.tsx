@@ -1,7 +1,10 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { supabase } from "@/integrations/supabase/client";
-import { lovable } from "@/integrations/lovable";
+// NOTE: Lovable-hosted Google OAuth is disabled for the local/self-hosted setup.
+// To re-enable later, restore the `lovable` import and the "Sign in with Google"
+// button below, and configure a Google provider in supabase/config.toml.
+// import { lovable } from "@/integrations/lovable";
 
 export const Route = createFileRoute("/admin/login")({
   validateSearch: (s: Record<string, unknown>) => ({
@@ -44,14 +47,6 @@ function AdminLogin() {
       return;
     }
     navigate({ to: "/admin", replace: true });
-  }
-
-  async function signInWithGoogle() {
-    setError(null);
-    const result = await lovable.auth.signInWithOAuth("google", {
-      redirect_uri: window.location.origin + "/admin",
-    });
-    if (result.error) setError(result.error.message ?? "Sign-in failed");
   }
 
   async function forgot() {
@@ -109,18 +104,6 @@ function AdminLogin() {
             {loading ? "Signing in…" : "Sign in"}
           </button>
         </form>
-
-        <div className="relative my-4">
-          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-[#e5e5e5]" /></div>
-          <div className="relative flex justify-center"><span className="bg-white px-2 text-xs text-[#737373]">or</span></div>
-        </div>
-
-        <button
-          onClick={signInWithGoogle}
-          className="w-full border border-[#d4d4d4] text-sm py-2 rounded-md hover:bg-[#fafafa]"
-        >
-          Sign in with Google
-        </button>
 
         <button
           type="button"
