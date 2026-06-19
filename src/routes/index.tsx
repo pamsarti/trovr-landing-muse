@@ -370,8 +370,20 @@ function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
 
-  const onSubmit = (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    // Netlify Forms: form-encoded POST to "/" with form-name. Best-effort —
+    // we show the thank-you state regardless of network result.
+    const data = new FormData(e.currentTarget);
+    try {
+      await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+      });
+    } catch {
+      /* ignore */
+    }
     setDone(true);
   };
 
@@ -395,12 +407,23 @@ function Newsletter() {
           </p>
         ) : (
           <form
+            name="newsletter"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
             onSubmit={onSubmit}
             className="mx-auto mt-12 flex max-w-xl items-center gap-2 rounded-full bg-paper-card p-2 pl-6"
             style={{ boxShadow: "0 12px 40px -20px rgba(28,25,22,0.18)" }}
           >
+            <input type="hidden" name="form-name" value="newsletter" />
+            <p className="hidden">
+              <label>
+                Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+              </label>
+            </p>
             <input
               type="email"
+              name="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}

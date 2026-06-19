@@ -1,13 +1,16 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { findTheme, tripsByTheme } from "@/lib/trips-data";
-import type { Theme, Trip } from "@/lib/trips-data";
+import type { Trip } from "@/lib/trips-data";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 
 export const Route = createFileRoute("/trips/theme/$slug")({
   loader: ({ params }) => {
     const theme = findTheme(params.slug);
     if (!theme) throw notFound();
-    return { theme, trips: tripsByTheme(theme) };
+    // Return only serializable fields — Theme.matches is a function and would
+    // break loader-data serialization (seroval) during prerender/hydration.
+    const { title, subtitle, image } = theme;
+    return { theme: { title, subtitle, image }, trips: tripsByTheme(theme) };
   },
   head: ({ loaderData }) => ({
     meta: loaderData
@@ -43,7 +46,10 @@ export const Route = createFileRoute("/trips/theme/$slug")({
 });
 
 function ThemePage() {
-  const { theme, trips } = Route.useLoaderData() as { theme: Theme; trips: Trip[] };
+  const { theme, trips } = Route.useLoaderData() as {
+    theme: { title: string; subtitle: string; image: string };
+    trips: Trip[];
+  };
   return (
     <main className="bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" />
