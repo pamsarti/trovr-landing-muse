@@ -197,6 +197,15 @@ lines.push(
 );
 lines.push("");
 
+// Storage bucket lives in the DB (storage.buckets), so `supabase db reset`
+// wipes it. Recreate it here so the admin media uploads work after every reset.
+// (config.toml also declares it for fresh `supabase start`; this is idempotent.)
+lines.push("-- storage bucket -------------------------------------------------");
+lines.push(
+  "INSERT INTO storage.buckets (id, name, public) VALUES ('trovr-media', 'trovr-media', true)\n  ON CONFLICT (id) DO UPDATE SET public = true;",
+);
+lines.push("");
+
 // trips
 lines.push("-- trips ------------------------------------------------------------");
 trips.forEach((t, i) => {
