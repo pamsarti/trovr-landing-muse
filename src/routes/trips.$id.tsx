@@ -167,29 +167,17 @@ function InquireForm({
     e.preventDefault();
     setSubmitting(true);
     setError(null);
+    // Submit to Netlify Forms: form-encoded POST to "/" including form-name.
+    // Netlify captures the submission and emails it; no backend involved.
     const data = new FormData(e.currentTarget);
-    const userMessage = String(data.get("about") ?? "").trim();
-    const composedMessage = `[Operator: ${operator}]${userMessage ? `\n\n${userMessage}` : ""}`;
-    const payload = {
-      trip_id: tripId,
-      trip_name: tripName,
-      source_page: typeof window !== "undefined" ? window.location.href : null,
-      name: String(data.get("name") ?? ""),
-      email: String(data.get("email") ?? ""),
-      phone: String(data.get("phone") ?? "") || null,
-      preferred_when: String(data.get("when") ?? "") || null,
-      message: composedMessage,
-    };
+    data.set("source_page", typeof window !== "undefined" ? window.location.href : "");
     try {
-      const res = await fetch("/api/public/leads", {
+      const res = await fetch("/", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
-      if (!res.ok) {
-        const body = await res.json().catch(() => ({}));
-        throw new Error(body?.error ?? "Failed to send inquiry");
-      }
+      if (!res.ok) throw new Error("Failed to send inquiry");
       setSent(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");
@@ -210,7 +198,23 @@ function InquireForm({
   }
 
   return (
-    <form onSubmit={onSubmit} className="mt-16">
+    <form
+      name="inquiry"
+      method="POST"
+      data-netlify="true"
+      netlify-honeypot="bot-field"
+      onSubmit={onSubmit}
+      className="mt-16"
+    >
+      <input type="hidden" name="form-name" value="inquiry" />
+      <input type="hidden" name="trip_id" value={tripId} />
+      <input type="hidden" name="trip_name" value={tripName} />
+      <input type="hidden" name="operator" value={operator} />
+      <p className="hidden">
+        <label>
+          Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+        </label>
+      </p>
       <h2 className="font-serif text-3xl text-ink sm:text-4xl">Interested?</h2>
       <p className="mt-3 text-sm text-stone">
         Tell us about you. We'll come back with details.

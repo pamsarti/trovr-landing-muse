@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Netlify form detection</title>
+  </head>
+  <body>
+    <!--
+      Hidden static forms so Netlify registers them at build/deploy time.
+      The real forms are React-rendered (trip inquiry + homepage newsletter)
+      and submit form-encoded POSTs to "/" with a matching `form-name`.
+      Every field used by those forms must be declared here for Netlify to
+      capture it. This file is never linked or shown to users.
+    -->
+    <form name="inquiry" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <input type="text" name="phone" />
+      <input type="text" name="when" />
+      <textarea name="about"></textarea>
+      <input type="text" name="trip_id" />
+      <input type="text" name="trip_name" />
+      <input type="text" name="operator" />
+      <input type="text" name="source_page" />
+      <input type="text" name="bot-field" />
+    </form>
+
+    <form name="newsletter" data-netlify="true" netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+      <input type="text" name="bot-field" />
+    </form>
+  </body>
+</html>

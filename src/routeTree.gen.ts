@@ -14,26 +14,10 @@ import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
-import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
-import { Route as AdminTripsRouteImport } from './routes/admin.trips'
-import { Route as AdminSubscribersRouteImport } from './routes/admin.subscribers'
-import { Route as AdminSpotsRouteImport } from './routes/admin.spots'
-import { Route as AdminSettingsRouteImport } from './routes/admin.settings'
-import { Route as AdminResetPasswordRouteImport } from './routes/admin.reset-password'
-import { Route as AdminMediaRouteImport } from './routes/admin.media'
-import { Route as AdminLoginRouteImport } from './routes/admin.login'
-import { Route as AdminLeadsRouteImport } from './routes/admin.leads'
-import { Route as AdminJournalRouteImport } from './routes/admin.journal'
-import { Route as AdminInquiriesRouteImport } from './routes/admin.inquiries'
-import { Route as AdminHomepageRouteImport } from './routes/admin.homepage'
-import { Route as AdminAboutRouteImport } from './routes/admin.about'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
-import { Route as AdminTripsIndexRouteImport } from './routes/admin.trips.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
-import { Route as ApiPublicLeadsRouteImport } from './routes/api/public/leads'
-import { Route as AdminTripsIdRouteImport } from './routes/admin.trips.$id'
 import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 
@@ -62,11 +46,6 @@ const SpotsIndexRoute = SpotsIndexRouteImport.update({
   path: '/spots/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminIndexRoute = AdminIndexRouteImport.update({
-  id: '/admin/',
-  path: '/admin/',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const TripsIdRoute = TripsIdRouteImport.update({
   id: '/trips/$id',
   path: '/trips/$id',
@@ -77,90 +56,15 @@ const JournalSlugRoute = JournalSlugRouteImport.update({
   path: '/$slug',
   getParentRoute: () => JournalRoute,
 } as any)
-const AdminTripsRoute = AdminTripsRouteImport.update({
-  id: '/admin/trips',
-  path: '/admin/trips',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSubscribersRoute = AdminSubscribersRouteImport.update({
-  id: '/admin/subscribers',
-  path: '/admin/subscribers',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSpotsRoute = AdminSpotsRouteImport.update({
-  id: '/admin/spots',
-  path: '/admin/spots',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminSettingsRoute = AdminSettingsRouteImport.update({
-  id: '/admin/settings',
-  path: '/admin/settings',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminResetPasswordRoute = AdminResetPasswordRouteImport.update({
-  id: '/admin/reset-password',
-  path: '/admin/reset-password',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminMediaRoute = AdminMediaRouteImport.update({
-  id: '/admin/media',
-  path: '/admin/media',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLoginRoute = AdminLoginRouteImport.update({
-  id: '/admin/login',
-  path: '/admin/login',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminLeadsRoute = AdminLeadsRouteImport.update({
-  id: '/admin/leads',
-  path: '/admin/leads',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminJournalRoute = AdminJournalRouteImport.update({
-  id: '/admin/journal',
-  path: '/admin/journal',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminInquiriesRoute = AdminInquiriesRouteImport.update({
-  id: '/admin/inquiries',
-  path: '/admin/inquiries',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminHomepageRoute = AdminHomepageRouteImport.update({
-  id: '/admin/homepage',
-  path: '/admin/homepage',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminAboutRoute = AdminAboutRouteImport.update({
-  id: '/admin/about',
-  path: '/admin/about',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const SpotsContinentIndexRoute = SpotsContinentIndexRouteImport.update({
   id: '/spots/$continent/',
   path: '/spots/$continent/',
   getParentRoute: () => rootRouteImport,
 } as any)
-const AdminTripsIndexRoute = AdminTripsIndexRouteImport.update({
-  id: '/',
-  path: '/',
-  getParentRoute: () => AdminTripsRoute,
-} as any)
 const TripsThemeSlugRoute = TripsThemeSlugRouteImport.update({
   id: '/trips/theme/$slug',
   path: '/trips/theme/$slug',
   getParentRoute: () => rootRouteImport,
-} as any)
-const ApiPublicLeadsRoute = ApiPublicLeadsRouteImport.update({
-  id: '/api/public/leads',
-  path: '/api/public/leads',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const AdminTripsIdRoute = AdminTripsIdRouteImport.update({
-  id: '/$id',
-  path: '/$id',
-  getParentRoute: () => AdminTripsRoute,
 } as any)
 const SpotsContinentRegionIndexRoute =
   SpotsContinentRegionIndexRouteImport.update({
@@ -179,27 +83,11 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
-  '/admin/about': typeof AdminAboutRoute
-  '/admin/homepage': typeof AdminHomepageRoute
-  '/admin/inquiries': typeof AdminInquiriesRoute
-  '/admin/journal': typeof AdminJournalRoute
-  '/admin/leads': typeof AdminLeadsRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/media': typeof AdminMediaRoute
-  '/admin/reset-password': typeof AdminResetPasswordRoute
-  '/admin/settings': typeof AdminSettingsRoute
-  '/admin/spots': typeof AdminSpotsRoute
-  '/admin/subscribers': typeof AdminSubscribersRoute
-  '/admin/trips': typeof AdminTripsRouteWithChildren
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
-  '/admin/': typeof AdminIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
-  '/admin/trips/$id': typeof AdminTripsIdRoute
-  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
-  '/admin/trips/': typeof AdminTripsIndexRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
@@ -208,26 +96,11 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
-  '/admin/about': typeof AdminAboutRoute
-  '/admin/homepage': typeof AdminHomepageRoute
-  '/admin/inquiries': typeof AdminInquiriesRoute
-  '/admin/journal': typeof AdminJournalRoute
-  '/admin/leads': typeof AdminLeadsRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/media': typeof AdminMediaRoute
-  '/admin/reset-password': typeof AdminResetPasswordRoute
-  '/admin/settings': typeof AdminSettingsRoute
-  '/admin/spots': typeof AdminSpotsRoute
-  '/admin/subscribers': typeof AdminSubscribersRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
-  '/admin': typeof AdminIndexRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
-  '/admin/trips/$id': typeof AdminTripsIdRoute
-  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
-  '/admin/trips': typeof AdminTripsIndexRoute
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region': typeof SpotsContinentRegionIndexRoute
@@ -237,27 +110,11 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/journal': typeof JournalRouteWithChildren
-  '/admin/about': typeof AdminAboutRoute
-  '/admin/homepage': typeof AdminHomepageRoute
-  '/admin/inquiries': typeof AdminInquiriesRoute
-  '/admin/journal': typeof AdminJournalRoute
-  '/admin/leads': typeof AdminLeadsRoute
-  '/admin/login': typeof AdminLoginRoute
-  '/admin/media': typeof AdminMediaRoute
-  '/admin/reset-password': typeof AdminResetPasswordRoute
-  '/admin/settings': typeof AdminSettingsRoute
-  '/admin/spots': typeof AdminSpotsRoute
-  '/admin/subscribers': typeof AdminSubscribersRoute
-  '/admin/trips': typeof AdminTripsRouteWithChildren
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
-  '/admin/': typeof AdminIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
-  '/admin/trips/$id': typeof AdminTripsIdRoute
-  '/api/public/leads': typeof ApiPublicLeadsRoute
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
-  '/admin/trips/': typeof AdminTripsIndexRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
   '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
@@ -268,27 +125,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/journal'
-    | '/admin/about'
-    | '/admin/homepage'
-    | '/admin/inquiries'
-    | '/admin/journal'
-    | '/admin/leads'
-    | '/admin/login'
-    | '/admin/media'
-    | '/admin/reset-password'
-    | '/admin/settings'
-    | '/admin/spots'
-    | '/admin/subscribers'
-    | '/admin/trips'
     | '/journal/$slug'
     | '/trips/$id'
-    | '/admin/'
     | '/spots/'
     | '/trips/'
-    | '/admin/trips/$id'
-    | '/api/public/leads'
     | '/trips/theme/$slug'
-    | '/admin/trips/'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region/'
@@ -297,26 +138,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/journal'
-    | '/admin/about'
-    | '/admin/homepage'
-    | '/admin/inquiries'
-    | '/admin/journal'
-    | '/admin/leads'
-    | '/admin/login'
-    | '/admin/media'
-    | '/admin/reset-password'
-    | '/admin/settings'
-    | '/admin/spots'
-    | '/admin/subscribers'
     | '/journal/$slug'
     | '/trips/$id'
-    | '/admin'
     | '/spots'
     | '/trips'
-    | '/admin/trips/$id'
-    | '/api/public/leads'
     | '/trips/theme/$slug'
-    | '/admin/trips'
     | '/spots/$continent'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region'
@@ -325,27 +151,11 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/journal'
-    | '/admin/about'
-    | '/admin/homepage'
-    | '/admin/inquiries'
-    | '/admin/journal'
-    | '/admin/leads'
-    | '/admin/login'
-    | '/admin/media'
-    | '/admin/reset-password'
-    | '/admin/settings'
-    | '/admin/spots'
-    | '/admin/subscribers'
-    | '/admin/trips'
     | '/journal/$slug'
     | '/trips/$id'
-    | '/admin/'
     | '/spots/'
     | '/trips/'
-    | '/admin/trips/$id'
-    | '/api/public/leads'
     | '/trips/theme/$slug'
-    | '/admin/trips/'
     | '/spots/$continent/'
     | '/spots/$continent/$region/$spot'
     | '/spots/$continent/$region/'
@@ -355,23 +165,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   JournalRoute: typeof JournalRouteWithChildren
-  AdminAboutRoute: typeof AdminAboutRoute
-  AdminHomepageRoute: typeof AdminHomepageRoute
-  AdminInquiriesRoute: typeof AdminInquiriesRoute
-  AdminJournalRoute: typeof AdminJournalRoute
-  AdminLeadsRoute: typeof AdminLeadsRoute
-  AdminLoginRoute: typeof AdminLoginRoute
-  AdminMediaRoute: typeof AdminMediaRoute
-  AdminResetPasswordRoute: typeof AdminResetPasswordRoute
-  AdminSettingsRoute: typeof AdminSettingsRoute
-  AdminSpotsRoute: typeof AdminSpotsRoute
-  AdminSubscribersRoute: typeof AdminSubscribersRoute
-  AdminTripsRoute: typeof AdminTripsRouteWithChildren
   TripsIdRoute: typeof TripsIdRoute
-  AdminIndexRoute: typeof AdminIndexRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
   TripsIndexRoute: typeof TripsIndexRoute
-  ApiPublicLeadsRoute: typeof ApiPublicLeadsRoute
   TripsThemeSlugRoute: typeof TripsThemeSlugRoute
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
   SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
@@ -415,13 +211,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/': {
-      id: '/admin/'
-      path: '/admin'
-      fullPath: '/admin/'
-      preLoaderRoute: typeof AdminIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/trips/$id': {
       id: '/trips/$id'
       path: '/trips/$id'
@@ -436,90 +225,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof JournalSlugRouteImport
       parentRoute: typeof JournalRoute
     }
-    '/admin/trips': {
-      id: '/admin/trips'
-      path: '/admin/trips'
-      fullPath: '/admin/trips'
-      preLoaderRoute: typeof AdminTripsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/subscribers': {
-      id: '/admin/subscribers'
-      path: '/admin/subscribers'
-      fullPath: '/admin/subscribers'
-      preLoaderRoute: typeof AdminSubscribersRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/spots': {
-      id: '/admin/spots'
-      path: '/admin/spots'
-      fullPath: '/admin/spots'
-      preLoaderRoute: typeof AdminSpotsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/settings': {
-      id: '/admin/settings'
-      path: '/admin/settings'
-      fullPath: '/admin/settings'
-      preLoaderRoute: typeof AdminSettingsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/reset-password': {
-      id: '/admin/reset-password'
-      path: '/admin/reset-password'
-      fullPath: '/admin/reset-password'
-      preLoaderRoute: typeof AdminResetPasswordRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/media': {
-      id: '/admin/media'
-      path: '/admin/media'
-      fullPath: '/admin/media'
-      preLoaderRoute: typeof AdminMediaRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/login': {
-      id: '/admin/login'
-      path: '/admin/login'
-      fullPath: '/admin/login'
-      preLoaderRoute: typeof AdminLoginRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/leads': {
-      id: '/admin/leads'
-      path: '/admin/leads'
-      fullPath: '/admin/leads'
-      preLoaderRoute: typeof AdminLeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/journal': {
-      id: '/admin/journal'
-      path: '/admin/journal'
-      fullPath: '/admin/journal'
-      preLoaderRoute: typeof AdminJournalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/inquiries': {
-      id: '/admin/inquiries'
-      path: '/admin/inquiries'
-      fullPath: '/admin/inquiries'
-      preLoaderRoute: typeof AdminInquiriesRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/homepage': {
-      id: '/admin/homepage'
-      path: '/admin/homepage'
-      fullPath: '/admin/homepage'
-      preLoaderRoute: typeof AdminHomepageRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/about': {
-      id: '/admin/about'
-      path: '/admin/about'
-      fullPath: '/admin/about'
-      preLoaderRoute: typeof AdminAboutRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/spots/$continent/': {
       id: '/spots/$continent/'
       path: '/spots/$continent'
@@ -527,33 +232,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsContinentIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/admin/trips/': {
-      id: '/admin/trips/'
-      path: '/'
-      fullPath: '/admin/trips/'
-      preLoaderRoute: typeof AdminTripsIndexRouteImport
-      parentRoute: typeof AdminTripsRoute
-    }
     '/trips/theme/$slug': {
       id: '/trips/theme/$slug'
       path: '/trips/theme/$slug'
       fullPath: '/trips/theme/$slug'
       preLoaderRoute: typeof TripsThemeSlugRouteImport
       parentRoute: typeof rootRouteImport
-    }
-    '/api/public/leads': {
-      id: '/api/public/leads'
-      path: '/api/public/leads'
-      fullPath: '/api/public/leads'
-      preLoaderRoute: typeof ApiPublicLeadsRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/admin/trips/$id': {
-      id: '/admin/trips/$id'
-      path: '/$id'
-      fullPath: '/admin/trips/$id'
-      preLoaderRoute: typeof AdminTripsIdRouteImport
-      parentRoute: typeof AdminTripsRoute
     }
     '/spots/$continent/$region/': {
       id: '/spots/$continent/$region/'
@@ -583,41 +267,13 @@ const JournalRouteChildren: JournalRouteChildren = {
 const JournalRouteWithChildren =
   JournalRoute._addFileChildren(JournalRouteChildren)
 
-interface AdminTripsRouteChildren {
-  AdminTripsIdRoute: typeof AdminTripsIdRoute
-  AdminTripsIndexRoute: typeof AdminTripsIndexRoute
-}
-
-const AdminTripsRouteChildren: AdminTripsRouteChildren = {
-  AdminTripsIdRoute: AdminTripsIdRoute,
-  AdminTripsIndexRoute: AdminTripsIndexRoute,
-}
-
-const AdminTripsRouteWithChildren = AdminTripsRoute._addFileChildren(
-  AdminTripsRouteChildren,
-)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   JournalRoute: JournalRouteWithChildren,
-  AdminAboutRoute: AdminAboutRoute,
-  AdminHomepageRoute: AdminHomepageRoute,
-  AdminInquiriesRoute: AdminInquiriesRoute,
-  AdminJournalRoute: AdminJournalRoute,
-  AdminLeadsRoute: AdminLeadsRoute,
-  AdminLoginRoute: AdminLoginRoute,
-  AdminMediaRoute: AdminMediaRoute,
-  AdminResetPasswordRoute: AdminResetPasswordRoute,
-  AdminSettingsRoute: AdminSettingsRoute,
-  AdminSpotsRoute: AdminSpotsRoute,
-  AdminSubscribersRoute: AdminSubscribersRoute,
-  AdminTripsRoute: AdminTripsRouteWithChildren,
   TripsIdRoute: TripsIdRoute,
-  AdminIndexRoute: AdminIndexRoute,
   SpotsIndexRoute: SpotsIndexRoute,
   TripsIndexRoute: TripsIndexRoute,
-  ApiPublicLeadsRoute: ApiPublicLeadsRoute,
   TripsThemeSlugRoute: TripsThemeSlugRoute,
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
   SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
