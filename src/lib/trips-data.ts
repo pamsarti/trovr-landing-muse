@@ -1,4 +1,5 @@
 import rawTrips from "@/data/trips.json";
+import alaskaWhale from "@/assets/alaska-whale.jpg";
 
 export type TripActivity =
   | "kite"
@@ -68,6 +69,9 @@ const FALLBACK_BY_ACTIVITY: Record<TripActivity, string> = {
 };
 
 export function tripImage(trip: Trip, w = 1600, h = 900): string {
+  if (trip.id === "alaska-wildlife-geographic") {
+    return alaskaWhale;
+  }
   const id =
     IMAGE_KEY[`${trip.activity}|${trip.country}`] ??
     FALLBACK_BY_ACTIVITY[trip.activity];
