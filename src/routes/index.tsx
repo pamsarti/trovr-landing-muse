@@ -395,7 +395,7 @@ function Newsletter() {
         </p>
         <h2 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl">
           When the <em className="italic font-normal">first</em> expeditions
-          open, you'll be the first to know.
+          open, you'll be the first to know..
         </h2>
         <p className="mt-6 text-base text-mid sm:text-lg">
           No noise. Only the letters that matter.
