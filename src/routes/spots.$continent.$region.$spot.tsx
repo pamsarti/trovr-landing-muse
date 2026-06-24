@@ -65,7 +65,7 @@ export const Route = createFileRoute("/spots/$continent/$region/$spot")({
 });
 
 function SpotPage() {
-  const { continent, region, spot } = Route.useLoaderData();
+  const { continent, region, spot } = Route.useLoaderData()!;
 
   return (
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
