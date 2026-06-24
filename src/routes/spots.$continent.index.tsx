@@ -54,7 +54,10 @@ export const Route = createFileRoute("/spots/$continent/")({
 });
 
 function ContinentPage() {
-  const { continent, regions } = Route.useLoaderData();
+  const { continent, regions } = Route.useLoaderData() as {
+    continent: NonNullable<ReturnType<typeof findContinent>>;
+    regions: RegionGroup[];
+  };
 
   return (
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
