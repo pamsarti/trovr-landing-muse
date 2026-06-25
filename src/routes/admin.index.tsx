@@ -83,7 +83,7 @@ function DashboardRoute() {
                 variant={allowed ? "secondary" : "destructive"}
                 className="mt-1"
               >
-                {PERMISSION_LABEL[user.permission]}
+                {PERMISSION_LABEL[user.permission as GithubPermission]}
               </Badge>
             </div>
           </div>
