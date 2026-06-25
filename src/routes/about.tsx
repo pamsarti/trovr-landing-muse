@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/about")({
@@ -26,7 +26,7 @@ export const Route = createFileRoute("/about")({
 function AboutPage() {
   return (
     <main className="bg-paper text-ink font-sans antialiased">
-      <SiteHeader />
+      <SiteHeader transparent />
       <Hero />
       <WhyExists />
       <FounderNote />
@@ -37,19 +37,67 @@ function AboutPage() {
   );
 }
 
+const HERO_SLIDES = [
+  {
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80",
+    alt: "Mountain dawn over still water",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=2400&q=80",
+    alt: "Kite in open wind",
+  },
+  {
+    src: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=2400&q=80",
+    alt: "Horses on the steppe",
+  },
+];
+
 function Hero() {
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
+    return () => clearInterval(t);
+  }, []);
+
   return (
-    <section className="flex min-h-[70vh] items-center justify-center px-6 py-24 sm:py-32">
-      <div className="mx-auto max-w-3xl text-center">
-        <h1 className="font-serif text-4xl leading-[1.15] text-ink sm:text-5xl md:text-6xl">
-          We started with a single question.
-          <br />
-          <br />
-          What does it actually mean to travel?
-        </h1>
-        <p className="mx-auto mt-8 max-w-xl text-base leading-[1.6] text-stone sm:mt-10 sm:text-lg">
-          This page is the answer we've been working on.
-        </p>
+    <section className="relative h-[100svh] w-full overflow-hidden bg-ink">
+      {HERO_SLIDES.map((s, idx) => {
+        const active = idx === i;
+        return (
+          <div
+            key={s.src}
+            className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
+            style={{ opacity: active ? 1 : 0 }}
+            aria-hidden={!active}
+          >
+            <img
+              src={s.src}
+              alt={s.alt}
+              className={`h-full w-full object-cover ${active ? "animate-pan" : ""}`}
+              style={{ filter: "brightness(0.78)" }}
+            />
+          </div>
+        );
+      })}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.6) 100%)",
+        }}
+      />
+      <div className="relative z-10 flex h-full items-center justify-center px-6">
+        <div className="mx-auto max-w-3xl text-center text-paper">
+          <h1 className="font-serif text-4xl leading-[1.15] sm:text-5xl md:text-6xl">
+            We started with a single question.
+            <br />
+            <br />
+            What does it actually mean to travel?
+          </h1>
+          <p className="mx-auto mt-8 max-w-xl text-base leading-[1.6] text-paper/80 sm:mt-10 sm:text-lg">
+            This page is the answer we've been working on.
+          </p>
+        </div>
       </div>
     </section>
   );
@@ -62,7 +110,16 @@ function WhyExists() {
     "Trovr is that middle ground. We find the operators we'd travel with ourselves — and put them in one place, with the context that helps you choose.",
   ];
   return (
-    <section className="border-t border-stone/15 px-6 py-24 sm:py-32 md:py-40">
+    <section
+      className="relative px-6 py-32 sm:py-40 md:py-48"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(250,250,250,0.88), rgba(250,250,250,0.94)), url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2400&q=80)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="mx-auto max-w-[720px] space-y-8">
         {paragraphs.map((p, i) => (
           <p key={i} className="font-serif text-lg leading-[1.6] text-ink sm:text-xl md:text-[22px]">
@@ -141,7 +198,16 @@ function HowWeCurate() {
   ];
 
   return (
-    <section className="border-t border-stone/15 px-6 py-24 sm:py-32 md:py-40">
+    <section
+      className="relative px-6 py-32 sm:py-40 md:py-48"
+      style={{
+        backgroundImage:
+          "linear-gradient(rgba(250,250,250,0.9), rgba(250,250,250,0.95)), url(https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=2400&q=80)",
+        backgroundSize: "cover",
+        backgroundPosition: "center",
+        backgroundAttachment: "fixed",
+      }}
+    >
       <div className="mx-auto max-w-[720px]">
         <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
           How we curate.
