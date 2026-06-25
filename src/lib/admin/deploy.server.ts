@@ -23,10 +23,10 @@ export interface DeployResult {
  */
 export async function triggerDeploy(): Promise<DeployResult> {
   // --- LOCAL MOCK (current) -------------------------------------------------
-  return mockDeploy();
+  // return mockDeploy();
 
   // --- REAL NETLIFY (enable later) -----------------------------------------
-  // return netlifyDeploy();
+  return netlifyDeploy();
 }
 
 /**
