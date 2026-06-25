@@ -192,7 +192,7 @@ function ManifestoStrip() {
           <h2 className="font-serif text-[2rem] leading-[1.15] text-ink sm:text-5xl">
             Some people feel{" "}
             <em className="italic font-normal">intensity</em> as a necessity, not a
-            preference.
+            preference...
           </h2>
         </div>
         <div className="md:pt-12">
