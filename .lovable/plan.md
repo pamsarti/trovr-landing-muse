@@ -1,35 +1,67 @@
-## Deploying this site to Netlify from GitHub
+## The problem
 
-Yes — you can connect the repo in Netlify and use the standard "Import from GitHub" flow. The repo already includes a `netlify.toml` that tells Netlify exactly how to build, so you don't need to type any build settings manually and **no environment variables are required**.
+Netlify's free "Starter" plan only counts builds triggered by commits from **team members**. Commits pushed by the Lovable bot (or any non-member GitHub account) are detected but the build sits as "Skipped / Pending" because the author isn't on the team.
 
-### Steps
+You can't add the Lovable bot as a Netlify team member on the free plan, so the fix is to **stop relying on Netlify's GitHub author check entirely** and trigger builds through a channel that ignores authorship: a **Netlify Build Hook** called from a **GitHub Action**.
 
-1. Push the branch you want to deploy to GitHub (per `README-netlify.md`, the intended branch is `static-netlify`).
-2. In Netlify: **Add new site → Import an existing project → GitHub** → authorize → pick this repo.
-3. Choose the branch (e.g. `static-netlify`).
-4. Leave the build settings as suggested — Netlify reads them from `netlify.toml`:
-   - Build command: `npm run build`
-   - Publish directory: `dist/client`
-   - Node version: `22` (set via `[build.environment]`)
-5. Click **Deploy site**.
+## The fix in one picture
 
-### Environment variables
+```text
+Lovable bot ──push──> GitHub (main)
+                          │
+                          ▼
+                 GitHub Action (runs for every push)
+                          │
+                          ▼
+                 POST https://api.netlify.com/build_hooks/<id>
+                          │
+                          ▼
+                 Netlify build & deploy (no author check)
+```
 
-None required for the build to succeed. The site is fully static (prerendered) and has no backend calls at runtime. The `.env` file in the repo only contains the Supabase **publishable** (anon) keys, which are safe but also unused on this static branch.
+Build hooks are author-agnostic — Netlify just builds whatever is on the configured branch when the hook fires. Free plan supports them.
 
-Only add env vars in Netlify if you later re-enable Supabase/CMS features — then set `VITE_SUPABASE_URL` and `VITE_SUPABASE_PUBLISHABLE_KEY` in Site settings → Environment variables.
+## Steps the user does in dashboards (one-time)
 
-### Forms (optional but recommended)
+1. **Netlify → Site configuration → Build & deploy → Build hooks → Add build hook**
+   - Name: `github-push-main`
+   - Branch to build: `main`
+   - Copy the URL it gives you (looks like `https://api.netlify.com/build_hooks/abc123…`).
+2. **GitHub → repo → Settings → Secrets and variables → Actions → New repository secret**
+   - Name: `NETLIFY_BUILD_HOOK_URL`
+   - Value: the URL from step 1.
+3. **Netlify → Site configuration → Build & deploy → Continuous deployment → Build settings**
+   - Optional but recommended: under **Stop builds** or **Build settings**, set the site to **not** auto-build on GitHub pushes (or leave it — the skipped builds are harmless, just noisy). If you want a clean dashboard, disconnect the auto-deploy and rely solely on the hook.
 
-Contact and newsletter forms use **Netlify Forms** (declared in `public/__forms.html`). After the first deploy:
-- Netlify → **Forms → Form notifications → Add notification → Email** → enter your address to receive submissions.
+## Step I'll do in the repo (once you approve)
 
-### Things to double-check before importing
+Add one file: `.github/workflows/netlify-deploy.yml`
 
-- You're on the `static-netlify` branch (not `main`, which has the Supabase/Cloudflare setup and won't build the same way).
-- Node 22 is fine; don't override it in Netlify UI or it can conflict with `netlify.toml`.
+```yaml
+name: Trigger Netlify deploy
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:  # lets you re-deploy manually from the Actions tab
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Call Netlify build hook
+        run: curl -fsSL -X POST -d {} "$NETLIFY_BUILD_HOOK_URL"
+        env:
+          NETLIFY_BUILD_HOOK_URL: ${{ secrets.NETLIFY_BUILD_HOOK_URL }}
+```
 
-### Answer to your specific questions
+That's the entire code change. GitHub Actions runs for **every** push to `main` no matter who authored the commit, so Lovable-bot pushes will now reliably kick off a Netlify deploy.
 
-- **Select repo and use Netlify defaults?** Yes — just import the repo. `netlify.toml` overrides Netlify's auto-detected defaults with the correct command/publish dir, so you can accept what Netlify shows.
-- **Any env var configuration needed?** No, not for this static branch.
+## Notes / trade-offs
+
+- **No Netlify paid plan needed.** Build hooks and GitHub Actions are both free here (public repo = unlimited Actions minutes; private repo = 2,000 free min/month, and this job uses ~5 seconds per push).
+- **Deploy previews for PRs**: build hooks only build the configured branch (`main`). If you also want PR previews, keep Netlify's GitHub integration connected — PRs opened by team members will still get previews. PRs from the Lovable bot won't, but Lovable typically pushes straight to `main`/`dev`, not via PRs.
+- **`dev` branch builds**: if you also want Netlify to deploy `dev` somewhere, create a second build hook with Branch = `dev` and add another workflow trigger (`branches: [main, dev]`) that picks the right hook via an `if`. Easy to extend later.
+- **Security**: the hook URL is a secret — storing it in GitHub Actions secrets keeps it out of the repo. If it ever leaks, rotate it from the Netlify build-hooks panel.
+
+## Answer to your specific question
+
+Yes — you can fully solve this on Netlify's free plan. The Lovable-bot author block only applies to Netlify's **GitHub-integration** build trigger. **Build hooks bypass it**, and a tiny GitHub Action fires the hook for every push, so every Lovable commit deploys automatically.
