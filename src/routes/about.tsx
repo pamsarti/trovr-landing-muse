@@ -133,7 +133,7 @@ function WhyExists() {
 
 function FounderNote() {
   return (
-    <section className="border-t border-stone/15 px-6 py-24 sm:py-32 md:py-40">
+    <section className="border-t border-stone/15 px-6 py-16 sm:py-20 md:py-24">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 sm:gap-12 md:grid-cols-5 md:gap-16">
         <div className="md:col-span-2">
           <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-stone/20 md:max-w-none">
@@ -199,7 +199,7 @@ function HowWeCurate() {
 
   return (
     <section
-      className="relative px-6 py-32 sm:py-40 md:py-48"
+      className="relative px-6 py-16 sm:py-20 md:py-24"
       style={{
         backgroundImage:
           "linear-gradient(rgba(250,250,250,0.9), rgba(250,250,250,0.95)), url(https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=2400&q=80)",
@@ -240,7 +240,7 @@ function Newsletter() {
   };
 
   return (
-    <section className="border-t border-stone/20 px-6 py-24 sm:py-32 md:py-40">
+    <section className="border-t border-stone/20 px-6 py-16 sm:py-20 md:py-24">
       <div className="mx-auto max-w-[480px] text-center">
         <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">Leave your email.</h2>
         <p className="mt-5 text-base leading-[1.6] text-stone sm:text-lg">
@@ -277,7 +277,7 @@ function Newsletter() {
 
 function Footer() {
   return (
-    <footer className="border-t border-stone/20 px-6 py-20">
+    <footer className="border-t border-stone/20 px-6 py-12">
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
         <Link to="/" className="font-serif text-5xl lowercase text-ink sm:text-6xl">
           trovr
