@@ -1,0 +1,24 @@
+# Netlify build configuration.
+#
+# `ignore = "exit 0"` stops Netlify from auto-deploying on git pushes: every
+# push-triggered build exits 0 ("nothing changed") and is skipped. So Lovable's
+# commits no longer auto-deploy or consume build minutes.
+#
+# Deploys happen ONLY via a build hook, which BYPASSES the ignore command
+# (Netlify docs: "The ignore command won't cancel a build triggered by a build
+# hook, regardless of exit code."). Two things trigger the hook:
+#   - the GitHub Action (.github/workflows/netlify-deploy.yml), on push to main
+#   - the in-app Publish button (admin dashboard) via NETLIFY_DEPLOY_HOOK
+#
+# Safe with Lovable: the bot never edits netlify.toml, and Lovable's own
+# publish (lovable.app) ignores this file entirely.
+[build]
+  command = "npm run build"
+  publish = "dist"
+  ignore = "exit 0"
+
+[build.environment]
+  # Vite 7 needs Node >= 20.19.
+  NODE_VERSION = "22"
+  # Build with the Netlify Nitro preset (output -> dist/ + SSR function).
+  NITRO_PRESET = "netlify"
