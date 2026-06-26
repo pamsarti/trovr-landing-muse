@@ -73,7 +73,7 @@ function ThemePage() {
         </div>
       </section>
 
-      <section className="px-6 py-20 sm:py-24">
+      <section className="px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-6xl">
           <div className="flex items-baseline justify-between">
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
