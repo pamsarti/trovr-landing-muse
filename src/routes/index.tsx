@@ -183,7 +183,7 @@ const TAGS = ["Kite", "Surf", "Horseback", "Wildlife", "Martial Arts", "River Cr
 
 function ManifestoStrip() {
   return (
-    <section className="px-6 py-28 sm:py-36">
+    <section className="px-6 py-14 sm:py-20">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
         <div>
           <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
@@ -227,7 +227,7 @@ function ManifestoStrip() {
 
 function Expeditions() {
   return (
-    <section id="expeditions" className="px-6 py-24 sm:py-32">
+    <section id="expeditions" className="px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex items-end justify-between gap-6">
           <div>
@@ -388,7 +388,7 @@ function Newsletter() {
   };
 
   return (
-    <section id="newsletter" className="px-6 py-28 sm:py-36">
+    <section id="newsletter" className="px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-2xl text-center">
         <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-mid">
           Early access

@@ -35,7 +35,7 @@ function SpotsIndex() {
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
       <SpotsHeader />
 
-      <section className="px-6 py-20 sm:py-24">
+      <section className="px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl text-center">
           <h1 className="font-serif text-4xl leading-[1.05] text-ink sm:text-5xl md:text-6xl">
             Where the wind takes you.

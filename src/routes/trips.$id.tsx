@@ -124,7 +124,7 @@ function TripDetail() {
       </article>
 
       {related.length > 0 && (
-        <section className="border-t border-stone/15 px-6 py-20">
+        <section className="border-t border-stone/15 px-6 py-12">
           <div className="mx-auto max-w-6xl">
             <h2 className="font-serif text-2xl text-ink sm:text-3xl">Trips like this.</h2>
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">

@@ -133,7 +133,7 @@ function SeasonBand() {
   );
   if (inSeason.length === 0) return null;
   return (
-    <section className="border-b border-stone/15 px-6 py-20 sm:py-24">
+    <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <h2 className="font-serif text-3xl text-ink sm:text-4xl">
           Right now is the time for —
@@ -152,7 +152,7 @@ function SeasonBand() {
 
 function ThemesGrid() {
   return (
-    <section className="border-b border-stone/15 px-6 py-20 sm:py-28">
+    <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <h2 className="font-serif text-3xl text-ink sm:text-4xl">
           Browse by feeling, not by filter.
@@ -228,7 +228,7 @@ function AllTripsSection() {
   const hasAny = activeCount > 0;
 
   return (
-    <section className="px-6 py-20 sm:py-28">
+    <section className="px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between">
           <h2 className="font-serif text-3xl text-ink sm:text-4xl">All trips.</h2>
