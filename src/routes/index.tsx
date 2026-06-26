@@ -124,7 +124,7 @@ function Hero() {
             <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
               Travel to <em className="italic font-normal">find.</em>
               <br />
-              Not to escape.
+              Not to escape....
             </h1>
             <div className="mt-10 flex items-center gap-5">
               <a
