@@ -111,7 +111,7 @@ function WhyExists() {
   ];
   return (
     <section
-      className="relative px-6 py-16 sm:py-20 md:py-24"
+      className="relative px-6 py-10 sm:py-14 md:py-16"
       style={{
         backgroundImage:
           "linear-gradient(rgba(250,250,250,0.88), rgba(250,250,250,0.94)), url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2400&q=80)",
@@ -133,7 +133,7 @@ function WhyExists() {
 
 function FounderNote() {
   return (
-    <section className="border-t border-stone/15 px-6 py-16 sm:py-20 md:py-24">
+    <section className="border-t border-stone/15 px-6 py-10 sm:py-14 md:py-16">
       <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 sm:gap-12 md:grid-cols-5 md:gap-16">
         <div className="md:col-span-2">
           <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-stone/20 md:max-w-none">
@@ -199,7 +199,7 @@ function HowWeCurate() {
 
   return (
     <section
-      className="relative px-6 py-16 sm:py-20 md:py-24"
+      className="relative px-6 py-10 sm:py-14 md:py-16"
       style={{
         backgroundImage:
           "linear-gradient(rgba(250,250,250,0.9), rgba(250,250,250,0.95)), url(https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=2400&q=80)",
@@ -240,7 +240,7 @@ function Newsletter() {
   };
 
   return (
-    <section className="border-t border-stone/20 px-6 py-16 sm:py-20 md:py-24">
+    <section className="border-t border-stone/20 px-6 py-10 sm:py-14 md:py-16">
       <div className="mx-auto max-w-[480px] text-center">
         <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">Leave your email.</h2>
         <p className="mt-5 text-base leading-[1.6] text-stone sm:text-lg">
