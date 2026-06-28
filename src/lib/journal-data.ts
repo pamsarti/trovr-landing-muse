@@ -2,6 +2,9 @@ import articlesJson from "@/data/journal-articles.json";
 
 export type JournalCategory = "crossing" | "finding" | "preparing" | "manifesto";
 
+export type JournalFaqItem = { question: string; answer: string };
+export type JournalKeyFact = { label?: string; value: string };
+
 export type JournalArticle = {
   id: string;
   slug: string;
@@ -14,6 +17,11 @@ export type JournalArticle = {
   heroImage: string;
   body: string;
   status: "published" | "draft";
+  seoTitle?: string;
+  seoDescription?: string;
+  ogImage?: string;
+  faq?: JournalFaqItem[];
+  keyFacts?: Array<JournalKeyFact | string>;
 };
 
 export const CATEGORY_LABEL: Record<JournalCategory, string> = {
