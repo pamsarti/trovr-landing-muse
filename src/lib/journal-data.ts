@@ -67,6 +67,9 @@ function escapeHtml(s: string): string {
 }
 
 export function renderBody(md: string): string {
+  // If the body is authored as HTML, pass it through unmodified.
+  // Content lives in our JSON, so it's trusted source — not user input.
+  if (/^\s*<[a-z]/i.test(md)) return md;
   const blocks = md.split(/\n\s*\n/);
   return blocks
     .map((raw) => {
