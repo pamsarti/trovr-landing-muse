@@ -228,7 +228,7 @@ function ArticlePage() {
         )}
 
         <div
-          className="mx-auto max-w-[680px] px-6 pt-12 pb-16 sm:pt-16"
+          className="journal-body mx-auto max-w-[680px] px-6 pt-12 pb-16 sm:pt-16 [&_p]:my-6 [&_p]:font-serif [&_p]:text-lg [&_p]:leading-[1.75] [&_p]:text-ink sm:[&_p]:text-[19px] [&_h2]:mt-16 [&_h2]:mb-5 [&_h2]:font-serif [&_h2]:text-2xl [&_h2]:text-ink sm:[&_h2]:text-3xl [&_h3]:mt-12 [&_h3]:mb-4 [&_h3]:font-serif [&_h3]:text-xl [&_h3]:text-ink [&_blockquote]:my-10 [&_blockquote]:border-l-2 [&_blockquote]:border-stone/50 [&_blockquote]:pl-6 [&_blockquote]:font-serif [&_blockquote]:text-lg [&_blockquote]:italic [&_blockquote]:leading-[1.6] [&_blockquote]:text-ink sm:[&_blockquote]:text-xl [&_ul]:my-6 [&_ul]:list-disc [&_ul]:pl-6 [&_ul]:font-serif [&_ul]:text-lg [&_ul]:leading-[1.75] [&_ul]:text-ink [&_li]:my-2 [&_a]:underline [&_a]:underline-offset-4 [&_a]:text-ink hover:[&_a]:text-stone [&_strong]:text-ink [&_em]:italic"
           dangerouslySetInnerHTML={{ __html: renderBody(article.body) }}
         />
 
