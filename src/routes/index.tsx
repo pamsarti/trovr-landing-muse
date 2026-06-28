@@ -374,8 +374,7 @@ function ExpeditionCard({
 }) {
   return (
     <Link
-      to="/trips/$id"
-      params={{ id: trip.id }}
+      to="/coming-soon"
       className={`group relative block overflow-hidden rounded-[4px] bg-ink ${span} ${ratio} md:h-full`}
     >
       <img
