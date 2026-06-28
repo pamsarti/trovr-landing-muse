@@ -85,31 +85,33 @@ function Index() {
 
 function Hero() {
   const [i, setI] = useState(0);
+  const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
     return () => clearInterval(t);
   }, []);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setRevealed(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   return (
-    <section className="relative h-[100svh] w-full overflow-hidden bg-ink">
-      {HERO_SLIDES.map((s, idx) => {
-        const active = idx === i;
-        return (
-          <div
-            key={s.src}
-            className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
-            style={{ opacity: active ? 1 : 0 }}
-            aria-hidden={!active}
-          >
-            <img
-              src={s.src}
-              alt={s.alt}
-              className={`h-full w-full object-cover ${active ? "animate-pan" : ""}`}
-              style={{ filter: "brightness(0.82)" }}
-            />
-          </div>
-        );
-      })}
+    <section className="relative isolate h-[100svh] w-full overflow-hidden bg-ink">
+      {HERO_SLIDES.map((s, idx) => (
+        <div
+          key={s.src}
+          aria-hidden={idx !== i}
+          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          style={{
+            opacity: idx === i ? 1 : 0,
+            backgroundImage: `url(${s.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+            filter: "brightness(0.82)",
+          }}
+        />
+      ))}
 
       {/* Subtle linear gradient for text legibility */}
       <div
@@ -121,7 +123,11 @@ function Hero() {
       />
 
       {/* Content */}
-      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
+      <div
+        className={`relative z-10 flex h-full flex-col justify-end px-6 pb-14 transition-all duration-[1400ms] ease-out sm:px-12 sm:pb-20 ${
+          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
@@ -130,7 +136,7 @@ function Hero() {
             <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
               Travel to <em className="italic font-normal">find.</em>
               <br />
-              Not to escape....
+              Not to escape.
             </h1>
             <div className="mt-10 flex items-center gap-5">
               <a
