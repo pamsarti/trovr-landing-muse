@@ -7,7 +7,15 @@ import {
   getPublishedArticles,
   renderBody,
   type JournalArticle,
+  type JournalKeyFact,
 } from "@/lib/journal-data";
+
+const SITE_URL = "https://trovr.com.br";
+
+function absoluteUrl(path: string): string {
+  if (/^https?:\/\//i.test(path)) return path;
+  return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
+}
 
 export const Route = createFileRoute("/journal/$slug")({
   loader: ({ params }) => {
@@ -17,9 +25,14 @@ export const Route = createFileRoute("/journal/$slug")({
   },
   head: ({ loaderData, params }) => {
     const a = loaderData?.article;
-    const title = a ? `${a.title} — Trovr Journal` : "Journal — Trovr";
-    const desc = a?.dek ?? "Field notes from the places we send people.";
-    const url = `/journal/${params.slug}`;
+    const title = a
+      ? a.seoTitle ?? `${a.title} — Trovr Journal`
+      : "Journal — Trovr";
+    const desc =
+      a?.seoDescription ?? a?.dek ?? "Field notes from the places we send people.";
+    const path = `/journal/${params.slug}`;
+    const url = absoluteUrl(path);
+    const image = a ? a.ogImage ?? a.heroImage : undefined;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
@@ -27,30 +40,77 @@ export const Route = createFileRoute("/journal/$slug")({
       { property: "og:description", content: desc },
       { property: "og:type", content: "article" },
       { property: "og:url", content: url },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: title },
+      { name: "twitter:description", content: desc },
     ];
-    if (a?.heroImage) {
-      meta.push({ property: "og:image", content: a.heroImage });
-      meta.push({ name: "twitter:image", content: a.heroImage });
+    if (image) {
+      meta.push({ property: "og:image", content: image });
+      meta.push({ name: "twitter:image", content: image });
     }
+
+    const ldScripts: Array<{ type: string; children: string }> = [];
+    if (a) {
+      ldScripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: a.title,
+          description: a.seoDescription ?? a.dek,
+          image: image ? [image] : undefined,
+          datePublished: a.date,
+          dateModified: a.date,
+          author: { "@type": "Person", name: a.author },
+          publisher: {
+            "@type": "Organization",
+            name: "Trovr",
+            url: SITE_URL,
+          },
+          mainEntityOfPage: { "@type": "WebPage", "@id": url },
+        }),
+      });
+      ldScripts.push({
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "BreadcrumbList",
+          itemListElement: [
+            {
+              "@type": "ListItem",
+              position: 1,
+              name: "Journal",
+              item: absoluteUrl("/journal"),
+            },
+            {
+              "@type": "ListItem",
+              position: 2,
+              name: a.title,
+              item: url,
+            },
+          ],
+        }),
+      });
+      if (a.faq && a.faq.length > 0) {
+        ldScripts.push({
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: a.faq.map((f) => ({
+              "@type": "Question",
+              name: f.question,
+              acceptedAnswer: { "@type": "Answer", text: f.answer },
+            })),
+          }),
+        });
+      }
+    }
+
     return {
       meta,
       links: [{ rel: "canonical", href: url }],
-      scripts: a
-        ? [
-            {
-              type: "application/ld+json",
-              children: JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Article",
-                headline: a.title,
-                description: a.dek,
-                image: a.heroImage,
-                datePublished: a.date,
-                author: { "@type": "Person", name: a.author },
-              }),
-            },
-          ]
-        : undefined,
+      scripts: ldScripts.length ? ldScripts : undefined,
     };
   },
   notFoundComponent: NotFound,
@@ -130,10 +190,76 @@ function ArticlePage() {
           </div>
         </figure>
 
+        {article.keyFacts && article.keyFacts.length > 0 && (
+          <aside
+            aria-label="Key facts"
+            className="mx-auto mt-12 max-w-[680px] px-6 sm:mt-16"
+          >
+            <div className="border border-stone/30 bg-ink/[0.02] p-6 sm:p-8">
+              <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
+                At a glance
+              </p>
+              <ul className="mt-4 space-y-2">
+                {article.keyFacts.map((f, i) => {
+                  const fact: JournalKeyFact =
+                    typeof f === "string" ? { value: f } : f;
+                  return (
+                    <li
+                      key={i}
+                      className="font-serif text-base leading-[1.6] text-ink sm:text-lg"
+                    >
+                      {fact.label ? (
+                        <>
+                          <span className="text-[11px] uppercase tracking-[0.2em] text-stone">
+                            {fact.label}
+                          </span>
+                          <span className="mx-2 text-stone">·</span>
+                          <span>{fact.value}</span>
+                        </>
+                      ) : (
+                        fact.value
+                      )}
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          </aside>
+        )}
+
         <div
           className="mx-auto max-w-[680px] px-6 pt-12 pb-16 sm:pt-16"
           dangerouslySetInnerHTML={{ __html: renderBody(article.body) }}
         />
+
+        {article.faq && article.faq.length > 0 && (
+          <section
+            aria-label="Frequently asked questions"
+            className="mx-auto max-w-[680px] px-6 pb-16"
+          >
+            <h2 className="mt-4 mb-6 font-serif text-2xl text-ink sm:text-3xl">
+              Frequently asked questions
+            </h2>
+            <div className="divide-y divide-stone/20 border-y border-stone/20">
+              {article.faq.map((item, i) => (
+                <details key={i} className="group py-5">
+                  <summary className="flex cursor-pointer list-none items-start justify-between gap-6 font-serif text-lg text-ink sm:text-xl">
+                    <span>{item.question}</span>
+                    <span
+                      aria-hidden
+                      className="mt-1 text-stone transition-transform duration-300 group-open:rotate-45"
+                    >
+                      +
+                    </span>
+                  </summary>
+                  <p className="mt-4 font-serif text-base leading-[1.7] text-stone sm:text-lg">
+                    {item.answer}
+                  </p>
+                </details>
+              ))}
+            </div>
+          </section>
+        )}
 
         <div className="mx-auto max-w-[680px] px-6">
           <div className="font-serif text-stone">—</div>
