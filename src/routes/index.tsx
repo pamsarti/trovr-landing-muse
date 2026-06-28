@@ -467,6 +467,31 @@ function StatsBar() {
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [bgIndex, setBgIndex] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const t = setInterval(
+      () => setBgIndex((n) => (n + 1) % HERO_SLIDES.length),
+      6000,
+    );
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const el = document.getElementById("newsletter");
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setRevealed(true);
+        });
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -486,21 +511,56 @@ function Newsletter() {
   };
 
   return (
-    <section id="newsletter" className="px-6 py-14 sm:py-20">
-      <div className="mx-auto max-w-2xl text-center">
-        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+    <section
+      id="newsletter"
+      className="relative isolate overflow-hidden text-white"
+      style={{ minHeight: "100svh" }}
+    >
+      {/* Fixed background slideshow (parallax via background-attachment: fixed) */}
+      {HERO_SLIDES.map((s, idx) => (
+        <div
+          key={s.src}
+          aria-hidden
+          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          style={{
+            opacity: idx === bgIndex ? 1 : 0,
+            backgroundImage: `url(${s.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+      ))}
+
+      {/* Dark gradient overlay for legibility */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.75) 100%)",
+        }}
+      />
+
+      {/* Progressive reveal content */}
+      <div
+        className={`relative mx-auto flex min-h-[100svh] max-w-2xl flex-col items-center justify-center px-6 py-24 text-center transition-all duration-[1400ms] ease-out ${
+          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
+        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-white/70">
           Early access
         </p>
-        <h2 className="font-serif text-4xl leading-[1.1] text-ink sm:text-5xl">
+        <h2 className="font-serif text-4xl leading-[1.1] text-white sm:text-5xl">
           When the <em className="italic font-normal">first</em> expeditions
           open, you'll be the first to know.
         </h2>
-        <p className="mt-6 text-base text-mid sm:text-lg">
+        <p className="mt-6 text-base text-white/75 sm:text-lg">
           No noise. Only the letters that matter.
         </p>
 
         {done ? (
-          <p className="mt-12 font-serif text-xl italic text-sage">
+          <p className="mt-12 font-serif text-xl italic text-white">
             Thank you. We'll be in touch soon.
           </p>
         ) : (
@@ -510,8 +570,8 @@ function Newsletter() {
             data-netlify="true"
             netlify-honeypot="bot-field"
             onSubmit={onSubmit}
-            className="mx-auto mt-12 flex max-w-xl items-center gap-2 rounded-full bg-paper-card p-2 pl-6"
-            style={{ boxShadow: "0 12px 40px -20px rgba(28,25,22,0.18)" }}
+            className="mx-auto mt-12 flex w-full max-w-xl items-center gap-2 rounded-full bg-paper-card/95 p-2 pl-6 backdrop-blur"
+            style={{ boxShadow: "0 20px 60px -20px rgba(0,0,0,0.45)" }}
           >
             <input type="hidden" name="form-name" value="newsletter" />
             <p className="hidden">
