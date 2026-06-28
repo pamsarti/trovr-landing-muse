@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import founderKiteAsset from "@/assets/founder-kite.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -139,10 +140,9 @@ function FounderNote() {
           <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-stone/20 md:max-w-none">
             {/* TODO: replace with founder photo */}
             <img
-              src="https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=1200&q=80"
+              src={founderKiteAsset.url}
               alt="Founder portrait"
               className="h-full w-full object-cover"
-              style={{ filter: "saturate(0.55) brightness(0.95)" }}
             />
           </div>
         </div>
