@@ -231,6 +231,99 @@ function ManifestoStrip() {
 
 /* ---------- Expeditions Masonry ---------- */
 
+function JournalSection() {
+  const articles = getPublishedArticles().slice(0, 3);
+  if (articles.length === 0) return null;
+  const spans = [
+    "md:col-span-7 md:row-span-2",
+    "md:col-span-5 md:row-span-1",
+    "md:col-span-5 md:row-span-1",
+  ];
+  return (
+    <section id="journal" className="px-6 py-14 sm:py-20">
+      <div className="mx-auto max-w-7xl">
+        <div className="mb-12 flex items-end justify-between gap-6">
+          <div>
+            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+              Field notes
+            </p>
+            <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
+              From the <em className="italic font-normal">journal.</em>
+            </h2>
+          </div>
+          <Link
+            to="/journal"
+            className="hidden text-[10.5px] uppercase tracking-[0.22em] text-mid hover:text-ink md:inline-flex"
+          >
+            All entries →
+          </Link>
+        </div>
+
+        <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[280px] lg:auto-rows-[320px]">
+          {articles.map((a, idx) => (
+            <JournalCard
+              key={a.id}
+              article={a}
+              span={spans[idx] ?? "md:col-span-12"}
+              ratio={idx === 0 ? "aspect-[4/5] md:aspect-auto" : "aspect-[4/3] md:aspect-auto"}
+            />
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function JournalCard({
+  article,
+  span,
+  ratio,
+}: {
+  article: JournalArticle;
+  span: string;
+  ratio: string;
+}) {
+  return (
+    <Link
+      to="/journal/$slug"
+      params={{ slug: article.slug }}
+      className={`group relative block overflow-hidden rounded-[4px] bg-ink ${span} ${ratio} md:h-full`}
+    >
+      <img
+        src={article.heroImage}
+        alt={article.title}
+        loading="lazy"
+        className="absolute inset-0 h-full w-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.06]"
+        style={{ filter: "brightness(0.95)" }}
+      />
+      <div
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
+        }}
+      />
+      <span
+        aria-hidden
+        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 items-center justify-center rounded-full bg-white opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100"
+      >
+        <ArrowUpRight className="h-4 w-4 text-ink" />
+      </span>
+      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
+        <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">
+          {CATEGORY_LABEL[article.category]} · {article.readTime} min read
+        </p>
+        <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
+          {article.title}
+        </h3>
+        <p className="mt-1.5 max-w-md font-serif italic text-white/80 line-clamp-2">
+          {article.dek}
+        </p>
+      </div>
+    </Link>
+  );
+}
+
 function Expeditions() {
   return (
     <section id="expeditions" className="px-6 py-14 sm:py-20">
