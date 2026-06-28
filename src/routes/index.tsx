@@ -8,6 +8,11 @@ import {
   tripImage,
   type Trip,
 } from "@/lib/trips-data";
+import {
+  getPublishedArticles,
+  CATEGORY_LABEL,
+  type JournalArticle,
+} from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export const Route = createFileRoute("/")({
@@ -67,6 +72,7 @@ function Index() {
       <SiteHeader transparent />
       <Hero />
       <ManifestoStrip />
+      <JournalSection />
       <Expeditions />
       <StatsBar />
       <Newsletter />
