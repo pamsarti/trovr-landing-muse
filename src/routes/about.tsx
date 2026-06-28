@@ -55,31 +55,33 @@ const HERO_SLIDES = [
 
 function Hero() {
   const [i, setI] = useState(0);
+  const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
     return () => clearInterval(t);
   }, []);
+  useEffect(() => {
+    const id = requestAnimationFrame(() => setRevealed(true));
+    return () => cancelAnimationFrame(id);
+  }, []);
 
   return (
-    <section className="relative h-[100svh] w-full overflow-hidden bg-ink">
-      {HERO_SLIDES.map((s, idx) => {
-        const active = idx === i;
-        return (
-          <div
-            key={s.src}
-            className="absolute inset-0 transition-opacity duration-[1200ms] ease-in-out"
-            style={{ opacity: active ? 1 : 0 }}
-            aria-hidden={!active}
-          >
-            <img
-              src={s.src}
-              alt={s.alt}
-              className={`h-full w-full object-cover ${active ? "animate-pan" : ""}`}
-              style={{ filter: "brightness(0.78)" }}
-            />
-          </div>
-        );
-      })}
+    <section className="relative isolate h-[100svh] w-full overflow-hidden bg-ink">
+      {HERO_SLIDES.map((s, idx) => (
+        <div
+          key={s.src}
+          aria-hidden={idx !== i}
+          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          style={{
+            opacity: idx === i ? 1 : 0,
+            backgroundImage: `url(${s.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+            filter: "brightness(0.78)",
+          }}
+        />
+      ))}
       <div
         className="pointer-events-none absolute inset-0"
         style={{
@@ -87,7 +89,11 @@ function Hero() {
             "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.6) 100%)",
         }}
       />
-      <div className="relative z-10 flex h-full items-center justify-center px-6">
+      <div
+        className={`relative z-10 flex h-full items-center justify-center px-6 transition-all duration-[1400ms] ease-out ${
+          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
         <div className="mx-auto max-w-3xl text-center text-paper">
           <h1 className="font-serif text-4xl leading-[1.15] sm:text-5xl md:text-6xl">
             We started with a single question.
@@ -232,6 +238,31 @@ function HowWeCurate() {
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [bgIndex, setBgIndex] = useState(0);
+  const [revealed, setRevealed] = useState(false);
+
+  useEffect(() => {
+    const t = setInterval(
+      () => setBgIndex((n) => (n + 1) % HERO_SLIDES.length),
+      6000,
+    );
+    return () => clearInterval(t);
+  }, []);
+
+  useEffect(() => {
+    const el = document.getElementById("about-newsletter");
+    if (!el) return;
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting) setRevealed(true);
+        });
+      },
+      { threshold: 0.25 },
+    );
+    io.observe(el);
+    return () => io.disconnect();
+  }, []);
 
   const onSubmit = async (e: FormEvent) => {
     e.preventDefault();
@@ -240,30 +271,62 @@ function Newsletter() {
   };
 
   return (
-    <section className="border-t border-stone/20 px-6 py-10 sm:py-14 md:py-16">
-      <div className="mx-auto max-w-[480px] text-center">
-        <h2 className="font-serif text-3xl leading-tight sm:text-4xl md:text-5xl">Leave your email.</h2>
-        <p className="mt-5 text-base leading-[1.6] text-stone sm:text-lg">
+    <section
+      id="about-newsletter"
+      className="relative isolate overflow-hidden text-white"
+      style={{ minHeight: "100svh" }}
+    >
+      {HERO_SLIDES.map((s, idx) => (
+        <div
+          key={s.src}
+          aria-hidden
+          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          style={{
+            opacity: idx === bgIndex ? 1 : 0,
+            backgroundImage: `url(${s.src})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center",
+            backgroundAttachment: "fixed",
+          }}
+        />
+      ))}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 -z-10"
+        style={{
+          background:
+            "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.75) 100%)",
+        }}
+      />
+      <div
+        className={`relative mx-auto flex min-h-[100svh] max-w-[520px] flex-col items-center justify-center px-6 py-24 text-center transition-all duration-[1400ms] ease-out ${
+          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
+        }`}
+      >
+        <h2 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
+          Leave your email.
+        </h2>
+        <p className="mt-5 text-base leading-[1.6] text-white/75 sm:text-lg">
           We'll write when the first trips open.
         </p>
         {done ? (
-          <p className="mt-10 font-serif text-xl italic text-ink">
+          <p className="mt-10 font-serif text-xl italic text-white">
             Thank you. We'll be in touch.
           </p>
         ) : (
-          <form onSubmit={onSubmit} className="mt-10 flex flex-col gap-3 sm:flex-row">
+          <form onSubmit={onSubmit} className="mt-10 flex w-full flex-col gap-3 sm:flex-row">
             <input
               type="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
-              className="flex-1 border border-stone/40 bg-transparent px-4 py-3 text-base text-ink placeholder:text-stone/60 focus:border-ink focus:outline-none"
+              className="flex-1 border border-white/40 bg-white/10 px-4 py-3 text-base text-white placeholder:text-white/60 backdrop-blur focus:border-white focus:outline-none"
               style={{ borderRadius: 2 }}
             />
             <button
               type="submit"
-              className="border border-ink bg-transparent px-6 py-3 text-sm font-medium tracking-wide text-ink transition-colors hover:bg-ink/5"
+              className="border border-white bg-white/10 px-6 py-3 text-sm font-medium tracking-wide text-white backdrop-blur transition-colors hover:bg-white hover:text-ink"
               style={{ borderRadius: 2 }}
             >
               Subscribe
