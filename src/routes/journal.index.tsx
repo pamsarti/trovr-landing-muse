@@ -7,7 +7,7 @@ import {
   type JournalArticle,
 } from "@/lib/journal-data";
 
-export const Route = createFileRoute("/journal")({
+export const Route = createFileRoute("/journal/")({
   head: () => ({
     meta: [
       { title: "Journal — Trovr" },
