@@ -9,11 +9,11 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
-import { Route as JournalRouteImport } from './routes/journal'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as TripsIndexRouteImport } from './routes/trips.index'
 import { Route as SpotsIndexRouteImport } from './routes/spots.index'
+import { Route as JournalIndexRouteImport } from './routes/journal.index'
 import { Route as AdminIndexRouteImport } from './routes/admin.index'
 import { Route as TripsIdRouteImport } from './routes/trips.$id'
 import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
@@ -26,11 +26,6 @@ import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$c
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 import { Route as ApiAuthCallbackGithubRouteImport } from './routes/api.auth.callback.github'
 
-const JournalRoute = JournalRouteImport.update({
-  id: '/journal',
-  path: '/journal',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AboutRoute = AboutRouteImport.update({
   id: '/about',
   path: '/about',
@@ -51,6 +46,11 @@ const SpotsIndexRoute = SpotsIndexRouteImport.update({
   path: '/spots/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const JournalIndexRoute = JournalIndexRouteImport.update({
+  id: '/journal/',
+  path: '/journal/',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AdminIndexRoute = AdminIndexRouteImport.update({
   id: '/admin/',
   path: '/admin/',
@@ -62,9 +62,9 @@ const TripsIdRoute = TripsIdRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const JournalSlugRoute = JournalSlugRouteImport.update({
-  id: '/$slug',
-  path: '/$slug',
-  getParentRoute: () => JournalRoute,
+  id: '/journal/$slug',
+  path: '/journal/$slug',
+  getParentRoute: () => rootRouteImport,
 } as any)
 const AdminLoginRoute = AdminLoginRouteImport.update({
   id: '/admin/login',
@@ -112,11 +112,11 @@ const ApiAuthCallbackGithubRoute = ApiAuthCallbackGithubRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/journal/': typeof JournalIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
@@ -130,11 +130,11 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/admin': typeof AdminIndexRoute
+  '/journal': typeof JournalIndexRoute
   '/spots': typeof SpotsIndexRoute
   '/trips': typeof TripsIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
@@ -149,11 +149,11 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
-  '/journal': typeof JournalRouteWithChildren
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
   '/admin/': typeof AdminIndexRoute
+  '/journal/': typeof JournalIndexRoute
   '/spots/': typeof SpotsIndexRoute
   '/trips/': typeof TripsIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
@@ -169,11 +169,11 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/about'
-    | '/journal'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
     | '/admin/'
+    | '/journal/'
     | '/spots/'
     | '/trips/'
     | '/api/auth/login'
@@ -187,11 +187,11 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/about'
-    | '/journal'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
     | '/admin'
+    | '/journal'
     | '/spots'
     | '/trips'
     | '/api/auth/login'
@@ -205,11 +205,11 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/about'
-    | '/journal'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
     | '/admin/'
+    | '/journal/'
     | '/spots/'
     | '/trips/'
     | '/api/auth/login'
@@ -224,10 +224,11 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
-  JournalRoute: typeof JournalRouteWithChildren
   AdminLoginRoute: typeof AdminLoginRoute
+  JournalSlugRoute: typeof JournalSlugRoute
   TripsIdRoute: typeof TripsIdRoute
   AdminIndexRoute: typeof AdminIndexRoute
+  JournalIndexRoute: typeof JournalIndexRoute
   SpotsIndexRoute: typeof SpotsIndexRoute
   TripsIndexRoute: typeof TripsIndexRoute
   ApiAuthLoginRoute: typeof ApiAuthLoginRoute
@@ -241,13 +242,6 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
-    '/journal': {
-      id: '/journal'
-      path: '/journal'
-      fullPath: '/journal'
-      preLoaderRoute: typeof JournalRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/about': {
       id: '/about'
       path: '/about'
@@ -276,6 +270,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SpotsIndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/journal/': {
+      id: '/journal/'
+      path: '/journal'
+      fullPath: '/journal/'
+      preLoaderRoute: typeof JournalIndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/admin/': {
       id: '/admin/'
       path: '/admin'
@@ -292,10 +293,10 @@ declare module '@tanstack/react-router' {
     }
     '/journal/$slug': {
       id: '/journal/$slug'
-      path: '/$slug'
+      path: '/journal/$slug'
       fullPath: '/journal/$slug'
       preLoaderRoute: typeof JournalSlugRouteImport
-      parentRoute: typeof JournalRoute
+      parentRoute: typeof rootRouteImport
     }
     '/admin/login': {
       id: '/admin/login'
@@ -356,24 +357,14 @@ declare module '@tanstack/react-router' {
   }
 }
 
-interface JournalRouteChildren {
-  JournalSlugRoute: typeof JournalSlugRoute
-}
-
-const JournalRouteChildren: JournalRouteChildren = {
-  JournalSlugRoute: JournalSlugRoute,
-}
-
-const JournalRouteWithChildren =
-  JournalRoute._addFileChildren(JournalRouteChildren)
-
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
-  JournalRoute: JournalRouteWithChildren,
   AdminLoginRoute: AdminLoginRoute,
+  JournalSlugRoute: JournalSlugRoute,
   TripsIdRoute: TripsIdRoute,
   AdminIndexRoute: AdminIndexRoute,
+  JournalIndexRoute: JournalIndexRoute,
   SpotsIndexRoute: SpotsIndexRoute,
   TripsIndexRoute: TripsIndexRoute,
   ApiAuthLoginRoute: ApiAuthLoginRoute,
