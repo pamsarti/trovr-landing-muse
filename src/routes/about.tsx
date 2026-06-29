@@ -145,7 +145,7 @@ function FounderNote() {
           <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-stone/20 md:max-w-none">
             {/* TODO: replace with founder photo */}
             <img
-              src={founderKiteAsset.url}
+              src="/images/founder-kite.jpg"
               alt="Founder portrait"
               className="h-full w-full object-cover"
             />
