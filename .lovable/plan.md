@@ -1,26 +1,35 @@
-Unpublishing is a settings action, not a code change — there are no files to edit. Follow these steps in the Lovable UI:
+## Goal
+
+Eliminate the Lovable CDN (`/__l5e/...`) for images. Every image referenced by the site will be a real file committed at `public/images/<name>`, served by Netlify under `/images/<name>`.
+
+## Why
+
+The site is deployed on Netlify (not Lovable hosting), so `/__l5e/...` URLs return 404 in production. The AlUla hero image is the visible symptom; ~23 other assets are at the same risk.
+
+## Scope
+
+23 `*.asset.json` pointers under `src/assets/` plus the existing `src/assets/alaska-whale.jpg` (already a real file — leave it alone). Two files reference these assets:
+- `src/data/journal-articles.json` — `/__l5e/...` URLs inline in article bodies and `heroImage` fields.
+- `src/routes/about.tsx` — imports `founder-kite.jpg.asset.json`.
 
 ## Steps
 
-1. Open **Project Settings** (gear icon, top-right of the editor).
-2. Go to the **Project** section → **Publishing** / Domains area.
-3. Click **Unpublish**.
+1. **Download** each of the 23 binaries from their CDN URLs (read from the `.asset.json` files) into `public/images/<original_filename>`. Names are already unique (`alula-hero.png`, `providencia-shark-solo.jpg`, etc.) so no collisions.
+2. **Rewrite `src/data/journal-articles.json`**: replace every `/__l5e/assets-v1/<id>/<file>` occurrence with `/images/<file>`.
+3. **Rewrite `src/routes/about.tsx`**: replace the `.asset.json` import with a direct string `"/images/founder-kite.jpg"` (or an import of the real file from `src/assets/` — see Technical note).
+4. **Delete the 23 `*.asset.json` pointer files** from `src/assets/`. (The CDN objects themselves stay; we just stop referencing them. Optional cleanup via `lovable-assets delete` can come later.)
+5. **Verify**: run `bun run build`, then spot-check the AlUla, Providencia, and Thailand journal pages plus the About page in the preview.
 
-That takes `trovr-landing-muse.lovable.app` (and the `id-preview--…` URL) offline.
+## Technical note
 
-## Why this is safe for your setup
+`public/images/foo.jpg` is served at the URL `/images/foo.jpg` by both Vite dev and Netlify — no import needed, just use the string. This is the simplest and most portable approach and matches what you asked for ("reference link in the image tag").
 
-- **Netlify is independent.** Your live site is built from GitHub by Netlify; Lovable's publish toggle doesn't touch that pipeline.
-- **Custom domain stays put.** `trovr.com.br` points to Netlify via your registrar's DNS, not via Lovable.
-- **Old Netlify subdomain still redirects.** `public/_redirects` 301s `trovragency.netlify.app` → `trovr.com.br`, so no stale Lovable URL is referenced.
-- **GitHub → Netlify deploy hook keeps working.** `.github/workflows/netlify-deploy.yml` fires on every push regardless of Lovable's publish state.
-- **Editor/preview keep working.** Unpublish only affects the public `.lovable.app` URL. You can re-publish anytime with one click.
-- **No `/admin` dependency** (you confirmed you don't use the Lovable-hosted admin).
+## Out of scope
 
-## After unpublishing — quick verification
+- Existing real images in `src/assets/` (e.g. `alaska-whale.jpg`) — left as-is.
+- Deleting the binaries from Lovable's CDN — optional follow-up.
+- Changing the upload workflow going forward — if you want, I can add a short note to the repo telling future contributors (and me) to drop new images into `public/images/` instead of using the CDN. Say the word.
 
-- Visit `https://trovr-landing-muse.lovable.app` → should 404.
-- Visit `https://trovr.com.br` → should load normally (served by Netlify).
-- Push a trivial commit to `main` → confirm Netlify still rebuilds via the GitHub Action.
+## Result
 
-No code changes required — approve this plan if you'd like me to stand by while you flip the toggle, or ask if you'd prefer I also remove any remaining Lovable-specific references from the repo.
+Zero `/__l5e/` references in the repo. Every image renders identically on the Lovable preview, on Netlify, and on any future host.
