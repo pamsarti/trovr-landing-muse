@@ -1,35 +1,29 @@
-## Goal
+## Policy
 
-Eliminate the Lovable CDN (`/__l5e/...`) for images. Every image referenced by the site will be a real file committed at `public/images/<name>`, served by Netlify under `/images/<name>`.
+From now on, every asset (images, fonts, video, audio, PDFs, etc.) lives **inside the repo**. No Lovable CDN (`/__l5e/...`), no external image hosts (Unsplash, Cloudinary, S3, etc.).
 
-## Why
+## Rules I will follow
 
-The site is deployed on Netlify (not Lovable hosting), so `/__l5e/...` URLs return 404 in production. The AlUla hero image is the visible symptom; ~23 other assets are at the same risk.
+1. **New images go to `public/images/<name>`** and are referenced as `/images/<name>` in JSX/CSS/JSON. No imports, no `.asset.json` pointers.
+2. **Never run `lovable-assets create`.** No new `*.asset.json` files will be added.
+3. **No external image URLs** in components, data files, or styles. That includes `images.unsplash.com`, `res.cloudinary.com`, etc.
+4. When you upload a file in chat, I save the binary directly under `public/images/` and reference it by path.
+5. Fonts: if we add a custom font, the `.woff2` file goes in `public/fonts/` and is loaded via a local `@font-face` in `src/styles.css`. (Google Fonts via `<link>` in `__root.tsx` is still allowed unless you want me to self-host those too — tell me.)
 
-## Scope
+## One existing CDN reference to clean up
 
-23 `*.asset.json` pointers under `src/assets/` plus the existing `src/assets/alaska-whale.jpg` (already a real file — leave it alone). Two files reference these assets:
-- `src/data/journal-articles.json` — `/__l5e/...` URLs inline in article bodies and `heroImage` fields.
-- `src/routes/about.tsx` — imports `founder-kite.jpg.asset.json`.
+`src/lib/trips-data.ts` still builds Unsplash URLs as a fallback for trip images (`https://images.unsplash.com/...`). This is the only remaining external-CDN dependency in the codebase.
 
-## Steps
-
-1. **Download** each of the 23 binaries from their CDN URLs (read from the `.asset.json` files) into `public/images/<original_filename>`. Names are already unique (`alula-hero.png`, `providencia-shark-solo.jpg`, etc.) so no collisions.
-2. **Rewrite `src/data/journal-articles.json`**: replace every `/__l5e/assets-v1/<id>/<file>` occurrence with `/images/<file>`.
-3. **Rewrite `src/routes/about.tsx`**: replace the `.asset.json` import with a direct string `"/images/founder-kite.jpg"` (or an import of the real file from `src/assets/` — see Technical note).
-4. **Delete the 23 `*.asset.json` pointer files** from `src/assets/`. (The CDN objects themselves stay; we just stop referencing them. Optional cleanup via `lovable-assets delete` can come later.)
-5. **Verify**: run `bun run build`, then spot-check the AlUla, Providencia, and Thailand journal pages plus the About page in the preview.
-
-## Technical note
-
-`public/images/foo.jpg` is served at the URL `/images/foo.jpg` by both Vite dev and Netlify — no import needed, just use the string. This is the simplest and most portable approach and matches what you asked for ("reference link in the image tag").
+Two options:
+- **A. Leave it for now.** The expedition links already point to `/coming-soon`, so these fallback images aren't visible on the live site. Clean up later if/when trips are reactivated.
+- **B. Remove it now.** Replace the Unsplash fallback with either a single local placeholder at `public/images/trip-placeholder.jpg` or a neutral CSS background. I'd need you to either provide a placeholder image or approve a generated one.
 
 ## Out of scope
 
-- Existing real images in `src/assets/` (e.g. `alaska-whale.jpg`) — left as-is.
-- Deleting the binaries from Lovable's CDN — optional follow-up.
-- Changing the upload workflow going forward — if you want, I can add a short note to the repo telling future contributors (and me) to drop new images into `public/images/` instead of using the CDN. Say the word.
+- Re-uploading or moving any of the 24 images already in `public/images/` — they're correctly placed.
+- Deleting orphaned objects on the Lovable CDN (cosmetic; doesn't affect the site).
 
-## Result
+## What I need from you
 
-Zero `/__l5e/` references in the repo. Every image renders identically on the Lovable preview, on Netlify, and on any future host.
+1. Confirm the policy above.
+2. Pick **A** or **B** for the Unsplash fallback in `trips-data.ts`.
