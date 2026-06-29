@@ -1,7 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
-import founderKiteAsset from "@/assets/founder-kite.jpg.asset.json";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
