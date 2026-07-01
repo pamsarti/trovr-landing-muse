@@ -237,6 +237,8 @@ function HowWeCurate() {
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [bgIndex, setBgIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
@@ -263,10 +265,32 @@ function Newsletter() {
     return () => io.disconnect();
   }, []);
 
-  const onSubmit = async (e: FormEvent) => {
+  const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // TODO: wire to Resend or Formspree endpoint (same as homepage)
-    setDone(true);
+    // Netlify Forms: POST form-encoded to the STATIC "/__forms.html" path (not
+    // "/", which the SSR function owns and would swallow). Submits as the same
+    // registered "newsletter" form as the homepage. Only show the thank-you
+    // state on a genuinely OK response.
+    setSubmitting(true);
+    setError(null);
+    const data = new FormData(e.currentTarget);
+    try {
+      const res = await fetch("/__forms.html", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
+      });
+      // A genuine Netlify Forms capture responds with a redirect (303) to the
+      // success page. A plain 200 with no redirect means the POST was NOT
+      // captured (the SSR function or the static file answered it) — treat that
+      // as a failure so we never show a false "thank you".
+      if (!res.ok || !res.redirected) throw new Error("Failed to subscribe");
+      setDone(true);
+    } catch {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -313,9 +337,23 @@ function Newsletter() {
             Thank you. We'll be in touch.
           </p>
         ) : (
-          <form onSubmit={onSubmit} className="mt-10 flex w-full flex-col gap-3 sm:flex-row">
+          <form
+            name="newsletter"
+            method="POST"
+            data-netlify="true"
+            netlify-honeypot="bot-field"
+            onSubmit={onSubmit}
+            className="mt-10 flex w-full flex-col gap-3 sm:flex-row"
+          >
+            <input type="hidden" name="form-name" value="newsletter" />
+            <p className="hidden">
+              <label>
+                Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+              </label>
+            </p>
             <input
               type="email"
+              name="email"
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
@@ -325,12 +363,16 @@ function Newsletter() {
             />
             <button
               type="submit"
-              className="border border-white bg-white/10 px-6 py-3 text-sm font-medium tracking-wide text-white backdrop-blur transition-colors hover:bg-white hover:text-ink"
+              disabled={submitting}
+              className="border border-white bg-white/10 px-6 py-3 text-sm font-medium tracking-wide text-white backdrop-blur transition-colors hover:bg-white hover:text-ink disabled:opacity-60"
               style={{ borderRadius: 2 }}
             >
-              Subscribe
+              {submitting ? "Subscribing…" : "Subscribe"}
             </button>
           </form>
+        )}
+        {error && !done && (
+          <p className="mt-4 text-sm text-white/80">{error}</p>
         )}
       </div>
     </section>

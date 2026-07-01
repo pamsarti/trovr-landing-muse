@@ -167,17 +167,23 @@ function InquireForm({
     e.preventDefault();
     setSubmitting(true);
     setError(null);
-    // Submit to Netlify Forms: form-encoded POST to "/" including form-name.
-    // Netlify captures the submission and emails it; no backend involved.
+    // Submit to Netlify Forms: form-encoded POST to the STATIC "/__forms.html"
+    // path (not "/", which the SSR function owns and would swallow, returning a
+    // 200 HTML page that looks like success). Static paths are served before the
+    // SSR catch-all, so Netlify's form pipeline actually captures the submission.
     const data = new FormData(e.currentTarget);
     data.set("source_page", typeof window !== "undefined" ? window.location.href : "");
     try {
-      const res = await fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
-      if (!res.ok) throw new Error("Failed to send inquiry");
+      // A genuine Netlify Forms capture responds with a redirect (303) to the
+      // success page. A plain 200 with no redirect means the POST was NOT
+      // captured (the SSR function or the static file answered it) — treat that
+      // as a failure so we never show a false success state.
+      if (!res.ok || !res.redirected) throw new Error("Failed to send inquiry");
       setSent(true);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Something went wrong");

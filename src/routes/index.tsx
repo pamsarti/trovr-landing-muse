@@ -473,6 +473,8 @@ function StatsBar() {
 function Newsletter() {
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState<string | null>(null);
   const [bgIndex, setBgIndex] = useState(0);
   const [revealed, setRevealed] = useState(false);
 
@@ -501,19 +503,30 @@ function Newsletter() {
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Netlify Forms: form-encoded POST to "/" with form-name. Best-effort —
-    // we show the thank-you state regardless of network result.
+    // Netlify Forms: POST form-encoded to the STATIC "/__forms.html" path (not
+    // "/", which the SSR function owns and would swallow). Static paths are
+    // served before the SSR catch-all, so Netlify's form pipeline captures the
+    // submission. Only show the thank-you state on a genuinely OK response.
+    setSubmitting(true);
+    setError(null);
     const data = new FormData(e.currentTarget);
     try {
-      await fetch("/", {
+      const res = await fetch("/__forms.html", {
         method: "POST",
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
+      // A genuine Netlify Forms capture responds with a redirect (303) to the
+      // success page. A plain 200 with no redirect means the POST was NOT
+      // captured (the SSR function or the static file answered it) — treat that
+      // as a failure so we never show a false "thank you".
+      if (!res.ok || !res.redirected) throw new Error("Failed to subscribe");
+      setDone(true);
     } catch {
-      /* ignore */
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setSubmitting(false);
     }
-    setDone(true);
   };
 
   return (
@@ -596,11 +609,15 @@ function Newsletter() {
             />
             <button
               type="submit"
-              className="rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
+              disabled={submitting}
+              className="rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink disabled:opacity-60"
             >
-              Subscribe
+              {submitting ? "Subscribing…" : "Subscribe"}
             </button>
           </form>
+        )}
+        {error && !done && (
+          <p className="mt-4 text-sm text-white/80">{error}</p>
         )}
       </div>
     </section>
