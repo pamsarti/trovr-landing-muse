@@ -280,11 +280,16 @@ function Newsletter() {
         headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(data as unknown as Record<string, string>).toString(),
       });
-      // A genuine Netlify Forms capture responds with a redirect (303) to the
-      // success page. A plain 200 with no redirect means the POST was NOT
-      // captured (the SSR function or the static file answered it) — treat that
-      // as a failure so we never show a false "thank you".
-      if (!res.ok || !res.redirected) throw new Error("Failed to subscribe");
+      // Proof of a real capture: Netlify's form pipeline answers with its
+      // "Your form submission has been received" success page (and/or a 303
+      // redirect to it). A plain 200 that echoes our own static __forms.html —
+      // what `vite dev` returns locally, since it has no form backend, and what
+      // the SSR function would return if it intercepted the POST — is NOT a
+      // capture, so we must not show the thank-you state.
+      const body = await res.text();
+      const captured =
+        res.ok && (res.redirected || /form submission has been received/i.test(body));
+      if (!captured) throw new Error("Not captured by Netlify Forms");
       setDone(true);
     } catch {
       setError("Something went wrong. Please try again.");
