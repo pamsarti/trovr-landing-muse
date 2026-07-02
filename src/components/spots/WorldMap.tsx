@@ -1,26 +1,44 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import {
-  ComposableMap,
-  Geographies,
-  Geography,
-  Marker,
-} from "react-simple-maps";
+import { geoEqualEarth, geoPath } from "d3-geo";
+import { feature } from "topojson-client";
+import type {
+  Topology,
+  GeometryCollection,
+  GeometryObject,
+} from "topojson-specification";
+import type { FeatureCollection, Geometry } from "geojson";
 import {
   CATEGORY_LABEL,
   getArticlesWithLocation,
   type JournalArticle,
 } from "@/lib/journal-data";
 
-// Local topology — copied at build-time from `world-atlas` into /public/data.
-// No external CDN dependency.
 const GEO_URL = "/data/world-110m.json";
+const WIDTH = 980;
+const HEIGHT = 520;
 
 export function WorldMap() {
   const articles = getArticlesWithLocation();
   const [active, setActive] = useState<JournalArticle | null>(null);
+  const [geo, setGeo] = useState<FeatureCollection<Geometry> | null>(null);
 
-  // Close the popover on Escape
+  useEffect(() => {
+    let cancelled = false;
+    fetch(GEO_URL)
+      .then((r) => r.json() as Promise<Topology>)
+      .then((topo) => {
+        if (cancelled) return;
+        const obj = topo.objects.countries as GeometryCollection;
+        const fc = feature(topo, obj) as unknown as FeatureCollection<Geometry>;
+        setGeo(fc);
+      })
+      .catch((e) => console.error("[WorldMap] topology load failed", e));
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+
   useEffect(() => {
     if (!active) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
@@ -28,66 +46,71 @@ export function WorldMap() {
     return () => window.removeEventListener("keydown", onKey);
   }, [active]);
 
+  const projection = useMemo(
+    () =>
+      geoEqualEarth()
+        .scale(170)
+        .translate([WIDTH / 2, HEIGHT / 2]),
+    [],
+  );
+  const path = useMemo(() => geoPath(projection), [projection]);
+
   return (
     <div className="relative w-full">
       <div className="mx-auto max-w-6xl">
         <div className="relative overflow-hidden border border-stone/15 bg-paper">
-          <ComposableMap
-            projection="geoEqualEarth"
-            projectionConfig={{ scale: 165 }}
-            width={980}
-            height={520}
+          <svg
+            viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
+            xmlns="http://www.w3.org/2000/svg"
             style={{ width: "100%", height: "auto", display: "block" }}
+            role="img"
+            aria-label="World map with journal locations"
           >
-            <Geographies geography={GEO_URL}>
-              {({ geographies }) =>
-                geographies.map((geo) => (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
+            <g>
+              {geo?.features.map((f, i) => {
+                const d = path(f as GeometryObject);
+                if (!d) return null;
+                return (
+                  <path
+                    key={i}
+                    d={d}
                     fill="#EDE7DC"
                     stroke="#C9BFAE"
                     strokeWidth={0.4}
-                    style={{
-                      default: { outline: "none" },
-                      hover: { outline: "none", fill: "#E4DCCA" },
-                      pressed: { outline: "none" },
-                    }}
                   />
-                ))
-              }
-            </Geographies>
-
-            {articles.map((a) => {
-              const loc = a.location!;
-              const isActive = active?.slug === a.slug;
-              return (
-                <Marker
-                  key={a.slug}
-                  coordinates={[loc.lng, loc.lat]}
-                  onClick={() => setActive(isActive ? null : a)}
-                  onMouseEnter={() => setActive(a)}
-                  style={{
-                    default: { cursor: "pointer" },
-                    hover: { cursor: "pointer" },
-                    pressed: { cursor: "pointer" },
-                  }}
-                >
-                  <circle
-                    r={isActive ? 7 : 5}
-                    fill="#1a1a1a"
-                    stroke="#F5EFE1"
-                    strokeWidth={2}
-                  />
-                  <circle
-                    r={isActive ? 14 : 10}
-                    fill="#1a1a1a"
-                    fillOpacity={0.12}
-                  />
-                </Marker>
-              );
-            })}
-          </ComposableMap>
+                );
+              })}
+            </g>
+            <g>
+              {articles.map((a) => {
+                const loc = a.location!;
+                const p = projection([loc.lng, loc.lat]);
+                if (!p) return null;
+                const isActive = active?.slug === a.slug;
+                return (
+                  <g
+                    key={a.slug}
+                    transform={`translate(${p[0]}, ${p[1]})`}
+                    style={{ cursor: "pointer" }}
+                    onClick={() => setActive(isActive ? null : a)}
+                    onMouseEnter={() => setActive(a)}
+                  >
+                    <circle
+                      r={isActive ? 14 : 10}
+                      fill="#1a1a1a"
+                      fillOpacity={0.12}
+                    />
+                    <circle
+                      r={isActive ? 7 : 5}
+                      fill="#1a1a1a"
+                      stroke="#F5EFE1"
+                      strokeWidth={2}
+                    />
+                  </g>
+                );
+              })}
+            </g>
+          </svg>
 
           {active && (
             <div
