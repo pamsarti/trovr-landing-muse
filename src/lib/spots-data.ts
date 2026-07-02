@@ -21,6 +21,8 @@ export type Spot = {
   descriptionRaw?: string;
   sourceUrl?: string;
   status: SpotStatus;
+  /** Optional link to a Journal article slug covering this spot. */
+  journalSlug?: string;
 };
 
 const ALL_SPOTS = rawSpots as Spot[];

@@ -41,7 +41,12 @@
         "question": "How long does it take to drive around Providencia?",
         "answer": "The coastal ring road is about 17 km, so a relaxed full loop by golf buggy takes roughly 40 minutes to an hour."
       }
-    ]
+    ],
+    "location": {
+      "name": "Providencia, Colombia",
+      "lat": 13.3487,
+      "lng": -81.3739
+    }
   },
   {
     "id": "crossing-alula",
@@ -85,7 +90,12 @@
         "question": "Is AlUla safe for solo female travellers?",
         "answer": "It's widely reported as safe and welcoming. Dress modestly (shoulders, knees, midriff covered); an abaya isn't legally required, but full cover including a headscarf is needed to enter a mosque."
       }
-    ]
+    ],
+    "location": {
+      "name": "AlUla, Saudi Arabia",
+      "lat": 26.6087,
+      "lng": 37.9218
+    }
   },
   {
     "id": "crossing-koh-tao",
@@ -130,6 +140,11 @@
         "question": "Can a nervous beginner with a fear of water learn to freedive?",
         "answer": "Yes. Good courses focus on breathing and relaxation over depth, always with an instructor and buddy. Tell your school if you're nervous — many specialise in exactly that."
       }
-    ]
+    ],
+    "location": {
+      "name": "Koh Tao, Thailand",
+      "lat": 10.0956,
+      "lng": 99.8396
+    }
   }
 ]
