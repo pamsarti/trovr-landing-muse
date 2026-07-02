@@ -4,6 +4,13 @@ export type JournalCategory = "crossing" | "finding" | "preparing" | "manifesto"
 
 export type JournalFaqItem = { question: string; answer: string };
 export type JournalKeyFact = { label?: string; value: string };
+export type JournalLocation = {
+  name: string;
+  lat: number;
+  lng: number;
+  /** Optional link to a spot in spots.json */
+  spotId?: string;
+};
 
 export type JournalArticle = {
   id: string;
@@ -22,6 +29,8 @@ export type JournalArticle = {
   ogImage?: string;
   faq?: JournalFaqItem[];
   keyFacts?: Array<JournalKeyFact | string>;
+  /** Geographic pin for the world map on /spots */
+  location?: JournalLocation;
 };
 
 export const CATEGORY_LABEL: Record<JournalCategory, string> = {
@@ -41,6 +50,11 @@ export function getPublishedArticles(): JournalArticle[] {
 
 export function findArticle(slug: string): JournalArticle | undefined {
   return ALL.find((a) => a.slug === slug && a.status === "published");
+}
+
+/** Journal articles that carry a location pin, for the /spots world map. */
+export function getArticlesWithLocation(): JournalArticle[] {
+  return getPublishedArticles().filter((a) => !!a.location);
 }
 
 export function formatDate(iso: string): string {
