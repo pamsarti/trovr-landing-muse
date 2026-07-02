@@ -1,10 +1,16 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import { lazy, Suspense, useEffect, useState } from "react";
 import { getContinents } from "@/lib/spots-data";
 import {
   ActivitySelector,
   SpotsFooter,
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
+
+// Client-only: react-simple-maps fetches a topology JSON at runtime.
+const WorldMap = lazy(() =>
+  import("@/components/spots/WorldMap").then((m) => ({ default: m.WorldMap })),
+);
 
 export const Route = createFileRoute("/spots/")({
   head: () => ({
@@ -30,6 +36,8 @@ export const Route = createFileRoute("/spots/")({
 function SpotsIndex() {
   const continents = getContinents("kite");
   const total = continents.reduce((n, c) => n + c.count, 0);
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
 
   return (
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
@@ -43,6 +51,25 @@ function SpotsIndex() {
           <p className="mt-6 text-base leading-[1.6] text-stone sm:text-lg">
             A guide to {total} kitesurf spots across the world. Begin with a continent.
           </p>
+        </div>
+      </section>
+
+      <section className="px-6 pb-4">
+        <div className="mx-auto max-w-6xl">
+          <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-stone">
+            From the journal · pinned locations
+          </p>
+          {mounted ? (
+            <Suspense
+              fallback={
+                <div className="aspect-[980/520] w-full border border-stone/15 bg-stone/5" />
+              }
+            >
+              <WorldMap />
+            </Suspense>
+          ) : (
+            <div className="aspect-[980/520] w-full border border-stone/15 bg-stone/5" />
+          )}
         </div>
       </section>
 
