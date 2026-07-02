@@ -2,11 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { geoEqualEarth, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
-import type {
-  Topology,
-  GeometryCollection,
-  GeometryObject,
-} from "topojson-specification";
+import type { Topology, GeometryCollection } from "topojson-specification";
 import type { FeatureCollection, Geometry } from "geojson";
 import {
   CATEGORY_LABEL,
@@ -68,7 +64,7 @@ export function WorldMap() {
           >
             <g>
               {geo?.features.map((f, i) => {
-                const d = path(f as GeometryObject);
+                const d = path(f);
                 if (!d) return null;
                 return (
                   <path
