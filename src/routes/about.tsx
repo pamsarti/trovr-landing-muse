@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/about")({
   head: () => ({
@@ -14,11 +15,21 @@ export const Route = createFileRoute("/about")({
       { property: "og:title", content: "About — Trovr" },
       {
         property: "og:description",
-        content: "The story behind Trovr.",
+        content:
+          "The story behind Trovr — a curated marketplace of immersive trips for people who travel to feel.",
       },
-      { property: "og:url", content: "/about" },
+      { property: "og:url", content: `${SITE_URL}/about` },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "About — Trovr" },
+      {
+        name: "twitter:description",
+        content:
+          "The story behind Trovr — a curated marketplace of immersive trips for people who travel to feel.",
+      },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: "/about" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
   }),
   component: AboutPage,
 });
