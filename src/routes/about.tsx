@@ -95,10 +95,10 @@ function Hero() {
       >
         <div className="mx-auto max-w-3xl text-center text-paper">
           <h1 className="font-serif text-4xl leading-[1.15] sm:text-5xl md:text-6xl">
-            We started with a single question.
+            We have only one rule:
             <br />
             <br />
-            What does it actually mean to travel?
+            No one walks out the same way
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-base leading-[1.6] text-paper/80 sm:mt-10 sm:text-lg">
             This page is the answer we've been working on.
