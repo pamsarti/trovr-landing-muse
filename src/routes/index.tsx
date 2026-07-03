@@ -14,8 +14,18 @@ import {
   type JournalArticle,
 } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
+  head: () => ({
+    meta: [
+      { property: "og:url", content: `${SITE_URL}/` },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
+    ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+  }),
   component: Index,
 });
 
