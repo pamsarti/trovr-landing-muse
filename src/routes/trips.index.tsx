@@ -21,6 +21,7 @@ import {
   TripCard,
   SmallSeasonCard,
 } from "@/components/trips/TripsChrome";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
   head: () => ({
@@ -31,7 +32,24 @@ export const Route = createFileRoute("/trips/")({
         content:
           "Curated trips for people who travel to feel. Kite, surf, horseback, wildlife, martial arts.",
       },
+      { property: "og:title", content: "Trips — Trovr" },
+      {
+        property: "og:description",
+        content:
+          "Curated trips for people who travel to feel. Kite, surf, horseback, wildlife, martial arts.",
+      },
+      { property: "og:url", content: `${SITE_URL}/trips` },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Trips — Trovr" },
+      {
+        name: "twitter:description",
+        content:
+          "Curated trips for people who travel to feel. Kite, surf, horseback, wildlife, martial arts.",
+      },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/trips` }],
   }),
   component: TripsIndex,
 });
