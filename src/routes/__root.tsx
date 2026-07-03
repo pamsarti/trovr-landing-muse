@@ -78,11 +78,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { property: "og:title", content: "Trovr — Travel to find, not to escape" },
       { property: "og:description", content: "A curated marketplace of immersive trips, for people who travel to feel. Launching Fall 2026." },
       { property: "og:type", content: "website" },
-      { property: "og:image", content: "/og-image.jpg" },
       { name: "twitter:card", content: "summary" },
       { name: "twitter:title", content: "Trovr — Travel to find, not to escape" },
       { name: "twitter:description", content: "A curated marketplace of immersive trips, for people who travel to feel. Launching Fall 2026." },
-      { name: "twitter:image", content: "/og-image.jpg" },
     ],
     links: [
       { rel: "preconnect", href: "https://fonts.googleapis.com" },

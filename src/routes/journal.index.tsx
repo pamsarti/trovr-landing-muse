@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import {
   CATEGORY_LABEL,
   formatDate,
@@ -20,9 +21,17 @@ export const Route = createFileRoute("/journal/")({
         property: "og:description",
         content: "Field notes from the places we send people.",
       },
-      { property: "og:url", content: "/journal" },
+      { property: "og:url", content: `${SITE_URL}/journal` },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Journal — Trovr" },
+      {
+        name: "twitter:description",
+        content: "Field notes from the places we send people.",
+      },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: "/journal" }],
+    links: [{ rel: "canonical", href: `${SITE_URL}/journal` }],
   }),
   component: JournalPage,
 });

@@ -1,5 +1,6 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SITE_URL, absoluteUrl } from "@/lib/seo";
 import {
   CATEGORY_LABEL,
   findArticle,
@@ -9,13 +10,6 @@ import {
   type JournalArticle,
   type JournalKeyFact,
 } from "@/lib/journal-data";
-
-const SITE_URL = "https://trovr.com.br";
-
-function absoluteUrl(path: string): string {
-  if (/^https?:\/\//i.test(path)) return path;
-  return `${SITE_URL}${path.startsWith("/") ? "" : "/"}${path}`;
-}
 
 export const Route = createFileRoute("/journal/$slug")({
   loader: ({ params }) => {
@@ -32,7 +26,9 @@ export const Route = createFileRoute("/journal/$slug")({
       a?.seoDescription ?? a?.dek ?? "Field notes from the places we send people.";
     const path = `/journal/${params.slug}`;
     const url = absoluteUrl(path);
-    const image = a ? a.ogImage ?? a.heroImage : undefined;
+    const image = a
+      ? absoluteUrl(a.ogImage ?? a.heroImage)
+      : undefined;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
