@@ -94,6 +94,21 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
     ],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "Organization",
+          name: "Trovr",
+          url: "https://trovr.com.br",
+          logo: "https://trovr.com.br/images/providencia-hero.png",
+          description:
+            "A curated marketplace of immersive trips, for people who travel to feel.",
+          email: "hello@trovr.agency",
+        }),
+      },
+    ],
   }),
   shellComponent: RootShell,
   component: RootComponent,
