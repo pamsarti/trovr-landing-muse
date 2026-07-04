@@ -206,13 +206,13 @@ function Hero() {
                   aria-label={`Show slide ${idx + 1} of ${HERO_SLIDES.length}: ${s.caption}`}
                   tabIndex={idx === i ? 0 : -1}
                   onClick={() => setI(idx)}
-                  className="group -my-3 flex h-6 items-center rounded-sm px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  className="group -my-3 flex h-6 w-10 items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <span
                     aria-hidden
-                    className="block h-[2px] transition-all duration-500"
+                    className="block h-[2px] w-full origin-left transition-transform duration-500 ease-out motion-reduce:transition-none"
                     style={{
-                      width: idx === i ? 40 : 16,
+                      transform: idx === i ? "scaleX(1)" : "scaleX(0.4)",
                       background:
                         idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
                     }}
