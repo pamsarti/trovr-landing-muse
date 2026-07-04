@@ -169,10 +169,10 @@ function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
                 href="#expeditions"
-                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-all hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-colors duration-200 ease-out hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none"
               >
                 See expeditions
-                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
+                <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1 motion-reduce:transform-none" />
               </a>
               <a
                 href="#newsletter"
