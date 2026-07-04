@@ -122,9 +122,9 @@ function Hero() {
 
 function WhyExists() {
   const paragraphs = [
-    "There are a thousand ways to book a trip. Aggregators that show you the same hotels everyone else sees. Operators you only find if you already know their name. Agencies that translate experience into a checklist.",
-    "Somewhere between mass tourism and DIY chaos, a kind of trip got lost: the one curated by someone who actually knows the terrain. The kind that doesn't show up on the first page of search results, but stays with you longer than any of the ones that do.",
-    "Trovr is that middle ground. We find the operators we'd travel with ourselves — and put them in one place, with the context that helps you choose.",
+    "You'll never regret living one of these. It's the only promise we make — and everything about Trovr is built to keep it.",
+    "Trovr is a curation of journeys that leave a mark. Trips for people who travel to feel awake, to test their edges, to come home someone slightly new. Some have chased this feeling for years. Some are only just starting to sense the pull. Both belong here.",
+    "These are the journeys that stay with you — the kind that expand what a life can hold, that you don't quite recover from, that you end up building a life around. Adrenaline is the way in. What you find out there is the reason to go.",
   ];
   return (
     <section
