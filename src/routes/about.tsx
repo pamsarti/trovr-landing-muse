@@ -190,24 +190,19 @@ function FounderNote() {
 function HowWeCurate() {
   const principles = [
     {
-      title: "Operators, not aggregators.",
+      title: "It has to change you.",
       body:
-        "We work directly with the people running the trips. Every operator on Trovr is someone we've talked to, vetted, and would travel with ourselves.",
+        "Not just show you a place — leave a mark on you. The trips we choose are the ones you come back from a little different: braver, quieter, more awake to what you're capable of. If a journey can't do that, it's just logistics.",
     },
     {
-      title: "Compliance, in practice.",
+      title: "It can't be the obvious one.",
       body:
-        "MLC certification, valid insurance, safety equipment within date, captains with verifiable hours. The boring parts that turn out to be the important ones.",
+        "No resorts everyone's already seen. No route that shows up first when you search. We look for the trips most people don't know exist — or wouldn't quite dare to take. The further off the well-worn track, the more we pay attention.",
     },
     {
-      title: "Track record over branding.",
+      title: "It has to be real, not a photo op.",
       body:
-        "We choose operations that have been running long enough to know what goes wrong, and small enough to still care when it does.",
-    },
-    {
-      title: "Trips that earn the word 'immersive.'",
-      body:
-        "No mass logistics. No printed itineraries that don't bend. Small groups, real terrain, local context.",
+        "Some trips exist to look good online and leave nothing behind. We pass on every one of them. What we keep are the journeys that are lived, not performed — the ones that stay with you long after the last picture stops mattering.",
     },
   ];
 
@@ -226,6 +221,12 @@ function HowWeCurate() {
         <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
           How we curate.
         </h2>
+        <p className="mt-8 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
+          Honestly? It starts with instinct. Every trip on Trovr is chosen by hand — mine — against a question I've been refining for years: would I go? If I wouldn't drop everything to live it myself, it doesn't make the cut. That's the first filter, and the hardest one to fake.
+        </p>
+        <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
+          But instinct has a shape. Look closely at what survives it, and the same three things are always there:
+        </p>
         <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">
           {principles.map((p) => (
             <div key={p.title}>
@@ -238,6 +239,9 @@ function HowWeCurate() {
             </div>
           ))}
         </div>
+        <p className="mt-12 text-base leading-[1.75] text-ink/90 sm:mt-16 sm:text-[17px]">
+          That's the whole method. No committee, no checklist dressed up as science. Just a high bar, a personal one, applied to every single trip — so that by the time something reaches you, it's already earned the only approval that counts.
+        </p>
       </div>
     </section>
   );
