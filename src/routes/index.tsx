@@ -235,16 +235,6 @@ function ManifestoStrip() {
               {"\n"}
             </p>
           </div>
-          <ul className="mt-8 flex flex-wrap gap-2.5">
-            {TAGS.map((t) => (
-              <li
-                key={t}
-                className="rounded-full bg-sage-bg px-4 py-1.5 text-xs tracking-wide text-sage"
-              >
-                {t}
-              </li>
-            ))}
-          </ul>
         </div>
       </div>
     </section>
