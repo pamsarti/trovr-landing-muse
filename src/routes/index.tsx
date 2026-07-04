@@ -126,17 +126,26 @@ function Hero() {
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
-            filter: "brightness(0.82)",
+            filter: "brightness(0.72)",
           }}
         />
       ))}
 
-      {/* Subtle linear gradient for text legibility */}
+      {/* Legibility overlays — subtle but WCAG AA safe */}
       <div
+        aria-hidden
         className="pointer-events-none absolute inset-0"
         style={{
           background:
-            "linear-gradient(180deg, rgba(0,0,0,0.25) 0%, rgba(0,0,0,0.05) 35%, rgba(0,0,0,0.55) 100%)",
+            "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.78) 100%)",
+        }}
+      />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background:
+            "radial-gradient(120% 70% at 20% 90%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%)",
         }}
       />
 
