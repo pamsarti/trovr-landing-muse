@@ -643,9 +643,6 @@ function Footer() {
           </p>
         </div>
         <div className="flex flex-col gap-2 text-[10.5px] uppercase tracking-[0.22em] text-mid md:items-end">
-          <a href="mailto:hello@trovr.agency" className="hover:text-ink">
-            hello@trovr.agency
-          </a>
           <span>© 2026 trovr</span>
         </div>
       </div>
