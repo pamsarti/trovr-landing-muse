@@ -23,8 +23,8 @@
  */
 
 @theme inline {
-  --font-serif: "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Playfair Display Variable", "Playfair Display", ui-serif, Georgia, serif;
+  --font-sans: "Outfit Variable", "Outfit", ui-sans-serif, system-ui, sans-serif;
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-stone: var(--stone);
