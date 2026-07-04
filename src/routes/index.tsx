@@ -332,7 +332,7 @@ function JournalCard({
         src={article.heroImage}
         alt={article.title}
         loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.06]"
+        className="card-img absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05]"
         style={{ filter: "brightness(0.95)" }}
       />
       <div
@@ -353,7 +353,9 @@ function JournalCard({
           {CATEGORY_LABEL[article.category]} · {article.readTime} min read
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          {article.title}
+          <span className="bg-gradient-to-r from-white to-white bg-left-bottom bg-no-repeat bg-[length:0%_1px] transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px] motion-reduce:transition-none">
+            {article.title}
+          </span>
         </h3>
         <p className="mt-1.5 max-w-md font-serif italic text-white/80 line-clamp-2">
           {article.dek}
@@ -420,7 +422,7 @@ function ExpeditionCard({
         src={tripImage(trip, 1600, 1000)}
         alt={trip.destination}
         loading="lazy"
-        className="absolute inset-0 h-full w-full object-cover transition-all duration-[900ms] ease-out group-hover:scale-[1.06]"
+        className="card-img absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05]"
         style={{ filter: "brightness(0.95)" }}
       />
       {/* Bottom info gradient */}
@@ -445,7 +447,9 @@ function ExpeditionCard({
           {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)}
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          {trip.destination}
+          <span className="bg-gradient-to-r from-white to-white bg-left-bottom bg-no-repeat bg-[length:0%_1px] transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px] motion-reduce:transition-none">
+            {trip.destination}
+          </span>
         </h3>
         <p className="mt-1.5 max-w-md font-serif italic text-white/80">{line}</p>
       </div>
