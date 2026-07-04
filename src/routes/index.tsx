@@ -104,14 +104,9 @@ function Index() {
 
 function Hero() {
   const [i, setI] = useState(0);
-  const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
     return () => clearInterval(t);
-  }, []);
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setRevealed(true));
-    return () => cancelAnimationFrame(id);
   }, []);
 
   return (
@@ -150,12 +145,8 @@ function Hero() {
         }}
       />
 
-      {/* Content */}
-      <div
-        className={`relative z-10 flex h-full flex-col justify-end px-6 pb-14 transition-all duration-[1400ms] ease-out sm:px-12 sm:pb-20 ${
-          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
+      {/* Content — visible immediately so the headline is readable without waiting for animation */}
+      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
