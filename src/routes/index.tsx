@@ -344,7 +344,7 @@ function JournalCard({
           {CATEGORY_LABEL[article.category]} · {article.readTime} min read
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          <span className="bg-gradient-to-r from-white to-white bg-left-bottom bg-no-repeat bg-[length:0%_1px] transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px] motion-reduce:transition-none">
+          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
             {article.title}
           </span>
         </h3>
@@ -438,7 +438,7 @@ function ExpeditionCard({
           {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)}
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          <span className="bg-gradient-to-r from-white to-white bg-left-bottom bg-no-repeat bg-[length:0%_1px] transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px] motion-reduce:transition-none">
+          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
             {trip.destination}
           </span>
         </h3>
