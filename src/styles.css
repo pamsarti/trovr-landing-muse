@@ -215,3 +215,8 @@
 @media (prefers-reduced-motion: reduce) {
   .hero-slide { transition: none !important; }
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .card-img { transition: none !important; transform: none !important; }
+  .group:hover .card-img { transform: none !important; }
+}
