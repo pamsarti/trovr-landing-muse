@@ -120,7 +120,7 @@ function Hero() {
         <div
           key={s.src}
           aria-hidden={idx !== i}
-          className="ken-burns absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          className="ken-burns hero-slide absolute inset-0 -z-10 transition-opacity duration-[800ms] ease-in-out"
           style={{
             opacity: idx === i ? 1 : 0,
             backgroundImage: `url(${s.src})`,
