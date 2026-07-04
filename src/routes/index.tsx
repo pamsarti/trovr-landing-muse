@@ -58,17 +58,17 @@ const HOME_TRIPS: HomeTrip[] = [
 
 const HERO_SLIDES = [
   {
-    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80",
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
     alt: "Mountain dawn",
     caption: "Patagonia · trekking",
   },
   {
-    src: "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=2400&q=80",
+    src: "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1600&q=70",
     alt: "Surfer at golden hour",
     caption: "Maldives · surf",
   },
   {
-    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2400&q=80",
+    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=70",
     alt: "Open steppe at sunset",
     caption: "Kyrgyzstan · horseback",
   },
