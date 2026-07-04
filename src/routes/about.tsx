@@ -40,7 +40,6 @@ function AboutPage() {
       <SiteHeader transparent />
       <Hero />
       <WhyExists />
-      <FounderNote />
       <HowWeCurate />
       <Newsletter />
       <Footer />
