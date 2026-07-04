@@ -220,21 +220,19 @@ function ManifestoStrip() {
             The manifesto
           </p>
           <h2 className="font-serif text-[2rem] leading-[1.15] text-ink sm:text-5xl">
-            Some people feel{" "}
-            <em className="italic font-normal">intensity</em> as a necessity, not a
-            preference.
+            The right trip goes&nbsp; <em className="italic font-normal">deeper</em>&nbsp;than anywhere on the map.
           </h2>
         </div>
         <div className="md:pt-12">
           <div className="space-y-8">
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              Big waves. Long crossings. Places without signal.
+              We curate journeys made to stretch you and stay with you — the kind that leave you sharper, braver, more awake to what a life can hold. Places that ask something of you, and give back more than they took.&nbsp;{"\n"}
             </p>
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              We curate trips for those people — the seasoned ones, and the ones just starting to recognize the pull.
+              That's the whole idea of Trovr: adventure with something underneath it. Intense to live. Impossible to forget.
             </p>
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              Adrenaline is the path. What you find along the way is the destination.
+              {"\n"}
             </p>
           </div>
           <ul className="mt-8 flex flex-wrap gap-2.5">
