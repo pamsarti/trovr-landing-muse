@@ -24,7 +24,15 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/` },
+      {
+        rel: "preload",
+        as: "image",
+        href: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
+        fetchpriority: "high",
+      },
+    ],
   }),
   component: Index,
 });
