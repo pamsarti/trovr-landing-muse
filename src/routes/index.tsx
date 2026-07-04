@@ -211,8 +211,8 @@ function Hero() {
 
 function ManifestoStrip() {
   return (
-    <section className="px-6 py-20 sm:py-28">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 md:items-center md:gap-20">
+    <section className="px-6 py-14 sm:py-20">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-2 md:items-center md:gap-20">
         <div>
           <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
             The manifesto
