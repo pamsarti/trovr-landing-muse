@@ -149,7 +149,7 @@ function Hero() {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
-              An atlas for those who travel to feel
+              Hand-picked expeditions for travelers who go deeper.
             </p>
             <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
               Travel to <em className="italic font-normal">find.</em>
