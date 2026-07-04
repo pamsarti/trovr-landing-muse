@@ -209,30 +209,25 @@ function Hero() {
 
 /* ---------- Manifesto Strip ---------- */
 
-const TAGS = ["Kite", "Surf", "Horseback", "Wildlife", "Martial Arts", "River Cruise"];
-
 function ManifestoStrip() {
   return (
-    <section className="px-6 py-14 sm:py-20">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-16 md:grid-cols-2 md:gap-24">
+    <section className="px-6 py-20 sm:py-28">
+      <div className="mx-auto grid max-w-6xl grid-cols-1 gap-12 md:grid-cols-2 md:items-center md:gap-20">
         <div>
           <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
             The manifesto
           </p>
-          <h2 className="font-serif text-[2rem] leading-[1.15] text-ink sm:text-5xl">
+          <h2 className="font-serif text-[2.25rem] leading-[1.1] text-ink sm:text-5xl md:text-[3.5rem]">
             The right trip goes&nbsp; <em className="italic font-normal">deeper</em>&nbsp;than anywhere on the map.
           </h2>
         </div>
-        <div className="md:pt-12">
-          <div className="space-y-8">
+        <div>
+          <div className="space-y-6">
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              We curate journeys made to stretch you and stay with you — the kind that leave you sharper, braver, more awake to what a life can hold. Places that ask something of you, and give back more than they took.&nbsp;{"\n"}
+              We curate journeys made to stretch you and stay with you — the kind that leave you sharper, braver, more awake to what a life can hold. Places that ask something of you, and give back more than they took.
             </p>
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
               That's the whole idea of Trovr: adventure with something underneath it. Intense to live. Impossible to forget.
-            </p>
-            <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              {"\n"}
             </p>
           </div>
         </div>
