@@ -168,14 +168,14 @@ function Hero() {
             <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
                 href="#expeditions"
-                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-all hover:bg-ink"
+                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-all hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 See expeditions
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#newsletter"
-                className="text-[10.5px] uppercase tracking-[0.22em] text-white/60 underline-offset-4 hover:text-white hover:underline"
+                className="rounded-sm text-[10.5px] uppercase tracking-[0.22em] text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
                 Early access →
               </a>
@@ -191,19 +191,41 @@ function Hero() {
                 {String(HERO_SLIDES.length).padStart(2, "0")}
               </span>
             </div>
-            <div className="flex items-center gap-2">
-              {HERO_SLIDES.map((_, idx) => (
+            <div
+              role="tablist"
+              aria-label="Hero slideshow"
+              className="flex items-center gap-2"
+              onKeyDown={(e) => {
+                if (e.key === "ArrowRight") {
+                  e.preventDefault();
+                  setI((n) => (n + 1) % HERO_SLIDES.length);
+                } else if (e.key === "ArrowLeft") {
+                  e.preventDefault();
+                  setI((n) => (n - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+                }
+              }}
+            >
+              {HERO_SLIDES.map((s, idx) => (
                 <button
                   key={idx}
+                  type="button"
+                  role="tab"
+                  aria-selected={idx === i}
+                  aria-label={`Show slide ${idx + 1} of ${HERO_SLIDES.length}: ${s.caption}`}
+                  tabIndex={idx === i ? 0 : -1}
                   onClick={() => setI(idx)}
-                  aria-label={`Slide ${idx + 1}`}
-                  className="h-[2px] transition-all duration-500"
-                  style={{
-                    width: idx === i ? 40 : 16,
-                    background:
-                      idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.4)",
-                  }}
-                />
+                  className="group -my-3 flex h-6 items-center rounded-sm px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                >
+                  <span
+                    aria-hidden
+                    className="block h-[2px] transition-all duration-500"
+                    style={{
+                      width: idx === i ? 40 : 16,
+                      background:
+                        idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
+                    }}
+                  />
+                </button>
               ))}
             </div>
             <p className="text-[10.5px] uppercase tracking-[0.22em] text-white/70">
@@ -620,6 +642,8 @@ function Newsletter() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder="your@email.com"
+              id="newsletter-email"
+              aria-label="Email address"
               className="flex-1 bg-transparent text-base text-ink placeholder:text-mid/70 focus:outline-none"
             />
             <button
