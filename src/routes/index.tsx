@@ -104,14 +104,9 @@ function Index() {
 
 function Hero() {
   const [i, setI] = useState(0);
-  const [revealed, setRevealed] = useState(false);
   useEffect(() => {
     const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
     return () => clearInterval(t);
-  }, []);
-  useEffect(() => {
-    const id = requestAnimationFrame(() => setRevealed(true));
-    return () => cancelAnimationFrame(id);
   }, []);
 
   return (
@@ -150,12 +145,8 @@ function Hero() {
         }}
       />
 
-      {/* Content */}
-      <div
-        className={`relative z-10 flex h-full flex-col justify-end px-6 pb-14 transition-all duration-[1400ms] ease-out sm:px-12 sm:pb-20 ${
-          revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
-        }`}
-      >
+      {/* Content — visible immediately so the headline is readable without waiting for animation */}
+      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
@@ -215,13 +206,13 @@ function Hero() {
                   aria-label={`Show slide ${idx + 1} of ${HERO_SLIDES.length}: ${s.caption}`}
                   tabIndex={idx === i ? 0 : -1}
                   onClick={() => setI(idx)}
-                  className="group -my-3 flex h-6 items-center rounded-sm px-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  className="group -my-3 flex h-6 w-10 items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
                   <span
                     aria-hidden
-                    className="block h-[2px] transition-all duration-500"
+                    className="block h-[2px] w-full origin-left transition-transform duration-500 ease-out motion-reduce:transition-none"
                     style={{
-                      width: idx === i ? 40 : 16,
+                      transform: idx === i ? "scaleX(1)" : "scaleX(0.4)",
                       background:
                         idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
                     }}
@@ -353,7 +344,7 @@ function JournalCard({
           {CATEGORY_LABEL[article.category]} · {article.readTime} min read
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          <span className="bg-gradient-to-r from-white to-white bg-left-bottom bg-no-repeat bg-[length:0%_1px] transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px] motion-reduce:transition-none">
+          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
             {article.title}
           </span>
         </h3>
@@ -447,7 +438,7 @@ function ExpeditionCard({
           {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)}
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          <span className="bg-gradient-to-r from-white to-white bg-left-bottom bg-no-repeat bg-[length:0%_1px] transition-[background-size] duration-300 ease-out group-hover:bg-[length:100%_1px] motion-reduce:transition-none">
+          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
             {trip.destination}
           </span>
         </h3>
