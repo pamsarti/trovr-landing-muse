@@ -72,6 +72,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
+      { name: "google-site-verification", content: "vjvuvmMVr9fZ0tqsFQfjhqkvVbbsr_k6j_mzs-DJWbU" },
       { title: "Trovr — Travel to find, not to escape" },
       { name: "description", content: "A curated marketplace of immersive trips, for people who travel to feel. Launching Fall 2026." },
       { name: "author", content: "Trovr" },
