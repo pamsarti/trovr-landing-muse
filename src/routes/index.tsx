@@ -424,10 +424,10 @@ function ExpeditionCard({
 /* ---------- Stats Bar ---------- */
 
 const STATS = [
-  { value: "600", sup: "+", label: "Spots mapped" },
-  { value: "5", sup: "", label: "Continents" },
-  { value: "41", sup: "", label: "Trips" },
-  { value: "2026", sup: "", label: "First season" },
+  { value: "600", sup: "+", label: "Places mapped for you" },
+  { value: "5", sup: "", label: "Continents covered" },
+  { value: "41", sup: "", label: "Expeditions curated" },
+  { value: "2026", sup: "", label: "Launching" },
 ];
 
 function StatsBar() {
