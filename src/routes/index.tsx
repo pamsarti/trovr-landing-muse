@@ -156,17 +156,17 @@ function Hero() {
               <br />
               Not to escape.
             </h1>
-            <div className="mt-10 flex items-center gap-5">
+            <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
                 href="#expeditions"
-                className="group inline-flex items-center gap-3 rounded-full bg-paper-card px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-ink transition-colors hover:bg-white"
+                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-all hover:bg-ink"
               >
                 See expeditions
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-300 group-hover:translate-x-1" />
               </a>
               <a
                 href="#newsletter"
-                className="text-[11px] uppercase tracking-[0.22em] text-white/80 hover:text-white"
+                className="text-[10.5px] uppercase tracking-[0.22em] text-white/60 underline-offset-4 hover:text-white hover:underline"
               >
                 Early access →
               </a>
