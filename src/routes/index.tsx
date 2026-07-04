@@ -630,6 +630,9 @@ function Newsletter() {
             style={{ boxShadow: "0 20px 60px -20px rgba(0,0,0,0.45)" }}
           >
             <input type="hidden" name="form-name" value="newsletter" />
+            <label htmlFor="newsletter-email" className="sr-only">
+              Email address
+            </label>
             <p className="hidden">
               <label>
                 Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
