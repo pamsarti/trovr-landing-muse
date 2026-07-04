@@ -222,7 +222,7 @@ function HowWeCurate() {
           How we curate.
         </h2>
         <p className="mt-8 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
-          Honestly? It starts with instinct. Every trip on Trovr is chosen by hand — mine — against a question I've been refining for years: would I go? If I wouldn't drop everything to live it myself, it doesn't make the cut. That's the first filter, and the hardest one to fake.
+          It all&nbsp; starts with instinct. Every trip on Trovr is chosen by hand — mine — against a question I've been refining for years: would I go? If I wouldn't drop everything to live it myself, it doesn't make the cut. That's the first filter, and the hardest one to fake.
         </p>
         <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
           But instinct has a shape. Look closely at what survives it, and the same three things are always there:
