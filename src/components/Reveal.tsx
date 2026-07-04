@@ -1,8 +1,8 @@
-import { useEffect, useRef, useState, type ReactNode } from "react";
+import { createElement, useEffect, useRef, useState, type ElementType, type ReactNode } from "react";
 
 type Props = {
   children: ReactNode;
-  as?: keyof JSX.IntrinsicElements;
+  as?: ElementType;
   className?: string;
   delay?: number;
   id?: string;
@@ -14,7 +14,6 @@ type Props = {
  * Respects prefers-reduced-motion.
  */
 export function Reveal({ children, as = "div", className = "", delay = 0, id }: Props) {
-  const Tag = as as keyof JSX.IntrinsicElements;
   const ref = useRef<HTMLElement | null>(null);
   const [visible, setVisible] = useState(false);
 
@@ -45,20 +44,20 @@ export function Reveal({ children, as = "div", className = "", delay = 0, id }: 
     return () => io.disconnect();
   }, []);
 
-  return (
-    <Tag
-      ref={ref as never}
-      id={id}
-      className={className}
-      style={{
+  return createElement(
+    as,
+    {
+      ref,
+      id,
+      className,
+      style: {
         opacity: visible ? 1 : 0,
         transform: visible ? "translate3d(0,0,0)" : "translate3d(0,16px,0)",
         transition: "opacity 500ms ease-out, transform 500ms ease-out",
         transitionDelay: visible ? `${delay}ms` : "0ms",
         willChange: "opacity, transform",
-      }}
-    >
-      {children}
-    </Tag>
+      },
+    },
+    children,
   );
 }
