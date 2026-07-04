@@ -103,7 +103,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           "@type": "Organization",
           name: "Trovr",
           url: "https://trovr.com.br",
-          logo: "https://trovr.com.br/images/providencia-hero.png",
+          logo: "https://trovr.com.br/images/providencia-hero.jpg",
           description:
             "A curated marketplace of immersive trips, for people who travel to feel.",
           email: "hello@trovr.agency",

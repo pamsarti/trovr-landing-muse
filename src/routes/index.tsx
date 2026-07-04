@@ -24,7 +24,15 @@ export const Route = createFileRoute("/")({
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/` }],
+    links: [
+      { rel: "canonical", href: `${SITE_URL}/` },
+      {
+        rel: "preload",
+        as: "image",
+        href: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
+        fetchpriority: "high",
+      },
+    ],
   }),
   component: Index,
 });
@@ -58,17 +66,17 @@ const HOME_TRIPS: HomeTrip[] = [
 
 const HERO_SLIDES = [
   {
-    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80",
+    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
     alt: "Mountain dawn",
     caption: "Patagonia · trekking",
   },
   {
-    src: "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=2400&q=80",
+    src: "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1600&q=70",
     alt: "Surfer at golden hour",
     caption: "Maldives · surf",
   },
   {
-    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2400&q=80",
+    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=70",
     alt: "Open steppe at sunset",
     caption: "Kyrgyzstan · horseback",
   },
