@@ -207,7 +207,7 @@ function HowWeCurate() {
 
   return (
     <section
-      className="relative px-6 py-10 sm:py-14 md:py-16"
+      className="relative border-t border-stone/15 px-6 py-10 sm:py-14 md:py-16"
       style={{
         backgroundImage:
           "linear-gradient(rgba(250,250,250,0.9), rgba(250,250,250,0.95)), url(https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=2400&q=80)",
