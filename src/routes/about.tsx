@@ -110,7 +110,7 @@ function Hero() {
             No one walks out the same way
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-base leading-[1.6] text-paper/80 sm:mt-10 sm:text-lg">
-            This page is the answer we've been working on.
+            We built Trovr around keeping that promise
           </p>
         </div>
       </div>
@@ -122,7 +122,7 @@ function WhyExists() {
   const paragraphs = [
     "You'll never regret living one of these. It's the only promise we make — and everything about Trovr is built to keep it.",
     "Trovr is a curation of journeys that leave a mark. Trips for people who travel to feel awake, to test their edges, to come home someone slightly new. Some have chased this feeling for years. Some are only just starting to sense the pull. Both belong here.",
-    "These are the journeys that stay with you — the kind that expand what a life can hold, that you don't quite recover from, that you end up building a life around. Adrenaline is the way in. What you find out there is the reason to go.",
+    "These are the journeys that stay with you — the kind that expand what a life can hold, that you don't quite recover from, that you end up building a life around. What you find out there is the reason to go.",
   ];
   return (
     <section
