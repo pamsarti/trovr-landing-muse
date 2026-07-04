@@ -14,6 +14,7 @@ import {
   type JournalArticle,
 } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
+import { Reveal } from "@/components/Reveal";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/")({
@@ -89,10 +90,10 @@ function Index() {
     <main className="bg-paper text-ink font-sans antialiased">
       <SiteHeader transparent />
       <Hero />
-      <ManifestoStrip />
-      <JournalSection />
-      <Expeditions />
-      <StatsBar />
+      <Reveal as="div"><ManifestoStrip /></Reveal>
+      <Reveal as="div"><JournalSection /></Reveal>
+      <Reveal as="div"><Expeditions /></Reveal>
+      <Reveal as="div"><StatsBar /></Reveal>
       <Newsletter />
       <Footer />
     </main>
