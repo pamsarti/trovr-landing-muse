@@ -12691,30 +12691,30 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Estação seca (mai–out); pico em agosto"
+        "Dry season (May–Oct); peak in August"
       ],
       "activitySpecific": {
-        "tipo_break": "Reef break de esquerda (complexo: The Peak, Racetracks, Temples)",
-        "tipo_fundo": "Coral e pedra afiada",
-        "nivel_recomendado": "Intermediário-avançado a pro, conforme a seção e o tamanho (The Peak: inter-avançado; Outside Corner/Bombie grandes: só experts)",
-        "swell_ideal": "Direção SW; funciona de <1m e aguenta até 4m+",
-        "vento_ideal": "Sudeste (offshore na estação seca)",
-        "mare_ideal": "Varia por seção (Peak: média-alta; Racetracks: baixa-média)",
-        "perigos": "Coral raso, corrente, acesso pela caverna (perigoso na maré alta — backwash contra a falésia)",
-        "lotacao": "Ultra lotado, semana e fim de semana"
+        "break_type": "Left-hand reef break (complex: The Peak, Racetracks, Temples)",
+        "bottom_type": "Coral and sharp rock",
+        "recommended_level": "Intermediate-advanced to pro, depending on the section and the size (The Peak: intermediate-advanced; big Outside Corner/Bombie: experts only)",
+        "ideal_swell": "SW direction; works from under 1m and holds up to 4m+",
+        "ideal_wind": "Southeast (offshore in the dry season)",
+        "ideal_tide": "Varies by section (Peak: mid-high; Racetracks: low-mid)",
+        "hazards": "Shallow coral, current, access through the cave (dangerous at high tide — backwash against the cliff)",
+        "crowds": "Ultra crowded, weekdays and weekends"
       },
       "fieldStatus": {
-        "tipo_break": "verificado",
-        "tipo_fundo": "verificado",
-        "nivel_recomendado": "verificado",
-        "swell_ideal": "verificado",
-        "vento_ideal": "verificado",
-        "mare_ideal": "fonte_afirma",
-        "perigos": "verificado",
-        "lotacao": "verificado"
+        "break_type": "verified",
+        "bottom_type": "verified",
+        "recommended_level": "verified",
+        "ideal_swell": "verified",
+        "ideal_wind": "verified",
+        "ideal_tide": "source_claims",
+        "hazards": "verified",
+        "crowds": "verified"
       }
     },
-    "description": "Uluwatu não é uma onda — são cinco, enfileiradas ao longo de um paredão de calcário na ponta de Bukit, e a que você surfa depende da maré e do swell do dia. Entra-se pela caverna sob o penhasco, o que já filtra quem chega: quando a maré sobe, a caverna some, e sair na hora errada significa remar até a praia seguinte. As esquerdas correm rápidas e ocas sobre coral raso — Racetracks entrega o tubo na maré baixa, The Peak abre parede na alta. É tão constante e tão bom que está sempre cheio. Vá cedo, leve botinha, e trate o reef como o que é: a razão da onda ser perfeita e o motivo de você poder se cortar.",
+    "description": "Uluwatu isn't one wave — it's five, strung along a limestone wall at the tip of the Bukit, and the one you ride depends on the day's tide and swell. You paddle out through a cave beneath the cliff, and that alone filters who arrives: as the tide climbs, the cave disappears, and coming in at the wrong moment means paddling to the next beach over. The lefts run fast and hollow over shallow coral — Racetracks hands you the barrel at low tide, The Peak opens its wall at high. It's so consistent and so good that it's always full. Go early, bring booties, and treat the reef as what it is: the reason the wave is perfect and the reason you can cut yourself open.",
     "sourceUrl": "https://www.wannasurf.com/spot/Asia/Indonesia/Bali/Uluwatu/",
     "sources": [
       "https://www.wannasurf.com/spot/Asia/Indonesia/Bali/Uluwatu/",
@@ -12738,28 +12738,28 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "25/jun a 15/set; ideal jul–ago"
+        "25 Jun to 15 Sep; ideal Jul–Aug"
       ],
       "activitySpecific": {
-        "distancia": "54 km",
-        "elevacao": "~1.600–1.700 m D+ / ~1.800 m D− (fontes divergem; o '500m' que circula é só a subida do dia 1, não o acumulado)",
-        "perfil": "Grande subida no Dia 1 (600m→1.050m, ponto alto); depois predominantemente descida",
-        "dificuldade": "Moderada — exigente fisicamente, não técnica",
-        "tempo_estimado": "4 dias / 3 noites (padrão cabana-a-cabana)",
-        "tipo_percurso": "Ponto-a-ponto (norte→sul)",
-        "terreno_agua": "Riolito, lava, obsidiana, deserto negro, floresta no fim. 6 cabanas com água/chuveiro; 3 rios de vau (nível sobe com chuva/sol)"
+        "distance": "54 km",
+        "elevation": "~1,600–1,700 m gain / ~1,800 m loss (sources disagree; the '500m' figure that circulates is only Day 1's climb, not the total)",
+        "profile": "One long climb on Day 1 (600m→1,050m, the high point); mostly downhill after that",
+        "difficulty": "Moderate — physically demanding, not technical",
+        "estimated_time": "4 days / 3 nights (standard hut-to-hut)",
+        "route_type": "Point-to-point (north→south)",
+        "terrain_water": "Rhyolite, lava, obsidian, black desert, forest at the end. 6 huts with water/showers; 3 river fords (levels rise with rain and sun)"
       },
       "fieldStatus": {
-        "distancia": "fonte_afirma",
-        "elevacao": "estimativa",
-        "perfil": "verificado",
-        "dificuldade": "fonte_afirma",
-        "tempo_estimado": "verificado",
-        "tipo_percurso": "verificado",
-        "terreno_agua": "verificado"
+        "distance": "source_claims",
+        "elevation": "estimate",
+        "profile": "verified",
+        "difficulty": "source_claims",
+        "estimated_time": "verified",
+        "route_type": "verified",
+        "terrain_water": "verified"
       }
     },
-    "description": "Cabe em quatro dias e resume quase tudo que a Islândia tem de estranho: sai das fontes termais de Landmannalaugar por montanhas de riolito que parecem pintadas, cruza um platô de neve e obsidiana no ponto mais alto, e desce por desertos de areia preta até uma floresta de bétulas em Þórsmörk. O que exige atenção não são as subidas — a trilha é bem marcada — são os rios: três se atravessam a pé, e o nível muda no mesmo dia conforme chove ou faz sol. Vá em julho ou agosto, reserve as cabanas cedo, e leia o quadro de condições dos guardas antes de cada vau.",
+    "description": "It fits into four days and holds nearly everything strange about Iceland. You leave the hot springs of Landmannalaugar through rhyolite mountains that look painted by hand, cross a plateau of snow and obsidian at the highest point, then descend through black-sand deserts to a birch forest at Þórsmörk. What asks for your attention isn't the climbing — the trail is well marked — it's the rivers: three you cross on foot, their levels shifting within the same day as it rains or the sun comes out. Come in July or August, book the huts early, and read the wardens' conditions board before every ford.",
     "sourceUrl": "https://www.fi.is/en/hiking-trails/trails/view/laugavegur",
     "sources": [
       "https://www.fi.is/en/hiking-trails/trails/view/laugavegur",
@@ -12784,28 +12784,28 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Prova anual no fim de agosto"
+        "Held once a year, in late August"
       ],
       "activitySpecific": {
-        "distancia": "174 km (varia por ano)",
-        "elevacao_perfil": "9.900 m D+; 31 km iniciais rolantes, depois 4 cols acima de 2.400m",
-        "tipo_piso": "Trilha alpina: estrada/larga no início, single-track nos vales, pedra técnica nos cols (sem % oficial)",
-        "grau_tecnico": "Difícil (extremo); DNF histórico ~35–38%",
-        "traçado": "Circular (loop) — volta a Chamonix",
-        "tempo_estimado": "Elite ~20h; pelotão 30–46h; limite 46h45",
-        "seguranca_agua": "15 postos; refeição quente em Chapieux, Courmayeur e Champex-Lac; percurso balizado"
+        "distance": "174 km (varies by year)",
+        "elevation_profile": "9,900 m of ascent; the first 31 km run gently, then four cols above 2,400 m",
+        "terrain_surface": "Alpine trail: road and wide track at the start, single-track through the valleys, technical rock on the cols (no official percentages)",
+        "technical_grade": "Hard (extreme); historic DNF rate around 35–38%",
+        "route_shape": "A closed loop — back to where Chamonix let you go",
+        "estimated_time": "Elite runners near 20h; the field between 30 and 46h; the door closes at 46h45",
+        "support_water": "15 aid stations; hot meals at Chapieux, Courmayeur and Champex-Lac; the route stays marked throughout"
       },
       "fieldStatus": {
-        "distancia": "verificado",
-        "elevacao_perfil": "verificado",
-        "tipo_piso": "estimativa",
-        "grau_tecnico": "fonte_afirma",
-        "traçado": "verificado",
-        "tempo_estimado": "fonte_afirma",
-        "seguranca_agua": "verificado"
+        "distance": "verified",
+        "elevation_profile": "verified",
+        "terrain_surface": "estimate",
+        "technical_grade": "source_claims",
+        "route_shape": "verified",
+        "estimated_time": "source_claims",
+        "support_water": "verified"
       }
     },
-    "description": "Quem corre o UTMB dá uma volta inteira no Mont-Blanc a pé, cruzando três fronteiras entre a largada e a chegada no mesmo ponto de Chamonix. O terreno engana: os primeiros 30 km são generosos, e é aí que o novato queima as pernas que vai precisar nos quatro cols acima de 2.400m, na segunda noite sem dormir. Entre um col e outro, o single-track dos refúgios Bertone e Bonatti, com a face italiana do maciço à esquerda, é dos trechos mais bonitos do esporte. Mais de um terço do pelotão não chega ao arco. É o contrato: o cenário é o mais fotografado do trail, e o preço é integral.",
+    "description": "To run the UTMB is to walk a full circle around Mont-Blanc, crossing three borders between the start and a finish that lands you back where you began, in Chamonix. The ground lies to you kindly: the first 30 kilometres are generous, and that is exactly where the newcomer spends the legs he will beg for later, on the four cols above 2,400 metres, deep in the second night without sleep. Between one col and the next, the single-track past the Bertone and Bonatti refuges — the Italian face of the massif falling away to your left — is among the most beautiful stretches this sport has to offer. More than a third of the field never reaches the arch. That is the bargain: the most photographed scenery in trail running, and a price paid in full.",
     "sourceUrl": "https://montblanc.utmb.world/races/UTMB",
     "sources": [
       "https://montblanc.utmb.world/races/UTMB",
@@ -12830,30 +12830,30 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Temporada do parque: mai–out"
+        "Park season: May–Oct"
       ],
       "activitySpecific": {
-        "distancia_traçado": "~2,9 km (fontes: 2,9–3,4 km); point-to-point (só descida)",
-        "elevacao": "Ganho 0m (trilha de lift); descida ~325–331m",
-        "superficie": "100% machine-groomed (terra moldada + features de madeira)",
-        "tipo_trilha": "Flow / jump trail de downhill: tabletops, bermas, saltos de 3–9m+",
-        "dificuldade_tecnica": "Preto (black diamond); MTB Project marca duplo-preto",
-        "exigencia_fisica": "Difícil — precisa de velocidade p/ limpar os saltos",
-        "status_condicao": "Temporada 2026: 15/mai–12/out. Report 12/05/2026: parcialmente aberta (Z2 fechado)",
-        "bike_acesso": "Downhill full-suspension; acesso pelo lift Fitzsimmons Express de 8 lugares (upgrade concluído em 2024)"
+        "distance_shape": "~2.9 km (sources: 2.9–3.4 km); point-to-point (descent only)",
+        "elevation": "Gain 0m (lift-served trail); descent ~325–331m",
+        "surface": "100% machine-groomed (shaped dirt + wooden features)",
+        "trail_type": "Downhill flow / jump trail: tabletops, berms, 3–9m+ jumps",
+        "technical_difficulty": "Black (black diamond); MTB Project rates it double-black",
+        "physical_demand": "Hard — you need speed to clear the jumps",
+        "status_condition": "2026 season: May 15–Oct 12. Report 2026-05-12: partially open (Z2 closed)",
+        "bike_access": "Downhill full-suspension; accessed via the 8-seat Fitzsimmons Express lift (upgrade completed in 2024)"
       },
       "fieldStatus": {
-        "distancia_traçado": "fonte_afirma",
-        "elevacao": "verificado",
-        "superficie": "verificado",
-        "tipo_trilha": "verificado",
-        "dificuldade_tecnica": "verificado",
-        "exigencia_fisica": "fonte_afirma",
-        "status_condicao": "verificado",
-        "bike_acesso": "verificado"
+        "distance_shape": "source_claims",
+        "elevation": "verified",
+        "surface": "verified",
+        "trail_type": "verified",
+        "technical_difficulty": "verified",
+        "physical_demand": "source_claims",
+        "status_condition": "verified",
+        "bike_access": "verified"
       }
     },
-    "description": "Se existe um trecho de terra que virou gramática da modalidade, é a A-Line — a trilha que ensinou uma geração o que 'flow' quer dizer. Você entra no topo pela Fitzsimmons sem pedalar e o que vem é uma sequência de mesas e bermas moldadas por máquina, projetadas para te manter fora do freio. É etiquetada de preto, mas 'flow acessível' e 'preta com drops obrigatórios' convivem na mesma pista — as duas são verdade, dependendo de quanta velocidade você tem coragem de carregar. Ela vive em pedaços: o parque a divide em zonas que nem sempre abrem juntas. Acesso por cadeira, não por perna.",
+    "description": "Some stretches of dirt don't just get ridden — they teach the language everyone else borrows. A-Line is where a whole generation first understood what 'flow' means. You ride the Fitzsimmons up without turning a pedal, and what waits at the top is a shaped run of tabletops and berms built to keep your hand off the brake. It wears a black rating, but 'approachable flow' and 'black with mandatory drops' both live on the same line — which one you meet depends on how much speed you're willing to carry. It opens in pieces: the park splits it into zones that don't always run together. You earn it by chairlift, not by climb.",
     "sourceUrl": "https://www.mtbproject.com/trail/7000534/upper-a-line",
     "sources": [
       "https://www.mtbproject.com/trail/7000534/upper-a-line",
@@ -12878,30 +12878,30 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Ano todo; melhor na primavera e outono (mar–mai e set–nov)"
+        "Year-round; best in spring and autumn (Mar–May and Sep–Nov)"
       ],
       "activitySpecific": {
-        "profundidade": "~16m (convés) a 30–32m (fundo); média ~26m",
-        "nivel_certificacao": "Advanced Open Water (passa dos 20m); Wreck Specialty p/ penetração",
-        "tipo_acesso": "Só de barco: day-trip ~4h de Sharm, ou liveaboard",
-        "tipo_mergulho": "Naufrágio — cargueiro britânico da 2ª Guerra (1941), com penetração",
-        "visibilidade": "~10–25m (melhor jun e set)",
-        "corrente": "Nenhuma a forte (0–4 nós); descida na corda",
-        "vida_marinha": "Barracuda, batfish, tartaruga residente, jacks, Napoleon, moreia, atum",
-        "epoca_temperatura": "Ano todo; melhor primavera/outono (mar–mai, set–nov). Água ~22°C (inverno) a ~27–29°C (verão)"
+        "depth": "~16m (deck) to 30–32m (seabed); average ~26m",
+        "certification_level": "Advanced Open Water (goes past 20m); Wreck Specialty for penetration",
+        "access_type": "Boat only: ~4h day-trip from Sharm, or liveaboard",
+        "dive_type": "Wreck — British WWII cargo ship (1941), with penetration",
+        "visibility": "~10–25m (best in Jun and Sep)",
+        "current": "None to strong (0–4 knots); descend along the line",
+        "marine_life": "Barracuda, batfish, resident turtle, trevally/jacks, Napoleon wrasse, moray eel, tuna",
+        "season_water_temp": "Year-round; best in spring/autumn (Mar–May, Sep–Nov). Water ~22°C (winter) to ~27–29°C (summer)"
       },
       "fieldStatus": {
-        "profundidade": "fonte_afirma",
-        "nivel_certificacao": "fonte_afirma",
-        "tipo_acesso": "fonte_afirma",
-        "tipo_mergulho": "verificado",
-        "visibilidade": "fonte_afirma",
-        "corrente": "fonte_afirma",
-        "vida_marinha": "fonte_afirma",
-        "epoca_temperatura": "fonte_afirma"
+        "depth": "source_claims",
+        "certification_level": "source_claims",
+        "access_type": "source_claims",
+        "dive_type": "verified",
+        "visibility": "source_claims",
+        "current": "source_claims",
+        "marine_life": "source_claims",
+        "season_water_temp": "source_claims"
       }
     },
-    "description": "Poucos naufrágios entregam o que o Thistlegorm entrega: um cargueiro parado no fundo do Estreito de Gubal desde outubro de 1941, ainda carregado com a guerra que ia abastecer. Você desce pela corda — quase sempre há corrente — e o casco surge com motocicletas BSA enfileiradas nos porões, caminhões, vagões de trem, munição. Não é recife artificial coberto de coral; é um instantâneo interrompido, e essa é a diferença. Com 30m no ponto fundo, penetração e corrente que vira em minutos, o cartão de Advanced não é burocracia. Vá de liveaboard se puder: chegar antes das lanchas de Sharm, com a visibilidade limpa e o convés vazio, separa o Thistlegorm memorável do lotado.",
+    "description": "Few wrecks give you what the Thistlegorm gives: a cargo ship that has rested on the floor of the Strait of Gubal since October 1941, still loaded with the war it was carrying to the front. You drop down the line — there is almost always current — and the hull rises into view, BSA motorcycles lined up in the holds, trucks, rail cars, ammunition. This is not an artificial reef gone soft under coral; it is an interrupted moment, and that is the whole difference. With 30m at the deepest point, penetration, and current that can turn within minutes, the Advanced card here is not paperwork. Go by liveaboard if you can: arriving before the Sharm speedboats, with clean visibility and an empty deck, is what separates the Thistlegorm you remember from the one you share with a crowd.",
     "sourceUrl": "https://en.wikipedia.org/wiki/SS_Thistlegorm",
     "sources": [
       "https://en.wikipedia.org/wiki/SS_Thistlegorm",
@@ -12927,32 +12927,32 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Ago a dez; janela jul–jan; pico ago–set"
+        "Aug to Dec; window Jul–Jan; peak Aug–Sep"
       ],
       "activitySpecific": {
-        "vento_por_mes": "Alísios diários na seca; pico ago–set. À tarde costuma soprar ~15–22 nós, rajadas até ~28–30. Média medida na estação de referência mais próxima (aeroporto de Fortaleza, ~27 km) é ~11 nós/ano — puxada para baixo pela entressafra parada (fev–abr, 5–10 nós). Não há estação no próprio spot",
-        "melhor_epoca": "Ago a dez; janela jul–jan",
-        "direcao_vento": "Leste-sudeste; side/cross-onshore",
-        "tipo_agua": "Praia: choppy c/ ondas. Lagoa do Cauípe: flat total",
-        "fundo_agua": "Areia (sem pedra/coral), salgada",
-        "mare_corrente": "Maré muito relevante (praia muda de tamanho); corrente não documentada",
-        "nivel_disciplina": "Iniciante→avançado; freeride, freestyle, foil, wave",
-        "perigos_lancamento": "Banhistas, pescadores, barcos, carros no Cauípe; praia de 6km+ p/ lançamento",
-        "kite_wing_ambos": "Ambos — wingfoil forte no Cauípe"
+        "wind_by_month": "Daily trade winds in the dry season; peak Aug–Sep. Afternoons usually blow ~15–22 knots, with gusts to ~28–30. The average measured at the nearest reference station (Fortaleza airport, ~27 km) is ~11 knots/year — pulled down by the still off-season (Feb–Apr, 5–10 knots). There is no station at the spot itself",
+        "best_season": "Aug to Dec; window Jul–Jan",
+        "wind_direction": "East-southeast; side/cross-onshore",
+        "water_type": "Beach: choppy with waves. Cauípe Lagoon: dead flat",
+        "bottom_water": "Sand (no rock or coral), saltwater",
+        "tide_current": "Tide matters a great deal (the beach changes size with it); current not documented",
+        "level_discipline": "Beginner→advanced; freeride, freestyle, foil, wave",
+        "hazards_launch": "Swimmers, fishermen, boats, cars at Cauípe; 6km+ of beach to launch from",
+        "kite_wing": "Both — strong wingfoil scene at Cauípe"
       },
       "fieldStatus": {
-        "vento_por_mes": "fonte_afirma",
-        "melhor_epoca": "fonte_afirma",
-        "direcao_vento": "verificado",
-        "tipo_agua": "fonte_afirma",
-        "fundo_agua": "fonte_afirma",
-        "mare_corrente": "fonte_afirma",
-        "nivel_disciplina": "fonte_afirma",
-        "perigos_lancamento": "fonte_afirma",
-        "kite_wing_ambos": "fonte_afirma"
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "verified",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
       }
     },
-    "description": "Cumbuco entrega o que promete sem drama: de agosto a dezembro o alísio entra de manhã, reforça à tarde na faixa dos 15–22 nós e não te larga até o fim do dia, dia após dia — regularidade que quem vem do vento intermitente da Europa custa a acreditar. A geografia resolve o resto: o mar é picado, bom para saltar, e a poucos quilômetros ao norte a Lagoa do Cauípe oferece o oposto exato — água de espelho, rasa, fundo de areia — onde iniciante aprende e quem migra para wing ou foil encontra o cenário mais indulgente do Brasil. O preço da constância é a companhia: no fim da manhã a lagoa lota. É spot de repetição, de acumular horas com vento previsível, e nisso faz melhor que quase qualquer lugar.",
+    "description": "Cumbuco keeps its word without theatrics: from August to December the trade wind arrives in the morning, firms up through the afternoon into the 15–22 knot band, and stays with you until the light goes — day after day, a steadiness that anyone raised on Europe's on-again, off-again wind takes a while to trust. The land does the rest. The sea is choppy, good for jumping, while a few kilometres north the Cauípe Lagoon offers its exact opposite: water like glass, shallow, a sand bottom, where beginners find their footing and those crossing over to wing or foil meet the most forgiving stage in Brazil. Constancy has its price, and here the price is company: by late morning the lagoon fills. This is a spot for repetition, for stacking hours against a wind you can count on — and at that, it does better than almost anywhere.",
     "sourceUrl": "https://www.windfinder.com/windstatistics/cumbuco",
     "sources": [
       "https://www.windfinder.com/windstatistics/cumbuco",
@@ -12978,28 +12978,28 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Verão, apenas com bom tempo (vento de leste)"
+        "Summer, in settled weather only (easterly wind)"
       ],
       "activitySpecific": {
-        "profundidade": "~3–8m; largar em 3–5m de areia a ~100m da praia",
-        "tipo_fundo": "Areia no centro; rochas junto à praia; posidonia protegida ao redor",
-        "holding": "Bom em areia; piora com W/NW",
-        "protecao": "Abrigada de E/SE (Levante); exposta a W/SW/NW — só bom tempo, não é refúgio",
-        "amarracao": "Fundeio próprio na areia (fora da posidonia, atrás das boias de banho)",
-        "servicos": "Nenhum náutico; restaurantes na praia; combustível em La Savina",
-        "perigos_preco": "Rochas + multas altas por posidonia (Decreto 25/2018). Preço: fundeio livre na areia (fora da posidonia e das boias de banho); NÃO tem campo de boias oficial PortsIB. O valor de €42/dia que circula é de 2020 (cobrança municipal presencial) e não está confirmado para a temporada atual — verificar in loco"
+        "depth": "~3–8m; drop in 3–5m over sand, roughly 100m off the beach",
+        "bottom_type": "Sand in the middle; rock close to the shore; protected posidonia (seagrass) all around",
+        "holding": "Good in sand; deteriorates with W/NW",
+        "protection": "Sheltered from E/SE (the Levante, the easterly wind); exposed to W/SW/NW — fair weather only, not a refuge",
+        "mooring": "Anchor on your own in the sand (clear of the posidonia, behind the swim buoys)",
+        "services": "No nautical services; restaurants on the beach; fuel at La Savina",
+        "hazards_price": "Rock plus steep fines for damaging posidonia (Decreto 25/2018). Price: free anchoring in the sand (clear of the posidonia and the swim buoys); there is NO official PortsIB buoy field. The €42/day figure that circulates dates from 2020 (a municipal fee collected in person) and is not confirmed for the current season — verify on site"
       },
       "fieldStatus": {
-        "profundidade": "fonte_afirma",
-        "tipo_fundo": "verificado",
-        "holding": "fonte_afirma",
-        "protecao": "verificado",
-        "amarracao": "verificado",
-        "servicos": "fonte_afirma",
-        "perigos_preco": "estimativa"
+        "depth": "source_claims",
+        "bottom_type": "verified",
+        "holding": "source_claims",
+        "protection": "verified",
+        "mooring": "verified",
+        "services": "source_claims",
+        "hazards_price": "estimate"
       }
     },
-    "description": "Cala Saona trai a própria reputação: no cartão-postal, uma ferradura de areia entre falésias avermelhadas e pinheiros. Na prática, só entrega essa calmaria com vento de leste — com Levante fica lisa e o pôr do sol a oeste justifica a fama. Mas basta o Ponent virar que a mesma abertura a oeste passa a canalizar swell para dentro; a areia agarra, o problema é o rolar. Quem fundeia aqui lê o boletim antes de romantizar o lugar. Regra de ouro das Baleares: largar só na areia, longe das manchas de posidonia — não por etiqueta, mas porque a Guardia Civil cobra em euros de quatro dígitos. Parada de dia, não porto de abrigo.",
+    "description": "Cala Saona betrays its own postcard: a horseshoe of sand between rust-red cliffs and pines. That stillness only holds with an easterly — under the Levante the water goes glass-flat and the sunset to the west earns the fame. But let the Ponent (the westerly) turn, and the same opening to the west funnels swell straight in; the sand holds fine, the trouble is the roll. Whoever anchors here reads the forecast before romanticising the place. The golden rule of the Balearics: drop only on sand, well off the posidonia meadows — not out of etiquette, but because the Guardia Civil bills you in four-figure euros. A daytime stop, not a harbour of refuge.",
     "sourceUrl": "https://www.sailboatliveaboard.com/Formentera-Balearics-Sailing-Guide.html",
     "sources": [
       "https://www.sailboatliveaboard.com/Formentera-Balearics-Sailing-Guide.html",
@@ -13024,28 +13024,28 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Temporada 22/11/2025 – 03/05/2026"
+        "Season 22/11/2025 – 03/05/2026"
       ],
       "activitySpecific": {
-        "km_por_dificuldade": "150 km próprios (600 km+ no passe 3 Vallées). ~87% iniciante/intermediário",
-        "altitude_desnivel": "Vila a 2.300m (a mais alta da Europa); domínio esquiável de ~1.800m a 3.230m → desnível ~1.400m. Obs: em ponto esquiável mais alto, Tignes supera",
-        "telefericos": "22 locais (funitels, telecabinas, cadeiras); ~31 com Orelle",
-        "temporada": "22/11/2025 – 03/05/2026",
-        "snowpark": "Sim — Plateau (~70–90 mil m²), zonas por nível + airbag Jump'Air",
-        "neve_historico": "~600–650 cm/ano (média histórica, não cota do dia)",
-        "preco_passe": "€71/dia (150 km) · €81,80/dia (3 Vallées) — tarifa 25/26"
+        "km_by_difficulty": "150 km of its own runs (600 km+ on the 3 Vallées pass). ~87% beginner/intermediate",
+        "altitude_vertical": "Village at 2,300m (the highest in Europe); skiable domain from ~1,800m to 3,230m → vertical drop ~1,400m. Note: at its highest skiable point, Tignes goes higher",
+        "lifts": "22 local lifts (funitels, gondolas, chairs); ~31 including Orelle",
+        "season": "22/11/2025 – 03/05/2026",
+        "snowpark": "Yes — Plateau (~70,000–90,000 m²), zones by level + Jump'Air airbag",
+        "snow_history": "~600–650 cm/year (historical average, not a same-day reading)",
+        "pass_price": "€71/day (150 km) · €81.80/day (3 Vallées) — 25/26 tariff"
       },
       "fieldStatus": {
-        "km_por_dificuldade": "estimativa",
-        "altitude_desnivel": "verificado",
-        "telefericos": "estimativa",
-        "temporada": "verificado",
-        "snowpark": "estimativa",
-        "neve_historico": "verificado",
-        "preco_passe": "fonte_afirma"
+        "km_by_difficulty": "estimate",
+        "altitude_vertical": "verified",
+        "lifts": "estimate",
+        "season": "verified",
+        "snowpark": "estimate",
+        "snow_history": "verified",
+        "pass_price": "source_claims"
       }
     },
-    "description": "Val Thorens não pede desculpas pelo que é: concreto a 2.300 metros, sem floresta, sem charme de vilarejo — e por isso funciona quando o resto dos Alpes torce por neve. A altitude é o argumento inteiro. Você esquia num anfiteatro de circos glaciares acima da linha das árvores, com pistas largas que descem lisas do Cime Caron, e quase sempre tem base até maio. É terreno para quem quer volume e quilometragem cruzeiro, não para quem caça o corredor preto secreto — a estação vive do azul e do vermelho, e da conexão que abre os 600 km num único passe. Vá sabendo: o vento no topo fecha a parte alta num piscar, e o après-ski aqui é sério.",
+    "description": "Val Thorens makes no apology for what it is: concrete at 2,300 metres, no forest, no village charm — and that is exactly why it holds when the rest of the Alps is still praying for snow. Altitude is the whole argument. You ski an amphitheatre of glacial cirques above the treeline, wide pistes running clean off the Cime Caron, with a base that usually lasts into May. This is ground for those who want volume and long cruising kilometres, not for anyone hunting the secret black couloir — the resort lives on its blues and reds, and on the link that opens 600 km on a single pass. Come knowing two things: the wind up top can shut the high ground in a heartbeat, and the après-ski here is not for the faint of heart.",
     "sourceUrl": "https://en.wikipedia.org/wiki/Val_Thorens",
     "sources": [
       "https://en.wikipedia.org/wiki/Val_Thorens",
@@ -13071,30 +13071,30 @@
       "waterType": [],
       "waterTemp": null,
       "bestMonths": [
-        "Outono (out–nov, pico out) e primavera (abr–jun)"
+        "Autumn (Oct–Nov, peak Oct) and spring (Apr–Jun)"
       ],
       "activitySpecific": {
-        "disciplina": "Esportiva — ilha 100% sport (sem boulder/trad relevante)",
-        "n_vias": "~4.200 vias em 61 setores (guia 2023)",
-        "histograma_graus": "F3a a F9a; ~metade até 6b+; 700+ vias 7b e acima",
-        "tipo_rocha": "Calcário (tufas, estalactites, pockets)",
-        "aspect": "Setores majoritariamente voltados a oeste/sul",
-        "melhor_epoca": "Outono (out–nov, pico out) e primavera (pico abr–mai; jun já esquenta)",
-        "aproximacao": "20–35 min a pé aos setores de Masouri",
-        "altura_protecao": "Vias ~30m (single-pitch + multipitch); grampeada com titânio; 15–17 costuras + corda 70m"
+        "discipline": "Sport climbing — a 100% sport island (no significant bouldering or trad)",
+        "number_of_routes": "~4,200 routes across 61 sectors (2023 guidebook)",
+        "grade_distribution": "F3a to F9a; roughly half up to 6b+; 700+ routes at 7b and above",
+        "rock_type": "Limestone (tufas, stalactites, pockets)",
+        "aspect": "Sectors mostly facing west and south",
+        "best_season": "Autumn (Oct–Nov, peak Oct) and spring (peak Apr–May; June already warming up)",
+        "approach": "20–35 min on foot to the Masouri sectors",
+        "height_protection": "Routes ~30m (single-pitch and multipitch); titanium bolts; 15–17 quickdraws plus a 70m rope"
       },
       "fieldStatus": {
-        "disciplina": "verificado",
-        "n_vias": "fonte_afirma",
-        "histograma_graus": "fonte_afirma",
-        "tipo_rocha": "verificado",
-        "aspect": "fonte_afirma",
-        "melhor_epoca": "verificado",
-        "aproximacao": "fonte_afirma",
-        "altura_protecao": "verificado"
+        "discipline": "verified",
+        "number_of_routes": "source_claims",
+        "grade_distribution": "source_claims",
+        "rock_type": "verified",
+        "aspect": "source_claims",
+        "best_season": "verified",
+        "approach": "source_claims",
+        "height_protection": "verified"
       }
     },
-    "description": "Kalymnos não é um crag — é uma ilha inteira organizada em torno da escalada, e isso muda a experiência. Você dorme em Masouri, toma café olhando Telendos do outro lado do canal e caminha vinte minutos morro acima até paredes de calcário crivadas de tufas e estalactites. O atrativo não é o topo da pirâmide de graus — é o volume de vias de meia-dificuldade bem grampeadas: quem escala no 6a–6b+ tem semanas sem repetir setor, e é raro um destino onde o intermediário e o escalador de 8a dividem o mesmo estacionamento sem atrito. Vá no outono: outubro concentra os dias secos. No verão, regra inegociável — escale na sombra, planeje o setor pela orientação, não pela vontade. Leve corda de 70 e conte as costuras antes de sair do chão.",
+    "description": "Kalymnos isn't a crag — it's an entire island built around climbing, and that changes what the days feel like. You sleep in Masouri, drink your coffee watching Telendos across the channel, and walk twenty minutes uphill to limestone walls riddled with tufas and stalactites. The pull here isn't the top of the grade pyramid — it's the sheer volume of well-bolted mid-grade lines: climb at 6a–6b+ and you can go weeks without repeating a sector, and it's rare to find a place where the intermediate and the 8a climber share the same parking lot without friction. Come in autumn; October holds the dry days. In summer the rule is non-negotiable — climb in the shade, choose your sector by its aspect, not by wishful thinking. Bring a 70m rope, and count your quickdraws before you leave the ground.",
     "sourceUrl": "https://climbkalymnos.com/climbing/",
     "sources": [
       "https://climbkalymnos.com/climbing/",
