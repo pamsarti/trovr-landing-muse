@@ -44,13 +44,6 @@ export function WorldMap({ points }: { points: MapPoint[] }) {
     };
   }, []);
 
-  useEffect(() => {
-    if (!active) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && setActive(null);
-    window.addEventListener("keydown", onKey);
-    return () => window.removeEventListener("keydown", onKey);
-  }, [active]);
-
   const projection = useMemo(
     () =>
       geoEqualEarth()
