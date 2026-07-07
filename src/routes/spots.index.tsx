@@ -1,11 +1,17 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, useState } from "react";
-import { getContinents, validateSpotsSearch } from "@/lib/spots-data";
+import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import {
+  getContinents,
+  getSpotsByActivity,
+  slugify,
+  validateSpotsSearch,
+} from "@/lib/spots-data";
 import {
   ActivitySelector,
   SpotsFooter,
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
+import type { MapPoint } from "@/components/spots/WorldMap";
 
 // Client-only: react-simple-maps fetches a topology JSON at runtime.
 const WorldMap = lazy(() =>
@@ -40,6 +46,31 @@ function SpotsIndex() {
   const total = continents.reduce((n, c) => n + c.count, 0);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
+  const navigate = useNavigate();
+
+  // Map defaults to kite when no activity is selected.
+  const mapActivity = activity ?? "kite";
+  const points: MapPoint[] = useMemo(() => {
+    return getSpotsByActivity(mapActivity)
+      .filter((s) => s.coordinates != null)
+      .map((s) => ({
+        id: s.id,
+        lat: s.coordinates!.lat,
+        lng: s.coordinates!.lng,
+        label: s.name,
+        activity: s.activity,
+        onClick: () =>
+          navigate({
+            to: "/spots/$continent/$region/$spot",
+            params: {
+              continent: slugify(s.region),
+              region: slugify(s.city),
+              spot: slugify(s.name),
+            },
+            search: { activity: s.activity },
+          }),
+      }));
+  }, [mapActivity, navigate]);
 
   return (
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
@@ -67,7 +98,7 @@ function SpotsIndex() {
                 <div className="aspect-[980/520] w-full border border-stone/15 bg-stone/5" />
               }
             >
-              <WorldMap />
+              <WorldMap points={points} />
             </Suspense>
           ) : (
             <div className="aspect-[980/520] w-full border border-stone/15 bg-stone/5" />
