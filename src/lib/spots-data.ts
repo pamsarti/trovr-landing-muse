@@ -147,7 +147,7 @@ export const ACTIVITIES: {
   color?: string;
 }[] = [
   { id: "kite", label: "Kite", active: true },
-  { id: "surf", label: "Surf", active: false },
+  { id: "surf", label: "Surf", active: true },
   { id: "snow", label: "Snow", active: false },
   { id: "dive", label: "Dive", active: false },
   { id: "climb", label: "Climb", active: false },
