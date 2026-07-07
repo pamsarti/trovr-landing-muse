@@ -1,7 +1,16 @@
 import rawSpots from "@/data/spots.json";
 
 export type SpotStatus = "active" | "coming-soon";
-export type Activity = "kite" | "surf" | "snow" | "dive" | "climb" | "sail";
+export type Activity =
+  | "kite"
+  | "surf"
+  | "snow"
+  | "dive"
+  | "climb"
+  | "sail"
+  | "hike"
+  | "run"
+  | "bike";
 
 export type Spot = {
   id: string;
@@ -16,10 +25,13 @@ export type Spot = {
     waterType: string[];
     waterTemp: string | null;
     bestMonths: string[];
+    activitySpecific?: Record<string, string>;
+    fieldStatus?: Record<string, "verificado" | "fonte_afirma" | "estimativa">;
   };
   description: string;
   descriptionRaw?: string;
   sourceUrl?: string;
+  sources?: string[];
   status: SpotStatus;
   /** Optional link to a Journal article slug covering this spot. */
   journalSlug?: string;
@@ -127,11 +139,20 @@ export function findSpot(
   );
 }
 
-export const ACTIVITIES: { id: Activity; label: string; active: boolean }[] = [
+export const ACTIVITIES: {
+  id: Activity;
+  label: string;
+  active: boolean;
+  icon?: string;
+  color?: string;
+}[] = [
   { id: "kite", label: "Kite", active: true },
   { id: "surf", label: "Surf", active: false },
   { id: "snow", label: "Snow", active: false },
   { id: "dive", label: "Dive", active: false },
   { id: "climb", label: "Climb", active: false },
   { id: "sail", label: "Sail", active: false },
+  { id: "hike", label: "Hiking", active: false, icon: "footprints", color: "#4a7c59" },
+  { id: "run", label: "Trail Running", active: false, icon: "activity", color: "#c2410c" },
+  { id: "bike", label: "MTB", active: false, icon: "bike", color: "#a16207" },
 ];
