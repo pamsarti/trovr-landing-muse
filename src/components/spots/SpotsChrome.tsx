@@ -1,4 +1,4 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import type { ReactNode } from "react";
 import { ACTIVITIES, type Activity } from "@/lib/spots-data";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -39,6 +39,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
 }
 
 export function ActivitySelector({ current }: { current: Activity }) {
+  const navigate = useNavigate();
   return (
     <div className="mx-auto max-w-6xl px-6 pt-10">
       <div className="flex flex-wrap gap-2">
@@ -59,8 +60,15 @@ export function ActivitySelector({ current }: { current: Activity }) {
             );
           }
           return (
-            <span
+            <button
               key={a.id}
+              type="button"
+              onClick={() =>
+                navigate({
+                  to: "/spots",
+                  search: { activity: a.id },
+                })
+              }
               className={`${base} ${
                 isCurrent
                   ? "border-ink bg-ink text-paper"
@@ -69,7 +77,7 @@ export function ActivitySelector({ current }: { current: Activity }) {
               style={{ borderRadius: 2 }}
             >
               {a.label}
-            </span>
+            </button>
           );
         })}
       </div>
