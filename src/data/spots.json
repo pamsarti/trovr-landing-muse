@@ -12674,5 +12674,49 @@
     "descriptionRaw": "Why Visit?\nYou might wonder what's so special about Brandon Bay; all I can say is it's magical, and the views are absolutely stunning. Get this on your bucket list, especially if you're into wave kiting or surfing.\nThe area offers a plethora of places to visit within a really small area. The bay itself is located near Castlegregory, a quaint village on the Dingle Peninsula.\nThe area is visually stunning; it reminds me of New Zealand, with large green mountains rising from the sea, nestled in between the peninsula and the bay itself. It's not your regular holiday destination; you aren't guaranteed wind, waves, or even sunshine; the latter is often hard to come by. However, it's this changing of conditions that make it so unique. Every day is different; you can ride multiple spots on various crafts, often having 3-4 sessions a day. Regardless of the weather, I promise you; you'll have fun.\nOn the road...\nIt's not just the phenomenal kitesurfing and surfing, the friendliness of the Irish people or the Guinness at night in the pub. Everything combines, and just looking out at the bay and seeing the view is almost unbelievable. I've been here quite a few times, and I'll keep coming back, perhaps even more regularly.\nWind and Weather\nIt's pretty wild here on the west coast of Ireland - especially if you visit in Autumn or Spring, as those are when the wind and waves are most promising. Make sure you pack a jacket and waterproof boots and be prepared for anything. It's a frontal location, with systems coming in off the Atlantic Sea, that means big swells in the Autumn, Winter and Spring. Winds will vary in direction and strength, but SW is the prevailing direction; it's worth remembering thanks to the shape of the peninsula, it is always cross-shore somewhere. You can move to different beaches to get your desired conditions. So if you want to cross off, no worries; at the same time, somewhere will be crossed and cross on; it's just a case of checking the wind and looking a",
     "sourceUrl": "https://www.iksurfmag.com/travel-guides/europe/ireland/brandon-bay/",
     "status": "coming-soon"
+  },
+  {
+    "id": "uluwatu-surf",
+    "activity": "surf",
+    "name": "Uluwatu",
+    "region": "Asia",
+    "city": "Indonesia",
+    "country": "Indonesia",
+    "coordinates": null,
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Estação seca (mai–out); pico em agosto"
+      ],
+      "activitySpecific": {
+        "tipo_break": "Reef break de esquerda (complexo: The Peak, Racetracks, Temples)",
+        "tipo_fundo": "Coral e pedra afiada",
+        "nivel_recomendado": "Intermediário-avançado a pro, conforme a seção e o tamanho (The Peak: inter-avançado; Outside Corner/Bombie grandes: só experts)",
+        "swell_ideal": "Direção SW; funciona de <1m e aguenta até 4m+",
+        "vento_ideal": "Sudeste (offshore na estação seca)",
+        "mare_ideal": "Varia por seção (Peak: média-alta; Racetracks: baixa-média)",
+        "perigos": "Coral raso, corrente, acesso pela caverna (perigoso na maré alta — backwash contra a falésia)",
+        "lotacao": "Ultra lotado, semana e fim de semana"
+      },
+      "fieldStatus": {
+        "tipo_break": "verificado",
+        "tipo_fundo": "verificado",
+        "nivel_recomendado": "verificado",
+        "swell_ideal": "verificado",
+        "vento_ideal": "verificado",
+        "mare_ideal": "fonte_afirma",
+        "perigos": "verificado",
+        "lotacao": "verificado"
+      }
+    },
+    "description": "Uluwatu não é uma onda — são cinco, enfileiradas ao longo de um paredão de calcário na ponta de Bukit, e a que você surfa depende da maré e do swell do dia. Entra-se pela caverna sob o penhasco, o que já filtra quem chega: quando a maré sobe, a caverna some, e sair na hora errada significa remar até a praia seguinte. As esquerdas correm rápidas e ocas sobre coral raso — Racetracks entrega o tubo na maré baixa, The Peak abre parede na alta. É tão constante e tão bom que está sempre cheio. Vá cedo, leve botinha, e trate o reef como o que é: a razão da onda ser perfeita e o motivo de você poder se cortar.",
+    "sourceUrl": "https://www.wannasurf.com/spot/Asia/Indonesia/Bali/Uluwatu/",
+    "sources": [
+      "https://www.wannasurf.com/spot/Asia/Indonesia/Bali/Uluwatu/",
+      "https://www.surf-forecast.com/breaks/Uluwatu"
+    ],
+    "status": "active"
   }
 ]
