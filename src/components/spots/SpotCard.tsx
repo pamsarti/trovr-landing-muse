@@ -57,7 +57,7 @@ export function SpotCard({
   spot: Spot;
   continent: Continent;
   region: RegionGroup;
-  activity: Activity;
+  activity?: Activity;
 }) {
   const activityMeta = ACTIVITIES.find((a) => a.id === spot.activity);
   const activityLabel = activityMeta?.label ?? spot.activity;

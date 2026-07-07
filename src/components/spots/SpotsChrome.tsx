@@ -38,7 +38,7 @@ export function Breadcrumbs({ items }: { items: Crumb[] }) {
   );
 }
 
-export function ActivitySelector({ current }: { current: Activity }) {
+export function ActivitySelector({ current }: { current?: Activity }) {
   const navigate = useNavigate();
   return (
     <div className="mx-auto max-w-6xl px-6 pt-10">
@@ -66,7 +66,8 @@ export function ActivitySelector({ current }: { current: Activity }) {
               onClick={() =>
                 navigate({
                   to: "/spots",
-                  search: { activity: a.id },
+                  // Clicking the current filter clears it; otherwise applies it.
+                  search: isCurrent ? {} : { activity: a.id },
                 })
               }
               className={`${base} ${
@@ -75,6 +76,7 @@ export function ActivitySelector({ current }: { current: Activity }) {
                   : "border-stone/40 text-ink hover:border-ink"
               }`}
               style={{ borderRadius: 2 }}
+              aria-pressed={isCurrent}
             >
               {a.label}
             </button>

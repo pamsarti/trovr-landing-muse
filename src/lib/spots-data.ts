@@ -39,9 +39,12 @@ export type Spot = {
 
 const ALL_SPOTS = rawSpots as Spot[];
 
-/** Single data accessor. Filter by activity FIRST, always. */
-export function getSpotsByActivity(activity: Activity): Spot[] {
-  return ALL_SPOTS.filter((s) => s.activity === activity);
+/** Optional activity filter. When null/undefined, returns every spot. */
+export type ActivityFilter = Activity | null | undefined;
+
+/** Single data accessor. Pass an Activity to filter; pass null/undefined for all. */
+export function getSpotsByActivity(activity: ActivityFilter): Spot[] {
+  return activity ? ALL_SPOTS.filter((s) => s.activity === activity) : ALL_SPOTS;
 }
 
 export function slugify(value: string): string {
@@ -79,7 +82,7 @@ const CONTINENT_IMAGES: Record<string, string> = {
     "https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1600&q=70",
 };
 
-export function getContinents(activity: Activity): Continent[] {
+export function getContinents(activity: ActivityFilter): Continent[] {
   const spots = getSpotsByActivity(activity);
   const map = new Map<string, number>();
   for (const s of spots) map.set(s.region, (map.get(s.region) ?? 0) + 1);
@@ -93,7 +96,7 @@ export function getContinents(activity: Activity): Continent[] {
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function findContinent(activity: Activity, slug: string) {
+export function findContinent(activity: ActivityFilter, slug: string) {
   return getContinents(activity).find((c) => c.slug === slug) ?? null;
 }
 
@@ -103,7 +106,7 @@ export type RegionGroup = {
   count: number;
 };
 
-export function getRegions(activity: Activity, continentName: string): RegionGroup[] {
+export function getRegions(activity: ActivityFilter, continentName: string): RegionGroup[] {
   const spots = getSpotsByActivity(activity).filter((s) => s.region === continentName);
   const map = new Map<string, number>();
   for (const s of spots) map.set(s.city, (map.get(s.city) ?? 0) + 1);
@@ -112,12 +115,16 @@ export function getRegions(activity: Activity, continentName: string): RegionGro
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function findRegion(activity: Activity, continentName: string, regionSlug: string) {
+export function findRegion(
+  activity: ActivityFilter,
+  continentName: string,
+  regionSlug: string,
+) {
   return getRegions(activity, continentName).find((r) => r.slug === regionSlug) ?? null;
 }
 
 export function getSpotsInRegion(
-  activity: Activity,
+  activity: ActivityFilter,
   continentName: string,
   regionName: string,
 ): Spot[] {
@@ -127,7 +134,7 @@ export function getSpotsInRegion(
 }
 
 export function findSpot(
-  activity: Activity,
+  activity: ActivityFilter,
   continentName: string,
   regionName: string,
   spotSlug: string,
@@ -139,36 +146,62 @@ export function findSpot(
   );
 }
 
-export const ACTIVITIES: {
+/**
+ * Static metadata for every supported activity. Whether an activity is
+ * available in the UI (`active`) is derived below from real data — a filter
+ * chip appears/enables the moment a spot with that activity exists.
+ */
+const ACTIVITY_META: {
   id: Activity;
   label: string;
-  active: boolean;
   icon?: string;
   color?: string;
 }[] = [
-  { id: "kite", label: "Kite", active: true },
-  { id: "surf", label: "Surf", active: true },
-  { id: "snow", label: "Snow", active: false },
-  { id: "dive", label: "Dive", active: false },
-  { id: "climb", label: "Climb", active: false },
-  { id: "sail", label: "Sail", active: false },
-  { id: "hike", label: "Hiking", active: false, icon: "footprints", color: "#4a7c59" },
-  { id: "run", label: "Trail Running", active: false, icon: "activity", color: "#c2410c" },
-  { id: "bike", label: "MTB", active: false, icon: "bike", color: "#a16207" },
+  { id: "kite", label: "Kite" },
+  { id: "surf", label: "Surf" },
+  { id: "snow", label: "Snow" },
+  { id: "dive", label: "Dive" },
+  { id: "climb", label: "Climb" },
+  { id: "sail", label: "Sail" },
+  { id: "hike", label: "Hiking", icon: "footprints", color: "#4a7c59" },
+  { id: "run", label: "Trail Running", icon: "activity", color: "#c2410c" },
+  { id: "bike", label: "MTB", icon: "bike", color: "#a16207" },
 ];
 
-const ACTIVITY_IDS: readonly Activity[] = ACTIVITIES.map((a) => a.id);
+const ACTIVITY_IDS: readonly Activity[] = ACTIVITY_META.map((a) => a.id);
 
-/** Parse an unknown value as an Activity; falls back to "kite". */
-export function parseActivity(value: unknown): Activity {
+const ACTIVITIES_WITH_SPOTS: ReadonlySet<Activity> = new Set(
+  ALL_SPOTS.map((s) => s.activity).filter((a): a is Activity =>
+    (ACTIVITY_IDS as readonly string[]).includes(a),
+  ),
+);
+
+export const ACTIVITIES: {
+  id: Activity;
+  label: string;
+  /** True when at least one spot with this activity is registered. */
+  active: boolean;
+  icon?: string;
+  color?: string;
+}[] = ACTIVITY_META.map((meta) => ({
+  ...meta,
+  active: ACTIVITIES_WITH_SPOTS.has(meta.id),
+}));
+
+/** Parse an unknown value as an Activity; returns null when absent/invalid. */
+export function parseActivity(value: unknown): Activity | null {
   return typeof value === "string" && (ACTIVITY_IDS as readonly string[]).includes(value)
     ? (value as Activity)
-    : "kite";
+    : null;
 }
 
-/** Validator for TanStack Router `validateSearch` on the /spots/* routes. */
+/**
+ * Validator for TanStack Router `validateSearch` on the /spots/* routes.
+ * When the URL has no `activity`, no filter is applied.
+ */
 export function validateSpotsSearch(search: Record<string, unknown>): {
-  activity: Activity;
+  activity?: Activity;
 } {
-  return { activity: parseActivity(search.activity) };
+  const parsed = parseActivity(search.activity);
+  return parsed ? { activity: parsed } : {};
 }
