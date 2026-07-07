@@ -5,7 +5,7 @@ import {
   findSpot,
   validateSpotsSearch,
 } from "@/lib/spots-data";
-import { ACTIVITIES } from "@/lib/spots-data";
+import { SpotCard } from "@/components/spots/SpotCard";
 import {
   Breadcrumbs,
   SpotsFooter,
