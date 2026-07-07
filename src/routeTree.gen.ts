@@ -21,9 +21,9 @@ import { Route as JournalSlugRouteImport } from './routes/journal.$slug'
 import { Route as AdminLoginRouteImport } from './routes/admin.login'
 import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$continent.index'
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
+import { Route as SpotsContinentRegionRouteImport } from './routes/spots.$continent.$region'
 import { Route as ApiAuthLogoutRouteImport } from './routes/api.auth.logout'
 import { Route as ApiAuthLoginRouteImport } from './routes/api.auth.login'
-import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 import { Route as ApiAuthCallbackGithubRouteImport } from './routes/api.auth.callback.github'
 
@@ -87,6 +87,11 @@ const TripsThemeSlugRoute = TripsThemeSlugRouteImport.update({
   path: '/trips/theme/$slug',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SpotsContinentRegionRoute = SpotsContinentRegionRouteImport.update({
+  id: '/spots/$continent/$region',
+  path: '/spots/$continent/$region',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ApiAuthLogoutRoute = ApiAuthLogoutRouteImport.update({
   id: '/api/auth/logout',
   path: '/api/auth/logout',
@@ -97,17 +102,11 @@ const ApiAuthLoginRoute = ApiAuthLoginRouteImport.update({
   path: '/api/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SpotsContinentRegionIndexRoute =
-  SpotsContinentRegionIndexRouteImport.update({
-    id: '/spots/$continent/$region/',
-    path: '/spots/$continent/$region/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const SpotsContinentRegionSpotRoute =
   SpotsContinentRegionSpotRouteImport.update({
-    id: '/spots/$continent/$region/$spot',
-    path: '/spots/$continent/$region/$spot',
-    getParentRoute: () => rootRouteImport,
+    id: '/$spot',
+    path: '/$spot',
+    getParentRoute: () => SpotsContinentRegionRoute,
   } as any)
 const ApiAuthCallbackGithubRoute = ApiAuthCallbackGithubRouteImport.update({
   id: '/api/auth/callback/github',
@@ -128,11 +127,11 @@ export interface FileRoutesByFullPath {
   '/trips/': typeof TripsIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/api/auth/callback/github': typeof ApiAuthCallbackGithubRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
-  '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -147,11 +146,11 @@ export interface FileRoutesByTo {
   '/trips': typeof TripsIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/api/auth/callback/github': typeof ApiAuthCallbackGithubRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
-  '/spots/$continent/$region': typeof SpotsContinentRegionIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -167,11 +166,11 @@ export interface FileRoutesById {
   '/trips/': typeof TripsIndexRoute
   '/api/auth/login': typeof ApiAuthLoginRoute
   '/api/auth/logout': typeof ApiAuthLogoutRoute
+  '/spots/$continent/$region': typeof SpotsContinentRegionRouteWithChildren
   '/trips/theme/$slug': typeof TripsThemeSlugRoute
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/api/auth/callback/github': typeof ApiAuthCallbackGithubRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
-  '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -188,11 +187,11 @@ export interface FileRouteTypes {
     | '/trips/'
     | '/api/auth/login'
     | '/api/auth/logout'
+    | '/spots/$continent/$region'
     | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/api/auth/callback/github'
     | '/spots/$continent/$region/$spot'
-    | '/spots/$continent/$region/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -207,11 +206,11 @@ export interface FileRouteTypes {
     | '/trips'
     | '/api/auth/login'
     | '/api/auth/logout'
+    | '/spots/$continent/$region'
     | '/trips/theme/$slug'
     | '/spots/$continent'
     | '/api/auth/callback/github'
     | '/spots/$continent/$region/$spot'
-    | '/spots/$continent/$region'
   id:
     | '__root__'
     | '/'
@@ -226,11 +225,11 @@ export interface FileRouteTypes {
     | '/trips/'
     | '/api/auth/login'
     | '/api/auth/logout'
+    | '/spots/$continent/$region'
     | '/trips/theme/$slug'
     | '/spots/$continent/'
     | '/api/auth/callback/github'
     | '/spots/$continent/$region/$spot'
-    | '/spots/$continent/$region/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -246,11 +245,10 @@ export interface RootRouteChildren {
   TripsIndexRoute: typeof TripsIndexRoute
   ApiAuthLoginRoute: typeof ApiAuthLoginRoute
   ApiAuthLogoutRoute: typeof ApiAuthLogoutRoute
+  SpotsContinentRegionRoute: typeof SpotsContinentRegionRouteWithChildren
   TripsThemeSlugRoute: typeof TripsThemeSlugRoute
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
   ApiAuthCallbackGithubRoute: typeof ApiAuthCallbackGithubRoute
-  SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
-  SpotsContinentRegionIndexRoute: typeof SpotsContinentRegionIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -339,6 +337,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof TripsThemeSlugRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/spots/$continent/$region': {
+      id: '/spots/$continent/$region'
+      path: '/spots/$continent/$region'
+      fullPath: '/spots/$continent/$region'
+      preLoaderRoute: typeof SpotsContinentRegionRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/api/auth/logout': {
       id: '/api/auth/logout'
       path: '/api/auth/logout'
@@ -353,19 +358,12 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/spots/$continent/$region/': {
-      id: '/spots/$continent/$region/'
-      path: '/spots/$continent/$region'
-      fullPath: '/spots/$continent/$region/'
-      preLoaderRoute: typeof SpotsContinentRegionIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/spots/$continent/$region/$spot': {
       id: '/spots/$continent/$region/$spot'
-      path: '/spots/$continent/$region/$spot'
+      path: '/$spot'
       fullPath: '/spots/$continent/$region/$spot'
       preLoaderRoute: typeof SpotsContinentRegionSpotRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof SpotsContinentRegionRoute
     }
     '/api/auth/callback/github': {
       id: '/api/auth/callback/github'
@@ -376,6 +374,17 @@ declare module '@tanstack/react-router' {
     }
   }
 }
+
+interface SpotsContinentRegionRouteChildren {
+  SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
+}
+
+const SpotsContinentRegionRouteChildren: SpotsContinentRegionRouteChildren = {
+  SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
+}
+
+const SpotsContinentRegionRouteWithChildren =
+  SpotsContinentRegionRoute._addFileChildren(SpotsContinentRegionRouteChildren)
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
@@ -390,11 +399,10 @@ const rootRouteChildren: RootRouteChildren = {
   TripsIndexRoute: TripsIndexRoute,
   ApiAuthLoginRoute: ApiAuthLoginRoute,
   ApiAuthLogoutRoute: ApiAuthLogoutRoute,
+  SpotsContinentRegionRoute: SpotsContinentRegionRouteWithChildren,
   TripsThemeSlugRoute: TripsThemeSlugRoute,
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
   ApiAuthCallbackGithubRoute: ApiAuthCallbackGithubRoute,
-  SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
-  SpotsContinentRegionIndexRoute: SpotsContinentRegionIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, Outlet } from "@tanstack/react-router";
 import {
   findContinent,
   findRegion,
@@ -13,7 +13,7 @@ import {
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
 
-export const Route = createFileRoute("/spots/$continent/$region/")({
+export const Route = createFileRoute("/spots/$continent/$region")({
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {
@@ -50,7 +50,7 @@ export const Route = createFileRoute("/spots/$continent/$region/")({
       spots: getSpotsInRegion(activity, continent.name, region.name),
     };
   },
-  component: RegionPage,
+  component: RegionLayout,
   notFoundComponent: () => (
     <main className="bg-paper text-ink font-sans min-h-screen">
       <SpotsHeader />
@@ -76,13 +76,8 @@ export const Route = createFileRoute("/spots/$continent/$region/")({
   ),
 });
 
-function RegionPage() {
-  const { activity, continent, region, spots } = Route.useLoaderData() as {
-    activity: ReturnType<typeof validateSpotsSearch>["activity"];
-    continent: NonNullable<ReturnType<typeof findContinent>>;
-    region: NonNullable<ReturnType<typeof findRegion>>;
-    spots: Spot[];
-  };
+function RegionLayout() {
+  const { activity, continent, region, spots } = Route.useLoaderData();
 
   return (
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
@@ -161,6 +156,9 @@ function RegionPage() {
       </section>
 
       <SpotsFooter />
+
+      {/* Nested $spot route renders the SpotPanel here as an overlay. */}
+      <Outlet />
     </main>
   );
 }

@@ -1,16 +1,11 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, notFound, useRouter } from "@tanstack/react-router";
 import {
   findContinent,
   findRegion,
   findSpot,
   validateSpotsSearch,
 } from "@/lib/spots-data";
-import { SpotCard } from "@/components/spots/SpotCard";
-import {
-  Breadcrumbs,
-  SpotsFooter,
-  SpotsHeader,
-} from "@/components/spots/SpotsChrome";
+import { SpotPanel } from "@/components/spots/SpotPanel";
 
 export const Route = createFileRoute("/spots/$continent/$region/$spot")({
   validateSearch: validateSpotsSearch,
@@ -50,86 +45,38 @@ export const Route = createFileRoute("/spots/$continent/$region/$spot")({
     if (!spot) throw notFound();
     return { activity, continent, region, spot };
   },
-  component: SpotPage,
-  notFoundComponent: () => (
-    <main className="bg-paper text-ink font-sans min-h-screen">
-      <SpotsHeader />
-      <section className="px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl text-ink">Spot not found.</h1>
-        <Link
-          to="/spots"
-          className="mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
-        >
-          Back to all spots
-        </Link>
-      </section>
-    </main>
-  ),
-  errorComponent: ({ error }) => (
-    <main className="bg-paper text-ink font-sans min-h-screen">
-      <SpotsHeader />
-      <section className="px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl text-ink">Something went wrong.</h1>
-        <p className="mt-3 text-sm text-stone">{error.message}</p>
-      </section>
-    </main>
-  ),
+  component: SpotPanelRoute,
+  notFoundComponent: () => null,
+  errorComponent: () => null,
 });
 
-function SpotPage() {
-  const { activity, continent, region, spot } = Route.useLoaderData() as {
-    activity: ReturnType<typeof validateSpotsSearch>["activity"];
-    continent: NonNullable<ReturnType<typeof findContinent>>;
-    region: NonNullable<ReturnType<typeof findRegion>>;
-    spot: NonNullable<ReturnType<typeof findSpot>>;
+function SpotPanelRoute() {
+  const { activity, continent, region, spot } = Route.useLoaderData();
+  const router = useRouter();
+
+  // Close by walking history back when possible (so browser Back and the X
+  // share the same effect). If landed directly (no history to pop), navigate
+  // explicitly up to the region layout — which keeps the panel from
+  // reappearing on refresh and keeps the URL clean.
+  const handleClose = () => {
+    if (typeof window !== "undefined" && window.history.length > 1) {
+      router.history.back();
+    } else {
+      router.navigate({
+        to: "/spots/$continent/$region",
+        params: { continent: continent.slug, region: region.slug },
+        search: activity ? { activity } : {},
+      });
+    }
   };
 
   return (
-    <main className="bg-paper text-ink font-sans antialiased min-h-screen">
-      <SpotsHeader />
-      <Breadcrumbs
-        items={[
-          {
-            label: "Spots",
-            to: (
-              <Link to="/spots" search={{ activity }} className="hover:text-ink">
-                Spots
-              </Link>
-            ),
-          },
-          {
-            label: continent.name,
-            to: (
-              <Link
-                to="/spots/$continent"
-                params={{ continent: continent.slug }}
-                search={{ activity }}
-                className="hover:text-ink"
-              >
-                {continent.name}
-              </Link>
-            ),
-          },
-          {
-            label: region.name,
-            to: (
-              <Link
-                to="/spots/$continent/$region"
-                params={{ continent: continent.slug, region: region.slug }}
-                search={{ activity }}
-                className="hover:text-ink"
-              >
-                {region.name}
-              </Link>
-            ),
-          },
-          { label: spot.name },
-        ]}
-      />
-
-      <SpotCard spot={spot} continent={continent} region={region} activity={activity} />
-
-      <SpotsFooter />
-    </main>
+    <SpotPanel
+      spot={spot}
+      continent={continent}
+      region={region}
+      activity={activity}
+      onClose={handleClose}
+    />
   );
 }
