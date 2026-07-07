@@ -12682,7 +12682,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -8.833,
+      "lng": 115.083
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12716,6 +12719,388 @@
     "sources": [
       "https://www.wannasurf.com/spot/Asia/Indonesia/Bali/Uluwatu/",
       "https://www.surf-forecast.com/breaks/Uluwatu"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "laugavegur-hike",
+    "activity": "hike",
+    "name": "Laugavegur",
+    "region": "Europe",
+    "city": "Iceland",
+    "country": "Iceland",
+    "coordinates": {
+      "lat": 63.9903,
+      "lng": -19.0605
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "25/jun a 15/set; ideal jul–ago"
+      ],
+      "activitySpecific": {
+        "distancia": "54 km",
+        "elevacao": "~1.600–1.700 m D+ / ~1.800 m D− (fontes divergem; o '500m' que circula é só a subida do dia 1, não o acumulado)",
+        "perfil": "Grande subida no Dia 1 (600m→1.050m, ponto alto); depois predominantemente descida",
+        "dificuldade": "Moderada — exigente fisicamente, não técnica",
+        "tempo_estimado": "4 dias / 3 noites (padrão cabana-a-cabana)",
+        "tipo_percurso": "Ponto-a-ponto (norte→sul)",
+        "terreno_agua": "Riolito, lava, obsidiana, deserto negro, floresta no fim. 6 cabanas com água/chuveiro; 3 rios de vau (nível sobe com chuva/sol)"
+      },
+      "fieldStatus": {
+        "distancia": "fonte_afirma",
+        "elevacao": "estimativa",
+        "perfil": "verificado",
+        "dificuldade": "fonte_afirma",
+        "tempo_estimado": "verificado",
+        "tipo_percurso": "verificado",
+        "terreno_agua": "verificado"
+      }
+    },
+    "description": "Cabe em quatro dias e resume quase tudo que a Islândia tem de estranho: sai das fontes termais de Landmannalaugar por montanhas de riolito que parecem pintadas, cruza um platô de neve e obsidiana no ponto mais alto, e desce por desertos de areia preta até uma floresta de bétulas em Þórsmörk. O que exige atenção não são as subidas — a trilha é bem marcada — são os rios: três se atravessam a pé, e o nível muda no mesmo dia conforme chove ou faz sol. Vá em julho ou agosto, reserve as cabanas cedo, e leia o quadro de condições dos guardas antes de cada vau.",
+    "sourceUrl": "https://www.fi.is/en/hiking-trails/trails/view/laugavegur",
+    "sources": [
+      "https://www.fi.is/en/hiking-trails/trails/view/laugavegur",
+      "https://laugavegurtrailguide.com/the-trail/",
+      "https://www.alltrails.com/trail/iceland/southern/laugavegur-thorsmork-landmannalaugar"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "utmb-ultra-trail-du-mont-blanc-run",
+    "activity": "run",
+    "name": "UTMB® (Ultra-Trail du Mont-Blanc)",
+    "region": "Europe",
+    "city": "French Alps",
+    "country": "France",
+    "coordinates": {
+      "lat": 45.9237,
+      "lng": 6.8694
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Prova anual no fim de agosto"
+      ],
+      "activitySpecific": {
+        "distancia": "174 km (varia por ano)",
+        "elevacao_perfil": "9.900 m D+; 31 km iniciais rolantes, depois 4 cols acima de 2.400m",
+        "tipo_piso": "Trilha alpina: estrada/larga no início, single-track nos vales, pedra técnica nos cols (sem % oficial)",
+        "grau_tecnico": "Difícil (extremo); DNF histórico ~35–38%",
+        "traçado": "Circular (loop) — volta a Chamonix",
+        "tempo_estimado": "Elite ~20h; pelotão 30–46h; limite 46h45",
+        "seguranca_agua": "15 postos; refeição quente em Chapieux, Courmayeur e Champex-Lac; percurso balizado"
+      },
+      "fieldStatus": {
+        "distancia": "verificado",
+        "elevacao_perfil": "verificado",
+        "tipo_piso": "estimativa",
+        "grau_tecnico": "fonte_afirma",
+        "traçado": "verificado",
+        "tempo_estimado": "fonte_afirma",
+        "seguranca_agua": "verificado"
+      }
+    },
+    "description": "Quem corre o UTMB dá uma volta inteira no Mont-Blanc a pé, cruzando três fronteiras entre a largada e a chegada no mesmo ponto de Chamonix. O terreno engana: os primeiros 30 km são generosos, e é aí que o novato queima as pernas que vai precisar nos quatro cols acima de 2.400m, na segunda noite sem dormir. Entre um col e outro, o single-track dos refúgios Bertone e Bonatti, com a face italiana do maciço à esquerda, é dos trechos mais bonitos do esporte. Mais de um terço do pelotão não chega ao arco. É o contrato: o cenário é o mais fotografado do trail, e o preço é integral.",
+    "sourceUrl": "https://montblanc.utmb.world/races/UTMB",
+    "sources": [
+      "https://montblanc.utmb.world/races/UTMB",
+      "https://montblanc.utmb.world/races-runners/runners/aid-stations",
+      "https://en.wikipedia.org/wiki/Ultra-Trail_du_Mont-Blanc"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "a-line-bike",
+    "activity": "bike",
+    "name": "A-Line",
+    "region": "North America",
+    "city": "British Columbia",
+    "country": "Canada",
+    "coordinates": {
+      "lat": 50.1163,
+      "lng": -122.9574
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Temporada do parque: mai–out"
+      ],
+      "activitySpecific": {
+        "distancia_traçado": "~2,9 km (fontes: 2,9–3,4 km); point-to-point (só descida)",
+        "elevacao": "Ganho 0m (trilha de lift); descida ~325–331m",
+        "superficie": "100% machine-groomed (terra moldada + features de madeira)",
+        "tipo_trilha": "Flow / jump trail de downhill: tabletops, bermas, saltos de 3–9m+",
+        "dificuldade_tecnica": "Preto (black diamond); MTB Project marca duplo-preto",
+        "exigencia_fisica": "Difícil — precisa de velocidade p/ limpar os saltos",
+        "status_condicao": "Temporada 2026: 15/mai–12/out. Report 12/05/2026: parcialmente aberta (Z2 fechado)",
+        "bike_acesso": "Downhill full-suspension; acesso pelo lift Fitzsimmons Express de 8 lugares (upgrade concluído em 2024)"
+      },
+      "fieldStatus": {
+        "distancia_traçado": "fonte_afirma",
+        "elevacao": "verificado",
+        "superficie": "verificado",
+        "tipo_trilha": "verificado",
+        "dificuldade_tecnica": "verificado",
+        "exigencia_fisica": "fonte_afirma",
+        "status_condicao": "verificado",
+        "bike_acesso": "verificado"
+      }
+    },
+    "description": "Se existe um trecho de terra que virou gramática da modalidade, é a A-Line — a trilha que ensinou uma geração o que 'flow' quer dizer. Você entra no topo pela Fitzsimmons sem pedalar e o que vem é uma sequência de mesas e bermas moldadas por máquina, projetadas para te manter fora do freio. É etiquetada de preto, mas 'flow acessível' e 'preta com drops obrigatórios' convivem na mesma pista — as duas são verdade, dependendo de quanta velocidade você tem coragem de carregar. Ela vive em pedaços: o parque a divide em zonas que nem sempre abrem juntas. Acesso por cadeira, não por perna.",
+    "sourceUrl": "https://www.mtbproject.com/trail/7000534/upper-a-line",
+    "sources": [
+      "https://www.mtbproject.com/trail/7000534/upper-a-line",
+      "https://www.trailforks.com/route/aline/",
+      "https://blog.whistlerblackcomb.com/2026/05/whismas-ready-2026-trail-report/"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "ss-thistlegorm-dive",
+    "activity": "dive",
+    "name": "SS Thistlegorm",
+    "region": "Africa",
+    "city": "Red Sea (Egypt)",
+    "country": "Egypt",
+    "coordinates": {
+      "lat": 27.8142,
+      "lng": 33.92
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Ano todo; melhor na primavera e outono (mar–mai e set–nov)"
+      ],
+      "activitySpecific": {
+        "profundidade": "~16m (convés) a 30–32m (fundo); média ~26m",
+        "nivel_certificacao": "Advanced Open Water (passa dos 20m); Wreck Specialty p/ penetração",
+        "tipo_acesso": "Só de barco: day-trip ~4h de Sharm, ou liveaboard",
+        "tipo_mergulho": "Naufrágio — cargueiro britânico da 2ª Guerra (1941), com penetração",
+        "visibilidade": "~10–25m (melhor jun e set)",
+        "corrente": "Nenhuma a forte (0–4 nós); descida na corda",
+        "vida_marinha": "Barracuda, batfish, tartaruga residente, jacks, Napoleon, moreia, atum",
+        "epoca_temperatura": "Ano todo; melhor primavera/outono (mar–mai, set–nov). Água ~22°C (inverno) a ~27–29°C (verão)"
+      },
+      "fieldStatus": {
+        "profundidade": "fonte_afirma",
+        "nivel_certificacao": "fonte_afirma",
+        "tipo_acesso": "fonte_afirma",
+        "tipo_mergulho": "verificado",
+        "visibilidade": "fonte_afirma",
+        "corrente": "fonte_afirma",
+        "vida_marinha": "fonte_afirma",
+        "epoca_temperatura": "fonte_afirma"
+      }
+    },
+    "description": "Poucos naufrágios entregam o que o Thistlegorm entrega: um cargueiro parado no fundo do Estreito de Gubal desde outubro de 1941, ainda carregado com a guerra que ia abastecer. Você desce pela corda — quase sempre há corrente — e o casco surge com motocicletas BSA enfileiradas nos porões, caminhões, vagões de trem, munição. Não é recife artificial coberto de coral; é um instantâneo interrompido, e essa é a diferença. Com 30m no ponto fundo, penetração e corrente que vira em minutos, o cartão de Advanced não é burocracia. Vá de liveaboard se puder: chegar antes das lanchas de Sharm, com a visibilidade limpa e o convés vazio, separa o Thistlegorm memorável do lotado.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/SS_Thistlegorm",
+    "sources": [
+      "https://en.wikipedia.org/wiki/SS_Thistlegorm",
+      "https://www.padi.com/dive-site/egypt/thistlegorm-wreck/",
+      "https://divezone.net/divesite/ss-thistlegorm-wreck",
+      "https://scubadiving.place/divesite/ss-thistlegorm-wreck"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "cumbuco-kite",
+    "activity": "kite",
+    "name": "Cumbuco",
+    "region": "South America",
+    "city": "Ceará (Brazil)",
+    "country": "Brazil",
+    "coordinates": {
+      "lat": -3.6278,
+      "lng": -38.7278
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Ago a dez; janela jul–jan; pico ago–set"
+      ],
+      "activitySpecific": {
+        "vento_por_mes": "Alísios diários na seca; pico ago–set. À tarde costuma soprar ~15–22 nós, rajadas até ~28–30. Média medida na estação de referência mais próxima (aeroporto de Fortaleza, ~27 km) é ~11 nós/ano — puxada para baixo pela entressafra parada (fev–abr, 5–10 nós). Não há estação no próprio spot",
+        "melhor_epoca": "Ago a dez; janela jul–jan",
+        "direcao_vento": "Leste-sudeste; side/cross-onshore",
+        "tipo_agua": "Praia: choppy c/ ondas. Lagoa do Cauípe: flat total",
+        "fundo_agua": "Areia (sem pedra/coral), salgada",
+        "mare_corrente": "Maré muito relevante (praia muda de tamanho); corrente não documentada",
+        "nivel_disciplina": "Iniciante→avançado; freeride, freestyle, foil, wave",
+        "perigos_lancamento": "Banhistas, pescadores, barcos, carros no Cauípe; praia de 6km+ p/ lançamento",
+        "kite_wing_ambos": "Ambos — wingfoil forte no Cauípe"
+      },
+      "fieldStatus": {
+        "vento_por_mes": "fonte_afirma",
+        "melhor_epoca": "fonte_afirma",
+        "direcao_vento": "verificado",
+        "tipo_agua": "fonte_afirma",
+        "fundo_agua": "fonte_afirma",
+        "mare_corrente": "fonte_afirma",
+        "nivel_disciplina": "fonte_afirma",
+        "perigos_lancamento": "fonte_afirma",
+        "kite_wing_ambos": "fonte_afirma"
+      }
+    },
+    "description": "Cumbuco entrega o que promete sem drama: de agosto a dezembro o alísio entra de manhã, reforça à tarde na faixa dos 15–22 nós e não te larga até o fim do dia, dia após dia — regularidade que quem vem do vento intermitente da Europa custa a acreditar. A geografia resolve o resto: o mar é picado, bom para saltar, e a poucos quilômetros ao norte a Lagoa do Cauípe oferece o oposto exato — água de espelho, rasa, fundo de areia — onde iniciante aprende e quem migra para wing ou foil encontra o cenário mais indulgente do Brasil. O preço da constância é a companhia: no fim da manhã a lagoa lota. É spot de repetição, de acumular horas com vento previsível, e nisso faz melhor que quase qualquer lugar.",
+    "sourceUrl": "https://www.windfinder.com/windstatistics/cumbuco",
+    "sources": [
+      "https://www.windfinder.com/windstatistics/cumbuco",
+      "https://www.kiteadvice.com/spots-seasons-south-america/kitesurfing-in-cumbuco/",
+      "https://kitesurftheworld.com/kitespots/brazil/cauipe-lagoon-cumbuco/",
+      "https://www.freeridekitesurf.com/en/kitesurfing-spots/brazil/cumbuco/"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "cala-saona-sail",
+    "activity": "sail",
+    "name": "Cala Saona",
+    "region": "Europe",
+    "city": "Balearic Islands",
+    "country": "Spain",
+    "coordinates": {
+      "lat": 38.6931,
+      "lng": 1.3888
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Verão, apenas com bom tempo (vento de leste)"
+      ],
+      "activitySpecific": {
+        "profundidade": "~3–8m; largar em 3–5m de areia a ~100m da praia",
+        "tipo_fundo": "Areia no centro; rochas junto à praia; posidonia protegida ao redor",
+        "holding": "Bom em areia; piora com W/NW",
+        "protecao": "Abrigada de E/SE (Levante); exposta a W/SW/NW — só bom tempo, não é refúgio",
+        "amarracao": "Fundeio próprio na areia (fora da posidonia, atrás das boias de banho)",
+        "servicos": "Nenhum náutico; restaurantes na praia; combustível em La Savina",
+        "perigos_preco": "Rochas + multas altas por posidonia (Decreto 25/2018). Preço: fundeio livre na areia (fora da posidonia e das boias de banho); NÃO tem campo de boias oficial PortsIB. O valor de €42/dia que circula é de 2020 (cobrança municipal presencial) e não está confirmado para a temporada atual — verificar in loco"
+      },
+      "fieldStatus": {
+        "profundidade": "fonte_afirma",
+        "tipo_fundo": "verificado",
+        "holding": "fonte_afirma",
+        "protecao": "verificado",
+        "amarracao": "verificado",
+        "servicos": "fonte_afirma",
+        "perigos_preco": "estimativa"
+      }
+    },
+    "description": "Cala Saona trai a própria reputação: no cartão-postal, uma ferradura de areia entre falésias avermelhadas e pinheiros. Na prática, só entrega essa calmaria com vento de leste — com Levante fica lisa e o pôr do sol a oeste justifica a fama. Mas basta o Ponent virar que a mesma abertura a oeste passa a canalizar swell para dentro; a areia agarra, o problema é o rolar. Quem fundeia aqui lê o boletim antes de romantizar o lugar. Regra de ouro das Baleares: largar só na areia, longe das manchas de posidonia — não por etiqueta, mas porque a Guardia Civil cobra em euros de quatro dígitos. Parada de dia, não porto de abrigo.",
+    "sourceUrl": "https://www.sailboatliveaboard.com/Formentera-Balearics-Sailing-Guide.html",
+    "sources": [
+      "https://www.sailboatliveaboard.com/Formentera-Balearics-Sailing-Guide.html",
+      "https://www.blueoceanibiza.com/es/noticias/fondeo-en-formentera",
+      "https://marine-project.com/posidonia-anchoring-fines-balearics-2025/"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "val-thorens-snow",
+    "activity": "snow",
+    "name": "Val Thorens",
+    "region": "Europe",
+    "city": "French Alps",
+    "country": "France",
+    "coordinates": {
+      "lat": 45.2981,
+      "lng": 6.58
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Temporada 22/11/2025 – 03/05/2026"
+      ],
+      "activitySpecific": {
+        "km_por_dificuldade": "150 km próprios (600 km+ no passe 3 Vallées). ~87% iniciante/intermediário",
+        "altitude_desnivel": "Vila a 2.300m (a mais alta da Europa); domínio esquiável de ~1.800m a 3.230m → desnível ~1.400m. Obs: em ponto esquiável mais alto, Tignes supera",
+        "telefericos": "22 locais (funitels, telecabinas, cadeiras); ~31 com Orelle",
+        "temporada": "22/11/2025 – 03/05/2026",
+        "snowpark": "Sim — Plateau (~70–90 mil m²), zonas por nível + airbag Jump'Air",
+        "neve_historico": "~600–650 cm/ano (média histórica, não cota do dia)",
+        "preco_passe": "€71/dia (150 km) · €81,80/dia (3 Vallées) — tarifa 25/26"
+      },
+      "fieldStatus": {
+        "km_por_dificuldade": "estimativa",
+        "altitude_desnivel": "verificado",
+        "telefericos": "estimativa",
+        "temporada": "verificado",
+        "snowpark": "estimativa",
+        "neve_historico": "verificado",
+        "preco_passe": "fonte_afirma"
+      }
+    },
+    "description": "Val Thorens não pede desculpas pelo que é: concreto a 2.300 metros, sem floresta, sem charme de vilarejo — e por isso funciona quando o resto dos Alpes torce por neve. A altitude é o argumento inteiro. Você esquia num anfiteatro de circos glaciares acima da linha das árvores, com pistas largas que descem lisas do Cime Caron, e quase sempre tem base até maio. É terreno para quem quer volume e quilometragem cruzeiro, não para quem caça o corredor preto secreto — a estação vive do azul e do vermelho, e da conexão que abre os 600 km num único passe. Vá sabendo: o vento no topo fecha a parte alta num piscar, e o après-ski aqui é sério.",
+    "sourceUrl": "https://en.wikipedia.org/wiki/Val_Thorens",
+    "sources": [
+      "https://en.wikipedia.org/wiki/Val_Thorens",
+      "https://www.snow-forecast.com/resorts/Val-Thorens",
+      "https://www.onthesnow.co.uk/northern-alps/val-thorens/historical-snowfall",
+      "https://www.seevalthorens.com/lifts/dates"
+    ],
+    "status": "active"
+  },
+  {
+    "id": "kalymnos-climb",
+    "activity": "climb",
+    "name": "Kalymnos",
+    "region": "Europe",
+    "city": "Dodecanese (Greece)",
+    "country": "Greece",
+    "coordinates": {
+      "lat": 37.0013,
+      "lng": 26.9419
+    },
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Outono (out–nov, pico out) e primavera (abr–jun)"
+      ],
+      "activitySpecific": {
+        "disciplina": "Esportiva — ilha 100% sport (sem boulder/trad relevante)",
+        "n_vias": "~4.200 vias em 61 setores (guia 2023)",
+        "histograma_graus": "F3a a F9a; ~metade até 6b+; 700+ vias 7b e acima",
+        "tipo_rocha": "Calcário (tufas, estalactites, pockets)",
+        "aspect": "Setores majoritariamente voltados a oeste/sul",
+        "melhor_epoca": "Outono (out–nov, pico out) e primavera (pico abr–mai; jun já esquenta)",
+        "aproximacao": "20–35 min a pé aos setores de Masouri",
+        "altura_protecao": "Vias ~30m (single-pitch + multipitch); grampeada com titânio; 15–17 costuras + corda 70m"
+      },
+      "fieldStatus": {
+        "disciplina": "verificado",
+        "n_vias": "fonte_afirma",
+        "histograma_graus": "fonte_afirma",
+        "tipo_rocha": "verificado",
+        "aspect": "fonte_afirma",
+        "melhor_epoca": "verificado",
+        "aproximacao": "fonte_afirma",
+        "altura_protecao": "verificado"
+      }
+    },
+    "description": "Kalymnos não é um crag — é uma ilha inteira organizada em torno da escalada, e isso muda a experiência. Você dorme em Masouri, toma café olhando Telendos do outro lado do canal e caminha vinte minutos morro acima até paredes de calcário crivadas de tufas e estalactites. O atrativo não é o topo da pirâmide de graus — é o volume de vias de meia-dificuldade bem grampeadas: quem escala no 6a–6b+ tem semanas sem repetir setor, e é raro um destino onde o intermediário e o escalador de 8a dividem o mesmo estacionamento sem atrito. Vá no outono: outubro concentra os dias secos. No verão, regra inegociável — escale na sombra, planeje o setor pela orientação, não pela vontade. Leve corda de 70 e conte as costuras antes de sair do chão.",
+    "sourceUrl": "https://climbkalymnos.com/climbing/",
+    "sources": [
+      "https://climbkalymnos.com/climbing/",
+      "https://climbkalymnos.com/guidebook/",
+      "https://www.thecrag.com/en/climbing/greece/kalymnos",
+      "https://www.mountainproject.com/area/106093650/kalymnos"
     ],
     "status": "active"
   }
