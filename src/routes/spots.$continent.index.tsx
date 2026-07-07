@@ -9,6 +9,7 @@ import {
   Breadcrumbs,
   SpotsFooter,
   SpotsHeader,
+  ActivitySelector,
 } from "@/components/spots/SpotsChrome";
 
 export const Route = createFileRoute("/spots/$continent/")({
@@ -98,6 +99,8 @@ function ContinentPage() {
           </p>
         </div>
       </section>
+
+      <ActivitySelector current={activity} />
 
       <section className="px-6 pb-24">
         <ul className="mx-auto max-w-3xl divide-y divide-stone/15 border-y border-stone/15">
