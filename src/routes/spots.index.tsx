@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useState } from "react";
-import { getContinents } from "@/lib/spots-data";
+import { getContinents, validateSpotsSearch } from "@/lib/spots-data";
 import {
   ActivitySelector,
   SpotsFooter,
@@ -13,6 +13,7 @@ const WorldMap = lazy(() =>
 );
 
 export const Route = createFileRoute("/spots/")({
+  validateSearch: validateSpotsSearch,
   head: () => ({
     meta: [
       { title: "Spots — A guide to the world's kitesurf spots | Trovr" },
@@ -34,7 +35,8 @@ export const Route = createFileRoute("/spots/")({
 });
 
 function SpotsIndex() {
-  const continents = getContinents("kite");
+  const { activity } = Route.useSearch();
+  const continents = getContinents(activity);
   const total = continents.reduce((n, c) => n + c.count, 0);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -73,7 +75,7 @@ function SpotsIndex() {
         </div>
       </section>
 
-      <ActivitySelector current="kite" />
+      <ActivitySelector current={activity} />
 
       <section className="px-6 pb-24 pt-12">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
@@ -82,6 +84,7 @@ function SpotsIndex() {
               key={c.slug}
               to="/spots/$continent"
               params={{ continent: c.slug }}
+              search={{ activity }}
               className="group block"
             >
               <div className="relative aspect-[4/5] overflow-hidden bg-stone/20">
