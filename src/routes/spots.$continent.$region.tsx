@@ -11,7 +11,9 @@ import {
   Breadcrumbs,
   SpotsFooter,
   SpotsHeader,
+  ActivitySelector,
 } from "@/components/spots/SpotsChrome";
+import { ACTIVITIES } from "@/lib/spots-data";
 
 export const Route = createFileRoute("/spots/$continent/$region")({
   validateSearch: validateSpotsSearch,
@@ -120,6 +122,8 @@ function RegionLayout() {
         </div>
       </section>
 
+      <ActivitySelector current={activity} />
+
       <section className="px-6 pb-24">
         <ul className="mx-auto max-w-3xl divide-y divide-stone/15 border-y border-stone/15">
           {spots.map((s: Spot) => (
@@ -138,11 +142,15 @@ function RegionLayout() {
                   <span className="font-serif text-2xl text-ink sm:text-3xl">
                     {s.name}
                   </span>
-                  {s.country && s.country !== region.name && (
-                    <span className="text-[11px] uppercase tracking-[0.2em] text-stone">
-                      {s.country}
+                  <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-stone">
+                    {s.country && s.country !== region.name && <span>{s.country}</span>}
+                    <span
+                      className="border border-stone/40 px-2 py-1 text-ink"
+                      style={{ borderRadius: 2 }}
+                    >
+                      {ACTIVITIES.find((a) => a.id === s.activity)?.label ?? s.activity}
                     </span>
-                  )}
+                  </span>
                 </div>
                 {s.description && (
                   <p className="mt-2 max-w-2xl text-sm leading-[1.6] text-stone sm:text-base">
