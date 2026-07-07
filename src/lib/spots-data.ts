@@ -26,7 +26,7 @@ export type Spot = {
     waterTemp: string | null;
     bestMonths: string[];
     activitySpecific?: Record<string, string>;
-    fieldStatus?: Record<string, "verificado" | "fonte_afirma" | "estimativa">;
+    fieldStatus?: Record<string, "verified" | "source_claims" | "estimate">;
   };
   description: string;
   descriptionRaw?: string;
