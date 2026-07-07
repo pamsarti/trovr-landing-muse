@@ -90,7 +90,7 @@ function SpotsIndex() {
       <section className="px-6 pb-4">
         <div className="mx-auto max-w-6xl">
           <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-stone">
-            From the journal · pinned locations
+            Pinned spots · {mapActivity}
           </p>
           {mounted ? (
             <Suspense
