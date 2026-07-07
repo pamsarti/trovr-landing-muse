@@ -4,6 +4,7 @@ import {
   findRegion,
   getSpotsInRegion,
   slugify,
+  validateSpotsSearch,
   type Spot,
 } from "@/lib/spots-data";
 import {
@@ -13,15 +14,20 @@ import {
 } from "@/components/spots/SpotsChrome";
 
 export const Route = createFileRoute("/spots/$continent/$region/")({
-  head: ({ params }) => {
-    const continent = findContinent("kite", params.continent);
-    const region = continent ? findRegion("kite", continent.name, params.region) : null;
+  validateSearch: validateSpotsSearch,
+  loaderDeps: ({ search }) => ({ activity: search.activity }),
+  head: ({ params, loaderData }) => {
+    const activity =
+      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
+        ?.activity ?? "kite";
+    const continent = findContinent(activity, params.continent);
+    const region = continent ? findRegion(activity, continent.name, params.region) : null;
     const title = region
       ? `${region.name} — ${continent?.name} Spots | Trovr`
       : "Spots | Trovr";
     const description = region
-      ? `Kitesurf spots in ${region.name}, ${continent?.name}. ${region.count} locations.`
-      : "Kitesurf spots guide.";
+      ? `Spots in ${region.name}, ${continent?.name}. ${region.count} locations.`
+      : "Spots guide.";
     return {
       meta: [
         { title },
@@ -31,15 +37,17 @@ export const Route = createFileRoute("/spots/$continent/$region/")({
       ],
     };
   },
-  loader: ({ params }) => {
-    const continent = findContinent("kite", params.continent);
+  loader: ({ params, deps }) => {
+    const { activity } = deps;
+    const continent = findContinent(activity, params.continent);
     if (!continent) throw notFound();
-    const region = findRegion("kite", continent.name, params.region);
+    const region = findRegion(activity, continent.name, params.region);
     if (!region) throw notFound();
     return {
+      activity,
       continent,
       region,
-      spots: getSpotsInRegion("kite", continent.name, region.name),
+      spots: getSpotsInRegion(activity, continent.name, region.name),
     };
   },
   component: RegionPage,
@@ -69,7 +77,8 @@ export const Route = createFileRoute("/spots/$continent/$region/")({
 });
 
 function RegionPage() {
-  const { continent, region, spots } = Route.useLoaderData() as {
+  const { activity, continent, region, spots } = Route.useLoaderData() as {
+    activity: ReturnType<typeof validateSpotsSearch>["activity"];
     continent: NonNullable<ReturnType<typeof findContinent>>;
     region: NonNullable<ReturnType<typeof findRegion>>;
     spots: Spot[];
@@ -83,7 +92,7 @@ function RegionPage() {
           {
             label: "Spots",
             to: (
-              <Link to="/spots" className="hover:text-ink">
+              <Link to="/spots" search={{ activity }} className="hover:text-ink">
                 Spots
               </Link>
             ),
@@ -94,6 +103,7 @@ function RegionPage() {
               <Link
                 to="/spots/$continent"
                 params={{ continent: continent.slug }}
+                search={{ activity }}
                 className="hover:text-ink"
               >
                 {continent.name}
@@ -126,6 +136,7 @@ function RegionPage() {
                   region: region.slug,
                   spot: slugify(s.name),
                 }}
+                search={{ activity }}
                 className="group block py-6 transition-colors hover:bg-stone/5"
               >
                 <div className="flex items-baseline justify-between gap-6">

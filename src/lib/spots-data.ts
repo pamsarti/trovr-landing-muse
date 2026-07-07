@@ -156,3 +156,19 @@ export const ACTIVITIES: {
   { id: "run", label: "Trail Running", active: false, icon: "activity", color: "#c2410c" },
   { id: "bike", label: "MTB", active: false, icon: "bike", color: "#a16207" },
 ];
+
+const ACTIVITY_IDS: readonly Activity[] = ACTIVITIES.map((a) => a.id);
+
+/** Parse an unknown value as an Activity; falls back to "kite". */
+export function parseActivity(value: unknown): Activity {
+  return typeof value === "string" && (ACTIVITY_IDS as readonly string[]).includes(value)
+    ? (value as Activity)
+    : "kite";
+}
+
+/** Validator for TanStack Router `validateSearch` on the /spots/* routes. */
+export function validateSpotsSearch(search: Record<string, unknown>): {
+  activity: Activity;
+} {
+  return { activity: parseActivity(search.activity) };
+}

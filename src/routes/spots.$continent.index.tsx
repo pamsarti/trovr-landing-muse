@@ -1,5 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { findContinent, getRegions, type RegionGroup } from "@/lib/spots-data";
+import {
+  findContinent,
+  getRegions,
+  validateSpotsSearch,
+  type RegionGroup,
+} from "@/lib/spots-data";
 import {
   Breadcrumbs,
   SpotsFooter,
@@ -7,12 +12,17 @@ import {
 } from "@/components/spots/SpotsChrome";
 
 export const Route = createFileRoute("/spots/$continent/")({
-  head: ({ params }) => {
-    const continent = findContinent("kite", params.continent);
+  validateSearch: validateSpotsSearch,
+  loaderDeps: ({ search }) => ({ activity: search.activity }),
+  head: ({ params, loaderData }) => {
+    const activity =
+      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
+        ?.activity ?? "kite";
+    const continent = findContinent(activity, params.continent);
     const title = continent ? `${continent.name} — Spots | Trovr` : "Spots | Trovr";
     const description = continent
-      ? `Kitesurf spots across ${continent.name}. ${continent.count} regions and locations to explore.`
-      : "Kitesurf spots guide.";
+      ? `Spots across ${continent.name}. ${continent.count} regions and locations to explore.`
+      : "Spots guide.";
     return {
       meta: [
         { title },
@@ -22,10 +32,11 @@ export const Route = createFileRoute("/spots/$continent/")({
       ],
     };
   },
-  loader: ({ params }) => {
-    const continent = findContinent("kite", params.continent);
+  loader: ({ params, deps }) => {
+    const { activity } = deps;
+    const continent = findContinent(activity, params.continent);
     if (!continent) throw notFound();
-    return { continent, regions: getRegions("kite", continent.name) };
+    return { activity, continent, regions: getRegions(activity, continent.name) };
   },
   component: ContinentPage,
   notFoundComponent: () => (
@@ -54,7 +65,8 @@ export const Route = createFileRoute("/spots/$continent/")({
 });
 
 function ContinentPage() {
-  const { continent, regions } = Route.useLoaderData() as {
+  const { activity, continent, regions } = Route.useLoaderData() as {
+    activity: ReturnType<typeof validateSpotsSearch>["activity"];
     continent: NonNullable<ReturnType<typeof findContinent>>;
     regions: RegionGroup[];
   };
@@ -67,7 +79,7 @@ function ContinentPage() {
           {
             label: "Spots",
             to: (
-              <Link to="/spots" className="hover:text-ink">
+              <Link to="/spots" search={{ activity }} className="hover:text-ink">
                 Spots
               </Link>
             ),
@@ -94,6 +106,7 @@ function ContinentPage() {
               <Link
                 to="/spots/$continent/$region"
                 params={{ continent: continent.slug, region: r.slug }}
+                search={{ activity }}
                 className="group flex items-baseline justify-between gap-6 py-6 transition-colors hover:bg-stone/5"
               >
                 <span className="font-serif text-2xl text-ink sm:text-3xl">{r.name}</span>
