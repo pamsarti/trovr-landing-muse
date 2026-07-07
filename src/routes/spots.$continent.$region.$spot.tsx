@@ -1,5 +1,10 @@
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
-import { findContinent, findRegion, findSpot } from "@/lib/spots-data";
+import {
+  findContinent,
+  findRegion,
+  findSpot,
+  validateSpotsSearch,
+} from "@/lib/spots-data";
 import {
   Breadcrumbs,
   SpotsFooter,
@@ -7,19 +12,24 @@ import {
 } from "@/components/spots/SpotsChrome";
 
 export const Route = createFileRoute("/spots/$continent/$region/$spot")({
-  head: ({ params }) => {
-    const continent = findContinent("kite", params.continent);
-    const region = continent ? findRegion("kite", continent.name, params.region) : null;
+  validateSearch: validateSpotsSearch,
+  loaderDeps: ({ search }) => ({ activity: search.activity }),
+  head: ({ params, loaderData }) => {
+    const activity =
+      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
+        ?.activity ?? "kite";
+    const continent = findContinent(activity, params.continent);
+    const region = continent ? findRegion(activity, continent.name, params.region) : null;
     const spot =
       continent && region
-        ? findSpot("kite", continent.name, region.name, params.spot)
+        ? findSpot(activity, continent.name, region.name, params.spot)
         : null;
     const title = spot
       ? `${spot.name} — ${region?.name} | Trovr`
       : "Spot | Trovr";
     const description = spot?.description
       ? spot.description.slice(0, 160)
-      : `Kitesurf spot in ${region?.name ?? ""}.`;
+      : `Spot in ${region?.name ?? ""}.`;
     return {
       meta: [
         { title },
@@ -29,14 +39,15 @@ export const Route = createFileRoute("/spots/$continent/$region/$spot")({
       ],
     };
   },
-  loader: ({ params }) => {
-    const continent = findContinent("kite", params.continent);
+  loader: ({ params, deps }) => {
+    const { activity } = deps;
+    const continent = findContinent(activity, params.continent);
     if (!continent) throw notFound();
-    const region = findRegion("kite", continent.name, params.region);
+    const region = findRegion(activity, continent.name, params.region);
     if (!region) throw notFound();
-    const spot = findSpot("kite", continent.name, region.name, params.spot);
+    const spot = findSpot(activity, continent.name, region.name, params.spot);
     if (!spot) throw notFound();
-    return { continent, region, spot };
+    return { activity, continent, region, spot };
   },
   component: SpotPage,
   notFoundComponent: () => (
@@ -65,7 +76,8 @@ export const Route = createFileRoute("/spots/$continent/$region/$spot")({
 });
 
 function SpotPage() {
-  const { continent, region, spot } = Route.useLoaderData() as {
+  const { activity, continent, region, spot } = Route.useLoaderData() as {
+    activity: ReturnType<typeof validateSpotsSearch>["activity"];
     continent: NonNullable<ReturnType<typeof findContinent>>;
     region: NonNullable<ReturnType<typeof findRegion>>;
     spot: NonNullable<ReturnType<typeof findSpot>>;
@@ -79,7 +91,7 @@ function SpotPage() {
           {
             label: "Spots",
             to: (
-              <Link to="/spots" className="hover:text-ink">
+              <Link to="/spots" search={{ activity }} className="hover:text-ink">
                 Spots
               </Link>
             ),
@@ -90,6 +102,7 @@ function SpotPage() {
               <Link
                 to="/spots/$continent"
                 params={{ continent: continent.slug }}
+                search={{ activity }}
                 className="hover:text-ink"
               >
                 {continent.name}
@@ -102,6 +115,7 @@ function SpotPage() {
               <Link
                 to="/spots/$continent/$region"
                 params={{ continent: continent.slug, region: region.slug }}
+                search={{ activity }}
                 className="hover:text-ink"
               >
                 {region.name}
@@ -135,6 +149,7 @@ function SpotPage() {
             <Link
               to="/spots/$continent/$region"
               params={{ continent: continent.slug, region: region.slug }}
+              search={{ activity }}
               className="text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
             >
               ← Back to {region.name}
