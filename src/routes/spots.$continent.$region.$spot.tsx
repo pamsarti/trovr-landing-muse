@@ -5,6 +5,7 @@ import {
   findSpot,
   validateSpotsSearch,
 } from "@/lib/spots-data";
+import { ACTIVITIES } from "@/lib/spots-data";
 import {
   Breadcrumbs,
   SpotsFooter,
@@ -126,37 +127,7 @@ function SpotPage() {
         ]}
       />
 
-      <section className="px-6 py-16 sm:py-20">
-        <div className="mx-auto max-w-3xl">
-          <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-            {region.name} · {continent.name}
-          </p>
-          <h1 className="mt-4 font-serif text-4xl leading-[1.05] text-ink sm:text-5xl md:text-6xl">
-            {spot.name}
-          </h1>
-
-          {spot.description && (
-            <p className="mt-8 font-serif text-xl leading-[1.5] text-ink sm:text-2xl">
-              {spot.description}
-            </p>
-          )}
-
-          <p className="mt-12 text-sm italic text-stone">
-            Full guide coming soon — conditions, seasons, and editorial notes.
-          </p>
-
-          <div className="mt-10">
-            <Link
-              to="/spots/$continent/$region"
-              params={{ continent: continent.slug, region: region.slug }}
-              search={{ activity }}
-              className="text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
-            >
-              ← Back to {region.name}
-            </Link>
-          </div>
-        </div>
-      </section>
+      <SpotCard spot={spot} continent={continent} region={region} activity={activity} />
 
       <SpotsFooter />
     </main>
