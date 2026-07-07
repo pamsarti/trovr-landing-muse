@@ -23,7 +23,6 @@ import { Route as SpotsContinentIndexRouteImport } from './routes/spots.$contine
 import { Route as TripsThemeSlugRouteImport } from './routes/trips.theme.$slug'
 import { Route as ApiAuthLogoutRouteImport } from './routes/api.auth.logout'
 import { Route as ApiAuthLoginRouteImport } from './routes/api.auth.login'
-import { Route as SpotsContinentRegionIndexRouteImport } from './routes/spots.$continent.$region.index'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 import { Route as ApiAuthCallbackGithubRouteImport } from './routes/api.auth.callback.github'
 
@@ -97,12 +96,6 @@ const ApiAuthLoginRoute = ApiAuthLoginRouteImport.update({
   path: '/api/auth/login',
   getParentRoute: () => rootRouteImport,
 } as any)
-const SpotsContinentRegionIndexRoute =
-  SpotsContinentRegionIndexRouteImport.update({
-    id: '/spots/$continent/$region/',
-    path: '/spots/$continent/$region/',
-    getParentRoute: () => rootRouteImport,
-  } as any)
 const SpotsContinentRegionSpotRoute =
   SpotsContinentRegionSpotRouteImport.update({
     id: '/spots/$continent/$region/$spot',
@@ -132,7 +125,6 @@ export interface FileRoutesByFullPath {
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/api/auth/callback/github': typeof ApiAuthCallbackGithubRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
-  '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -151,7 +143,6 @@ export interface FileRoutesByTo {
   '/spots/$continent': typeof SpotsContinentIndexRoute
   '/api/auth/callback/github': typeof ApiAuthCallbackGithubRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
-  '/spots/$continent/$region': typeof SpotsContinentRegionIndexRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -171,7 +162,6 @@ export interface FileRoutesById {
   '/spots/$continent/': typeof SpotsContinentIndexRoute
   '/api/auth/callback/github': typeof ApiAuthCallbackGithubRoute
   '/spots/$continent/$region/$spot': typeof SpotsContinentRegionSpotRoute
-  '/spots/$continent/$region/': typeof SpotsContinentRegionIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -192,7 +182,6 @@ export interface FileRouteTypes {
     | '/spots/$continent/'
     | '/api/auth/callback/github'
     | '/spots/$continent/$region/$spot'
-    | '/spots/$continent/$region/'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -211,7 +200,6 @@ export interface FileRouteTypes {
     | '/spots/$continent'
     | '/api/auth/callback/github'
     | '/spots/$continent/$region/$spot'
-    | '/spots/$continent/$region'
   id:
     | '__root__'
     | '/'
@@ -230,7 +218,6 @@ export interface FileRouteTypes {
     | '/spots/$continent/'
     | '/api/auth/callback/github'
     | '/spots/$continent/$region/$spot'
-    | '/spots/$continent/$region/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -250,7 +237,6 @@ export interface RootRouteChildren {
   SpotsContinentIndexRoute: typeof SpotsContinentIndexRoute
   ApiAuthCallbackGithubRoute: typeof ApiAuthCallbackGithubRoute
   SpotsContinentRegionSpotRoute: typeof SpotsContinentRegionSpotRoute
-  SpotsContinentRegionIndexRoute: typeof SpotsContinentRegionIndexRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -353,13 +339,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ApiAuthLoginRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/spots/$continent/$region/': {
-      id: '/spots/$continent/$region/'
-      path: '/spots/$continent/$region'
-      fullPath: '/spots/$continent/$region/'
-      preLoaderRoute: typeof SpotsContinentRegionIndexRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/spots/$continent/$region/$spot': {
       id: '/spots/$continent/$region/$spot'
       path: '/spots/$continent/$region/$spot'
@@ -394,7 +373,6 @@ const rootRouteChildren: RootRouteChildren = {
   SpotsContinentIndexRoute: SpotsContinentIndexRoute,
   ApiAuthCallbackGithubRoute: ApiAuthCallbackGithubRoute,
   SpotsContinentRegionSpotRoute: SpotsContinentRegionSpotRoute,
-  SpotsContinentRegionIndexRoute: SpotsContinentRegionIndexRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
