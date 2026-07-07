@@ -21,20 +21,69 @@ function SeasonalChart() {
 }
 
 const KEY_LABELS: Record<string, string> = {
-  tipo_break: "Tipo de break",
-  tipo_fundo: "Tipo de fundo",
-  nivel_recomendado: "Nível recomendado",
-  swell_ideal: "Swell ideal",
-  vento_ideal: "Vento ideal",
-  mare_ideal: "Maré ideal",
-  perigos: "Perigos",
-  lotacao: "Lotação",
-  temporada: "Temporada",
-  temperatura_agua: "Temperatura da água",
-  temperatura_ar: "Temperatura do ar",
-  acesso: "Acesso",
-  vento_forca: "Força do vento",
-  vento_direcao: "Direção do vento",
+  break_type: "Break type",
+  bottom_type: "Bottom type",
+  recommended_level: "Recommended level",
+  ideal_swell: "Ideal swell",
+  ideal_wind: "Ideal wind",
+  ideal_tide: "Ideal tide",
+  hazards: "Hazards",
+  crowds: "Crowds",
+  distance: "Distance",
+  elevation: "Elevation",
+  profile: "Profile",
+  difficulty: "Difficulty",
+  estimated_time: "Estimated time",
+  route_type: "Route type",
+  terrain_water: "Terrain & water",
+  elevation_profile: "Elevation & profile",
+  terrain_surface: "Terrain & surface",
+  technical_grade: "Technical grade",
+  route_shape: "Route shape",
+  support_water: "Support & water",
+  distance_shape: "Distance & shape",
+  surface: "Surface",
+  trail_type: "Trail type",
+  technical_difficulty: "Technical difficulty",
+  physical_demand: "Physical demand",
+  status_condition: "Status & condition",
+  bike_access: "Bike & access",
+  depth: "Depth",
+  certification_level: "Certification level",
+  access_type: "Access",
+  dive_type: "Dive type",
+  visibility: "Visibility",
+  current: "Current",
+  marine_life: "Marine life",
+  season_water_temp: "Season & water temp",
+  wind_by_month: "Wind by month",
+  best_season: "Best season",
+  wind_direction: "Wind direction",
+  water_type: "Water type",
+  bottom_water: "Bottom & water",
+  tide_current: "Tide & current",
+  level_discipline: "Level & discipline",
+  hazards_launch: "Hazards & launch",
+  kite_wing: "Kite / Wing",
+  holding: "Holding",
+  protection: "Protection",
+  mooring: "Mooring",
+  services: "Services",
+  hazards_price: "Hazards & price",
+  km_by_difficulty: "Runs by difficulty",
+  altitude_vertical: "Altitude & vertical",
+  lifts: "Lifts",
+  season: "Season",
+  snowpark: "Snowpark",
+  snow_history: "Snow history",
+  pass_price: "Pass price",
+  discipline: "Discipline",
+  number_of_routes: "Number of routes",
+  grade_distribution: "Grade distribution",
+  rock_type: "Rock type",
+  aspect: "Aspect",
+  approach: "Approach",
+  height_protection: "Height & protection",
 };
 
 function humanizeKey(key: string): string {
@@ -44,8 +93,8 @@ function humanizeKey(key: string): string {
 }
 
 const STATUS_LABEL: Record<string, string> = {
-  fonte_afirma: "fonte afirma",
-  estimativa: "estimativa",
+  source_claims: "Source states",
+  estimate: "Estimate",
 };
 
 export function SpotCard({
@@ -146,7 +195,7 @@ export function SpotCard({
             <dl className="mt-4 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
               {specificEntries.map(([key, value]) => {
                 const status = fieldStatus[key];
-                const isUnverified = status && status !== "verificado";
+                const isUnverified = status && status !== "verified";
                 const statusLabel = isUnverified
                   ? STATUS_LABEL[status] ?? status
                   : null;
