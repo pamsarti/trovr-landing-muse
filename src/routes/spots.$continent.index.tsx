@@ -15,7 +15,9 @@ export const Route = createFileRoute("/spots/$continent/")({
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {
-    const activity = loaderData?.activity ?? "kite";
+    const activity =
+      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
+        ?.activity ?? "kite";
     const continent = findContinent(activity, params.continent);
     const title = continent ? `${continent.name} — Spots | Trovr` : "Spots | Trovr";
     const description = continent
