@@ -31,7 +31,6 @@ export function WorldMap({
   /** Color applied to every pin (drives the active-sport tint). */
   activeColor?: string;
 }) {
-  const [hovered, setHovered] = useState<string | null>(null);
   const [geo, setGeo] = useState<FeatureCollection<Geometry> | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const zoomLayerRef = useRef<SVGGElement | null>(null);
@@ -126,33 +125,6 @@ export function WorldMap({
                     stroke="#C9BFAE"
                     strokeWidth={0.4}
                   />
-                );
-              })}
-              </g>
-              <g>
-              {points.map((pt) => {
-                const p = projection([pt.lng, pt.lat]);
-                if (!p) return null;
-                const isHover = hovered === pt.id;
-                return (
-                  <g
-                    key={pt.id}
-                    transform={`translate(${p[0]}, ${p[1]})`}
-                    style={{ cursor: "pointer" }}
-                    onClick={pt.onClick}
-                    onMouseEnter={() => setHovered(pt.id)}
-                    onMouseLeave={() => setHovered((h) => (h === pt.id ? null : h))}
-                  >
-                    <title>{pt.label}</title>
-                    <circle r={isHover ? 12 : 9} fill={activeColor} fillOpacity={0.15} />
-                    <circle
-                      r={isHover ? 6 : 4.5}
-                      fill={activeColor}
-                      stroke="#F5EFE1"
-                      strokeWidth={1.5}
-                      aria-label={pt.label}
-                    />
-                  </g>
                 );
               })}
               </g>
