@@ -46,7 +46,16 @@ const ALL_SPOTS = rawSpots as Spot[];
  * is deleted — flip the data and they reappear.
  */
 function isPublic(spot: Spot): boolean {
-  return typeof spot.descriptionRaw === "string" && spot.descriptionRaw.trim().length > 0;
+  // A spot is only public once an editor has added curated conditions
+  // (activitySpecific fields) AND a written description. Legacy scraped
+  // entries — even those with a raw source blob or just a sourceUrl — stay
+  // hidden until they are properly filled in. Nothing is deleted.
+  const hasDescription =
+    typeof spot.description === "string" && spot.description.trim().length > 0;
+  const activitySpecific = spot.conditions?.activitySpecific;
+  const hasCuratedConditions =
+    !!activitySpecific && Object.keys(activitySpecific).length > 0;
+  return hasDescription && hasCuratedConditions;
 }
 
 const PUBLIC_SPOTS = ALL_SPOTS.filter(isPublic);
