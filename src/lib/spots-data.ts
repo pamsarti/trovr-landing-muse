@@ -35,6 +35,8 @@ export type Spot = {
   status: SpotStatus;
   /** Optional link to a Journal article slug covering this spot. */
   journalSlug?: string;
+  /** Optional link to a Trip id (see trips-data). Renders a Trip CTA on the spot card. */
+  relatedTripId?: string;
 };
 
 const ALL_SPOTS = rawSpots as Spot[];
