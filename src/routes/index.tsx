@@ -369,12 +369,6 @@ function Expeditions() {
               First <em className="italic font-normal">expeditions.</em>
             </h2>
           </div>
-          <Link
-            to="/trips"
-            className="hidden text-[10.5px] uppercase tracking-[0.22em] text-mid hover:text-ink md:inline-flex"
-          >
-            All expeditions →
-          </Link>
         </div>
 
         <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[280px] lg:auto-rows-[320px]">
