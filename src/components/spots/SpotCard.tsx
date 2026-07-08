@@ -173,7 +173,7 @@ export function SpotCard({
         {bestMonths.length > 0 && (
           <section className="mt-12 border-t border-stone/15 pt-8">
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Melhor época
+              Best season
             </p>
             <ul className="mt-3 space-y-1 font-serif text-xl text-ink sm:text-2xl">
               {bestMonths.map((m, i) => (
@@ -190,7 +190,7 @@ export function SpotCard({
         {specificEntries.length > 0 && (
           <section className="mt-12 border-t border-stone/15 pt-8">
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Condições
+              Conditions
             </p>
             <dl className="mt-4 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
               {specificEntries.map(([key, value]) => {
@@ -227,7 +227,7 @@ export function SpotCard({
         {spot.description && (
           <section className="mt-12 border-t border-stone/15 pt-8">
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Nota editorial
+              Editor's note
             </p>
             <p className="mt-4 font-serif text-xl leading-[1.55] text-ink sm:text-2xl">
               {spot.description}
@@ -239,7 +239,7 @@ export function SpotCard({
         {sources.length > 0 && (
           <footer className="mt-12 border-t border-stone/15 pt-6">
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Fontes
+              Sources
             </p>
             <ul className="mt-2 space-y-1 text-xs text-stone">
               {sources.map((url) => {
