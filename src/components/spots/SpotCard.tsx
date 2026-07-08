@@ -6,6 +6,7 @@ import {
   type Continent,
   type RegionGroup,
 } from "@/lib/spots-data";
+import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
 
 /** Placeholder for a future seasonal chart driven by bestMonths. */
 function SeasonalChart() {
