@@ -7,6 +7,7 @@ import {
   type RegionGroup,
 } from "@/lib/spots-data";
 import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
+import { findArticle, CATEGORY_LABEL } from "@/lib/journal-data";
 
 /** Placeholder for a future seasonal chart driven by bestMonths. */
 function SeasonalChart() {
@@ -85,6 +86,13 @@ const KEY_LABELS: Record<string, string> = {
   aspect: "Aspect",
   approach: "Approach",
   height_protection: "Height & protection",
+  riding_level: "Riding level",
+  pace: "Pace",
+  terrain: "Terrain",
+  horse_breed: "Horse breed",
+  riding_style: "Riding style",
+  duration: "Duration",
+  whats_included: "What's included",
 };
 
 function humanizeKey(key: string): string {
@@ -123,6 +131,9 @@ export function SpotCard({
       ? [spot.sourceUrl]
       : []) as string[];
   const relatedTrip = spot.relatedTripId ? findTrip(spot.relatedTripId) : null;
+  const relatedArticle = spot.relatedArticleSlug
+    ? findArticle(spot.relatedArticleSlug)
+    : null;
 
   return (
     <article className="px-6 pb-24 pt-4">
