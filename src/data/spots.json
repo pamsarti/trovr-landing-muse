@@ -13103,5 +13103,58 @@
       "https://www.mountainproject.com/area/106093650/kalymnos"
     ],
     "status": "active"
+  },
+  {
+    "id": "el-gouna-kite",
+    "activity": "kite",
+    "name": "El Gouna",
+    "region": "Africa",
+    "city": "Red Sea (Egypt)",
+    "country": "Egypt",
+    "coordinates": {
+      "lat": 27.3949,
+      "lng": 33.678
+    },
+    "relatedTripId": "egypt-kite-dragonfly",
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Peak wind Jun–Sep; best all-round Sep–Nov and Mar–May"
+      ],
+      "activitySpecific": {
+        "wind_by_month": "NNW trade wind ~95% of the time. Seasonal bands (from the on-site operator, not a measured archive): winter 12–22 kt, spring 14–26 kt building through the day, summer peak 20–30+ kt (most consistent), autumn 14–22 kt. Measured annual mean at the station is ~12 kt (gusts 15 kt), lower because it averages all seasons including calm spells. 300+ windy days/year",
+        "best_season": "Peak Jun–Sep (strongest); best all-round Sep–Nov and Mar–May; beginners in winter/autumn (moderate wind)",
+        "wind_direction": "NNW (blows ~95% of the time); side/cross-onshore, parallel to shore — the safe direction",
+        "water_type": "Flat in the lagoon (main riding area); choppy further out toward the reef. Not a wave spot",
+        "bottom_water": "Sand (shells possible — water shoes advised), no dangerous coral near shore; saltwater (Red Sea)",
+        "tide_current": "Tide matters: depth swings ~40–70 cm, safe kiting a few hours either side of high tide; current not a hazard (sheltered lagoon)",
+        "level_discipline": "All levels — beginner-friendly (large flat shallow, schools with rescue boats) to advanced; freeride, freestyle, foil, wingfoil (not a wave spot)",
+        "hazards_launch": "Shallow low-tide zones, shells on the bottom, buoy-marked rocks/reef offshore. Wide sandy beach with large open setup area and organized zones",
+        "kite_wing": "Both — dedicated wingfoil zone and wing courses on site"
+      },
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "verified",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
+    },
+    "description": "The wind here keeps an appointment it has kept for millennia — a northern breath sliding down the length of the Red Sea, steady as a habit, side-on and unhurried. You wade out across warm shallows, sand pale beneath you, until the lagoon opens flat and wide enough to forget where the edge of your own ability used to be. There is no drama in this water, only patience: it asks you to read the tide, to wait for the hour the sea gives back its depth, and it rewards the reading. Summer arrives loud, twenty knots and climbing, for those who want the sea to argue back; the shoulder months come quiet, and teach instead. What lingers is not the ride but the rhythm — desert light, salt-flat calm, a wind that was already blowing long before you learned to lean into it.",
+    "sourceUrl": "https://kitepowerelgouna.com/spot/",
+    "sources": [
+      "https://kitepowerelgouna.com/spot/",
+      "https://kitepowerelgouna.com/when-is-the-best-time-for-kitesurfing-wingfoiling-in-el-gouna/",
+      "https://www.windfinder.com/windstatistics/el_gouna",
+      "https://whenwherekite.com/El-Gouna-Egypte.html",
+      "https://wakeupstoked.com/kitesurf-el-gouna/"
+    ],
+    "status": "active"
   }
 ]
