@@ -2,6 +2,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import { geoEqualEarth, geoPath } from "d3-geo";
 import { feature } from "topojson-client";
 import { select } from "d3-selection";
+import "d3-transition";
 import { zoom as d3zoom, zoomIdentity, type ZoomBehavior } from "d3-zoom";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { FeatureCollection, Geometry } from "geojson";
