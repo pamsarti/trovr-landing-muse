@@ -178,16 +178,22 @@ const ACTIVITY_META: {
   icon?: string;
   color?: string;
 }[] = [
-  { id: "kite", label: "Kite" },
-  { id: "surf", label: "Surf" },
-  { id: "snow", label: "Snow" },
-  { id: "dive", label: "Dive" },
-  { id: "climb", label: "Climb" },
-  { id: "sail", label: "Sail" },
+  { id: "kite", label: "Kite", color: "#0369a1" },
+  { id: "surf", label: "Surf", color: "#0891b2" },
+  { id: "snow", label: "Snow", color: "#64748b" },
+  { id: "dive", label: "Dive", color: "#155e75" },
+  { id: "climb", label: "Climb", color: "#7c2d12" },
+  { id: "sail", label: "Sail", color: "#1e40af" },
   { id: "hike", label: "Hiking", icon: "footprints", color: "#4a7c59" },
   { id: "run", label: "Trail Running", icon: "activity", color: "#c2410c" },
   { id: "bike", label: "MTB", icon: "bike", color: "#a16207" },
 ];
+
+export const DEFAULT_MAP_ACTIVITY: Activity = "kite";
+
+export function colorForActivity(activity: Activity): string {
+  return ACTIVITY_META.find((a) => a.id === activity)?.color ?? "#1a1a1a";
+}
 
 const ACTIVITY_IDS: readonly Activity[] = ACTIVITY_META.map((a) => a.id);
 

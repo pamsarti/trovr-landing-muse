@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import type { ReactNode } from "react";
-import { ACTIVITIES, type Activity } from "@/lib/spots-data";
+import { ACTIVITIES, colorForActivity, type Activity } from "@/lib/spots-data";
 import { SiteHeader } from "@/components/SiteHeader";
 
 export { SiteHeader as SpotsHeader };
@@ -59,6 +59,7 @@ export function ActivitySelector({ current }: { current?: Activity }) {
               </span>
             );
           }
+          const activeColor = colorForActivity(a.id);
           return (
             <button
               key={a.id}
@@ -72,10 +73,18 @@ export function ActivitySelector({ current }: { current?: Activity }) {
               }
               className={`${base} ${
                 isCurrent
-                  ? "border-ink bg-ink text-paper"
+                  ? "text-paper"
                   : "border-stone/40 text-ink hover:border-ink"
               }`}
-              style={{ borderRadius: 2 }}
+              style={
+                isCurrent
+                  ? {
+                      borderRadius: 2,
+                      backgroundColor: activeColor,
+                      borderColor: activeColor,
+                    }
+                  : { borderRadius: 2 }
+              }
               aria-pressed={isCurrent}
             >
               {a.label}
