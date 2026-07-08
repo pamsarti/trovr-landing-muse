@@ -6,7 +6,7 @@ import "d3-transition";
 import { zoom as d3zoom, zoomIdentity, type ZoomBehavior } from "d3-zoom";
 import type { Topology, GeometryCollection } from "topojson-specification";
 import type { FeatureCollection, Geometry } from "geojson";
-import { ACTIVITIES, type Activity } from "@/lib/spots-data";
+import type { Activity } from "@/lib/spots-data";
 
 const GEO_URL = "/data/world-110m.json";
 const WIDTH = 980;
@@ -21,14 +21,15 @@ export type MapPoint = {
   onClick: () => void;
 };
 
-const DEFAULT_COLOR = "#1a1a1a";
-
-function colorFor(activity: Activity): string {
-  return ACTIVITIES.find((a) => a.id === activity)?.color ?? DEFAULT_COLOR;
-}
-
-export function WorldMap({ points }: { points: MapPoint[] }) {
-  const [hovered, setHovered] = useState<string | null>(null);
+export function WorldMap({
+  points: _points,
+  activeColor: _activeColor,
+}: {
+  /** Reserved for the next step (pin rendering). Currently unused. */
+  points?: MapPoint[];
+  /** Color for the currently active sport — used by pins in the next step. */
+  activeColor?: string;
+}) {
   const [geo, setGeo] = useState<FeatureCollection<Geometry> | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const zoomLayerRef = useRef<SVGGElement | null>(null);
@@ -126,34 +127,8 @@ export function WorldMap({ points }: { points: MapPoint[] }) {
                 );
               })}
               </g>
-              <g>
-              {points.map((pt) => {
-                const p = projection([pt.lng, pt.lat]);
-                if (!p) return null;
-                const isHover = hovered === pt.id;
-                const color = colorFor(pt.activity);
-                return (
-                  <g
-                    key={pt.id}
-                    transform={`translate(${p[0]}, ${p[1]})`}
-                    style={{ cursor: "pointer" }}
-                    onClick={pt.onClick}
-                    onMouseEnter={() => setHovered(pt.id)}
-                    onMouseLeave={() => setHovered((h) => (h === pt.id ? null : h))}
-                  >
-                    <title>{pt.label}</title>
-                    <circle r={isHover ? 12 : 9} fill={color} fillOpacity={0.15} />
-                    <circle
-                      r={isHover ? 6 : 4.5}
-                      fill={color}
-                      stroke="#F5EFE1"
-                      strokeWidth={1.5}
-                      aria-label={pt.label}
-                    />
-                  </g>
-                );
-              })}
-              </g>
+              {/* Pins deferred to the next step. `activeColor` will drive
+                  pin fill once individual spot pins are re-introduced. */}
             </g>
           </svg>
           <div className="absolute right-3 top-3 flex flex-col gap-1">
