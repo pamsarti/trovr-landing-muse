@@ -39,12 +39,24 @@ export type Spot = {
 
 const ALL_SPOTS = rawSpots as Spot[];
 
+/**
+ * A spot is considered "public" once it has curated editorial content.
+ * Legacy imports without a `descriptionRaw` (rich body) are hidden from
+ * every public listing/map/detail until an editor fills them in. Nothing
+ * is deleted — flip the data and they reappear.
+ */
+function isPublic(spot: Spot): boolean {
+  return typeof spot.descriptionRaw === "string" && spot.descriptionRaw.trim().length > 0;
+}
+
+const PUBLIC_SPOTS = ALL_SPOTS.filter(isPublic);
+
 /** Optional activity filter. When null/undefined, returns every spot. */
 export type ActivityFilter = Activity | null | undefined;
 
 /** Single data accessor. Pass an Activity to filter; pass null/undefined for all. */
 export function getSpotsByActivity(activity: ActivityFilter): Spot[] {
-  return activity ? ALL_SPOTS.filter((s) => s.activity === activity) : ALL_SPOTS;
+  return activity ? PUBLIC_SPOTS.filter((s) => s.activity === activity) : PUBLIC_SPOTS;
 }
 
 export function slugify(value: string): string {
@@ -171,7 +183,7 @@ const ACTIVITY_META: {
 const ACTIVITY_IDS: readonly Activity[] = ACTIVITY_META.map((a) => a.id);
 
 const ACTIVITIES_WITH_SPOTS: ReadonlySet<Activity> = new Set(
-  ALL_SPOTS.map((s) => s.activity).filter((a): a is Activity =>
+  PUBLIC_SPOTS.map((s) => s.activity).filter((a): a is Activity =>
     (ACTIVITY_IDS as readonly string[]).includes(a),
   ),
 );
