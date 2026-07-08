@@ -31,7 +31,6 @@ export function WorldMap({
   /** Color applied to every pin (drives the active-sport tint). */
   activeColor?: string;
 }) {
-  const [hovered, setHovered] = useState<string | null>(null);
   const [geo, setGeo] = useState<FeatureCollection<Geometry> | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const zoomLayerRef = useRef<SVGGElement | null>(null);
