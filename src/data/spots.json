@@ -13156,5 +13156,54 @@
       "https://wakeupstoked.com/kitesurf-el-gouna/"
     ],
     "status": "active"
+  },
+  {
+    "id": "alula-horseback",
+    "activity": "horseback",
+    "name": "AlUla (Hegra Horse Trail)",
+    "region": "Asia",
+    "city": "Saudi Arabia",
+    "country": "Saudi Arabia",
+    "coordinates": {
+      "lat": 26.6167,
+      "lng": 37.9167
+    },
+    "relatedArticleSlug": "alula-saudi-arabia-guide",
+    "conditions": {
+      "windConsistency": null,
+      "waterType": [],
+      "waterTemp": null,
+      "bestMonths": [
+        "Winter (Oct–Mar); rides at 9am or 4pm to avoid midday sun"
+      ],
+      "activitySpecific": {
+        "riding_level": "Beginner-friendly to experienced; flat trail, medium difficulty. Ages 8–99 (under 12 with an adult)",
+        "pace": "Leisurely, at a walk — a contemplative ride, not trot/canter",
+        "terrain": "Flat sand desert with wide trails, canyons and historic passages through Hegra's rock formations (past the Tomb of Lihyan, Jabal Banat, Jabal Ahmar)",
+        "horse_breed": "Not specified by the operators (described only as 'majestic horses'). The region is tied to the Arabian horse's heritage, but the breed on this ride isn't confirmed",
+        "riding_style": "Not specified; no mention of safety helmet/gear provided",
+        "duration": "Sources differ: ~1h (My Saudi Tours) to 1.5–2h / ~6 km (Alula Tours). Departures at 9am or 4pm",
+        "best_season": "Winter, roughly Oct–Mar (operator cites Sep–Apr); summer reaches ~40°C, winter days 15–25°C",
+        "whats_included": "Licensed guide (a 'Rawi' storyteller), round-trip hotel↔Hegra transfer, entry fees, and the horse. Water/Arabic coffee/dates vary by operator; meals not included. ~449 SAR (~US$120) per adult"
+      },
+      "fieldStatus": {
+        "riding_level": "source_claims",
+        "pace": "source_claims",
+        "terrain": "verified",
+        "horse_breed": "estimate",
+        "riding_style": "estimate",
+        "duration": "source_claims",
+        "best_season": "verified",
+        "whats_included": "verified"
+      }
+    },
+    "description": "Before the sun turns the sandstone to fire, you mount at Hegra's south gate and move into a silence older than any road. The trail is flat, unhurried — a six-kilometre walk through canyons and open desert where Nabataean caravans once passed the tombs of Lihyan and the red face of Jabal Ahmar. A Rawi rides ahead, not to perform but to remember out loud, and the horse carries you at the only pace this land respects: slow enough to notice. Come in winter, when the light is soft and the heat has let go its grip; the desert asks for your attention early, and gives back a morning you will keep. No experience is required here — only the willingness to be somewhere that does not rush you.",
+    "sourceUrl": "https://www.alula-tours.net/tour-package/horseride-tour-in-alula",
+    "sources": [
+      "https://www.alula-tours.net/tour-package/horseride-tour-in-alula",
+      "https://mysauditours.com/tours/horse-ride-experience-al-ula",
+      "https://www.experiencealula.com/en/things-to-do/experiences/hegra-by-horse-carriage"
+    ],
+    "status": "active"
   }
 ]
