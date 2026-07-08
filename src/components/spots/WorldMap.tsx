@@ -129,33 +129,6 @@ export function WorldMap({
                 );
               })}
               </g>
-              <g>
-              {points.map((pt) => {
-                const p = projection([pt.lng, pt.lat]);
-                if (!p) return null;
-                const isHover = hovered === pt.id;
-                return (
-                  <g
-                    key={pt.id}
-                    transform={`translate(${p[0]}, ${p[1]})`}
-                    style={{ cursor: "pointer" }}
-                    onClick={pt.onClick}
-                    onMouseEnter={() => setHovered(pt.id)}
-                    onMouseLeave={() => setHovered((h) => (h === pt.id ? null : h))}
-                  >
-                    <title>{pt.label}</title>
-                    <circle r={isHover ? 12 : 9} fill={activeColor} fillOpacity={0.15} />
-                    <circle
-                      r={isHover ? 6 : 4.5}
-                      fill={activeColor}
-                      stroke="#F5EFE1"
-                      strokeWidth={1.5}
-                      aria-label={pt.label}
-                    />
-                  </g>
-                );
-              })}
-              </g>
             </g>
           </svg>
           <div className="absolute right-3 top-3 flex flex-col gap-1">
