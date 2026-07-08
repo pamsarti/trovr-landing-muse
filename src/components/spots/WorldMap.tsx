@@ -21,15 +21,17 @@ export type MapPoint = {
   onClick: () => void;
 };
 
+const DEFAULT_PIN_COLOR = "#1a1a1a";
+
 export function WorldMap({
-  points: _points,
-  activeColor: _activeColor,
+  points = [],
+  activeColor = DEFAULT_PIN_COLOR,
 }: {
-  /** Reserved for the next step (pin rendering). Currently unused. */
   points?: MapPoint[];
-  /** Color for the currently active sport — used by pins in the next step. */
+  /** Color applied to every pin (drives the active-sport tint). */
   activeColor?: string;
 }) {
+  const [hovered, setHovered] = useState<string | null>(null);
   const [geo, setGeo] = useState<FeatureCollection<Geometry> | null>(null);
   const svgRef = useRef<SVGSVGElement | null>(null);
   const zoomLayerRef = useRef<SVGGElement | null>(null);
@@ -127,8 +129,33 @@ export function WorldMap({
                 );
               })}
               </g>
-              {/* Pins deferred to the next step. `activeColor` will drive
-                  pin fill once individual spot pins are re-introduced. */}
+              <g>
+              {points.map((pt) => {
+                const p = projection([pt.lng, pt.lat]);
+                if (!p) return null;
+                const isHover = hovered === pt.id;
+                return (
+                  <g
+                    key={pt.id}
+                    transform={`translate(${p[0]}, ${p[1]})`}
+                    style={{ cursor: "pointer" }}
+                    onClick={pt.onClick}
+                    onMouseEnter={() => setHovered(pt.id)}
+                    onMouseLeave={() => setHovered((h) => (h === pt.id ? null : h))}
+                  >
+                    <title>{pt.label}</title>
+                    <circle r={isHover ? 12 : 9} fill={activeColor} fillOpacity={0.15} />
+                    <circle
+                      r={isHover ? 6 : 4.5}
+                      fill={activeColor}
+                      stroke="#F5EFE1"
+                      strokeWidth={1.5}
+                      aria-label={pt.label}
+                    />
+                  </g>
+                );
+              })}
+              </g>
             </g>
           </svg>
           <div className="absolute right-3 top-3 flex flex-col gap-1">
