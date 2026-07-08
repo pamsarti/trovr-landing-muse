@@ -10,7 +10,8 @@ export type Activity =
   | "sail"
   | "hike"
   | "run"
-  | "bike";
+  | "bike"
+  | "horseback";
 
 export type Spot = {
   id: string;
@@ -37,6 +38,8 @@ export type Spot = {
   journalSlug?: string;
   /** Optional link to a Trip id (see trips-data). Renders a Trip CTA on the spot card. */
   relatedTripId?: string;
+  /** Optional link to a Journal article slug. Renders a Journal CTA on the spot card. */
+  relatedArticleSlug?: string;
 };
 
 const ALL_SPOTS = rawSpots as Spot[];
@@ -189,6 +192,7 @@ const ACTIVITY_META: {
   { id: "hike", label: "Hiking", icon: "footprints", color: "#4a7c59" },
   { id: "run", label: "Trail Running", icon: "activity", color: "#c2410c" },
   { id: "bike", label: "MTB", icon: "bike", color: "#a16207" },
+  { id: "horseback", label: "Horseback", icon: "horse", color: "#8b4a2b" },
 ];
 
 export const DEFAULT_MAP_ACTIVITY: Activity = "kite";

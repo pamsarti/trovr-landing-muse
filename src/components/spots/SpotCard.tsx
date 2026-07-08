@@ -7,6 +7,7 @@ import {
   type RegionGroup,
 } from "@/lib/spots-data";
 import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
+import { findArticle, CATEGORY_LABEL } from "@/lib/journal-data";
 
 /** Placeholder for a future seasonal chart driven by bestMonths. */
 function SeasonalChart() {
@@ -85,6 +86,13 @@ const KEY_LABELS: Record<string, string> = {
   aspect: "Aspect",
   approach: "Approach",
   height_protection: "Height & protection",
+  riding_level: "Riding level",
+  pace: "Pace",
+  terrain: "Terrain",
+  horse_breed: "Horse breed",
+  riding_style: "Riding style",
+  duration: "Duration",
+  whats_included: "What's included",
 };
 
 function humanizeKey(key: string): string {
@@ -123,6 +131,9 @@ export function SpotCard({
       ? [spot.sourceUrl]
       : []) as string[];
   const relatedTrip = spot.relatedTripId ? findTrip(spot.relatedTripId) : null;
+  const relatedArticle = spot.relatedArticleSlug
+    ? findArticle(spot.relatedArticleSlug)
+    : null;
 
   return (
     <article className="px-6 pb-24 pt-4">
@@ -295,6 +306,56 @@ export function SpotCard({
                     <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
                   </span>
                 </div>
+              </div>
+            </Link>
+          </section>
+        )}
+
+        {/* Related journal article CTA — distinct from the Trip CTA above */}
+        {relatedArticle && (
+          <section aria-label="Related journal article" className="mt-10">
+            <Link
+              to="/journal/$slug"
+              params={{ slug: relatedArticle.slug }}
+              className="group block overflow-hidden border-2 border-stone/40 bg-paper transition-colors hover:border-ink"
+              style={{ borderRadius: 2 }}
+            >
+              <div className="relative aspect-[16/7] w-full overflow-hidden bg-stone/10">
+                {relatedArticle.heroImage && (
+                  <img
+                    src={relatedArticle.heroImage}
+                    alt={relatedArticle.title}
+                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
+                    style={{ filter: "saturate(0.7)" }}
+                  />
+                )}
+                <span
+                  className="absolute left-3 top-3 inline-flex items-center gap-1.5 border border-ink bg-paper px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-ink"
+                  style={{ borderRadius: 2 }}
+                >
+                  <svg width="10" height="10" viewBox="0 0 12 12" aria-hidden className="text-ink">
+                    <path
+                      d="M2 1.5h6a1 1 0 0 1 1 1v8L6 9 3 10.5v-8a1 1 0 0 1 1-1z"
+                      fill="currentColor"
+                    />
+                  </svg>
+                  Journal · {CATEGORY_LABEL[relatedArticle.category]}
+                </span>
+              </div>
+              <div className="px-6 py-6 sm:px-8 sm:py-7">
+                <p className="text-[10px] uppercase tracking-[0.24em] text-stone">
+                  Read the story
+                </p>
+                <h3 className="mt-3 font-serif text-2xl italic leading-tight text-ink sm:text-3xl">
+                  {relatedArticle.title}
+                </h3>
+                <p className="mt-3 text-sm leading-[1.55] text-ink/75">
+                  {relatedArticle.dek}
+                </p>
+                <p className="mt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-ink underline decoration-stone/40 underline-offset-4 group-hover:decoration-ink">
+                  {relatedArticle.readTime} min read
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                </p>
               </div>
             </Link>
           </section>
