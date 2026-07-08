@@ -122,6 +122,7 @@ export function SpotCard({
     : spot.sourceUrl
       ? [spot.sourceUrl]
       : []) as string[];
+  const relatedTrip = spot.relatedTripId ? findTrip(spot.relatedTripId) : null;
 
   return (
     <article className="px-6 pb-24 pt-4">
