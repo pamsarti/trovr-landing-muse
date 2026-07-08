@@ -1,9 +1,9 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
-import { lazy, Suspense, useEffect, useMemo, useState } from "react";
+import { createFileRoute, Link } from "@tanstack/react-router";
+import { lazy, Suspense, useEffect, useState } from "react";
 import {
+  colorForActivity,
+  DEFAULT_MAP_ACTIVITY,
   getContinents,
-  getSpotsByActivity,
-  slugify,
   validateSpotsSearch,
 } from "@/lib/spots-data";
 import {
@@ -11,7 +11,6 @@ import {
   SpotsFooter,
   SpotsHeader,
 } from "@/components/spots/SpotsChrome";
-import type { MapPoint } from "@/components/spots/WorldMap";
 
 // Client-only: react-simple-maps fetches a topology JSON at runtime.
 const WorldMap = lazy(() =>
@@ -46,31 +45,10 @@ function SpotsIndex() {
   const total = continents.reduce((n, c) => n + c.count, 0);
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
-  const navigate = useNavigate();
 
   // Map defaults to kite when no activity is selected.
-  const mapActivity = activity ?? "kite";
-  const points: MapPoint[] = useMemo(() => {
-    return getSpotsByActivity(mapActivity)
-      .filter((s) => s.coordinates != null)
-      .map((s) => ({
-        id: s.id,
-        lat: s.coordinates!.lat,
-        lng: s.coordinates!.lng,
-        label: s.name,
-        activity: s.activity,
-        onClick: () =>
-          navigate({
-            to: "/spots/$continent/$region/$spot",
-            params: {
-              continent: slugify(s.region),
-              region: slugify(s.city),
-              spot: slugify(s.name),
-            },
-            search: { activity: s.activity },
-          }),
-      }));
-  }, [mapActivity, navigate]);
+  const mapActivity = activity ?? DEFAULT_MAP_ACTIVITY;
+  const activeColor = colorForActivity(mapActivity);
 
   return (
     <main className="bg-paper text-ink font-sans antialiased min-h-screen">
@@ -87,10 +65,17 @@ function SpotsIndex() {
         </div>
       </section>
 
-      <section className="px-6 pb-4">
+      <ActivitySelector current={activity} />
+
+      <section className="px-6 pb-4 pt-8">
         <div className="mx-auto max-w-6xl">
-          <p className="mb-4 text-[11px] uppercase tracking-[0.2em] text-stone">
-            Pinned spots · {mapActivity}
+          <p className="mb-4 flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-stone">
+            <span
+              aria-hidden
+              className="inline-block h-2 w-2 rounded-full"
+              style={{ backgroundColor: activeColor }}
+            />
+            Active sport · {mapActivity}
           </p>
           {mounted ? (
             <Suspense
@@ -98,15 +83,13 @@ function SpotsIndex() {
                 <div className="aspect-[980/520] w-full border border-stone/15 bg-stone/5" />
               }
             >
-              <WorldMap points={points} />
+              <WorldMap activeColor={activeColor} />
             </Suspense>
           ) : (
             <div className="aspect-[980/520] w-full border border-stone/15 bg-stone/5" />
           )}
         </div>
       </section>
-
-      <ActivitySelector current={activity} />
 
       <section className="px-6 pb-24 pt-12">
         <div className="mx-auto grid max-w-6xl grid-cols-1 gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
