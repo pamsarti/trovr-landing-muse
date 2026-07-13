@@ -429,6 +429,33 @@ function Newsletter() {
   );
 }
 
+function Faq() {
+  return (
+    <section
+      id="common-questions"
+      className="border-t border-stone/15 px-6 py-10 sm:py-14 md:py-16"
+    >
+      <div className="mx-auto max-w-[720px]">
+        <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
+          Common questions.
+        </h2>
+        <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">
+          {FAQ_ITEMS.map((item) => (
+            <div key={item.question}>
+              <h3 className="font-serif text-xl italic leading-[1.35] text-ink sm:text-2xl md:text-[26px]">
+                {item.question}
+              </h3>
+              <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
+                {item.answer}
+              </p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
 function Footer() {
   return (
     <footer className="border-t border-stone/20 px-6 py-12">
