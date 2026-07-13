@@ -347,9 +347,10 @@ function SpotListItem({
     <li
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="cursor-pointer px-6 py-5 transition-colors focus-within:bg-[#e7ddc9]/60"
+      className={`cursor-pointer px-6 py-5 transition-colors focus-within:bg-sage-bg/60 ${
+        hovered || selected ? "bg-sage-bg/60" : ""
+      }`}
       style={{
-        background: hovered || selected ? "#e7ddc9" : "transparent",
         borderLeft: selected ? `3px solid ${color}` : "3px solid transparent",
       }}
     >
@@ -359,17 +360,11 @@ function SpotListItem({
         className="block w-full text-left focus:outline-none focus-visible:ring-2"
         style={{ outlineColor: color }}
       >
-        <p
-          className="font-mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: "#6b6350" }}
-        >
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone">
           {spot.city}
           {spot.country ? ` · ${spot.country}` : ""}
         </p>
-        <h3
-          className="mt-1.5 font-serif text-2xl leading-tight"
-          style={{ color: "#1c1a14" }}
-        >
+        <h3 className="mt-1.5 font-serif text-2xl leading-tight text-ink">
           {spot.name}
         </h3>
       </button>
@@ -385,7 +380,7 @@ function SpotListItem({
           className="border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
           style={{
             borderColor: color,
-            color: showMetrics ? "#f3ecdd" : color,
+            color: showMetrics ? "var(--paper)" : color,
             background: showMetrics ? color : "transparent",
             borderRadius: 2,
           }}
@@ -419,23 +414,16 @@ function MetricsGrid({
 
   return (
     <dl
-      className={`mt-3 grid gap-x-4 gap-y-2 border-t pt-3 ${
+      className={`mt-3 grid gap-x-4 gap-y-2 border-t border-stone/20 pt-3 ${
         compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
       }`}
-      style={{ borderColor: "rgba(28,26,20,.16)" }}
     >
       {months.length > 0 && (
         <div className="col-span-full">
-          <dt
-            className="font-mono text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: "#6b6350" }}
-          >
+          <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
             Best season
           </dt>
-          <dd
-            className="mt-0.5 font-serif text-[15px]"
-            style={{ color: "#1c1a14" }}
-          >
+          <dd className="mt-0.5 font-serif text-[15px] text-ink">
             {months.join(" · ")}
           </dd>
         </div>
@@ -444,22 +432,15 @@ function MetricsGrid({
         const isUnverified = status[k] && status[k] !== "verified";
         return (
           <div key={k}>
-            <dt
-              className="font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "#6b6350" }}
-            >
+            <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
               {humanize(k)}
             </dt>
-            <dd
-              className="mt-0.5 font-serif text-[15px]"
-              style={{ color: "#1c1a14" }}
-            >
+            <dd className="mt-0.5 font-serif text-[15px] text-ink">
               {v}
               {isUnverified && (
                 <span
-                  className="ml-1 align-middle font-mono text-[10px] normal-case"
+                  className="ml-1 align-middle font-mono text-[10px] normal-case text-stone"
                   title="Not independently verified"
-                  style={{ color: "#6b6350" }}
                 >
                   · unconfirmed
                 </span>
