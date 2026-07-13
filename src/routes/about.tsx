@@ -10,13 +10,13 @@ export const Route = createFileRoute("/about")({
       {
         name: "description",
         content:
-          "The story behind Trovr — a curated marketplace of immersive trips for people who travel to feel.",
+          "The story behind Trovr — a hand-curated collection of immersive, non-touristy adventure trips for people who travel to explore, feel intensely, and come back changed.",
       },
       { property: "og:title", content: "About — Trovr" },
       {
         property: "og:description",
         content:
-          "The story behind Trovr — a curated marketplace of immersive trips for people who travel to feel.",
+          "The story behind Trovr — a hand-curated collection of immersive, non-touristy adventure trips for people who travel to explore, feel intensely, and come back changed.",
       },
       { property: "og:url", content: `${SITE_URL}/about` },
       { property: "og:image", content: DEFAULT_OG_IMAGE },
@@ -25,7 +25,7 @@ export const Route = createFileRoute("/about")({
       {
         name: "twitter:description",
         content:
-          "The story behind Trovr — a curated marketplace of immersive trips for people who travel to feel.",
+          "The story behind Trovr — a hand-curated collection of immersive, non-touristy adventure trips for people who travel to explore, feel intensely, and come back changed.",
       },
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
