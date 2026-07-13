@@ -167,38 +167,25 @@ function SpotsIndex() {
   }, [selectedSpot]);
 
   return (
-    <div
-      className="min-h-screen text-ink"
-      style={{ background: "#e7ddc9" }}
-    >
+    <div className="bg-paper text-ink">
       <SpotsHeader />
 
-      <div className="flex min-h-[calc(100vh-4rem)] flex-col lg:flex-row">
+      <div className="flex h-[calc(100dvh-64px)] flex-col sm:h-[calc(100dvh-72px)] lg:flex-row">
         {/* LEFT: list */}
         <aside
-          className="w-full border-b lg:h-[calc(100vh-4rem)] lg:w-[400px] lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:border-r"
-          style={{ borderColor: "rgba(28,26,20,.16)", background: "#f3ecdd" }}
+          className="w-full border-b border-stone/20 bg-paper lg:h-full lg:w-[400px] lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:border-r"
         >
-          <div className="px-6 pt-8 pb-4">
-            <p
-              className="font-serif text-3xl lowercase leading-none"
-              style={{ color: "#1c1a14" }}
-            >
-              trovr
+          <div className="px-6 pt-6 pb-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
+              Atlas
             </p>
-            <p
-              className="mt-2 font-serif italic"
-              style={{ color: "#6b6350" }}
-            >
-              A guide to the places worth the journey.
-            </p>
+            <h1 className="mt-2 font-serif text-2xl leading-tight text-ink">
+              Places worth the journey
+            </h1>
           </div>
 
-          <div className="border-t px-6 py-4" style={{ borderColor: "rgba(28,26,20,.16)" }}>
-            <p
-              className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "#6b6350" }}
-            >
+          <div className="border-t border-stone/20 px-6 py-4">
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
               Filter by activity
             </p>
             <div className="flex flex-wrap gap-1.5">
@@ -208,13 +195,12 @@ function SpotsIndex() {
                   setAppliedBounds(null);
                   navigate({ to: "/spots", search: {} });
                 }}
-                className="border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors"
-                style={{
-                  borderColor: !activity ? "#1c1a14" : "rgba(28,26,20,.3)",
-                  background: !activity ? "#1c1a14" : "transparent",
-                  color: !activity ? "#f3ecdd" : "#1c1a14",
-                  borderRadius: 2,
-                }}
+                className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                  !activity
+                    ? "border-ink bg-ink text-paper"
+                    : "border-stone/40 text-ink hover:border-ink"
+                }`}
+                style={{ borderRadius: 2 }}
                 aria-pressed={!activity}
               >
                 All
@@ -233,12 +219,12 @@ function SpotsIndex() {
                         search: isCurrent ? {} : { activity: a.id },
                       });
                     }}
-                    className="border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors"
+                    className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                      isCurrent ? "text-paper" : "border-stone/40 text-ink hover:border-ink"
+                    }`}
                     style={{
-                      borderColor: isCurrent ? c : "rgba(28,26,20,.3)",
-                      background: isCurrent ? c : "transparent",
-                      color: isCurrent ? "#f3ecdd" : "#1c1a14",
                       borderRadius: 2,
+                      ...(isCurrent ? { backgroundColor: c, borderColor: c } : {}),
                     }}
                     aria-pressed={isCurrent}
                   >
@@ -249,29 +235,21 @@ function SpotsIndex() {
             </div>
           </div>
 
-          <div className="border-t px-6 py-3" style={{ borderColor: "rgba(28,26,20,.16)" }}>
-            <p
-              className="font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "#6b6350" }}
-            >
+          <div className="border-t border-stone/20 px-6 py-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
               {allSpots.length} spots
               {appliedBounds && (
                 <>
                   {" · "}
-                  <span style={{ color: "#b0402e" }}>
-                    {listedSpots.length} in this area
-                  </span>
+                  <span className="text-sage">{listedSpots.length} in this area</span>
                 </>
               )}
             </p>
           </div>
 
-          <ul className="divide-y" style={{ borderColor: "rgba(28,26,20,.16)" }}>
+          <ul className="divide-y divide-stone/20">
             {listedSpots.length === 0 && (
-              <li
-                className="px-6 py-10 text-center font-serif italic"
-                style={{ color: "#6b6350" }}
-              >
+              <li className="px-6 py-10 text-center font-serif italic text-stone">
                 No spots here yet.
               </li>
             )}
@@ -292,16 +270,11 @@ function SpotsIndex() {
         </aside>
 
         {/* RIGHT: map */}
-        <div className="relative flex-1">
-          <div className="relative h-[60vh] w-full lg:h-[calc(100vh-4rem)]">
+        <div className="relative min-h-[420px] flex-1">
+          <div className="relative h-full w-full">
             {mounted ? (
               <Suspense
-                fallback={
-                  <div
-                    className="h-full w-full"
-                    style={{ background: "#e7ddc9" }}
-                  />
-                }
+                fallback={<div className="h-full w-full bg-paper" />}
               >
                 <SpotsMap
                   points={points}
@@ -314,24 +287,15 @@ function SpotsIndex() {
                 />
               </Suspense>
             ) : (
-              <div
-                className="h-full w-full"
-                style={{ background: "#e7ddc9" }}
-              />
+              <div className="h-full w-full bg-paper" />
             )}
 
             {boundsDiffer && (
               <button
                 type="button"
                 onClick={() => setAppliedBounds(bounds)}
-                className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border font-mono text-[10px] uppercase tracking-[0.2em] shadow-sm transition-colors"
-                style={{
-                  background: "#f3ecdd",
-                  borderColor: "#b0402e",
-                  color: "#b0402e",
-                  padding: "8px 14px",
-                  borderRadius: 2,
-                }}
+                className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border border-sage bg-sage-bg px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sage shadow-sm transition-colors hover:bg-sage hover:text-paper"
+                style={{ borderRadius: 2 }}
               >
                 Search spots in this area
               </button>
@@ -340,14 +304,8 @@ function SpotsIndex() {
               <button
                 type="button"
                 onClick={() => setAppliedBounds(null)}
-                className="absolute right-4 top-4 z-[1000] border font-mono text-[10px] uppercase tracking-[0.2em] shadow-sm"
-                style={{
-                  background: "#f3ecdd",
-                  borderColor: "rgba(28,26,20,.3)",
-                  color: "#1c1a14",
-                  padding: "6px 10px",
-                  borderRadius: 2,
-                }}
+                className="absolute right-4 top-4 z-[1000] border border-stone/40 bg-paper px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm hover:border-ink"
+                style={{ borderRadius: 2 }}
               >
                 Clear area filter
               </button>
