@@ -458,7 +458,7 @@ function StatsBar() {
   return (
     <section className="px-6 pb-8">
       <div className="mx-auto max-w-7xl rounded-[4px] bg-paper-card">
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3">
           {STATS.map((s, idx) => (
             <div
               key={s.label}
