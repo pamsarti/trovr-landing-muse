@@ -446,10 +446,11 @@ function ExpeditionCard({
 
 /* ---------- Stats Bar ---------- */
 
+import homeStats from "@/data/home-stats.json";
+
 const STATS = [
-  { value: "600", sup: "+", label: "Places mapped for you" },
-  { value: "5", sup: "", label: "Continents covered" },
-  { value: "41", sup: "", label: "Expeditions curated" },
+  { value: String(homeStats.activeSpots), sup: "", label: "Places mapped for you" },
+  { value: String(homeStats.activeContinents), sup: "", label: "Continents covered" },
   { value: "2026", sup: "", label: "Launching" },
 ];
 
