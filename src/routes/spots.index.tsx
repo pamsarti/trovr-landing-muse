@@ -486,28 +486,19 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
         type="button"
         aria-label="Close panel"
         onClick={onClose}
-        className={`absolute inset-0 cursor-default transition-opacity duration-300 motion-reduce:transition-none ${
+        className={`absolute inset-0 cursor-default bg-ink/50 transition-opacity duration-300 motion-reduce:transition-none ${
           mountedIn ? "opacity-100" : "opacity-0"
         }`}
-        style={{ background: "rgba(28,26,20,.45)" }}
       />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full flex-col shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
+        className={`absolute right-0 top-0 flex h-full w-full flex-col bg-paper text-ink shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
           mountedIn ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ background: "#f3ecdd", color: "#1c1a14" }}
       >
         <div
-          className="sticky top-0 z-10 flex items-center justify-between border-b px-5 py-3 backdrop-blur"
-          style={{
-            borderColor: "rgba(28,26,20,.16)",
-            background: "rgba(243,236,221,.95)",
-          }}
+          className="sticky top-0 z-10 flex items-center justify-between border-b border-stone/20 bg-paper/95 px-5 py-3 backdrop-blur"
         >
-          <span
-            className="font-mono text-[10px] uppercase tracking-[0.25em]"
-            style={{ color: "#6b6350" }}
-          >
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
             Spot detail
           </span>
           <button
@@ -515,12 +506,8 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid h-9 w-9 place-items-center border transition-colors hover:bg-[#e7ddc9]"
-            style={{
-              borderColor: "rgba(28,26,20,.3)",
-              color: "#1c1a14",
-              borderRadius: 2,
-            }}
+            className="grid h-9 w-9 place-items-center border border-stone/40 text-ink transition-colors hover:border-ink hover:bg-sage-bg/60"
+            style={{ borderRadius: 2 }}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
               <path
@@ -534,42 +521,27 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 pb-10 pt-6">
-          <p
-            className="font-mono text-[10px] uppercase tracking-[0.24em]"
-            style={{ color: "#6b6350" }}
-          >
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
             {spot.region} · {spot.city}
           </p>
-          <h2
-            className="mt-2 font-serif text-4xl leading-[1.05]"
-            style={{ color: "#1c1a14" }}
-          >
+          <h2 className="mt-2 font-serif text-4xl leading-[1.05] text-ink">
             {spot.name}
           </h2>
           {spot.coordinates && (
-            <p
-              className="mt-3 font-mono text-[11px] tracking-wider"
-              style={{ color: "#6b6350" }}
-            >
+            <p className="mt-3 font-mono text-[11px] tracking-wider text-stone">
               {spot.coordinates.lat.toFixed(4)}°,{" "}
               {spot.coordinates.lng.toFixed(4)}°
             </p>
           )}
 
           {spot.description && (
-            <p
-              className="mt-6 font-serif text-lg leading-[1.55]"
-              style={{ color: "#1c1a14" }}
-            >
+            <p className="mt-6 font-serif text-lg leading-[1.55] text-ink">
               {spot.description}
             </p>
           )}
 
           <section className="mt-8">
-            <p
-              className="font-mono text-[10px] uppercase tracking-[0.24em]"
-              style={{ color: "#6b6350" }}
-            >
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
               What to do here
             </p>
             <button
@@ -580,7 +552,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
               style={{
                 borderColor: color,
                 background: expanded ? color : "transparent",
-                color: expanded ? "#f3ecdd" : "#1c1a14",
+                color: expanded ? "var(--paper)" : "var(--ink)",
                 borderRadius: 2,
               }}
               aria-expanded={expanded}
@@ -606,13 +578,8 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
                 spot: slugify(spot.name),
               }}
               search={{ activity: spot.activity }}
-              className="inline-flex items-center gap-2 border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors"
-              style={{
-                borderColor: "#1c1a14",
-                background: "#1c1a14",
-                color: "#f3ecdd",
-                borderRadius: 2,
-              }}
+              className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-sage hover:border-sage"
+              style={{ borderRadius: 2 }}
             >
               View full spot
               <span aria-hidden>→</span>
