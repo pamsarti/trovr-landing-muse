@@ -74,6 +74,7 @@ function AboutPage() {
       <WhyExists />
       <HowWeCurate />
       <Newsletter />
+      <Faq />
       <Footer />
     </main>
   );
