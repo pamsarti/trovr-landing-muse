@@ -19,10 +19,10 @@ export type MapBounds = {
 
 function createIcon(color: string, big: boolean) {
   const size = big ? 24 : 16;
-  const bg = big ? color : "#f3ecdd";
-  const dot = big ? "#f3ecdd" : color;
+  const bg = big ? color : "var(--paper)";
+  const dot = big ? "var(--paper)" : color;
   const d = Math.round(size / 2.6);
-  const html = `<div style="width:${size}px;height:${size}px;border-radius:9999px;background:${bg};border:1.5px solid ${color};display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(28,26,20,.2);transition:transform 150ms,background 150ms"><div style="width:${d}px;height:${d}px;border-radius:9999px;background:${dot}"></div></div>`;
+  const html = `<div style="width:${size}px;height:${size}px;border-radius:9999px;background:${bg};border:1.5px solid ${color};display:flex;align-items:center;justify-content:center;box-shadow:0 1px 3px rgba(28,25,22,.2);transition:transform 150ms,background 150ms"><div style="width:${d}px;height:${d}px;border-radius:9999px;background:${dot}"></div></div>`;
   return L.divIcon({
     html,
     className: "trovr-pin",
@@ -155,8 +155,7 @@ export function SpotsMap({
   return (
     <div
       ref={containerRef}
-      className="h-full min-h-[420px] w-full"
-      style={{ background: "#e7ddc9" }}
+      className="h-full min-h-[420px] w-full bg-paper"
       aria-label="Map of spots"
       role="region"
     />
