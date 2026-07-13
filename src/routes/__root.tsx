@@ -99,7 +99,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           url: "https://trovr.com.br",
           logo: "https://trovr.com.br/images/providencia-hero.jpg",
           description:
-            "A curated marketplace of immersive trips, for people who travel to feel.",
+            "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life.",
           email: "hello@trovr.agency",
         }),
       },
