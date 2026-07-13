@@ -87,8 +87,9 @@ export function SpotsMap({
     };
     map.on("moveend", emit);
     // emit initial bounds
-    setTimeout(emit, 0);
+    const t = window.setTimeout(emit, 0);
     return () => {
+      window.clearTimeout(t);
       map.off("moveend", emit);
       map.remove();
       mapRef.current = null;
