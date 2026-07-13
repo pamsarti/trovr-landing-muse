@@ -20,6 +20,8 @@ import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
+      { title: "Trovr — Curated Immersive & Adventure Travel Experiences" },
+      { name: "description", content: "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life." },
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: DEFAULT_OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
