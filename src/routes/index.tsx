@@ -463,9 +463,7 @@ function StatsBar() {
             <div
               key={s.label}
               className={`group relative px-6 py-10 sm:py-12 ${
-                idx > 0 ? "md:border-l border-[var(--line)]" : ""
-              } ${idx >= 2 ? "border-t md:border-t-0 border-[var(--line)]" : ""} ${
-                idx % 2 === 1 ? "border-l md:border-l border-[var(--line)]" : ""
+                idx > 0 ? "border-t sm:border-t-0 sm:border-l border-[var(--line)]" : ""
               }`}
             >
               <div className="flex items-baseline gap-1">
