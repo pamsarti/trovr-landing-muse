@@ -167,38 +167,25 @@ function SpotsIndex() {
   }, [selectedSpot]);
 
   return (
-    <div
-      className="min-h-screen text-ink"
-      style={{ background: "#e7ddc9" }}
-    >
+    <div className="bg-paper text-ink">
       <SpotsHeader />
 
-      <div className="flex min-h-[calc(100vh-4rem)] flex-col lg:flex-row">
+      <div className="flex h-[calc(100dvh-64px)] flex-col sm:h-[calc(100dvh-72px)] lg:flex-row">
         {/* LEFT: list */}
         <aside
-          className="w-full border-b lg:h-[calc(100vh-4rem)] lg:w-[400px] lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:border-r"
-          style={{ borderColor: "rgba(28,26,20,.16)", background: "#f3ecdd" }}
+          className="w-full border-b border-stone/20 bg-paper lg:h-full lg:w-[400px] lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:border-r"
         >
-          <div className="px-6 pt-8 pb-4">
-            <p
-              className="font-serif text-3xl lowercase leading-none"
-              style={{ color: "#1c1a14" }}
-            >
-              trovr
+          <div className="px-6 pt-6 pb-4">
+            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
+              Atlas
             </p>
-            <p
-              className="mt-2 font-serif italic"
-              style={{ color: "#6b6350" }}
-            >
-              A guide to the places worth the journey.
-            </p>
+            <h1 className="mt-2 font-serif text-2xl leading-tight text-ink">
+              Places worth the journey
+            </h1>
           </div>
 
-          <div className="border-t px-6 py-4" style={{ borderColor: "rgba(28,26,20,.16)" }}>
-            <p
-              className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "#6b6350" }}
-            >
+          <div className="border-t border-stone/20 px-6 py-4">
+            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
               Filter by activity
             </p>
             <div className="flex flex-wrap gap-1.5">
@@ -208,13 +195,12 @@ function SpotsIndex() {
                   setAppliedBounds(null);
                   navigate({ to: "/spots", search: {} });
                 }}
-                className="border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors"
-                style={{
-                  borderColor: !activity ? "#1c1a14" : "rgba(28,26,20,.3)",
-                  background: !activity ? "#1c1a14" : "transparent",
-                  color: !activity ? "#f3ecdd" : "#1c1a14",
-                  borderRadius: 2,
-                }}
+                className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                  !activity
+                    ? "border-ink bg-ink text-paper"
+                    : "border-stone/40 text-ink hover:border-ink"
+                }`}
+                style={{ borderRadius: 2 }}
                 aria-pressed={!activity}
               >
                 All
@@ -233,12 +219,12 @@ function SpotsIndex() {
                         search: isCurrent ? {} : { activity: a.id },
                       });
                     }}
-                    className="border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors"
+                    className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                      isCurrent ? "text-paper" : "border-stone/40 text-ink hover:border-ink"
+                    }`}
                     style={{
-                      borderColor: isCurrent ? c : "rgba(28,26,20,.3)",
-                      background: isCurrent ? c : "transparent",
-                      color: isCurrent ? "#f3ecdd" : "#1c1a14",
                       borderRadius: 2,
+                      ...(isCurrent ? { backgroundColor: c, borderColor: c } : {}),
                     }}
                     aria-pressed={isCurrent}
                   >
@@ -249,29 +235,21 @@ function SpotsIndex() {
             </div>
           </div>
 
-          <div className="border-t px-6 py-3" style={{ borderColor: "rgba(28,26,20,.16)" }}>
-            <p
-              className="font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "#6b6350" }}
-            >
+          <div className="border-t border-stone/20 px-6 py-3">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
               {allSpots.length} spots
               {appliedBounds && (
                 <>
                   {" · "}
-                  <span style={{ color: "#b0402e" }}>
-                    {listedSpots.length} in this area
-                  </span>
+                  <span className="text-sage">{listedSpots.length} in this area</span>
                 </>
               )}
             </p>
           </div>
 
-          <ul className="divide-y" style={{ borderColor: "rgba(28,26,20,.16)" }}>
+          <ul className="divide-y divide-stone/20">
             {listedSpots.length === 0 && (
-              <li
-                className="px-6 py-10 text-center font-serif italic"
-                style={{ color: "#6b6350" }}
-              >
+              <li className="px-6 py-10 text-center font-serif italic text-stone">
                 No spots here yet.
               </li>
             )}
@@ -292,16 +270,11 @@ function SpotsIndex() {
         </aside>
 
         {/* RIGHT: map */}
-        <div className="relative flex-1">
-          <div className="relative h-[60vh] w-full lg:h-[calc(100vh-4rem)]">
+        <div className="relative min-h-[420px] flex-1">
+          <div className="relative h-full w-full">
             {mounted ? (
               <Suspense
-                fallback={
-                  <div
-                    className="h-full w-full"
-                    style={{ background: "#e7ddc9" }}
-                  />
-                }
+                fallback={<div className="h-full w-full bg-paper" />}
               >
                 <SpotsMap
                   points={points}
@@ -314,24 +287,15 @@ function SpotsIndex() {
                 />
               </Suspense>
             ) : (
-              <div
-                className="h-full w-full"
-                style={{ background: "#e7ddc9" }}
-              />
+              <div className="h-full w-full bg-paper" />
             )}
 
             {boundsDiffer && (
               <button
                 type="button"
                 onClick={() => setAppliedBounds(bounds)}
-                className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border font-mono text-[10px] uppercase tracking-[0.2em] shadow-sm transition-colors"
-                style={{
-                  background: "#f3ecdd",
-                  borderColor: "#b0402e",
-                  color: "#b0402e",
-                  padding: "8px 14px",
-                  borderRadius: 2,
-                }}
+                className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border border-sage bg-sage-bg px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sage shadow-sm transition-colors hover:bg-sage hover:text-paper"
+                style={{ borderRadius: 2 }}
               >
                 Search spots in this area
               </button>
@@ -340,14 +304,8 @@ function SpotsIndex() {
               <button
                 type="button"
                 onClick={() => setAppliedBounds(null)}
-                className="absolute right-4 top-4 z-[1000] border font-mono text-[10px] uppercase tracking-[0.2em] shadow-sm"
-                style={{
-                  background: "#f3ecdd",
-                  borderColor: "rgba(28,26,20,.3)",
-                  color: "#1c1a14",
-                  padding: "6px 10px",
-                  borderRadius: 2,
-                }}
+                className="absolute right-4 top-4 z-[1000] border border-stone/40 bg-paper px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm hover:border-ink"
+                style={{ borderRadius: 2 }}
               >
                 Clear area filter
               </button>
@@ -389,9 +347,10 @@ function SpotListItem({
     <li
       onMouseEnter={onEnter}
       onMouseLeave={onLeave}
-      className="cursor-pointer px-6 py-5 transition-colors focus-within:bg-[#e7ddc9]/60"
+      className={`cursor-pointer px-6 py-5 transition-colors focus-within:bg-sage-bg/60 ${
+        hovered || selected ? "bg-sage-bg/60" : ""
+      }`}
       style={{
-        background: hovered || selected ? "#e7ddc9" : "transparent",
         borderLeft: selected ? `3px solid ${color}` : "3px solid transparent",
       }}
     >
@@ -401,17 +360,11 @@ function SpotListItem({
         className="block w-full text-left focus:outline-none focus-visible:ring-2"
         style={{ outlineColor: color }}
       >
-        <p
-          className="font-mono text-[10px] uppercase tracking-[0.22em]"
-          style={{ color: "#6b6350" }}
-        >
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone">
           {spot.city}
           {spot.country ? ` · ${spot.country}` : ""}
         </p>
-        <h3
-          className="mt-1.5 font-serif text-2xl leading-tight"
-          style={{ color: "#1c1a14" }}
-        >
+        <h3 className="mt-1.5 font-serif text-2xl leading-tight text-ink">
           {spot.name}
         </h3>
       </button>
@@ -427,7 +380,7 @@ function SpotListItem({
           className="border px-2 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] transition-colors"
           style={{
             borderColor: color,
-            color: showMetrics ? "#f3ecdd" : color,
+            color: showMetrics ? "var(--paper)" : color,
             background: showMetrics ? color : "transparent",
             borderRadius: 2,
           }}
@@ -461,23 +414,16 @@ function MetricsGrid({
 
   return (
     <dl
-      className={`mt-3 grid gap-x-4 gap-y-2 border-t pt-3 ${
+      className={`mt-3 grid gap-x-4 gap-y-2 border-t border-stone/20 pt-3 ${
         compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
       }`}
-      style={{ borderColor: "rgba(28,26,20,.16)" }}
     >
       {months.length > 0 && (
         <div className="col-span-full">
-          <dt
-            className="font-mono text-[10px] uppercase tracking-[0.2em]"
-            style={{ color: "#6b6350" }}
-          >
+          <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
             Best season
           </dt>
-          <dd
-            className="mt-0.5 font-serif text-[15px]"
-            style={{ color: "#1c1a14" }}
-          >
+          <dd className="mt-0.5 font-serif text-[15px] text-ink">
             {months.join(" · ")}
           </dd>
         </div>
@@ -486,22 +432,15 @@ function MetricsGrid({
         const isUnverified = status[k] && status[k] !== "verified";
         return (
           <div key={k}>
-            <dt
-              className="font-mono text-[10px] uppercase tracking-[0.2em]"
-              style={{ color: "#6b6350" }}
-            >
+            <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
               {humanize(k)}
             </dt>
-            <dd
-              className="mt-0.5 font-serif text-[15px]"
-              style={{ color: "#1c1a14" }}
-            >
+            <dd className="mt-0.5 font-serif text-[15px] text-ink">
               {v}
               {isUnverified && (
                 <span
-                  className="ml-1 align-middle font-mono text-[10px] normal-case"
+                  className="ml-1 align-middle font-mono text-[10px] normal-case text-stone"
                   title="Not independently verified"
-                  style={{ color: "#6b6350" }}
                 >
                   · unconfirmed
                 </span>
@@ -547,28 +486,19 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
         type="button"
         aria-label="Close panel"
         onClick={onClose}
-        className={`absolute inset-0 cursor-default transition-opacity duration-300 motion-reduce:transition-none ${
+        className={`absolute inset-0 cursor-default bg-ink/50 transition-opacity duration-300 motion-reduce:transition-none ${
           mountedIn ? "opacity-100" : "opacity-0"
         }`}
-        style={{ background: "rgba(28,26,20,.45)" }}
       />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full flex-col shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
+        className={`absolute right-0 top-0 flex h-full w-full flex-col bg-paper text-ink shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
           mountedIn ? "translate-x-0" : "translate-x-full"
         }`}
-        style={{ background: "#f3ecdd", color: "#1c1a14" }}
       >
         <div
-          className="sticky top-0 z-10 flex items-center justify-between border-b px-5 py-3 backdrop-blur"
-          style={{
-            borderColor: "rgba(28,26,20,.16)",
-            background: "rgba(243,236,221,.95)",
-          }}
+          className="sticky top-0 z-10 flex items-center justify-between border-b border-stone/20 bg-paper/95 px-5 py-3 backdrop-blur"
         >
-          <span
-            className="font-mono text-[10px] uppercase tracking-[0.25em]"
-            style={{ color: "#6b6350" }}
-          >
+          <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
             Spot detail
           </span>
           <button
@@ -576,12 +506,8 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
             type="button"
             onClick={onClose}
             aria-label="Close"
-            className="grid h-9 w-9 place-items-center border transition-colors hover:bg-[#e7ddc9]"
-            style={{
-              borderColor: "rgba(28,26,20,.3)",
-              color: "#1c1a14",
-              borderRadius: 2,
-            }}
+            className="grid h-9 w-9 place-items-center border border-stone/40 text-ink transition-colors hover:border-ink hover:bg-sage-bg/60"
+            style={{ borderRadius: 2 }}
           >
             <svg width="14" height="14" viewBox="0 0 14 14" aria-hidden>
               <path
@@ -595,42 +521,27 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
         </div>
 
         <div className="flex-1 overflow-y-auto px-6 pb-10 pt-6">
-          <p
-            className="font-mono text-[10px] uppercase tracking-[0.24em]"
-            style={{ color: "#6b6350" }}
-          >
+          <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
             {spot.region} · {spot.city}
           </p>
-          <h2
-            className="mt-2 font-serif text-4xl leading-[1.05]"
-            style={{ color: "#1c1a14" }}
-          >
+          <h2 className="mt-2 font-serif text-4xl leading-[1.05] text-ink">
             {spot.name}
           </h2>
           {spot.coordinates && (
-            <p
-              className="mt-3 font-mono text-[11px] tracking-wider"
-              style={{ color: "#6b6350" }}
-            >
+            <p className="mt-3 font-mono text-[11px] tracking-wider text-stone">
               {spot.coordinates.lat.toFixed(4)}°,{" "}
               {spot.coordinates.lng.toFixed(4)}°
             </p>
           )}
 
           {spot.description && (
-            <p
-              className="mt-6 font-serif text-lg leading-[1.55]"
-              style={{ color: "#1c1a14" }}
-            >
+            <p className="mt-6 font-serif text-lg leading-[1.55] text-ink">
               {spot.description}
             </p>
           )}
 
           <section className="mt-8">
-            <p
-              className="font-mono text-[10px] uppercase tracking-[0.24em]"
-              style={{ color: "#6b6350" }}
-            >
+            <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
               What to do here
             </p>
             <button
@@ -641,7 +552,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
               style={{
                 borderColor: color,
                 background: expanded ? color : "transparent",
-                color: expanded ? "#f3ecdd" : "#1c1a14",
+                color: expanded ? "var(--paper)" : "var(--ink)",
                 borderRadius: 2,
               }}
               aria-expanded={expanded}
@@ -667,13 +578,8 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
                 spot: slugify(spot.name),
               }}
               search={{ activity: spot.activity }}
-              className="inline-flex items-center gap-2 border px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] transition-colors"
-              style={{
-                borderColor: "#1c1a14",
-                background: "#1c1a14",
-                color: "#f3ecdd",
-                borderRadius: 2,
-              }}
+              className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-sage hover:border-sage"
+              style={{ borderRadius: 2 }}
             >
               View full spot
               <span aria-hidden>→</span>
