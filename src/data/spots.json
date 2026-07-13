@@ -12840,7 +12840,7 @@
         "technical_difficulty": "Black (black diamond); MTB Project rates it double-black",
         "physical_demand": "Hard — you need speed to clear the jumps",
         "status_condition": "2026 season: May 15–Oct 12. Report 2026-05-12: partially open (Z2 closed)",
-        "bike_access": "Downhill full-suspension; accessed via the 8-seat Fitzsimmons Express lift (upgrade completed in 2024)"
+        "bike_access": "Downhill full-suspension; accessed via the 8-seat Fitzsimmons Express lift (in operation)"
       },
       "fieldStatus": {
         "distance_shape": "source_claims",
@@ -13124,9 +13124,9 @@
         "Peak wind Jun–Sep; best all-round Sep–Nov and Mar–May"
       ],
       "activitySpecific": {
-        "wind_by_month": "NNW trade wind ~95% of the time. Seasonal bands (from the on-site operator, not a measured archive): winter 12–22 kt, spring 14–26 kt building through the day, summer peak 20–30+ kt (most consistent), autumn 14–22 kt. Measured annual mean at the station is ~12 kt (gusts 15 kt), lower because it averages all seasons including calm spells. 300+ windy days/year",
+        "wind_by_month": "NNW trade wind almost all the time. Seasonal bands (from the on-site operator, not a measured archive): winter 12–22 kt, spring 14–26 kt building through the day, summer peak 20–25 kt typical, gusting 30+ (most consistent), autumn 14–22 kt. Measured annual mean at the station is ~12 kt (gusts 15 kt), lower because it averages all seasons including calm spells. 300+ windy days/year",
         "best_season": "Peak Jun–Sep (strongest); best all-round Sep–Nov and Mar–May; beginners in winter/autumn (moderate wind)",
-        "wind_direction": "NNW (blows ~95% of the time); side/cross-onshore, parallel to shore — the safe direction",
+        "wind_direction": "NNW (blows almost all the time); side/cross-onshore, parallel to shore — the safe direction",
         "water_type": "Flat in the lagoon (main riding area); choppy further out toward the reef. Not a wave spot",
         "bottom_water": "Sand (shells possible — water shoes advised), no dangerous coral near shore; saltwater (Red Sea)",
         "tide_current": "Tide matters: depth swings ~40–70 cm, safe kiting a few hours either side of high tide; current not a hazard (sheltered lagoon)",
@@ -13165,8 +13165,8 @@
     "city": "Saudi Arabia",
     "country": "Saudi Arabia",
     "coordinates": {
-      "lat": 26.6167,
-      "lng": 37.9167
+      "lat": 26.7917,
+      "lng": 37.9542
     },
     "relatedArticleSlug": "alula-saudi-arabia-guide",
     "conditions": {
@@ -13177,18 +13177,18 @@
         "Winter (Oct–Mar); rides at 9am or 4pm to avoid midday sun"
       ],
       "activitySpecific": {
-        "riding_level": "Beginner-friendly to experienced; flat trail, medium difficulty. Ages 8–99 (under 12 with an adult)",
-        "pace": "Leisurely, at a walk — a contemplative ride, not trot/canter",
+        "riding_level": "Beginner-friendly to experienced; flat trail, medium difficulty (age policy not confirmed by operators)",
+        "pace": "Contemplative ride (walking pace likely, but not confirmed by operators)",
         "terrain": "Flat sand desert with wide trails, canyons and historic passages through Hegra's rock formations (past the Tomb of Lihyan, Jabal Banat, Jabal Ahmar)",
         "horse_breed": "Not specified by the operators (described only as 'majestic horses'). The region is tied to the Arabian horse's heritage, but the breed on this ride isn't confirmed",
         "riding_style": "Not specified; no mention of safety helmet/gear provided",
         "duration": "Sources differ: ~1h (My Saudi Tours) to 1.5–2h / ~6 km (Alula Tours). Departures at 9am or 4pm",
         "best_season": "Winter, roughly Oct–Mar (operator cites Sep–Apr); summer reaches ~40°C, winter days 15–25°C",
-        "whats_included": "Licensed guide (a 'Rawi' storyteller), round-trip hotel↔Hegra transfer, entry fees, and the horse. Water/Arabic coffee/dates vary by operator; meals not included. ~449 SAR (~US$120) per adult"
+        "whats_included": "Licensed guide (a licensed guide), round-trip hotel↔Hegra transfer, entry fees, and the horse. Water/Arabic coffee/dates vary by operator; meals not included. ~449 SAR (~US$120) per adult"
       },
       "fieldStatus": {
-        "riding_level": "source_claims",
-        "pace": "source_claims",
+        "riding_level": "estimate",
+        "pace": "estimate",
         "terrain": "verified",
         "horse_breed": "estimate",
         "riding_style": "estimate",
@@ -13197,7 +13197,7 @@
         "whats_included": "verified"
       }
     },
-    "description": "Before the sun turns the sandstone to fire, you mount at Hegra's south gate and move into a silence older than any road. The trail is flat, unhurried — a six-kilometre walk through canyons and open desert where Nabataean caravans once passed the tombs of Lihyan and the red face of Jabal Ahmar. A Rawi rides ahead, not to perform but to remember out loud, and the horse carries you at the only pace this land respects: slow enough to notice. Come in winter, when the light is soft and the heat has let go its grip; the desert asks for your attention early, and gives back a morning you will keep. No experience is required here — only the willingness to be somewhere that does not rush you.",
+    "description": "Before the sun turns the sandstone to fire, you mount at Hegra's south gate and move into a silence older than any road. The trail is flat, unhurried — a six-kilometre walk through canyons and open desert where Nabataean caravans once passed the tombs of Lihyan and the red face of Jabal Ahmar. A guide rides ahead, not to perform but to remember out loud, and the horse carries you at the only pace this land respects: slow enough to notice. Come in winter, when the light is soft and the heat has let go its grip; the desert asks for your attention early, and gives back a morning you will keep. No experience is required here — only the willingness to be somewhere that does not rush you.",
     "sourceUrl": "https://www.alula-tours.net/tour-package/horseride-tour-in-alula",
     "sources": [
       "https://www.alula-tours.net/tour-package/horseride-tour-in-alula",
