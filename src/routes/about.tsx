@@ -3,6 +3,24 @@ import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
+const FAQ_ITEMS = [
+  {
+    question: "What is Trovr?",
+    answer:
+      "Trovr is a hand-curated collection of immersive, non-touristy adventure trips — journeys built around sport, exploration, and genuine discovery rather than sightseeing. Every trip is chosen for one reason: that it adds something real to your life. The adventure is the way in; what you find out there is why it matters.",
+  },
+  {
+    question: "What kind of trips does Trovr offer?",
+    answer:
+      "Trovr curates active, off-the-map experiences across five continents — kitesurfing, surfing, freediving, horseback expeditions, wildlife journeys, and more. These are trips that ask something of you and give back more than they took: remote places, real terrain, and the kind of challenge you come back from a little changed. They range from journeys for seasoned adventurers to ones for people just beginning to feel the pull.",
+  },
+  {
+    question: "How does Trovr curate its trips?",
+    answer:
+      "Every trip is chosen by hand, against a single question: would we go ourselves? Trovr looks for journeys that change the people who take them, that aren't the obvious touristy option, and that are lived rather than performed for a photo. There's no committee and no checklist dressed up as science — just a high, personal bar applied to every trip, so that by the time one reaches you, it's already earned the only approval that counts.",
+  },
+];
+
 export const Route = createFileRoute("/about")({
   head: () => ({
     meta: [
@@ -30,6 +48,20 @@ export const Route = createFileRoute("/about")({
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+    scripts: [
+      {
+        type: "application/ld+json",
+        children: JSON.stringify({
+          "@context": "https://schema.org",
+          "@type": "FAQPage",
+          mainEntity: FAQ_ITEMS.map((item) => ({
+            "@type": "Question",
+            name: item.question,
+            acceptedAnswer: { "@type": "Answer", text: item.answer },
+          })),
+        }),
+      },
+    ],
   }),
   component: AboutPage,
 });
@@ -42,6 +74,7 @@ function AboutPage() {
       <WhyExists />
       <HowWeCurate />
       <Newsletter />
+      <Faq />
       <Footer />
     </main>
   );
@@ -391,6 +424,33 @@ function Newsletter() {
         {error && !done && (
           <p className="mt-4 text-sm text-white/80">{error}</p>
         )}
+      </div>
+    </section>
+  );
+}
+
+function Faq() {
+  return (
+    <section
+      id="common-questions"
+      className="border-t border-stone/15 px-6 py-10 sm:py-14 md:py-16"
+    >
+      <div className="mx-auto max-w-[720px]">
+        <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
+          Common questions.
+        </h2>
+        <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">
+          {FAQ_ITEMS.map((item) => (
+            <div key={item.question}>
+              <h3 className="font-serif text-xl italic leading-[1.35] text-ink sm:text-2xl md:text-[26px]">
+                {item.question}
+              </h3>
+              <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
+                {item.answer}
+              </p>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
