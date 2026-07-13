@@ -446,10 +446,11 @@ function ExpeditionCard({
 
 /* ---------- Stats Bar ---------- */
 
+import homeStats from "@/data/home-stats.json";
+
 const STATS = [
-  { value: "600", sup: "+", label: "Places mapped for you" },
-  { value: "5", sup: "", label: "Continents covered" },
-  { value: "41", sup: "", label: "Expeditions curated" },
+  { value: String(homeStats.activeSpots), sup: "", label: "Places mapped for you" },
+  { value: String(homeStats.activeContinents), sup: "", label: "Continents covered" },
   { value: "2026", sup: "", label: "Launching" },
 ];
 
@@ -457,14 +458,12 @@ function StatsBar() {
   return (
     <section className="px-6 pb-8">
       <div className="mx-auto max-w-7xl rounded-[4px] bg-paper-card">
-        <div className="grid grid-cols-2 md:grid-cols-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3">
           {STATS.map((s, idx) => (
             <div
               key={s.label}
               className={`group relative px-6 py-10 sm:py-12 ${
-                idx > 0 ? "md:border-l border-[var(--line)]" : ""
-              } ${idx >= 2 ? "border-t md:border-t-0 border-[var(--line)]" : ""} ${
-                idx % 2 === 1 ? "border-l md:border-l border-[var(--line)]" : ""
+                idx > 0 ? "border-t sm:border-t-0 sm:border-l border-[var(--line)]" : ""
               }`}
             >
               <div className="flex items-baseline gap-1">
