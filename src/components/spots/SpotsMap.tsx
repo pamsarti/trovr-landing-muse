@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import maplibregl from "maplibre-gl";
 import "maplibre-gl/dist/maplibre-gl.css";
 
@@ -111,9 +111,6 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
   ],
 };
 
-const TOUR_START_DELAY = 2500;
-const TOUR_STEP_MS = 6000;
-
 function prefersReducedMotion() {
   return (
     typeof window !== "undefined" &&
@@ -159,10 +156,6 @@ export function SpotsMap({
   const containerRef = useRef<HTMLDivElement | null>(null);
   const mapRef = useRef<maplibregl.Map | null>(null);
   const markersRef = useRef<Map<string, maplibregl.Marker>>(new Map());
-  const tourTimerRef = useRef<number | null>(null);
-  const tourIndexRef = useRef(0);
-  const pointsRef = useRef(points);
-  pointsRef.current = points;
 
   // Callbacks live in refs so the init effect never re-runs on re-render.
   const onBoundsRef = useRef(onBoundsChange);
@@ -171,17 +164,6 @@ export function SpotsMap({
   onBoundsRef.current = onBoundsChange;
   onSelectRef.current = onSelect;
   onHoverRef.current = onHover;
-
-  const [touring, setTouring] = useState(false);
-  const [tourLabel, setTourLabel] = useState<string | null>(null);
-
-  const stopTour = useCallback(() => {
-    if (tourTimerRef.current) {
-      window.clearTimeout(tourTimerRef.current);
-      tourTimerRef.current = null;
-    }
-    setTouring(false);
-  }, []);
 
   // init once
   useEffect(() => {
@@ -198,10 +180,7 @@ export function SpotsMap({
       pitchWithRotate: false,
       attributionControl: { compact: true },
     });
-    map.addControl(
-      new maplibregl.NavigationControl({ showCompass: false }),
-      "top-right",
-    );
+    map.addControl(new maplibregl.NavigationControl({ showCompass: false }), "top-right");
     mapRef.current = map;
 
     const emit = () => {
@@ -216,24 +195,14 @@ export function SpotsMap({
     map.on("moveend", emit);
     map.once("load", emit);
 
-    // Any deliberate interaction hands control back to the visitor.
-    const pause = () => stopTour();
-    map.on("mousedown", pause);
-    map.on("touchstart", pause);
-    map.on("wheel", pause);
-    map.on("dragstart", pause);
-
-    if (!prefersReducedMotion()) setTouring(true);
-
     return () => {
-      if (tourTimerRef.current) window.clearTimeout(tourTimerRef.current);
       map.off("moveend", emit);
       markersRef.current.forEach((m) => m.remove());
       markersRef.current.clear();
       map.remove();
       mapRef.current = null;
     };
-  }, [stopTour]);
+  }, []);
 
   // sync markers with points
   useEffect(() => {
@@ -254,7 +223,6 @@ export function SpotsMap({
       const el = createPin(p, i);
       el.addEventListener("click", (e) => {
         e.stopPropagation();
-        stopTour();
         onSelectRef.current(p.id);
       });
       el.addEventListener("mouseenter", () => onHoverRef.current(p.id));
@@ -264,9 +232,7 @@ export function SpotsMap({
         .addTo(map);
       existing.set(p.id, marker);
     });
-
-    tourIndexRef.current = 0;
-  }, [points, stopTour]);
+  }, [points]);
 
   // active / hovered state on pins
   useEffect(() => {
@@ -283,7 +249,6 @@ export function SpotsMap({
     if (!map || !flyToId) return;
     const p = points.find((x) => x.id === flyToId);
     if (!p) return;
-    stopTour();
     const targetZoom = Math.max(map.getZoom(), 6);
     if (prefersReducedMotion()) {
       map.setCenter([p.lng, p.lat]);
@@ -296,81 +261,14 @@ export function SpotsMap({
         essential: true,
       });
     }
-  }, [flyToId, points, stopTour]);
-
-  // the camera flies on its own until the visitor takes over
-  useEffect(() => {
-    const map = mapRef.current;
-    if (!map || !touring || prefersReducedMotion()) return;
-    if (points.length === 0) return;
-
-    let cancelled = false;
-    const step = () => {
-      if (cancelled) return;
-      const list = pointsRef.current;
-      if (list.length === 0) return;
-      const p = list[tourIndexRef.current % list.length];
-      tourIndexRef.current = (tourIndexRef.current + 1) % list.length;
-      setTourLabel(p.label);
-      for (const [id, m] of markersRef.current) {
-        m.getElement().classList.toggle("is-touring", id === p.id);
-      }
-      map.flyTo({
-        center: [p.lng, p.lat],
-        zoom: 4.4,
-        speed: 0.32,
-        curve: 1.42,
-        essential: true,
-      });
-      tourTimerRef.current = window.setTimeout(step, TOUR_STEP_MS);
-    };
-    tourTimerRef.current = window.setTimeout(step, TOUR_START_DELAY);
-
-    return () => {
-      cancelled = true;
-      if (tourTimerRef.current) {
-        window.clearTimeout(tourTimerRef.current);
-        tourTimerRef.current = null;
-      }
-      for (const [, m] of markersRef.current) {
-        m.getElement().classList.remove("is-touring");
-      }
-    };
-  }, [touring, points.length]);
+  }, [flyToId, points]);
 
   return (
-    <div className="relative h-full min-h-[420px] w-full">
-      <div
-        ref={containerRef}
-        className="h-full min-h-[420px] w-full bg-paper"
-        aria-label="Map of spots"
-        role="region"
-      />
-
-      {points.length > 0 && (
-        <div className="pointer-events-none absolute inset-x-0 bottom-0 z-[400] flex justify-center p-3">
-          <div className="pointer-events-auto flex items-center gap-3 rounded-full border border-stone/25 bg-paper/90 px-3.5 py-1.5 backdrop-blur">
-            <span
-              aria-hidden
-              className={`h-1.5 w-1.5 rounded-full ${
-                touring ? "animate-pulse bg-sage" : "bg-stone"
-              }`}
-            />
-            <span className="text-[10px] uppercase tracking-[0.2em] text-stone">
-              {touring
-                ? `Tour · ${tourLabel ?? points[0].label}`
-                : "Tour pausado"}
-            </span>
-            <button
-              type="button"
-              onClick={() => (touring ? stopTour() : setTouring(true))}
-              className="rounded-full border border-stone/30 px-2.5 py-0.5 text-[10px] uppercase tracking-[0.18em] text-ink transition-colors hover:border-ink hover:bg-ink/5"
-            >
-              {touring ? "Pausar" : "Retomar"}
-            </button>
-          </div>
-        </div>
-      )}
-    </div>
+    <div
+      ref={containerRef}
+      className="h-full min-h-[420px] w-full bg-paper"
+      aria-label="Map of spots"
+      role="region"
+    />
   );
 }
