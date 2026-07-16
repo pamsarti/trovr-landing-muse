@@ -43,10 +43,7 @@ export const Route = createFileRoute("/spots/")({
 function hasConditions(s: Spot): boolean {
   const spec = s.conditions.activitySpecific;
   const months = s.conditions.bestMonths;
-  return (
-    (!!spec && Object.keys(spec).length > 0) ||
-    (!!months && months.length > 0)
-  );
+  return (!!spec && Object.keys(spec).length > 0) || (!!months && months.length > 0);
 }
 
 const KEY_LABELS: Record<string, string> = {
@@ -75,10 +72,7 @@ const KEY_LABELS: Record<string, string> = {
 };
 
 function humanize(k: string) {
-  return (
-    KEY_LABELS[k] ??
-    k.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase())
-  );
+  return KEY_LABELS[k] ?? k.replace(/_/g, " ").replace(/^\w/, (c) => c.toUpperCase());
 }
 
 // ---------- component ----------
@@ -94,10 +88,7 @@ function SpotsIndex() {
       .filter(hasConditions);
   }, [activity]);
 
-  const spotsWithCoords = useMemo(
-    () => allSpots.filter((s) => s.coordinates != null),
-    [allSpots],
-  );
+  const spotsWithCoords = useMemo(() => allSpots.filter((s) => s.coordinates != null), [allSpots]);
 
   const [hoveredId, setHoveredId] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
@@ -123,9 +114,7 @@ function SpotsIndex() {
     const { lat, lng } = s.coordinates;
     const latOk = lat <= b.north && lat >= b.south;
     const lngOk =
-      b.west <= b.east
-        ? lng >= b.west && lng <= b.east
-        : lng >= b.west || lng <= b.east; // dateline wrap
+      b.west <= b.east ? lng >= b.west && lng <= b.east : lng >= b.west || lng <= b.east; // dateline wrap
     return latOk && lngOk;
   };
 
@@ -170,24 +159,42 @@ function SpotsIndex() {
     <div className="bg-paper text-ink">
       <SpotsHeader />
 
-      <div className="flex h-[calc(100dvh-64px)] flex-col sm:h-[calc(100dvh-72px)] lg:flex-row">
-        {/* LEFT: list */}
-        <aside
-          className="w-full border-b border-stone/20 bg-paper lg:h-full lg:w-[400px] lg:shrink-0 lg:overflow-y-auto lg:border-b-0 lg:border-r"
-        >
-          <div className="px-6 pt-6 pb-4">
-            <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
-              Atlas
-            </p>
-            <h1 className="mt-2 font-serif text-2xl leading-tight text-ink">
-              Places worth the journey
-            </h1>
-          </div>
+      {/* Full-bleed map: the map is the page; controls float over it. */}
+      <div className="relative h-[calc(100dvh-64px)] w-full sm:h-[calc(100dvh-72px)]">
+        {mounted ? (
+          <Suspense fallback={<div className="h-full w-full bg-paper" />}>
+            <SpotsMap
+              points={points}
+              hoveredId={hoveredId}
+              activeId={selectedId}
+              flyToId={flyToId}
+              onHover={setHoveredId}
+              onSelect={openSpot}
+              onBoundsChange={setBounds}
+            />
+          </Suspense>
+        ) : (
+          <div className="h-full w-full bg-paper" />
+        )}
 
-          <div className="border-t border-stone/20 px-6 py-4">
-            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-              Filter by activity
-            </p>
+        {/* Floating chrome: title + activity filters, top-left over the map. */}
+        <div className="pointer-events-none absolute inset-x-0 top-0 z-[1000] p-4 sm:p-6">
+          <div className="pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-md border border-stone/20 bg-paper/85 p-4 backdrop-blur-md">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
+                Atlas · {allSpots.length} spots
+                {appliedBounds && (
+                  <>
+                    {" · "}
+                    <span className="text-sage">{listedSpots.length} in this area</span>
+                  </>
+                )}
+              </p>
+              <h1 className="mt-1.5 font-serif text-xl leading-tight text-ink sm:text-2xl">
+                Places worth the journey
+              </h1>
+            </div>
+
             <div className="flex flex-wrap gap-1.5">
               <button
                 type="button"
@@ -234,89 +241,31 @@ function SpotsIndex() {
               })}
             </div>
           </div>
-
-          <div className="border-t border-stone/20 px-6 py-3">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-              {allSpots.length} spots
-              {appliedBounds && (
-                <>
-                  {" · "}
-                  <span className="text-sage">{listedSpots.length} in this area</span>
-                </>
-              )}
-            </p>
-          </div>
-
-          <ul className="divide-y divide-stone/20">
-            {listedSpots.length === 0 && (
-              <li className="px-6 py-10 text-center font-serif italic text-stone">
-                No spots here yet.
-              </li>
-            )}
-            {listedSpots.map((s) => (
-              <SpotListItem
-                key={s.id}
-                spot={s}
-                hovered={hoveredId === s.id}
-                selected={selectedId === s.id}
-                onEnter={() => setHoveredId(s.id)}
-                onLeave={() =>
-                  setHoveredId((h) => (h === s.id ? null : h))
-                }
-                onClick={() => openSpot(s.id)}
-              />
-            ))}
-          </ul>
-        </aside>
-
-        {/* RIGHT: map */}
-        <div className="relative min-h-[420px] flex-1">
-          <div className="relative h-full w-full">
-            {mounted ? (
-              <Suspense
-                fallback={<div className="h-full w-full bg-paper" />}
-              >
-                <SpotsMap
-                  points={points}
-                  hoveredId={hoveredId}
-                  activeId={selectedId}
-                  flyToId={flyToId}
-                  onHover={setHoveredId}
-                  onSelect={openSpot}
-                  onBoundsChange={setBounds}
-                />
-              </Suspense>
-            ) : (
-              <div className="h-full w-full bg-paper" />
-            )}
-
-            {boundsDiffer && (
-              <button
-                type="button"
-                onClick={() => setAppliedBounds(bounds)}
-                className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border border-sage bg-sage-bg px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sage shadow-sm transition-colors hover:bg-sage hover:text-paper"
-                style={{ borderRadius: 2 }}
-              >
-                Search spots in this area
-              </button>
-            )}
-            {appliedBounds && (
-              <button
-                type="button"
-                onClick={() => setAppliedBounds(null)}
-                className="absolute right-4 top-4 z-[1000] border border-stone/40 bg-paper px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm hover:border-ink"
-                style={{ borderRadius: 2 }}
-              >
-                Clear area filter
-              </button>
-            )}
-          </div>
         </div>
+
+        {boundsDiffer && (
+          <button
+            type="button"
+            onClick={() => setAppliedBounds(bounds)}
+            className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border border-sage bg-sage-bg px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sage shadow-sm transition-colors hover:bg-sage hover:text-paper"
+            style={{ borderRadius: 2 }}
+          >
+            Search spots in this area
+          </button>
+        )}
+        {appliedBounds && (
+          <button
+            type="button"
+            onClick={() => setAppliedBounds(null)}
+            className="absolute right-4 top-4 z-[1000] border border-stone/40 bg-paper px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm hover:border-ink"
+            style={{ borderRadius: 2 }}
+          >
+            Clear area filter
+          </button>
+        )}
       </div>
 
-      {selectedSpot && (
-        <DetailPanel spot={selectedSpot} onClose={() => setSelectedId(null)} />
-      )}
+      {selectedSpot && <DetailPanel spot={selectedSpot} onClose={() => setSelectedId(null)} />}
     </div>
   );
 }
@@ -340,8 +289,7 @@ function SpotListItem({
 }) {
   const [showMetrics, setShowMetrics] = useState(false);
   const color = colorForActivity(spot.activity);
-  const label =
-    ACTIVITIES.find((a) => a.id === spot.activity)?.label ?? spot.activity;
+  const label = ACTIVITIES.find((a) => a.id === spot.activity)?.label ?? spot.activity;
 
   return (
     <li
@@ -364,9 +312,7 @@ function SpotListItem({
           {spot.city}
           {spot.country ? ` · ${spot.country}` : ""}
         </p>
-        <h3 className="mt-1.5 font-serif text-2xl leading-tight text-ink">
-          {spot.name}
-        </h3>
+        <h3 className="mt-1.5 font-serif text-2xl leading-tight text-ink">{spot.name}</h3>
       </button>
 
       <div className="mt-3 flex flex-wrap items-center gap-1.5">
@@ -397,13 +343,7 @@ function SpotListItem({
 
 // ---------- metrics ----------
 
-function MetricsGrid({
-  spot,
-  compact = false,
-}: {
-  spot: Spot;
-  compact?: boolean;
-}) {
+function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean }) {
   const spec = spot.conditions.activitySpecific ?? {};
   const status = spot.conditions.fieldStatus ?? {};
   const months = spot.conditions.bestMonths ?? [];
@@ -423,9 +363,7 @@ function MetricsGrid({
           <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
             Best season
           </dt>
-          <dd className="mt-0.5 font-serif text-[15px] text-ink">
-            {months.join(" · ")}
-          </dd>
+          <dd className="mt-0.5 font-serif text-[15px] text-ink">{months.join(" · ")}</dd>
         </div>
       )}
       {entries.map(([k, v]) => {
@@ -460,8 +398,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
   const closeRef = useRef<HTMLButtonElement | null>(null);
   const [expanded, setExpanded] = useState(true);
   const color = colorForActivity(spot.activity);
-  const label =
-    ACTIVITIES.find((a) => a.id === spot.activity)?.label ?? spot.activity;
+  const label = ACTIVITIES.find((a) => a.id === spot.activity)?.label ?? spot.activity;
 
   useEffect(() => {
     const raf = requestAnimationFrame(() => setMountedIn(true));
@@ -495,9 +432,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
           mountedIn ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div
-          className="sticky top-0 z-10 flex items-center justify-between border-b border-stone/20 bg-paper/95 px-5 py-3 backdrop-blur"
-        >
+        <div className="sticky top-0 z-10 flex items-center justify-between border-b border-stone/20 bg-paper/95 px-5 py-3 backdrop-blur">
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
             Spot detail
           </span>
@@ -524,20 +459,15 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
             {spot.region} · {spot.city}
           </p>
-          <h2 className="mt-2 font-serif text-4xl leading-[1.05] text-ink">
-            {spot.name}
-          </h2>
+          <h2 className="mt-2 font-serif text-4xl leading-[1.05] text-ink">{spot.name}</h2>
           {spot.coordinates && (
             <p className="mt-3 font-mono text-[11px] tracking-wider text-stone">
-              {spot.coordinates.lat.toFixed(4)}°,{" "}
-              {spot.coordinates.lng.toFixed(4)}°
+              {spot.coordinates.lat.toFixed(4)}°, {spot.coordinates.lng.toFixed(4)}°
             </p>
           )}
 
           {spot.description && (
-            <p className="mt-6 font-serif text-lg leading-[1.55] text-ink">
-              {spot.description}
-            </p>
+            <p className="mt-6 font-serif text-lg leading-[1.55] text-ink">{spot.description}</p>
           )}
 
           <section className="mt-8">
