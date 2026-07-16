@@ -1,18 +1,8 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import {
-  findTrip,
-  durationLabel,
-  ACTIVITY_LABEL,
-  tripImage,
-  type Trip,
-} from "@/lib/trips-data";
-import {
-  getPublishedArticles,
-  CATEGORY_LABEL,
-  type JournalArticle,
-} from "@/lib/journal-data";
+import { findTrip, durationLabel, ACTIVITY_LABEL, tripImage, type Trip } from "@/lib/trips-data";
+import { getPublishedArticles, CATEGORY_LABEL, type JournalArticle } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Reveal } from "@/components/Reveal";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
@@ -21,7 +11,11 @@ export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
       { title: "Trovr — Curated Immersive & Adventure Travel Experiences" },
-      { name: "description", content: "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life." },
+      {
+        name: "description",
+        content:
+          "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life.",
+      },
       { property: "og:url", content: `${SITE_URL}/` },
       { property: "og:image", content: DEFAULT_OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
@@ -42,28 +36,28 @@ export const Route = createFileRoute("/")({
 
 /* ---------- Data ---------- */
 
-type HomeTrip = { trip: Trip; line: string; span: string };
+type HomeTrip = { trip: Trip; line: string; delay: number };
 
 const HOME_TRIPS: HomeTrip[] = [
   {
     trip: findTrip("egypt-kite-dragonfly")!,
     line: "Wind that lasts longer than your fear of it.",
-    span: "md:col-span-7 md:row-span-2",
+    delay: 0,
   },
   {
     trip: findTrip("maldives-surf-surftribe")!,
     line: "An ocean that pays in a currency the office doesn't accept.",
-    span: "md:col-span-5 md:row-span-1",
+    delay: -6,
   },
   {
     trip: findTrip("kyrgyzstan-horse-tatosh")!,
     line: "Where the steppe still belongs to the people who cross it.",
-    span: "md:col-span-5 md:row-span-1",
+    delay: -12,
   },
   {
     trip: findTrip("alaska-wildlife-geographic")!,
     line: "Quiet is its own kind of cathedral.",
-    span: "md:col-span-12 md:row-span-1",
+    delay: -18,
   },
 ].filter((t): t is HomeTrip => !!t.trip);
 
@@ -92,10 +86,16 @@ function Index() {
     <main className="bg-paper text-ink font-sans antialiased">
       <SiteHeader transparent />
       <Hero />
-      <Reveal as="div"><ManifestoStrip /></Reveal>
-      <Reveal as="div"><JournalSection /></Reveal>
-      <Reveal as="div"><Expeditions /></Reveal>
-      <Reveal as="div"><StatsBar /></Reveal>
+      <Reveal as="div">
+        <ManifestoStrip />
+      </Reveal>
+      <Reveal as="div">
+        <JournalSection />
+      </Reveal>
+      <Expeditions />
+      <Reveal as="div">
+        <StatsBar />
+      </Reveal>
       <Newsletter />
       <Footer />
     </main>
@@ -181,9 +181,7 @@ function Hero() {
             <div className="font-serif text-2xl tracking-wide text-white">
               <span className="text-white">{String(i + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/40">/</span>
-              <span className="text-white/60">
-                {String(HERO_SLIDES.length).padStart(2, "0")}
-              </span>
+              <span className="text-white/60">{String(HERO_SLIDES.length).padStart(2, "0")}</span>
             </div>
             <div
               role="tablist"
@@ -215,8 +213,7 @@ function Hero() {
                     className="block h-[2px] w-full origin-left transition-transform duration-500 ease-out motion-reduce:transition-none"
                     style={{
                       transform: idx === i ? "scaleX(1)" : "scaleX(0.4)",
-                      background:
-                        idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
+                      background: idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
                     }}
                   />
                 </button>
@@ -239,20 +236,22 @@ function ManifestoStrip() {
     <section className="px-6 py-14 sm:py-20">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-2 md:items-center md:gap-20">
         <div>
-          <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
-            The manifesto
-          </p>
+          <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">The manifesto</p>
           <h2 className="font-serif text-[2.25rem] leading-[1.1] text-ink sm:text-5xl md:text-[3.5rem]">
-            The right trip goes&nbsp; <em className="italic font-normal">deeper</em>&nbsp;than anywhere on the map.
+            The right trip goes&nbsp; <em className="italic font-normal">deeper</em>&nbsp;than
+            anywhere on the map.
           </h2>
         </div>
         <div>
           <div className="space-y-6">
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              We curate journeys made to stretch you and stay with you — the kind that leave you sharper, braver, more awake to what a life can hold. Places that ask something of you, and give back more than they took.
+              We curate journeys made to stretch you and stay with you — the kind that leave you
+              sharper, braver, more awake to what a life can hold. Places that ask something of you,
+              and give back more than they took.
             </p>
             <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              That's the whole idea of Trovr: adventure with something underneath it. Intense to live. Impossible to forget.
+              That's the whole idea of Trovr: adventure with something underneath it. Intense to
+              live. Impossible to forget.
             </p>
           </div>
         </div>
@@ -276,9 +275,7 @@ function JournalSection() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">
-              Field notes
-            </p>
+            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">Field notes</p>
             <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
               From the <em className="italic font-normal">journal.</em>
             </h2>
@@ -331,8 +328,7 @@ function JournalCard({
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
         style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
+          background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
         }}
       />
       <span
@@ -358,89 +354,122 @@ function JournalCard({
   );
 }
 
+/** Season/level strings come as "May-October", "Intermediate-advanced" — make
+ *  the dash an en-dash and capitalise, without inventing any value. */
+function prettyRange(value: string): string {
+  return value.replace(/\s*-\s*/g, "–");
+}
+function prettyLevel(value: string): string {
+  const s = prettyRange(value);
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}
+
 function Expeditions() {
   return (
-    <section id="expeditions" className="px-6 py-14 sm:py-20">
-      <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex items-end justify-between gap-6">
-          <div>
-            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">
-              Fall 2026
-            </p>
-            <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
-              First <em className="italic font-normal">expeditions.</em>
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[280px] lg:auto-rows-[320px]">
-          {HOME_TRIPS.map(({ trip, line, span }, idx) => (
-            <ExpeditionCard
-              key={trip.id}
-              trip={trip}
-              line={line}
-              span={span}
-              ratio={idx === 0 ? "aspect-[4/5] md:aspect-auto" : "aspect-[4/3] md:aspect-auto"}
-            />
-          ))}
-        </div>
-      </div>
+    <section id="expeditions" className="bg-ink">
+      {HOME_TRIPS.map(({ trip, line, delay }, idx) => (
+        <ExpeditionScene
+          key={trip.id}
+          trip={trip}
+          line={line}
+          index={idx}
+          total={HOME_TRIPS.length}
+          delay={delay}
+        />
+      ))}
     </section>
   );
 }
 
-function ExpeditionCard({
+/**
+ * One expedition, full screen. The place fills the viewport and drifts
+ * (ken-burns); a dossier sits alongside with the four metrics that actually
+ * exist on the trip — activity, duration, season, level. No invented numbers.
+ */
+function ExpeditionScene({
   trip,
   line,
-  span,
-  ratio,
+  index,
+  total,
+  delay,
 }: {
   trip: Trip;
   line: string;
-  span: string;
-  ratio: string;
+  index: number;
+  total: number;
+  delay: number;
 }) {
+  const titleLeft = index % 2 === 0;
+  const kicker = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")} · ${trip.country.toUpperCase()}`;
+  const metrics: { label: string; value: string }[] = [
+    { label: "Activity", value: ACTIVITY_LABEL[trip.activity] },
+    { label: "Duration", value: durationLabel(trip) },
+    { label: "Season", value: prettyRange(trip.season) },
+    { label: "Level", value: prettyLevel(trip.level) },
+  ];
+
   return (
-    <Link
-      to="/coming-soon"
-      className={`group relative block overflow-hidden rounded-[4px] bg-ink ${span} ${ratio} md:h-full`}
-    >
+    <article className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-ink">
       <img
         src={tripImage(trip, 1600, 1000)}
         alt={trip.destination}
         loading="lazy"
-        className="card-img absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05]"
-        style={{ filter: "brightness(0.95)" }}
+        className="ken-burns absolute inset-0 h-full w-full object-cover"
+        style={{ animationDelay: `${delay}s` }}
       />
-      {/* Bottom info gradient */}
+      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/40" />
       <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
-        }}
+        className={`absolute inset-0 ${titleLeft ? "bg-gradient-to-r from-ink/60 via-transparent to-transparent" : "bg-gradient-to-l from-ink/60 via-transparent to-transparent"}`}
       />
 
-      {/* Floating button */}
-      <span
-        aria-hidden
-        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 items-center justify-center rounded-full bg-white opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100"
-      >
-        <ArrowUpRight className="h-4 w-4 text-ink" />
-      </span>
+      <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 md:px-10 md:pb-20">
+        <div className="mx-auto grid w-full max-w-[1400px] gap-10 md:grid-cols-2 md:items-end">
+          {/* Title block */}
+          <div className={titleLeft ? "md:order-1 md:pr-8" : "md:order-2 md:pl-8"}>
+            <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">{kicker}</p>
+            <h3 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,5.5vw,5rem)] leading-[1.03] tracking-[-0.02em] text-white">
+              {trip.destination}
+            </h3>
+            <p className="mt-4 max-w-md font-serif text-lg italic text-white/85">{line}</p>
+          </div>
 
-      <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-        <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">
-          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)}
-        </p>
-        <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
-            {trip.destination}
-          </span>
-        </h3>
-        <p className="mt-1.5 max-w-md font-serif italic text-white/80">{line}</p>
+          {/* Dossier — real metrics only */}
+          <aside
+            className={`${titleLeft ? "md:order-2 md:justify-self-end" : "md:order-1 md:justify-self-start"} w-full max-w-md rounded-sm border border-white/15 bg-ink/55 p-5 backdrop-blur-md md:p-6`}
+          >
+            <div className="flex items-center justify-between gap-3 border-b border-white/15 pb-3">
+              <span className="inline-flex items-center rounded-full border border-white/25 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white">
+                {ACTIVITY_LABEL[trip.activity]}
+              </span>
+              <span className="text-[10px] uppercase tracking-[0.2em] text-white/75">
+                {durationLabel(trip)}
+              </span>
+            </div>
+
+            <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5">
+              {metrics.map((m) => (
+                <div key={m.label}>
+                  <dt className="text-[9.5px] uppercase tracking-[0.22em] text-white/60">
+                    {m.label}
+                  </dt>
+                  <dd className="mt-1.5 font-serif text-lg leading-tight text-white">{m.value}</dd>
+                </div>
+              ))}
+            </dl>
+
+            <div className="mt-6 flex items-center justify-end border-t border-white/15 pt-4">
+              <Link
+                to="/coming-soon"
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-sage transition-colors hover:text-white"
+              >
+                See this expedition
+                <ArrowRight className="h-3.5 w-3.5" />
+              </Link>
+            </div>
+          </aside>
+        </div>
       </div>
-    </Link>
+    </article>
   );
 }
 
@@ -467,18 +496,10 @@ function StatsBar() {
               }`}
             >
               <div className="flex items-baseline gap-1">
-                <span className="font-serif text-4xl text-ink sm:text-5xl">
-                  {s.value}
-                </span>
-                {s.sup && (
-                  <span className="font-serif text-xl text-sage sm:text-2xl">
-                    {s.sup}
-                  </span>
-                )}
+                <span className="font-serif text-4xl text-ink sm:text-5xl">{s.value}</span>
+                {s.sup && <span className="font-serif text-xl text-sage sm:text-2xl">{s.sup}</span>}
               </div>
-              <p className="mt-3 text-[10.5px] uppercase tracking-[0.22em] text-mid">
-                {s.label}
-              </p>
+              <p className="mt-3 text-[10.5px] uppercase tracking-[0.22em] text-mid">{s.label}</p>
               <span
                 aria-hidden
                 className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-sage transition-all duration-500 group-hover:w-full"
@@ -502,10 +523,7 @@ function Newsletter() {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    const t = setInterval(
-      () => setBgIndex((n) => (n + 1) % HERO_SLIDES.length),
-      6000,
-    );
+    const t = setInterval(() => setBgIndex((n) => (n + 1) % HERO_SLIDES.length), 6000);
     return () => clearInterval(t);
   }, []);
 
@@ -595,12 +613,10 @@ function Newsletter() {
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-white/70">
-          Early access
-        </p>
+        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-white/70">Early access</p>
         <h2 className="font-serif text-4xl leading-[1.1] text-white sm:text-5xl">
-          When the <em className="italic font-normal">first</em> expeditions
-          open, you'll be the first to know.
+          When the <em className="italic font-normal">first</em> expeditions open, you'll be the
+          first to know.
         </h2>
         <p className="mt-6 text-base text-white/75 sm:text-lg">
           No noise. Only the letters that matter.
@@ -649,9 +665,7 @@ function Newsletter() {
             </button>
           </form>
         )}
-        {error && !done && (
-          <p className="mt-4 text-sm text-white/80">{error}</p>
-        )}
+        {error && !done && <p className="mt-4 text-sm text-white/80">{error}</p>}
       </div>
     </section>
   );
