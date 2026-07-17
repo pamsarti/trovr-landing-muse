@@ -80,7 +80,11 @@ export const en = {
     metricDuration: "Duration",
     metricSeason: "Season",
     metricLevel: "Level",
+    metricCountry: "Country",
+    metricRegion: "Region",
+    metricBest: "Best time",
     seeThisExpedition: "See this expedition",
+    seeThisSpot: "See this spot",
 
     statPlaces: "Places mapped for you",
     statContinents: "Continents covered",
