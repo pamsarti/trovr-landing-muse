@@ -55,11 +55,9 @@ function isPublic(spot: Spot): boolean {
   // (activitySpecific fields) AND a written description. Legacy scraped
   // entries — even those with a raw source blob or just a sourceUrl — stay
   // hidden until they are properly filled in. Nothing is deleted.
-  const hasDescription =
-    typeof spot.description === "string" && spot.description.trim().length > 0;
+  const hasDescription = typeof spot.description === "string" && spot.description.trim().length > 0;
   const activitySpecific = spot.conditions?.activitySpecific;
-  const hasCuratedConditions =
-    !!activitySpecific && Object.keys(activitySpecific).length > 0;
+  const hasCuratedConditions = !!activitySpecific && Object.keys(activitySpecific).length > 0;
   return hasDescription && hasCuratedConditions;
 }
 
@@ -92,8 +90,7 @@ export type Continent = {
 const CONTINENT_IMAGES: Record<string, string> = {
   Africa:
     "https://images.unsplash.com/photo-1516026672322-bc52d61a55d5?auto=format&fit=crop&w=1600&q=70",
-  Asia:
-    "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
+  Asia: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
   Caribbean:
     "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=70",
   "Central America":
@@ -141,11 +138,7 @@ export function getRegions(activity: ActivityFilter, continentName: string): Reg
     .sort((a, b) => a.name.localeCompare(b.name));
 }
 
-export function findRegion(
-  activity: ActivityFilter,
-  continentName: string,
-  regionSlug: string,
-) {
+export function findRegion(activity: ActivityFilter, continentName: string, regionSlug: string) {
   return getRegions(activity, continentName).find((r) => r.slug === regionSlug) ?? null;
 }
 
@@ -237,4 +230,55 @@ export function validateSpotsSearch(search: Record<string, unknown>): {
 } {
   const parsed = parseActivity(search.activity);
   return parsed ? { activity: parsed } : {};
+}
+
+/** Human label for an activity (e.g. "surf" -> "Surf", "run" -> "Trail Running"). */
+export function activityLabel(activity: Activity): string {
+  return ACTIVITY_META.find((a) => a.id === activity)?.label ?? activity;
+}
+
+/**
+ * Placeholder photography per activity, curated on Unsplash — the spots data
+ * carries no images yet, so the home/hero borrow a coherent shot by sport
+ * (the same approach trips-data uses). Swap for real spot photos when available.
+ */
+const SPOT_ACTIVITY_IMAGE: Record<Activity, string> = {
+  kite: "photo-1502933691298-84fc14542831",
+  surf: "photo-1502680390469-be75c86b636f",
+  snow: "photo-1551524559-8af4e6624178",
+  dive: "photo-1544551763-46a013bb70d5",
+  climb: "photo-1522163182402-834f871fd851",
+  sail: "photo-1502680390469-be75c86b636f",
+  hike: "photo-1464822759023-fed622ff2c3b",
+  run: "photo-1571008887538-b36bb32f4571",
+  bike: "photo-1544191696-15693072e0b5",
+  horseback: "photo-1553284965-83fd3e82fa5a",
+};
+
+export function spotImage(spot: Spot, w = 1600, h = 1000): string {
+  const id = SPOT_ACTIVITY_IMAGE[spot.activity] ?? SPOT_ACTIVITY_IMAGE.hike;
+  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
+}
+
+/** All public spots, for the homepage. */
+export function getPublicSpots(): Spot[] {
+  return PUBLIC_SPOTS;
+}
+
+/**
+ * Four dossier metrics drawn from the spot's REAL data — no invented numbers.
+ * Chosen so every public spot has all four: activity, country, region
+ * (continent), and best time (bestMonths). recommended_level is only present on
+ * a few spots, so it is NOT used here (it would show blank on most).
+ */
+export function spotHomeMetrics(spot: Spot): { label: string; value: string }[] {
+  const best = spot.conditions.bestMonths?.[0] ?? null;
+  // Keep values compact for the small dossier cells.
+  const shorten = (s: string, n = 42) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
+  return [
+    { key: "activity", value: activityLabel(spot.activity) },
+    { key: "country", value: spot.country },
+    { key: "region", value: spot.region },
+    { key: "best", value: best ? shorten(best) : "—" },
+  ].map((m) => ({ label: m.key, value: m.value }));
 }

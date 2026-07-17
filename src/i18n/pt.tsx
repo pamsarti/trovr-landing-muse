@@ -81,7 +81,11 @@ export const pt = {
     metricDuration: "Duração",
     metricSeason: "Temporada",
     metricLevel: "Nível",
+    metricCountry: "País",
+    metricRegion: "Região",
+    metricBest: "Melhor época",
     seeThisExpedition: "Ver esta expedição",
+    seeThisSpot: "Ver este spot",
 
     statPlaces: "Lugares mapeados para você",
     statContinents: "Continentes cobertos",

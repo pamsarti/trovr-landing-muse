@@ -1,7 +1,14 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent } from "react";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
-import { findTrip, durationLabel, ACTIVITY_LABEL, tripImage, type Trip } from "@/lib/trips-data";
+import {
+  getPublicSpots,
+  spotImage,
+  spotHomeMetrics,
+  activityLabel,
+  slugify,
+  type Spot,
+} from "@/lib/spots-data";
 import { getPublishedArticles, CATEGORY_LABEL, type JournalArticle } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Reveal } from "@/components/Reveal";
@@ -41,48 +48,48 @@ export const Route = createFileRoute("/")({
 
 /* ---------- Data ---------- */
 
-type HomeTrip = { trip: Trip; line: string; delay: number };
+/**
+ * Fisher–Yates shuffle using a seed, so the order is deterministic for a given
+ * seed. The homepage seeds it on the CLIENT after mount (see useShuffled) — SSR
+ * renders the stable source order, then the client reshuffles once, which keeps
+ * hydration intact while still varying the order each visit.
+ */
+function seededShuffle<T>(items: readonly T[], seed: number): T[] {
+  const a = items.slice();
+  let s = seed || 1;
+  for (let i = a.length - 1; i > 0; i--) {
+    s = (s * 1103515245 + 12345) & 0x7fffffff;
+    const j = s % (i + 1);
+    [a[i], a[j]] = [a[j], a[i]];
+  }
+  return a;
+}
 
-const HOME_TRIPS: HomeTrip[] = [
-  {
-    trip: findTrip("egypt-kite-dragonfly")!,
-    line: "Wind that lasts longer than your fear of it.",
-    delay: 0,
-  },
-  {
-    trip: findTrip("maldives-surf-surftribe")!,
-    line: "An ocean that pays in a currency the office doesn't accept.",
-    delay: -6,
-  },
-  {
-    trip: findTrip("kyrgyzstan-horse-tatosh")!,
-    line: "Where the steppe still belongs to the people who cross it.",
-    delay: -12,
-  },
-  {
-    trip: findTrip("alaska-wildlife-geographic")!,
-    line: "Quiet is its own kind of cathedral.",
-    delay: -18,
-  },
-].filter((t): t is HomeTrip => !!t.trip);
+/** Stable source order on the server; one client-side reshuffle after mount. */
+function useShuffled<T>(items: readonly T[]): T[] {
+  const [seed, setSeed] = useState(0);
+  useEffect(() => {
+    setSeed(Math.floor(Math.random() * 0x7fffffff) || 1);
+  }, []);
+  return useMemo(() => (seed === 0 ? items.slice() : seededShuffle(items, seed)), [items, seed]);
+}
 
-const HERO_SLIDES = [
-  {
-    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
-    alt: "Mountain dawn",
-    caption: "Patagonia · trekking",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1502933691298-84fc14542831?auto=format&fit=crop&w=1600&q=70",
-    alt: "Surfer at golden hour",
-    caption: "Maldives · surf",
-  },
-  {
-    src: "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1600&q=70",
-    alt: "Open steppe at sunset",
-    caption: "Kyrgyzstan · horseback",
-  },
-];
+/** Hero slide, sourced from a public spot or a published journal article. */
+type HeroSlide = { src: string; alt: string; caption: string };
+
+function heroSlidesFrom(spots: Spot[], articles: JournalArticle[]): HeroSlide[] {
+  const fromSpots: HeroSlide[] = spots.map((s) => ({
+    src: spotImage(s, 1600, 1000),
+    alt: s.name,
+    caption: `${s.country} · ${activityLabel(s.activity)}`,
+  }));
+  const fromArticles: HeroSlide[] = articles.map((a) => ({
+    src: a.heroImage,
+    alt: a.title,
+    caption: `${CATEGORY_LABEL[a.category]} · Journal`,
+  }));
+  return [...fromSpots, ...fromArticles];
+}
 
 /* ---------- Page ---------- */
 
@@ -94,10 +101,7 @@ function Index() {
       <Reveal as="div">
         <ManifestoStrip />
       </Reveal>
-      <Reveal as="div">
-        <JournalSection />
-      </Reveal>
-      <Expeditions />
+      <SpotsAndJournal />
       <Reveal as="div">
         <StatsBar />
       </Reveal>
@@ -111,21 +115,30 @@ function Index() {
 
 function Hero() {
   const t = useT();
+  // Hero images come from public spots + published journal articles, reshuffled
+  // once on the client so each visit sees a different order (SSR-safe).
+  const allSlides = useMemo(() => heroSlidesFrom(getPublicSpots(), getPublishedArticles()), []);
+  const slides = useShuffled(allSlides).slice(0, 6);
   const [i, setI] = useState(0);
   useEffect(() => {
-    const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
-    return () => clearInterval(t);
-  }, []);
+    if (slides.length <= 1) return;
+    const timer = setInterval(() => setI((n) => (n + 1) % slides.length), 6000);
+    return () => clearInterval(timer);
+  }, [slides.length]);
+  // Guard the index if the slide count changes after the client reshuffle.
+  const active = slides.length ? i % slides.length : 0;
+
+  if (slides.length === 0) return null;
 
   return (
     <section className="relative isolate h-[100svh] w-full overflow-hidden bg-ink">
-      {HERO_SLIDES.map((s, idx) => (
+      {slides.map((s, idx) => (
         <div
-          key={s.src}
-          aria-hidden={idx !== i}
+          key={`${s.src}-${idx}`}
+          aria-hidden={idx !== active}
           className="ken-burns hero-slide absolute inset-0 -z-10 transition-opacity duration-[800ms] ease-in-out"
           style={{
-            opacity: idx === i ? 1 : 0,
+            opacity: idx === active ? 1 : 0,
             backgroundImage: `url(${s.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
@@ -183,9 +196,9 @@ function Hero() {
           {/* Right: slide indicator */}
           <div className="flex flex-col items-start gap-4 md:items-end">
             <div className="font-serif text-2xl tracking-wide text-white">
-              <span className="text-white">{String(i + 1).padStart(2, "0")}</span>
+              <span className="text-white">{String(active + 1).padStart(2, "0")}</span>
               <span className="mx-2 text-white/40">/</span>
-              <span className="text-white/60">{String(HERO_SLIDES.length).padStart(2, "0")}</span>
+              <span className="text-white/60">{String(slides.length).padStart(2, "0")}</span>
             </div>
             <div
               role="tablist"
@@ -194,21 +207,21 @@ function Hero() {
               onKeyDown={(e) => {
                 if (e.key === "ArrowRight") {
                   e.preventDefault();
-                  setI((n) => (n + 1) % HERO_SLIDES.length);
+                  setI((n) => (n + 1) % slides.length);
                 } else if (e.key === "ArrowLeft") {
                   e.preventDefault();
-                  setI((n) => (n - 1 + HERO_SLIDES.length) % HERO_SLIDES.length);
+                  setI((n) => (n - 1 + slides.length) % slides.length);
                 }
               }}
             >
-              {HERO_SLIDES.map((s, idx) => (
+              {slides.map((s, idx) => (
                 <button
-                  key={idx}
+                  key={`${s.src}-${idx}`}
                   type="button"
                   role="tab"
-                  aria-selected={idx === i}
-                  aria-label={`Show slide ${idx + 1} of ${HERO_SLIDES.length}: ${s.caption}`}
-                  tabIndex={idx === i ? 0 : -1}
+                  aria-selected={idx === active}
+                  aria-label={`Show slide ${idx + 1} of ${slides.length}: ${s.caption}`}
+                  tabIndex={idx === active ? 0 : -1}
                   onClick={() => setI(idx)}
                   className="group -my-3 flex h-6 w-10 items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
                 >
@@ -216,15 +229,16 @@ function Hero() {
                     aria-hidden
                     className="block h-[2px] w-full origin-left transition-transform duration-500 ease-out motion-reduce:transition-none"
                     style={{
-                      transform: idx === i ? "scaleX(1)" : "scaleX(0.4)",
-                      background: idx === i ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
+                      transform: idx === active ? "scaleX(1)" : "scaleX(0.4)",
+                      background:
+                        idx === active ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
                     }}
                   />
                 </button>
               ))}
             </div>
             <p className="text-[10.5px] uppercase tracking-[0.22em] text-white/70">
-              {HERO_SLIDES[i].caption}
+              {slides[active]?.caption}
             </p>
           </div>
         </div>
@@ -259,26 +273,64 @@ function ManifestoStrip() {
   );
 }
 
-/* ---------- Expeditions Masonry ---------- */
+/* ---------- Spots + Journal, interleaved ---------- */
 
-function JournalSection() {
-  const t = useT();
-  const articles = getPublishedArticles().slice(0, 3);
-  if (articles.length === 0) return null;
-  const spans = [
-    "md:col-span-7 md:row-span-2",
-    "md:col-span-5 md:row-span-1",
-    "md:col-span-5 md:row-span-1",
-  ];
+/**
+ * The main body of the homepage: full-screen spot scenes, with a journal band
+ * slotted in after every two spots. Both lists are reshuffled once on the
+ * client, and the journal band rotates through the published articles as the
+ * page goes — so as more spots and articles are added, the rhythm just keeps
+ * going without any layout change.
+ */
+function SpotsAndJournal() {
+  const spots = useShuffled(getPublicSpots());
+  const articles = useShuffled(getPublishedArticles());
+
+  if (spots.length === 0) return null;
+
+  const blocks: React.ReactNode[] = [];
+  let sceneIndex = 0;
+  let articleIndex = 0;
+
+  spots.forEach((spot, i) => {
+    blocks.push(
+      <SpotScene key={`spot-${spot.id}`} spot={spot} index={sceneIndex} delay={-(i % 4) * 6} />,
+    );
+    sceneIndex += 1;
+    // After every two spots, drop in one journal band (if any articles exist).
+    const isSecondOfPair = (i + 1) % 2 === 0;
+    const moreSpotsAfter = i < spots.length - 1;
+    if (isSecondOfPair && articles.length > 0 && moreSpotsAfter) {
+      const article = articles[articleIndex % articles.length];
+      blocks.push(<JournalBand key={`journal-${article.id}-${articleIndex}`} article={article} />);
+      articleIndex += 1;
+    }
+  });
+
   return (
-    <section id="journal" className="px-6 py-14 sm:py-20">
+    <>
+      <div id="expeditions" className="bg-ink">
+        {blocks}
+      </div>
+    </>
+  );
+}
+
+/**
+ * One journal article as a full-width band, breaking up the run of spot scenes.
+ * Reuses JournalCard's photo + label treatment at full width.
+ */
+function JournalBand({ article }: { article: JournalArticle }) {
+  const t = useT();
+  return (
+    <section className="bg-paper px-6 py-14 sm:py-20">
       <div className="mx-auto max-w-7xl">
-        <div className="mb-12 flex items-end justify-between gap-6">
+        <div className="mb-8 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+            <p className="mb-3 text-[10.5px] uppercase tracking-[0.28em] text-mid">
               {t.home.journalKicker}
             </p>
-            <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
+            <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl">
               {t.home.journalHeadline()}
             </h2>
           </div>
@@ -289,16 +341,8 @@ function JournalSection() {
             {t.home.allEntries}
           </Link>
         </div>
-
-        <div className="grid grid-cols-1 gap-4 md:grid-cols-12 md:auto-rows-[280px] lg:auto-rows-[320px]">
-          {articles.map((a, idx) => (
-            <JournalCard
-              key={a.id}
-              article={a}
-              span={spans[idx] ?? "md:col-span-12"}
-              ratio={idx === 0 ? "aspect-[4/5] md:aspect-auto" : "aspect-[4/3] md:aspect-auto"}
-            />
-          ))}
+        <div className="grid grid-cols-1">
+          <JournalCard article={article} span="" ratio="aspect-[16/9] md:aspect-[21/9]" />
         </div>
       </div>
     </section>
@@ -356,66 +400,39 @@ function JournalCard({
   );
 }
 
-/** Season/level strings come as "May-October", "Intermediate-advanced" — make
- *  the dash an en-dash and capitalise, without inventing any value. */
-function prettyRange(value: string): string {
-  return value.replace(/\s*-\s*/g, "–");
-}
-function prettyLevel(value: string): string {
-  const s = prettyRange(value);
-  return s.charAt(0).toUpperCase() + s.slice(1);
-}
-
-function Expeditions() {
-  return (
-    <section id="expeditions" className="bg-ink">
-      {HOME_TRIPS.map(({ trip, line, delay }, idx) => (
-        <ExpeditionScene
-          key={trip.id}
-          trip={trip}
-          line={line}
-          index={idx}
-          total={HOME_TRIPS.length}
-          delay={delay}
-        />
-      ))}
-    </section>
-  );
+/** First sentence of a spot's description, for the italic line under its name. */
+function firstSentence(text: string): string {
+  const m = text.match(/^.*?[.!?](\s|$)/);
+  const s = (m ? m[0] : text).trim();
+  return s.length > 160 ? s.slice(0, 159) + "…" : s;
 }
 
 /**
- * One expedition, full screen. The place fills the viewport and drifts
- * (ken-burns); a dossier sits alongside with the four metrics that actually
- * exist on the trip — activity, duration, season, level. No invented numbers.
+ * One spot, full screen — the same layout the trip scenes used, now fed by real
+ * spot data. The dossier shows only fields that exist on the spot (activity,
+ * country, recommended level, best time); nothing is invented. The image is a
+ * curated per-activity placeholder until real spot photos land.
  */
-function ExpeditionScene({
-  trip,
-  line,
-  index,
-  total,
-  delay,
-}: {
-  trip: Trip;
-  line: string;
-  index: number;
-  total: number;
-  delay: number;
-}) {
+function SpotScene({ spot, index, delay }: { spot: Spot; index: number; delay: number }) {
   const t = useT();
   const titleLeft = index % 2 === 0;
-  const kicker = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")} · ${trip.country.toUpperCase()}`;
-  const metrics: { label: string; value: string }[] = [
-    { label: t.home.metricActivity, value: ACTIVITY_LABEL[trip.activity] },
-    { label: t.home.metricDuration, value: durationLabel(trip) },
-    { label: t.home.metricSeason, value: prettyRange(trip.season) },
-    { label: t.home.metricLevel, value: prettyLevel(trip.level) },
-  ];
+  const kicker = `${spot.region.toUpperCase()} · ${spot.country.toUpperCase()}`;
+  const metricLabels: Record<string, string> = {
+    activity: t.home.metricActivity,
+    country: t.home.metricCountry,
+    region: t.home.metricRegion,
+    best: t.home.metricBest,
+  };
+  const metrics = spotHomeMetrics(spot).map((m) => ({
+    label: metricLabels[m.label] ?? m.label,
+    value: m.value,
+  }));
 
   return (
     <article className="relative h-[100svh] min-h-[560px] w-full overflow-hidden bg-ink">
       <img
-        src={tripImage(trip, 1600, 1000)}
-        alt={trip.destination}
+        src={spotImage(spot, 1600, 1000)}
+        alt={spot.name}
         loading="lazy"
         className="ken-burns absolute inset-0 h-full w-full object-cover"
         style={{ animationDelay: `${delay}s` }}
@@ -431,21 +448,23 @@ function ExpeditionScene({
           <div className={titleLeft ? "md:order-1 md:pr-8" : "md:order-2 md:pl-8"}>
             <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">{kicker}</p>
             <h3 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,5.5vw,5rem)] leading-[1.03] tracking-[-0.02em] text-white">
-              {trip.destination}
+              {spot.name}
             </h3>
-            <p className="mt-4 max-w-md font-serif text-lg italic text-white/85">{line}</p>
+            <p className="mt-4 max-w-md font-serif text-lg italic text-white/85">
+              {firstSentence(spot.description)}
+            </p>
           </div>
 
-          {/* Dossier — real metrics only */}
+          {/* Dossier — real spot fields only */}
           <aside
             className={`${titleLeft ? "md:order-2 md:justify-self-end" : "md:order-1 md:justify-self-start"} w-full max-w-md rounded-sm border border-white/15 bg-ink/55 p-5 backdrop-blur-md md:p-6`}
           >
             <div className="flex items-center justify-between gap-3 border-b border-white/15 pb-3">
               <span className="inline-flex items-center rounded-full border border-white/25 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white">
-                {ACTIVITY_LABEL[trip.activity]}
+                {activityLabel(spot.activity)}
               </span>
               <span className="text-[10px] uppercase tracking-[0.2em] text-white/75">
-                {durationLabel(trip)}
+                {spot.country}
               </span>
             </div>
 
@@ -462,10 +481,15 @@ function ExpeditionScene({
 
             <div className="mt-6 flex items-center justify-end border-t border-white/15 pt-4">
               <Link
-                to="/coming-soon"
+                to="/spots/$continent/$region/$spot"
+                params={{
+                  continent: slugify(spot.region),
+                  region: slugify(spot.city),
+                  spot: slugify(spot.name),
+                }}
                 className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-sage transition-colors hover:text-white"
               >
-                {t.home.seeThisExpedition}
+                {t.home.seeThisSpot}
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -523,6 +547,10 @@ function StatsBar() {
 
 function Newsletter() {
   const t = useT();
+  const bgSlides = useMemo(
+    () => heroSlidesFrom(getPublicSpots(), getPublishedArticles()).slice(0, 4),
+    [],
+  );
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -531,9 +559,10 @@ function Newsletter() {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    const t = setInterval(() => setBgIndex((n) => (n + 1) % HERO_SLIDES.length), 6000);
-    return () => clearInterval(t);
-  }, []);
+    if (bgSlides.length <= 1) return;
+    const timer = setInterval(() => setBgIndex((n) => (n + 1) % bgSlides.length), 6000);
+    return () => clearInterval(timer);
+  }, [bgSlides.length]);
 
   useEffect(() => {
     const el = document.getElementById("newsletter");
@@ -590,9 +619,9 @@ function Newsletter() {
       style={{ minHeight: "100svh" }}
     >
       {/* Fixed background slideshow (parallax via background-attachment: fixed) */}
-      {HERO_SLIDES.map((s, idx) => (
+      {bgSlides.map((s, idx) => (
         <div
-          key={s.src}
+          key={`${s.src}-${idx}`}
           aria-hidden
           className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
           style={{
