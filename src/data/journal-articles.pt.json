@@ -1,0 +1,4 @@
+{
+  "__note": "Portuguese overlay for journal articles (Phase 2). Key = article slug. Fill only translatable fields: title, dek, body, seoTitle, seoDescription, faq, keyFacts. Missing keys/fields fall back to English.",
+  "articles": {}
+}

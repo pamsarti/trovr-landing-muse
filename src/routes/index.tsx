@@ -6,31 +6,36 @@ import { getPublishedArticles, CATEGORY_LABEL, type JournalArticle } from "@/lib
 import { SiteHeader } from "@/components/SiteHeader";
 import { Reveal } from "@/components/Reveal";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { useT } from "@/i18n/useT";
+import { seoT } from "@/i18n/seoT";
 
 export const Route = createFileRoute("/")({
-  head: () => ({
-    meta: [
-      { title: "Trovr — Curated Immersive & Adventure Travel Experiences" },
-      {
-        name: "description",
-        content:
-          "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life.",
-      },
-      { property: "og:url", content: `${SITE_URL}/` },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
-    ],
-    links: [
-      { rel: "canonical", href: `${SITE_URL}/` },
-      {
-        rel: "preload",
-        as: "image",
-        href: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
-        fetchpriority: "high",
-      },
-    ],
-  }),
+  loader: ({ context }) => ({ locale: (context as { locale?: import("@/i18n").Locale }).locale }),
+  head: ({ loaderData }) => {
+    const t = seoT(loaderData?.locale);
+    return {
+      meta: [
+        { title: t.seo.homeTitle },
+        {
+          name: "description",
+          content: t.seo.homeDescription,
+        },
+        { property: "og:url", content: `${SITE_URL}/` },
+        { property: "og:image", content: DEFAULT_OG_IMAGE },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:image", content: DEFAULT_OG_IMAGE },
+      ],
+      links: [
+        { rel: "canonical", href: `${SITE_URL}/` },
+        {
+          rel: "preload",
+          as: "image",
+          href: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=70",
+          fetchpriority: "high",
+        },
+      ],
+    };
+  },
   component: Index,
 });
 
@@ -105,6 +110,7 @@ function Index() {
 /* ---------- Hero ---------- */
 
 function Hero() {
+  const t = useT();
   const [i, setI] = useState(0);
   useEffect(() => {
     const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
@@ -152,26 +158,24 @@ function Hero() {
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
             <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
-              Hand-picked expeditions for travelers who go deeper.
+              {t.home.heroKicker}
             </p>
             <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
-              Travel to <em className="italic font-normal">find.</em>
-              <br />
-              Not to escape.
+              {t.home.heroHeadline()}
             </h1>
             <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
                 href="#expeditions"
                 className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-colors duration-200 ease-out hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none"
               >
-                See expeditions
+                {t.home.seeExpeditions}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1 motion-reduce:transform-none" />
               </a>
               <a
                 href="#newsletter"
                 className="rounded-sm text-[10.5px] uppercase tracking-[0.22em] text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
               >
-                Early access →
+                {t.home.earlyAccessArrow}
               </a>
             </div>
           </div>
@@ -232,27 +236,22 @@ function Hero() {
 /* ---------- Manifesto Strip ---------- */
 
 function ManifestoStrip() {
+  const t = useT();
   return (
     <section className="px-6 py-14 sm:py-20">
       <div className="mx-auto grid max-w-6xl grid-cols-1 gap-10 md:grid-cols-2 md:items-center md:gap-20">
         <div>
-          <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">The manifesto</p>
+          <p className="mb-6 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+            {t.home.manifestoKicker}
+          </p>
           <h2 className="font-serif text-[2.25rem] leading-[1.1] text-ink sm:text-5xl md:text-[3.5rem]">
-            The right trip goes&nbsp; <em className="italic font-normal">deeper</em>&nbsp;than
-            anywhere on the map.
+            {t.home.manifestoHeadline()}
           </h2>
         </div>
         <div>
           <div className="space-y-6">
-            <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              We curate journeys made to stretch you and stay with you — the kind that leave you
-              sharper, braver, more awake to what a life can hold. Places that ask something of you,
-              and give back more than they took.
-            </p>
-            <p className="text-base leading-[1.75] text-mid sm:text-lg">
-              That's the whole idea of Trovr: adventure with something underneath it. Intense to
-              live. Impossible to forget.
-            </p>
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">{t.home.manifestoP1}</p>
+            <p className="text-base leading-[1.75] text-mid sm:text-lg">{t.home.manifestoP2}</p>
           </div>
         </div>
       </div>
@@ -263,6 +262,7 @@ function ManifestoStrip() {
 /* ---------- Expeditions Masonry ---------- */
 
 function JournalSection() {
+  const t = useT();
   const articles = getPublishedArticles().slice(0, 3);
   if (articles.length === 0) return null;
   const spans = [
@@ -275,16 +275,18 @@ function JournalSection() {
       <div className="mx-auto max-w-7xl">
         <div className="mb-12 flex items-end justify-between gap-6">
           <div>
-            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">Field notes</p>
+            <p className="mb-4 text-[10.5px] uppercase tracking-[0.28em] text-mid">
+              {t.home.journalKicker}
+            </p>
             <h2 className="font-serif text-4xl leading-tight text-ink sm:text-5xl md:text-6xl">
-              From the <em className="italic font-normal">journal.</em>
+              {t.home.journalHeadline()}
             </h2>
           </div>
           <Link
             to="/journal"
             className="hidden text-[10.5px] uppercase tracking-[0.22em] text-mid hover:text-ink md:inline-flex"
           >
-            All entries →
+            {t.home.allEntries}
           </Link>
         </div>
 
@@ -399,13 +401,14 @@ function ExpeditionScene({
   total: number;
   delay: number;
 }) {
+  const t = useT();
   const titleLeft = index % 2 === 0;
   const kicker = `${String(index + 1).padStart(2, "0")} / ${String(total).padStart(2, "0")} · ${trip.country.toUpperCase()}`;
   const metrics: { label: string; value: string }[] = [
-    { label: "Activity", value: ACTIVITY_LABEL[trip.activity] },
-    { label: "Duration", value: durationLabel(trip) },
-    { label: "Season", value: prettyRange(trip.season) },
-    { label: "Level", value: prettyLevel(trip.level) },
+    { label: t.home.metricActivity, value: ACTIVITY_LABEL[trip.activity] },
+    { label: t.home.metricDuration, value: durationLabel(trip) },
+    { label: t.home.metricSeason, value: prettyRange(trip.season) },
+    { label: t.home.metricLevel, value: prettyLevel(trip.level) },
   ];
 
   return (
@@ -462,7 +465,7 @@ function ExpeditionScene({
                 to="/coming-soon"
                 className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-sage transition-colors hover:text-white"
               >
-                See this expedition
+                {t.home.seeThisExpedition}
                 <ArrowRight className="h-3.5 w-3.5" />
               </Link>
             </div>
@@ -478,19 +481,21 @@ function ExpeditionScene({
 import homeStats from "@/data/home-stats.json";
 
 const STATS = [
-  { value: String(homeStats.activeSpots), sup: "", label: "Places mapped for you" },
-  { value: String(homeStats.activeContinents), sup: "", label: "Continents covered" },
-  { value: "2026", sup: "", label: "Launching" },
+  { value: String(homeStats.activeSpots), sup: "" },
+  { value: String(homeStats.activeContinents), sup: "" },
+  { value: "2026", sup: "" },
 ];
 
 function StatsBar() {
+  const t = useT();
+  const labels = [t.home.statPlaces, t.home.statContinents, t.home.statLaunching];
   return (
     <section className="px-6 pb-8">
       <div className="mx-auto max-w-7xl rounded-[4px] bg-paper-card">
         <div className="grid grid-cols-1 sm:grid-cols-3">
           {STATS.map((s, idx) => (
             <div
-              key={s.label}
+              key={labels[idx]}
               className={`group relative px-6 py-10 sm:py-12 ${
                 idx > 0 ? "border-t sm:border-t-0 sm:border-l border-[var(--line)]" : ""
               }`}
@@ -499,7 +504,9 @@ function StatsBar() {
                 <span className="font-serif text-4xl text-ink sm:text-5xl">{s.value}</span>
                 {s.sup && <span className="font-serif text-xl text-sage sm:text-2xl">{s.sup}</span>}
               </div>
-              <p className="mt-3 text-[10.5px] uppercase tracking-[0.22em] text-mid">{s.label}</p>
+              <p className="mt-3 text-[10.5px] uppercase tracking-[0.22em] text-mid">
+                {labels[idx]}
+              </p>
               <span
                 aria-hidden
                 className="absolute bottom-0 left-0 h-[1.5px] w-0 bg-sage transition-all duration-500 group-hover:w-full"
@@ -515,6 +522,7 @@ function StatsBar() {
 /* ---------- Newsletter ---------- */
 
 function Newsletter() {
+  const t = useT();
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -569,7 +577,7 @@ function Newsletter() {
       if (!captured) throw new Error("Not captured by Netlify Forms");
       setDone(true);
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t.newsletter.error);
     } finally {
       setSubmitting(false);
     }
@@ -613,19 +621,16 @@ function Newsletter() {
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-white/70">Early access</p>
-        <h2 className="font-serif text-4xl leading-[1.1] text-white sm:text-5xl">
-          When the <em className="italic font-normal">first</em> expeditions open, you'll be the
-          first to know.
-        </h2>
-        <p className="mt-6 text-base text-white/75 sm:text-lg">
-          No noise. Only the letters that matter.
+        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-white/70">
+          {t.newsletter.kicker}
         </p>
+        <h2 className="font-serif text-4xl leading-[1.1] text-white sm:text-5xl">
+          {t.newsletter.headline()}
+        </h2>
+        <p className="mt-6 text-base text-white/75 sm:text-lg">{t.newsletter.subtext}</p>
 
         {done ? (
-          <p className="mt-12 font-serif text-xl italic text-white">
-            Thank you. We'll be in touch soon.
-          </p>
+          <p className="mt-12 font-serif text-xl italic text-white">{t.newsletter.success}</p>
         ) : (
           <form
             name="newsletter"
@@ -651,7 +656,7 @@ function Newsletter() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
+              placeholder={t.newsletter.emailPlaceholder}
               id="newsletter-email"
               aria-label="Email address"
               className="flex-1 bg-transparent text-base text-ink placeholder:text-mid/70 focus:outline-none"
@@ -661,7 +666,7 @@ function Newsletter() {
               disabled={submitting}
               className="rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink disabled:opacity-60"
             >
-              {submitting ? "Subscribing…" : "Subscribe"}
+              {submitting ? t.newsletter.subscribing : t.newsletter.subscribe}
             </button>
           </form>
         )}
@@ -674,17 +679,16 @@ function Newsletter() {
 /* ---------- Footer ---------- */
 
 function Footer() {
+  const t = useT();
   return (
     <footer className="border-t border-[var(--line)] px-6 py-16">
       <div className="mx-auto flex max-w-7xl flex-col items-center gap-6 text-center md:flex-row md:items-end md:justify-between md:text-left">
         <div>
           <p className="font-serif text-5xl lowercase text-ink sm:text-6xl">trovr</p>
-          <p className="mt-2 font-serif text-base italic text-mid">
-            Travel to find, not to escape.
-          </p>
+          <p className="mt-2 font-serif text-base italic text-mid">{t.footer.tagline}</p>
         </div>
         <div className="flex flex-col gap-2 text-[10.5px] uppercase tracking-[0.22em] text-mid md:items-end">
-          <span>© 2026 trovr</span>
+          <span>{t.footer.copyright}</span>
         </div>
       </div>
     </footer>

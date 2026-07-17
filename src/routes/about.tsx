@@ -1,68 +1,54 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { SiteHeader } from "@/components/SiteHeader";
+import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
-
-const FAQ_ITEMS = [
-  {
-    question: "What is Trovr?",
-    answer:
-      "Trovr is a hand-curated collection of immersive, non-touristy adventure trips — journeys built around sport, exploration, and genuine discovery rather than sightseeing. Every trip is chosen for one reason: that it adds something real to your life. The adventure is the way in; what you find out there is why it matters.",
-  },
-  {
-    question: "What kind of trips does Trovr offer?",
-    answer:
-      "Trovr curates active, off-the-map experiences across five continents — kitesurfing, surfing, freediving, horseback expeditions, wildlife journeys, and more. These are trips that ask something of you and give back more than they took: remote places, real terrain, and the kind of challenge you come back from a little changed. They range from journeys for seasoned adventurers to ones for people just beginning to feel the pull.",
-  },
-  {
-    question: "How does Trovr curate its trips?",
-    answer:
-      "Every trip is chosen by hand, against a single question: would we go ourselves? Trovr looks for journeys that change the people who take them, that aren't the obvious touristy option, and that are lived rather than performed for a photo. There's no committee and no checklist dressed up as science — just a high, personal bar applied to every trip, so that by the time one reaches you, it's already earned the only approval that counts.",
-  },
-];
+import { useT } from "@/i18n/useT";
+import { seoT } from "@/i18n/seoT";
 
 export const Route = createFileRoute("/about")({
-  head: () => ({
-    meta: [
-      { title: "About — Trovr" },
-      {
-        name: "description",
-        content:
-          "The story behind Trovr — a hand-curated collection of immersive, non-touristy adventure trips for people who travel to explore, feel intensely, and come back changed.",
-      },
-      { property: "og:title", content: "About — Trovr" },
-      {
-        property: "og:description",
-        content:
-          "The story behind Trovr — a hand-curated collection of immersive, non-touristy adventure trips for people who travel to explore, feel intensely, and come back changed.",
-      },
-      { property: "og:url", content: `${SITE_URL}/about` },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "About — Trovr" },
-      {
-        name: "twitter:description",
-        content:
-          "The story behind Trovr — a hand-curated collection of immersive, non-touristy adventure trips for people who travel to explore, feel intensely, and come back changed.",
-      },
-      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "FAQPage",
-          mainEntity: FAQ_ITEMS.map((item) => ({
-            "@type": "Question",
-            name: item.question,
-            acceptedAnswer: { "@type": "Answer", text: item.answer },
-          })),
-        }),
-      },
-    ],
-  }),
+  loader: ({ context }) => ({ locale: (context as { locale?: import("@/i18n").Locale }).locale }),
+  head: ({ loaderData }) => {
+    const t = seoT(loaderData?.locale);
+    return {
+      meta: [
+        { title: t.seo.aboutTitle },
+        {
+          name: "description",
+          content: t.seo.aboutDescription,
+        },
+        { property: "og:title", content: t.seo.aboutTitle },
+        {
+          property: "og:description",
+          content: t.seo.aboutDescription,
+        },
+        { property: "og:url", content: `${SITE_URL}/about` },
+        { property: "og:image", content: DEFAULT_OG_IMAGE },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: t.seo.aboutTitle },
+        {
+          name: "twitter:description",
+          content: t.seo.aboutDescription,
+        },
+        { name: "twitter:image", content: DEFAULT_OG_IMAGE },
+      ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/about` }],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: t.about.faq.map((item) => ({
+              "@type": "Question",
+              name: item.question,
+              acceptedAnswer: { "@type": "Answer", text: item.answer },
+            })),
+          }),
+        },
+      ],
+    };
+  },
   component: AboutPage,
 });
 
@@ -75,7 +61,7 @@ function AboutPage() {
       <HowWeCurate />
       <Newsletter />
       <Faq />
-      <Footer />
+      <SiteFooter email />
     </main>
   );
 }
@@ -96,6 +82,7 @@ const HERO_SLIDES = [
 ];
 
 function Hero() {
+  const t = useT();
   const [i, setI] = useState(0);
   const [revealed, setRevealed] = useState(false);
   useEffect(() => {
@@ -138,11 +125,10 @@ function Hero() {
       >
         <div className="mx-auto max-w-3xl text-center text-paper">
           <h1 className="whitespace-pre-line font-serif text-4xl leading-[1.15] sm:text-5xl md:text-6xl">
-            We have only one rule:{"\n"}
-            No one walks out the same way
+            {t.about.heroHeadline}
           </h1>
           <p className="mx-auto mt-8 max-w-xl text-base leading-[1.6] text-paper/80 sm:mt-10 sm:text-lg">
-            We built Trovr around keeping that promise
+            {t.about.heroSubtext}
           </p>
         </div>
       </div>
@@ -151,11 +137,8 @@ function Hero() {
 }
 
 function WhyExists() {
-  const paragraphs = [
-    "You'll never regret living one of these. It's the only promise we make — and everything about Trovr is built to keep it.",
-    "Trovr is a curation of journeys that leave a mark. Trips for people who travel to feel awake, to test their edges, to come home someone slightly new. Some have chased this feeling for years. Some are only just starting to sense the pull. Both belong here.",
-    "These are the journeys that stay with you — the kind that expand what a life can hold, that you don't quite recover from, that you end up building a life around. What you find out there is the reason to go.",
-  ];
+  const t = useT();
+  const paragraphs = [t.about.whyP1, t.about.whyP2, t.about.whyP3];
   return (
     <section
       className="relative px-6 py-10 sm:py-14 md:py-16"
@@ -169,7 +152,10 @@ function WhyExists() {
     >
       <div className="mx-auto max-w-[720px] space-y-8">
         {paragraphs.map((p, i) => (
-          <p key={i} className="font-serif text-lg leading-[1.6] text-ink sm:text-xl md:text-[22px]">
+          <p
+            key={i}
+            className="font-serif text-lg leading-[1.6] text-ink sm:text-xl md:text-[22px]"
+          >
             {p}
           </p>
         ))}
@@ -201,16 +187,16 @@ function FounderNote() {
           {/* TODO: replace placeholder text with Pamela's final version */}
           <div className="mt-8 space-y-6 text-base leading-[1.75] text-ink sm:mt-10 sm:text-[17px]">
             <p>
-              In six years of chasing wind across Brazil, the Red Sea, the Mediterranean,
-              and Saudi Arabia, one thing became obvious: the trips that changed me
-              weren't on any platform I could find. They came from word of mouth. From
-              someone who'd done it. From operators who didn't need a marketing budget
-              because their guests came back the next year, and the year after.
+              In six years of chasing wind across Brazil, the Red Sea, the Mediterranean, and Saudi
+              Arabia, one thing became obvious: the trips that changed me weren't on any platform I
+              could find. They came from word of mouth. From someone who'd done it. From operators
+              who didn't need a marketing budget because their guests came back the next year, and
+              the year after.
             </p>
             <p>
-              Trovr is the platform I wished existed when I started traveling seriously.
-              A place where the operators are vetted, the trips are real, and the
-              editorial does the work that brochures don't.
+              Trovr is the platform I wished existed when I started traveling seriously. A place
+              where the operators are vetted, the trips are real, and the editorial does the work
+              that brochures don't.
             </p>
           </div>
         </div>
@@ -220,22 +206,11 @@ function FounderNote() {
 }
 
 function HowWeCurate() {
+  const t = useT();
   const principles = [
-    {
-      title: "It has to change you.",
-      body:
-        "Not just show you a place — leave a mark on you. The trips we choose are the ones you come back from a little different: braver, quieter, more awake to what you're capable of. If a journey can't do that, it's just logistics.",
-    },
-    {
-      title: "It can't be the obvious one.",
-      body:
-        "No resorts everyone's already seen. No route that shows up first when you search. We look for the trips most people don't know exist — or wouldn't quite dare to take. The further off the well-worn track, the more we pay attention.",
-    },
-    {
-      title: "It has to be real, not a photo op.",
-      body:
-        "Some trips exist to look good online and leave nothing behind. We pass on every one of them. What we keep are the journeys that are lived, not performed — the ones that stay with you long after the last picture stops mattering.",
-    },
+    { title: t.about.principle1Title, body: t.about.principle1Body },
+    { title: t.about.principle2Title, body: t.about.principle2Body },
+    { title: t.about.principle3Title, body: t.about.principle3Body },
   ];
 
   return (
@@ -251,13 +226,13 @@ function HowWeCurate() {
     >
       <div className="mx-auto max-w-[720px]">
         <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
-          How we curate.
+          {t.about.curateHeading}
         </h2>
         <p className="mt-8 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
-          It all&nbsp; starts with instinct. Every trip on Trovr is chosen by hand — mine — against a question I've been refining for years: would I go? If I wouldn't drop everything to live it myself, it doesn't make the cut. That's the first filter, and the hardest one to fake.
+          {t.about.curateIntro()}
         </p>
         <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
-          But instinct has a shape. Look closely at what survives it, and the same three things are always there:
+          {t.about.curateIntro2}
         </p>
         <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">
           {principles.map((p) => (
@@ -265,14 +240,12 @@ function HowWeCurate() {
               <p className="font-serif text-xl italic leading-[1.35] text-ink sm:text-2xl md:text-[26px]">
                 {p.title}
               </p>
-              <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">
-                {p.body}
-              </p>
+              <p className="mt-4 text-base leading-[1.75] text-ink/90 sm:text-[17px]">{p.body}</p>
             </div>
           ))}
         </div>
         <p className="mt-12 text-base leading-[1.75] text-ink/90 sm:mt-16 sm:text-[17px]">
-          That's the whole method. No committee, no checklist dressed up as science. Just a high bar, a personal one, applied to every single trip — so that by the time something reaches you, it's already earned the only approval that counts.
+          {t.about.curateClosing}
         </p>
       </div>
     </section>
@@ -280,6 +253,7 @@ function HowWeCurate() {
 }
 
 function Newsletter() {
+  const t = useT();
   const [email, setEmail] = useState("");
   const [done, setDone] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -288,10 +262,7 @@ function Newsletter() {
   const [revealed, setRevealed] = useState(false);
 
   useEffect(() => {
-    const t = setInterval(
-      () => setBgIndex((n) => (n + 1) % HERO_SLIDES.length),
-      6000,
-    );
+    const t = setInterval(() => setBgIndex((n) => (n + 1) % HERO_SLIDES.length), 6000);
     return () => clearInterval(t);
   }, []);
 
@@ -337,7 +308,7 @@ function Newsletter() {
       if (!captured) throw new Error("Not captured by Netlify Forms");
       setDone(true);
     } catch {
-      setError("Something went wrong. Please try again.");
+      setError(t.newsletter.error);
     } finally {
       setSubmitting(false);
     }
@@ -377,15 +348,13 @@ function Newsletter() {
         }`}
       >
         <h2 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
-          Leave your email.
+          {t.about.newsletterHeadline}
         </h2>
         <p className="mt-5 text-base leading-[1.6] text-white/75 sm:text-lg">
-          We'll write when the first trips open.
+          {t.about.newsletterSubtext}
         </p>
         {done ? (
-          <p className="mt-10 font-serif text-xl italic text-white">
-            Thank you. We'll be in touch.
-          </p>
+          <p className="mt-10 font-serif text-xl italic text-white">{t.about.newsletterSuccess}</p>
         ) : (
           <form
             name="newsletter"
@@ -407,7 +376,7 @@ function Newsletter() {
               required
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="your@email.com"
+              placeholder={t.newsletter.emailPlaceholder}
               className="flex-1 border border-white/40 bg-white/10 px-4 py-3 text-base text-white placeholder:text-white/60 backdrop-blur focus:border-white focus:outline-none"
               style={{ borderRadius: 2 }}
             />
@@ -417,19 +386,18 @@ function Newsletter() {
               className="border border-white bg-white/10 px-6 py-3 text-sm font-medium tracking-wide text-white backdrop-blur transition-colors hover:bg-white hover:text-ink disabled:opacity-60"
               style={{ borderRadius: 2 }}
             >
-              {submitting ? "Subscribing…" : "Subscribe"}
+              {submitting ? t.newsletter.subscribing : t.newsletter.subscribe}
             </button>
           </form>
         )}
-        {error && !done && (
-          <p className="mt-4 text-sm text-white/80">{error}</p>
-        )}
+        {error && !done && <p className="mt-4 text-sm text-white/80">{error}</p>}
       </div>
     </section>
   );
 }
 
 function Faq() {
+  const t = useT();
   return (
     <section
       id="common-questions"
@@ -437,10 +405,10 @@ function Faq() {
     >
       <div className="mx-auto max-w-[720px]">
         <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
-          Common questions.
+          {t.about.faqHeading}
         </h2>
         <div className="mt-12 space-y-10 sm:mt-16 sm:space-y-12">
-          {FAQ_ITEMS.map((item) => (
+          {t.about.faq.map((item) => (
             <div key={item.question}>
               <h3 className="font-serif text-xl italic leading-[1.35] text-ink sm:text-2xl md:text-[26px]">
                 {item.question}
@@ -453,21 +421,5 @@ function Faq() {
         </div>
       </div>
     </section>
-  );
-}
-
-function Footer() {
-  return (
-    <footer className="border-t border-stone/20 px-6 py-12">
-      <div className="mx-auto flex max-w-3xl flex-col items-center gap-6 text-center">
-        <Link to="/" className="font-serif text-5xl lowercase text-ink sm:text-6xl">
-          trovr
-        </Link>
-        <p className="font-serif text-base italic text-stone sm:text-lg">
-          Travel to find, not to escape.
-        </p>
-        <p className="text-xs tracking-wide text-stone">© 2026 · hello@trovr.agency</p>
-      </div>
-    </footer>
   );
 }

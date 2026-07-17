@@ -1,11 +1,13 @@
 import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useT } from "@/i18n/useT";
+import { LocaleToggle } from "@/components/LocaleToggle";
 
 const NAV = [
-  { to: "/spots", label: "Spots", match: "/spots" },
-  { to: "/journal", label: "Journal", match: "/journal" },
-  { to: "/about", label: "About", match: "/about" },
+  { to: "/spots", key: "spots", match: "/spots" },
+  { to: "/journal", key: "journal", match: "/journal" },
+  { to: "/about", key: "about", match: "/about" },
 ] as const;
 
 function useActivePath() {
@@ -19,6 +21,7 @@ function isActive(pathname: string, match: string) {
 
 export function SiteHeader({ transparent = false }: { transparent?: boolean } = {}) {
   const pathname = useActivePath();
+  const t = useT();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -49,8 +52,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           scrolled ? "border-b border-[var(--line)]" : "border-b border-transparent",
         ].join(" ")}
         style={{
-          background:
-            transparent && !scrolled ? "transparent" : "rgba(244,241,236,0.9)",
+          background: transparent && !scrolled ? "transparent" : "rgba(244,241,236,0.9)",
           backdropFilter: transparent && !scrolled ? "none" : "blur(20px)",
         }}
       >
@@ -82,20 +84,21 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
                         : "text-mid hover:text-ink",
                   ].join(" ")}
                 >
-                  {item.label}
+                  {t.nav[item.key]}
                 </Link>
               );
             })}
+            <LocaleToggle tone={transparent && !scrolled ? "light" : "dark"} className="ml-2" />
             <a
               href="/#newsletter"
-              className="ml-2 inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
+              className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
             >
-              Early access
+              {t.nav.earlyAccess}
             </a>
           </nav>
           <button
             type="button"
-            aria-label="Open menu"
+            aria-label={t.nav.openMenu}
             aria-expanded={open}
             onClick={() => setOpen(true)}
             className={[
@@ -122,7 +125,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             </Link>
             <button
               type="button"
-              aria-label="Close menu"
+              aria-label={t.nav.closeMenu}
               onClick={() => setOpen(false)}
               className="inline-flex items-center justify-center p-2 -mr-2 text-ink"
             >
@@ -142,7 +145,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
                     active ? "text-ink" : "text-mid",
                   ].join(" ")}
                 >
-                  {item.label}
+                  {t.nav[item.key]}
                 </Link>
               );
             })}
@@ -151,8 +154,9 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               onClick={() => setOpen(false)}
               className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white"
             >
-              Early access
+              {t.nav.earlyAccess}
             </a>
+            <LocaleToggle tone="dark" className="mt-2" />
           </nav>
         </div>
       )}

@@ -2,19 +2,19 @@ import { Link } from "@tanstack/react-router";
 import type { Trip } from "@/lib/trips-data";
 import { tripImage, tripTag, ACTIVITY_LABEL, durationLabel } from "@/lib/trips-data";
 import { SiteHeader } from "@/components/SiteHeader";
+import { useT } from "@/i18n/useT";
 
 export function TripsHeader(_props?: { current?: string }) {
   return <SiteHeader />;
 }
 
 export function TripsFooter() {
+  const t = useT();
   return (
     <footer className="border-t border-stone/20 px-6 py-16">
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
         <p className="font-serif text-4xl lowercase text-ink">trovr</p>
-        <p className="font-serif text-sm italic text-stone">
-          Travel to find, not to escape.
-        </p>
+        <p className="font-serif text-sm italic text-stone">{t.footer.tagline}</p>
       </div>
     </footer>
   );
@@ -50,11 +50,7 @@ export function TripCard({ trip }: { trip: Trip }) {
 
 export function SmallSeasonCard({ trip }: { trip: Trip }) {
   return (
-    <Link
-      to="/trips/$id"
-      params={{ id: trip.id }}
-      className="group block w-56 shrink-0 sm:w-64"
-    >
+    <Link to="/trips/$id" params={{ id: trip.id }} className="group block w-56 shrink-0 sm:w-64">
       <div className="aspect-square w-full overflow-hidden bg-stone/10">
         <img
           src={tripImage(trip, 600, 600)}

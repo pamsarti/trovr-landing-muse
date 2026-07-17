@@ -57,8 +57,8 @@ export function getArticlesWithLocation(): JournalArticle[] {
   return getPublishedArticles().filter((a) => !!a.location);
 }
 
-export function formatDate(iso: string): string {
-  return new Intl.DateTimeFormat("en-US", {
+export function formatDate(iso: string, locale: "en" | "pt" = "en"): string {
+  return new Intl.DateTimeFormat(locale === "pt" ? "pt-BR" : "en-US", {
     year: "numeric",
     month: "long",
     day: "numeric",

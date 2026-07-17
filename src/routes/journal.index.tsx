@@ -2,6 +2,9 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteHeader } from "@/components/SiteHeader";
 import { Reveal } from "@/components/Reveal";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
+import { useT } from "@/i18n/useT";
+import { seoT } from "@/i18n/seoT";
+import type { Locale } from "@/i18n";
 import {
   CATEGORY_LABEL,
   formatDate,
@@ -10,34 +13,39 @@ import {
 } from "@/lib/journal-data";
 
 export const Route = createFileRoute("/journal/")({
-  head: () => ({
-    meta: [
-      { title: "Journal — Trovr" },
-      {
-        name: "description",
-        content: "Field notes from the places we send people.",
-      },
-      { property: "og:title", content: "Journal — Trovr" },
-      {
-        property: "og:description",
-        content: "Field notes from the places we send people.",
-      },
-      { property: "og:url", content: `${SITE_URL}/journal` },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Journal — Trovr" },
-      {
-        name: "twitter:description",
-        content: "Field notes from the places we send people.",
-      },
-      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/journal` }],
-  }),
+  loader: ({ context }) => ({ locale: (context as { locale?: Locale }).locale }),
+  head: ({ loaderData }) => {
+    const t = seoT(loaderData?.locale);
+    return {
+      meta: [
+        { title: t.seo.journalTitle },
+        {
+          name: "description",
+          content: t.seo.journalDescription,
+        },
+        { property: "og:title", content: t.seo.journalTitle },
+        {
+          property: "og:description",
+          content: t.seo.journalDescription,
+        },
+        { property: "og:url", content: `${SITE_URL}/journal` },
+        { property: "og:image", content: DEFAULT_OG_IMAGE },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: t.seo.journalTitle },
+        {
+          name: "twitter:description",
+          content: t.seo.journalDescription,
+        },
+        { name: "twitter:image", content: DEFAULT_OG_IMAGE },
+      ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/journal` }],
+    };
+  },
   component: JournalPage,
 });
 
 function JournalPage() {
+  const t = useT();
   const articles = getPublishedArticles();
   const [featured, ...rest] = articles;
 
@@ -48,11 +56,9 @@ function JournalPage() {
       {/* Editorial intro — the calm beat before the scene. */}
       <section className="mx-auto max-w-6xl px-6 pt-20 pb-12 sm:pt-28">
         <h1 className="font-serif text-5xl leading-[1.05] text-ink sm:text-6xl md:text-7xl">
-          Journal
+          {t.journalIndex.title}
         </h1>
-        <p className="mt-5 max-w-xl text-base text-stone sm:text-lg">
-          Field notes from the places we send people.
-        </p>
+        <p className="mt-5 max-w-xl text-base text-stone sm:text-lg">{t.journalIndex.subtitle}</p>
       </section>
 
       {/* One story, full screen. */}
@@ -63,10 +69,10 @@ function JournalPage() {
         <section className="mx-auto max-w-6xl px-6 py-20 sm:py-28">
           <div className="flex flex-wrap items-baseline justify-between gap-3 border-b border-stone/20 pb-5">
             <h2 className="font-serif text-2xl text-ink sm:text-3xl">
-              More from the field.
+              {t.journalIndex.moreHeading}
             </h2>
             <span className="text-[11px] uppercase tracking-[0.2em] text-sage">
-              {rest.length} {rest.length === 1 ? "story" : "stories"}
+              {rest.length} {rest.length === 1 ? t.journalIndex.story : t.journalIndex.stories}
             </span>
           </div>
 
@@ -89,6 +95,7 @@ function JournalPage() {
  * the thumbnails is dropped here on purpose — this one has to look alive.
  */
 function Featured({ article }: { article: JournalArticle }) {
+  const t = useT();
   return (
     <Link
       to="/journal/$slug"
@@ -106,10 +113,7 @@ function Featured({ article }: { article: JournalArticle }) {
       <div className="absolute inset-x-0 bottom-0 px-6 pb-14 sm:pb-20">
         <div className="mx-auto max-w-6xl">
           <span className="inline-flex items-center gap-2 rounded-full border border-paper/30 bg-paper/10 px-3 py-1 backdrop-blur">
-            <span
-              aria-hidden
-              className="h-1.5 w-1.5 animate-pulse rounded-full bg-paper"
-            />
+            <span aria-hidden className="h-1.5 w-1.5 animate-pulse rounded-full bg-paper" />
             <span className="text-[10px] uppercase tracking-[0.22em] text-paper">
               {CATEGORY_LABEL[article.category]}
             </span>
@@ -122,16 +126,12 @@ function Featured({ article }: { article: JournalArticle }) {
             {article.dek}
           </p>
           <p className="mt-6 text-xs tracking-wide text-paper/70">
-            {article.author} · {formatDate(article.date)} · {article.readTime} min
-            read
+            {article.author} · {formatDate(article.date)} · {article.readTime} min read
           </p>
 
           <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] text-ink transition-colors group-hover:bg-sage group-hover:text-paper">
-            Read the story
-            <span
-              aria-hidden
-              className="transition-transform group-hover:translate-x-0.5"
-            >
+            {t.journalIndex.readTheStory}
+            <span aria-hidden className="transition-transform group-hover:translate-x-0.5">
               →
             </span>
           </span>
@@ -143,11 +143,7 @@ function Featured({ article }: { article: JournalArticle }) {
 
 function ArticleCard({ article }: { article: JournalArticle }) {
   return (
-    <Link
-      to="/journal/$slug"
-      params={{ slug: article.slug }}
-      className="group block"
-    >
+    <Link to="/journal/$slug" params={{ slug: article.slug }} className="group block">
       <div className="aspect-[3/2] overflow-hidden bg-stone/20">
         <img
           src={article.heroImage}
@@ -163,9 +159,7 @@ function ArticleCard({ article }: { article: JournalArticle }) {
       <h3 className="mt-2 font-serif text-2xl leading-[1.15] text-ink transition-colors group-hover:text-sage sm:text-3xl">
         {article.title}
       </h3>
-      <p className="mt-3 font-serif text-base italic text-stone sm:text-lg">
-        {article.dek}
-      </p>
+      <p className="mt-3 font-serif text-base italic text-stone sm:text-lg">{article.dek}</p>
       <p className="mt-4 text-xs tracking-wide text-stone">
         {formatDate(article.date)} · {article.readTime} min read
       </p>

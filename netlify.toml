@@ -22,3 +22,11 @@
   NODE_VERSION = "22"
   # Build with the Netlify Nitro preset (output -> dist/ + SSR function).
   NITRO_PRESET = "netlify"
+
+# Geo → locale hint. Runs before the SSR render, reads the visitor's country
+# (context.geo) and forwards it as the x-trovr-country request header. The Nitro
+# SSR function can't read Netlify geo reliably on its own, so this edge layer
+# supplies it. See netlify/edge-functions/geo.ts.
+[[edge_functions]]
+  path = "/*"
+  function = "geo"

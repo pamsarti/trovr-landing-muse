@@ -1,0 +1,4 @@
+{
+  "__note": "Portuguese overlay for spots (Phase 2). Key = spot id. Fill only translatable fields: description (and activitySpecific prose values if needed). Missing keys fall back to English.",
+  "spots": {}
+}
