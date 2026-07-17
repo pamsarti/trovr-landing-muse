@@ -1,5 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
+import { seoT } from "@/i18n/seoT";
+import type { Locale } from "@/i18n";
 import {
   ALL_TRIPS,
   FEATURED,
@@ -24,33 +26,25 @@ import {
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
-  head: () => ({
-    meta: [
-      { title: "Trips — Trovr" },
-      {
-        name: "description",
-        content:
-          "Curated trips for people who travel to feel. Kite, surf, horseback, wildlife, martial arts.",
-      },
-      { property: "og:title", content: "Trips — Trovr" },
-      {
-        property: "og:description",
-        content:
-          "Curated trips for people who travel to feel. Kite, surf, horseback, wildlife, martial arts.",
-      },
-      { property: "og:url", content: `${SITE_URL}/trips` },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
-      { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Trips — Trovr" },
-      {
-        name: "twitter:description",
-        content:
-          "Curated trips for people who travel to feel. Kite, surf, horseback, wildlife, martial arts.",
-      },
-      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
-    ],
-    links: [{ rel: "canonical", href: `${SITE_URL}/trips` }],
-  }),
+  loader: ({ context }) => ({ locale: (context as { locale?: Locale }).locale }),
+  head: ({ loaderData }) => {
+    const t = seoT(loaderData?.locale);
+    return {
+      meta: [
+        { title: t.seo.tripsTitle },
+        { name: "description", content: t.seo.tripsDescription },
+        { property: "og:title", content: t.seo.tripsTitle },
+        { property: "og:description", content: t.seo.tripsDescription },
+        { property: "og:url", content: `${SITE_URL}/trips` },
+        { property: "og:image", content: DEFAULT_OG_IMAGE },
+        { name: "twitter:card", content: "summary_large_image" },
+        { name: "twitter:title", content: t.seo.tripsTitle },
+        { name: "twitter:description", content: t.seo.tripsDescription },
+        { name: "twitter:image", content: DEFAULT_OG_IMAGE },
+      ],
+      links: [{ rel: "canonical", href: `${SITE_URL}/trips` }],
+    };
+  },
   component: TripsIndex,
 });
 
@@ -153,9 +147,7 @@ function SeasonBand() {
   return (
     <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-3xl text-ink sm:text-4xl">
-          Right now is the time for —
-        </h2>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">Right now is the time for —</h2>
         <div className="mt-10 flex gap-6 overflow-x-auto pb-2 sm:gap-8">
           {inSeason.map((t) => (
             <SmallSeasonCard key={t.id} trip={t} />
@@ -264,13 +256,9 @@ function AllTripsSection() {
         </div>
 
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[220px_1fr]">
-          <aside
-            className={`${drawerOpen ? "block" : "hidden"} lg:block`}
-          >
+          <aside className={`${drawerOpen ? "block" : "hidden"} lg:block`}>
             <div className="mb-6 flex items-center justify-between lg:mb-8">
-              <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink">
-                Filters
-              </h3>
+              <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink">Filters</h3>
               <button
                 onClick={clearAll}
                 disabled={!hasAny}
@@ -283,9 +271,7 @@ function AllTripsSection() {
               title="Activity"
               options={allActivities().map((a) => ({ id: a, label: ACTIVITY_LABEL[a] }))}
               selected={filters.activities as Set<string>}
-              onToggle={(v) =>
-                setFilters((f) => toggle(f, "activities", v as TripActivity))
-              }
+              onToggle={(v) => setFilters((f) => toggle(f, "activities", v as TripActivity))}
             />
             <FilterGroup
               title="Continent"
@@ -307,9 +293,7 @@ function AllTripsSection() {
                 { id: "long", label: "Long 8+ days" },
               ]}
               selected={filters.durations as Set<string>}
-              onToggle={(v) =>
-                setFilters((f) => toggle(f, "durations", v as DurationBucket))
-              }
+              onToggle={(v) => setFilters((f) => toggle(f, "durations", v as DurationBucket))}
             />
             <div className="mt-2 flex items-center justify-between gap-3 border-t border-stone/15 pt-6 lg:hidden">
               <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
@@ -327,9 +311,7 @@ function AllTripsSection() {
           <div>
             {trips.length === 0 ? (
               <div className="flex flex-col items-start gap-4 py-8">
-                <p className="font-serif italic text-stone">
-                  No trips match these filters.
-                </p>
+                <p className="font-serif italic text-stone">No trips match these filters.</p>
                 {hasAny ? (
                   <button
                     onClick={clearAll}

@@ -11,6 +11,7 @@ import {
 } from "@/lib/trips-data";
 import { editorialFor, priceSymbol } from "@/data/trip-editorials";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
+import { useT } from "@/i18n/useT";
 
 export const Route = createFileRoute("/trips/$id")({
   loader: ({ params }) => {
@@ -26,30 +27,42 @@ export const Route = createFileRoute("/trips/$id")({
         ]
       : [],
   }),
-  notFoundComponent: () => (
+  notFoundComponent: TripNotFound,
+  errorComponent: TripLoadError,
+  component: TripDetail,
+});
+
+function TripNotFound() {
+  const t = useT();
+  return (
     <main className="bg-paper text-ink font-sans">
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
-        <h1 className="font-serif text-4xl">Trip not found.</h1>
+        <h1 className="font-serif text-4xl">{t.inquiry.notFound}</h1>
         <Link to="/trips" className="mt-6 inline-block text-stone underline">
           Back to all trips
         </Link>
       </div>
       <TripsFooter />
     </main>
-  ),
-  errorComponent: ({ reset }) => (
+  );
+}
+
+function TripLoadError({ reset }: { reset: () => void }) {
+  const t = useT();
+  return (
     <main className="bg-paper text-ink font-sans">
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl">This trip didn't load.</h1>
-        <button onClick={reset} className="mt-6 text-stone underline">Try again</button>
+        <h1 className="font-serif text-3xl">{t.inquiry.loadError}</h1>
+        <button onClick={reset} className="mt-6 text-stone underline">
+          {t.inquiry.tryAgain}
+        </button>
       </div>
       <TripsFooter />
     </main>
-  ),
-  component: TripDetail,
-});
+  );
+}
 
 function relatedFor(trip: Trip, n = 3): Trip[] {
   const others = ALL_TRIPS.filter((t) => t.id !== trip.id);
@@ -71,6 +84,7 @@ function relatedFor(trip: Trip, n = 3): Trip[] {
 
 function TripDetail() {
   const { trip } = Route.useLoaderData() as { trip: Trip };
+  const t = useT();
   const extra = tripExtraImages(trip);
   const related = relatedFor(trip);
 
@@ -100,22 +114,17 @@ function TripDetail() {
         </p>
 
         <dl className="mt-12 grid grid-cols-1 gap-y-6 border-y border-stone/20 py-10 sm:grid-cols-2">
-          <Fact label="Operator" value={trip.operator} />
-          <Fact label="Season" value={trip.season} />
-          <Fact label="Level" value={trip.level} />
-          <Fact label="Duration" value={durationLabel(trip)} />
-          <Fact label="Price range" value={priceSymbol(trip.price_range)} />
+          <Fact label={t.inquiry.factOperator} value={trip.operator} />
+          <Fact label={t.inquiry.factSeason} value={trip.season} />
+          <Fact label={t.inquiry.factLevel} value={trip.level} />
+          <Fact label={t.inquiry.factDuration} value={durationLabel(trip)} />
+          <Fact label={t.inquiry.factPrice} value={priceSymbol(trip.price_range)} />
         </dl>
 
         <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
           {extra.map((src, i) => (
             <div key={i} className="aspect-square overflow-hidden bg-stone/10">
-              <img
-                src={src}
-                alt=""
-                loading="lazy"
-                className="h-full w-full object-cover"
-              />
+              <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
             </div>
           ))}
         </div>
@@ -126,7 +135,7 @@ function TripDetail() {
       {related.length > 0 && (
         <section className="border-t border-stone/15 px-6 py-12">
           <div className="mx-auto max-w-6xl">
-            <h2 className="font-serif text-2xl text-ink sm:text-3xl">Trips like this.</h2>
+            <h2 className="font-serif text-2xl text-ink sm:text-3xl">{t.inquiry.tripsLikeThis}</h2>
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {related.map((t) => (
                 <TripCard key={t.id} trip={t} />
@@ -159,6 +168,7 @@ function InquireForm({
   tripName: string;
   operator: string;
 }) {
+  const t = useT();
   const [sent, setSent] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -200,9 +210,7 @@ function InquireForm({
   if (sent) {
     return (
       <div className="mt-16 border border-stone/30 px-6 py-14 text-center">
-        <p className="font-serif text-xl italic text-ink sm:text-2xl">
-          Thank you. We'll get back to you within 48 hours.
-        </p>
+        <p className="font-serif text-xl italic text-ink sm:text-2xl">{t.inquiry.success}</p>
         <p className="mt-8 font-serif text-3xl lowercase text-ink">trovr</p>
       </div>
     );
@@ -226,34 +234,32 @@ function InquireForm({
           Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
         </label>
       </p>
-      <h2 className="font-serif text-3xl text-ink sm:text-4xl">Interested?</h2>
-      <p className="mt-3 text-sm text-stone">
-        Tell us about you. We'll come back with details.
-      </p>
+      <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t.inquiry.heading}</h2>
+      <p className="mt-3 text-sm text-stone">{t.inquiry.subheading}</p>
       <div className="mt-8 grid grid-cols-1 gap-6 sm:grid-cols-2">
-        <Field name="name" label="Name" required />
-        <Field name="email" label="Email" type="email" required />
-        <Field name="phone" label="Phone (optional)" />
-        <Field name="when" label="When are you thinking?" placeholder="e.g. August 2026 or flexible" />
+        <Field name="name" label={t.inquiry.name} required />
+        <Field name="email" label={t.inquiry.email} type="email" required />
+        <Field name="phone" label={t.inquiry.phone} />
+        <Field name="when" label={t.inquiry.when} placeholder={t.inquiry.whenPlaceholder} />
       </div>
       <div className="mt-6">
         <label className="text-[11px] uppercase tracking-[0.2em] text-stone">
-          A line about you
+          {t.inquiry.about}
         </label>
         <textarea
           name="about"
           rows={4}
-          placeholder="Anything we should know — experience level, who's coming with you, what you're after."
+          placeholder={t.inquiry.aboutPlaceholder}
           className="mt-2 w-full border border-stone/30 bg-transparent px-3 py-2 font-serif text-base text-ink focus:border-ink focus:outline-none"
         />
       </div>
-      {error && <p className="mt-4 text-sm text-red-600">{error}</p>}
+      {error && <p className="mt-4 text-sm text-red-600">{t.inquiry.error}</p>}
       <button
         type="submit"
         disabled={submitting}
         className="mt-8 w-full border border-ink px-6 py-3 text-[11px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-ink hover:text-paper disabled:opacity-50"
       >
-        {submitting ? "Sending…" : "Submit inquiry"}
+        {submitting ? t.inquiry.sending : t.inquiry.submit}
       </button>
     </form>
   );

@@ -1,0 +1,4 @@
+{
+  "__note": "Portuguese overlay for trips (Phase 2). Key = trip id. Fill only translatable fields: summary and seasonDisplay. Do NOT put the raw parseable season here — season logic uses English months. Missing keys fall back to English.",
+  "trips": {}
+}

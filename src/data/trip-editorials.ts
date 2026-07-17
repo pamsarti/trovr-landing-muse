@@ -93,7 +93,12 @@ const FALLBACK_LINES = [
   "Mornings open slowly here. The work of the trip is mostly the work of paying attention.",
 ];
 
-export function editorialFor(id: string): string {
+import { TRIP_EDITORIALS_PT } from "./trip-editorials.pt";
+
+export function editorialFor(id: string, locale: "en" | "pt" = "en"): string {
+  if (locale === "pt" && TRIP_EDITORIALS_PT[id]) {
+    return TRIP_EDITORIALS_PT[id];
+  }
   return (
     TRIP_EDITORIALS[id] ??
     FALLBACK_LINES.join(" ")

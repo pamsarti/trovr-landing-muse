@@ -9,22 +9,25 @@ import {
 } from "@tanstack/react-router";
 
 import appCss from "../styles.css?url";
+import { CATALOG, DEFAULT_LOCALE, type Locale } from "@/i18n";
+import { detectLocale } from "@/i18n/detect";
+import { htmlLang, ogLocale } from "@/i18n/seoT";
+import { useT } from "@/i18n/useT";
 
 function NotFoundComponent() {
+  const t = useT();
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-7xl font-bold text-foreground">404</h1>
-        <h2 className="mt-4 text-xl font-semibold text-foreground">Page not found</h2>
-        <p className="mt-2 text-sm text-muted-foreground">
-          The page you're looking for doesn't exist or has been moved.
-        </p>
+        <h2 className="mt-4 text-xl font-semibold text-foreground">{t.notFound.title}</h2>
+        <p className="mt-2 text-sm text-muted-foreground">{t.notFound.body}</p>
         <div className="mt-6">
           <Link
             to="/"
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Go home
+            {t.notFound.goHome}
           </Link>
         </div>
       </div>
@@ -35,16 +38,15 @@ function NotFoundComponent() {
 function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
   console.error(error);
   const router = useRouter();
+  const t = useT();
 
   return (
     <div className="flex min-h-screen items-center justify-center bg-background px-4">
       <div className="max-w-md text-center">
         <h1 className="text-xl font-semibold tracking-tight text-foreground">
-          This page didn't load
+          {t.errorPage.title}
         </h1>
-        <p className="mt-2 text-sm text-muted-foreground">
-          Something went wrong on our end. You can try refreshing or head back home.
-        </p>
+        <p className="mt-2 text-sm text-muted-foreground">{t.errorPage.body}</p>
         <div className="mt-6 flex flex-wrap justify-center gap-2">
           <button
             onClick={() => {
@@ -53,13 +55,13 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
             }}
             className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
           >
-            Try again
+            {t.errorPage.tryAgain}
           </button>
           <a
             href="/"
             className="inline-flex items-center justify-center rounded-md border border-input bg-background px-4 py-2 text-sm font-medium text-foreground transition-colors hover:bg-accent"
           >
-            Go home
+            {t.notFound.goHome}
           </a>
         </div>
       </div>
@@ -68,43 +70,53 @@ function ErrorComponent({ error, reset }: { error: Error; reset: () => void }) {
 }
 
 export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()({
-  head: () => ({
-    meta: [
-      { charSet: "utf-8" },
-      { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { name: "google-site-verification", content: "vjvuvmMVr9fZ0tqsFQfjhqkvVbbsr_k6j_mzs-DJWbU" },
-      { title: "Trovr — Curated Immersive & Adventure Travel Experiences" },
-      { name: "description", content: "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life." },
-      { name: "author", content: "Trovr" },
-      { property: "og:title", content: "Trovr — Curated Immersive & Adventure Travel Experiences" },
-      { property: "og:description", content: "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life." },
-      { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
-      { name: "twitter:title", content: "Trovr — Curated Immersive & Adventure Travel Experiences" },
-      { name: "twitter:description", content: "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life." },
-    ],
-    links: [
-      {
-        rel: "stylesheet",
-        href: appCss,
-      },
-    ],
-    scripts: [
-      {
-        type: "application/ld+json",
-        children: JSON.stringify({
-          "@context": "https://schema.org",
-          "@type": "Organization",
-          name: "Trovr",
-          url: "https://trovr.com.br",
-          logo: "https://trovr.com.br/images/providencia-hero.jpg",
-          description:
-            "Discover hand-curated adventure and immersive travel experiences — sport, exploration, and off-the-map journeys chosen to add something real to your life.",
-          email: "hello@trovr.agency",
-        }),
-      },
-    ],
-  }),
+  beforeLoad: () => {
+    return { locale: detectLocale() };
+  },
+  head: ({ match }) => {
+    const locale: Locale = (match.context as { locale?: Locale }).locale ?? DEFAULT_LOCALE;
+    const t = CATALOG[locale];
+    return {
+      meta: [
+        { charSet: "utf-8" },
+        { name: "viewport", content: "width=device-width, initial-scale=1" },
+        {
+          name: "google-site-verification",
+          content: "vjvuvmMVr9fZ0tqsFQfjhqkvVbbsr_k6j_mzs-DJWbU",
+        },
+        { title: t.seo.siteTitle },
+        { name: "description", content: t.seo.siteDescription },
+        { name: "author", content: "Trovr" },
+        { property: "og:title", content: t.seo.siteTitle },
+        { property: "og:description", content: t.seo.siteDescription },
+        { property: "og:type", content: "website" },
+        { property: "og:locale", content: ogLocale(locale) },
+        { name: "twitter:card", content: "summary" },
+        { name: "twitter:title", content: t.seo.siteTitle },
+        { name: "twitter:description", content: t.seo.siteDescription },
+      ],
+      links: [
+        {
+          rel: "stylesheet",
+          href: appCss,
+        },
+      ],
+      scripts: [
+        {
+          type: "application/ld+json",
+          children: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            name: "Trovr",
+            url: "https://trovr.com.br",
+            logo: "https://trovr.com.br/images/providencia-hero.jpg",
+            description: t.seo.siteDescription,
+            email: "hello@trovr.agency",
+          }),
+        },
+      ],
+    };
+  },
   shellComponent: RootShell,
   component: RootComponent,
   notFoundComponent: NotFoundComponent,
@@ -112,8 +124,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: React.ReactNode }) {
+  const { locale } = Route.useRouteContext();
   return (
-    <html lang="en">
+    <html lang={htmlLang(locale ?? DEFAULT_LOCALE)}>
       <head>
         <HeadContent />
       </head>
