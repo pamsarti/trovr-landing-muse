@@ -10,6 +10,7 @@ import {
   type Spot,
 } from "@/lib/spots-data";
 import { SpotsHeader } from "@/components/spots/SpotsChrome";
+import { useT } from "@/i18n/useT";
 import type { MapBounds, MapSpotPoint } from "@/components/spots/SpotsMap";
 
 const SpotsMap = lazy(() =>
@@ -344,6 +345,7 @@ function SpotListItem({
 // ---------- metrics ----------
 
 function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean }) {
+  const t = useT();
   const spec = spot.conditions.activitySpecific ?? {};
   const status = spot.conditions.fieldStatus ?? {};
   const months = spot.conditions.bestMonths ?? [];
@@ -371,7 +373,7 @@ function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean 
         return (
           <div key={k}>
             <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-              {humanize(k)}
+              {(t.spotFieldsShort as Record<string, string>)[k] ?? humanize(k)}
             </dt>
             <dd className="mt-0.5 font-serif text-[15px] text-ink">
               {v}

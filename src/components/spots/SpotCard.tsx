@@ -8,6 +8,7 @@ import {
 } from "@/lib/spots-data";
 import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
 import { findArticle, CATEGORY_LABEL } from "@/lib/journal-data";
+import { useT } from "@/i18n/useT";
 
 /** Placeholder for a future seasonal chart driven by bestMonths. */
 function SeasonalChart() {
@@ -117,6 +118,7 @@ export function SpotCard({
   region: RegionGroup;
   activity?: Activity;
 }) {
+  const t = useT();
   const activityMeta = ACTIVITIES.find((a) => a.id === spot.activity);
   const activityLabel = activityMeta?.label ?? spot.activity;
   const bestMonths = spot.conditions.bestMonths ?? [];
@@ -210,12 +212,15 @@ export function SpotCard({
                 const status = fieldStatus[key];
                 const isUnverified = status && status !== "verified";
                 const statusLabel = isUnverified
-                  ? STATUS_LABEL[status] ?? status
+                  ? (t.spotStatus as Record<string, string>)[status] ??
+                    STATUS_LABEL[status] ??
+                    status
                   : null;
                 return (
                   <div key={key} className="break-inside-avoid">
                     <dt className="text-[11px] uppercase tracking-[0.2em] text-stone">
-                      {humanizeKey(key)}
+                      {(t.spotFields as Record<string, string>)[key] ??
+                        humanizeKey(key)}
                     </dt>
                     <dd className="mt-1.5 text-sm leading-[1.55] text-ink sm:text-base">
                       {value}
