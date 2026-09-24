@@ -1,11 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { SpotCard } from "@/components/spots/SpotCard";
-import type {
-  Activity,
-  Continent,
-  RegionGroup,
-  Spot,
-} from "@/lib/spots-data";
+import type { Activity, Continent, RegionGroup, Spot } from "@/lib/spots-data";
 
 /**
  * Reusable off-canvas drawer that shows a single spot. Fully decoupled from
@@ -60,12 +55,12 @@ export function SpotPanel({
       className="fixed inset-0 z-50"
       role="dialog"
       aria-modal="true"
-      aria-label={`Spot: ${spot.name}`}
+      aria-label={`Lugar: ${spot.name}`}
     >
       {/* Overlay */}
       <button
         type="button"
-        aria-label="Close panel"
+        aria-label="Fechar painel"
         onClick={onClose}
         className={`absolute inset-0 cursor-default bg-ink/50 transition-opacity duration-300 ease-out motion-reduce:transition-none ${
           mounted ? "opacity-100" : "opacity-0"
@@ -80,23 +75,17 @@ export function SpotPanel({
       >
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-stone/15 bg-paper/95 px-4 py-3 backdrop-blur">
           <span className="text-[10px] uppercase tracking-[0.25em] text-stone">
-            Spot detail
+            Detalhes do lugar
           </span>
           <button
             ref={closeRef}
             type="button"
-            aria-label="Close"
+            aria-label="Fechar"
             onClick={onClose}
             className="grid h-9 w-9 place-items-center border border-stone/30 text-ink transition-colors hover:border-ink hover:bg-ink/5"
             style={{ borderRadius: 2 }}
           >
-            <svg
-              width="14"
-              height="14"
-              viewBox="0 0 14 14"
-              fill="none"
-              aria-hidden="true"
-            >
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none" aria-hidden="true">
               <path
                 d="M1 1L13 13M13 1L1 13"
                 stroke="currentColor"

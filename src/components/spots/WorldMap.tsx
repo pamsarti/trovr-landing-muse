@@ -157,25 +157,23 @@ export function WorldMap({
             ref={svgRef}
             viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
             xmlns="http://www.w3.org/2000/svg"
-            style={{ width: "100%", height: "auto", display: "block", cursor: "grab", touchAction: "none" }}
+            style={{
+              width: "100%",
+              height: "auto",
+              display: "block",
+              cursor: "grab",
+              touchAction: "none",
+            }}
             role="img"
-            aria-label="World map with spot locations"
+            aria-label="Mapa-múndi com os lugares"
           >
             <g ref={zoomLayerRef}>
               <g>
-              {geo?.features.map((f, i) => {
-                const d = path(f);
-                if (!d) return null;
-                return (
-                  <path
-                    key={i}
-                    d={d}
-                    fill="#EDE7DC"
-                    stroke="#C9BFAE"
-                    strokeWidth={0.4}
-                  />
-                );
-              })}
+                {geo?.features.map((f, i) => {
+                  const d = path(f);
+                  if (!d) return null;
+                  return <path key={i} d={d} fill="#EDE7DC" stroke="#C9BFAE" strokeWidth={0.4} />;
+                })}
               </g>
             </g>
             {/* Overlay layer — not zoom-transformed so pins stay constant size. */}
@@ -207,7 +205,7 @@ export function WorldMap({
                         zoomToLngLat(lng, lat, Math.max(transform.k * 1.8, targetK));
                       }}
                       role="button"
-                      aria-label={`Cluster of ${count} spots — zoom in`}
+                      aria-label={`Grupo de ${count} lugares; ampliar`}
                     >
                       <circle
                         r={r + 4}
@@ -280,7 +278,7 @@ export function WorldMap({
             <button
               type="button"
               onClick={() => zoomBy(1.6)}
-              aria-label="Zoom in"
+              aria-label="Ampliar mapa"
               className="flex h-8 w-8 items-center justify-center border border-stone/25 bg-paper/90 text-ink hover:bg-paper"
             >
               +
@@ -288,7 +286,7 @@ export function WorldMap({
             <button
               type="button"
               onClick={() => zoomBy(1 / 1.6)}
-              aria-label="Zoom out"
+              aria-label="Reduzir mapa"
               className="flex h-8 w-8 items-center justify-center border border-stone/25 bg-paper/90 text-ink hover:bg-paper"
             >
               −
@@ -296,7 +294,7 @@ export function WorldMap({
             <button
               type="button"
               onClick={resetZoom}
-              aria-label="Reset zoom"
+              aria-label="Restaurar aproximação"
               className="flex h-8 w-8 items-center justify-center border border-stone/25 bg-paper/90 text-[10px] uppercase tracking-wider text-ink hover:bg-paper"
             >
               ⤾

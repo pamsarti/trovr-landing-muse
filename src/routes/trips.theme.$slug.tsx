@@ -24,9 +24,9 @@ export const Route = createFileRoute("/trips/theme/$slug")({
     <main className="bg-paper text-ink font-sans">
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
-        <h1 className="font-serif text-4xl">Theme not found.</h1>
+        <h1 className="font-serif text-4xl">Tema não encontrado.</h1>
         <Link to="/trips" className="mt-6 inline-block text-stone underline">
-          Back to all trips
+          Voltar para todas as viagens
         </Link>
       </div>
       <TripsFooter />
@@ -36,8 +36,10 @@ export const Route = createFileRoute("/trips/theme/$slug")({
     <main className="bg-paper text-ink font-sans">
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl">This theme didn't load.</h1>
-        <button onClick={reset} className="mt-6 text-stone underline">Try again</button>
+        <h1 className="font-serif text-3xl">Este tema não carregou.</h1>
+        <button onClick={reset} className="mt-6 text-stone underline">
+          Tentar novamente
+        </button>
       </div>
       <TripsFooter />
     </main>
@@ -63,7 +65,7 @@ function ThemePage() {
         />
         <div className="absolute inset-0 bg-ink/35" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
-          <p className="text-[11px] uppercase tracking-[0.25em] text-paper/80">Theme</p>
+          <p className="text-[11px] uppercase tracking-[0.25em] text-paper/80">Tema</p>
           <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-tight text-paper sm:text-6xl">
             {theme.title}
           </h1>
@@ -77,17 +79,17 @@ function ThemePage() {
         <div className="mx-auto max-w-6xl">
           <div className="flex items-baseline justify-between">
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              {trips.length} {trips.length === 1 ? "trip" : "trips"}
+              {trips.length} {trips.length === 1 ? "viagem" : "viagens"}
             </p>
             <Link
               to="/trips"
               className="text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
             >
-              ← All trips
+              ← Todas as viagens
             </Link>
           </div>
           {trips.length === 0 ? (
-            <p className="mt-12 font-serif italic text-stone">No trips yet in this theme.</p>
+            <p className="mt-12 font-serif italic text-stone">Ainda não há viagens neste tema.</p>
           ) : (
             <div className="mt-10 grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3">
               {trips.map((t) => (

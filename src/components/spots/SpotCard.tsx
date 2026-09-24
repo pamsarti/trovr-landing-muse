@@ -5,6 +5,7 @@ import {
   type Spot,
   type Continent,
   type RegionGroup,
+  placeLabel,
 } from "@/lib/spots-data";
 import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
 import { findArticle, CATEGORY_LABEL } from "@/lib/journal-data";
@@ -15,85 +16,85 @@ function SeasonalChart() {
   return (
     <div
       role="img"
-      aria-label="Seasonal chart placeholder"
+      aria-label="Gráfico sazonal em desenvolvimento"
       className="flex h-24 items-center justify-center border border-dashed border-stone/30 bg-stone/[0.03] text-[10px] uppercase tracking-[0.2em] text-stone/60"
     >
-      Seasonal chart · coming soon
+      Gráfico sazonal · em breve
     </div>
   );
 }
 
 const KEY_LABELS: Record<string, string> = {
-  break_type: "Break type",
-  bottom_type: "Bottom type",
-  recommended_level: "Recommended level",
-  ideal_swell: "Ideal swell",
-  ideal_wind: "Ideal wind",
-  ideal_tide: "Ideal tide",
-  hazards: "Hazards",
-  crowds: "Crowds",
-  distance: "Distance",
-  elevation: "Elevation",
-  profile: "Profile",
-  difficulty: "Difficulty",
-  estimated_time: "Estimated time",
-  route_type: "Route type",
-  terrain_water: "Terrain & water",
-  elevation_profile: "Elevation & profile",
-  terrain_surface: "Terrain & surface",
-  technical_grade: "Technical grade",
-  route_shape: "Route shape",
-  support_water: "Support & water",
-  distance_shape: "Distance & shape",
-  surface: "Surface",
-  trail_type: "Trail type",
-  technical_difficulty: "Technical difficulty",
-  physical_demand: "Physical demand",
-  status_condition: "Status & condition",
-  bike_access: "Bike & access",
-  depth: "Depth",
-  certification_level: "Certification level",
-  access_type: "Access",
-  dive_type: "Dive type",
-  visibility: "Visibility",
-  current: "Current",
-  marine_life: "Marine life",
-  season_water_temp: "Season & water temp",
-  wind_by_month: "Wind by month",
-  best_season: "Best season",
-  wind_direction: "Wind direction",
-  water_type: "Water type",
-  bottom_water: "Bottom & water",
-  tide_current: "Tide & current",
-  level_discipline: "Level & discipline",
-  hazards_launch: "Hazards & launch",
+  break_type: "Tipo de onda",
+  bottom_type: "Tipo de fundo",
+  recommended_level: "Nível recomendado",
+  ideal_swell: "Swell ideal",
+  ideal_wind: "Vento ideal",
+  ideal_tide: "Maré ideal",
+  hazards: "Perigos",
+  crowds: "Lotação",
+  distance: "Distância",
+  elevation: "Elevação",
+  profile: "Perfil",
+  difficulty: "Dificuldade",
+  estimated_time: "Tempo estimado",
+  route_type: "Tipo de rota",
+  terrain_water: "Terreno e água",
+  elevation_profile: "Elevação e perfil",
+  terrain_surface: "Terreno e piso",
+  technical_grade: "Grau técnico",
+  route_shape: "Formato da rota",
+  support_water: "Apoio e água",
+  distance_shape: "Distância e formato",
+  surface: "Superfície",
+  trail_type: "Tipo de trilha",
+  technical_difficulty: "Dificuldade técnica",
+  physical_demand: "Exigência física",
+  status_condition: "Estado e condição",
+  bike_access: "Bicicleta e acesso",
+  depth: "Profundidade",
+  certification_level: "Nível de certificação",
+  access_type: "Acesso",
+  dive_type: "Tipo de mergulho",
+  visibility: "Visibilidade",
+  current: "Correnteza",
+  marine_life: "Vida marinha",
+  season_water_temp: "Temporada e temperatura da água",
+  wind_by_month: "Vento por mês",
+  best_season: "Melhor temporada",
+  wind_direction: "Direção do vento",
+  water_type: "Tipo de água",
+  bottom_water: "Fundo e água",
+  tide_current: "Maré e correnteza",
+  level_discipline: "Nível e modalidade",
+  hazards_launch: "Perigos e entrada na água",
   kite_wing: "Kite / Wing",
-  holding: "Holding",
-  protection: "Protection",
-  mooring: "Mooring",
-  services: "Services",
-  hazards_price: "Hazards & price",
-  km_by_difficulty: "Runs by difficulty",
-  altitude_vertical: "Altitude & vertical",
-  lifts: "Lifts",
-  season: "Season",
+  holding: "Fundeadouro",
+  protection: "Proteção",
+  mooring: "Amarração",
+  services: "Serviços",
+  hazards_price: "Perigos e preço",
+  km_by_difficulty: "Quilômetros por dificuldade",
+  altitude_vertical: "Altitude e desnível",
+  lifts: "Meios de elevação",
+  season: "Temporada",
   snowpark: "Snowpark",
-  snow_history: "Snow history",
-  pass_price: "Pass price",
-  discipline: "Discipline",
-  number_of_routes: "Number of routes",
-  grade_distribution: "Grade distribution",
-  rock_type: "Rock type",
-  aspect: "Aspect",
-  approach: "Approach",
-  height_protection: "Height & protection",
-  riding_level: "Riding level",
-  pace: "Pace",
-  terrain: "Terrain",
-  horse_breed: "Horse breed",
-  riding_style: "Riding style",
-  duration: "Duration",
-  whats_included: "What's included",
+  snow_history: "Histórico de neve",
+  pass_price: "Preço do passe",
+  discipline: "Modalidade",
+  number_of_routes: "Número de vias",
+  grade_distribution: "Distribuição de graus",
+  rock_type: "Tipo de rocha",
+  aspect: "Orientação",
+  approach: "Aproximação",
+  height_protection: "Altura e proteção",
+  riding_level: "Nível de equitação",
+  pace: "Ritmo",
+  terrain: "Terreno",
+  horse_breed: "Raça do cavalo",
+  riding_style: "Estilo de equitação",
+  duration: "Duração",
+  whats_included: "O que está incluído",
 };
 
 function humanizeKey(key: string): string {
@@ -103,8 +104,8 @@ function humanizeKey(key: string): string {
 }
 
 const STATUS_LABEL: Record<string, string> = {
-  source_claims: "Source states",
-  estimate: "Estimate",
+  source_claims: "Informado pela fonte",
+  estimate: "Estimativa",
 };
 
 export function SpotCard({
@@ -127,22 +128,19 @@ export function SpotCard({
   const specificEntries = Object.entries(specific).filter(
     ([, v]) => typeof v === "string" && v.trim().length > 0,
   );
-  const sources = (spot.sources && spot.sources.length > 0
-    ? spot.sources
-    : spot.sourceUrl
-      ? [spot.sourceUrl]
-      : []) as string[];
+  const sources = (
+    spot.sources && spot.sources.length > 0 ? spot.sources : spot.sourceUrl ? [spot.sourceUrl] : []
+  ) as string[];
   const relatedTrip = spot.relatedTripId ? findTrip(spot.relatedTripId) : null;
-  const relatedArticle = spot.relatedArticleSlug
-    ? findArticle(spot.relatedArticleSlug)
-    : null;
+  const relatedArticle = spot.relatedArticleSlug ? findArticle(spot.relatedArticleSlug) : null;
 
   return (
     <article className="px-6 pb-24 pt-4">
       <div className="mx-auto max-w-3xl">
         {/* Header: image or placeholder */}
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone/10">
-          {"hero_image_url" in spot && (spot as unknown as { hero_image_url?: string }).hero_image_url ? (
+          {"hero_image_url" in spot &&
+          (spot as unknown as { hero_image_url?: string }).hero_image_url ? (
             <img
               src={(spot as unknown as { hero_image_url: string }).hero_image_url}
               alt={spot.name}
@@ -163,7 +161,7 @@ export function SpotCard({
         <header className="mt-8 flex flex-wrap items-start justify-between gap-4">
           <div>
             <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              {[spot.city, spot.country].filter(Boolean).join(", ")}
+              {[placeLabel(spot.city), placeLabel(spot.country)].filter(Boolean).join(", ")}
             </p>
             <h1 className="mt-3 font-serif text-4xl leading-[1.05] text-ink sm:text-5xl md:text-6xl">
               {spot.name}
@@ -187,9 +185,7 @@ export function SpotCard({
         {/* Best season */}
         {bestMonths.length > 0 && (
           <section className="mt-12 border-t border-stone/15 pt-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Best season
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">Melhor época</p>
             <ul className="mt-3 space-y-1 font-serif text-xl text-ink sm:text-2xl">
               {bestMonths.map((m, i) => (
                 <li key={i}>{m}</li>
@@ -204,23 +200,20 @@ export function SpotCard({
         {/* Activity-specific rich fields */}
         {specificEntries.length > 0 && (
           <section className="mt-12 border-t border-stone/15 pt-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Conditions
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">Condições</p>
             <dl className="mt-4 grid grid-cols-1 gap-x-10 gap-y-6 sm:grid-cols-2">
               {specificEntries.map(([key, value]) => {
                 const status = fieldStatus[key];
                 const isUnverified = status && status !== "verified";
                 const statusLabel = isUnverified
-                  ? (t.spotStatus as Record<string, string>)[status] ??
+                  ? ((t.spotStatus as Record<string, string>)[status] ??
                     STATUS_LABEL[status] ??
-                    status
+                    status)
                   : null;
                 return (
                   <div key={key} className="break-inside-avoid">
                     <dt className="text-[11px] uppercase tracking-[0.2em] text-stone">
-                      {(t.spotFields as Record<string, string>)[key] ??
-                        humanizeKey(key)}
+                      {(t.spotFields as Record<string, string>)[key] ?? humanizeKey(key)}
                     </dt>
                     <dd className="mt-1.5 text-sm leading-[1.55] text-ink sm:text-base">
                       {value}
@@ -244,9 +237,7 @@ export function SpotCard({
         {/* Editorial description */}
         {spot.description && (
           <section className="mt-12 border-t border-stone/15 pt-8">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Editor's note
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">Nota editorial</p>
             <p className="mt-4 font-serif text-xl leading-[1.55] text-ink sm:text-2xl">
               {spot.description}
             </p>
@@ -255,7 +246,7 @@ export function SpotCard({
 
         {/* Related trip CTA — visually distinct card, not a spot data section */}
         {relatedTrip && (
-          <section aria-label="Related trip" className="mt-14">
+          <section aria-label="Viagem relacionada" className="mt-14">
             <Link
               to="/trips/$id"
               params={{ id: relatedTrip.id }}
@@ -273,13 +264,13 @@ export function SpotCard({
                     style={{ borderRadius: 2 }}
                   >
                     <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-ink" />
-                    Trip
+                    Viagem
                   </span>
                 </div>
                 <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
                   <div>
                     <p className="text-[10px] uppercase tracking-[0.24em] text-paper/60">
-                      Go with an operator
+                      Viaje com uma operadora
                     </p>
                     <h3 className="mt-3 font-serif text-2xl leading-tight text-paper sm:text-3xl">
                       {relatedTrip.destination}
@@ -290,25 +281,35 @@ export function SpotCard({
                   </div>
                   <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-paper/15 pt-5 text-paper">
                     <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">Operator</dt>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
+                        Operador
+                      </dt>
                       <dd className="mt-1 font-serif text-sm">{relatedTrip.operator}</dd>
                     </div>
                     <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">Duration</dt>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
+                        Duração
+                      </dt>
                       <dd className="mt-1 font-serif text-sm">{durationLabel(relatedTrip)}</dd>
                     </div>
                     <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">Season</dt>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
+                        Temporada
+                      </dt>
                       <dd className="mt-1 font-serif text-sm">{relatedTrip.season}</dd>
                     </div>
                     <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">Price</dt>
+                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
+                        Preço
+                      </dt>
                       <dd className="mt-1 font-serif text-sm">{relatedTrip.price_range}</dd>
                     </div>
                   </dl>
                   <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-paper">
-                    View trip
-                    <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                    Ver viagem
+                    <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                      →
+                    </span>
                   </span>
                 </div>
               </div>
@@ -318,7 +319,7 @@ export function SpotCard({
 
         {/* Related journal article CTA — distinct from the Trip CTA above */}
         {relatedArticle && (
-          <section aria-label="Related journal article" className="mt-10">
+          <section aria-label="História relacionada" className="mt-10">
             <Link
               to="/journal/$slug"
               params={{ slug: relatedArticle.slug }}
@@ -344,22 +345,22 @@ export function SpotCard({
                       fill="currentColor"
                     />
                   </svg>
-                  Journal · {CATEGORY_LABEL[relatedArticle.category]}
+                  Histórias · {CATEGORY_LABEL[relatedArticle.category]}
                 </span>
               </div>
               <div className="px-6 py-6 sm:px-8 sm:py-7">
                 <p className="text-[10px] uppercase tracking-[0.24em] text-stone">
-                  Read the story
+                  Leia a história
                 </p>
                 <h3 className="mt-3 font-serif text-2xl italic leading-tight text-ink sm:text-3xl">
                   {relatedArticle.title}
                 </h3>
-                <p className="mt-3 text-sm leading-[1.55] text-ink/75">
-                  {relatedArticle.dek}
-                </p>
+                <p className="mt-3 text-sm leading-[1.55] text-ink/75">{relatedArticle.dek}</p>
                 <p className="mt-5 inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-ink underline decoration-stone/40 underline-offset-4 group-hover:decoration-ink">
-                  {relatedArticle.readTime} min read
-                  <span aria-hidden className="transition-transform group-hover:translate-x-1">→</span>
+                  {relatedArticle.readTime} min de leitura
+                  <span aria-hidden className="transition-transform group-hover:translate-x-1">
+                    →
+                  </span>
                 </p>
               </div>
             </Link>
@@ -369,9 +370,7 @@ export function SpotCard({
         {/* Sources */}
         {sources.length > 0 && (
           <footer className="mt-12 border-t border-stone/15 pt-6">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Sources
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">Fontes</p>
             <ul className="mt-2 space-y-1 text-xs text-stone">
               {sources.map((url) => {
                 let hostname = url;
@@ -404,7 +403,7 @@ export function SpotCard({
             search={{ activity }}
             className="text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
           >
-            ← Back to {region.name}
+            ← Voltar para {region.name}
           </Link>
         </div>
       </div>

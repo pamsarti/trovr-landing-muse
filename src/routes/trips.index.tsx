@@ -11,6 +11,7 @@ import {
   allContinents,
   allCountries,
   durationBucket,
+  durationLabel,
   isInSeason,
   tripImage,
   type DurationBucket,
@@ -96,7 +97,7 @@ function HeroRotator() {
           <div className="absolute inset-0 flex flex-col justify-end px-6 pb-20 sm:px-12 sm:pb-24">
             <div className="mx-auto w-full max-w-5xl">
               <p className="text-[10px] uppercase tracking-[0.25em] text-paper/80">
-                {f.trip.country} · {f.trip.duration_days} days on{" "}
+                {f.trip.country} · {durationLabel(f.trip)} ·{" "}
                 {ACTIVITY_LABEL[f.trip.activity].toLowerCase()}
               </p>
               <h2 className="mt-4 font-serif text-4xl leading-tight text-paper sm:text-6xl">
@@ -111,7 +112,7 @@ function HeroRotator() {
                   params={{ id: f.trip.id }}
                   className="text-[11px] uppercase tracking-[0.2em] text-paper/90 underline-offset-4 hover:underline"
                 >
-                  See this trip →
+                  Ver esta viagem →
                 </Link>
               </div>
             </div>
@@ -124,7 +125,7 @@ function HeroRotator() {
           <button
             key={idx}
             onClick={() => setI(idx)}
-            aria-label={`Slide ${idx + 1}`}
+            aria-label={`Imagem ${idx + 1}`}
             className="h-[2px] w-8 transition-colors"
             style={{ background: idx === i ? "#f5f1ec" : "rgba(245,241,236,0.35)" }}
           />
@@ -147,7 +148,7 @@ function SeasonBand() {
   return (
     <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-3xl text-ink sm:text-4xl">Right now is the time for —</h2>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">Agora é tempo de</h2>
         <div className="mt-10 flex gap-6 overflow-x-auto pb-2 sm:gap-8">
           {inSeason.map((t) => (
             <SmallSeasonCard key={t.id} trip={t} />
@@ -165,7 +166,7 @@ function ThemesGrid() {
     <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <h2 className="font-serif text-3xl text-ink sm:text-4xl">
-          Browse by feeling, not by filter.
+          Escolha pela sensação, não pelo filtro.
         </h2>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {THEMES.map((t) => (
@@ -241,12 +242,12 @@ function AllTripsSection() {
     <section className="px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between">
-          <h2 className="font-serif text-3xl text-ink sm:text-4xl">All trips.</h2>
+          <h2 className="font-serif text-3xl text-ink sm:text-4xl">Todas as viagens.</h2>
           <button
             onClick={() => setDrawerOpen((v) => !v)}
             className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink lg:hidden"
           >
-            {drawerOpen ? "Hide filters" : "Filters"}
+            {drawerOpen ? "Ocultar filtros" : "Filtros"}
             {hasAny ? (
               <span className="inline-flex h-5 min-w-5 items-center justify-center rounded-full bg-ink px-1.5 text-[10px] tracking-normal text-paper">
                 {activeCount}
@@ -258,52 +259,52 @@ function AllTripsSection() {
         <div className="mt-10 grid grid-cols-1 gap-12 lg:grid-cols-[220px_1fr]">
           <aside className={`${drawerOpen ? "block" : "hidden"} lg:block`}>
             <div className="mb-6 flex items-center justify-between lg:mb-8">
-              <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink">Filters</h3>
+              <h3 className="text-[11px] uppercase tracking-[0.2em] text-ink">Filtros</h3>
               <button
                 onClick={clearAll}
                 disabled={!hasAny}
                 className="text-[11px] uppercase tracking-[0.2em] text-stone underline-offset-4 transition-colors enabled:hover:text-ink enabled:hover:underline disabled:cursor-not-allowed disabled:opacity-40"
               >
-                Clear all
+                Limpar tudo
               </button>
             </div>
             <FilterGroup
-              title="Activity"
+              title="Atividade"
               options={allActivities().map((a) => ({ id: a, label: ACTIVITY_LABEL[a] }))}
               selected={filters.activities as Set<string>}
               onToggle={(v) => setFilters((f) => toggle(f, "activities", v as TripActivity))}
             />
             <FilterGroup
-              title="Continent"
+              title="Continente"
               options={allContinents().map((c) => ({ id: c, label: c }))}
               selected={filters.continents}
               onToggle={(v) => setFilters((f) => toggle(f, "continents", v))}
             />
             <FilterGroup
-              title="Country"
+              title="País"
               options={allCountries().map((c) => ({ id: c, label: c }))}
               selected={filters.countries}
               onToggle={(v) => setFilters((f) => toggle(f, "countries", v))}
             />
             <FilterGroup
-              title="Duration"
+              title="Duração"
               options={[
-                { id: "short", label: "Short 1-3 days" },
-                { id: "mid", label: "Mid 4-7 days" },
-                { id: "long", label: "Long 8+ days" },
+                { id: "short", label: "Curta, 1 a 3 dias" },
+                { id: "mid", label: "Média, 4 a 7 dias" },
+                { id: "long", label: "Longa, 8 dias ou mais" },
               ]}
               selected={filters.durations as Set<string>}
               onToggle={(v) => setFilters((f) => toggle(f, "durations", v as DurationBucket))}
             />
             <div className="mt-2 flex items-center justify-between gap-3 border-t border-stone/15 pt-6 lg:hidden">
               <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-                {trips.length} {trips.length === 1 ? "trip" : "trips"}
+                {trips.length} {trips.length === 1 ? "viagem" : "viagens"}
               </p>
               <button
                 onClick={() => setDrawerOpen(false)}
                 className="bg-ink px-4 py-2 text-[11px] uppercase tracking-[0.2em] text-paper hover:bg-ink/85"
               >
-                Show results
+                Mostrar resultados
               </button>
             </div>
           </aside>
@@ -311,13 +312,15 @@ function AllTripsSection() {
           <div>
             {trips.length === 0 ? (
               <div className="flex flex-col items-start gap-4 py-8">
-                <p className="font-serif italic text-stone">No trips match these filters.</p>
+                <p className="font-serif italic text-stone">
+                  Nenhuma viagem corresponde a estes filtros.
+                </p>
                 {hasAny ? (
                   <button
                     onClick={clearAll}
                     className="text-[11px] uppercase tracking-[0.2em] text-ink underline underline-offset-4 hover:opacity-70"
                   >
-                    Clear all filters
+                    Limpar todos os filtros
                   </button>
                 ) : null}
               </div>

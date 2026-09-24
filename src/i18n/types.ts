@@ -4,10 +4,10 @@ import type { ReactNode } from "react";
  * Supported locales. English is the source of truth and the fallback for
  * everything; Portuguese (Brazil) is the second locale.
  */
-export type Locale = "en" | "pt";
+export type Locale = "pt";
 
-export const LOCALES: readonly Locale[] = ["en", "pt"] as const;
-export const DEFAULT_LOCALE: Locale = "en";
+export const LOCALES: readonly Locale[] = ["pt"] as const;
+export const DEFAULT_LOCALE: Locale = "pt";
 
 /** A rich catalog entry: a function returning JSX, so inline <em>/<br/> markup
  *  is preserved and never stringified. */

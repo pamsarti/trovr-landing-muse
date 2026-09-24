@@ -69,15 +69,15 @@ function AboutPage() {
 const HERO_SLIDES = [
   {
     src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80",
-    alt: "Mountain dawn over still water",
+    alt: "Amanhecer na montanha sobre água calma",
   },
   {
     src: "https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=2400&q=80",
-    alt: "Kite in open wind",
+    alt: "Kitesurf sob vento aberto",
   },
   {
     src: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=2400&q=80",
-    alt: "Horses on the steppe",
+    alt: "Cavalos atravessando a estepe",
   },
 ];
 
@@ -173,7 +173,7 @@ function FounderNote() {
             {/* TODO: replace with founder photo */}
             <img
               src="/images/founder-kite.jpg"
-              alt="Founder portrait"
+              alt="Retrato da fundadora"
               className="h-full w-full object-cover"
             />
           </div>

@@ -267,7 +267,7 @@ export function SpotsMap({
     <div
       ref={containerRef}
       className="h-full min-h-[420px] w-full bg-paper"
-      aria-label="Map of spots"
+      aria-label="Mapa de lugares"
       role="region"
     />
   );

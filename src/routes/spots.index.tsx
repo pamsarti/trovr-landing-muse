@@ -4,6 +4,7 @@ import {
   ACTIVITIES,
   colorForActivity,
   getSpotsByActivity,
+  placeLabel,
   slugify,
   validateSpotsSearch,
   type Activity,
@@ -21,17 +22,17 @@ export const Route = createFileRoute("/spots/")({
   validateSearch: validateSpotsSearch,
   head: () => ({
     meta: [
-      { title: "Spots — A world atlas of adventure | Trovr" },
+      { title: "Lugares — Atlas de aventura | Trovr" },
       {
         name: "description",
         content:
-          "An editorial map of the places worth the journey — wind, waves, mountains, trails.",
+          "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
       },
-      { property: "og:title", content: "Spots — Trovr" },
+      { property: "og:title", content: "Lugares — Trovr" },
       {
         property: "og:description",
         content:
-          "An editorial map of the places worth the journey — wind, waves, mountains, trails.",
+          "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
       },
       { property: "og:type", content: "website" },
     ],
@@ -50,7 +51,7 @@ function hasConditions(s: Spot): boolean {
 const KEY_LABELS: Record<string, string> = {
   break_type: "Break",
   bottom_type: "Bottom",
-  recommended_level: "Level",
+  recommended_level: "Nível",
   ideal_swell: "Swell",
   ideal_wind: "Wind",
   ideal_tide: "Tide",
@@ -58,7 +59,7 @@ const KEY_LABELS: Record<string, string> = {
   crowds: "Crowds",
   wind_direction: "Wind direction",
   water_type: "Water",
-  season: "Season",
+  season: "Temporada",
   discipline: "Discipline",
   riding_level: "Riding level",
   terrain: "Terrain",
@@ -183,16 +184,16 @@ function SpotsIndex() {
           <div className="pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-md border border-stone/20 bg-paper/85 p-4 backdrop-blur-md">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
-                Atlas · {allSpots.length} spots
+                Atlas · {allSpots.length} lugares
                 {appliedBounds && (
                   <>
                     {" · "}
-                    <span className="text-sage">{listedSpots.length} in this area</span>
+                    <span className="text-sage">{listedSpots.length} nesta área</span>
                   </>
                 )}
               </p>
               <h1 className="mt-1.5 font-serif text-xl leading-tight text-ink sm:text-2xl">
-                Places worth the journey
+                Lugares que merecem a viagem
               </h1>
             </div>
 
@@ -211,7 +212,7 @@ function SpotsIndex() {
                 style={{ borderRadius: 2 }}
                 aria-pressed={!activity}
               >
-                All
+                Todos
               </button>
               {ACTIVITIES.filter((a) => a.active).map((a) => {
                 const isCurrent = a.id === activity;
@@ -251,7 +252,7 @@ function SpotsIndex() {
             className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border border-sage bg-sage-bg px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sage shadow-sm transition-colors hover:bg-sage hover:text-paper"
             style={{ borderRadius: 2 }}
           >
-            Search spots in this area
+            Buscar lugares nesta área
           </button>
         )}
         {appliedBounds && (
@@ -261,7 +262,7 @@ function SpotsIndex() {
             className="absolute right-4 top-4 z-[1000] border border-stone/40 bg-paper px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm hover:border-ink"
             style={{ borderRadius: 2 }}
           >
-            Clear area filter
+            Limpar filtro de área
           </button>
         )}
       </div>
@@ -310,8 +311,8 @@ function SpotListItem({
         style={{ outlineColor: color }}
       >
         <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-stone">
-          {spot.city}
-          {spot.country ? ` · ${spot.country}` : ""}
+          {placeLabel(spot.city)}
+          {spot.country ? ` · ${placeLabel(spot.country)}` : ""}
         </p>
         <h3 className="mt-1.5 font-serif text-2xl leading-tight text-ink">{spot.name}</h3>
       </button>
@@ -331,7 +332,7 @@ function SpotListItem({
             background: showMetrics ? color : "transparent",
             borderRadius: 2,
           }}
-          aria-label={`${label} conditions`}
+          aria-label={`Condições para ${label}`}
         >
           {label}
         </button>
@@ -363,7 +364,7 @@ function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean 
       {months.length > 0 && (
         <div className="col-span-full">
           <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-            Best season
+            Melhor época
           </dt>
           <dd className="mt-0.5 font-serif text-[15px] text-ink">{months.join(" · ")}</dd>
         </div>
@@ -380,9 +381,9 @@ function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean 
               {isUnverified && (
                 <span
                   className="ml-1 align-middle font-mono text-[10px] normal-case text-stone"
-                  title="Not independently verified"
+                  title="Não verificado de forma independente"
                 >
-                  · unconfirmed
+                  · não confirmado
                 </span>
               )}
             </dd>
@@ -419,11 +420,11 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
       className="fixed inset-0 z-[2000]"
       role="dialog"
       aria-modal="true"
-      aria-label={`Spot: ${spot.name}`}
+      aria-label={`Lugar: ${spot.name}`}
     >
       <button
         type="button"
-        aria-label="Close panel"
+        aria-label="Fechar painel"
         onClick={onClose}
         className={`absolute inset-0 cursor-default bg-ink/50 transition-opacity duration-300 motion-reduce:transition-none ${
           mountedIn ? "opacity-100" : "opacity-0"
@@ -436,13 +437,13 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
       >
         <div className="sticky top-0 z-10 flex items-center justify-between border-b border-stone/20 bg-paper/95 px-5 py-3 backdrop-blur">
           <span className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
-            Spot detail
+            Detalhes do lugar
           </span>
           <button
             ref={closeRef}
             type="button"
             onClick={onClose}
-            aria-label="Close"
+            aria-label="Fechar"
             className="grid h-9 w-9 place-items-center border border-stone/40 text-ink transition-colors hover:border-ink hover:bg-sage-bg/60"
             style={{ borderRadius: 2 }}
           >
@@ -459,7 +460,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
 
         <div className="flex-1 overflow-y-auto px-6 pb-10 pt-6">
           <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
-            {spot.region} · {spot.city}
+            {placeLabel(spot.region)} · {placeLabel(spot.city)}
           </p>
           <h2 className="mt-2 font-serif text-4xl leading-[1.05] text-ink">{spot.name}</h2>
           {spot.coordinates && (
@@ -474,7 +475,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
 
           <section className="mt-8">
             <p className="font-mono text-[10px] uppercase tracking-[0.24em] text-stone">
-              What to do here
+              O que fazer aqui
             </p>
             <button
               type="button"
@@ -491,7 +492,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
             >
               <span className="font-serif text-lg">{label}</span>
               <span className="font-mono text-[10px] uppercase tracking-[0.2em]">
-                {expanded ? "Hide" : "Show"} conditions
+                {expanded ? "Ocultar" : "Mostrar"} condições
               </span>
             </button>
             {expanded && (
@@ -513,7 +514,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
               className="inline-flex items-center gap-2 border border-ink bg-ink px-4 py-2 font-mono text-[10px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-sage hover:border-sage"
               style={{ borderRadius: 2 }}
             >
-              View full spot
+              Ver lugar completo
               <span aria-hidden>→</span>
             </Link>
           </div>

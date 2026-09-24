@@ -2,7 +2,6 @@ import { Link, useRouterState } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useT } from "@/i18n/useT";
-import { LocaleToggle } from "@/components/LocaleToggle";
 
 const NAV = [
   { to: "/spots", key: "spots", match: "/spots" },
@@ -88,7 +87,6 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
                 </Link>
               );
             })}
-            <LocaleToggle tone={transparent && !scrolled ? "light" : "dark"} className="ml-2" />
             <a
               href="/#newsletter"
               className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
@@ -156,7 +154,6 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             >
               {t.nav.earlyAccess}
             </a>
-            <LocaleToggle tone="dark" className="mt-2" />
           </nav>
         </div>
       )}

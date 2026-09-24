@@ -10,8 +10,10 @@ export function seoT(locale: Locale | string | null | undefined): Messages {
 
 /** The <html lang> / og:locale value for a locale. */
 export function htmlLang(locale: Locale): string {
-  return locale === "pt" ? "pt-BR" : "en";
+  void locale;
+  return "pt-BR";
 }
 export function ogLocale(locale: Locale): string {
-  return locale === "pt" ? "pt_BR" : "en_US";
+  void locale;
+  return "pt_BR";
 }

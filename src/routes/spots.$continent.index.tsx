@@ -2,6 +2,7 @@ import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import {
   findContinent,
   getRegions,
+  placeLabel,
   validateSpotsSearch,
   type RegionGroup,
 } from "@/lib/spots-data";
@@ -16,14 +17,14 @@ export const Route = createFileRoute("/spots/$continent/")({
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {
-    const activity =
-      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
-        ?.activity;
+    const activity = (
+      loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined
+    )?.activity;
     const continent = findContinent(activity, params.continent);
-    const title = continent ? `${continent.name} — Spots | Trovr` : "Spots | Trovr";
+    const title = continent ? `${placeLabel(continent.name)} — Lugares | Trovr` : "Lugares | Trovr";
     const description = continent
-      ? `Spots across ${continent.name}. ${continent.count} regions and locations to explore.`
-      : "Spots guide.";
+      ? `Lugares em ${placeLabel(continent.name)}. ${continent.count} destinos para explorar.`
+      : "Guia de lugares.";
     return {
       meta: [
         { title },
@@ -44,12 +45,12 @@ export const Route = createFileRoute("/spots/$continent/")({
     <main className="bg-paper text-ink font-sans min-h-screen">
       <SpotsHeader />
       <section className="px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl text-ink">Continent not found.</h1>
+        <h1 className="font-serif text-3xl text-ink">Continente não encontrado.</h1>
         <Link
           to="/spots"
           className="mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
         >
-          Back to all spots
+          Voltar para todos os lugares
         </Link>
       </section>
     </main>
@@ -58,7 +59,7 @@ export const Route = createFileRoute("/spots/$continent/")({
     <main className="bg-paper text-ink font-sans min-h-screen">
       <SpotsHeader />
       <section className="px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl text-ink">Something went wrong.</h1>
+        <h1 className="font-serif text-3xl text-ink">Algo deu errado.</h1>
         <p className="mt-3 text-sm text-stone">{error.message}</p>
       </section>
     </main>
@@ -78,24 +79,25 @@ function ContinentPage() {
       <Breadcrumbs
         items={[
           {
-            label: "Spots",
+            label: "Lugares",
             to: (
               <Link to="/spots" search={{ activity }} className="hover:text-ink">
-                Spots
+                Lugares
               </Link>
             ),
           },
-          { label: continent.name },
+          { label: placeLabel(continent.name) },
         ]}
       />
 
       <section className="px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-serif text-4xl leading-[1.05] text-ink sm:text-5xl md:text-6xl">
-            {continent.name}
+            {placeLabel(continent.name)}
           </h1>
           <p className="mt-5 text-base text-stone sm:text-lg">
-            {continent.count} spots across {regions.length} regions.
+            {continent.count} {continent.count === 1 ? "lugar" : "lugares"} em {regions.length}{" "}
+            {regions.length === 1 ? "região" : "regiões"}.
           </p>
         </div>
       </section>
@@ -112,9 +114,11 @@ function ContinentPage() {
                 search={{ activity }}
                 className="group flex items-baseline justify-between gap-6 py-6 transition-colors hover:bg-stone/5"
               >
-                <span className="font-serif text-2xl text-ink sm:text-3xl">{r.name}</span>
+                <span className="font-serif text-2xl text-ink sm:text-3xl">
+                  {placeLabel(r.name)}
+                </span>
                 <span className="text-[11px] uppercase tracking-[0.2em] text-stone group-hover:text-ink">
-                  {r.count} {r.count === 1 ? "spot" : "spots"}
+                  {r.count} {r.count === 1 ? "lugar" : "lugares"}
                 </span>
               </Link>
             </li>

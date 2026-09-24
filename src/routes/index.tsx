@@ -86,7 +86,7 @@ function heroSlidesFrom(spots: Spot[], articles: JournalArticle[]): HeroSlide[] 
   const fromArticles: HeroSlide[] = articles.map((a) => ({
     src: a.heroImage,
     alt: a.title,
-    caption: `${CATEGORY_LABEL[a.category]} · Journal`,
+    caption: `${CATEGORY_LABEL[a.category]} · Histórias`,
   }));
   return [...fromSpots, ...fromArticles];
 }
@@ -202,7 +202,7 @@ function Hero() {
             </div>
             <div
               role="tablist"
-              aria-label="Hero slideshow"
+              aria-label="Galeria de abertura"
               className="flex items-center gap-2"
               onKeyDown={(e) => {
                 if (e.key === "ArrowRight") {
@@ -385,7 +385,7 @@ function JournalCard({
       </span>
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
         <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">
-          {CATEGORY_LABEL[article.category]} · {article.readTime} min read
+          {CATEGORY_LABEL[article.category]} · {article.readTime} min de leitura
         </p>
         <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
           <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
@@ -687,7 +687,7 @@ function Newsletter() {
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t.newsletter.emailPlaceholder}
               id="newsletter-email"
-              aria-label="Email address"
+              aria-label="Endereço de email"
               className="flex-1 bg-transparent text-base text-ink placeholder:text-mid/70 focus:outline-none"
             />
             <button

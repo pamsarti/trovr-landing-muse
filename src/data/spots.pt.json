@@ -1,4 +1,188 @@
 {
-  "__note": "Portuguese overlay for spots (Phase 2). Key = spot id. Fill only translatable fields: description (and activitySpecific prose values if needed). Missing keys fall back to English.",
-  "spots": {}
+  "__note": "Conteúdo editorial público em português. Nomes próprios e IDs técnicos foram preservados.",
+  "spots": {
+    "uluwatu-surf": {
+      "region": "Ásia",
+      "bestMonths": ["Estação seca, de maio a outubro; auge em agosto"],
+      "description": "Uluwatu não é uma única onda. São cinco, alinhadas diante de uma muralha de calcário na ponta de Bukit, e a escolha depende da maré e da ondulação do dia. A remada começa por uma caverna sob o penhasco, um acesso que já faz sua própria seleção: quando a maré sobe, a entrada desaparece, e errar a hora pode significar remar até a praia seguinte. As esquerdas correm rápidas e ocas sobre coral raso. Racetracks entrega tubos na maré baixa; The Peak abre sua parede na cheia. A constância e a qualidade mantêm o lugar sempre cheio. Entre cedo, use botinhas e respeite o recife: ele é a razão da onda perfeita e também do risco.",
+      "activitySpecific": {
+        "break_type": "Reef break de esquerda, com The Peak, Racetracks e Temples",
+        "bottom_type": "Coral e rocha cortante",
+        "recommended_level": "Do intermediário-avançado ao profissional, conforme a seção e o tamanho; Outside Corner e Bombie grandes são apenas para especialistas",
+        "ideal_swell": "Sudoeste; funciona abaixo de 1 m e suporta mais de 4 m",
+        "ideal_wind": "Sudeste, terral durante a estação seca",
+        "ideal_tide": "Varia por seção; The Peak em meia a cheia, Racetracks em baixa a meia",
+        "hazards": "Coral raso, corrente e acesso pela caverna, perigoso na maré cheia por causa do refluxo contra o penhasco",
+        "crowds": "Extremamente cheio durante a semana e nos fins de semana"
+      }
+    },
+    "laugavegur-hike": {
+      "region": "Europa",
+      "city": "Islândia",
+      "country": "Islândia",
+      "bestMonths": ["25 de junho a 15 de setembro; ideal em julho e agosto"],
+      "description": "A trilha cabe em quatro dias e reúne quase tudo que há de estranho na Islândia. Você sai das águas termais de Landmannalaugar por montanhas de riolito que parecem pintadas à mão, atravessa neve e obsidiana no ponto mais alto e desce por desertos de areia negra até a floresta de bétulas de Þórsmörk. O desafio não é a orientação, porque a rota é bem marcada, mas os rios: três travessias são feitas a pé e o nível pode mudar no mesmo dia com chuva ou sol. Vá em julho ou agosto, reserve os abrigos cedo e leia o quadro de condições dos guardas antes de cada vau.",
+      "activitySpecific": {
+        "distance": "54 km",
+        "elevation": "Cerca de 1.600 a 1.700 m de subida e 1.800 m de descida; os 500 m frequentemente citados correspondem apenas ao primeiro dia",
+        "profile": "Uma subida longa no primeiro dia, de 600 m a 1.050 m; depois, predomina a descida",
+        "difficulty": "Moderada, fisicamente exigente e sem trechos técnicos",
+        "estimated_time": "Quatro dias e três noites no roteiro clássico entre abrigos",
+        "route_type": "Ponto a ponto, de norte para sul",
+        "terrain_water": "Riolito, lava, obsidiana, deserto negro e floresta no final. Seis abrigos com água e chuveiros e três travessias de rio"
+      }
+    },
+    "utmb-ultra-trail-du-mont-blanc-run": {
+      "region": "Europa",
+      "city": "Alpes Franceses",
+      "country": "França",
+      "bestMonths": ["Realizada uma vez por ano, no fim de agosto"],
+      "description": "Correr a UTMB é dar uma volta completa no Mont Blanc, cruzando três fronteiras entre a largada e a chegada no mesmo lugar, em Chamonix. O terreno mente com gentileza: os primeiros 30 quilômetros são generosos, e é justamente ali que estreantes gastam as pernas de que vão precisar nos quatro colos acima de 2.400 metros, já na segunda noite sem dormir. Entre um colo e outro, o single track pelos refúgios Bertone e Bonatti, com a face italiana do maciço à esquerda, está entre os trechos mais bonitos do esporte. Mais de um terço dos participantes não cruza o arco final. Esse é o acordo: uma das paisagens mais fotografadas da corrida de trilha e um preço cobrado por inteiro.",
+      "activitySpecific": {
+        "distance": "174 km, com variação anual",
+        "elevation_profile": "9.900 m de subida; os primeiros 31 km são suaves, seguidos por quatro colos acima de 2.400 m",
+        "terrain_surface": "Trilha alpina com estrada e pista larga no início, single track nos vales e rocha técnica nos colos",
+        "technical_grade": "Difícil e extrema; taxa histórica de abandono em torno de 35% a 38%",
+        "route_shape": "Circuito fechado, retornando a Chamonix",
+        "estimated_time": "Elite perto de 20 horas; pelotão entre 30 e 46 horas; limite de 46h45",
+        "support_water": "Quinze postos de apoio, refeições quentes em Chapieux, Courmayeur e Champex-Lac e sinalização em toda a rota"
+      }
+    },
+    "a-line-bike": {
+      "region": "América do Norte",
+      "bestMonths": ["Temporada do parque de maio a outubro"],
+      "description": "Alguns trechos de terra não são apenas percorridos. Eles ensinam a linguagem que todos os outros repetem. A-Line foi onde uma geração inteira entendeu o significado de flow. O Fitzsimmons leva você ao alto sem uma pedalada, e lá começa uma sequência moldada de mesas e curvas elevadas feita para manter a mão longe do freio. A classificação é preta, mas flow acessível e saltos obrigatórios convivem na mesma linha; o encontro depende da velocidade que você aceita carregar. A pista abre por etapas, dividida em zonas que nem sempre funcionam juntas. Aqui, o acesso é conquistado por teleférico, não pela subida.",
+      "activitySpecific": {
+        "distance_shape": "Cerca de 2,9 km; ponto a ponto, apenas descida",
+        "elevation": "Sem ganho de elevação; descida de aproximadamente 325 a 331 m",
+        "surface": "100% moldada por máquinas, com terra trabalhada e estruturas de madeira",
+        "trail_type": "Pista de flow e saltos em downhill, com mesas, curvas elevadas e saltos de 3 a mais de 9 m",
+        "technical_difficulty": "Preta; o MTB Project classifica como dupla preta",
+        "physical_demand": "Alta; é preciso velocidade para completar os saltos",
+        "status_condition": "Temporada de 2026 entre 15 de maio e 12 de outubro; em 12/05/2026, parcialmente aberta",
+        "bike_access": "Bicicleta de downhill com suspensão integral; acesso pelo teleférico Fitzsimmons Express"
+      }
+    },
+    "ss-thistlegorm-dive": {
+      "city": "Mar Vermelho, Egito",
+      "country": "Egito",
+      "bestMonths": [
+        "O ano todo; melhor na primavera e no outono, de março a maio e de setembro a novembro"
+      ],
+      "description": "Poucos naufrágios entregam o que o Thistlegorm guarda: um cargueiro que repousa no fundo do Estreito de Gubal desde outubro de 1941, ainda carregado com a guerra que levava ao front. Você desce pelo cabo, quase sempre com corrente, até o casco surgir com motocicletas BSA alinhadas nos porões, caminhões, vagões e munição. Não é um recife artificial suavizado pelo coral, mas um momento interrompido. Com 30 metros no ponto mais profundo, penetração e corrente capaz de mudar em minutos, a certificação avançada não é burocracia. Se puder, vá em liveaboard: chegar antes das lanchas de Sharm, com visibilidade limpa e o convés vazio, muda a experiência por completo.",
+      "activitySpecific": {
+        "depth": "Cerca de 16 m no convés e 30 a 32 m no fundo; média de 26 m",
+        "certification_level": "Advanced Open Water por passar de 20 m; especialidade em naufrágio para penetração",
+        "access_type": "Apenas por barco; cerca de quatro horas desde Sharm ou em liveaboard",
+        "dive_type": "Naufrágio de cargueiro britânico da Segunda Guerra, com possibilidade de penetração",
+        "visibility": "Cerca de 10 a 25 m, melhor em junho e setembro",
+        "current": "De inexistente a forte, até quatro nós; descida pelo cabo",
+        "marine_life": "Barracudas, peixes-morcego, tartaruga residente, xaréus, peixe-napoleão, moreias e atuns",
+        "season_water_temp": "O ano todo; melhor na primavera e no outono. Água de cerca de 22 °C no inverno a 27–29 °C no verão"
+      }
+    },
+    "cumbuco-kite": {
+      "region": "América do Sul",
+      "bestMonths": ["Agosto a dezembro; janela de julho a janeiro; auge em agosto e setembro"],
+      "description": "Cumbuco cumpre sua promessa sem espetáculo: de agosto a dezembro, o vento alísio chega de manhã, ganha força durante a tarde até a faixa de 15 a 22 nós e fica até a luz acabar. O mar é mexido e bom para saltos; alguns quilômetros ao norte, a lagoa do Cauípe oferece o oposto, com água lisa, rasa e fundo de areia. É ali que iniciantes encontram apoio e quem passa ao wingfoil encontra um dos palcos mais tolerantes do Brasil. A constância cobra seu preço: no fim da manhã, a lagoa enche. Este é um lugar para repetição, para acumular horas diante de um vento em que se pode confiar.",
+      "activitySpecific": {
+        "wind_by_month": "Alísios diários na estação seca, com auge em agosto e setembro. À tarde, normalmente 15 a 22 nós, com rajadas de 28 a 30. Não há estação meteorológica no próprio pico",
+        "best_season": "Agosto a dezembro; janela de julho a janeiro",
+        "wind_direction": "Leste-sudeste, lateral a maral",
+        "water_type": "Praia mexida, com ondas; lagoa do Cauípe completamente lisa",
+        "bottom_water": "Areia, sem rocha ou coral, e água salgada",
+        "tide_current": "A maré altera muito a largura da praia; corrente sem documentação confiável",
+        "level_discipline": "Do iniciante ao avançado; freeride, freestyle, foil e ondas",
+        "hazards_launch": "Banhistas, pescadores, barcos e carros no Cauípe; mais de 6 km de praia para decolar",
+        "kite_wing": "Kitesurf e wingfoil, com cena forte no Cauípe"
+      }
+    },
+    "cala-saona-sail": {
+      "region": "Europa",
+      "city": "Ilhas Baleares",
+      "country": "Espanha",
+      "bestMonths": ["Verão, apenas com tempo estável e vento leste"],
+      "description": "Cala Saona trai o próprio cartão-postal: uma ferradura de areia entre penhascos cor de ferrugem e pinheiros. A calma só permanece com vento leste. Sob o Levante, a água fica lisa e o pôr do sol a oeste explica a fama. Quando entra o Ponent, a mesma abertura canaliza a ondulação para dentro; a areia segura bem, mas o barco passa a rolar. Quem ancora aqui lê a previsão antes de romantizar o lugar. A regra de ouro das Baleares é fundear apenas na areia, longe das pradarias de posidônia. Não é etiqueta, mas proteção ambiental com multas altas. É parada diurna, não porto de abrigo.",
+      "activitySpecific": {
+        "depth": "Cerca de 3 a 8 m; fundeio entre 3 e 5 m sobre areia, a aproximadamente 100 m da praia",
+        "bottom_type": "Areia no centro, rocha junto à costa e posidônia protegida ao redor",
+        "holding": "Boa fixação na areia; piora com vento oeste ou noroeste",
+        "protection": "Protegida de leste e sudeste; exposta a oeste, sudoeste e noroeste. Apenas para bom tempo",
+        "mooring": "Fundeio autônomo na areia, longe da posidônia e atrás das boias de banho",
+        "services": "Sem serviços náuticos; restaurantes na praia e combustível em La Savina",
+        "hazards_price": "Rochas e multas altas por danificar a posidônia. Fundeio gratuito na areia, sem campo oficial de boias PortsIB; confirme as regras locais"
+      }
+    },
+    "val-thorens-snow": {
+      "region": "Europa",
+      "city": "Alpes Franceses",
+      "country": "França",
+      "bestMonths": ["Temporada de 22/11/2025 a 03/05/2026"],
+      "description": "Val Thorens não pede desculpas pelo que é: concreto a 2.300 metros, sem floresta nem charme de aldeia. É exatamente por isso que resiste quando o resto dos Alpes ainda espera pela neve. A altitude é o argumento inteiro. Você esquia em um anfiteatro de circos glaciais acima da linha das árvores, com pistas largas descendo da Cime Caron e uma base que costuma durar até maio. É terreno para quem busca volume e muitos quilômetros, não um couloir preto secreto. O domínio vive de suas pistas azuis e vermelhas e da ligação que abre 600 km com um único passe. O vento pode fechar a parte alta rapidamente, e o après-ski é intenso.",
+      "activitySpecific": {
+        "km_by_difficulty": "150 km de pistas próprias e mais de 600 km com o passe 3 Vallées; cerca de 87% para iniciantes e intermediários",
+        "altitude_vertical": "Vila a 2.300 m, a mais alta da Europa; domínio entre 1.800 e 3.230 m, com cerca de 1.400 m de desnível",
+        "lifts": "22 meios de elevação locais; cerca de 31 incluindo Orelle",
+        "season": "22/11/2025 a 03/05/2026",
+        "snowpark": "Sim, no Plateau, com zonas por nível e airbag Jump’Air",
+        "snow_history": "Cerca de 600 a 650 cm por ano na média histórica",
+        "pass_price": "€ 71 por dia para 150 km; € 81,80 para 3 Vallées, tarifa 2025/26"
+      }
+    },
+    "kalymnos-climb": {
+      "region": "Europa",
+      "city": "Dodecaneso, Grécia",
+      "country": "Grécia",
+      "bestMonths": ["Outono, de outubro a novembro, e primavera, de abril a junho"],
+      "description": "Kalymnos não é uma falésia. É uma ilha inteira organizada em torno da escalada, e isso muda o ritmo dos dias. Você dorme em Masouri, toma café olhando Telendos do outro lado do canal e caminha vinte minutos até paredes de calcário cobertas de tufas e estalactites. A força do lugar não está no topo da escala, mas no volume de vias intermediárias bem protegidas. Quem escala entre 6a e 6b+ pode passar semanas sem repetir um setor, dividindo o estacionamento com escaladores de 8a sem atrito. Vá no outono; outubro traz dias secos. No verão, escolha a sombra conforme a orientação da parede. Leve corda de 70 m e conte as costuras antes de sair do chão.",
+      "activitySpecific": {
+        "discipline": "Escalada esportiva; ilha praticamente 100% dedicada a vias protegidas",
+        "number_of_routes": "Cerca de 4.200 vias em 61 setores, segundo o guia de 2023",
+        "grade_distribution": "De F3a a F9a; aproximadamente metade até 6b+ e mais de 700 vias em 7b ou acima",
+        "rock_type": "Calcário com tufas, estalactites e buracos",
+        "aspect": "Setores voltados principalmente para oeste e sul",
+        "best_season": "Outono, com auge em outubro, e primavera, sobretudo abril e maio",
+        "approach": "Caminhada de 20 a 35 minutos aos setores de Masouri",
+        "height_protection": "Vias em torno de 30 m, de uma ou várias enfiadas, com grampos de titânio; 15 a 17 costuras e corda de 70 m"
+      }
+    },
+    "el-gouna-kite": {
+      "city": "Mar Vermelho, Egito",
+      "country": "Egito",
+      "bestMonths": [
+        "Vento mais forte de junho a setembro; melhor equilíbrio de setembro a novembro e de março a maio"
+      ],
+      "description": "O vento daqui mantém um encontro marcado há milênios: um sopro de norte que percorre o Mar Vermelho, constante, lateral e sem pressa. Você caminha por águas mornas e rasas, sobre areia clara, até a lagoa se abrir lisa e larga. Não há drama nessa água, apenas paciência: é preciso ler a maré e esperar a hora em que o mar devolve profundidade. O verão chega forte, com vinte nós ou mais, para quem quer resistência; os meses de transição chegam suaves e ensinam. O que fica não é apenas a velejada, mas o ritmo da luz do deserto, da água plana e de um vento que já soprava antes de você aprender a inclinar o corpo contra ele.",
+      "activitySpecific": {
+        "wind_by_month": "Alísio de norte-noroeste quase constante. Inverno entre 12 e 22 nós, primavera de 14 a 26, verão normalmente de 20 a 25 com rajadas acima de 30 e outono de 14 a 22 nós",
+        "best_season": "Auge de junho a setembro; melhor equilíbrio de setembro a novembro e de março a maio; iniciantes no inverno e outono",
+        "wind_direction": "Norte-noroeste, lateral a maral e paralelo à costa",
+        "water_type": "Lisa na lagoa e mexida perto do recife; não é pico de ondas",
+        "bottom_water": "Areia, com possíveis conchas, sem coral perigoso perto da margem; água salgada",
+        "tide_current": "A profundidade varia cerca de 40 a 70 cm; melhor algumas horas antes e depois da maré cheia; corrente não é risco relevante",
+        "level_discipline": "Todos os níveis; área rasa e lisa, escolas com resgate, freeride, freestyle, foil e wingfoil",
+        "hazards_launch": "Áreas muito rasas na baixa, conchas e recife sinalizado por boias; praia larga com zonas organizadas",
+        "kite_wing": "Kitesurf e wingfoil, com área e cursos dedicados"
+      }
+    },
+    "alula-horseback": {
+      "region": "Ásia",
+      "city": "Arábia Saudita",
+      "country": "Arábia Saudita",
+      "bestMonths": [
+        "Inverno, de outubro a março; saídas às 9h ou 16h para evitar o calor do meio-dia"
+      ],
+      "description": "Antes de o sol transformar o arenito em fogo, você monta no portão sul de Hegra e entra em um silêncio mais antigo do que qualquer estrada. A trilha é plana e sem pressa: seis quilômetros por cânions e deserto aberto onde caravanas nabateias cruzavam as tumbas de Lihyan e a face vermelha de Jabal Ahmar. O guia segue à frente para contar o que o lugar guarda, e o cavalo impõe o único ritmo que esta paisagem aceita: lento o bastante para perceber. Vá no inverno, quando a luz é suave e o calor afrouxa. Não é preciso experiência, apenas disposição para estar em um lugar que não acelera por você.",
+      "activitySpecific": {
+        "riding_level": "Do iniciante ao experiente; trilha plana de dificuldade média",
+        "pace": "Cavalgada contemplativa, provavelmente ao passo",
+        "terrain": "Deserto plano de areia, com trilhas largas, cânions e passagens históricas entre formações de Hegra",
+        "horse_breed": "Raça não informada pelos operadores; a região é ligada à tradição do cavalo árabe, mas não há confirmação",
+        "riding_style": "Estilo e fornecimento de capacete não informados",
+        "duration": "Fontes variam de uma a duas horas, em aproximadamente 6 km; saídas às 9h ou 16h",
+        "best_season": "Inverno, aproximadamente de outubro a março; dias entre 15 e 25 °C",
+        "whats_included": "Guia credenciado, traslado de ida e volta entre hotel e Hegra, entradas e cavalo; água, café e tâmaras variam por operador; refeições não incluídas"
+      }
+    }
+  }
 }

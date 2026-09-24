@@ -126,7 +126,7 @@ function Featured({ article }: { article: JournalArticle }) {
             {article.dek}
           </p>
           <p className="mt-6 text-xs tracking-wide text-paper/70">
-            {article.author} · {formatDate(article.date)} · {article.readTime} min read
+            {article.author} · {formatDate(article.date)} · {article.readTime} min de leitura
           </p>
 
           <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] text-ink transition-colors group-hover:bg-sage group-hover:text-paper">
@@ -161,7 +161,7 @@ function ArticleCard({ article }: { article: JournalArticle }) {
       </h3>
       <p className="mt-3 font-serif text-base italic text-stone sm:text-lg">{article.dek}</p>
       <p className="mt-4 text-xs tracking-wide text-stone">
-        {formatDate(article.date)} · {article.readTime} min read
+        {formatDate(article.date)} · {article.readTime} min de leitura
       </p>
     </Link>
   );

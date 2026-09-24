@@ -10,18 +10,18 @@ import type { Messages } from "./types";
  */
 export const pt = {
   nav: {
-    spots: "Spots",
-    journal: "Journal",
+    spots: "Lugares",
+    journal: "Histórias",
     about: "Sobre",
     earlyAccess: "Acesso antecipado",
     openMenu: "Abrir menu",
     closeMenu: "Fechar menu",
     switchToPt: "Ver em português",
-    switchToEn: "View in English",
+    switchToEn: "Ver em inglês",
   },
 
   footer: {
-    tagline: "Viaje para encontrar, não para fugir.",
+    tagline: "Viaje para se descobrir, não para fugir.",
     spotsTagline: "Um guia dos lugares que valem a viagem.",
     copyright: "© 2026 trovr",
     copyrightEmail: "© 2026 · hello@trovr.agency",
@@ -85,7 +85,7 @@ export const pt = {
     metricRegion: "Região",
     metricBest: "Melhor época",
     seeThisExpedition: "Ver esta expedição",
-    seeThisSpot: "Ver este spot",
+    seeThisSpot: "Ver este lugar",
 
     statPlaces: "Lugares mapeados para você",
     statContinents: "Continentes cobertos",
@@ -173,7 +173,7 @@ export const pt = {
   },
 
   journalIndex: {
-    title: "Journal",
+    title: "Histórias",
     subtitle: "Notas de campo dos lugares para onde mandamos gente.",
     moreHeading: "Mais do campo.",
     story: "história",
@@ -213,14 +213,14 @@ export const pt = {
   },
 
   spotFields: {
-    break_type: "Break type",
-    bottom_type: "Bottom type",
+    break_type: "Tipo de onda",
+    bottom_type: "Tipo de fundo",
     recommended_level: "Nível recomendado",
     ideal_swell: "Swell ideal",
     ideal_wind: "Vento ideal",
     ideal_tide: "Maré ideal",
     hazards: "Perigos",
-    crowds: "Crowds",
+    crowds: "Lotação",
     distance: "Distância",
     elevation: "Elevação",
     profile: "Perfil",
@@ -252,11 +252,11 @@ export const pt = {
     best_season: "Melhor época",
     wind_direction: "Direção do vento",
     water_type: "Tipo de água",
-    bottom_water: "Bottom e água",
+    bottom_water: "Fundo e água",
     tide_current: "Maré e corrente",
     level_discipline: "Nível e modalidade",
     hazards_launch: "Perigos e decolagem",
-    kite_wing: "Kite / Wing",
+    kite_wing: "Kitesurf / Wingfoil",
     holding: "Fundeio",
     protection: "Proteção",
     mooring: "Ancoradouro",
@@ -286,14 +286,14 @@ export const pt = {
   },
 
   spotFieldsShort: {
-    break_type: "Break",
-    bottom_type: "Bottom",
+    break_type: "Onda",
+    bottom_type: "Fundo",
     recommended_level: "Nível",
     ideal_swell: "Swell",
     ideal_wind: "Vento",
     ideal_tide: "Maré",
     hazards: "Perigos",
-    crowds: "Crowds",
+    crowds: "Lotação",
     wind_direction: "Direção do vento",
     water_type: "Água",
     season: "Temporada",
@@ -325,7 +325,7 @@ export const pt = {
     aboutTitle: "Sobre — Trovr",
     aboutDescription:
       "A história por trás da Trovr — uma coleção curada a mão de viagens de aventura imersivas, fora do circuito turístico, para quem viaja para explorar, sentir intensamente e voltar mudado.",
-    journalTitle: "Journal — Trovr",
+    journalTitle: "Histórias — Trovr",
     journalDescription: "Notas de campo dos lugares para onde mandamos gente.",
     tripsTitle: "Viagens — Trovr",
     tripsDescription:

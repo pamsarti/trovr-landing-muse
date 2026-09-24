@@ -1,4 +1,5 @@
 import rawTrips from "@/data/trips.json";
+import rawTripsPt from "@/data/trips.pt.json";
 
 export type TripActivity =
   | "kite"
@@ -18,6 +19,7 @@ export type Trip = {
   operator_url: string;
   duration_days: number | string;
   season: string;
+  seasonSource?: string;
   price_range: string;
   level: string;
   summary: string;
@@ -25,7 +27,20 @@ export type Trip = {
   status: "coming-soon" | "active";
 };
 
-export const ALL_TRIPS = rawTrips as Trip[];
+type TripPtOverlay = Partial<
+  Pick<Trip, "destination" | "country" | "continent" | "price_range" | "level" | "summary">
+> & { seasonDisplay?: string };
+
+const tripOverlays = (rawTripsPt as { trips: Record<string, TripPtOverlay> }).trips;
+export const ALL_TRIPS = (rawTrips as Trip[]).map((trip) => {
+  const overlay = tripOverlays[trip.id];
+  return {
+    ...trip,
+    ...overlay,
+    seasonSource: trip.season,
+    season: overlay?.seasonDisplay ?? trip.season,
+  };
+});
 
 export function slugify(value: string): string {
   return value
@@ -39,10 +54,10 @@ export function slugify(value: string): string {
 export const ACTIVITY_LABEL: Record<TripActivity, string> = {
   kite: "Kite",
   surf: "Surf",
-  horseback: "Horseback",
-  wildlife: "Wildlife",
-  "martial-arts": "Martial arts",
-  "river-cruise": "River cruise",
+  horseback: "Cavalgada",
+  wildlife: "Vida selvagem",
+  "martial-arts": "Artes marciais",
+  "river-cruise": "Cruzeiro fluvial",
 };
 
 /** Curated Unsplash photo IDs, picked per activity + country combo. */
@@ -71,9 +86,7 @@ export function tripImage(trip: Trip, w = 1600, h = 900): string {
   if (trip.id === "alaska-wildlife-geographic") {
     return "/images/alaska-whale.jpg";
   }
-  const id =
-    IMAGE_KEY[`${trip.activity}|${trip.country}`] ??
-    FALLBACK_BY_ACTIVITY[trip.activity];
+  const id = IMAGE_KEY[`${trip.activity}|${trip.country}`] ?? FALLBACK_BY_ACTIVITY[trip.activity];
   return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
 }
 
@@ -98,19 +111,21 @@ export function durationMinDays(trip: Trip): number {
 
 export function durationLabel(trip: Trip): string {
   const d = trip.duration_days;
-  if (typeof d === "number") return `${d} days`;
-  if (/^\d+$/.test(String(d))) return `${d} days`;
-  return `${d} days`;
+  if (typeof d === "number") return `${d} ${d === 1 ? "dia" : "dias"}`;
+  if (/^\d+$/.test(String(d))) return `${d} ${String(d) === "1" ? "dia" : "dias"}`;
+  if (String(d).toLowerCase() === "varies") return "duração variável";
+  if (String(d).toLowerCase() === "flexible") return "duração flexível";
+  return `${d} dias`;
 }
 
 /** Activity → preposition for "X days on Y" tag. */
 const ACTIVITY_TAG: Record<TripActivity, string> = {
-  kite: "on the water",
-  surf: "on the water",
-  horseback: "on horseback",
-  wildlife: "in the wild",
-  "martial-arts": "in training",
-  "river-cruise": "on the river",
+  kite: "na água",
+  surf: "na água",
+  horseback: "a cavalo",
+  wildlife: "em vida selvagem",
+  "martial-arts": "em treinamento",
+  "river-cruise": "no rio",
 };
 
 export function tripTag(trip: Trip): string {
@@ -119,8 +134,18 @@ export function tripTag(trip: Trip): string {
 
 /** Season parsing: returns 1-indexed months covered. */
 const MONTHS = [
-  "january","february","march","april","may","june",
-  "july","august","september","october","november","december",
+  "january",
+  "february",
+  "march",
+  "april",
+  "may",
+  "june",
+  "july",
+  "august",
+  "september",
+  "october",
+  "november",
+  "december",
 ];
 
 function monthIndex(name: string): number | null {
@@ -154,7 +179,7 @@ export function seasonMonths(season: string): Set<number> {
 }
 
 export function isInSeason(trip: Trip, month: number): boolean {
-  return seasonMonths(trip.season).has(month);
+  return seasonMonths(trip.seasonSource ?? trip.season).has(month);
 }
 
 /** Accessors. */
@@ -188,9 +213,10 @@ const CULTURE_RE = /\b(temple|heritage|nomadic|tradition|ancient|monastery)\b/i;
 export const THEMES: Theme[] = [
   {
     slug: "asks-something",
-    title: "Travel that asks something of you",
-    subtitle: "Trips for the body, not the resort.",
-    image: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1600&h=1000&q=70",
+    title: "Viagens que exigem algo de você",
+    subtitle: "Para o corpo, não para o resort.",
+    image:
+      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1600&h=1000&q=70",
     matches: (t) =>
       /advanced|intermediate/i.test(t.level) ||
       durationMinDays(t) >= 7 ||
@@ -198,25 +224,28 @@ export const THEMES: Theme[] = [
   },
   {
     slug: "live-aboard",
-    title: "Live aboard",
-    subtitle: "Sleep where you sail.",
-    image: "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1600&h=1000&q=70",
+    title: "Viver a bordo",
+    subtitle: "Durma onde você navega.",
+    image:
+      "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1600&h=1000&q=70",
     matches: (t) => BOAT_RE.test(`${t.destination} ${t.operator} ${t.summary}`),
   },
   {
     slug: "off-grid",
-    title: "Off the grid",
-    subtitle: "Where signal stops mattering.",
-    image: "https://images.unsplash.com/photo-1531176175-2c2fda35d5b8?auto=format&fit=crop&w=1600&h=1000&q=70",
+    title: "Fora da rede",
+    subtitle: "Onde o sinal deixa de importar.",
+    image:
+      "https://images.unsplash.com/photo-1531176175-2c2fda35d5b8?auto=format&fit=crop&w=1600&h=1000&q=70",
     matches: (t) =>
       ["Kyrgyzstan", "USA (Alaska)"].includes(t.country) ||
       REMOTE_RE.test(`${t.destination} ${t.summary}`),
   },
   {
     slug: "cultural-depth",
-    title: "Cultural depth",
-    subtitle: "The place is part of the practice.",
-    image: "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1600&h=1000&q=70",
+    title: "Profundidade cultural",
+    subtitle: "O lugar faz parte da prática.",
+    image:
+      "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1600&h=1000&q=70",
     matches: (t) =>
       t.activity === "martial-arts" ||
       t.activity === "river-cruise" ||
@@ -238,19 +267,19 @@ export type Featured = { trip: Trip; line: string };
 export const FEATURED: Featured[] = [
   {
     trip: findTrip("kyrgyzstan-horse-tatosh")!,
-    line: "Where the steppe still belongs to the people who cross it.",
+    line: "Onde a estepe ainda pertence a quem a atravessa.",
   },
   {
     trip: findTrip("egypt-kite-dragonfly")!,
-    line: "Wind that lasts longer than your fear of it.",
+    line: "Um vento que dura mais do que o seu medo dele.",
   },
   {
     trip: findTrip("maldives-surf-surftribe")!,
-    line: "An ocean that pays in a currency the office doesn't accept.",
+    line: "Um oceano que paga em uma moeda que o escritório não aceita.",
   },
   {
     trip: findTrip("alaska-wildlife-geographic")!,
-    line: "Quiet is its own kind of cathedral.",
+    line: "O silêncio é uma espécie de catedral.",
   },
 ].filter((f): f is Featured => !!f.trip);
 

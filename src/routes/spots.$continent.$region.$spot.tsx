@@ -12,21 +12,17 @@ export const Route = createFileRoute("/spots/$continent/$region/$spot")({
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {
-    const activity =
-      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
-        ?.activity;
+    const activity = (
+      loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined
+    )?.activity;
     const continent = findContinent(activity, params.continent);
     const region = continent ? findRegion(activity, continent.name, params.region) : null;
     const spot =
-      continent && region
-        ? findSpot(activity, continent.name, region.name, params.spot)
-        : null;
-    const title = spot
-      ? `${spot.name} — ${region?.name} | Trovr`
-      : "Spot | Trovr";
+      continent && region ? findSpot(activity, continent.name, region.name, params.spot) : null;
+    const title = spot ? `${spot.name} — ${region?.name} | Trovr` : "Lugar | Trovr";
     const description = spot?.description
       ? spot.description.slice(0, 160)
-      : `Spot in ${region?.name ?? ""}.`;
+      : `Lugar em ${region?.name ?? ""}.`;
     return {
       meta: [
         { title },

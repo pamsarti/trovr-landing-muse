@@ -95,14 +95,14 @@ const FALLBACK_LINES = [
 
 import { TRIP_EDITORIALS_PT } from "./trip-editorials.pt";
 
-export function editorialFor(id: string, locale: "en" | "pt" = "en"): string {
+export function editorialFor(id: string, locale: "en" | "pt" = "pt"): string {
   if (locale === "pt" && TRIP_EDITORIALS_PT[id]) {
     return TRIP_EDITORIALS_PT[id];
   }
-  return (
-    TRIP_EDITORIALS[id] ??
-    FALLBACK_LINES.join(" ")
-  );
+  if (locale === "pt") {
+    return "O lugar define o ritmo e os dias tomam a forma da paisagem. Você chega esperando uma coisa e volta carregando outra.";
+  }
+  return TRIP_EDITORIALS[id] ?? FALLBACK_LINES.join(" ");
 }
 
 /** Extract price symbol (€€/€€€/€€€€) from messy price_range field, fallback to a generic band. */
