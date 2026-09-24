@@ -4,6 +4,7 @@ import {
   findRegion,
   findSpot,
   validateSpotsSearch,
+  type Spot,
 } from "@/lib/spots-data";
 import { SpotPanel } from "@/components/spots/SpotPanel";
 
