@@ -52,7 +52,12 @@ export const Route = createFileRoute("/spots/$continent/$region/$spot")({
 });
 
 function SpotPanelRoute() {
-  const { activity, continent, region, spot } = Route.useLoaderData();
+  const { activity, continent, region, spot } = Route.useLoaderData() as {
+    activity: ReturnType<typeof validateSpotsSearch>["activity"];
+    continent: NonNullable<ReturnType<typeof findContinent>>;
+    region: NonNullable<ReturnType<typeof findRegion>>;
+    spot: Spot;
+  };
   const router = useRouter();
 
   // Close by walking history back when possible (so browser Back and the X
