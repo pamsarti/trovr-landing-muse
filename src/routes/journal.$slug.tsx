@@ -173,7 +173,6 @@ function ArticlePage() {
               src={article.heroImage}
               alt={article.title}
               className="h-full w-full object-cover"
-              style={{ filter: "saturate(0.7)" }}
             />
           </div>
         </figure>
@@ -281,7 +280,6 @@ function ReadNextCard({ article }: { article: JournalArticle }) {
           alt={article.title}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
-          style={{ filter: "saturate(0.7)" }}
         />
       </div>
       <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-stone">

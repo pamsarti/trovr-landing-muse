@@ -107,8 +107,7 @@ function Featured({ article }: { article: JournalArticle }) {
         alt={article.title}
         className="ken-burns absolute inset-0 h-full w-full object-cover"
       />
-      {/* Scrim: keeps the serif legible over any photograph. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-ink/40" />
+      <div className="brand-photo-overlay absolute inset-0" />
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-14 sm:pb-20">
         <div className="mx-auto max-w-6xl">
@@ -150,7 +149,6 @@ function ArticleCard({ article }: { article: JournalArticle }) {
           alt={article.title}
           loading="lazy"
           className="card-img h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
-          style={{ filter: "saturate(0.7)" }}
         />
       </div>
       <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-sage">

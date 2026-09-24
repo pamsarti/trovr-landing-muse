@@ -90,10 +90,9 @@ function HeroRotator() {
           <img
             src={tripImage(f.trip, 1920, 1080)}
             alt={f.trip.destination}
-            className="h-full w-full object-cover opacity-80"
-            style={{ filter: "saturate(0.75)" }}
+            className="h-full w-full object-cover"
           />
-          <div className="absolute inset-0 bg-ink/30" />
+          <div className="brand-photo-overlay absolute inset-0" />
           <div className="absolute inset-0 flex flex-col justify-end px-6 pb-20 sm:px-12 sm:pb-24">
             <div className="mx-auto w-full max-w-5xl">
               <p className="text-[10px] uppercase tracking-[0.25em] text-paper/80">
@@ -127,7 +126,9 @@ function HeroRotator() {
             onClick={() => setI(idx)}
             aria-label={`Imagem ${idx + 1}`}
             className="h-[2px] w-8 transition-colors"
-            style={{ background: idx === i ? "#f5f1ec" : "rgba(245,241,236,0.35)" }}
+            style={{
+              background: idx === i ? "#F7F4EE" : "rgb(247 244 238 / 0.35)",
+            }}
           />
         ))}
       </div>
@@ -180,10 +181,9 @@ function ThemesGrid() {
                 src={t.image}
                 alt={t.title}
                 loading="lazy"
-                className="h-full w-full object-cover opacity-80 transition-opacity group-hover:opacity-90"
-                style={{ filter: "saturate(0.8)" }}
+                className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
               />
-              <div className="absolute inset-0 bg-ink/30" />
+              <div className="brand-photo-overlay absolute inset-0" />
               <div className="absolute inset-0 flex flex-col justify-end p-8">
                 <h3 className="font-serif text-2xl leading-tight text-paper sm:text-4xl">
                   {t.title}

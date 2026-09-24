@@ -6,6 +6,7 @@ import {
   spotImage,
   spotHomeMetrics,
   activityLabel,
+  placeLabel,
   slugify,
   type Spot,
 } from "@/lib/spots-data";
@@ -81,7 +82,7 @@ function heroSlidesFrom(spots: Spot[], articles: JournalArticle[]): HeroSlide[] 
   const fromSpots: HeroSlide[] = spots.map((s) => ({
     src: spotImage(s, 1600, 1000),
     alt: s.name,
-    caption: `${s.country} · ${activityLabel(s.activity)}`,
+    caption: `${placeLabel(s.country)} · ${activityLabel(s.activity)}`,
   }));
   const fromArticles: HeroSlide[] = articles.map((a) => ({
     src: a.heroImage,
@@ -136,57 +137,40 @@ function Hero() {
         <div
           key={`${s.src}-${idx}`}
           aria-hidden={idx !== active}
-          className="ken-burns hero-slide absolute inset-0 -z-10 transition-opacity duration-[800ms] ease-in-out"
+          className="ken-burns hero-slide absolute inset-0 z-0 transition-opacity duration-[800ms] ease-in-out"
           style={{
             opacity: idx === active ? 1 : 0,
             backgroundImage: `url(${s.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
-            filter: "brightness(0.72)",
           }}
         />
       ))}
 
-      {/* Legibility overlays — subtle but WCAG AA safe */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.15) 30%, rgba(0,0,0,0.55) 65%, rgba(0,0,0,0.78) 100%)",
-        }}
-      />
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "radial-gradient(120% 70% at 20% 90%, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0) 60%)",
-        }}
-      />
+      <div aria-hidden className="brand-photo-overlay pointer-events-none absolute inset-0 z-[1]" />
 
       {/* Content — visible immediately so the headline is readable without waiting for animation */}
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-14 sm:px-12 sm:pb-20">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-12 md:flex-row md:items-end md:justify-between">
           <div className="max-w-2xl">
-            <p className="text-[10.5px] uppercase tracking-[0.28em] text-white/70">
+            <p className="text-[10.5px] uppercase tracking-[0.28em] text-paper/70">
               {t.home.heroKicker}
             </p>
-            <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-white sm:text-6xl md:text-7xl">
+            <h1 className="mt-6 font-serif text-[2.75rem] leading-[1.05] text-paper sm:text-6xl md:text-7xl">
               {t.home.heroHeadline()}
             </h1>
             <div className="mt-10 flex flex-wrap items-center gap-x-7 gap-y-4">
               <a
                 href="#expeditions"
-                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper shadow-lg shadow-black/20 transition-colors duration-200 ease-out hover:bg-ink hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black motion-reduce:transition-none"
+                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-[11px] font-medium uppercase tracking-[0.22em] text-paper transition-colors duration-200 ease-out hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink motion-reduce:transition-none"
               >
                 {t.home.seeExpeditions}
                 <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 ease-out group-hover:translate-x-1 motion-reduce:transform-none" />
               </a>
               <a
                 href="#newsletter"
-                className="rounded-sm text-[10.5px] uppercase tracking-[0.22em] text-white/80 underline-offset-4 hover:text-white hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                className="rounded-sm text-[10.5px] uppercase tracking-[0.22em] text-paper/80 underline-offset-4 hover:text-paper hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
               >
                 {t.home.earlyAccessArrow}
               </a>
@@ -195,10 +179,10 @@ function Hero() {
 
           {/* Right: slide indicator */}
           <div className="flex flex-col items-start gap-4 md:items-end">
-            <div className="font-serif text-2xl tracking-wide text-white">
-              <span className="text-white">{String(active + 1).padStart(2, "0")}</span>
-              <span className="mx-2 text-white/40">/</span>
-              <span className="text-white/60">{String(slides.length).padStart(2, "0")}</span>
+            <div className="font-serif text-2xl tracking-wide text-paper">
+              <span className="text-paper">{String(active + 1).padStart(2, "0")}</span>
+              <span className="mx-2 text-paper/40">/</span>
+              <span className="text-paper/60">{String(slides.length).padStart(2, "0")}</span>
             </div>
             <div
               role="tablist"
@@ -220,10 +204,10 @@ function Hero() {
                   type="button"
                   role="tab"
                   aria-selected={idx === active}
-                  aria-label={`Show slide ${idx + 1} of ${slides.length}: ${s.caption}`}
+                  aria-label={`Mostrar slide ${idx + 1} de ${slides.length}: ${s.caption}`}
                   tabIndex={idx === active ? 0 : -1}
                   onClick={() => setI(idx)}
-                  className="group -my-3 flex h-6 w-10 items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-black"
+                  className="group -my-3 flex h-6 w-10 items-center rounded-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-ink"
                 >
                   <span
                     aria-hidden
@@ -231,13 +215,13 @@ function Hero() {
                     style={{
                       transform: idx === active ? "scaleX(1)" : "scaleX(0.4)",
                       background:
-                        idx === active ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.55)",
+                        idx === active ? "rgb(247 244 238 / 0.95)" : "rgb(247 244 238 / 0.55)",
                     }}
                   />
                 </button>
               ))}
             </div>
-            <p className="text-[10.5px] uppercase tracking-[0.22em] text-white/70">
+            <p className="text-[10.5px] uppercase tracking-[0.22em] text-paper/70">
               {slides[active]?.caption}
             </p>
           </div>
@@ -369,30 +353,24 @@ function JournalCard({
         alt={article.title}
         loading="lazy"
         className="card-img absolute inset-0 h-full w-full object-cover transition-transform duration-300 ease-out group-hover:scale-[1.05]"
-        style={{ filter: "brightness(0.95)" }}
       />
-      <div
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-2/3"
-        style={{
-          background: "linear-gradient(180deg, rgba(0,0,0,0) 0%, rgba(0,0,0,0.65) 100%)",
-        }}
-      />
+      <div className="brand-photo-overlay pointer-events-none absolute inset-0" />
       <span
         aria-hidden
-        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 items-center justify-center rounded-full bg-white opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100"
+        className="absolute left-1/2 top-1/2 flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 scale-90 items-center justify-center rounded-full bg-paper opacity-0 transition-all duration-500 group-hover:scale-100 group-hover:opacity-100"
       >
         <ArrowUpRight className="h-4 w-4 text-ink" />
       </span>
       <div className="absolute inset-x-0 bottom-0 p-5 sm:p-7">
-        <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">
+        <p className="text-[10px] uppercase tracking-[0.24em] text-paper/80">
           {CATEGORY_LABEL[article.category]} · {article.readTime} min de leitura
         </p>
-        <h3 className="mt-2 font-serif text-2xl leading-tight text-white sm:text-3xl">
-          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-white after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
+        <h3 className="mt-2 font-serif text-2xl leading-tight text-paper sm:text-3xl">
+          <span className="relative inline after:absolute after:left-0 after:-bottom-0.5 after:h-[1px] after:w-full after:origin-left after:scale-x-0 after:bg-paper after:transition-transform after:duration-300 after:ease-out group-hover:after:scale-x-100 motion-reduce:after:transition-none">
             {article.title}
           </span>
         </h3>
-        <p className="mt-1.5 max-w-md font-serif italic text-white/80 line-clamp-2">
+        <p className="mt-1.5 max-w-md font-serif italic text-paper/80 line-clamp-2">
           {article.dek}
         </p>
       </div>
@@ -416,7 +394,7 @@ function firstSentence(text: string): string {
 function SpotScene({ spot, index, delay }: { spot: Spot; index: number; delay: number }) {
   const t = useT();
   const titleLeft = index % 2 === 0;
-  const kicker = `${spot.region.toUpperCase()} · ${spot.country.toUpperCase()}`;
+  const kicker = `${placeLabel(spot.region).toUpperCase()} · ${placeLabel(spot.country).toUpperCase()}`;
   const metricLabels: Record<string, string> = {
     activity: t.home.metricActivity,
     country: t.home.metricCountry,
@@ -437,49 +415,46 @@ function SpotScene({ spot, index, delay }: { spot: Spot; index: number; delay: n
         className="ken-burns absolute inset-0 h-full w-full object-cover"
         style={{ animationDelay: `${delay}s` }}
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/25 to-ink/40" />
-      <div
-        className={`absolute inset-0 ${titleLeft ? "bg-gradient-to-r from-ink/60 via-transparent to-transparent" : "bg-gradient-to-l from-ink/60 via-transparent to-transparent"}`}
-      />
+      <div className="brand-photo-overlay absolute inset-0" />
 
       <div className="relative z-10 flex h-full flex-col justify-end px-6 pb-16 md:px-10 md:pb-20">
         <div className="mx-auto grid w-full max-w-[1400px] gap-10 md:grid-cols-2 md:items-end">
           {/* Title block */}
           <div className={titleLeft ? "md:order-1 md:pr-8" : "md:order-2 md:pl-8"}>
-            <p className="text-[10px] uppercase tracking-[0.24em] text-white/80">{kicker}</p>
-            <h3 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,5.5vw,5rem)] leading-[1.03] tracking-[-0.02em] text-white">
+            <p className="text-[10px] uppercase tracking-[0.24em] text-paper/80">{kicker}</p>
+            <h3 className="mt-4 max-w-[16ch] font-serif text-[clamp(2rem,5.5vw,5rem)] leading-[1.03] tracking-[-0.02em] text-paper">
               {spot.name}
             </h3>
-            <p className="mt-4 max-w-md font-serif text-lg italic text-white/85">
+            <p className="mt-4 max-w-md font-serif text-lg italic text-paper/85">
               {firstSentence(spot.description)}
             </p>
           </div>
 
           {/* Dossier — real spot fields only */}
           <aside
-            className={`${titleLeft ? "md:order-2 md:justify-self-end" : "md:order-1 md:justify-self-start"} w-full max-w-md rounded-sm border border-white/15 bg-ink/55 p-5 backdrop-blur-md md:p-6`}
+            className={`${titleLeft ? "md:order-2 md:justify-self-end" : "md:order-1 md:justify-self-start"} w-full max-w-md rounded-sm border border-paper/15 bg-ink/55 p-5 backdrop-blur-md md:p-6`}
           >
-            <div className="flex items-center justify-between gap-3 border-b border-white/15 pb-3">
-              <span className="inline-flex items-center rounded-full border border-white/25 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-white">
+            <div className="flex items-center justify-between gap-3 border-b border-paper/15 pb-3">
+              <span className="inline-flex items-center rounded-full border border-paper/25 px-3 py-1 text-[10px] uppercase tracking-[0.2em] text-paper">
                 {activityLabel(spot.activity)}
               </span>
-              <span className="text-[10px] uppercase tracking-[0.2em] text-white/75">
-                {spot.country}
+              <span className="text-[10px] uppercase tracking-[0.2em] text-paper/75">
+                {placeLabel(spot.country)}
               </span>
             </div>
 
             <dl className="mt-5 grid grid-cols-2 gap-x-6 gap-y-5">
               {metrics.map((m) => (
                 <div key={m.label}>
-                  <dt className="text-[9.5px] uppercase tracking-[0.22em] text-white/60">
+                  <dt className="text-[9.5px] uppercase tracking-[0.22em] text-paper/60">
                     {m.label}
                   </dt>
-                  <dd className="mt-1.5 font-serif text-lg leading-tight text-white">{m.value}</dd>
+                  <dd className="mt-1.5 font-serif text-lg leading-tight text-paper">{m.value}</dd>
                 </div>
               ))}
             </dl>
 
-            <div className="mt-6 flex items-center justify-end border-t border-white/15 pt-4">
+            <div className="mt-6 flex items-center justify-end border-t border-paper/15 pt-4">
               <Link
                 to="/spots/$continent/$region/$spot"
                 params={{
@@ -487,7 +462,7 @@ function SpotScene({ spot, index, delay }: { spot: Spot; index: number; delay: n
                   region: slugify(spot.city),
                   spot: slugify(spot.name),
                 }}
-                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-sage transition-colors hover:text-white"
+                className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-sand transition-colors hover:text-paper"
               >
                 {t.home.seeThisSpot}
                 <ArrowRight className="h-3.5 w-3.5" />
@@ -615,7 +590,7 @@ function Newsletter() {
   return (
     <section
       id="newsletter"
-      className="relative isolate overflow-hidden text-white"
+      className="relative isolate overflow-hidden text-paper"
       style={{ minHeight: "100svh" }}
     >
       {/* Fixed background slideshow (parallax via background-attachment: fixed) */}
@@ -623,7 +598,7 @@ function Newsletter() {
         <div
           key={`${s.src}-${idx}`}
           aria-hidden
-          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          className="absolute inset-0 z-0 transition-opacity duration-[1400ms] ease-in-out"
           style={{
             opacity: idx === bgIndex ? 1 : 0,
             backgroundImage: `url(${s.src})`,
@@ -634,32 +609,24 @@ function Newsletter() {
         />
       ))}
 
-      {/* Dark gradient overlay for legibility */}
-      <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.75) 100%)",
-        }}
-      />
+      <div aria-hidden className="brand-photo-overlay pointer-events-none absolute inset-0 z-[1]" />
 
       {/* Progressive reveal content */}
       <div
-        className={`relative mx-auto flex min-h-[100svh] max-w-2xl flex-col items-center justify-center px-6 py-24 text-center transition-all duration-[1400ms] ease-out ${
+        className={`relative z-10 mx-auto flex min-h-[100svh] max-w-2xl flex-col items-center justify-center px-6 py-24 text-center transition-all duration-[1400ms] ease-out ${
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-white/70">
+        <p className="mb-5 text-[10.5px] uppercase tracking-[0.28em] text-paper/70">
           {t.newsletter.kicker}
         </p>
-        <h2 className="font-serif text-4xl leading-[1.1] text-white sm:text-5xl">
+        <h2 className="font-serif text-4xl leading-[1.1] text-paper sm:text-5xl">
           {t.newsletter.headline()}
         </h2>
-        <p className="mt-6 text-base text-white/75 sm:text-lg">{t.newsletter.subtext}</p>
+        <p className="mt-6 text-base text-paper/75 sm:text-lg">{t.newsletter.subtext}</p>
 
         {done ? (
-          <p className="mt-12 font-serif text-xl italic text-white">{t.newsletter.success}</p>
+          <p className="mt-12 font-serif text-xl italic text-paper">{t.newsletter.success}</p>
         ) : (
           <form
             name="newsletter"
@@ -668,15 +635,15 @@ function Newsletter() {
             netlify-honeypot="bot-field"
             onSubmit={onSubmit}
             className="mx-auto mt-12 flex w-full max-w-xl items-center gap-2 rounded-full bg-paper-card/95 p-2 pl-6 backdrop-blur"
-            style={{ boxShadow: "0 20px 60px -20px rgba(0,0,0,0.45)" }}
+            style={{ boxShadow: "0 20px 60px -20px rgb(43 43 43 / 0.45)" }}
           >
             <input type="hidden" name="form-name" value="newsletter" />
             <label htmlFor="newsletter-email" className="sr-only">
-              Email address
+              Endereço de email
             </label>
             <p className="hidden">
               <label>
-                Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+                Não preencha este campo: <input name="bot-field" />
               </label>
             </p>
             <input
@@ -693,13 +660,13 @@ function Newsletter() {
             <button
               type="submit"
               disabled={submitting}
-              className="rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink disabled:opacity-60"
+              className="rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink disabled:opacity-60"
             >
               {submitting ? t.newsletter.subscribing : t.newsletter.subscribe}
             </button>
           </form>
         )}
-        {error && !done && <p className="mt-4 text-sm text-white/80">{error}</p>}
+        {error && !done && <p className="mt-4 text-sm text-paper/80">{error}</p>}
       </div>
     </section>
   );

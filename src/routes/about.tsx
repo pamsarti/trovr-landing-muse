@@ -100,24 +100,17 @@ function Hero() {
         <div
           key={s.src}
           aria-hidden={idx !== i}
-          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          className="absolute inset-0 z-0 transition-opacity duration-[1400ms] ease-in-out"
           style={{
             opacity: idx === i ? 1 : 0,
             backgroundImage: `url(${s.src})`,
             backgroundSize: "cover",
             backgroundPosition: "center",
             backgroundAttachment: "fixed",
-            filter: "brightness(0.78)",
           }}
         />
       ))}
-      <div
-        className="pointer-events-none absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.35) 0%, rgba(0,0,0,0.1) 40%, rgba(0,0,0,0.6) 100%)",
-        }}
-      />
+      <div className="brand-photo-overlay pointer-events-none absolute inset-0 z-[1]" />
       <div
         className={`relative z-10 flex h-full items-center justify-center px-6 transition-all duration-[1400ms] ease-out ${
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
@@ -140,16 +133,7 @@ function WhyExists() {
   const t = useT();
   const paragraphs = [t.about.whyP1, t.about.whyP2, t.about.whyP3];
   return (
-    <section
-      className="relative px-6 py-10 sm:py-14 md:py-16"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(250,250,250,0.88), rgba(250,250,250,0.94)), url(https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=2400&q=80)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <section className="relative bg-paper px-6 py-10 sm:py-14 md:py-16">
       <div className="mx-auto max-w-[720px] space-y-8">
         {paragraphs.map((p, i) => (
           <p
@@ -180,23 +164,24 @@ function FounderNote() {
         </div>
         <div className="md:col-span-3">
           <p className="font-serif text-xl italic leading-[1.4] text-ink sm:text-2xl md:text-3xl">
-            "I left finance after seven years and started kiting full-time."
+            “Deixei o mercado financeiro depois de sete anos e passei a viver o kitesurf em tempo
+            integral.”
           </p>
           <p className="mt-3 text-xs tracking-wide text-stone sm:text-sm">— Pamela Sarti</p>
 
           {/* TODO: replace placeholder text with Pamela's final version */}
           <div className="mt-8 space-y-6 text-base leading-[1.75] text-ink sm:mt-10 sm:text-[17px]">
             <p>
-              In six years of chasing wind across Brazil, the Red Sea, the Mediterranean, and Saudi
-              Arabia, one thing became obvious: the trips that changed me weren't on any platform I
-              could find. They came from word of mouth. From someone who'd done it. From operators
-              who didn't need a marketing budget because their guests came back the next year, and
-              the year after.
+              Em seis anos seguindo o vento pelo Brasil, Mar Vermelho, Mediterrâneo e Arábia
+              Saudita, uma coisa ficou evidente: as viagens que me transformaram não estavam em
+              nenhuma plataforma que eu encontrasse. Elas vinham do boca a boca. De alguém que já
+              tinha ido. De operadoras que não precisavam de orçamento de marketing porque seus
+              hóspedes voltavam no ano seguinte — e no outro também.
             </p>
             <p>
-              Trovr is the platform I wished existed when I started traveling seriously. A place
-              where the operators are vetted, the trips are real, and the editorial does the work
-              that brochures don't.
+              A Trovr é a plataforma que eu gostaria que existisse quando comecei a viajar de
+              verdade. Um lugar onde as operadoras são verificadas, as viagens são reais e o olhar
+              editorial faz o trabalho que os folhetos não fazem.
             </p>
           </div>
         </div>
@@ -214,16 +199,7 @@ function HowWeCurate() {
   ];
 
   return (
-    <section
-      className="relative border-t border-stone/15 px-6 py-10 sm:py-14 md:py-16"
-      style={{
-        backgroundImage:
-          "linear-gradient(rgba(250,250,250,0.9), rgba(250,250,250,0.95)), url(https://images.unsplash.com/photo-1502680390469-be75c86b636f?auto=format&fit=crop&w=2400&q=80)",
-        backgroundSize: "cover",
-        backgroundPosition: "center",
-        backgroundAttachment: "fixed",
-      }}
-    >
+    <section className="relative border-t border-stone/15 bg-sand/30 px-6 py-10 sm:py-14 md:py-16">
       <div className="mx-auto max-w-[720px]">
         <h2 className="font-serif text-3xl leading-tight text-ink sm:text-4xl md:text-5xl lg:text-6xl">
           {t.about.curateHeading}
@@ -317,14 +293,14 @@ function Newsletter() {
   return (
     <section
       id="about-newsletter"
-      className="relative isolate overflow-hidden text-white"
+      className="relative isolate overflow-hidden text-paper"
       style={{ minHeight: "100svh" }}
     >
       {HERO_SLIDES.map((s, idx) => (
         <div
           key={s.src}
           aria-hidden
-          className="absolute inset-0 -z-10 transition-opacity duration-[1400ms] ease-in-out"
+          className="absolute inset-0 z-0 transition-opacity duration-[1400ms] ease-in-out"
           style={{
             opacity: idx === bgIndex ? 1 : 0,
             backgroundImage: `url(${s.src})`,
@@ -334,27 +310,20 @@ function Newsletter() {
           }}
         />
       ))}
+      <div aria-hidden className="brand-photo-overlay pointer-events-none absolute inset-0 z-[1]" />
       <div
-        aria-hidden
-        className="pointer-events-none absolute inset-0 -z-10"
-        style={{
-          background:
-            "linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.35) 45%, rgba(0,0,0,0.75) 100%)",
-        }}
-      />
-      <div
-        className={`relative mx-auto flex min-h-[100svh] max-w-[520px] flex-col items-center justify-center px-6 py-24 text-center transition-all duration-[1400ms] ease-out ${
+        className={`relative z-10 mx-auto flex min-h-[100svh] max-w-[520px] flex-col items-center justify-center px-6 py-24 text-center transition-all duration-[1400ms] ease-out ${
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
-        <h2 className="font-serif text-3xl leading-tight text-white sm:text-4xl md:text-5xl">
+        <h2 className="font-serif text-3xl leading-tight text-paper sm:text-4xl md:text-5xl">
           {t.about.newsletterHeadline}
         </h2>
-        <p className="mt-5 text-base leading-[1.6] text-white/75 sm:text-lg">
+        <p className="mt-5 text-base leading-[1.6] text-paper/75 sm:text-lg">
           {t.about.newsletterSubtext}
         </p>
         {done ? (
-          <p className="mt-10 font-serif text-xl italic text-white">{t.about.newsletterSuccess}</p>
+          <p className="mt-10 font-serif text-xl italic text-paper">{t.about.newsletterSuccess}</p>
         ) : (
           <form
             name="newsletter"
@@ -367,7 +336,7 @@ function Newsletter() {
             <input type="hidden" name="form-name" value="newsletter" />
             <p className="hidden">
               <label>
-                Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+                Não preencha este campo: <input name="bot-field" />
               </label>
             </p>
             <input
@@ -377,20 +346,20 @@ function Newsletter() {
               value={email}
               onChange={(e) => setEmail(e.target.value)}
               placeholder={t.newsletter.emailPlaceholder}
-              className="flex-1 border border-white/40 bg-white/10 px-4 py-3 text-base text-white placeholder:text-white/60 backdrop-blur focus:border-white focus:outline-none"
+              className="flex-1 border border-paper/40 bg-paper/10 px-4 py-3 text-base text-paper placeholder:text-paper/60 backdrop-blur focus:border-paper focus:outline-none"
               style={{ borderRadius: 2 }}
             />
             <button
               type="submit"
               disabled={submitting}
-              className="border border-white bg-white/10 px-6 py-3 text-sm font-medium tracking-wide text-white backdrop-blur transition-colors hover:bg-white hover:text-ink disabled:opacity-60"
+              className="border border-paper bg-paper/10 px-6 py-3 text-sm font-medium tracking-wide text-paper backdrop-blur transition-colors hover:bg-paper hover:text-ink disabled:opacity-60"
               style={{ borderRadius: 2 }}
             >
               {submitting ? t.newsletter.subscribing : t.newsletter.subscribe}
             </button>
           </form>
         )}
-        {error && !done && <p className="mt-4 text-sm text-white/80">{error}</p>}
+        {error && !done && <p className="mt-4 text-sm text-paper/80">{error}</p>}
       </div>
     </section>
   );

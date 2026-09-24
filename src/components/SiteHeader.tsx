@@ -51,7 +51,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           scrolled ? "border-b border-[var(--line)]" : "border-b border-transparent",
         ].join(" ")}
         style={{
-          background: transparent && !scrolled ? "transparent" : "rgba(244,241,236,0.9)",
+          background: transparent && !scrolled ? "transparent" : "rgb(247 244 238 / 0.92)",
           backdropFilter: transparent && !scrolled ? "none" : "blur(20px)",
         }}
       >
@@ -60,7 +60,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             to="/"
             className={[
               "font-serif text-2xl lowercase tracking-tight sm:text-[28px] transition-colors",
-              transparent && !scrolled ? "text-white" : "text-ink",
+              transparent && !scrolled ? "text-paper" : "text-ink",
             ].join(" ")}
           >
             trovr
@@ -76,8 +76,8 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
                     "text-[10.5px] uppercase tracking-[0.22em] transition-colors",
                     transparent && !scrolled
                       ? active
-                        ? "text-white"
-                        : "text-white/70 hover:text-white"
+                        ? "text-paper"
+                        : "text-paper/70 hover:text-paper"
                       : active
                         ? "text-ink"
                         : "text-mid hover:text-ink",
@@ -89,7 +89,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             })}
             <a
               href="/#newsletter"
-              className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-white transition-colors hover:bg-ink"
+              className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink"
             >
               {t.nav.earlyAccess}
             </a>
@@ -101,7 +101,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             onClick={() => setOpen(true)}
             className={[
               "md:hidden inline-flex items-center justify-center p-2 -mr-2",
-              transparent && !scrolled ? "text-white" : "text-ink",
+              transparent && !scrolled ? "text-paper" : "text-ink",
             ].join(" ")}
           >
             <Menu className="h-5 w-5" />
@@ -150,7 +150,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             <a
               href="/#newsletter"
               onClick={() => setOpen(false)}
-              className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-white"
+              className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-paper"
             >
               {t.nav.earlyAccess}
             </a>

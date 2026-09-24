@@ -1,8 +1,21 @@
 @import "tailwindcss" source(none);
 @import "tw-animate-css";
-@import "@fontsource-variable/playfair-display";
-@import "@fontsource-variable/playfair-display/wght-italic.css";
-@import "@fontsource-variable/outfit";
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/Fraunces-VF.ttf") format("truetype");
+  font-style: normal;
+  font-weight: 100 900;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Fraunces";
+  src: url("/fonts/Fraunces-Italic-VF.ttf") format("truetype");
+  font-style: italic;
+  font-weight: 100 900;
+  font-display: swap;
+}
 
 @source "../src";
 
@@ -23,14 +36,18 @@
  */
 
 @theme inline {
-  --font-serif: "Playfair Display Variable", "Playfair Display", ui-serif, Georgia, serif;
-  --font-sans: "Outfit Variable", "Outfit", ui-sans-serif, system-ui, sans-serif;
+  --font-serif: "Fraunces", serif;
+  --font-sans: "Fraunces", serif;
+  --font-mono: "Fraunces", serif;
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-stone: var(--stone);
   --color-mid: var(--mid);
   --color-sage: var(--sage);
   --color-sage-bg: var(--sage-bg);
+  --color-sand: var(--sand);
+  --color-coffee: var(--coffee);
+  --color-terracotta: var(--terracotta);
   --color-paper-card: var(--paper-card);
   --color-line: var(--line);
   --radius-sm: calc(var(--radius) - 4px);
@@ -77,82 +94,71 @@
 
 :root {
   --radius: 0.625rem;
-  --ink: #1c1916;
-  --paper: #f4f1ec;
-  --paper-card: #fdfcfa;
-  --stone: #8c857d;
-  --mid: #726d66;
-  --sage: #5a6e5c;
-  --sage-bg: #eaf0ea;
-  --line: rgba(28, 25, 22, 0.08);
-  --accent: #5a6e5c;
+  --ink: #2b2b2b;
+  --paper: #f7f4ee;
+  --paper-card: #f7f4ee;
+  --stone: #6d5645;
+  --mid: #6d5645;
+  --sage: #556b52;
+  --sage-bg: #d8c8ae;
+  --sand: #d8c8ae;
+  --coffee: #6d5645;
+  --terracotta: #b86a45;
+  --line: rgb(43 43 43 / 0.12);
   --background: var(--paper);
   --foreground: var(--ink);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.129 0.042 264.695);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.129 0.042 264.695);
-  --primary: oklch(0.208 0.042 265.755);
-  --primary-foreground: oklch(0.984 0.003 247.858);
-  --secondary: oklch(0.968 0.007 247.896);
-  --secondary-foreground: oklch(0.208 0.042 265.755);
-  --muted: oklch(0.968 0.007 247.896);
-  --muted-foreground: oklch(0.554 0.046 257.417);
-  --accent: oklch(0.968 0.007 247.896);
-  --accent-foreground: oklch(0.208 0.042 265.755);
-  --destructive: oklch(0.577 0.245 27.325);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(0.929 0.013 255.508);
-  --input: oklch(0.929 0.013 255.508);
-  --ring: oklch(0.704 0.04 256.788);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.984 0.003 247.858);
-  --sidebar-foreground: oklch(0.129 0.042 264.695);
-  --sidebar-primary: oklch(0.208 0.042 265.755);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.968 0.007 247.896);
-  --sidebar-accent-foreground: oklch(0.208 0.042 265.755);
-  --sidebar-border: oklch(0.929 0.013 255.508);
-  --sidebar-ring: oklch(0.704 0.04 256.788);
+  --card: var(--paper);
+  --card-foreground: var(--ink);
+  --popover: var(--paper);
+  --popover-foreground: var(--ink);
+  --primary: var(--sage);
+  --primary-foreground: var(--paper);
+  --secondary: var(--sand);
+  --secondary-foreground: var(--ink);
+  --muted: var(--sand);
+  --muted-foreground: var(--coffee);
+  --accent: var(--terracotta);
+  --accent-foreground: var(--paper);
+  --destructive: var(--terracotta);
+  --destructive-foreground: var(--paper);
+  --border: var(--sand);
+  --input: var(--sand);
+  --ring: var(--sage);
+  --chart-1: var(--sage);
+  --chart-2: var(--terracotta);
+  --chart-3: var(--coffee);
+  --chart-4: var(--sand);
+  --chart-5: var(--ink);
+  --sidebar: var(--paper);
+  --sidebar-foreground: var(--ink);
+  --sidebar-primary: var(--sage);
+  --sidebar-primary-foreground: var(--paper);
+  --sidebar-accent: var(--sand);
+  --sidebar-accent-foreground: var(--ink);
+  --sidebar-border: var(--sand);
+  --sidebar-ring: var(--sage);
 }
 
 .dark {
-  --background: oklch(0.129 0.042 264.695);
-  --foreground: oklch(0.984 0.003 247.858);
-  --card: oklch(0.208 0.042 265.755);
-  --card-foreground: oklch(0.984 0.003 247.858);
-  --popover: oklch(0.208 0.042 265.755);
-  --popover-foreground: oklch(0.984 0.003 247.858);
-  --primary: oklch(0.929 0.013 255.508);
-  --primary-foreground: oklch(0.208 0.042 265.755);
-  --secondary: oklch(0.279 0.041 260.031);
-  --secondary-foreground: oklch(0.984 0.003 247.858);
-  --muted: oklch(0.279 0.041 260.031);
-  --muted-foreground: oklch(0.704 0.04 256.788);
-  --accent: oklch(0.279 0.041 260.031);
-  --accent-foreground: oklch(0.984 0.003 247.858);
-  --destructive: oklch(0.704 0.191 22.216);
-  --destructive-foreground: oklch(0.984 0.003 247.858);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.551 0.027 264.364);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.208 0.042 265.755);
-  --sidebar-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-accent: oklch(0.279 0.041 260.031);
-  --sidebar-accent-foreground: oklch(0.984 0.003 247.858);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.551 0.027 264.364);
+  --background: var(--ink);
+  --foreground: var(--paper);
+  --card: var(--coffee);
+  --card-foreground: var(--paper);
+  --popover: var(--ink);
+  --popover-foreground: var(--paper);
+  --primary: var(--sand);
+  --primary-foreground: var(--ink);
+  --secondary: var(--coffee);
+  --secondary-foreground: var(--paper);
+  --muted: var(--coffee);
+  --muted-foreground: var(--sand);
+  --accent: var(--terracotta);
+  --accent-foreground: var(--paper);
+  --destructive: var(--terracotta);
+  --destructive-foreground: var(--paper);
+  --border: var(--coffee);
+  --input: var(--coffee);
+  --ring: var(--sand);
 }
 
 @layer base {
@@ -163,7 +169,7 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: var(--font-sans);
+    font-family: "Fraunces", serif;
     -webkit-font-smoothing: antialiased;
   }
 
@@ -174,6 +180,10 @@
   h5 {
     font-family: var(--font-serif);
   }
+}
+
+.brand-photo-overlay {
+  background: rgb(43 43 43 / 0.38);
 }
 
 @keyframes panImg {
@@ -199,8 +209,12 @@
 }
 
 @keyframes kenBurns {
-  0% { transform: scale(1); }
-  100% { transform: scale(1.05); }
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
 
 @utility ken-burns {
@@ -209,16 +223,25 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .ken-burns { animation: none !important; }
+  .ken-burns {
+    animation: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .hero-slide { transition: none !important; }
+  .hero-slide {
+    transition: none !important;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .card-img { transition: none !important; transform: none !important; }
-  .group:hover .card-img { transform: none !important; }
+  .card-img {
+    transition: none !important;
+    transform: none !important;
+  }
+  .group:hover .card-img {
+    transform: none !important;
+  }
 }
 
 /* Map pins. --pin-color is the activity color; --pin-delay staggers the pulse. */
@@ -241,7 +264,7 @@
   border-radius: 9999px;
   background: var(--pin-color, var(--sage));
   border: 1.5px solid var(--paper);
-  box-shadow: 0 1px 4px rgb(28 25 22 / 0.35);
+  box-shadow: 0 1px 4px rgb(43 43 43 / 0.35);
   transition:
     transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
     background 200ms;
@@ -260,9 +283,18 @@
 }
 
 @keyframes trovrPinPulse {
-  0% { opacity: 0.65; transform: scale(0.4); }
-  70% { opacity: 0; transform: scale(1.9); }
-  100% { opacity: 0; transform: scale(1.9); }
+  0% {
+    opacity: 0.65;
+    transform: scale(0.4);
+  }
+  70% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.9);
+  }
 }
 
 .trovr-pin__label {
@@ -305,7 +337,11 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .trovr-pin__pulse { animation: none !important; }
+  .trovr-pin__pulse {
+    animation: none !important;
+  }
   .trovr-pin__dot,
-  .trovr-pin__label { transition: none !important; }
+  .trovr-pin__label {
+    transition: none !important;
+  }
 }

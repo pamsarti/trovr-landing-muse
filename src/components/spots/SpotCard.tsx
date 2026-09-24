@@ -145,7 +145,6 @@ export function SpotCard({
               src={(spot as unknown as { hero_image_url: string }).hero_image_url}
               alt={spot.name}
               className="h-full w-full object-cover"
-              style={{ filter: "saturate(0.5) brightness(0.9)" }}
             />
           ) : (
             <div className="flex h-full w-full items-center justify-center">
@@ -154,7 +153,6 @@ export function SpotCard({
               </span>
             </div>
           )}
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent to-ink/20" />
         </div>
 
         {/* Name + location + activity badge */}
@@ -250,7 +248,7 @@ export function SpotCard({
             <Link
               to="/trips/$id"
               params={{ id: relatedTrip.id }}
-              className="group relative block overflow-hidden border border-ink bg-ink text-paper shadow-[8px_8px_0_0_rgba(0,0,0,0.06)] transition-transform hover:-translate-y-0.5"
+              className="group relative block overflow-hidden border border-ink bg-ink text-paper shadow-[8px_8px_0_0_rgb(43_43_43/0.06)] transition-transform hover:-translate-y-0.5"
             >
               <div className="grid grid-cols-1 sm:grid-cols-[45%_1fr]">
                 <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone/20 sm:aspect-auto">
@@ -332,7 +330,6 @@ export function SpotCard({
                     src={relatedArticle.heroImage}
                     alt={relatedArticle.title}
                     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.02]"
-                    style={{ filter: "saturate(0.7)" }}
                   />
                 )}
                 <span

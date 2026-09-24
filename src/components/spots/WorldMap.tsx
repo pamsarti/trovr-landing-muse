@@ -23,7 +23,7 @@ export type MapPoint = {
   onClick: () => void;
 };
 
-const DEFAULT_PIN_COLOR = "#1a1a1a";
+const DEFAULT_PIN_COLOR = "#2B2B2B";
 
 type PointProps = { pointId: string; label: string; onClick: () => void };
 
@@ -172,7 +172,7 @@ export function WorldMap({
                 {geo?.features.map((f, i) => {
                   const d = path(f);
                   if (!d) return null;
-                  return <path key={i} d={d} fill="#EDE7DC" stroke="#C9BFAE" strokeWidth={0.4} />;
+                  return <path key={i} d={d} fill="#F7F4EE" stroke="#D8C8AE" strokeWidth={0.4} />;
                 })}
               </g>
             </g>
@@ -219,7 +219,7 @@ export function WorldMap({
                         dominantBaseline="central"
                         fontSize={11}
                         fontWeight={600}
-                        fill="#fff"
+                        fill="#F7F4EE"
                         style={{ pointerEvents: "none" }}
                       >
                         {count}
@@ -247,7 +247,7 @@ export function WorldMap({
                       fillOpacity={0.2}
                       style={{ transition: "r 150ms" }}
                     />
-                    <circle r={4} fill={activeColor} stroke="#fff" strokeWidth={1.2} />
+                    <circle r={4} fill={activeColor} stroke="#F7F4EE" strokeWidth={1.2} />
                     {hover && (
                       <g transform="translate(0, -14)" style={{ pointerEvents: "none" }}>
                         <rect
@@ -256,14 +256,14 @@ export function WorldMap({
                           width={props.label.length * 6 + 12}
                           height={18}
                           rx={2}
-                          fill="#1a1a1a"
+                          fill="#2B2B2B"
                         />
                         <text
                           textAnchor="middle"
                           dominantBaseline="central"
                           y={-5}
                           fontSize={10}
-                          fill="#fff"
+                          fill="#F7F4EE"
                         >
                           {props.label}
                         </text>

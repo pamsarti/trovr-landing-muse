@@ -66,7 +66,7 @@ export const pt = {
     journalKicker: "Notas de campo",
     journalHeadline: () => (
       <>
-        Do <em className="italic font-normal">journal.</em>
+        Das <em className="italic font-normal">histórias.</em>
       </>
     ),
     allEntries: "Todas as histórias →",

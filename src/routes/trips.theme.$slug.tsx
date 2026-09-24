@@ -57,13 +57,8 @@ function ThemePage() {
       <TripsHeader current="trips" />
 
       <section className="relative h-[60svh] w-full overflow-hidden bg-ink">
-        <img
-          src={theme.image}
-          alt={theme.title}
-          className="h-full w-full object-cover opacity-80"
-          style={{ filter: "saturate(0.8)" }}
-        />
-        <div className="absolute inset-0 bg-ink/35" />
+        <img src={theme.image} alt={theme.title} className="h-full w-full object-cover" />
+        <div className="brand-photo-overlay absolute inset-0" />
         <div className="absolute inset-0 flex flex-col items-center justify-center px-6 text-center">
           <p className="text-[11px] uppercase tracking-[0.25em] text-paper/80">Tema</p>
           <h1 className="mt-4 max-w-3xl font-serif text-4xl leading-tight text-paper sm:text-6xl">
