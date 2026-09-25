@@ -13,6 +13,7 @@ import { CATALOG, DEFAULT_LOCALE, type Locale } from "@/i18n";
 import { detectLocale } from "@/i18n/detect";
 import { htmlLang, ogLocale } from "@/i18n/seoT";
 import { useT } from "@/i18n/useT";
+import { AnalyticsManager } from "@/components/Analytics";
 
 function NotFoundComponent() {
   const t = useT();
@@ -157,6 +158,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <AnalyticsManager />
     </QueryClientProvider>
   );
 }

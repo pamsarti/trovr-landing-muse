@@ -17,6 +17,7 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { useT } from "@/i18n/useT";
 import { seoT } from "@/i18n/seoT";
+import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
   loader: ({ context }) => ({ locale: (context as { locale?: import("@/i18n").Locale }).locale }),
@@ -157,6 +158,8 @@ function Hero() {
             <div className="mt-9 flex flex-wrap gap-4">
               <Link
                 to="/spots"
+                data-analytics-event="select_sport"
+                data-analytics-name="hero_all_sports"
                 className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
               >
                 {t.home.primaryCta}
@@ -164,6 +167,8 @@ function Hero() {
               </Link>
               <Link
                 to="/roteiro"
+                data-analytics-event="open_itinerary"
+                data-analytics-name="hero"
                 className="inline-flex items-center rounded-full border border-paper/70 px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
               >
                 {t.home.secondaryCta}
@@ -222,6 +227,9 @@ function SportsEntry() {
               key={activity.id}
               to="/spots"
               search={{ activity: activity.id }}
+              data-analytics-event="select_sport"
+              data-analytics-name={activity.label}
+              data-analytics-category={activity.id}
               className="group relative min-h-36 overflow-hidden rounded-sm border border-coffee/20 bg-paper p-5 transition-colors hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
             >
               <span
@@ -267,6 +275,8 @@ function MapEntry() {
           </p>
           <Link
             to="/spots"
+            data-analytics-event="open_map"
+            data-analytics-name="home_map"
             className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-paper px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
           >
             {t.home.mapCta}
@@ -312,6 +322,9 @@ function FeaturedPlaces() {
                 region: slugify(spot.city),
                 spot: slugify(spot.name),
               }}
+              data-analytics-event="view_place"
+              data-analytics-name={spot.name}
+              data-analytics-category={spot.activity}
               className="group relative aspect-[4/5] overflow-hidden rounded-sm bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand"
             >
               <img
@@ -358,6 +371,9 @@ function Stories() {
               key={article.id}
               to="/journal/$slug"
               params={{ slug: article.slug }}
+              data-analytics-event="read_story"
+              data-analytics-name={article.title}
+              data-analytics-category={article.category}
               className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
             >
               <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink">
@@ -459,6 +475,8 @@ function ItineraryService() {
         </p>
         <Link
           to="/roteiro"
+          data-analytics-event="open_itinerary"
+          data-analytics-name="home_service"
           className="mt-9 inline-flex items-center gap-3 rounded-full bg-paper px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
         >
           {t.home.serviceCta} <ArrowRight className="h-4 w-4" />
@@ -490,6 +508,7 @@ function Newsletter() {
       const captured =
         response.ok && (response.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Formulário não capturado");
+      trackEvent("newsletter_signup", { source: "home" });
       setDone(true);
     } catch {
       setError(t.newsletter.error);

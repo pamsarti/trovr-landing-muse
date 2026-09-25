@@ -4,6 +4,7 @@ import { Check } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
+import { trackEvent } from "@/lib/analytics";
 
 const TITLE = "Roteiro de viagem personalizado | Trovr";
 const DESCRIPTION =
@@ -76,6 +77,10 @@ function ItineraryPage() {
       const captured =
         response.ok && (response.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Formulário não capturado");
+      trackEvent("submit_itinerary", {
+        sport: String(data.get("sport") || "não informado"),
+        travel_style: String(data.get("travel_style") || "não informado"),
+      });
       setDone(true);
     } catch {
       setError("Não foi possível enviar agora. Tente novamente em alguns minutos.");

@@ -36,7 +36,7 @@ const urls = [];
 const push = (path) => urls.push(`${SITE}${path}`);
 
 // Static routes
-const staticPaths = ["/", "/about", "/journal", "/spots", "/roteiro"];
+const staticPaths = ["/", "/about", "/journal", "/spots", "/roteiro", "/privacidade"];
 staticPaths.forEach(push);
 
 // Journal (published only)

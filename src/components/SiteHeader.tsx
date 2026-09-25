@@ -90,6 +90,8 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             })}
             <Link
               to="/roteiro"
+              data-analytics-event="open_itinerary"
+              data-analytics-name="header_desktop"
               className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink"
             >
               {t.nav.itinerary}
@@ -151,6 +153,8 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             <Link
               to="/roteiro"
               onClick={() => setOpen(false)}
+              data-analytics-event="open_itinerary"
+              data-analytics-name="header_mobile"
               className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-paper"
             >
               {t.nav.itinerary}

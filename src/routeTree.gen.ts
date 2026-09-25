@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as RoteiroRouteImport } from './routes/roteiro'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -31,6 +32,11 @@ import { Route as ApiAuthCallbackGithubRouteImport } from './routes/api.auth.cal
 const RoteiroRoute = RoteiroRouteImport.update({
   id: '/roteiro',
   path: '/roteiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComingSoonRoute = ComingSoonRouteImport.update({
@@ -124,6 +130,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
@@ -144,6 +151,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
@@ -165,6 +173,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
@@ -187,6 +196,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/privacidade'
     | '/roteiro'
     | '/admin/login'
     | '/journal/$slug'
@@ -207,6 +217,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/privacidade'
     | '/roteiro'
     | '/admin/login'
     | '/journal/$slug'
@@ -227,6 +238,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/privacidade'
     | '/roteiro'
     | '/admin/login'
     | '/journal/$slug'
@@ -248,6 +260,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ComingSoonRoute: typeof ComingSoonRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
   RoteiroRoute: typeof RoteiroRoute
   AdminLoginRoute: typeof AdminLoginRoute
   JournalSlugRoute: typeof JournalSlugRoute
@@ -271,6 +284,13 @@ declare module '@tanstack/react-router' {
       path: '/roteiro'
       fullPath: '/roteiro'
       preLoaderRoute: typeof RoteiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/coming-soon': {
@@ -410,6 +430,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ComingSoonRoute: ComingSoonRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
   RoteiroRoute: RoteiroRoute,
   AdminLoginRoute: AdminLoginRoute,
   JournalSlugRoute: JournalSlugRoute,

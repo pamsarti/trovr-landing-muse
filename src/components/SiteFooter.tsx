@@ -17,6 +17,12 @@ export function SiteFooter({ variant = "default" }: { variant?: "default" | "spo
           trovr
         </Link>
         <p className="font-serif text-base italic text-stone sm:text-lg">{tagline}</p>
+        <Link
+          to="/privacidade"
+          className="text-[11px] uppercase tracking-[0.16em] text-stone hover:text-ink"
+        >
+          Privacidade
+        </Link>
         <p className="text-xs tracking-wide text-stone">{t.footer.copyright}</p>
       </div>
     </footer>
