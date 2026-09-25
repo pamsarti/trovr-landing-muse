@@ -22,7 +22,7 @@ declare global {
 export const ANALYTICS_CONSENT_KEY = "trovr-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "trovr:analytics-consent";
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || "G-NZGWZJ5NZC";
-export const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID?.trim() || "";
+export const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID?.trim() || "yo0000fhi9";
 
 let initialized = false;
 
