@@ -13,6 +13,7 @@ import {
 import { SpotsHeader } from "@/components/spots/SpotsChrome";
 import { useT } from "@/i18n/useT";
 import type { MapBounds, MapSpotPoint } from "@/components/spots/SpotsMap";
+import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 
 const SpotsMap = lazy(() =>
   import("@/components/spots/SpotsMap").then((m) => ({ default: m.SpotsMap })),
@@ -35,7 +36,18 @@ export const Route = createFileRoute("/spots/")({
           "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
       },
       { property: "og:type", content: "website" },
+      { property: "og:url", content: `${SITE_URL}/spots` },
+      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Lugares — Atlas de aventura | Trovr" },
+      {
+        name: "twitter:description",
+        content:
+          "Explore destinos para esportes, melhores épocas e cultura local no mapa da Trovr.",
+      },
+      { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
+    links: [{ rel: "canonical", href: `${SITE_URL}/spots` }],
   }),
   component: SpotsIndex,
 });
@@ -49,28 +61,28 @@ function hasConditions(s: Spot): boolean {
 }
 
 const KEY_LABELS: Record<string, string> = {
-  break_type: "Break",
-  bottom_type: "Bottom",
+  break_type: "Tipo de onda",
+  bottom_type: "Fundo",
   recommended_level: "Nível",
-  ideal_swell: "Swell",
-  ideal_wind: "Wind",
-  ideal_tide: "Tide",
-  hazards: "Hazards",
-  crowds: "Crowds",
-  wind_direction: "Wind direction",
-  water_type: "Water",
+  ideal_swell: "Ondulação ideal",
+  ideal_wind: "Vento ideal",
+  ideal_tide: "Maré ideal",
+  hazards: "Riscos",
+  crowds: "Lotação",
+  wind_direction: "Direção do vento",
+  water_type: "Tipo de água",
   season: "Temporada",
-  discipline: "Discipline",
-  riding_level: "Riding level",
-  terrain: "Terrain",
-  horse_breed: "Horse breed",
-  distance: "Distance",
-  elevation: "Elevation",
-  difficulty: "Difficulty",
-  depth: "Depth",
-  visibility: "Visibility",
-  current: "Current",
-  marine_life: "Marine life",
+  discipline: "Modalidade",
+  riding_level: "Nível de equitação",
+  terrain: "Terreno",
+  horse_breed: "Raça do cavalo",
+  distance: "Distância",
+  elevation: "Elevação",
+  difficulty: "Dificuldade",
+  depth: "Profundidade",
+  visibility: "Visibilidade",
+  current: "Correnteza",
+  marine_life: "Vida marinha",
 };
 
 function humanize(k: string) {

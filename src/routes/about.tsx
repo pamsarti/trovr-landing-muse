@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
+import { Pause, Play } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
@@ -61,7 +62,7 @@ function AboutPage() {
       <HowWeCurate />
       <Newsletter />
       <Faq />
-      <SiteFooter email />
+      <SiteFooter />
     </main>
   );
 }
@@ -85,10 +86,13 @@ function Hero() {
   const t = useT();
   const [i, setI] = useState(0);
   const [revealed, setRevealed] = useState(false);
+  const [paused, setPaused] = useState(false);
   useEffect(() => {
-    const t = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
-    return () => clearInterval(t);
-  }, []);
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (paused || reducedMotion) return;
+    const timer = setInterval(() => setI((n) => (n + 1) % HERO_SLIDES.length), 6000);
+    return () => clearInterval(timer);
+  }, [paused]);
   useEffect(() => {
     const id = requestAnimationFrame(() => setRevealed(true));
     return () => cancelAnimationFrame(id);
@@ -100,7 +104,7 @@ function Hero() {
         <div
           key={s.src}
           aria-hidden={idx !== i}
-          className="absolute inset-0 z-0 transition-opacity duration-[1400ms] ease-in-out"
+          className="absolute inset-0 z-0 transition-opacity duration-[1400ms] ease-in-out motion-reduce:transition-none"
           style={{
             opacity: idx === i ? 1 : 0,
             backgroundImage: `url(${s.src})`,
@@ -112,7 +116,7 @@ function Hero() {
       ))}
       <div className="brand-photo-overlay pointer-events-none absolute inset-0 z-[1]" />
       <div
-        className={`relative z-10 flex h-full items-center justify-center px-6 transition-all duration-[1400ms] ease-out ${
+        className={`relative z-10 flex h-full items-center justify-center px-6 transition-all duration-[1400ms] ease-out motion-reduce:transition-none ${
           revealed ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
         }`}
       >
@@ -125,6 +129,18 @@ function Hero() {
           </p>
         </div>
       </div>
+      <button
+        type="button"
+        onClick={() => setPaused((value) => !value)}
+        aria-label={paused ? t.home.playGallery : t.home.pauseGallery}
+        className="absolute right-6 bottom-6 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-paper/60 bg-ink/20 text-paper backdrop-blur-sm transition-colors hover:bg-ink/50"
+      >
+        {paused ? (
+          <Play className="h-4 w-4" aria-hidden />
+        ) : (
+          <Pause className="h-4 w-4" aria-hidden />
+        )}
+      </button>
     </section>
   );
 }

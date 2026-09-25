@@ -4,9 +4,10 @@ import { Menu, X } from "lucide-react";
 import { useT } from "@/i18n/useT";
 
 const NAV = [
-  { to: "/spots", key: "spots", match: "/spots" },
-  { to: "/journal", key: "journal", match: "/journal" },
-  { to: "/about", key: "about", match: "/about" },
+  { href: "/spots", key: "spots", match: "/spots" },
+  { href: "/#sports", key: "sports", match: "" },
+  { href: "/journal", key: "journal", match: "/journal" },
+  { href: "/about", key: "about", match: "/about" },
 ] as const;
 
 function useActivePath() {
@@ -67,11 +68,11 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           </Link>
           <nav className="hidden items-center gap-10 md:flex">
             {NAV.map((item) => {
-              const active = isActive(pathname, item.match);
+              const active = item.match ? isActive(pathname, item.match) : false;
               return (
-                <Link
-                  key={item.to}
-                  to={item.to}
+                <a
+                  key={item.href}
+                  href={item.href}
                   className={[
                     "text-[10.5px] uppercase tracking-[0.22em] transition-colors",
                     transparent && !scrolled
@@ -84,15 +85,15 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
                   ].join(" ")}
                 >
                   {t.nav[item.key]}
-                </Link>
+                </a>
               );
             })}
-            <a
-              href="/#newsletter"
+            <Link
+              to="/roteiro"
               className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink"
             >
-              {t.nav.earlyAccess}
-            </a>
+              {t.nav.itinerary}
+            </Link>
           </nav>
           <button
             type="button"
@@ -132,11 +133,11 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           </div>
           <nav className="flex flex-col items-center justify-center gap-10 px-6 py-20">
             {NAV.map((item) => {
-              const active = isActive(pathname, item.match);
+              const active = item.match ? isActive(pathname, item.match) : false;
               return (
-                <Link
-                  key={item.to}
-                  to={item.to}
+                <a
+                  key={item.href}
+                  href={item.href}
                   onClick={() => setOpen(false)}
                   className={[
                     "font-serif text-3xl lowercase tracking-tight",
@@ -144,16 +145,16 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
                   ].join(" ")}
                 >
                   {t.nav[item.key]}
-                </Link>
+                </a>
               );
             })}
-            <a
-              href="/#newsletter"
+            <Link
+              to="/roteiro"
               onClick={() => setOpen(false)}
               className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-paper"
             >
-              {t.nav.earlyAccess}
-            </a>
+              {t.nav.itinerary}
+            </Link>
           </nav>
         </div>
       )}

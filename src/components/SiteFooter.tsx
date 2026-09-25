@@ -4,16 +4,9 @@ import { useT } from "@/i18n/useT";
 /**
  * The single site footer, replacing four near-duplicate copies. `variant`
  * selects the tagline: "default" (Travel to find…) or "spots" (A guide to the
- * places worth the journey). `email` shows the hello@trovr.agency copyright
- * line used on the About page.
+ * places worth the journey).
  */
-export function SiteFooter({
-  variant = "default",
-  email = false,
-}: {
-  variant?: "default" | "spots";
-  email?: boolean;
-}) {
+export function SiteFooter({ variant = "default" }: { variant?: "default" | "spots" }) {
   const t = useT();
   const tagline = variant === "spots" ? t.footer.spotsTagline : t.footer.tagline;
 
@@ -24,9 +17,7 @@ export function SiteFooter({
           trovr
         </Link>
         <p className="font-serif text-base italic text-stone sm:text-lg">{tagline}</p>
-        <p className="text-xs tracking-wide text-stone">
-          {email ? t.footer.copyrightEmail : t.footer.copyright}
-        </p>
+        <p className="text-xs tracking-wide text-stone">{t.footer.copyright}</p>
       </div>
     </footer>
   );

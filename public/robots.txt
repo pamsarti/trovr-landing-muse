@@ -3,4 +3,9 @@ Allow: /
 Disallow: /admin
 Disallow: /api
 
+User-agent: OAI-SearchBot
+Allow: /
+Disallow: /admin
+Disallow: /api
+
 Sitemap: https://trovr.com.br/sitemap.xml
