@@ -21,6 +21,8 @@ declare global {
 
 export const ANALYTICS_CONSENT_KEY = "trovr-analytics-consent-v1";
 export const ANALYTICS_CONSENT_EVENT = "trovr:analytics-consent";
+export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || "G-NZGWZJ5NZC";
+export const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID?.trim() || "";
 
 let initialized = false;
 
@@ -72,8 +74,8 @@ function loadClarity(projectId: string) {
 export function initializeAnalytics() {
   if (initialized || typeof window === "undefined" || getAnalyticsConsent() !== "accepted") return;
 
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
-  const clarityProjectId = import.meta.env.VITE_CLARITY_PROJECT_ID?.trim();
+  const measurementId = GA_MEASUREMENT_ID;
+  const clarityProjectId = CLARITY_PROJECT_ID;
 
   if (measurementId) loadGoogleAnalytics(measurementId);
   if (clarityProjectId) loadClarity(clarityProjectId);
@@ -82,7 +84,7 @@ export function initializeAnalytics() {
 
 export function trackPageView(path: string, title = document.title) {
   if (getAnalyticsConsent() !== "accepted") return;
-  const measurementId = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim();
+  const measurementId = GA_MEASUREMENT_ID;
   if (measurementId) {
     window.gtag?.("event", "page_view", {
       page_location: window.location.href,

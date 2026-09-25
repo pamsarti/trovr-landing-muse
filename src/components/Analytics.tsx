@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import {
   ANALYTICS_CONSENT_EVENT,
+  CLARITY_PROJECT_ID,
+  GA_MEASUREMENT_ID,
   getAnalyticsConsent,
   initializeAnalytics,
   setAnalyticsConsent,
@@ -11,9 +13,7 @@ import {
   type AnalyticsEventName,
 } from "@/lib/analytics";
 
-const hasAnalyticsProviders = Boolean(
-  import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || import.meta.env.VITE_CLARITY_PROJECT_ID?.trim(),
-);
+const hasAnalyticsProviders = Boolean(GA_MEASUREMENT_ID || CLARITY_PROJECT_ID);
 
 export function AnalyticsManager() {
   const location = useRouterState({
