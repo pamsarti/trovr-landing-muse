@@ -6,6 +6,7 @@ import {
   type Continent,
   type RegionGroup,
   placeLabel,
+  spotImage,
 } from "@/lib/spots-data";
 import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
 import { findArticle, CATEGORY_LABEL } from "@/lib/journal-data";
@@ -137,13 +138,12 @@ export function SpotCard({
   return (
     <article className="px-6 pb-24 pt-4">
       <div className="mx-auto max-w-3xl">
-        {/* Header: image or placeholder */}
+        {/* Header: destination-specific image or editorial placeholder */}
         <div className="relative aspect-[16/9] w-full overflow-hidden bg-stone/10">
-          {"hero_image_url" in spot &&
-          (spot as unknown as { hero_image_url?: string }).hero_image_url ? (
+          {spotImage(spot) ? (
             <img
-              src={(spot as unknown as { hero_image_url: string }).hero_image_url}
-              alt={spot.name}
+              src={spotImage(spot, 1600, 900)}
+              alt={`${spot.name}, ${placeLabel(spot.country)}`}
               className="h-full w-full object-cover"
             />
           ) : (
