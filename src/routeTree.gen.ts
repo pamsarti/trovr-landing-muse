@@ -9,6 +9,8 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as RoteiroRouteImport } from './routes/roteiro'
+import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -27,6 +29,16 @@ import { Route as ApiAuthLoginRouteImport } from './routes/api.auth.login'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 import { Route as ApiAuthCallbackGithubRouteImport } from './routes/api.auth.callback.github'
 
+const RoteiroRoute = RoteiroRouteImport.update({
+  id: '/roteiro',
+  path: '/roteiro',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PrivacidadeRoute = PrivacidadeRouteImport.update({
+  id: '/privacidade',
+  path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ComingSoonRoute = ComingSoonRouteImport.update({
   id: '/coming-soon',
   path: '/coming-soon',
@@ -118,6 +130,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/roteiro': typeof RoteiroRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
@@ -137,6 +151,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/roteiro': typeof RoteiroRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
@@ -157,6 +173,8 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/privacidade': typeof PrivacidadeRoute
+  '/roteiro': typeof RoteiroRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
@@ -178,6 +196,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/privacidade'
+    | '/roteiro'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
@@ -197,6 +217,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/privacidade'
+    | '/roteiro'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
@@ -216,6 +238,8 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/privacidade'
+    | '/roteiro'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
@@ -236,6 +260,8 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ComingSoonRoute: typeof ComingSoonRoute
+  PrivacidadeRoute: typeof PrivacidadeRoute
+  RoteiroRoute: typeof RoteiroRoute
   AdminLoginRoute: typeof AdminLoginRoute
   JournalSlugRoute: typeof JournalSlugRoute
   TripsIdRoute: typeof TripsIdRoute
@@ -253,6 +279,20 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/roteiro': {
+      id: '/roteiro'
+      path: '/roteiro'
+      fullPath: '/roteiro'
+      preLoaderRoute: typeof RoteiroRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/privacidade': {
+      id: '/privacidade'
+      path: '/privacidade'
+      fullPath: '/privacidade'
+      preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/coming-soon': {
       id: '/coming-soon'
       path: '/coming-soon'
@@ -390,6 +430,8 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ComingSoonRoute: ComingSoonRoute,
+  PrivacidadeRoute: PrivacidadeRoute,
+  RoteiroRoute: RoteiroRoute,
   AdminLoginRoute: AdminLoginRoute,
   JournalSlugRoute: JournalSlugRoute,
   TripsIdRoute: TripsIdRoute,

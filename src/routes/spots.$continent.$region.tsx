@@ -3,6 +3,7 @@ import {
   findContinent,
   findRegion,
   getSpotsInRegion,
+  placeLabel,
   slugify,
   validateSpotsSearch,
   type Spot,
@@ -19,17 +20,17 @@ export const Route = createFileRoute("/spots/$continent/$region")({
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {
-    const activity =
-      (loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined)
-        ?.activity;
+    const activity = (
+      loaderData as { activity?: ReturnType<typeof validateSpotsSearch>["activity"] } | undefined
+    )?.activity;
     const continent = findContinent(activity, params.continent);
     const region = continent ? findRegion(activity, continent.name, params.region) : null;
     const title = region
-      ? `${region.name} — ${continent?.name} Spots | Trovr`
-      : "Spots | Trovr";
+      ? `${placeLabel(region.name)} — Lugares em ${placeLabel(continent?.name ?? "")} | Trovr`
+      : "Lugares | Trovr";
     const description = region
-      ? `Spots in ${region.name}, ${continent?.name}. ${region.count} locations.`
-      : "Spots guide.";
+      ? `Lugares em ${placeLabel(region.name)}, ${placeLabel(continent?.name ?? "")}. ${region.count} destinos.`
+      : "Guia de lugares.";
     return {
       meta: [
         { title },
@@ -57,12 +58,12 @@ export const Route = createFileRoute("/spots/$continent/$region")({
     <main className="bg-paper text-ink font-sans min-h-screen">
       <SpotsHeader />
       <section className="px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl text-ink">Region not found.</h1>
+        <h1 className="font-serif text-3xl text-ink">Região não encontrada.</h1>
         <Link
           to="/spots"
           className="mt-6 inline-block text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink"
         >
-          Back to all spots
+          Voltar para todos os lugares
         </Link>
       </section>
     </main>
@@ -71,7 +72,7 @@ export const Route = createFileRoute("/spots/$continent/$region")({
     <main className="bg-paper text-ink font-sans min-h-screen">
       <SpotsHeader />
       <section className="px-6 py-32 text-center">
-        <h1 className="font-serif text-3xl text-ink">Something went wrong.</h1>
+        <h1 className="font-serif text-3xl text-ink">Algo deu errado.</h1>
         <p className="mt-3 text-sm text-stone">{error.message}</p>
       </section>
     </main>
@@ -92,10 +93,10 @@ function RegionLayout() {
       <Breadcrumbs
         items={[
           {
-            label: "Spots",
+            label: "Lugares",
             to: (
               <Link to="/spots" search={{ activity }} className="hover:text-ink">
-                Spots
+                Lugares
               </Link>
             ),
           },
@@ -108,21 +109,22 @@ function RegionLayout() {
                 search={{ activity }}
                 className="hover:text-ink"
               >
-                {continent.name}
+                {placeLabel(continent.name)}
               </Link>
             ),
           },
-          { label: region.name },
+          { label: placeLabel(region.name) },
         ]}
       />
 
       <section className="px-6 py-12 sm:py-16">
         <div className="mx-auto max-w-3xl">
           <h1 className="font-serif text-4xl leading-[1.05] text-ink sm:text-5xl md:text-6xl">
-            {region.name}
+            {placeLabel(region.name)}
           </h1>
           <p className="mt-5 text-base text-stone sm:text-lg">
-            {region.count} {region.count === 1 ? "spot" : "spots"} in {continent.name}.
+            {region.count} {region.count === 1 ? "lugar" : "lugares"} em{" "}
+            {placeLabel(continent.name)}.
           </p>
         </div>
       </section>
@@ -144,11 +146,9 @@ function RegionLayout() {
                 className="group block py-6 transition-colors hover:bg-stone/5"
               >
                 <div className="flex items-baseline justify-between gap-6">
-                  <span className="font-serif text-2xl text-ink sm:text-3xl">
-                    {s.name}
-                  </span>
+                  <span className="font-serif text-2xl text-ink sm:text-3xl">{s.name}</span>
                   <span className="flex items-center gap-3 text-[11px] uppercase tracking-[0.2em] text-stone">
-                    {s.country && s.country !== region.name && <span>{s.country}</span>}
+                    {s.country && s.country !== region.name && <span>{placeLabel(s.country)}</span>}
                     <span
                       className="border border-stone/40 px-2 py-1 text-ink"
                       style={{ borderRadius: 2 }}

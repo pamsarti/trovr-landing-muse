@@ -40,7 +40,7 @@ function TripNotFound() {
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <h1 className="font-serif text-4xl">{t.inquiry.notFound}</h1>
         <Link to="/trips" className="mt-6 inline-block text-stone underline">
-          Back to all trips
+          Voltar para todas as viagens
         </Link>
       </div>
       <TripsFooter />
@@ -200,8 +200,8 @@ function InquireForm({
         res.ok && (res.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Not captured by Netlify Forms");
       setSent(true);
-    } catch (err) {
-      setError(err instanceof Error ? err.message : "Something went wrong");
+    } catch {
+      setError(t.inquiry.error);
     } finally {
       setSubmitting(false);
     }
@@ -231,7 +231,7 @@ function InquireForm({
       <input type="hidden" name="operator" value={operator} />
       <p className="hidden">
         <label>
-          Don&apos;t fill this out if you&apos;re human: <input name="bot-field" />
+          Não preencha este campo: <input name="bot-field" />
         </label>
       </p>
       <h2 className="font-serif text-3xl text-ink sm:text-4xl">{t.inquiry.heading}</h2>

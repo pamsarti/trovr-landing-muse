@@ -13,6 +13,7 @@ import { CATALOG, DEFAULT_LOCALE, type Locale } from "@/i18n";
 import { detectLocale } from "@/i18n/detect";
 import { htmlLang, ogLocale } from "@/i18n/seoT";
 import { useT } from "@/i18n/useT";
+import { AnalyticsManager } from "@/components/Analytics";
 
 function NotFoundComponent() {
   const t = useT();
@@ -106,12 +107,25 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
           type: "application/ld+json",
           children: JSON.stringify({
             "@context": "https://schema.org",
-            "@type": "Organization",
-            name: "Trovr",
-            url: "https://trovr.com.br",
-            logo: "https://trovr.com.br/images/providencia-hero.jpg",
-            description: t.seo.siteDescription,
-            email: "hello@trovr.agency",
+            "@graph": [
+              {
+                "@type": "Organization",
+                "@id": "https://trovr.com.br/#organization",
+                name: "Trovr",
+                url: "https://trovr.com.br",
+                logo: "https://trovr.com.br/images/providencia-hero.jpg",
+                description: t.seo.siteDescription,
+                founder: { "@type": "Person", name: "Pamela Sarti" },
+              },
+              {
+                "@type": "WebSite",
+                "@id": "https://trovr.com.br/#website",
+                name: "Trovr",
+                url: "https://trovr.com.br",
+                inLanguage: "pt-BR",
+                publisher: { "@id": "https://trovr.com.br/#organization" },
+              },
+            ],
           }),
         },
       ],
@@ -144,6 +158,7 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Outlet />
+      <AnalyticsManager />
     </QueryClientProvider>
   );
 }

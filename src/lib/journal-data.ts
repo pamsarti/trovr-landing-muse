@@ -1,4 +1,5 @@
 import articlesJson from "@/data/journal-articles.json";
+import { JOURNAL_ARTICLES_PT } from "@/data/journal-articles.pt";
 
 export type JournalCategory = "crossing" | "finding" | "preparing" | "manifesto";
 
@@ -34,13 +35,23 @@ export type JournalArticle = {
 };
 
 export const CATEGORY_LABEL: Record<JournalCategory, string> = {
-  crossing: "Crossing",
-  finding: "Finding",
-  preparing: "Preparing",
+  crossing: "Travessia",
+  finding: "Descoberta",
+  preparing: "Preparação",
   manifesto: "Manifesto",
 };
 
-const ALL = articlesJson as unknown as JournalArticle[];
+type ArticlePtOverlay = Partial<
+  Pick<
+    JournalArticle,
+    "title" | "dek" | "body" | "seoTitle" | "seoDescription" | "faq" | "keyFacts"
+  >
+>;
+const articleOverlays = JOURNAL_ARTICLES_PT as Record<string, ArticlePtOverlay>;
+const ALL = (articlesJson as unknown as JournalArticle[]).map((article) => ({
+  ...article,
+  ...articleOverlays[article.slug],
+}));
 
 export function getPublishedArticles(): JournalArticle[] {
   return ALL.filter((a) => a.status === "published").sort(
@@ -57,8 +68,8 @@ export function getArticlesWithLocation(): JournalArticle[] {
   return getPublishedArticles().filter((a) => !!a.location);
 }
 
-export function formatDate(iso: string, locale: "en" | "pt" = "en"): string {
-  return new Intl.DateTimeFormat(locale === "pt" ? "pt-BR" : "en-US", {
+export function formatDate(iso: string): string {
+  return new Intl.DateTimeFormat("pt-BR", {
     year: "numeric",
     month: "long",
     day: "numeric",

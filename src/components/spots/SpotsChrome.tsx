@@ -23,7 +23,7 @@ type Crumb = { label: string; to?: ReactNode };
 export function Breadcrumbs({ items }: { items: Crumb[] }) {
   return (
     <nav
-      aria-label="Breadcrumb"
+      aria-label="Navegação estrutural"
       className="mx-auto max-w-6xl px-6 pt-10 text-[11px] uppercase tracking-[0.2em] text-stone"
     >
       <ol className="flex flex-wrap items-center gap-2">

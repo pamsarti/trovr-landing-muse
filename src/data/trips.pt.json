@@ -1,4 +1,327 @@
 {
-  "__note": "Portuguese overlay for trips (Phase 2). Key = trip id. Fill only translatable fields: summary and seasonDisplay. Do NOT put the raw parseable season here — season logic uses English months. Missing keys fall back to English.",
-  "trips": {}
+  "__note": "Conteúdo público em português. A temporada original em inglês permanece em trips.json apenas para a lógica interna de calendário.",
+  "trips": {
+    "egypt-kite-dragonfly": {
+      "destination": "Safári de kitesurf no Mar Vermelho",
+      "country": "Egito",
+      "seasonDisplay": "maio a outubro",
+      "price_range": "luxo premium (€€€€)",
+      "level": "todos os níveis",
+      "summary": "Cruzeiro de kitesurf de uma semana pelo Mar Vermelho a bordo de um megaiate. Parte de Hurghada e navega entre ilhas desabitadas. Eleito Travelers’ Choice do Tripadvisor de 2023 a 2025."
+    },
+    "egypt-kite-spirit": {
+      "destination": "Cruzeiro de kitesurf no Mar Vermelho",
+      "country": "Egito",
+      "seasonDisplay": "o ano todo, com mais vento de maio a outubro",
+      "price_range": "médio-alto (€€€)",
+      "level": "todos os níveis",
+      "summary": "Viagem de barco de sete dias a partir de Hurghada, navegando pelas ilhas do Mar Vermelho. Opera desde 2018, com equipe multilíngue e botes Zodiac para chegar aos picos."
+    },
+    "egypt-kite-sickdog": {
+      "destination": "Safári de kitesurf no Mar Vermelho",
+      "country": "Egito",
+      "seasonDisplay": "abril a outubro",
+      "price_range": "médio (€€)",
+      "level": "todos os níveis, com aulas incluídas",
+      "summary": "Cruzeiro de kitesurf de uma semana saindo de Hurghada em um iate liveaboard. Recebe até 24 pessoas, passa por Abu Mungar e pela ilha de Tawila e inclui aulas."
+    },
+    "egypt-kite-rider": {
+      "destination": "Cruzeiro de kitesurf no Egito",
+      "country": "Egito",
+      "seasonDisplay": "abril a outubro",
+      "price_range": "médio (€€)",
+      "level": "intermediário a avançado",
+      "summary": "Cruzeiro de uma semana pelo Mar Vermelho, saindo de Hurghada em um iate a motor para 26 kitesurfistas. O roteiro alterna entre três ou quatro picos conforme o vento."
+    },
+    "egypt-kite-bigdayz": {
+      "destination": "Kitesurf e barco no Mar Vermelho",
+      "country": "Egito",
+      "seasonDisplay": "abril a outubro",
+      "price_range": "médio (€€)",
+      "level": "todos os níveis",
+      "summary": "Operação com mais de 12 anos de experiência. A rota liga Hurghada a El Gouna pelas ilhas do Mar Vermelho, recebe famílias e oferece tarifas reduzidas para crianças."
+    },
+    "egypt-horse-rideegypt": {
+      "destination": "Egito a cavalo",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "premium (€€€)",
+      "level": "intermediário a avançado",
+      "summary": "Cavalgada por diferentes regiões, combinando Cairo, com galopes diante das pirâmides de Gizé, Luxor, o Vale dos Reis, o Deserto Branco e passeios nas praias de Dahab."
+    },
+    "egypt-horse-worldon": {
+      "destination": "Cavalgadas pelo Egito",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "premium (€€€)",
+      "level": "é necessário galopar com segurança",
+      "summary": "Roteiros pelas pirâmides de Gizé, Bahariya e o Deserto Branco, Luxor, Mar Vermelho e o oásis de Fayoum. Combina galopes, visitas culturais e cruzeiro pelo Nilo, com selas inglesas."
+    },
+    "egypt-horse-hieroglyphs": {
+      "destination": "Travessias pelo Egito",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "médio a premium (€€-€€€)",
+      "level": "todos os níveis",
+      "summary": "Experiências a partir de Cairo e Luxor com um programa de resgate de cavalos Baladi. Inclui deserto, Vale dos Reis, plantações, margens do Nilo e banho no Mar Vermelho."
+    },
+    "egypt-horse-caprando": {
+      "destination": "Deserto egípcio",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "premium (€€€)",
+      "level": "intermediário a avançado",
+      "summary": "Galopes aos pés das pirâmides de Gizé e continuação até Luxor, com três noites de acampamento nas montanhas de Tebas e montaria em cavalos árabes."
+    },
+    "egypt-horse-african": {
+      "destination": "Palmeiras, pirâmides e faraós",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "premium (€€€)",
+      "level": "intermediário a avançado",
+      "summary": "Roteiro por várias regiões com galopes no deserto do Cairo diante das pirâmides, Luxor e extensão opcional de barco no Mar Vermelho. Datas de início flexíveis."
+    },
+    "egypt-nile-sudan": {
+      "destination": "Cruzeiro no Nilo em navio a vapor dos anos 1920",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "premium (€€€€)",
+      "level": "todos os níveis",
+      "summary": "Navio a vapor restaurado dos anos 1920 entre Luxor e Assuã, com paradas em Karnak, nos vales dos Reis e das Rainhas, Edfu e Philae. É a embarcação associada a Agatha Christie."
+    },
+    "egypt-nile-lindblad": {
+      "destination": "Expedição pelo Nilo",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "luxo premium (€€€€)",
+      "level": "todos os níveis",
+      "summary": "Expedição de várias semanas pelo Egito, combinando cruzeiro no Nilo em embarcações para 44 ou 60 hóspedes, Cairo, Luxor e Abu Simbel, acompanhada por especialistas."
+    },
+    "egypt-nile-sanctuary": {
+      "destination": "Cruzeiro no Nilo, de Luxor a Assuã",
+      "country": "Egito",
+      "seasonDisplay": "outubro a abril",
+      "price_range": "premium (€€€)",
+      "level": "todos os níveis",
+      "summary": "Cruzeiro de cinco dias entre Luxor e Assuã, com passeio de felucca, visita ao Templo de Philae e aula de culinária a bordo."
+    },
+    "maldives-surf-surftribe": {
+      "destination": "Surf nos atóis centrais das Maldivas",
+      "seasonDisplay": "março a novembro",
+      "price_range": "médio a premium (€€-€€€)",
+      "level": "intermediário a avançado",
+      "summary": "Dez dias a bordo, de Malé aos atóis centrais, para no máximo 12 hóspedes e um ou dois guias. Surf do amanhecer ao pôr do sol, mudando diariamente entre os reef breaks."
+    },
+    "maldives-surf-awave": {
+      "destination": "Barco de surf nas Maldivas",
+      "seasonDisplay": "março a novembro",
+      "price_range": "variável (€€-€€€€)",
+      "level": "todos os níveis",
+      "summary": "Charters privativos e compartilhados pelos atóis das Maldivas, com barcos para grupos de quatro pessoas ou grupos maiores."
+    },
+    "maldives-surf-blueshark": {
+      "destination": "Barco de surf no atol de Huvadhoo",
+      "seasonDisplay": "abril a julho",
+      "price_range": "médio a premium (€€€)",
+      "level": "intermediário",
+      "summary": "Liveaboard no atol de Huvadhoo, no sul das Maldivas. Passa por Vilingili, Coffee Break e Blue Bowls, com menos gente do que nos atóis centrais."
+    },
+    "maldives-surf-perfectwave": {
+      "destination": "Barco de surf nas Maldivas",
+      "seasonDisplay": "março a novembro",
+      "price_range": "médio (€€)",
+      "level": "intermediário ou acima",
+      "summary": "Liveaboard pequeno, com cinco cabines duplas. A embarcação menor reduz o tempo de deslocamento e aumenta o tempo dentro d’água."
+    },
+    "maldives-surf-lapoint": {
+      "destination": "Cruzeiro de surf nas Maldivas",
+      "seasonDisplay": "março a novembro",
+      "price_range": "médio (€€)",
+      "level": "mais de 300 horas de experiência",
+      "summary": "Embarcação de 36 metros para no máximo 12 hóspedes na costa leste do atol de Meemu. Viagem com acompanhamento técnico em um barco desenhado para perseguir ondas."
+    },
+    "maldives-surf-amigas": {
+      "destination": "Liveaboard feminino nas Maldivas",
+      "seasonDisplay": "março a novembro",
+      "price_range": "US$ 4.200 a 4.600",
+      "level": "intermediário, com duck dive",
+      "summary": "Viagens exclusivas para mulheres pelos atóis centrais, com treinadoras a bordo e uso de pranchas intermediárias e shortboards."
+    },
+    "losroques-kite-worldkite": {
+      "destination": "Cruzeiro de kitesurf em Los Roques",
+      "continent": "América do Sul",
+      "seasonDisplay": "dezembro a maio, melhor de fevereiro a maio",
+      "price_range": "premium (€€€)",
+      "level": "intermediário a avançado",
+      "summary": "Oito dias de veleiro pelo arquipélago e Parque Nacional de Los Roques. Mais de 40 picos acessíveis por barco e cabines duplas compartilhadas com banheiro privativo."
+    },
+    "losroques-kite-travel": {
+      "destination": "Experiência de kitesurf em Los Roques",
+      "continent": "América do Sul",
+      "seasonDisplay": "dezembro a maio",
+      "price_range": "premium (€€€)",
+      "level": "todos os níveis",
+      "summary": "Sete dias hospedado em uma pousada, com barco privativo diário para os picos de kite. Inclui o voo entre Caracas e Los Roques."
+    },
+    "losroques-kite-palafito": {
+      "destination": "Safári de kitesurf em Los Roques",
+      "continent": "América do Sul",
+      "seasonDisplay": "dezembro a maio",
+      "price_range": "variável",
+      "level": "velejadores independentes",
+      "summary": "Escola local com mais de 20 anos. Oferece saídas diárias de barco pelo arquipélago, aluguel de equipamento, aulas e downwinds."
+    },
+    "costarica-surf-witchsrock": {
+      "destination": "Witch’s Rock e Ollie’s Point, Guanacaste",
+      "continent": "América Central",
+      "seasonDisplay": "o ano todo, com melhor ondulação de abril a outubro",
+      "price_range": "médio (€€)",
+      "level": "todos os níveis",
+      "summary": "Base em Tamarindo desde 2001, com instrutores certificados pela ISA e saídas de barco para Witch’s Rock e Ollie’s Point, no Parque Nacional Santa Rosa. Pacotes com tudo incluído."
+    },
+    "costarica-surf-pavones": {
+      "destination": "Expedição de surf em Pavones",
+      "continent": "América Central",
+      "seasonDisplay": "abril a outubro, com ondulação de sul",
+      "price_range": "premium (€€€)",
+      "level": "intermediário a avançado",
+      "summary": "Retiro em Pavones com duas sessões diárias de surf, ioga, análise em vídeo e teoria. Pavones abriga uma das esquerdas mais longas do mundo."
+    },
+    "costarica-surf-boos": {
+      "destination": "Witch’s Rock e Ollie’s Point",
+      "continent": "América Central",
+      "seasonDisplay": "o ano todo",
+      "price_range": "médio (€€)",
+      "level": "intermediário a avançado",
+      "summary": "Dia inteiro de barco saindo de Playa Flamingo ou Playas del Coco, passando por Witch’s Rock e Ollie’s Point no mesmo dia."
+    },
+    "costarica-surf-cstrip": {
+      "destination": "Barco para Witch’s Rock",
+      "continent": "América Central",
+      "seasonDisplay": "o ano todo",
+      "price_range": "US$ 750 a 1.000 por viagem",
+      "level": "intermediário",
+      "summary": "Saída de um dia para Witch’s Rock e Ollie’s Point desde Tamarindo, Playa Grande ou Langosta, em barco para dez pessoas ou panga para seis."
+    },
+    "alaska-wildlife-geographic": {
+      "destination": "Ursos e baleias na costa de Katmai",
+      "country": "Estados Unidos, Alasca",
+      "continent": "América do Norte",
+      "seasonDisplay": "junho a setembro",
+      "price_range": "premium (€€€€)",
+      "level": "todos os níveis, com algumas trilhas",
+      "summary": "Expedições em embarcação de pesquisa pela costa de Katmai, com ursos-pardos, arquipélago de Kodiak e Prince William Sound. Conexões em hidroavião."
+    },
+    "alaska-wildlife-discoverer": {
+      "destination": "Glacier Bay e Inside Passage",
+      "country": "Estados Unidos, Alasca",
+      "continent": "América do Norte",
+      "seasonDisplay": "maio a setembro",
+      "price_range": "premium (€€€€)",
+      "level": "todos os níveis",
+      "summary": "Cruzeiro de oito dias entre Sitka e Juneau, passando pelo Parque Nacional Glacier Bay, baleias em Frederick Sound, focas na geleira Dawes e ursos no Behm Canal. Inclui caiaque e botes."
+    },
+    "alaska-wildlife-natgeo": {
+      "destination": "Expedição pelo sudeste do Alasca",
+      "country": "Estados Unidos, Alasca",
+      "continent": "América do Norte",
+      "seasonDisplay": "maio a setembro",
+      "price_range": "luxo premium (€€€€)",
+      "level": "todos os níveis",
+      "summary": "Oito dias a bordo entre Juneau e Sitka, em busca de jubartes, orcas, ursos e lobos, com naturalistas e especialistas em vida submarina."
+    },
+    "alaska-wildlife-adventuresmith": {
+      "destination": "Cruzeiro de vida selvagem em barco pequeno",
+      "country": "Estados Unidos, Alasca",
+      "continent": "América do Norte",
+      "seasonDisplay": "maio a setembro",
+      "price_range": "premium (€€€-€€€€)",
+      "level": "todos os níveis",
+      "summary": "Cruzeiros em pequenas embarcações e diferentes roteiros, conduzidos por naturalistas e com foco em vida selvagem."
+    },
+    "alaska-wildlife-whalesong": {
+      "destination": "Expedições fotográficas em Sitka",
+      "country": "Estados Unidos, Alasca",
+      "continent": "América do Norte",
+      "seasonDisplay": "maio a setembro",
+      "price_range": "médio a premium (€€-€€€)",
+      "level": "todos os níveis",
+      "summary": "Viagens de vários dias dedicadas à fotografia, saindo de Sitka, em grupos pequenos e com rotas personalizadas."
+    },
+    "china-kungfu-shaolintemple": {
+      "destination": "Treinamento no Templo Shaolin",
+      "seasonDisplay": "o ano todo",
+      "price_range": "US$ 850 por mês",
+      "level": "todos os níveis",
+      "summary": "Dengfeng, em Henan, região do templo Shaolin original. Turmas pequenas conduzidas por monges guerreiros da 34ª e 35ª gerações, com meditação e passeios culturais."
+    },
+    "china-kungfu-songshan": {
+      "destination": "Treinamento Shaolin em Songshan",
+      "seasonDisplay": "o ano todo",
+      "price_range": "US$ 1.200 por mês",
+      "level": "todos os níveis",
+      "summary": "Kung Fu Shaolin tradicional em Dengfeng, Henan, combinando desenvolvimento técnico e patrimônio cultural, com estrutura para estudantes estrangeiros."
+    },
+    "china-kungfu-tagou": {
+      "destination": "Escola de artes marciais Tagou",
+      "seasonDisplay": "o ano todo",
+      "price_range": "US$ 1.200 por mês",
+      "level": "todos os níveis",
+      "summary": "Escola com mais de 30 mil alunos em Dengfeng, dedicada a combate, sparring e preparo técnico em treinos de grupos grandes."
+    },
+    "china-kungfu-sjf": {
+      "destination": "Tai Chi estilo Chen",
+      "seasonDisplay": "o ano todo",
+      "price_range": "¥ 12.000 a 15.000 por mês",
+      "level": "todos os níveis",
+      "summary": "Treinamento em Chenjiagou, berço do Tai Chi, com mestre herdeiro da 11ª geração, quartos privativos e formato próximo de mestre e discípulo."
+    },
+    "china-kungfu-wudang": {
+      "destination": "Artes internas de Wudang",
+      "seasonDisplay": "o ano todo",
+      "price_range": "variável",
+      "level": "todos os níveis",
+      "summary": "Treinamento nas montanhas Wudang em estilos internos, Tai Chi e práticas meditativas, como alternativa à linha externa de Shaolin."
+    },
+    "kyrgyzstan-horse-tatosh": {
+      "destination": "Travessia a cavalo em Song Kul",
+      "country": "Quirguistão",
+      "seasonDisplay": "junho a setembro",
+      "price_range": "aprox. US$ 150 a 200",
+      "level": "todos os níveis, 90% iniciantes",
+      "summary": "Partida da aldeia de Kyzart, noites em yurts e ônibus direto desde Bishkek incluído."
+    },
+    "kyrgyzstan-horse-tourism": {
+      "destination": "Travessias por várias regiões",
+      "country": "Quirguistão",
+      "seasonDisplay": "junho a setembro",
+      "price_range": "variável",
+      "level": "todos os níveis",
+      "summary": "Roteiros por Song Kul, Sary-Chelek, Kel-Suu e o cânion de Charyn, com acampamentos em yurts e abrigos de pastores."
+    },
+    "kyrgyzstan-horse-kyrgyzlife": {
+      "destination": "Cavalgada e trilha em Jyrgalan",
+      "country": "Quirguistão",
+      "seasonDisplay": "junho a setembro",
+      "price_range": "médio (€€)",
+      "level": "intermediário, cinco a sete horas por dia",
+      "summary": "Região de Jyrgalan, no leste do Quirguistão, fora das rotas mais usadas. Cruza passos acima de 3.500 metros e passa pelo lago Ala-Kul e pelas águas termais de Altyn Arashan."
+    },
+    "kyrgyzstan-horse-visitalay": {
+      "destination": "Cavalgadas em Tian Shan",
+      "country": "Quirguistão",
+      "seasonDisplay": "junho a setembro",
+      "price_range": "médio (€€)",
+      "level": "todos os níveis",
+      "summary": "Travessias pelas montanhas Tian Shan e Pamir-Alay, com duração ajustável de um dia a expedições longas, incluindo Karakol e Song-Kul."
+    },
+    "kyrgyzstan-horse-feelnomad": {
+      "destination": "Aventuras personalizadas no Quirguistão",
+      "country": "Quirguistão",
+      "seasonDisplay": "o ano todo, cavalgadas de junho a setembro",
+      "price_range": "médio (€€)",
+      "level": "todos os níveis",
+      "summary": "Roteiros personalizados que combinam cavalgadas por Chon Kemin, Issyk-Kul e Aksay Canyon, trilhas e noites em yurts, acompanhados por guia em inglês."
+    }
+  }
 }

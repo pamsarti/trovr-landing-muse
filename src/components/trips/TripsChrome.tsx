@@ -61,7 +61,7 @@ export function SmallSeasonCard({ trip }: { trip: Trip }) {
       </div>
       <h4 className="mt-3 font-serif text-lg text-ink">{trip.destination}</h4>
       <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-stone">
-        {trip.country} · in season {trip.season}
+        {trip.country} · temporada {trip.season}
       </p>
     </Link>
   );

@@ -17,10 +17,10 @@ export type MapBounds = {
   west: number;
 };
 
-const LAND = "#f4f1ec"; // paper
-const WATER = "#dfe7df"; // sage-tinted water
-const SAGE = "#5a6e5c";
-const STONE = "#8c857d";
+const LAND = "#f7f4ee";
+const WATER = "#d8c8ae";
+const SAGE = "#556b52";
+const STONE = "#6d5645";
 
 /**
  * Vector style painted in the Trovr palette. Vector rather than raster: a
@@ -65,7 +65,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
       type: "fill",
       source: "carto",
       "source-layer": "landcover",
-      paint: { "fill-color": "#eaf0ea", "fill-opacity": 0.5 },
+      paint: { "fill-color": "#d8c8ae", "fill-opacity": 0.5 },
     },
     {
       id: "water",
@@ -95,7 +95,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
         ["all", ["==", ["get", "class"], "city"], [">=", ["zoom"], 5]],
       ],
       layout: {
-        "text-field": ["get", "name"],
+        "text-field": ["coalesce", ["get", "name:pt"], ["get", "name"]],
         "text-font": ["Open Sans Regular"],
         "text-size": ["interpolate", ["linear"], ["zoom"], 2, 8.5, 6, 11],
         "text-transform": "uppercase",
@@ -267,7 +267,7 @@ export function SpotsMap({
     <div
       ref={containerRef}
       className="h-full min-h-[420px] w-full bg-paper"
-      aria-label="Map of spots"
+      aria-label="Mapa de lugares"
       role="region"
     />
   );

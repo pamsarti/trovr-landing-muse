@@ -1,6 +1,5 @@
 import { createIsomorphicFn } from "@tanstack/react-start";
-import { getRequestHeader, getCookie } from "@tanstack/react-start/server";
-import { resolveLocale, LOCALE_COOKIE, DEFAULT_LOCALE, isLocale, type Locale } from "./index";
+import type { Locale } from "./index";
 
 /**
  * Resolve the locale once per request, with separate server/client bodies so
@@ -17,27 +16,5 @@ import { resolveLocale, LOCALE_COOKIE, DEFAULT_LOCALE, isLocale, type Locale } f
  * router.invalidate, so switching is instant and flash-free).
  */
 export const detectLocale = createIsomorphicFn()
-  .server((): Locale => {
-    const cookie = getCookie(LOCALE_COOKIE);
-
-    let country: string | null = getRequestHeader("x-trovr-country") ?? null;
-    if (!country) country = getRequestHeader("x-country") ?? null;
-    if (!country) {
-      const nfGeo = getRequestHeader("x-nf-geo");
-      if (nfGeo) {
-        try {
-          const parsed = JSON.parse(nfGeo) as { country?: { code?: string } };
-          country = parsed.country?.code ?? null;
-        } catch {
-          country = null;
-        }
-      }
-    }
-
-    const acceptLanguage = getRequestHeader("accept-language") ?? null;
-    return resolveLocale({ cookie, country, acceptLanguage });
-  })
-  .client((): Locale => {
-    const m = document.cookie.match(/(?:^|;\s*)trovr_locale=(pt|en)/);
-    return isLocale(m?.[1]) ? (m[1] as Locale) : DEFAULT_LOCALE;
-  });
+  .server((): Locale => "pt")
+  .client((): Locale => "pt");

@@ -1,4 +1,5 @@
 import rawSpots from "@/data/spots.json";
+import rawSpotsPt from "@/data/spots.pt.json";
 
 export type SpotStatus = "active" | "coming-soon";
 export type Activity =
@@ -42,7 +43,29 @@ export type Spot = {
   relatedArticleSlug?: string;
 };
 
-const ALL_SPOTS = rawSpots as Spot[];
+type SpotPtOverlay = {
+  description?: string;
+  bestMonths?: string[];
+  activitySpecific?: Record<string, string>;
+};
+
+const spotOverlays = (rawSpotsPt as { spots: Record<string, SpotPtOverlay> }).spots;
+const ALL_SPOTS = (rawSpots as Spot[]).map((spot) => {
+  const overlay = spotOverlays[spot.id];
+  if (!overlay) return spot;
+  return {
+    ...spot,
+    description: overlay.description ?? spot.description,
+    conditions: {
+      ...spot.conditions,
+      bestMonths: overlay.bestMonths ?? spot.conditions.bestMonths,
+      activitySpecific: {
+        ...spot.conditions.activitySpecific,
+        ...overlay.activitySpecific,
+      },
+    },
+  };
+});
 
 /**
  * A spot is considered "public" once it has curated editorial content.
@@ -176,22 +199,22 @@ const ACTIVITY_META: {
   icon?: string;
   color?: string;
 }[] = [
-  { id: "kite", label: "Kite", color: "#0369a1" },
-  { id: "surf", label: "Surf", color: "#0891b2" },
-  { id: "snow", label: "Snow", color: "#64748b" },
-  { id: "dive", label: "Dive", color: "#155e75" },
-  { id: "climb", label: "Climb", color: "#7c2d12" },
-  { id: "sail", label: "Sail", color: "#1e40af" },
-  { id: "hike", label: "Hiking", icon: "footprints", color: "#4a7c59" },
-  { id: "run", label: "Trail Running", icon: "activity", color: "#c2410c" },
-  { id: "bike", label: "MTB", icon: "bike", color: "#a16207" },
-  { id: "horseback", label: "Horseback", icon: "horse", color: "#8b4a2b" },
+  { id: "kite", label: "Kitesurf", color: "#556B52" },
+  { id: "surf", label: "Surf", color: "#B86A45" },
+  { id: "snow", label: "Esqui", color: "#D8C8AE" },
+  { id: "dive", label: "Mergulho", color: "#6D5645" },
+  { id: "climb", label: "Escalada", color: "#B86A45" },
+  { id: "sail", label: "Velejo", color: "#556B52" },
+  { id: "hike", label: "Trilha", icon: "footprints", color: "#6D5645" },
+  { id: "run", label: "Corrida de trilha", icon: "activity", color: "#B86A45" },
+  { id: "bike", label: "Ciclismo de montanha", icon: "bike", color: "#556B52" },
+  { id: "horseback", label: "Cavalgada", icon: "horse", color: "#6D5645" },
 ];
 
 export const DEFAULT_MAP_ACTIVITY: Activity = "kite";
 
 export function colorForActivity(activity: Activity): string {
-  return ACTIVITY_META.find((a) => a.id === activity)?.color ?? "#1a1a1a";
+  return ACTIVITY_META.find((a) => a.id === activity)?.color ?? "#2B2B2B";
 }
 
 const ACTIVITY_IDS: readonly Activity[] = ACTIVITY_META.map((a) => a.id);
@@ -237,6 +260,33 @@ export function activityLabel(activity: Activity): string {
   return ACTIVITY_META.find((a) => a.id === activity)?.label ?? activity;
 }
 
+const PLACE_LABEL_PT: Record<string, string> = {
+  Asia: "Ásia",
+  Europe: "Europa",
+  Africa: "África",
+  "North America": "América do Norte",
+  "South America": "América do Sul",
+  "Central America": "América Central",
+  Caribbean: "Caribe",
+  "French Alps": "Alpes Franceses",
+  Iceland: "Islândia",
+  France: "França",
+  "Red Sea (Egypt)": "Mar Vermelho, Egito",
+  Egypt: "Egito",
+  "Balearic Islands": "Ilhas Baleares",
+  Spain: "Espanha",
+  "Dodecanese (Greece)": "Dodecaneso, Grécia",
+  Greece: "Grécia",
+  "Saudi Arabia": "Arábia Saudita",
+  Brazil: "Brasil",
+  Canada: "Canadá",
+  Indonesia: "Indonésia",
+};
+
+export function placeLabel(value: string): string {
+  return PLACE_LABEL_PT[value] ?? value;
+}
+
 /**
  * Placeholder photography per activity, curated on Unsplash — the spots data
  * carries no images yet, so the home/hero borrow a coherent shot by sport
@@ -277,8 +327,8 @@ export function spotHomeMetrics(spot: Spot): { label: string; value: string }[] 
   const shorten = (s: string, n = 42) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
   return [
     { key: "activity", value: activityLabel(spot.activity) },
-    { key: "country", value: spot.country },
-    { key: "region", value: spot.region },
+    { key: "country", value: placeLabel(spot.country) },
+    { key: "region", value: placeLabel(spot.region) },
     { key: "best", value: best ? shorten(best) : "—" },
   ].map((m) => ({ label: m.key, value: m.value }));
 }

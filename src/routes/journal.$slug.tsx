@@ -19,16 +19,11 @@ export const Route = createFileRoute("/journal/$slug")({
   },
   head: ({ loaderData, params }) => {
     const a = loaderData?.article;
-    const title = a
-      ? a.seoTitle ?? `${a.title} — Trovr Journal`
-      : "Journal — Trovr";
-    const desc =
-      a?.seoDescription ?? a?.dek ?? "Field notes from the places we send people.";
+    const title = a ? (a.seoTitle ?? `${a.title} — Histórias Trovr`) : "Histórias — Trovr";
+    const desc = a?.seoDescription ?? a?.dek ?? "Notas de campo dos lugares que merecem a viagem.";
     const path = `/journal/${params.slug}`;
     const url = absoluteUrl(path);
-    const image = a
-      ? absoluteUrl(a.ogImage ?? a.heroImage)
-      : undefined;
+    const image = a ? absoluteUrl(a.ogImage ?? a.heroImage) : undefined;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
@@ -75,7 +70,7 @@ export const Route = createFileRoute("/journal/$slug")({
             {
               "@type": "ListItem",
               position: 1,
-              name: "Journal",
+              name: "Histórias",
               item: absoluteUrl("/journal"),
             },
             {
@@ -119,15 +114,13 @@ function NotFound() {
     <main className="min-h-screen bg-paper text-ink font-sans antialiased">
       <SiteHeader />
       <section className="mx-auto max-w-3xl px-6 py-32 text-center sm:py-40">
-        <h1 className="font-serif text-4xl text-ink sm:text-5xl">Not found.</h1>
-        <p className="mt-5 font-serif italic text-stone">
-          That entry isn't in the journal.
-        </p>
+        <h1 className="font-serif text-4xl text-ink sm:text-5xl">História não encontrada.</h1>
+        <p className="mt-5 font-serif italic text-stone">Esta história não está disponível.</p>
         <Link
           to="/journal"
           className="mt-8 inline-block text-[11px] uppercase tracking-[0.2em] text-ink underline-offset-4 hover:underline"
         >
-          ← Back to Journal
+          ← Voltar para Histórias
         </Link>
       </section>
     </main>
@@ -153,7 +146,7 @@ function ArticlePage() {
         <header className="mx-auto max-w-3xl px-6 pt-16 sm:pt-24">
           <nav className="text-[11px] uppercase tracking-[0.2em] text-stone">
             <Link to="/journal" className="hover:text-ink">
-              Journal
+              Histórias
             </Link>
             <span className="mx-2">/</span>
             <span>{CATEGORY_LABEL[article.category]}</span>
@@ -169,9 +162,8 @@ function ArticlePage() {
             {article.dek}
           </p>
           <p className="mt-8 text-xs tracking-wide text-stone">
-            {article.author} ·{" "}
-            <time dateTime={article.date}>{formatDate(article.date)}</time> ·{" "}
-            {article.readTime} min read
+            {article.author} · <time dateTime={article.date}>{formatDate(article.date)}</time> ·{" "}
+            {article.readTime} min de leitura
           </p>
         </header>
 
@@ -181,29 +173,22 @@ function ArticlePage() {
               src={article.heroImage}
               alt={article.title}
               className="h-full w-full object-cover"
-              style={{ filter: "saturate(0.7)" }}
             />
           </div>
         </figure>
 
         {article.keyFacts && article.keyFacts.length > 0 && (
           <aside
-            aria-label="Key facts"
+            aria-label="Informações essenciais"
             className="mx-auto mt-12 max-w-[680px] px-6 sm:mt-16"
           >
             <div className="border border-stone/30 bg-ink/[0.02] p-6 sm:p-8">
-              <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-                At a glance
-              </p>
+              <p className="text-[11px] uppercase tracking-[0.2em] text-stone">Em resumo</p>
               <ul className="mt-4 space-y-2">
                 {article.keyFacts.map((f, i) => {
-                  const fact: JournalKeyFact =
-                    typeof f === "string" ? { value: f } : f;
+                  const fact: JournalKeyFact = typeof f === "string" ? { value: f } : f;
                   return (
-                    <li
-                      key={i}
-                      className="font-serif text-base leading-[1.6] text-ink sm:text-lg"
-                    >
+                    <li key={i} className="font-serif text-base leading-[1.6] text-ink sm:text-lg">
                       {fact.label ? (
                         <>
                           <span className="text-[11px] uppercase tracking-[0.2em] text-stone">
@@ -229,12 +214,9 @@ function ArticlePage() {
         />
 
         {article.faq && article.faq.length > 0 && (
-          <section
-            aria-label="Frequently asked questions"
-            className="mx-auto max-w-[680px] px-6 pb-16"
-          >
+          <section aria-label="Perguntas frequentes" className="mx-auto max-w-[680px] px-6 pb-16">
             <h2 className="mt-4 mb-6 font-serif text-2xl text-ink sm:text-3xl">
-              Frequently asked questions
+              Perguntas frequentes
             </h2>
             <div className="divide-y divide-stone/20 border-y border-stone/20">
               {article.faq.map((item, i) => (
@@ -266,8 +248,8 @@ function ArticlePage() {
               style={{ borderRadius: 2 }}
             />
             <p className="text-sm leading-[1.6] text-stone">
-              <span className="text-ink">{article.author}</span> writes for Trovr
-              about places, gear, and the philosophy of immersive travel.
+              <span className="text-ink">{article.author}</span> escreve para a Trovr sobre lugares,
+              experiências e a filosofia de viajar para se descobrir.
             </p>
           </div>
         </div>
@@ -276,9 +258,7 @@ function ArticlePage() {
       {readNext.length > 0 && (
         <section className="mt-24 border-t border-stone/20 px-6 py-20 sm:mt-32 sm:py-28">
           <div className="mx-auto max-w-6xl">
-            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-              Read next
-            </p>
+            <p className="text-[11px] uppercase tracking-[0.2em] text-stone">Leia também</p>
             <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-14 md:grid-cols-2">
               {readNext.map((a) => (
                 <ReadNextCard key={a.id} article={a} />
@@ -293,18 +273,13 @@ function ArticlePage() {
 
 function ReadNextCard({ article }: { article: JournalArticle }) {
   return (
-    <Link
-      to="/journal/$slug"
-      params={{ slug: article.slug }}
-      className="group block"
-    >
+    <Link to="/journal/$slug" params={{ slug: article.slug }} className="group block">
       <div className="aspect-[16/9] overflow-hidden bg-stone/20">
         <img
           src={article.heroImage}
           alt={article.title}
           loading="lazy"
           className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
-          style={{ filter: "saturate(0.7)" }}
         />
       </div>
       <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-stone">
@@ -313,9 +288,7 @@ function ReadNextCard({ article }: { article: JournalArticle }) {
       <h3 className="mt-3 font-serif text-2xl leading-[1.15] text-ink sm:text-3xl">
         {article.title}
       </h3>
-      <p className="mt-2 font-serif text-base italic text-stone sm:text-lg">
-        {article.dek}
-      </p>
+      <p className="mt-2 font-serif text-base italic text-stone sm:text-lg">{article.dek}</p>
     </Link>
   );
 }

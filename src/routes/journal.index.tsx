@@ -107,8 +107,7 @@ function Featured({ article }: { article: JournalArticle }) {
         alt={article.title}
         className="ken-burns absolute inset-0 h-full w-full object-cover"
       />
-      {/* Scrim: keeps the serif legible over any photograph. */}
-      <div className="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/25 to-ink/40" />
+      <div className="brand-photo-overlay absolute inset-0" />
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-14 sm:pb-20">
         <div className="mx-auto max-w-6xl">
@@ -126,7 +125,7 @@ function Featured({ article }: { article: JournalArticle }) {
             {article.dek}
           </p>
           <p className="mt-6 text-xs tracking-wide text-paper/70">
-            {article.author} · {formatDate(article.date)} · {article.readTime} min read
+            {article.author} · {formatDate(article.date)} · {article.readTime} min de leitura
           </p>
 
           <span className="mt-7 inline-flex items-center gap-2 rounded-full bg-paper px-5 py-2.5 text-[11px] uppercase tracking-[0.18em] text-ink transition-colors group-hover:bg-sage group-hover:text-paper">
@@ -150,7 +149,6 @@ function ArticleCard({ article }: { article: JournalArticle }) {
           alt={article.title}
           loading="lazy"
           className="card-img h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
-          style={{ filter: "saturate(0.7)" }}
         />
       </div>
       <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-sage">
@@ -161,7 +159,7 @@ function ArticleCard({ article }: { article: JournalArticle }) {
       </h3>
       <p className="mt-3 font-serif text-base italic text-stone sm:text-lg">{article.dek}</p>
       <p className="mt-4 text-xs tracking-wide text-stone">
-        {formatDate(article.date)} · {article.readTime} min read
+        {formatDate(article.date)} · {article.readTime} min de leitura
       </p>
     </Link>
   );
