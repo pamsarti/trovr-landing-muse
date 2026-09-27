@@ -193,7 +193,7 @@ function SpotsIndex() {
 
         {/* Floating chrome: title + activity filters, top-left over the map. */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1000] p-4 sm:p-6">
-          <div className="pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-md border border-stone/20 bg-paper/85 p-4 backdrop-blur-md">
+          <div className="trovr-glass pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-2xl p-4">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
                 Atlas · {allSpots.length} lugares
@@ -216,12 +216,11 @@ function SpotsIndex() {
                   setAppliedBounds(null);
                   navigate({ to: "/spots", search: {} });
                 }}
-                className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                className={`rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
                   !activity
                     ? "border-ink bg-ink text-paper"
                     : "border-stone/40 text-ink hover:border-ink"
                 }`}
-                style={{ borderRadius: 2 }}
                 aria-pressed={!activity}
               >
                 Todos
@@ -240,11 +239,10 @@ function SpotsIndex() {
                         search: isCurrent ? {} : { activity: a.id },
                       });
                     }}
-                    className={`border px-2.5 py-1 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
+                    className={`rounded-full border px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-colors ${
                       isCurrent ? "text-paper" : "border-stone/40 text-ink hover:border-ink"
                     }`}
                     style={{
-                      borderRadius: 2,
                       ...(isCurrent ? { backgroundColor: c, borderColor: c } : {}),
                     }}
                     aria-pressed={isCurrent}
@@ -261,8 +259,7 @@ function SpotsIndex() {
           <button
             type="button"
             onClick={() => setAppliedBounds(bounds)}
-            className="absolute left-1/2 top-4 z-[1000] -translate-x-1/2 border border-sage bg-sage-bg px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-sage shadow-sm transition-colors hover:bg-sage hover:text-paper"
-            style={{ borderRadius: 2 }}
+            className="trovr-glass absolute left-1/2 top-4 z-[1000] -translate-x-1/2 rounded-full px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-sage transition-colors hover:bg-sage hover:text-paper"
           >
             Buscar lugares nesta área
           </button>
@@ -271,8 +268,7 @@ function SpotsIndex() {
           <button
             type="button"
             onClick={() => setAppliedBounds(null)}
-            className="absolute right-4 top-4 z-[1000] border border-stone/40 bg-paper px-2.5 py-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-ink shadow-sm hover:border-ink"
-            style={{ borderRadius: 2 }}
+            className="trovr-glass absolute right-4 top-4 z-[1000] rounded-full px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink hover:border-ink"
           >
             Limpar filtro de área
           </button>
@@ -443,7 +439,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
         }`}
       />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full flex-col bg-paper text-ink shadow-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
+        className={`absolute right-0 top-0 flex h-full w-full flex-col border-l border-white/40 bg-paper/88 text-ink shadow-2xl backdrop-blur-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
           mountedIn ? "translate-x-0" : "translate-x-full"
         }`}
       >

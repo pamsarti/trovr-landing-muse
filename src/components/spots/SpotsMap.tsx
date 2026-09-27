@@ -17,8 +17,10 @@ export type MapBounds = {
   west: number;
 };
 
-const LAND = "#f7f4ee";
-const WATER = "#d8c8ae";
+// Quiet atlas palette: pale sea, warm land and very low-contrast boundaries.
+// It deliberately inverts the previous sand-colored ocean.
+const LAND = "#d8c8ae";
+const WATER = "#eef2ef";
 const SAGE = "#556b52";
 const STONE = "#6d5645";
 
@@ -58,14 +60,14 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
       type: "line",
       source: "world",
       "source-layer": "countries",
-      paint: { "line-color": SAGE, "line-width": 0.5, "line-opacity": 0.5 },
+      paint: { "line-color": STONE, "line-width": 0.45, "line-opacity": 0.24 },
     },
     {
       id: "landcover",
       type: "fill",
       source: "carto",
       "source-layer": "landcover",
-      paint: { "fill-color": "#d8c8ae", "fill-opacity": 0.5 },
+      paint: { "fill-color": "#c5cec0", "fill-opacity": 0.28 },
     },
     {
       id: "water",
@@ -80,7 +82,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
       source: "carto",
       "source-layer": "boundary",
       filter: ["<=", ["get", "admin_level"], 2],
-      paint: { "line-color": SAGE, "line-width": 0.6, "line-opacity": 0.35 },
+      paint: { "line-color": SAGE, "line-width": 0.5, "line-opacity": 0.22 },
     },
     {
       id: "place-label",
@@ -103,7 +105,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
       },
       paint: {
         "text-color": STONE,
-        "text-opacity": 0.65,
+        "text-opacity": 0.52,
         "text-halo-color": LAND,
         "text-halo-width": 1.2,
       },

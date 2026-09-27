@@ -288,26 +288,28 @@ export function placeLabel(value: string): string {
 }
 
 /**
- * Placeholder photography per activity, curated on Unsplash — the spots data
- * carries no images yet, so the home/hero borrow a coherent shot by sport
- * (the same approach trips-data uses). Swap for real spot photos when available.
+ * Destination-specific photography. Each public spot is deliberately matched
+ * to its place and activity; never fall back to another sport (the former
+ * activity-level fallback made Cumbuco look like a surf destination).
  */
-const SPOT_ACTIVITY_IMAGE: Record<Activity, string> = {
-  kite: "photo-1502933691298-84fc14542831",
-  surf: "photo-1502680390469-be75c86b636f",
-  snow: "photo-1551524559-8af4e6624178",
-  dive: "photo-1544551763-46a013bb70d5",
-  climb: "photo-1522163182402-834f871fd851",
-  sail: "photo-1502680390469-be75c86b636f",
-  hike: "photo-1464822759023-fed622ff2c3b",
-  run: "photo-1571008887538-b36bb32f4571",
-  bike: "photo-1544191696-15693072e0b5",
-  horseback: "photo-1553284965-83fd3e82fa5a",
+const SPOT_IMAGE: Record<string, string> = {
+  "uluwatu-surf": "photo-1586228041075-5e5529cf4427",
+  "laugavegur-hike": "photo-1687850360771-2edd4a99a6a6",
+  "utmb-ultra-trail-du-mont-blanc-run": "photo-1600818596647-9d5318c20a8a",
+  "a-line-bike": "photo-1740176787750-2b2e1416665d",
+  "ss-thistlegorm-dive": "photo-1758792742999-1b954043f06c",
+  "cumbuco-kite": "photo-1674408132388-d7f23f69fa6d",
+  "cala-saona-sail": "photo-1542397284385-6010376c5337",
+  "val-thorens-snow": "photo-1555498116-5320b9017d86",
+  "kalymnos-climb": "photo-1570551649785-976e230b7533",
+  "el-gouna-kite": "photo-1530541930197-ff16ac917b0e",
+  "alula-horseback": "photo-1679056251071-aab5fb606158",
 };
 
 export function spotImage(spot: Spot, w = 1600, h = 1000): string {
-  const id = SPOT_ACTIVITY_IMAGE[spot.activity] ?? SPOT_ACTIVITY_IMAGE.hike;
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
+  const id = SPOT_IMAGE[spot.id];
+  if (!id) return "";
+  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=78`;
 }
 
 /** All public spots, for the homepage. */

@@ -147,7 +147,7 @@ function Hero() {
 
       <div className="relative z-10 flex min-h-[100svh] items-end px-6 pb-14 pt-28 sm:px-12 sm:pb-20">
         <div className="mx-auto flex w-full max-w-7xl flex-col justify-between gap-12 md:flex-row md:items-end">
-          <div className="max-w-3xl">
+          <div className="trovr-glass-dark max-w-3xl rounded-2xl p-6 sm:p-8">
             <p className="text-xs uppercase tracking-[0.24em] text-paper/85">{t.home.heroKicker}</p>
             <h1 className="mt-6 max-w-[13ch] font-serif text-[2.8rem] leading-[1.02] text-paper sm:text-6xl md:text-7xl">
               {t.home.heroHeadline()}
@@ -230,7 +230,7 @@ function SportsEntry() {
               data-analytics-event="select_sport"
               data-analytics-name={activity.label}
               data-analytics-category={activity.id}
-              className="group relative min-h-36 overflow-hidden rounded-sm border border-coffee/20 bg-paper p-5 transition-colors hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
+              className="group relative min-h-36 overflow-hidden rounded-xl border border-coffee/10 bg-white/30 p-5 shadow-[0_12px_32px_rgb(43_43_43/0.06)] transition-all hover:-translate-y-0.5 hover:bg-ink hover:shadow-[0_18px_38px_rgb(43_43_43/0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
             >
               <span
                 aria-hidden
@@ -257,7 +257,7 @@ function MapEntry() {
   const spot = getPublicSpots()[0];
   return (
     <section className="px-6 pb-20 sm:pb-28">
-      <div className="relative mx-auto min-h-[520px] max-w-7xl overflow-hidden rounded-sm bg-ink">
+      <div className="relative mx-auto min-h-[520px] max-w-7xl overflow-hidden rounded-2xl bg-ink">
         {spot && (
           <img
             src={spotImage(spot, 1800, 1000)}
@@ -267,21 +267,25 @@ function MapEntry() {
           />
         )}
         <div aria-hidden className="brand-photo-overlay absolute inset-0" />
-        <div className="relative z-10 flex min-h-[520px] max-w-3xl flex-col justify-end p-7 text-paper sm:p-12">
-          <p className="text-xs uppercase tracking-[0.24em] text-paper/80">{t.home.mapKicker}</p>
-          <h2 className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">{t.home.mapTitle}</h2>
-          <p className="mt-6 max-w-2xl text-base leading-7 text-paper/90 sm:text-lg">
-            {t.home.mapBody}
-          </p>
-          <Link
-            to="/spots"
-            data-analytics-event="open_map"
-            data-analytics-name="home_map"
-            className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-paper px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-          >
-            {t.home.mapCta}
-            <ArrowRight className="h-4 w-4" />
-          </Link>
+        <div className="relative z-10 flex min-h-[520px] max-w-3xl flex-col justify-end p-5 text-paper sm:p-8">
+          <div className="trovr-glass-dark rounded-2xl p-6 sm:p-8">
+            <p className="text-xs uppercase tracking-[0.24em] text-paper/80">{t.home.mapKicker}</p>
+            <h2 className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">
+              {t.home.mapTitle}
+            </h2>
+            <p className="mt-6 max-w-2xl text-base leading-7 text-paper/90 sm:text-lg">
+              {t.home.mapBody}
+            </p>
+            <Link
+              to="/spots"
+              data-analytics-event="open_map"
+              data-analytics-name="home_map"
+              className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-paper px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+            >
+              {t.home.mapCta}
+              <ArrowRight className="h-4 w-4" />
+            </Link>
+          </div>
         </div>
       </div>
     </section>
@@ -325,7 +329,7 @@ function FeaturedPlaces() {
               data-analytics-event="view_place"
               data-analytics-name={spot.name}
               data-analytics-category={spot.activity}
-              className="group relative aspect-[4/5] overflow-hidden rounded-sm bg-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand"
+              className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-coffee shadow-[0_18px_50px_rgb(0_0_0/0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand"
             >
               <img
                 src={spotImage(spot, 900, 1125)}
@@ -334,7 +338,7 @@ function FeaturedPlaces() {
                 className="card-img absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
               <div aria-hidden className="brand-photo-overlay absolute inset-0" />
-              <div className="absolute inset-x-0 bottom-0 p-6">
+              <div className="trovr-glass-dark absolute inset-x-4 bottom-4 rounded-xl p-5">
                 <p className="text-xs uppercase tracking-[0.18em] text-paper/80">
                   {activityLabel(spot.activity)} · {placeLabel(spot.country)}
                 </p>
