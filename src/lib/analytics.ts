@@ -7,7 +7,12 @@ export type AnalyticsEventName =
   | "open_itinerary"
   | "submit_itinerary"
   | "newsletter_signup"
-  | "read_story";
+  | "read_story"
+  | "open_welcome_wall"
+  | "close_welcome_wall"
+  | "complete_compass_quiz"
+  | "compass_lead_capture"
+  | "select_compass_plan";
 
 type AnalyticsParameters = Record<string, string | number | boolean | undefined>;
 
