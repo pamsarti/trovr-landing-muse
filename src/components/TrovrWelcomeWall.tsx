@@ -2,14 +2,14 @@ import * as Dialog from "@radix-ui/react-dialog";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check, LockKeyhole, X } from "lucide-react";
 import { useEffect, useMemo, useState, type FormEvent } from "react";
-import { ANALYTICS_CONSENT_EVENT, getAnalyticsConsent, trackEvent } from "@/lib/analytics";
+import { trackEvent } from "@/lib/analytics";
 
 type Phase = "quiz" | "capture" | "result" | "plans";
 type Intent = "challenge" | "slow" | "learn" | "reconnect";
 type Energy = "light" | "active" | "physical" | "unsure";
 type Plan = "mapa-completo" | "plano-pessoal";
 
-const STORAGE_KEY = "trovr-welcome-wall-v2";
+const STORAGE_KEY = "trovr-welcome-wall-v3";
 const DISMISSAL_WINDOW = 30 * 24 * 60 * 60 * 1000;
 
 const intents: Array<{ value: Intent; label: string }> = [
@@ -124,33 +124,22 @@ export function TrovrWelcomeWall() {
   const [planError, setPlanError] = useState<string | null>(null);
 
   useEffect(() => {
-    let timer: number | undefined;
+    setCanShowWall(true);
 
-    const openAfterPrivacyChoice = () => {
-      if (!getAnalyticsConsent()) return;
-      setCanShowWall(true);
+    let shouldOpen = true;
+    try {
+      const dismissedAt = Number(window.localStorage.getItem(STORAGE_KEY));
+      shouldOpen = !dismissedAt || Date.now() - dismissedAt > DISMISSAL_WINDOW;
+    } catch {
+      // The experience still works when storage is unavailable.
+    }
+    if (!shouldOpen) return;
 
-      let shouldOpen = true;
-      try {
-        const dismissedAt = Number(window.localStorage.getItem(STORAGE_KEY));
-        shouldOpen = !dismissedAt || Date.now() - dismissedAt > DISMISSAL_WINDOW;
-      } catch {
-        // The experience still works when storage is unavailable.
-      }
-      if (!shouldOpen || timer !== undefined) return;
-
-      timer = window.setTimeout(() => {
-        setOpen(true);
-        trackEvent("open_welcome_wall", { source: "home_auto" });
-      }, 500);
-    };
-
-    openAfterPrivacyChoice();
-    window.addEventListener(ANALYTICS_CONSENT_EVENT, openAfterPrivacyChoice);
-    return () => {
-      window.removeEventListener(ANALYTICS_CONSENT_EVENT, openAfterPrivacyChoice);
-      if (timer !== undefined) window.clearTimeout(timer);
-    };
+    const timer = window.setTimeout(() => {
+      setOpen(true);
+      trackEvent("open_welcome_wall", { source: "home_auto" });
+    }, 2000);
+    return () => window.clearTimeout(timer);
   }, []);
 
   const profile = useMemo(() => (intent ? profiles[intent] : null), [intent]);
