@@ -14,6 +14,7 @@ import {
 import { CATEGORY_LABEL, getPublishedArticles, type JournalArticle } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { TrovrWelcomeWall } from "@/components/TrovrWelcomeWall";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { useT } from "@/i18n/useT";
 import { seoT } from "@/i18n/seoT";
@@ -91,6 +92,7 @@ function firstSentence(text: string): string {
 function Index() {
   return (
     <main className="bg-paper text-ink font-sans antialiased">
+      <TrovrWelcomeWall />
       <SiteHeader transparent />
       <Hero />
       <SportsEntry />
