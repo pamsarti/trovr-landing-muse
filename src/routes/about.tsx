@@ -69,16 +69,16 @@ function AboutPage() {
 
 const HERO_SLIDES = [
   {
-    src: "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=2400&q=80",
-    alt: "Amanhecer na montanha sobre água calma",
+    src: "/images/providencia-hero.jpg",
+    alt: "Mar azul e natureza em Providencia, Colômbia",
   },
   {
-    src: "https://images.unsplash.com/photo-1530541930197-ff16ac917b0e?auto=format&fit=crop&w=2400&q=80",
-    alt: "Kitesurf sob vento aberto",
+    src: "/images/thailand-hero.jpg",
+    alt: "Mar e formações naturais na Tailândia",
   },
   {
-    src: "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=2400&q=80",
-    alt: "Cavalos atravessando a estepe",
+    src: "/images/alula-horseback-1.jpg",
+    alt: "Cavalgada entre as formações rochosas de AlUla",
   },
 ];
 
@@ -159,48 +159,6 @@ function WhyExists() {
             {p}
           </p>
         ))}
-      </div>
-    </section>
-  );
-}
-
-function FounderNote() {
-  return (
-    <section className="border-t border-stone/15 px-6 py-10 sm:py-14 md:py-16">
-      <div className="mx-auto grid max-w-6xl grid-cols-1 items-start gap-10 sm:gap-12 md:grid-cols-5 md:gap-16">
-        <div className="md:col-span-2">
-          <div className="mx-auto aspect-[4/5] w-full max-w-sm overflow-hidden bg-stone/20 md:max-w-none">
-            {/* TODO: replace with founder photo */}
-            <img
-              src="/images/founder-kite.jpg"
-              alt="Retrato da fundadora"
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </div>
-        <div className="md:col-span-3">
-          <p className="font-serif text-xl italic leading-[1.4] text-ink sm:text-2xl md:text-3xl">
-            “Deixei o mercado financeiro depois de sete anos e passei a viver o kitesurf em tempo
-            integral.”
-          </p>
-          <p className="mt-3 text-xs tracking-wide text-stone sm:text-sm">— Pamela Sarti</p>
-
-          {/* TODO: replace placeholder text with Pamela's final version */}
-          <div className="mt-8 space-y-6 text-base leading-[1.75] text-ink sm:mt-10 sm:text-[17px]">
-            <p>
-              Em seis anos seguindo o vento pelo Brasil, Mar Vermelho, Mediterrâneo e Arábia
-              Saudita, uma coisa ficou evidente: as viagens que me transformaram não estavam em
-              nenhuma plataforma que eu encontrasse. Elas vinham do boca a boca. De alguém que já
-              tinha ido. De operadoras que não precisavam de orçamento de marketing porque seus
-              hóspedes voltavam no ano seguinte — e no outro também.
-            </p>
-            <p>
-              A Trovr é a plataforma que eu gostaria que existisse quando comecei a viajar de
-              verdade. Um lugar onde as operadoras são verificadas, as viagens são reais e o olhar
-              editorial faz o trabalho que os folhetos não fazem.
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
@@ -355,7 +313,11 @@ function Newsletter() {
                 Não preencha este campo: <input name="bot-field" />
               </label>
             </p>
+            <label htmlFor="about-newsletter-email" className="sr-only">
+              Endereço de email
+            </label>
             <input
+              id="about-newsletter-email"
               type="email"
               name="email"
               required
@@ -375,7 +337,11 @@ function Newsletter() {
             </button>
           </form>
         )}
-        {error && !done && <p className="mt-4 text-sm text-paper/80">{error}</p>}
+        {error && !done && (
+          <p role="alert" className="mt-4 text-sm text-paper/80">
+            {error}
+          </p>
+        )}
       </div>
     </section>
   );

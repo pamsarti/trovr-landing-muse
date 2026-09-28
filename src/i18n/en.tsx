@@ -76,7 +76,7 @@ export const en = {
     manifestoKicker: "Travel with purpose",
     manifestoHeadline: () => (
       <>
-        A stamp shows where you went. The right trip changes{" "}
+        A stamp shows where you went. The right trip changes{"\u00A0"}
         <em className="italic font-normal">how you return.</em>
       </>
     ),
@@ -90,7 +90,7 @@ export const en = {
     founderTitle: "Real experience behind every recommendation.",
     founderBody:
       "Trovr was born from the trips I would recommend to my closest friends. Not because they are perfect or famous, but because there is something there worth the journey: a sport, a culture, an encounter or an experience that changes how you see the world.",
-    founderCta: "Meet Pamela and Trovr",
+    founderCta: "Discover Trovr",
     serviceKicker: "Custom travel itineraries",
     serviceTitle: "An itinerary made for the way you travel.",
     serviceBody:
@@ -128,7 +128,7 @@ export const en = {
     kicker: "Letters from Trovr",
     headline: () => (
       <>
-        Discover new places{" "}
+        Discover new places{"\u00A0"}
         <em className="italic font-normal">before everyone talks about them.</em>
       </>
     ),
@@ -347,6 +347,8 @@ export const en = {
     source_claims: "Source states",
     estimate: "Estimate",
   },
+  spotStatusNote:
+    "Flagged information comes from the original source or is an estimate and has not yet been independently verified by Trovr.",
 
   seo: {
     siteTitle: "Trovr | Experiential travel, sports and local culture",

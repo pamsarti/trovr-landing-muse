@@ -362,43 +362,62 @@ function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean 
     ([, v]) => typeof v === "string" && v.trim().length > 0,
   );
   if (entries.length === 0 && months.length === 0) return null;
+  const hasSourceClaims = entries.some(([key]) => status[key] === "source_claims");
+  const hasEstimates = entries.some(([key]) => status[key] === "estimate");
 
   return (
-    <dl
-      className={`mt-3 grid gap-x-4 gap-y-2 border-t border-stone/20 pt-3 ${
-        compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
-      }`}
-    >
-      {months.length > 0 && (
-        <div className="col-span-full">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-            Melhor época
-          </dt>
-          <dd className="mt-0.5 font-serif text-[15px] text-ink">{months.join(" · ")}</dd>
-        </div>
-      )}
-      {entries.map(([k, v]) => {
-        const isUnverified = status[k] && status[k] !== "verified";
-        return (
-          <div key={k}>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-              {(t.spotFieldsShort as Record<string, string>)[k] ?? humanize(k)}
+    <>
+      <dl
+        className={`mt-3 grid gap-x-4 gap-y-2 border-t border-stone/20 pt-3 ${
+          compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
+        }`}
+      >
+        {months.length > 0 && (
+          <div className="col-span-full">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+              Melhor época
             </dt>
-            <dd className="mt-0.5 font-serif text-[15px] text-ink">
-              {v}
-              {isUnverified && (
-                <span
-                  className="ml-1 align-middle font-mono text-[10px] normal-case text-stone"
-                  title="Não verificado de forma independente"
-                >
-                  · não confirmado
-                </span>
-              )}
-            </dd>
+            <dd className="mt-0.5 font-serif text-[15px] text-ink">{months.join(" · ")}</dd>
           </div>
-        );
-      })}
-    </dl>
+        )}
+        {entries.map(([k, v]) => {
+          const fieldStatus = status[k];
+          const marker =
+            fieldStatus === "source_claims" ? "1" : fieldStatus === "estimate" ? "2" : null;
+          const statusLabel = fieldStatus
+            ? (t.spotStatus as Record<string, string>)[fieldStatus]
+            : null;
+          return (
+            <div key={k}>
+              <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+                {(t.spotFieldsShort as Record<string, string>)[k] ??
+                  (t.spotFields as Record<string, string>)[k] ??
+                  humanize(k)}
+              </dt>
+              <dd className="mt-0.5 font-serif text-[15px] text-ink">
+                {v}
+                {marker && (
+                  <sup
+                    className="ml-0.5 font-mono text-[9px] text-stone"
+                    title={statusLabel ?? undefined}
+                    aria-label={statusLabel ?? undefined}
+                  >
+                    {marker}
+                  </sup>
+                )}
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+      {(hasSourceClaims || hasEstimates) && (
+        <p className="mt-3 font-mono text-[10px] leading-4 text-mid">
+          {hasSourceClaims && <>1 {t.spotStatus.source_claims}. </>}
+          {hasEstimates && <>2 {t.spotStatus.estimate}. </>}
+          {t.spotStatusNote}
+        </p>
+      )}
+    </>
   );
 }
 

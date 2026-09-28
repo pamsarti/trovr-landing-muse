@@ -77,7 +77,7 @@ export const pt = {
     manifestoKicker: "Viagens com propósito",
     manifestoHeadline: () => (
       <>
-        Um carimbo mostra onde você esteve. A viagem certa muda{" "}
+        Um carimbo mostra onde você esteve. A viagem certa muda{"\u00A0"}
         <em className="italic font-normal">a forma como você volta.</em>
       </>
     ),
@@ -90,7 +90,7 @@ export const pt = {
     founderTitle: "Experiência real por trás de cada recomendação.",
     founderBody:
       "A Trovr nasceu das viagens que eu indicaria para os meus amigos mais próximos. Não porque são perfeitas ou famosas, mas porque existe alguma coisa ali que vale o deslocamento: um esporte, uma cultura, um encontro ou uma experiência que muda a forma de enxergar o mundo.",
-    founderCta: "Conhecer Pamela e a Trovr",
+    founderCta: "Conheça a Trovr",
     serviceKicker: "Roteiros de viagem personalizados",
     serviceTitle: "Um roteiro feito para a sua forma de viajar.",
     serviceBody:
@@ -128,7 +128,7 @@ export const pt = {
     kicker: "Cartas da Trovr",
     headline: () => (
       <>
-        Descubra novos lugares{" "}
+        Descubra novos lugares{"\u00A0"}
         <em className="italic font-normal">antes de todo mundo falar sobre eles.</em>
       </>
     ),
@@ -280,8 +280,8 @@ export const pt = {
     current: "Corrente",
     marine_life: "Vida marinha",
     season_water_temp: "Temporada e temp. da água",
-    wind_by_month: "Vento por mês",
-    best_season: "Melhor época",
+    wind_by_month: "Vento ao longo do ano",
+    best_season: "Temporada recomendada",
     wind_direction: "Direção do vento",
     water_type: "Tipo de água",
     bottom_water: "Fundo e água",
@@ -343,9 +343,11 @@ export const pt = {
   },
 
   spotStatus: {
-    source_claims: "Fonte afirma",
+    source_claims: "Fonte original",
     estimate: "Estimativa",
   },
+  spotStatusNote:
+    "Informações sinalizadas vêm da fonte original ou são estimativas e ainda não foram verificadas de forma independente pela Trovr.",
 
   seo: {
     siteTitle: "Trovr | Viagens de experiência, esportes e cultura",
@@ -354,14 +356,15 @@ export const pt = {
     homeTitle: "Trovr | Viagens de experiência, esportes e cultura",
     homeDescription:
       "Descubra destinos para kitesurf, surf, trilhas, esqui e mergulho. Explore cultura local, melhores épocas e roteiros personalizados com a Trovr.",
-    aboutTitle: "Sobre — Trovr",
+    aboutTitle: "Sobre a Trovr | Curadoria de viagens e experiências",
     aboutDescription:
-      "A história por trás da Trovr — uma coleção curada a mão de viagens de aventura imersivas, fora do circuito turístico, para quem viaja para explorar, sentir intensamente e voltar mudado.",
-    journalTitle: "Histórias — Trovr",
-    journalDescription: "Notas de campo dos lugares para onde mandamos gente.",
-    tripsTitle: "Viagens — Trovr",
+      "Conheça a Trovr, uma curadoria de destinos esportivos, cultura local e experiências fora do óbvio para viajar com mais contexto e propósito.",
+    journalTitle: "Histórias de viagem e cultura local | Trovr",
+    journalDescription:
+      "Histórias de viagem, cultura local e experiências que ajudam você a conhecer destinos para além dos pontos turísticos.",
+    tripsTitle: "Viagens por esporte e experiência | Trovr",
     tripsDescription:
-      "Viagens curadas para quem viaja para sentir. Kite, surf, cavalo, vida selvagem, artes marciais.",
+      "Descubra viagens e experiências organizadas por esporte, conceito e destino, com a curadoria da Trovr.",
     comingSoonTitle: "Em Breve — Trovr",
     comingSoonDescription: "Esta expedição chega em breve.",
   },
