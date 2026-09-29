@@ -11,9 +11,9 @@ export const en = {
   nav: {
     spots: "Spots",
     sports: "Trips",
-    journal: "Journal",
+    journal: "Articles",
     about: "About",
-    itinerary: "Need help with your itinerary?",
+    itinerary: "Explore the map",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     switchToPt: "Ver em português",
@@ -68,11 +68,11 @@ export const en = {
       "We do not look for beautiful destinations alone. We choose places where there is something to live: an activity, a culture, a landscape or a story worth the journey.",
     allPlaces: "See all places",
     placeCta: "Discover this destination",
-    storiesKicker: "To understand where you are",
-    storiesTitle: "A destination begins to change when you look beyond the landscape.",
+    storiesKicker: "Articles and guides",
+    storiesTitle: "Context for understanding a place before you arrive.",
     storiesBody:
-      "Stories, customs, people and local choices that help you know a place beyond its tourist attractions.",
-    storiesCta: "Read stories",
+      "Local culture, experiences, selected news and practical choices for knowing destinations beyond their tourist attractions.",
+    storiesCta: "See all articles",
     manifestoKicker: "Travel beyond the obvious",
     manifestoHeadline: () => (
       <>
@@ -99,27 +99,37 @@ export const en = {
       "Trovr curates and plans the itinerary. Bookings and trip operation remain under your choice.",
     serviceCta: "Plan my itinerary",
     faqKicker: "Common questions",
-    faqTitle: "What you need to know about Trovr.",
+    faqTitle: "How to use Trovr to travel beyond the obvious.",
     faq: [
       {
-        question: "What is Trovr?",
+        question: "What is Trovr and how does it help plan travel beyond the obvious?",
         answer:
-          "Trovr is a hub for travel beyond the obvious, bringing together places, experiences, sports, local culture, stories and custom itineraries.",
+          "Trovr is a hub for travel beyond the obvious. We bring together destinations, experiences, sports, local culture, articles and practical information to help you decide where to go, when to travel and what to experience.",
       },
       {
-        question: "Does Trovr sell or operate trips?",
+        question: "What does travel beyond the obvious mean?",
         answer:
-          "No. Trovr researches destinations and helps build custom itineraries, but does not directly operate trips.",
+          "It does not mean looking only for secret or remote destinations. It means knowing a place beyond its tourist attractions, with local context, meaningful experiences and choices that fit the way you travel.",
       },
       {
-        question: "How can I find destinations for sports?",
+        question: "How can I find destinations by sport, experience or time of year?",
         answer:
-          "Use the Trovr map to explore places by sport and region, with practical information about seasons and conditions.",
+          "Use the Trovr map and filters to explore places by sport, region and season. Each destination brings together conditions, the best times to go and useful information for comparing options.",
       },
       {
-        question: "How does a custom itinerary work?",
+        question: "How does Trovr choose the places and experiences it publishes?",
         answer:
-          "You share your interests, travel period, budget and style. Trovr researches the options and organizes an itinerary proposal for your profile.",
+          "Our curation considers what is meaningful to experience or learn, the best season, local culture and the quality of available information. A place belongs on Trovr when there is a real reason to go, not just a good photograph.",
+      },
+      {
+        question: "Does Trovr sell flights, lodging or travel packages?",
+        answer:
+          "No. Trovr is a content and curation platform. Travellers make bookings and payments directly with the providers they choose.",
+      },
+      {
+        question: "Does Trovr also create custom itineraries?",
+        answer:
+          "Yes. For travellers who want additional support, Trovr researches destinations, seasons, experiences, transport and lodging and organises a proposal around their interests, dates and pace.",
       },
     ],
   },
@@ -182,7 +192,7 @@ export const en = {
       {
         question: "What is Trovr?",
         answer:
-          "Trovr is a hub for travel beyond the obvious. We bring together places, experiences, sports, local culture, stories and practical information to help you choose and plan how to travel.",
+          "Trovr is a hub for travel beyond the obvious. We bring together places, experiences, sports, local culture, articles and practical information to help you choose and plan how to travel.",
       },
       {
         question: "Does Trovr sell or operate trips?",
@@ -205,13 +215,13 @@ export const en = {
   },
 
   journalIndex: {
-    title: "Stories for knowing a place beyond the itinerary.",
+    title: "Articles and guides for travel beyond the obvious.",
     subtitle:
-      "Local culture, people, experiences and guides for understanding what lies beyond the tourist attractions.",
-    moreHeading: "More stories and guides.",
-    story: "story",
-    stories: "stories",
-    readTheStory: "Read the story",
+      "Local culture, experiences, selected news and practical information for understanding what lies beyond tourist attractions.",
+    moreHeading: "More articles and guides.",
+    story: "article",
+    stories: "articles",
+    readTheStory: "Read the article",
   },
 
   inquiry: {
@@ -361,9 +371,9 @@ export const en = {
     aboutTitle: "About Trovr | A hub for travel beyond the obvious",
     aboutDescription:
       "Meet Trovr, a hub of places, experiences and stories for travelling beyond traditional tourist circuits.",
-    journalTitle: "Travel stories, local culture and guides | Trovr",
+    journalTitle: "Articles and guides for travel beyond the obvious | Trovr",
     journalDescription:
-      "Travel stories, local culture and experiences that help you know destinations beyond their tourist attractions.",
+      "Articles, guides, local culture and experiences for knowing destinations beyond tourist attractions and planning travel beyond the obvious.",
     tripsTitle: "Trips by sport, experience and concept | Trovr",
     tripsDescription:
       "Discover trips and experiences organised by sport, concept and destination with Trovr.",

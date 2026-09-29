@@ -7,7 +7,8 @@ export type AnalyticsEventName =
   | "open_itinerary"
   | "submit_itinerary"
   | "newsletter_signup"
-  | "read_story";
+  | "read_story"
+  | "read_article";
 
 type AnalyticsParameters = Record<string, string | number | boolean | undefined>;
 

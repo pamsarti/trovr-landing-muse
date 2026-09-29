@@ -12,9 +12,9 @@ export const pt = {
   nav: {
     spots: "Lugares",
     sports: "Viagens",
-    journal: "Histórias",
+    journal: "Artigos",
     about: "Sobre",
-    itinerary: "Precisa de ajuda com seu roteiro?",
+    itinerary: "Explorar o mapa",
     openMenu: "Abrir menu",
     closeMenu: "Fechar menu",
     switchToPt: "Ver em português",
@@ -69,11 +69,11 @@ export const pt = {
       "Não procuramos apenas destinos bonitos. Escolhemos lugares onde existe algo para viver: uma atividade, uma cultura, uma paisagem ou uma história que justifique o deslocamento.",
     allPlaces: "Ver todos os lugares",
     placeCta: "Conhecer este destino",
-    storiesKicker: "Para entender onde você está",
-    storiesTitle: "Um destino começa a mudar quando você olha além da paisagem.",
+    storiesKicker: "Artigos e guias",
+    storiesTitle: "Contexto para entender um lugar antes de chegar.",
     storiesBody:
-      "Histórias, costumes, pessoas e escolhas locais que ajudam você a conhecer um lugar para além dos pontos turísticos.",
-    storiesCta: "Ler histórias",
+      "Cultura local, experiências, notícias selecionadas e escolhas práticas para conhecer destinos para além dos pontos turísticos.",
+    storiesCta: "Ver todos os artigos",
     manifestoKicker: "Viajar além do óbvio",
     manifestoHeadline: () => (
       <>
@@ -100,27 +100,37 @@ export const pt = {
       "A Trovr faz a curadoria e o planejamento do roteiro. As reservas e a operação da viagem continuam sob sua escolha.",
     serviceCta: "Planejar meu roteiro",
     faqKicker: "Perguntas frequentes",
-    faqTitle: "O que você precisa saber sobre a Trovr.",
+    faqTitle: "Como usar a Trovr para viajar fora do óbvio.",
     faq: [
       {
-        question: "O que é a Trovr?",
+        question: "O que é a Trovr e como ela ajuda a planejar uma viagem fora do óbvio?",
         answer:
-          "A Trovr é um hub de viagens fora do óbvio que reúne lugares, experiências, esportes, cultura local, histórias e roteiros personalizados.",
+          "A Trovr é um hub de viagens fora do óbvio. Reunimos destinos, experiências, esportes, cultura local, artigos e informações práticas para ajudar você a escolher para onde ir, quando viajar e o que viver em cada lugar.",
       },
       {
-        question: "A Trovr vende ou opera viagens?",
+        question: "O que significa viajar fora do óbvio?",
         answer:
-          "Não. A Trovr pesquisa destinos e ajuda a construir roteiros personalizados, mas não opera diretamente as viagens.",
+          "Não significa procurar apenas destinos secretos ou remotos. Significa conhecer um lugar além dos pontos turísticos, com contexto local, experiências relevantes e escolhas que tenham relação com o seu jeito de viajar.",
       },
       {
-        question: "Como encontrar destinos para praticar esportes?",
+        question: "Como encontrar destinos por esporte, experiência ou época do ano?",
         answer:
-          "Use o mapa da Trovr para explorar lugares por modalidade e região, com informações práticas sobre temporadas e condições.",
+          "Use o mapa e os filtros da Trovr para explorar lugares por modalidade, região e temporada. Cada destino reúne condições, melhores épocas e informações úteis para comparar possibilidades antes de planejar a viagem.",
       },
       {
-        question: "Como funciona o roteiro personalizado?",
+        question: "Como a Trovr escolhe os lugares e experiências que publica?",
         answer:
-          "Você compartilha seus interesses, período, orçamento e estilo de viagem. A Trovr pesquisa as opções e organiza uma proposta de roteiro adequada ao seu perfil.",
+          "A curadoria considera o que existe de relevante para viver ou aprender, a melhor época, a cultura local e a qualidade das informações disponíveis. Um lugar entra na Trovr quando há uma razão real para ir, não apenas uma boa fotografia.",
+      },
+      {
+        question: "A Trovr vende passagens, hospedagens ou pacotes de viagem?",
+        answer:
+          "Não. A Trovr funciona como plataforma de conteúdo e curadoria. As reservas, os pagamentos e a operação da viagem são feitos diretamente pelo viajante com os fornecedores que escolher.",
+      },
+      {
+        question: "A Trovr também cria roteiros personalizados?",
+        answer:
+          "Sim. Para quem quer apoio adicional, a Trovr pesquisa destinos, épocas, experiências, deslocamentos e hospedagens e organiza uma proposta coerente com os interesses, o período e o ritmo da viagem.",
       },
     ],
   },
@@ -183,7 +193,7 @@ export const pt = {
       {
         question: "O que é a Trovr?",
         answer:
-          "A Trovr é um hub de viagens fora do óbvio. Reunimos lugares, experiências, esportes, cultura local, histórias e informação prática para ajudar você a escolher e planejar como viajar.",
+          "A Trovr é um hub de viagens fora do óbvio. Reunimos lugares, experiências, esportes, cultura local, artigos e informação prática para ajudar você a escolher e planejar como viajar.",
       },
       {
         question: "A Trovr vende ou opera viagens?",
@@ -206,13 +216,13 @@ export const pt = {
   },
 
   journalIndex: {
-    title: "Histórias para conhecer um lugar além do roteiro.",
+    title: "Artigos e guias para viajar além do óbvio.",
     subtitle:
-      "Cultura local, pessoas, experiências e guias para entender o que existe para além dos pontos turísticos.",
-    moreHeading: "Mais histórias e guias.",
-    story: "história",
-    stories: "histórias",
-    readTheStory: "Ler a história",
+      "Cultura local, experiências, notícias selecionadas e informação prática para entender o que existe além dos pontos turísticos.",
+    moreHeading: "Mais artigos e guias.",
+    story: "artigo",
+    stories: "artigos",
+    readTheStory: "Ler o artigo",
   },
 
   inquiry: {
@@ -361,9 +371,9 @@ export const pt = {
     aboutTitle: "Sobre a Trovr | Hub de viagens fora do óbvio",
     aboutDescription:
       "Conheça a Trovr, um hub de lugares, experiências e histórias para viajar além dos circuitos turísticos tradicionais.",
-    journalTitle: "Histórias, cultura local e guias de viagem | Trovr",
+    journalTitle: "Artigos e guias de viagens fora do óbvio | Trovr",
     journalDescription:
-      "Histórias de viagem, cultura local e experiências que ajudam você a conhecer destinos para além dos pontos turísticos.",
+      "Artigos, guias, cultura local e experiências para conhecer destinos além dos pontos turísticos e planejar viagens fora do óbvio.",
     tripsTitle: "Viagens por esporte, experiência e conceito | Trovr",
     tripsDescription:
       "Descubra viagens fora do óbvio organizadas por esporte, experiência, conceito e destino no hub da Trovr.",

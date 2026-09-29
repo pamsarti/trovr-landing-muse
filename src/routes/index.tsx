@@ -4,7 +4,6 @@ import { ArrowRight, ArrowUpRight, Pause, Play } from "lucide-react";
 import {
   ACTIVITIES,
   activityLabel,
-  colorForActivity,
   getPublicSpots,
   placeLabel,
   slugify,
@@ -215,6 +214,7 @@ function SectionIntro({ kicker, title, body }: { kicker: string; title: string; 
 function SportsEntry() {
   const t = useT();
   const activities = ACTIVITIES.filter((activity) => activity.active);
+  const spots = getPublicSpots();
   return (
     <section id="sports" className="px-6 py-20 sm:py-28">
       <div className="mx-auto max-w-7xl">
@@ -223,31 +223,44 @@ function SportsEntry() {
           title={t.home.sportsTitle}
           body={t.home.sportsBody}
         />
-        <div className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-5">
-          {activities.map((activity) => (
-            <Link
-              key={activity.id}
-              to="/spots"
-              search={{ activity: activity.id }}
-              data-analytics-event="select_sport"
-              data-analytics-name={activity.label}
-              data-analytics-category={activity.id}
-              className="group relative min-h-36 overflow-hidden rounded-xl border border-coffee/10 bg-white/30 p-5 shadow-[0_12px_32px_rgb(43_43_43/0.06)] transition-all hover:-translate-y-0.5 hover:bg-ink hover:shadow-[0_18px_38px_rgb(43_43_43/0.12)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
-            >
-              <span
-                aria-hidden
-                className="absolute inset-x-0 top-0 h-1"
-                style={{ backgroundColor: colorForActivity(activity.id) }}
-              />
-              <span className="font-serif text-2xl text-ink transition-colors group-hover:text-paper">
-                {activity.label}
-              </span>
-              <span className="absolute bottom-5 left-5 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee transition-colors group-hover:text-sand">
-                {t.home.explore}
-                <ArrowRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
-          ))}
+        <div className="mt-12 grid border-y border-coffee/20 md:grid-cols-2 md:divide-x md:divide-coffee/20">
+          {activities.map((activity, index) => {
+            const spot = spots.find((candidate) => candidate.activity === activity.id);
+            return (
+              <Link
+                key={activity.id}
+                to="/spots"
+                search={{ activity: activity.id }}
+                data-analytics-event="select_sport"
+                data-analytics-name={activity.label}
+                data-analytics-category={activity.id}
+                className="group flex min-h-28 items-center gap-4 border-b border-coffee/20 py-5 transition-colors last:border-b-0 hover:bg-sand/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sage md:px-6 md:[&:nth-last-child(-n+2)]:border-b-0"
+              >
+                <span className="w-7 shrink-0 text-[10px] tracking-[0.2em] text-coffee/70">
+                  {String(index + 1).padStart(2, "0")}
+                </span>
+                {spot && (
+                  <img
+                    src={spotImage(spot, 360, 240)}
+                    alt=""
+                    loading="lazy"
+                    className="h-16 w-24 shrink-0 rounded-sm object-cover grayscale-[20%] transition-all duration-500 group-hover:grayscale-0 sm:h-20 sm:w-32"
+                  />
+                )}
+                <span className="min-w-0 flex-1">
+                  <span className="block font-serif text-2xl leading-tight text-ink sm:text-3xl">
+                    {activity.label}
+                  </span>
+                  {spot && (
+                    <span className="mt-1 block truncate text-xs uppercase tracking-[0.14em] text-coffee">
+                      {spot.name} · {placeLabel(spot.country)}
+                    </span>
+                  )}
+                </span>
+                <ArrowRight className="h-4 w-4 shrink-0 text-coffee transition-transform group-hover:translate-x-1" />
+              </Link>
+            );
+          })}
         </div>
       </div>
     </section>
@@ -371,32 +384,67 @@ function Stories() {
           title={t.home.storiesTitle}
           body={t.home.storiesBody}
         />
-        <div className="mt-12 grid gap-5 md:grid-cols-3">
-          {articles.map((article: JournalArticle) => (
+        <div className="mt-12 grid gap-8 lg:grid-cols-[1.35fr_0.65fr] lg:gap-10">
+          {articles[0] && (
             <Link
-              key={article.id}
+              key={articles[0].id}
               to="/journal/$slug"
-              params={{ slug: article.slug }}
-              data-analytics-event="read_story"
-              data-analytics-name={article.title}
-              data-analytics-category={article.category}
+              params={{ slug: articles[0].slug }}
+              data-analytics-event="read_article"
+              data-analytics-name={articles[0].title}
+              data-analytics-category={articles[0].category}
               className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
             >
-              <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink">
+              <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink sm:aspect-[16/10]">
                 <img
-                  src={article.heroImage}
-                  alt={article.title}
+                  src={articles[0].heroImage}
+                  alt={articles[0].title}
                   loading="lazy"
                   className="card-img h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
                 />
               </div>
               <p className="mt-5 text-xs uppercase tracking-[0.18em] text-coffee">
-                {CATEGORY_LABEL[article.category]} · {article.readTime} min de leitura
+                {CATEGORY_LABEL[articles[0].category]} · {articles[0].readTime} min de leitura
               </p>
-              <h3 className="mt-3 font-serif text-2xl leading-tight text-ink">{article.title}</h3>
-              <p className="mt-3 line-clamp-3 text-base leading-6 text-coffee">{article.dek}</p>
+              <h3 className="mt-3 max-w-3xl font-serif text-3xl leading-tight text-ink sm:text-4xl">
+                {articles[0].title}
+              </h3>
+              <p className="mt-3 max-w-2xl text-base leading-6 text-coffee">{articles[0].dek}</p>
             </Link>
-          ))}
+          )}
+          <div className="divide-y divide-coffee/20 border-y border-coffee/20">
+            {articles.slice(1).map((article: JournalArticle) => (
+              <Link
+                key={article.id}
+                to="/journal/$slug"
+                params={{ slug: article.slug }}
+                data-analytics-event="read_article"
+                data-analytics-name={article.title}
+                data-analytics-category={article.category}
+                className="group grid grid-cols-[7rem_1fr] gap-5 py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage lg:grid-cols-1"
+              >
+                <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink lg:aspect-[16/7]">
+                  <img
+                    src={article.heroImage}
+                    alt={article.title}
+                    loading="lazy"
+                    className="card-img h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+                <div>
+                  <p className="text-[10px] uppercase tracking-[0.18em] text-coffee">
+                    {CATEGORY_LABEL[article.category]} · {article.readTime} min
+                  </p>
+                  <h3 className="mt-2 font-serif text-xl leading-tight text-ink sm:text-2xl">
+                    {article.title}
+                  </h3>
+                  <p className="mt-2 hidden text-sm leading-6 text-coffee sm:line-clamp-2">
+                    {article.dek}
+                  </p>
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
         <Link
           to="/journal"
@@ -467,23 +515,23 @@ function Founder() {
 function ItineraryService() {
   const t = useT();
   return (
-    <section className="bg-terracotta px-6 py-20 text-paper sm:py-28">
+    <section className="border-y border-coffee/10 bg-sand/55 px-6 py-20 text-ink sm:py-28">
       <div className="mx-auto max-w-5xl text-center">
-        <p className="text-xs uppercase tracking-[0.24em] text-paper/85">{t.home.serviceKicker}</p>
+        <p className="text-xs uppercase tracking-[0.24em] text-coffee">{t.home.serviceKicker}</p>
         <h2 className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-[1.08] sm:text-5xl">
           {t.home.serviceTitle}
         </h2>
-        <p className="mx-auto mt-7 max-w-3xl text-base leading-7 text-paper/90 sm:text-lg">
+        <p className="mx-auto mt-7 max-w-3xl text-base leading-7 text-coffee sm:text-lg">
           {t.home.serviceBody}
         </p>
-        <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-paper/75">
+        <p className="mx-auto mt-4 max-w-3xl text-sm leading-6 text-coffee/80">
           {t.home.serviceDisclaimer}
         </p>
         <Link
           to="/roteiro"
           data-analytics-event="open_itinerary"
           data-analytics-name="home_service"
-          className="mt-9 inline-flex items-center gap-3 rounded-full bg-paper px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+          className="mt-9 inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
         >
           {t.home.serviceCta} <ArrowRight className="h-4 w-4" />
         </Link>
