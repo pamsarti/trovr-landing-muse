@@ -328,7 +328,7 @@ export function SpotCard({
 
         {/* Related journal article CTA — distinct from the Trip CTA above */}
         {relatedArticle && (
-          <section aria-label="Artigo relacionado" className="mt-10">
+          <section aria-label="Conteúdo relacionado" className="mt-10">
             <Link
               to="/journal/$slug"
               params={{ slug: relatedArticle.slug }}
@@ -353,11 +353,11 @@ export function SpotCard({
                       fill="currentColor"
                     />
                   </svg>
-                  Artigos · {CATEGORY_LABEL[relatedArticle.category]}
+                  Conteúdo · {CATEGORY_LABEL[relatedArticle.category]}
                 </span>
               </div>
               <div className="px-6 py-6 sm:px-8 sm:py-7">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-stone">Leia o artigo</p>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-stone">Ver conteúdo</p>
                 <h3 className="mt-3 font-serif text-2xl italic leading-tight text-ink sm:text-3xl">
                   {relatedArticle.title}
                 </h3>

@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState, type FormEvent } from "react";
 import { Pause, Play } from "lucide-react";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -159,6 +159,14 @@ function WhyExists() {
             {p}
           </p>
         ))}
+        <Link
+          to="/roteiro"
+          data-analytics-event="open_contact"
+          data-analytics-name="about_intro"
+          className="inline-flex rounded-full bg-sage px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink"
+        >
+          {t.about.contactCta}
+        </Link>
       </div>
     </section>
   );

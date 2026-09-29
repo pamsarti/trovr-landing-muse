@@ -11,7 +11,7 @@ export function SpotsFooter() {
   return (
     <footer className="border-t border-stone/20 px-6 py-16">
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-        <p className="font-serif text-4xl lowercase text-ink">trovr</p>
+        <p className="font-serif text-4xl uppercase tracking-[0.04em] text-ink">TROVR</p>
         <p className="font-serif text-sm italic text-stone">{t.spotsChrome.footerTagline}</p>
       </div>
     </footer>

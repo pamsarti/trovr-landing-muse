@@ -211,7 +211,7 @@ function InquireForm({
     return (
       <div className="mt-16 border border-stone/30 px-6 py-14 text-center">
         <p className="font-serif text-xl italic text-ink sm:text-2xl">{t.inquiry.success}</p>
-        <p className="mt-8 font-serif text-3xl lowercase text-ink">trovr</p>
+        <p className="mt-8 font-serif text-3xl uppercase tracking-[0.04em] text-ink">TROVR</p>
       </div>
     );
   }

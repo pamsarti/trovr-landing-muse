@@ -102,11 +102,11 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           <Link
             to="/"
             className={[
-              "font-serif text-2xl lowercase tracking-tight sm:text-[28px] transition-colors",
+              "font-serif text-2xl uppercase tracking-[0.04em] sm:text-[28px] transition-colors",
               transparent && !scrolled ? "text-paper" : "text-ink",
             ].join(" ")}
           >
-            trovr
+            TROVR
           </Link>
           <nav className="hidden items-center gap-10 md:flex">
             {NAV.map((item) => {
@@ -131,8 +131,8 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               );
             })}
             <Link
-              to="/spots"
-              data-analytics-event="open_map"
+              to="/roteiro"
+              data-analytics-event="open_contact"
               data-analytics-name="header_desktop"
               className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink"
             >
@@ -171,9 +171,9 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             <Link
               to="/"
               onClick={() => setOpen(false)}
-              className="font-serif text-2xl lowercase text-ink"
+              className="font-serif text-2xl uppercase tracking-[0.04em] text-ink"
             >
-              trovr
+              TROVR
             </Link>
             <button
               ref={closeButtonRef}
@@ -203,9 +203,9 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               );
             })}
             <Link
-              to="/spots"
+              to="/roteiro"
               onClick={() => setOpen(false)}
-              data-analytics-event="open_map"
+              data-analytics-event="open_contact"
               data-analytics-name="header_mobile"
               className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-paper"
             >

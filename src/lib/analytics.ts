@@ -5,7 +5,9 @@ export type AnalyticsEventName =
   | "open_map"
   | "view_place"
   | "open_itinerary"
+  | "open_contact"
   | "submit_itinerary"
+  | "submit_contact"
   | "newsletter_signup"
   | "read_story"
   | "read_article";
