@@ -91,8 +91,9 @@ export function AnalyticsManager() {
     >
       <p className="font-serif text-2xl">Sua privacidade importa.</p>
       <p className="mt-3 max-w-2xl text-sm leading-6 text-paper/80">
-        Usamos métricas opcionais para entender visitas, cliques e como melhorar a Trovr. Elas só
-        são ativadas com sua autorização. Você pode mudar sua escolha a qualquer momento.
+        Usamos recursos essenciais para o funcionamento do site e, com sua autorização, métricas
+        opcionais para entender visitas, cliques e como melhorar a Trovr. Você pode mudar sua
+        escolha a qualquer momento.
       </p>
       <div className="mt-5 flex flex-wrap items-center gap-3">
         <button
@@ -100,14 +101,14 @@ export function AnalyticsManager() {
           onClick={() => choose("accepted")}
           className="rounded-full bg-sage px-5 py-2.5 text-xs uppercase tracking-[0.14em] text-paper hover:bg-terracotta"
         >
-          Aceitar métricas
+          Aceitar todas
         </button>
         <button
           type="button"
           onClick={() => choose("rejected")}
           className="rounded-full border border-paper/50 px-5 py-2.5 text-xs uppercase tracking-[0.14em] text-paper hover:bg-paper hover:text-ink"
         >
-          Recusar
+          Somente essenciais
         </button>
         <a href="/privacidade" className="text-xs underline underline-offset-4 text-paper/80">
           Ler política de privacidade
