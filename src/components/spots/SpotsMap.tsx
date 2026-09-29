@@ -17,12 +17,13 @@ export type MapBounds = {
   west: number;
 };
 
-// Quiet atlas palette: pale sea, warm land and very low-contrast boundaries.
-// It deliberately inverts the previous sand-colored ocean.
-const LAND = "#d8c8ae";
-const WATER = "#eef2ef";
+// Brand-led atlas palette: strong moss land against an off-white sea. Sand
+// draws the geography while coffee adds a restrained sense of terrain.
+const LAND = "#556b52";
+const WATER = "#f7f4ee";
+const SAND = "#d8c8ae";
+const COFFEE = "#6d5645";
 const SAGE = "#556b52";
-const STONE = "#6d5645";
 
 /**
  * Vector style painted in the Trovr palette. Vector rather than raster: a
@@ -60,14 +61,14 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
       type: "line",
       source: "world",
       "source-layer": "countries",
-      paint: { "line-color": STONE, "line-width": 0.45, "line-opacity": 0.24 },
+      paint: { "line-color": SAND, "line-width": 0.6, "line-opacity": 0.72 },
     },
     {
       id: "landcover",
       type: "fill",
       source: "carto",
       "source-layer": "landcover",
-      paint: { "fill-color": "#c5cec0", "fill-opacity": 0.28 },
+      paint: { "fill-color": COFFEE, "fill-opacity": 0.14 },
     },
     {
       id: "water",
@@ -82,7 +83,7 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
       source: "carto",
       "source-layer": "boundary",
       filter: ["<=", ["get", "admin_level"], 2],
-      paint: { "line-color": SAGE, "line-width": 0.5, "line-opacity": 0.22 },
+      paint: { "line-color": SAND, "line-width": 0.55, "line-opacity": 0.52 },
     },
     {
       id: "place-label",
@@ -104,10 +105,10 @@ const MAP_STYLE: maplibregl.StyleSpecification = {
         "text-letter-spacing": 0.2,
       },
       paint: {
-        "text-color": STONE,
-        "text-opacity": 0.52,
-        "text-halo-color": LAND,
-        "text-halo-width": 1.2,
+        "text-color": WATER,
+        "text-opacity": 0.72,
+        "text-halo-color": SAGE,
+        "text-halo-width": 1.4,
       },
     },
   ],

@@ -193,7 +193,7 @@ function SpotsIndex() {
 
         {/* Floating chrome: title + activity filters, top-left over the map. */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1000] p-4 sm:p-6">
-          <div className="trovr-glass pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-2xl p-4">
+          <div className="trovr-glass trovr-map-glass pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-2xl p-4">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
                 Atlas · {allSpots.length} lugares
@@ -259,7 +259,7 @@ function SpotsIndex() {
           <button
             type="button"
             onClick={() => setAppliedBounds(bounds)}
-            className="trovr-glass absolute left-1/2 top-4 z-[1000] -translate-x-1/2 rounded-full px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-sage transition-colors hover:bg-sage hover:text-paper"
+            className="trovr-glass trovr-map-glass absolute left-1/2 top-4 z-[1000] -translate-x-1/2 rounded-full px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-sage transition-colors hover:bg-sage hover:text-paper"
           >
             Buscar lugares nesta área
           </button>
@@ -268,7 +268,7 @@ function SpotsIndex() {
           <button
             type="button"
             onClick={() => setAppliedBounds(null)}
-            className="trovr-glass absolute right-4 top-4 z-[1000] rounded-full px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink hover:border-ink"
+            className="trovr-glass trovr-map-glass absolute right-4 top-4 z-[1000] rounded-full px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink hover:border-ink"
           >
             Limpar filtro de área
           </button>
