@@ -48,7 +48,9 @@ export const Route = createFileRoute("/")({
             url: `${SITE_URL}/`,
             isPartOf: { "@type": "WebSite", name: "Trovr", url: SITE_URL },
             about: [
-              "viagens de experiência",
+              "viagens fora do óbvio",
+              "lugares além dos circuitos turísticos tradicionais",
+              "experiências de viagem",
               "esportes",
               "cultura local",
               "roteiros personalizados",
@@ -449,7 +451,7 @@ function Founder() {
             {t.home.founderTitle}
           </h2>
           <p className="mt-7 text-base leading-7 text-coffee sm:text-lg">{t.home.founderBody}</p>
-          <p className="mt-5 text-sm text-coffee">— Pamela Sarti, fundadora da Trovr</p>
+          <p className="mt-5 text-sm text-coffee">— Curadoria Trovr</p>
           <Link
             to="/about"
             className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee hover:text-ink"

@@ -29,8 +29,8 @@ export const Route = createFileRoute("/spots/$continent/$region")({
       ? `${placeLabel(region.name)} — Lugares em ${placeLabel(continent?.name ?? "")} | Trovr`
       : "Lugares | Trovr";
     const description = region
-      ? `Lugares em ${placeLabel(region.name)}, ${placeLabel(continent?.name ?? "")}. ${region.count} destinos.`
-      : "Guia de lugares.";
+      ? `Explore ${region.count} lugares fora do óbvio em ${placeLabel(region.name)}, ${placeLabel(continent?.name ?? "")}, com experiências e informações práticas.`
+      : "Explore lugares fora do óbvio com experiências e informações práticas.";
     return {
       meta: [
         { title },

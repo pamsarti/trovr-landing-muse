@@ -11,7 +11,7 @@ import type { Messages } from "./types";
 export const pt = {
   nav: {
     spots: "Lugares",
-    sports: "Esportes",
+    sports: "Viagens",
     journal: "Histórias",
     about: "Sobre",
     itinerary: "Precisa de ajuda com seu roteiro?",
@@ -23,7 +23,7 @@ export const pt = {
 
   footer: {
     tagline: "Viaje para se descobrir, não para fugir.",
-    spotsTagline: "Um guia dos lugares que valem a viagem.",
+    spotsTagline: "Um guia para viajar além dos roteiros de sempre.",
     copyright: "© 2026 trovr",
     copyrightEmail: "© 2026 · hello@trovr.agency",
   },
@@ -41,70 +41,71 @@ export const pt = {
   },
 
   home: {
-    heroKicker: "Curadoria de viagens de experiência, esportes e cultura local",
+    heroKicker: "Hub de viagens fora do óbvio",
     heroHeadline: () => (
       <>
-        Viaje para se descobrir, <em className="italic font-normal">não para fugir.</em>
+        Descubra o mundo além dos <em className="italic font-normal">roteiros de sempre.</em>
       </>
     ),
     heroBody:
-      "A Trovr é uma curadoria de viagens fora do óbvio. Reunimos lugares para praticar kitesurf, surf, esqui, mergulho, trilhas e outros esportes, com informações que ajudam você a planejar uma viagem com mais propósito.",
-    primaryCta: "Explorar destinos por esporte",
-    secondaryCta: "Montar meu roteiro personalizado",
+      "A Trovr reúne lugares, experiências, esportes, histórias e informação prática para quem quer sair dos circuitos turísticos tradicionais sem viajar no escuro.",
+    primaryCta: "Explorar lugares",
+    secondaryCta: "Planejar meu roteiro",
     pauseGallery: "Pausar galeria de imagens",
     playGallery: "Reproduzir galeria de imagens",
-    sportsKicker: "Destinos para esportes pelo mundo",
-    sportsTitle: "Encontre onde viver o esporte que move você.",
+    sportsKicker: "Escolha o que quer viver",
+    sportsTitle: "Às vezes, a viagem começa antes do destino.",
     sportsBody:
-      "Explore lugares para kitesurf, surf, mergulho, esqui, trilhas, ciclismo, corrida, escalada, vela e cavalgada.",
+      "Comece por um esporte, uma paisagem ou uma forma de viajar. Descubra onde viver essa experiência, quando ir e o que existe ao redor dela.",
     explore: "Explorar",
-    mapKicker: "Mapa de destinos esportivos",
-    mapTitle: "Explore lugares pelo esporte e pela cultura local.",
+    mapKicker: "Mapa Trovr",
+    mapTitle: "Um mundo de possibilidades fora da rota habitual.",
     mapBody:
-      "Comece pela atividade que move você e descubra destinos, temporadas e histórias locais ao redor do mundo.",
-    mapCta: "Explorar o mapa de lugares",
-    placesKicker: "Destinos fora do óbvio",
-    placesTitle: "Lugares escolhidos pelo que você pode viver.",
+      "Explore lugares por esporte, região e época do ano. Cada ponto reúne contexto local e informações para ajudar você a entender se aquela viagem combina com você.",
+    mapCta: "Explorar o mapa",
+    placesKicker: "Curadoria Trovr",
+    placesTitle: "Lugares com uma razão verdadeira para ir.",
     placesBody:
-      "Cada lugar da Trovr é selecionado pela experiência que oferece: o esporte, a época certa, a cultura local e aquilo que faz a viagem valer.",
+      "Não procuramos apenas destinos bonitos. Escolhemos lugares onde existe algo para viver: uma atividade, uma cultura, uma paisagem ou uma história que justifique o deslocamento.",
     allPlaces: "Ver todos os lugares",
     placeCta: "Conhecer este destino",
-    storiesKicker: "Cultura local e histórias de viagem",
-    storiesTitle: "Conheça o lugar para além dos pontos turísticos.",
+    storiesKicker: "Para entender onde você está",
+    storiesTitle: "Um destino começa a mudar quando você olha além da paisagem.",
     storiesBody:
-      "Descubra costumes, pessoas e experiências que ajudam a entender como é viver em cada destino.",
-    storiesCta: "Ler histórias de viagem",
-    manifestoKicker: "Viagens com propósito",
+      "Histórias, costumes, pessoas e escolhas locais que ajudam você a conhecer um lugar para além dos pontos turísticos.",
+    storiesCta: "Ler histórias",
+    manifestoKicker: "Viajar além do óbvio",
     manifestoHeadline: () => (
       <>
-        Um carimbo mostra onde você esteve. A viagem certa muda{"\u00A0"}
-        <em className="italic font-normal">a forma como você volta.</em>
+        Não é sobre chegar onde ninguém foi. É sobre viver o lugar{"\u00A0"}
+        <em className="italic font-normal">de outro jeito.</em>
       </>
     ),
     manifestoP1:
-      "Escolhemos experiências que deixam marca: viagens que despertam coragem, ampliam repertório e fazem você prestar mais atenção ao mundo e à sua própria forma de viver.",
+      "Viajar fora do óbvio não significa perseguir lugares secretos ou transformar destinos em troféus. Significa escolher com mais curiosidade, entender o contexto e permitir que a experiência conduza a viagem.",
     manifestoP2:
-      "Você pode chegar por uma onda, uma trilha, uma montanha ou uma conversa com alguém que vive ali. O importante não é apenas conhecer outro lugar, mas entender sua cultura, viver algo verdadeiro e voltar com uma nova perspectiva.",
-    manifestoClosing: "Na Trovr, o destino não é o fim da história. É onde a descoberta começa.",
+      "Você pode chegar por uma onda, uma trilha, um trem, uma montanha ou uma conversa. O destino importa, mas o que você encontra quando presta atenção importa ainda mais.",
+    manifestoClosing:
+      "Na Trovr, o lugar não é apenas um ponto no mapa. É o começo de uma descoberta.",
     founderKicker: "A curadoria por trás da Trovr",
-    founderTitle: "Experiência real por trás de cada recomendação.",
+    founderTitle: "Menos listas prontas. Mais razões para viajar.",
     founderBody:
-      "A Trovr nasceu das viagens que eu indicaria para os meus amigos mais próximos. Não porque são perfeitas ou famosas, mas porque existe alguma coisa ali que vale o deslocamento: um esporte, uma cultura, um encontro ou uma experiência que muda a forma de enxergar o mundo.",
+      "A Trovr seleciona lugares pelo que você pode viver e aprender neles. Cada recomendação considera a experiência, a melhor época, a cultura local e as informações necessárias para transformar interesse em uma viagem possível.",
     founderCta: "Conheça a Trovr",
-    serviceKicker: "Roteiros de viagem personalizados",
-    serviceTitle: "Um roteiro feito para a sua forma de viajar.",
+    serviceKicker: "Viaje fora do óbvio, sem complicar",
+    serviceTitle: "Um roteiro que começa pelo que você quer viver.",
     serviceBody:
-      "Você conta o que quer viver, quanto tempo tem e como gosta de viajar. A Trovr pesquisa destinos, melhores épocas, experiências, deslocamentos e opções de hospedagem para ajudar você a construir um roteiro coerente e fora do óbvio.",
+      "Você conta seus interesses, seu ritmo e o tempo disponível. A Trovr pesquisa lugares, épocas, experiências, deslocamentos e hospedagens para criar um caminho coerente com a sua forma de viajar.",
     serviceDisclaimer:
       "A Trovr faz a curadoria e o planejamento do roteiro. As reservas e a operação da viagem continuam sob sua escolha.",
-    serviceCta: "Quero um roteiro personalizado",
+    serviceCta: "Planejar meu roteiro",
     faqKicker: "Perguntas frequentes",
     faqTitle: "O que você precisa saber sobre a Trovr.",
     faq: [
       {
         question: "O que é a Trovr?",
         answer:
-          "A Trovr é uma plataforma de curadoria de viagens de experiência que conecta destinos, esportes, cultura local e roteiros personalizados.",
+          "A Trovr é um hub de viagens fora do óbvio que reúne lugares, experiências, esportes, cultura local, histórias e roteiros personalizados.",
       },
       {
         question: "A Trovr vende ou opera viagens?",
@@ -128,45 +129,45 @@ export const pt = {
     kicker: "Cartas da Trovr",
     headline: () => (
       <>
-        Descubra novos lugares{"\u00A0"}
-        <em className="italic font-normal">antes de todo mundo falar sobre eles.</em>
+        Ideias para sair{"\u00A0"}
+        <em className="italic font-normal">dos roteiros de sempre.</em>
       </>
     ),
     subtext:
-      "Receba destinos por esporte, guias de viagem, histórias sobre cultura local, calendários de temporadas e experiências fora dos roteiros mais comuns.",
+      "Receba lugares, experiências, histórias locais, temporadas esportivas e novas formas de conhecer o mundo.",
     emailPlaceholder: "Digite seu email",
-    subscribe: "Receber novas descobertas",
+    subscribe: "Receber descobertas",
     subscribing: "Inscrevendo…",
     success: "Pronto. A próxima descoberta chega por email.",
     error: "Algo deu errado. Tente novamente.",
   },
 
   about: {
-    heroHeadline: "A Trovr nasceu das viagens que valem o deslocamento.",
-    heroSubtext: "Curadoria de destinos esportivos, cultura local e experiências fora do óbvio.",
+    heroHeadline: "A Trovr existe para tornar o mundo menos óbvio.",
+    heroSubtext:
+      "Um hub de lugares, experiências e histórias para viajar além dos circuitos turísticos tradicionais.",
 
     whyP1:
-      "Um destino pode ser bonito e ainda assim não dizer nada. A Trovr procura os lugares em que existe algo para viver, aprender e levar de volta.",
+      "A Trovr é um hub de lugares, experiências e histórias para quem quer viajar além dos circuitos turísticos tradicionais.",
     whyP2:
-      "A pesquisa começa pelo que move você: uma onda, uma trilha, uma montanha, o vento, a neve ou a vontade de entender uma cultura de perto. Depois entram a época certa, o contexto local e as escolhas práticas que transformam interesse em uma viagem possível.",
+      "Não procuramos lugares apenas porque são remotos ou pouco conhecidos. Procuramos razões verdadeiras para ir: algo para viver, aprender, praticar ou compreender.",
     whyP3:
-      "A Trovr não opera nem vende pacotes. Fazemos curadoria e planejamento para que você descubra possibilidades, compare caminhos e viaje com mais contexto e propósito.",
+      "Reunimos contexto local, melhores épocas, atividades e informações práticas para ajudar você a sair do óbvio sem abrir mão de planejar bem.",
 
-    curateHeading: "Como curamos.",
+    curateHeading: "Como escolhemos.",
     curateIntro: () => (
       <>
         Tudo&nbsp; começa com uma pergunta simples: o que existe ali que realmente vale a viagem? A
         resposta precisa ir além da fotografia e reunir experiência, contexto e informação útil.
       </>
     ),
-    curateIntro2:
-      "É uma curadoria pessoal, apoiada em três critérios que aparecem em tudo o que publicamos:",
+    curateIntro2: "Nossa curadoria segue três critérios que aparecem em tudo o que publicamos:",
     principle1Title: "Tem que te transformar.",
     principle1Body:
       "O lugar precisa oferecer algo que você possa viver, aprender ou levar de volta — pelo esporte, pela cultura ou por um encontro que mude a perspectiva.",
-    principle2Title: "Não pode ser a óbvia.",
+    principle2Title: "Precisa ir além do roteiro de sempre.",
     principle2Body:
-      "Procuramos alternativas com personalidade e contexto, mesmo quando estão perto de destinos conhecidos. Sair do óbvio não significa complicar a viagem.",
+      "Procuramos alternativas com personalidade e contexto, mesmo quando estão perto de destinos conhecidos. Sair do óbvio não precisa complicar a viagem.",
     principle3Title: "Tem que ser real, não pose para foto.",
     principle3Body:
       "A experiência precisa fazer sentido fora da fotografia. Informamos o que esperar, quando ir e o que torna aquele lugar particular para que a decisão seja consciente.",
@@ -182,7 +183,7 @@ export const pt = {
       {
         question: "O que é a Trovr?",
         answer:
-          "A Trovr é uma plataforma de curadoria de destinos esportivos, cultura local e experiências fora do óbvio. Reunimos informação e contexto para ajudar você a escolher e planejar viagens com mais propósito.",
+          "A Trovr é um hub de viagens fora do óbvio. Reunimos lugares, experiências, esportes, cultura local, histórias e informação prática para ajudar você a escolher e planejar como viajar.",
       },
       {
         question: "A Trovr vende ou opera viagens?",
@@ -205,9 +206,10 @@ export const pt = {
   },
 
   journalIndex: {
-    title: "Histórias",
-    subtitle: "Cultura local, experiências e guias para conhecer um lugar além do óbvio.",
-    moreHeading: "Mais do campo.",
+    title: "Histórias para conhecer um lugar além do roteiro.",
+    subtitle:
+      "Cultura local, pessoas, experiências e guias para entender o que existe para além dos pontos turísticos.",
+    moreHeading: "Mais histórias e guias.",
     story: "história",
     stories: "histórias",
     readTheStory: "Ler a história",
@@ -239,7 +241,7 @@ export const pt = {
   },
 
   spotsChrome: {
-    footerTagline: "Um guia dos lugares que valem a viagem.",
+    footerTagline: "Um guia para viajar além dos roteiros de sempre.",
     comingSoon: "Em breve",
     soon: "— em breve",
   },
@@ -350,21 +352,21 @@ export const pt = {
     "Informações sinalizadas vêm da fonte original ou são estimativas e ainda não foram verificadas de forma independente pela Trovr.",
 
   seo: {
-    siteTitle: "Trovr | Viagens de experiência, esportes e cultura",
+    siteTitle: "Trovr | Hub de viagens fora do óbvio",
     siteDescription:
-      "Descubra destinos esportivos, cultura local e roteiros personalizados com a curadoria de viagens fora do óbvio da Trovr.",
-    homeTitle: "Trovr | Viagens de experiência, esportes e cultura",
+      "Descubra lugares, experiências, esportes, histórias e roteiros para viajar além dos circuitos turísticos tradicionais com a Trovr.",
+    homeTitle: "Trovr | Hub de viagens fora do óbvio",
     homeDescription:
-      "Descubra destinos para kitesurf, surf, trilhas, esqui e mergulho. Explore cultura local, melhores épocas e roteiros personalizados com a Trovr.",
-    aboutTitle: "Sobre a Trovr | Curadoria de viagens e experiências",
+      "Explore lugares fora do óbvio, experiências por esporte, cultura local, melhores épocas e roteiros personalizados com a Trovr.",
+    aboutTitle: "Sobre a Trovr | Hub de viagens fora do óbvio",
     aboutDescription:
-      "Conheça a Trovr, uma curadoria de destinos esportivos, cultura local e experiências fora do óbvio para viajar com mais contexto e propósito.",
-    journalTitle: "Histórias de viagem e cultura local | Trovr",
+      "Conheça a Trovr, um hub de lugares, experiências e histórias para viajar além dos circuitos turísticos tradicionais.",
+    journalTitle: "Histórias, cultura local e guias de viagem | Trovr",
     journalDescription:
       "Histórias de viagem, cultura local e experiências que ajudam você a conhecer destinos para além dos pontos turísticos.",
-    tripsTitle: "Viagens por esporte e experiência | Trovr",
+    tripsTitle: "Viagens por esporte, experiência e conceito | Trovr",
     tripsDescription:
-      "Descubra viagens e experiências organizadas por esporte, conceito e destino, com a curadoria da Trovr.",
+      "Descubra viagens fora do óbvio organizadas por esporte, experiência, conceito e destino no hub da Trovr.",
     comingSoonTitle: "Em Breve — Trovr",
     comingSoonDescription: "Esta expedição chega em breve.",
   },

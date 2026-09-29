@@ -5,7 +5,7 @@ import { useT } from "@/i18n/useT";
 
 const NAV = [
   { href: "/spots", key: "spots", match: "/spots" },
-  { href: "/#sports", key: "sports", match: "" },
+  { href: "/trips", key: "sports", match: "/trips" },
   { href: "/journal", key: "journal", match: "/journal" },
   { href: "/about", key: "about", match: "/about" },
 ] as const;

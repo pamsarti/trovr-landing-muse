@@ -23,8 +23,8 @@ export const Route = createFileRoute("/spots/$continent/")({
     const continent = findContinent(activity, params.continent);
     const title = continent ? `${placeLabel(continent.name)} — Lugares | Trovr` : "Lugares | Trovr";
     const description = continent
-      ? `Lugares em ${placeLabel(continent.name)}. ${continent.count} destinos para explorar.`
-      : "Guia de lugares.";
+      ? `Explore ${continent.count} lugares fora do óbvio em ${placeLabel(continent.name)}, com experiências, esportes e contexto local.`
+      : "Explore lugares fora do óbvio com experiências, esportes e contexto local.";
     return {
       meta: [
         { title },

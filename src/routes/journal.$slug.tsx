@@ -20,7 +20,10 @@ export const Route = createFileRoute("/journal/$slug")({
   head: ({ loaderData, params }) => {
     const a = loaderData?.article;
     const title = a ? (a.seoTitle ?? `${a.title} — Histórias Trovr`) : "Histórias — Trovr";
-    const desc = a?.seoDescription ?? a?.dek ?? "Notas de campo dos lugares que merecem a viagem.";
+    const desc =
+      a?.seoDescription ??
+      a?.dek ??
+      "Histórias e contexto para conhecer lugares além dos roteiros turísticos de sempre.";
     const path = `/journal/${params.slug}`;
     const url = absoluteUrl(path);
     const image = a ? absoluteUrl(a.ogImage ?? a.heroImage) : undefined;

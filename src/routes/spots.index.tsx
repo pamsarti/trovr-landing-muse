@@ -23,27 +23,27 @@ export const Route = createFileRoute("/spots/")({
   validateSearch: validateSpotsSearch,
   head: () => ({
     meta: [
-      { title: "Lugares — Atlas de aventura | Trovr" },
+      { title: "Lugares fora do óbvio pelo mundo | Trovr" },
       {
         name: "description",
         content:
-          "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
+          "Explore no mapa da Trovr lugares fora do óbvio por esporte, região e época do ano, com contexto local e informações práticas.",
       },
-      { property: "og:title", content: "Lugares — Trovr" },
+      { property: "og:title", content: "Lugares fora do óbvio pelo mundo | Trovr" },
       {
         property: "og:description",
         content:
-          "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
+          "Explore lugares por esporte, região e época do ano e descubra o que torna cada viagem especial.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/spots` },
       { property: "og:image", content: DEFAULT_OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Lugares — Atlas de aventura | Trovr" },
+      { name: "twitter:title", content: "Lugares fora do óbvio pelo mundo | Trovr" },
       {
         name: "twitter:description",
         content:
-          "Explore destinos para esportes, melhores épocas e cultura local no mapa da Trovr.",
+          "Explore lugares fora do óbvio, melhores épocas, esportes e cultura local no mapa da Trovr.",
       },
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
@@ -205,7 +205,7 @@ function SpotsIndex() {
                 )}
               </p>
               <h1 className="mt-1.5 font-serif text-xl leading-tight text-ink sm:text-2xl">
-                Lugares que merecem a viagem
+                Lugares com uma razão verdadeira para ir
               </h1>
             </div>
 

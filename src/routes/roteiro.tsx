@@ -6,9 +6,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
 
-const TITLE = "Roteiro de viagem personalizado | Trovr";
+const TITLE = "Roteiro personalizado fora do óbvio | Trovr";
 const DESCRIPTION =
-  "Receba ajuda para pesquisar destinos, melhores épocas, experiências, deslocamentos e hospedagens em um roteiro de viagem feito para o seu perfil.";
+  "Planeje uma viagem fora do óbvio com pesquisa de lugares, melhores épocas, experiências, deslocamentos e hospedagens para o seu perfil.";
 
 export const Route = createFileRoute("/roteiro")({
   head: () => ({
@@ -95,15 +95,15 @@ function ItineraryPage() {
       <section className="px-6 pb-16 pt-16 sm:pb-24 sm:pt-24">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-xs uppercase tracking-[0.24em] text-coffee">
-            Roteiros de viagem personalizados
+            Viaje fora do óbvio, sem complicar
           </p>
           <h1 className="mx-auto mt-6 max-w-4xl font-serif text-5xl leading-[1.04] sm:text-6xl">
-            Um roteiro feito para a sua forma de viajar.
+            Um roteiro que começa pelo que você quer viver.
           </h1>
           <p className="mx-auto mt-7 max-w-3xl text-base leading-7 text-coffee sm:text-lg">
-            Você conta o que quer viver, quanto tempo tem e como gosta de viajar. A Trovr pesquisa
-            destinos, épocas, experiências, deslocamentos e hospedagens para organizar um roteiro
-            coerente e fora do óbvio.
+            Você conta seus interesses, seu ritmo e o tempo disponível. A Trovr pesquisa lugares,
+            épocas, experiências, deslocamentos e hospedagens para criar um caminho coerente com a
+            sua forma de viajar.
           </p>
         </div>
       </section>
@@ -123,12 +123,12 @@ function ItineraryPage() {
               [
                 "02",
                 "A Trovr pesquisa",
-                "Destinos, temporadas, atividades, deslocamentos e opções de hospedagem adequadas ao seu perfil.",
+                "Lugares, temporadas, atividades, deslocamentos e opções de hospedagem adequadas ao seu perfil.",
               ],
               [
                 "03",
                 "Você recebe o roteiro",
-                "Uma proposta organizada para orientar suas escolhas e facilitar o planejamento da viagem.",
+                "Uma proposta organizada para sair dos roteiros de sempre sem transformar a viagem em complicação.",
               ],
             ].map(([number, title, body]) => (
               <li key={number} className="border-t border-coffee/30 pt-5">
