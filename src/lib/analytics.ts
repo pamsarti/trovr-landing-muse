@@ -10,7 +10,12 @@ export type AnalyticsEventName =
   | "submit_contact"
   | "newsletter_signup"
   | "read_story"
-  | "read_article";
+  | "read_article"
+  | "open_welcome_wall"
+  | "close_welcome_wall"
+  | "complete_compass_quiz"
+  | "compass_lead_capture"
+  | "select_compass_plan";
 
 type AnalyticsParameters = Record<string, string | number | boolean | undefined>;
 
