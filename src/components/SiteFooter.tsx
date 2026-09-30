@@ -20,12 +20,20 @@ export function SiteFooter({ variant = "default" }: { variant?: "default" | "spo
           TROVR
         </Link>
         <p className="font-serif text-base italic text-stone sm:text-lg">{tagline}</p>
-        <Link
-          to="/privacidade"
-          className="text-[11px] uppercase tracking-[0.16em] text-stone hover:text-ink"
-        >
-          Privacidade
-        </Link>
+        <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
+          <Link
+            to="/roteiro"
+            className="text-[11px] uppercase tracking-[0.16em] text-stone hover:text-ink"
+          >
+            Fale com a Trovr
+          </Link>
+          <Link
+            to="/privacidade"
+            className="text-[11px] uppercase tracking-[0.16em] text-stone hover:text-ink"
+          >
+            Privacidade
+          </Link>
+        </div>
         <p className="text-xs tracking-wide text-stone">{t.footer.copyright}</p>
       </div>
     </footer>

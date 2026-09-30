@@ -169,8 +169,8 @@ function Hero() {
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Link>
               <Link
-                to="/roteiro"
-                data-analytics-event="open_contact"
+                to="/viagem"
+                data-analytics-event="open_viagem_offer"
                 data-analytics-name="hero"
                 className="inline-flex items-center rounded-full border border-paper/70 px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
               >
@@ -530,8 +530,8 @@ function ItineraryService() {
           {t.home.serviceDisclaimer}
         </p>
         <Link
-          to="/roteiro"
-          data-analytics-event="open_contact"
+          to="/viagem"
+          data-analytics-event="open_viagem_offer"
           data-analytics-name="home_service"
           className="mt-9 inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
         >

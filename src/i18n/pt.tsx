@@ -14,7 +14,7 @@ export const pt = {
     sports: "Viagens",
     journal: "Conteúdo",
     about: "Sobre",
-    itinerary: "Conte o que você procura",
+    itinerary: "Crie sua viagem",
     openMenu: "Abrir menu",
     closeMenu: "Fechar menu",
     switchToPt: "Ver em português",
@@ -50,7 +50,7 @@ export const pt = {
     heroBody:
       "A Trovr reúne lugares, experiências, esportes, histórias e informação prática para quem quer sair dos circuitos turísticos tradicionais sem viajar no escuro.",
     primaryCta: "Explorar lugares",
-    secondaryCta: "Conte o que você procura",
+    secondaryCta: "Crie sua viagem",
     pauseGallery: "Pausar galeria de imagens",
     playGallery: "Reproduzir galeria de imagens",
     sportsKicker: "Escolha o que quer viver",
@@ -92,13 +92,13 @@ export const pt = {
     founderBody:
       "A Trovr seleciona lugares pelo que você pode viver e aprender neles. Cada recomendação considera a experiência, a melhor época, a cultura local e as informações necessárias para transformar interesse em uma viagem possível.",
     founderCta: "Conheça a Trovr",
-    serviceKicker: "Para viajantes, operadores e marcas",
-    serviceTitle: "Toda boa viagem começa com uma conversa bem direcionada.",
+    serviceKicker: "Viagem Trovr",
+    serviceTitle: "Uma viagem que começa pelo que você quer viver.",
     serviceBody:
-      "Você pode estar planejando uma viagem, apresentando uma experiência, propondo uma parceria ou apenas tentando entender por onde começar. Conte o contexto e a Trovr ajuda a dar direção ao próximo passo.",
+      "A Trovr transforma seu momento, seus desejos e seus limites em uma viagem possível, com curadoria fora do óbvio e um roteiro construído no seu ritmo.",
     serviceDisclaimer:
-      "Cada conversa é encaminhada de acordo com o que você procura: conteúdo, curadoria, roteiro, divulgação ou parceria.",
-    serviceCta: "Conte o que você procura",
+      "Você pode começar mesmo sem destino definido. A candidatura não gera cobrança nem contratação automática.",
+    serviceCta: "Conhecer a Viagem Trovr",
     faqKicker: "Perguntas frequentes",
     faqTitle: "Como usar a Trovr para viajar fora do óbvio.",
     faq: [

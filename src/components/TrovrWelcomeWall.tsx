@@ -351,8 +351,8 @@ export function TrovrWelcomeWall() {
                     className="mt-6 grid gap-4 sm:grid-cols-2"
                   >
                     <input type="hidden" name="form-name" value="bussola-trovr" />
-                    <input type="hidden" name="intent" value={intent} />
-                    <input type="hidden" name="energy" value={energy} />
+                    <input type="hidden" name="intent" value={intent ?? ""} />
+                    <input type="hidden" name="energy" value={energy ?? ""} />
                     <input type="hidden" name="source_page" value="/" />
                     <p className="hidden">
                       <label>
