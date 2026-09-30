@@ -15,7 +15,11 @@ export type AnalyticsEventName =
   | "close_welcome_wall"
   | "complete_compass_quiz"
   | "compass_lead_capture"
-  | "select_compass_plan";
+  | "select_compass_plan"
+  | "open_viagem_offer"
+  | "start_viagem_application"
+  | "advance_viagem_application"
+  | "submit_viagem_application";
 
 type AnalyticsParameters = Record<string, string | number | boolean | undefined>;
 

@@ -231,6 +231,204 @@
   backdrop-filter: blur(18px) saturate(115%);
 }
 
+/* Viagem Trovr — one continuous cinematic journey built with real brand photography. */
+.viagem-immersive {
+  overflow: clip;
+}
+
+.viagem-immersive em {
+  font-style: italic;
+  font-weight: 420;
+}
+
+.viagem-scene {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.viagem-story-stage {
+  position: relative;
+  isolation: isolate;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.viagem-story-stage::before {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background: rgb(43 43 43 / 0.42);
+  content: "";
+  pointer-events: none;
+}
+
+.viagem-scene-image {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.viagem-hero {
+  min-height: 78svh;
+  background: transparent;
+}
+
+.viagem-hero-veil,
+.viagem-kite-veil,
+.viagem-horizon-veil {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.viagem-hero-veil {
+  background: transparent;
+}
+
+.viagem-blend-top {
+  margin-top: 0;
+}
+
+.viagem-kite {
+  min-height: 88svh;
+  background: transparent;
+}
+
+.viagem-kite-veil {
+  background: transparent;
+}
+
+.viagem-horizon {
+  min-height: 112svh;
+  background: transparent;
+}
+
+.viagem-horizon-veil {
+  background: transparent;
+}
+
+.viagem-readable-copy {
+  text-shadow:
+    0 1px 2px rgb(0 0 0 / 0.9),
+    0 0 12px rgb(0 0 0 / 0.45);
+}
+
+.viagem-final-stage {
+  position: relative;
+  isolation: isolate;
+  margin-top: 0;
+  padding-bottom: 5rem;
+  overflow: hidden;
+  background-image:
+    linear-gradient(
+      180deg,
+      rgb(43 43 43 / 0.42) 0%,
+      rgb(43 43 43 / 0.62) 30%,
+      rgb(43 43 43 / 0.72) 100%
+    ),
+    url("/images/alula-hero.jpg");
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+.viagem-visual-alula .viagem-story-stage {
+  background-image: url("/images/alula-fante.jpg");
+  background-position: center 62%;
+}
+
+.viagem-visual-mar .viagem-story-stage {
+  background-image: url("/images/providencia-hero.jpg");
+  background-position: center 58%;
+}
+
+.viagem-visual-mar .viagem-final-stage {
+  background-image:
+    linear-gradient(
+      180deg,
+      rgb(43 43 43 / 0.42) 0%,
+      rgb(43 43 43 / 0.62) 30%,
+      rgb(43 43 43 / 0.72) 100%
+    ),
+    url("/images/alaska-whale.jpg");
+  background-position: center;
+}
+
+.viagem-final-stage::before {
+  content: none;
+}
+
+.viagem-final-surface {
+  background: rgb(216 200 174 / 0.9);
+  box-shadow: 0 28px 90px rgb(0 0 0 / 0.18);
+  -webkit-backdrop-filter: blur(18px) saturate(112%);
+  backdrop-filter: blur(18px) saturate(112%);
+}
+
+.viagem-final-surface .form-field {
+  background: rgb(247 244 238 / 0.58);
+  border-color: rgb(109 86 69 / 0.3);
+}
+
+@media (max-width: 767px) {
+  .viagem-hero .viagem-scene-image {
+    object-position: 64% center;
+  }
+
+  .viagem-hero {
+    min-height: 82svh;
+  }
+
+  .viagem-story-stage {
+    background-attachment: scroll;
+  }
+
+  .viagem-visual-alula .viagem-story-stage {
+    background-position: 54% 62%;
+  }
+
+  .viagem-visual-mar .viagem-story-stage {
+    background-position: center 58%;
+  }
+
+  .viagem-blend-top {
+    margin-top: 0;
+  }
+
+  .viagem-final-stage {
+    margin-top: 0;
+    padding-bottom: 2rem;
+    background-attachment: scroll;
+    background-position: 56% center;
+  }
+}
+
+@media (min-width: 768px) and (max-height: 800px) {
+  .viagem-hero h1 {
+    font-size: 5.1rem;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) and (min-width: 768px) {
+  .viagem-scene-image {
+    animation: viagemBreathe 24s ease-in-out infinite alternate;
+  }
+}
+
+@keyframes viagemBreathe {
+  from {
+    transform: scale(1.01);
+  }
+  to {
+    transform: scale(1.055);
+  }
+}
+
 @keyframes panImg {
   from {
     transform: scale(1.04);

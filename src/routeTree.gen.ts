@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as ViagemRouteImport } from './routes/viagem'
 import { Route as RoteiroRouteImport } from './routes/roteiro'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
@@ -29,6 +30,11 @@ import { Route as ApiAuthLoginRouteImport } from './routes/api.auth.login'
 import { Route as SpotsContinentRegionSpotRouteImport } from './routes/spots.$continent.$region.$spot'
 import { Route as ApiAuthCallbackGithubRouteImport } from './routes/api.auth.callback.github'
 
+const ViagemRoute = ViagemRouteImport.update({
+  id: '/viagem',
+  path: '/viagem',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const RoteiroRoute = RoteiroRouteImport.update({
   id: '/roteiro',
   path: '/roteiro',
@@ -132,6 +138,7 @@ export interface FileRoutesByFullPath {
   '/coming-soon': typeof ComingSoonRoute
   '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
+  '/viagem': typeof ViagemRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
@@ -153,6 +160,7 @@ export interface FileRoutesByTo {
   '/coming-soon': typeof ComingSoonRoute
   '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
+  '/viagem': typeof ViagemRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
@@ -175,6 +183,7 @@ export interface FileRoutesById {
   '/coming-soon': typeof ComingSoonRoute
   '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
+  '/viagem': typeof ViagemRoute
   '/admin/login': typeof AdminLoginRoute
   '/journal/$slug': typeof JournalSlugRoute
   '/trips/$id': typeof TripsIdRoute
@@ -198,6 +207,7 @@ export interface FileRouteTypes {
     | '/coming-soon'
     | '/privacidade'
     | '/roteiro'
+    | '/viagem'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
@@ -219,6 +229,7 @@ export interface FileRouteTypes {
     | '/coming-soon'
     | '/privacidade'
     | '/roteiro'
+    | '/viagem'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
@@ -240,6 +251,7 @@ export interface FileRouteTypes {
     | '/coming-soon'
     | '/privacidade'
     | '/roteiro'
+    | '/viagem'
     | '/admin/login'
     | '/journal/$slug'
     | '/trips/$id'
@@ -262,6 +274,7 @@ export interface RootRouteChildren {
   ComingSoonRoute: typeof ComingSoonRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   RoteiroRoute: typeof RoteiroRoute
+  ViagemRoute: typeof ViagemRoute
   AdminLoginRoute: typeof AdminLoginRoute
   JournalSlugRoute: typeof JournalSlugRoute
   TripsIdRoute: typeof TripsIdRoute
@@ -279,6 +292,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/viagem': {
+      id: '/viagem'
+      path: '/viagem'
+      fullPath: '/viagem'
+      preLoaderRoute: typeof ViagemRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/roteiro': {
       id: '/roteiro'
       path: '/roteiro'
@@ -432,6 +452,7 @@ const rootRouteChildren: RootRouteChildren = {
   ComingSoonRoute: ComingSoonRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   RoteiroRoute: RoteiroRoute,
+  ViagemRoute: ViagemRoute,
   AdminLoginRoute: AdminLoginRoute,
   JournalSlugRoute: JournalSlugRoute,
   TripsIdRoute: TripsIdRoute,

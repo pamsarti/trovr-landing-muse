@@ -50,6 +50,7 @@ export function AnalyticsManager() {
       trackEvent(name, {
         item_name: target.dataset.analyticsName,
         item_category: target.dataset.analyticsCategory,
+        item_variant: target.dataset.analyticsVariant,
         link_url: target instanceof HTMLAnchorElement ? target.href : undefined,
       });
     };

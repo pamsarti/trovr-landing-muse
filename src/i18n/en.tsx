@@ -13,7 +13,7 @@ export const en = {
     sports: "Trips",
     journal: "Content",
     about: "About",
-    itinerary: "Tell us what you need",
+    itinerary: "Create your trip",
     openMenu: "Open menu",
     closeMenu: "Close menu",
     switchToPt: "Ver em português",
@@ -49,7 +49,7 @@ export const en = {
     heroBody:
       "Trovr brings together places, experiences, sports, stories and practical information for people who want to leave the traditional tourist circuit without travelling in the dark.",
     primaryCta: "Explore places",
-    secondaryCta: "Tell us what you need",
+    secondaryCta: "Create your trip",
     pauseGallery: "Pause image gallery",
     playGallery: "Play image gallery",
     sportsKicker: "Choose what you want to experience",
@@ -91,13 +91,13 @@ export const en = {
     founderBody:
       "Trovr selects places for what you can live and learn there. Every recommendation considers the experience, the right season, local culture and the information needed to turn interest into a possible journey.",
     founderCta: "Discover Trovr",
-    serviceKicker: "For travellers, operators and brands",
-    serviceTitle: "Every good journey begins with a well-directed conversation.",
+    serviceKicker: "Viagem Trovr",
+    serviceTitle: "A journey that begins with what you want to experience.",
     serviceBody:
-      "You may be planning a trip, presenting an experience, proposing a partnership or simply working out where to begin. Share the context and Trovr will help direct the next step.",
+      "Trovr turns your moment, wishes and boundaries into a possible journey, with beyond-the-obvious curation and an itinerary built around your pace.",
     serviceDisclaimer:
-      "Each conversation is directed according to what you need: content, curation, itinerary planning, visibility or partnership.",
-    serviceCta: "Tell us what you need",
+      "You can start without a destination in mind. Applying does not create a charge or automatic booking.",
+    serviceCta: "Discover Viagem Trovr",
     faqKicker: "Common questions",
     faqTitle: "How to use Trovr to travel beyond the obvious.",
     faq: [
