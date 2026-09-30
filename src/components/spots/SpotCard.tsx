@@ -8,7 +8,6 @@ import {
   placeLabel,
   spotImage,
 } from "@/lib/spots-data";
-import { findTrip, tripImage, durationLabel } from "@/lib/trips-data";
 import { findArticle, CATEGORY_LABEL } from "@/lib/journal-data";
 import { useT } from "@/i18n/useT";
 
@@ -134,7 +133,6 @@ export function SpotCard({
   const sources = (
     spot.sources && spot.sources.length > 0 ? spot.sources : spot.sourceUrl ? [spot.sourceUrl] : []
   ) as string[];
-  const relatedTrip = spot.relatedTripId ? findTrip(spot.relatedTripId) : null;
   const relatedArticle = spot.relatedArticleSlug ? findArticle(spot.relatedArticleSlug) : null;
 
   return (
@@ -253,80 +251,7 @@ export function SpotCard({
           </section>
         )}
 
-        {/* Related trip CTA — visually distinct card, not a spot data section */}
-        {relatedTrip && (
-          <section aria-label="Viagem relacionada" className="mt-14">
-            <Link
-              to="/trips/$id"
-              params={{ id: relatedTrip.id }}
-              className="group relative block overflow-hidden border border-ink bg-ink text-paper shadow-[8px_8px_0_0_rgb(43_43_43/0.06)] transition-transform hover:-translate-y-0.5"
-            >
-              <div className="grid grid-cols-1 sm:grid-cols-[45%_1fr]">
-                <div className="relative aspect-[4/3] w-full overflow-hidden bg-stone/20 sm:aspect-auto">
-                  <img
-                    src={tripImage(relatedTrip, 900, 700)}
-                    alt={relatedTrip.destination}
-                    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
-                  />
-                  <span
-                    className="absolute left-3 top-3 inline-flex items-center gap-1.5 bg-paper px-2.5 py-1 text-[10px] font-medium uppercase tracking-[0.22em] text-ink"
-                    style={{ borderRadius: 2 }}
-                  >
-                    <span aria-hidden className="inline-block h-1.5 w-1.5 rounded-full bg-ink" />
-                    Viagem
-                  </span>
-                </div>
-                <div className="flex flex-col justify-between gap-6 p-6 sm:p-8">
-                  <div>
-                    <p className="text-[10px] uppercase tracking-[0.24em] text-paper/60">
-                      Viaje com uma operadora
-                    </p>
-                    <h3 className="mt-3 font-serif text-2xl leading-tight text-paper sm:text-3xl">
-                      {relatedTrip.destination}
-                    </h3>
-                    <p className="mt-3 text-sm leading-[1.55] text-paper/80">
-                      {relatedTrip.summary}
-                    </p>
-                  </div>
-                  <dl className="grid grid-cols-2 gap-x-6 gap-y-4 border-t border-paper/15 pt-5 text-paper">
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
-                        Operador
-                      </dt>
-                      <dd className="mt-1 font-serif text-sm">{relatedTrip.operator}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
-                        Duração
-                      </dt>
-                      <dd className="mt-1 font-serif text-sm">{durationLabel(relatedTrip)}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
-                        Temporada
-                      </dt>
-                      <dd className="mt-1 font-serif text-sm">{relatedTrip.season}</dd>
-                    </div>
-                    <div>
-                      <dt className="text-[10px] uppercase tracking-[0.2em] text-paper/50">
-                        Preço
-                      </dt>
-                      <dd className="mt-1 font-serif text-sm">{relatedTrip.price_range}</dd>
-                    </div>
-                  </dl>
-                  <span className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.22em] text-paper">
-                    Ver viagem
-                    <span aria-hidden className="transition-transform group-hover:translate-x-1">
-                      →
-                    </span>
-                  </span>
-                </div>
-              </div>
-            </Link>
-          </section>
-        )}
-
-        {/* Related journal article CTA — distinct from the Trip CTA above */}
+        {/* Related journal article CTA */}
         {relatedArticle && (
           <section aria-label="Conteúdo relacionado" className="mt-10">
             <Link

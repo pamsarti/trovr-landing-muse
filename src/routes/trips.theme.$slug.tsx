@@ -1,9 +1,12 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { findTheme, tripsByTheme } from "@/lib/trips-data";
 import type { Trip } from "@/lib/trips-data";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 
 export const Route = createFileRoute("/trips/theme/$slug")({
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
   loader: ({ params }) => {
     const theme = findTheme(params.slug);
     if (!theme) throw notFound();

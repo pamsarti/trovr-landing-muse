@@ -1,4 +1,4 @@
-import { createFileRoute, Link } from "@tanstack/react-router";
+import { createFileRoute, Link, redirect } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { seoT } from "@/i18n/seoT";
 import type { Locale } from "@/i18n";
@@ -27,6 +27,9 @@ import {
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
   loader: ({ context }) => ({ locale: (context as { locale?: Locale }).locale }),
   head: ({ loaderData }) => {
     const t = seoT(loaderData?.locale);

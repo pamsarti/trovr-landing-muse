@@ -7,7 +7,6 @@ import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
 const SITE = "https://trovr.com.br";
-const LIVE_TRIP_STATUSES = ["active"];
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
@@ -36,7 +35,6 @@ function isPublicSpot(spot) {
 }
 
 const journal = readJson("src/data/journal-articles.json");
-const trips = readJson("src/data/trips.json");
 const spots = readJson("src/data/spots.json");
 
 const urls = [];
@@ -49,14 +47,6 @@ staticPaths.forEach(push);
 // Journal (published only)
 const publishedJournal = journal.filter((a) => a.status === "published");
 publishedJournal.forEach((a) => push(`/journal/${a.slug}`));
-
-// Trips (only publishable statuses)
-const publishableTrips = trips.filter((t) => LIVE_TRIP_STATUSES.includes(t.status));
-publishableTrips.forEach((t) => push(`/trips/${t.id}`));
-
-// Trip themes — derived only from publishable trips
-const themes = Array.from(new Set(publishableTrips.map((t) => t.activity)));
-themes.forEach((a) => push(`/trips/theme/${a}`));
 
 // Spots with public editorial content — keep this criterion aligned with
 // isPublic() in src/lib/spots-data.ts. Legacy imports stay out of the sitemap.
@@ -84,7 +74,5 @@ writeFileSync(resolve(outDir, "sitemap.xml"), xml, "utf8");
 console.log("[sitemap] Written to public/sitemap.xml");
 console.log(`  static routes : ${staticPaths.length}`);
 console.log(`  journal posts : ${publishedJournal.length}`);
-console.log(`  trips         : ${publishableTrips.length}`);
-console.log(`  trip themes   : ${themes.length}`);
 console.log(`  spots         : ${publicSpots.length}`);
 console.log(`  TOTAL urls    : ${urls.length}`);
