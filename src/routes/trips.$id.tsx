@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   ACTIVITY_LABEL,
@@ -14,6 +14,9 @@ import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChro
 import { useT } from "@/i18n/useT";
 
 export const Route = createFileRoute("/trips/$id")({
+  beforeLoad: () => {
+    throw redirect({ to: "/" });
+  },
   loader: ({ params }) => {
     const trip = findTrip(params.id);
     if (!trip) throw notFound();
