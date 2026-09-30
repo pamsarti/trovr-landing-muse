@@ -28,6 +28,13 @@ function readJson(rel) {
   return JSON.parse(readFileSync(resolve(root, rel), "utf8"));
 }
 
+function isPublicSpot(spot) {
+  const hasDescription = typeof spot.description === "string" && spot.description.trim().length > 0;
+  const activitySpecific = spot.conditions?.activitySpecific;
+  const hasCuratedConditions = activitySpecific && Object.keys(activitySpecific).length > 0;
+  return hasDescription && hasCuratedConditions;
+}
+
 const journal = readJson("src/data/journal-articles.json");
 const trips = readJson("src/data/trips.json");
 const spots = readJson("src/data/spots.json");
@@ -51,9 +58,10 @@ publishableTrips.forEach((t) => push(`/trips/${t.id}`));
 const themes = Array.from(new Set(publishableTrips.map((t) => t.activity)));
 themes.forEach((a) => push(`/trips/theme/${a}`));
 
-// Spots (active only) — /spots/{continent}/{region}/{spot}
-const activeSpots = spots.filter((s) => s.status === "active");
-activeSpots.forEach((s) => {
+// Spots with public editorial content — keep this criterion aligned with
+// isPublic() in src/lib/spots-data.ts. Legacy imports stay out of the sitemap.
+const publicSpots = spots.filter(isPublicSpot);
+publicSpots.forEach((s) => {
   const continent = slugify(s.region);
   const region = slugify(s.city);
   const spot = slugify(s.name);
@@ -78,5 +86,5 @@ console.log(`  static routes : ${staticPaths.length}`);
 console.log(`  journal posts : ${publishedJournal.length}`);
 console.log(`  trips         : ${publishableTrips.length}`);
 console.log(`  trip themes   : ${themes.length}`);
-console.log(`  spots         : ${activeSpots.length}`);
+console.log(`  spots         : ${publicSpots.length}`);
 console.log(`  TOTAL urls    : ${urls.length}`);

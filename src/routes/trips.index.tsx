@@ -111,7 +111,7 @@ function HeroRotator() {
                   params={{ id: f.trip.id }}
                   className="text-[11px] uppercase tracking-[0.2em] text-paper/90 underline-offset-4 hover:underline"
                 >
-                  Ver esta viagem →
+                  Entender a experiência →
                 </Link>
               </div>
             </div>
@@ -149,7 +149,7 @@ function SeasonBand() {
   return (
     <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-3xl text-ink sm:text-4xl">Agora é tempo de</h2>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">Boas ideias para esta época</h2>
         <div className="mt-10 flex gap-6 overflow-x-auto pb-2 sm:gap-8">
           {inSeason.map((t) => (
             <SmallSeasonCard key={t.id} trip={t} />
@@ -167,8 +167,12 @@ function ThemesGrid() {
     <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <h2 className="font-serif text-3xl text-ink sm:text-4xl">
-          Escolha pela sensação, não pelo filtro.
+          Escolha primeiro o que você quer viver.
         </h2>
+        <p className="mt-4 max-w-2xl text-base leading-7 text-stone sm:text-lg">
+          Nem toda viagem começa com um país ou uma cidade. Comece pelo que você quer viver e
+          descubra os lugares que tornam essa experiência possível.
+        </p>
         <div className="mt-12 grid grid-cols-1 gap-6 sm:grid-cols-2">
           {THEMES.map((t) => (
             <Link
@@ -242,7 +246,9 @@ function AllTripsSection() {
     <section className="px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between">
-          <h2 className="font-serif text-3xl text-ink sm:text-4xl">Todas as viagens.</h2>
+          <h2 className="font-serif text-3xl text-ink sm:text-4xl">
+            Explore todas as possibilidades.
+          </h2>
           <button
             onClick={() => setDrawerOpen((v) => !v)}
             className="inline-flex items-center gap-2 text-[11px] uppercase tracking-[0.2em] text-stone hover:text-ink lg:hidden"

@@ -8,9 +8,13 @@ const spotsPath = resolve(__dirname, "../src/data/spots.json");
 const outPath = resolve(__dirname, "../src/data/home-stats.json");
 
 const spots = JSON.parse(readFileSync(spotsPath, "utf8"));
-const active = spots.filter((s) => s.status === "active");
-const activeSpots = active.length;
-const activeContinents = new Set(active.map((s) => s.region)).size;
+const publicSpots = spots.filter((spot) => {
+  const hasDescription = typeof spot.description === "string" && spot.description.trim().length > 0;
+  const activitySpecific = spot.conditions?.activitySpecific;
+  return hasDescription && activitySpecific && Object.keys(activitySpecific).length > 0;
+});
+const activeSpots = publicSpots.length;
+const activeContinents = new Set(publicSpots.map((s) => s.region)).size;
 
 const stats = { activeSpots, activeContinents };
 writeFileSync(outPath, JSON.stringify(stats, null, 2) + "\n");

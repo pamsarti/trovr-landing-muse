@@ -23,27 +23,27 @@ export const Route = createFileRoute("/spots/")({
   validateSearch: validateSpotsSearch,
   head: () => ({
     meta: [
-      { title: "Lugares — Atlas de aventura | Trovr" },
+      { title: "Lugares fora do óbvio pelo mundo | Trovr" },
       {
         name: "description",
         content:
-          "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
+          "Explore no mapa da Trovr lugares fora do óbvio por esporte, região e época do ano, com contexto local e informações práticas.",
       },
-      { property: "og:title", content: "Lugares — Trovr" },
+      { property: "og:title", content: "Lugares fora do óbvio pelo mundo | Trovr" },
       {
         property: "og:description",
         content:
-          "Um mapa editorial de lugares que merecem a viagem: vento, ondas, montanhas e trilhas.",
+          "Explore lugares por esporte, região e época do ano e descubra o que torna cada viagem especial.",
       },
       { property: "og:type", content: "website" },
       { property: "og:url", content: `${SITE_URL}/spots` },
       { property: "og:image", content: DEFAULT_OG_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "Lugares — Atlas de aventura | Trovr" },
+      { name: "twitter:title", content: "Lugares fora do óbvio pelo mundo | Trovr" },
       {
         name: "twitter:description",
         content:
-          "Explore destinos para esportes, melhores épocas e cultura local no mapa da Trovr.",
+          "Explore lugares fora do óbvio, melhores épocas, esportes e cultura local no mapa da Trovr.",
       },
       { name: "twitter:image", content: DEFAULT_OG_IMAGE },
     ],
@@ -193,7 +193,7 @@ function SpotsIndex() {
 
         {/* Floating chrome: title + activity filters, top-left over the map. */}
         <div className="pointer-events-none absolute inset-x-0 top-0 z-[1000] p-4 sm:p-6">
-          <div className="trovr-glass pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-2xl p-4">
+          <div className="trovr-glass trovr-map-glass pointer-events-auto inline-flex max-w-[calc(100vw-2rem)] flex-col gap-3 rounded-2xl p-4">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.25em] text-stone">
                 Atlas · {allSpots.length} lugares
@@ -205,7 +205,7 @@ function SpotsIndex() {
                 )}
               </p>
               <h1 className="mt-1.5 font-serif text-xl leading-tight text-ink sm:text-2xl">
-                Lugares que merecem a viagem
+                Lugares com uma razão verdadeira para ir
               </h1>
             </div>
 
@@ -259,7 +259,7 @@ function SpotsIndex() {
           <button
             type="button"
             onClick={() => setAppliedBounds(bounds)}
-            className="trovr-glass absolute left-1/2 top-4 z-[1000] -translate-x-1/2 rounded-full px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-sage transition-colors hover:bg-sage hover:text-paper"
+            className="trovr-glass trovr-map-glass absolute left-1/2 top-4 z-[1000] -translate-x-1/2 rounded-full px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-sage transition-colors hover:bg-sage hover:text-paper"
           >
             Buscar lugares nesta área
           </button>
@@ -268,7 +268,7 @@ function SpotsIndex() {
           <button
             type="button"
             onClick={() => setAppliedBounds(null)}
-            className="trovr-glass absolute right-4 top-4 z-[1000] rounded-full px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink hover:border-ink"
+            className="trovr-glass trovr-map-glass absolute right-4 top-4 z-[1000] rounded-full px-3.5 py-2 font-mono text-[10px] uppercase tracking-[0.2em] text-ink hover:border-ink"
           >
             Limpar filtro de área
           </button>
@@ -362,43 +362,62 @@ function MetricsGrid({ spot, compact = false }: { spot: Spot; compact?: boolean 
     ([, v]) => typeof v === "string" && v.trim().length > 0,
   );
   if (entries.length === 0 && months.length === 0) return null;
+  const hasSourceClaims = entries.some(([key]) => status[key] === "source_claims");
+  const hasEstimates = entries.some(([key]) => status[key] === "estimate");
 
   return (
-    <dl
-      className={`mt-3 grid gap-x-4 gap-y-2 border-t border-stone/20 pt-3 ${
-        compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
-      }`}
-    >
-      {months.length > 0 && (
-        <div className="col-span-full">
-          <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-            Melhor época
-          </dt>
-          <dd className="mt-0.5 font-serif text-[15px] text-ink">{months.join(" · ")}</dd>
-        </div>
-      )}
-      {entries.map(([k, v]) => {
-        const isUnverified = status[k] && status[k] !== "verified";
-        return (
-          <div key={k}>
-            <dt className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
-              {(t.spotFieldsShort as Record<string, string>)[k] ?? humanize(k)}
+    <>
+      <dl
+        className={`mt-3 grid gap-x-4 gap-y-2 border-t border-stone/20 pt-3 ${
+          compact ? "grid-cols-1" : "grid-cols-1 sm:grid-cols-2"
+        }`}
+      >
+        {months.length > 0 && (
+          <div className="col-span-full">
+            <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+              Melhor época
             </dt>
-            <dd className="mt-0.5 font-serif text-[15px] text-ink">
-              {v}
-              {isUnverified && (
-                <span
-                  className="ml-1 align-middle font-mono text-[10px] normal-case text-stone"
-                  title="Não verificado de forma independente"
-                >
-                  · não confirmado
-                </span>
-              )}
-            </dd>
+            <dd className="mt-0.5 font-serif text-[15px] text-ink">{months.join(" · ")}</dd>
           </div>
-        );
-      })}
-    </dl>
+        )}
+        {entries.map(([k, v]) => {
+          const fieldStatus = status[k];
+          const marker =
+            fieldStatus === "source_claims" ? "1" : fieldStatus === "estimate" ? "2" : null;
+          const statusLabel = fieldStatus
+            ? (t.spotStatus as Record<string, string>)[fieldStatus]
+            : null;
+          return (
+            <div key={k}>
+              <dt className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone">
+                {(t.spotFieldsShort as Record<string, string>)[k] ??
+                  (t.spotFields as Record<string, string>)[k] ??
+                  humanize(k)}
+              </dt>
+              <dd className="mt-0.5 font-serif text-[15px] text-ink">
+                {v}
+                {marker && (
+                  <sup
+                    className="ml-0.5 font-mono text-[9px] text-stone"
+                    title={statusLabel ?? undefined}
+                    aria-label={statusLabel ?? undefined}
+                  >
+                    {marker}
+                  </sup>
+                )}
+              </dd>
+            </div>
+          );
+        })}
+      </dl>
+      {(hasSourceClaims || hasEstimates) && (
+        <p className="mt-3 font-mono text-[10px] leading-4 text-mid">
+          {hasSourceClaims && <>1 {t.spotStatus.source_claims}. </>}
+          {hasEstimates && <>2 {t.spotStatus.estimate}. </>}
+          {t.spotStatusNote}
+        </p>
+      )}
+    </>
   );
 }
 

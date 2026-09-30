@@ -19,8 +19,11 @@ export const Route = createFileRoute("/journal/$slug")({
   },
   head: ({ loaderData, params }) => {
     const a = loaderData?.article;
-    const title = a ? (a.seoTitle ?? `${a.title} — Histórias Trovr`) : "Histórias — Trovr";
-    const desc = a?.seoDescription ?? a?.dek ?? "Notas de campo dos lugares que merecem a viagem.";
+    const title = a ? (a.seoTitle ?? `${a.title} — Conteúdo Trovr`) : "Conteúdo — Trovr";
+    const desc =
+      a?.seoDescription ??
+      a?.dek ??
+      "Conteúdo, guias e contexto para conhecer lugares além dos roteiros turísticos de sempre.";
     const path = `/journal/${params.slug}`;
     const url = absoluteUrl(path);
     const image = a ? absoluteUrl(a.ogImage ?? a.heroImage) : undefined;
@@ -70,7 +73,7 @@ export const Route = createFileRoute("/journal/$slug")({
             {
               "@type": "ListItem",
               position: 1,
-              name: "Histórias",
+              name: "Conteúdo",
               item: absoluteUrl("/journal"),
             },
             {
@@ -114,13 +117,13 @@ function NotFound() {
     <main className="min-h-screen bg-paper text-ink font-sans antialiased">
       <SiteHeader />
       <section className="mx-auto max-w-3xl px-6 py-32 text-center sm:py-40">
-        <h1 className="font-serif text-4xl text-ink sm:text-5xl">História não encontrada.</h1>
-        <p className="mt-5 font-serif italic text-stone">Esta história não está disponível.</p>
+        <h1 className="font-serif text-4xl text-ink sm:text-5xl">Conteúdo não encontrado.</h1>
+        <p className="mt-5 font-serif italic text-stone">Este conteúdo não está disponível.</p>
         <Link
           to="/journal"
           className="mt-8 inline-block text-[11px] uppercase tracking-[0.2em] text-ink underline-offset-4 hover:underline"
         >
-          ← Voltar para Histórias
+          ← Voltar para Conteúdo
         </Link>
       </section>
     </main>
@@ -146,7 +149,7 @@ function ArticlePage() {
         <header className="mx-auto max-w-3xl px-6 pt-16 sm:pt-24">
           <nav className="text-[11px] uppercase tracking-[0.2em] text-stone">
             <Link to="/journal" className="hover:text-ink">
-              Histórias
+              Conteúdo
             </Link>
             <span className="mx-2">/</span>
             <span>{CATEGORY_LABEL[article.category]}</span>

@@ -129,6 +129,8 @@ export function SpotCard({
   const specificEntries = Object.entries(specific).filter(
     ([, v]) => typeof v === "string" && v.trim().length > 0,
   );
+  const hasSourceClaims = specificEntries.some(([key]) => fieldStatus[key] === "source_claims");
+  const hasEstimates = specificEntries.some(([key]) => fieldStatus[key] === "estimate");
   const sources = (
     spot.sources && spot.sources.length > 0 ? spot.sources : spot.sourceUrl ? [spot.sourceUrl] : []
   ) as string[];
@@ -208,6 +210,8 @@ export function SpotCard({
                     STATUS_LABEL[status] ??
                     status)
                   : null;
+                const marker =
+                  status === "source_claims" ? "1" : status === "estimate" ? "2" : null;
                 return (
                   <div key={key} className="break-inside-avoid">
                     <dt className="text-[11px] uppercase tracking-[0.2em] text-stone">
@@ -215,20 +219,27 @@ export function SpotCard({
                     </dt>
                     <dd className="mt-1.5 text-sm leading-[1.55] text-ink sm:text-base">
                       {value}
-                      {statusLabel && (
-                        <span
-                          className="ml-1.5 inline-block cursor-help align-middle text-stone/70"
+                      {statusLabel && marker && (
+                        <sup
+                          className="ml-0.5 inline-block cursor-help align-super text-[10px] text-stone/70"
                           title={statusLabel}
                           aria-label={statusLabel}
                         >
-                          *
-                        </span>
+                          {marker}
+                        </sup>
                       )}
                     </dd>
                   </div>
                 );
               })}
             </dl>
+            {(hasSourceClaims || hasEstimates) && (
+              <p className="mt-6 text-xs leading-relaxed text-stone">
+                {hasSourceClaims && <>1 {t.spotStatus.source_claims}. </>}
+                {hasEstimates && <>2 {t.spotStatus.estimate}. </>}
+                {t.spotStatusNote}
+              </p>
+            )}
           </section>
         )}
 
@@ -317,7 +328,7 @@ export function SpotCard({
 
         {/* Related journal article CTA — distinct from the Trip CTA above */}
         {relatedArticle && (
-          <section aria-label="História relacionada" className="mt-10">
+          <section aria-label="Conteúdo relacionado" className="mt-10">
             <Link
               to="/journal/$slug"
               params={{ slug: relatedArticle.slug }}
@@ -342,13 +353,11 @@ export function SpotCard({
                       fill="currentColor"
                     />
                   </svg>
-                  Histórias · {CATEGORY_LABEL[relatedArticle.category]}
+                  Conteúdo · {CATEGORY_LABEL[relatedArticle.category]}
                 </span>
               </div>
               <div className="px-6 py-6 sm:px-8 sm:py-7">
-                <p className="text-[10px] uppercase tracking-[0.24em] text-stone">
-                  Leia a história
-                </p>
+                <p className="text-[10px] uppercase tracking-[0.24em] text-stone">Ver conteúdo</p>
                 <h3 className="mt-3 font-serif text-2xl italic leading-tight text-ink sm:text-3xl">
                   {relatedArticle.title}
                 </h3>

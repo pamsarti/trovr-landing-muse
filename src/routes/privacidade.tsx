@@ -41,8 +41,9 @@ function PrivacyPage() {
           <section>
             <h2 className="font-serif text-3xl text-ink">Formulários</h2>
             <p className="mt-4">
-              Ao enviar a newsletter ou um pedido de roteiro, tratamos os dados informados para
-              responder à solicitação e prestar o serviço pedido. Não vendemos esses dados.
+              Ao enviar a newsletter ou um pedido de contato ou serviço, tratamos os dados
+              informados para responder à solicitação e prestar o serviço pedido. Não vendemos esses
+              dados.
             </p>
           </section>
           <section>

@@ -215,6 +215,14 @@
   backdrop-filter: blur(20px) saturate(115%);
 }
 
+.trovr-map-glass {
+  background: rgb(247 244 238 / 0.56);
+  border-color: rgb(216 200 174 / 0.72);
+  box-shadow: 0 18px 48px rgb(43 43 43 / 0.1);
+  -webkit-backdrop-filter: blur(24px) saturate(120%);
+  backdrop-filter: blur(24px) saturate(120%);
+}
+
 .trovr-glass-dark {
   background: rgb(43 43 43 / 0.42);
   border: 1px solid rgb(255 255 255 / 0.22);
@@ -311,7 +319,7 @@
   position: absolute;
   inset: 0;
   border-radius: 9999px;
-  border: 1px solid var(--pin-color, var(--sage));
+  border: 1px solid var(--terracotta);
   opacity: 0;
   transform: scale(0.4);
   animation: trovrPinPulse 3s cubic-bezier(0.22, 1, 0.36, 1) infinite;
@@ -369,8 +377,8 @@
 .trovr-pin.is-active .trovr-pin__dot,
 .trovr-pin.is-touring .trovr-pin__dot {
   transform: scale(1.6);
-  background: var(--ink);
-  box-shadow: 0 0 0 3px color-mix(in oklab, var(--pin-color, var(--sage)) 35%, transparent);
+  background: var(--terracotta);
+  box-shadow: 0 0 0 3px rgb(184 106 69 / 0.28);
 }
 
 @media (prefers-reduced-motion: reduce) {

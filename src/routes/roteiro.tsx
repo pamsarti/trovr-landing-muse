@@ -6,9 +6,9 @@ import { SiteFooter } from "@/components/SiteFooter";
 import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
 import { trackEvent } from "@/lib/analytics";
 
-const TITLE = "Roteiro de viagem personalizado | Trovr";
+const TITLE = "Conte o que você procura | Trovr";
 const DESCRIPTION =
-  "Receba ajuda para pesquisar destinos, melhores épocas, experiências, deslocamentos e hospedagens em um roteiro de viagem feito para o seu perfil.";
+  "Fale com a Trovr sobre roteiros, curadoria de viagens, operações, conteúdo, divulgação de experiências e parcerias.";
 
 export const Route = createFileRoute("/roteiro")({
   head: () => ({
@@ -27,12 +27,14 @@ export const Route = createFileRoute("/roteiro")({
         type: "application/ld+json",
         children: JSON.stringify({
           "@context": "https://schema.org",
-          "@type": "Service",
-          name: "Roteiro de viagem personalizado Trovr",
+          "@type": "ContactPage",
+          name: "Fale com a Trovr",
           description: DESCRIPTION,
-          provider: { "@type": "Organization", name: "Trovr", url: SITE_URL },
-          areaServed: "BR",
-          serviceType: "Curadoria e planejamento de roteiro de viagem",
+          about: {
+            "@type": "Organization",
+            name: "Trovr",
+            url: SITE_URL,
+          },
           url: `${SITE_URL}/roteiro`,
         }),
       },
@@ -46,7 +48,7 @@ export const Route = createFileRoute("/roteiro")({
             {
               "@type": "ListItem",
               position: 2,
-              name: "Roteiro personalizado",
+              name: "Conte o que você procura",
               item: `${SITE_URL}/roteiro`,
             },
           ],
@@ -77,9 +79,9 @@ function ItineraryPage() {
       const captured =
         response.ok && (response.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Formulário não capturado");
-      trackEvent("submit_itinerary", {
-        sport: String(data.get("sport") || "não informado"),
-        travel_style: String(data.get("travel_style") || "não informado"),
+      trackEvent("submit_contact", {
+        profile: String(data.get("profile") || "não informado"),
+        request_type: String(data.get("request_type") || "não informado"),
       });
       setDone(true);
     } catch {
@@ -95,15 +97,15 @@ function ItineraryPage() {
       <section className="px-6 pb-16 pt-16 sm:pb-24 sm:pt-24">
         <div className="mx-auto max-w-5xl text-center">
           <p className="text-xs uppercase tracking-[0.24em] text-coffee">
-            Roteiros de viagem personalizados
+            Uma conversa com contexto
           </p>
           <h1 className="mx-auto mt-6 max-w-4xl font-serif text-5xl leading-[1.04] sm:text-6xl">
-            Um roteiro feito para a sua forma de viajar.
+            Conte o que você procura. A Trovr ajuda a encontrar o próximo caminho.
           </h1>
           <p className="mx-auto mt-7 max-w-3xl text-base leading-7 text-coffee sm:text-lg">
-            Você conta o que quer viver, quanto tempo tem e como gosta de viajar. A Trovr pesquisa
-            destinos, épocas, experiências, deslocamentos e hospedagens para organizar um roteiro
-            coerente e fora do óbvio.
+            Você pode estar planejando uma viagem, apresentando uma operação, propondo conteúdo ou
+            parceria, ou apenas pesquisando possibilidades. O formulário abaixo organiza o contexto
+            para que a conversa comece no lugar certo.
           </p>
         </div>
       </section>
@@ -117,18 +119,18 @@ function ItineraryPage() {
             {[
               [
                 "01",
-                "Você conta o que procura",
-                "Interesses, período, orçamento, ritmo e o tipo de experiência que quer viver.",
+                "Você se apresenta",
+                "Diga se você é viajante, operador, anfitrião, marca, projeto editorial ou alguém ainda explorando possibilidades.",
               ],
               [
                 "02",
-                "A Trovr pesquisa",
-                "Destinos, temporadas, atividades, deslocamentos e opções de hospedagem adequadas ao seu perfil.",
+                "Você escolhe o assunto",
+                "Roteiro e curadoria, divulgação de uma experiência, conteúdo, parceria ou outro tipo de conversa.",
               ],
               [
                 "03",
-                "Você recebe o roteiro",
-                "Uma proposta organizada para orientar suas escolhas e facilitar o planejamento da viagem.",
+                "A Trovr direciona",
+                "A gente lê o contexto, identifica como pode ajudar e retorna com um próximo passo claro.",
               ],
             ].map(([number, title, body]) => (
               <li key={number} className="border-t border-coffee/30 pt-5">
@@ -139,8 +141,9 @@ function ItineraryPage() {
             ))}
           </ol>
           <p className="mt-10 flex items-start gap-3 text-sm leading-6 text-coffee">
-            <Check className="mt-1 h-4 w-4 shrink-0" aria-hidden />A Trovr faz a curadoria e o
-            planejamento. As reservas, pagamentos e a operação da viagem continuam sob sua escolha.
+            <Check className="mt-1 h-4 w-4 shrink-0" aria-hidden /> Enviar o formulário não gera
+            contratação automática. Ele serve para entender a necessidade antes de indicar um
+            serviço, parceria ou caminho possível.
           </p>
         </div>
       </section>
@@ -149,35 +152,35 @@ function ItineraryPage() {
         <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
           <div>
             <p className="text-xs uppercase tracking-[0.24em] text-coffee">
-              Conte sobre a sua viagem
+              Conte sobre você ou seu projeto
             </p>
             <h2 id="form-title" className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">
-              Por onde a gente começa?
+              O que você quer construir, descobrir ou apresentar?
             </h2>
             <p className="mt-6 text-base leading-7 text-coffee">
-              Não precisa ter tudo decidido. Quanto mais contexto você compartilhar, melhor será a
-              primeira conversa.
+              Você não precisa chegar com uma proposta pronta. As escolhas do formulário ajudam a
+              organizar a conversa sem limitar o que você quer contar.
             </p>
           </div>
 
           {done ? (
             <div role="status" className="self-start rounded-sm bg-sage p-8 text-paper">
-              <h3 className="font-serif text-3xl">Recebemos seu pedido.</h3>
+              <h3 className="font-serif text-3xl">Recebemos sua mensagem.</h3>
               <p className="mt-4 text-base leading-7 text-paper/90">
-                Obrigada por compartilhar sua ideia de viagem. A Trovr entra em contato para
-                entender os próximos passos.
+                Obrigada por compartilhar o contexto. A Trovr entra em contato para indicar o
+                próximo passo da conversa.
               </p>
             </div>
           ) : (
             <form
-              name="roteiro-personalizado"
+              name="contato-trovr"
               method="POST"
               data-netlify="true"
               netlify-honeypot="bot-field"
               onSubmit={onSubmit}
               className="grid gap-6"
             >
-              <input type="hidden" name="form-name" value="roteiro-personalizado" />
+              <input type="hidden" name="form-name" value="contato-trovr" />
               <input type="hidden" name="source_page" value="/roteiro" />
               <p className="hidden">
                 <label>
@@ -200,75 +203,68 @@ function ItineraryPage() {
               </Field>
 
               <div className="grid gap-6 sm:grid-cols-2">
-                <Field label="Quando você quer viajar?" id="when">
-                  <input
-                    id="when"
-                    name="when"
-                    placeholder="Ex.: agosto de 2027 ou flexível"
-                    className="form-field"
-                  />
+                <Field label="Qual é o seu perfil?" id="profile">
+                  <select id="profile" name="profile" required className="form-field">
+                    <option value="">Selecione</option>
+                    <option value="traveler">Estou planejando uma viagem</option>
+                    <option value="researcher">
+                      Ainda estou pesquisando ou sou apenas curioso
+                    </option>
+                    <option value="operator">Sou operador, anfitrião ou destino</option>
+                    <option value="brand">Represento uma marca ou projeto</option>
+                    <option value="editorial">Quero propor conteúdo ou uma pauta</option>
+                    <option value="other">Outro</option>
+                  </select>
                 </Field>
-                <Field label="Por quanto tempo?" id="duration">
-                  <input
-                    id="duration"
-                    name="duration"
-                    placeholder="Ex.: 10 dias"
-                    className="form-field"
-                  />
+                <Field label="Como a Trovr pode ajudar?" id="request_type">
+                  <select id="request_type" name="request_type" required className="form-field">
+                    <option value="">Selecione</option>
+                    <option value="itinerary">Roteiro ou curadoria de viagem</option>
+                    <option value="listing">Apresentar uma experiência ou operação</option>
+                    <option value="content">Conteúdo, notícia ou pesquisa</option>
+                    <option value="partnership">Parceria editorial ou comercial</option>
+                    <option value="unsure">Ainda não sei</option>
+                    <option value="other">Outro assunto</option>
+                  </select>
                 </Field>
               </div>
 
-              <Field label="O que você quer viver nessa viagem?" id="interests">
+              <Field label="Conte o que você procura" id="message">
                 <textarea
-                  id="interests"
-                  name="interests"
+                  id="message"
+                  name="message"
                   required
-                  rows={4}
-                  placeholder="Esporte, natureza, cultura, descanso, desafio…"
+                  rows={6}
+                  placeholder="Descreva a viagem, experiência, pauta, parceria ou dúvida que trouxe você até aqui."
                   className="form-field resize-y"
                 />
               </Field>
 
               <div className="grid gap-6 sm:grid-cols-2">
-                <Field label="Esporte ou atividade" id="sport">
+                <Field label="Destino, projeto ou link (opcional)" id="reference">
                   <input
-                    id="sport"
-                    name="sport"
-                    placeholder="Ex.: kitesurf, trilha, trem"
+                    id="reference"
+                    name="reference"
+                    placeholder="Um lugar, site ou referência"
                     className="form-field"
                   />
                 </Field>
-                <Field label="Faixa de orçamento" id="budget">
+                <Field label="Prazo ou período (opcional)" id="timing">
                   <input
-                    id="budget"
-                    name="budget"
-                    placeholder="Pode ser aproximada"
+                    id="timing"
+                    name="timing"
+                    placeholder="Ex.: agosto de 2027 ou sem prazo"
                     className="form-field"
                   />
                 </Field>
               </div>
-
-              <Field label="Como você gosta de viajar?" id="travel_style">
-                <select id="travel_style" name="travel_style" className="form-field">
-                  <option value="">Selecione</option>
-                  <option>Sozinho</option>
-                  <option>Em casal</option>
-                  <option>Com amigos</option>
-                  <option>Em família</option>
-                  <option>Ainda não sei</option>
-                </select>
-              </Field>
-
-              <Field label="Mais alguma coisa que a Trovr deveria saber?" id="notes">
-                <textarea id="notes" name="notes" rows={4} className="form-field resize-y" />
-              </Field>
 
               <button
                 type="submit"
                 disabled={submitting}
                 className="min-h-12 w-fit rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink disabled:opacity-60"
               >
-                {submitting ? "Enviando…" : "Enviar meu pedido"}
+                {submitting ? "Enviando…" : "Enviar para a Trovr"}
               </button>
               {error && (
                 <p role="alert" className="text-sm text-terracotta">

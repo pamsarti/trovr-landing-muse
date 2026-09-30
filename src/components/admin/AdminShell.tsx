@@ -10,12 +10,8 @@ export function AdminShell({ children }: { children: ReactNode }) {
     <main className="flex min-h-screen flex-col items-center justify-center bg-paper px-4 py-10 text-ink antialiased">
       <div className="w-full max-w-md">
         <div className="mb-8 text-center">
-          <span className="font-serif text-3xl lowercase tracking-tight text-ink">
-            trovr
-          </span>
-          <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-mid">
-            Publisher
-          </p>
+          <span className="font-serif text-3xl uppercase tracking-[0.04em] text-ink">TROVR</span>
+          <p className="mt-1 text-[11px] uppercase tracking-[0.22em] text-mid">Publisher</p>
         </div>
         {children}
       </div>
