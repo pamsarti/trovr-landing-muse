@@ -22,21 +22,52 @@ export type AnalyticsEventName =
   | "submit_viagem_application";
 
 type AnalyticsParameters = Record<string, string | number | boolean | undefined>;
+type MetaPixel = ((...args: unknown[]) => void) & {
+  callMethod?: (...args: unknown[]) => void;
+  queue?: unknown[][];
+  push?: MetaPixel;
+  loaded?: boolean;
+  version?: string;
+};
 
 declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
     clarity?: (...args: unknown[]) => void;
+    fbq?: MetaPixel;
+    _fbq?: MetaPixel;
   }
 }
 
-export const ANALYTICS_CONSENT_KEY = "trovr-analytics-consent-v1";
+// Ask again because optional advertising measurement is newly included.
+export const ANALYTICS_CONSENT_KEY = "trovr-analytics-consent-v2";
 export const ANALYTICS_CONSENT_EVENT = "trovr:analytics-consent";
 export const GA_MEASUREMENT_ID = import.meta.env.VITE_GA_MEASUREMENT_ID?.trim() || "G-NZGWZJ5NZC";
 export const CLARITY_PROJECT_ID = import.meta.env.VITE_CLARITY_PROJECT_ID?.trim() || "yo0000fhi9";
+export const META_PIXEL_ID = import.meta.env.VITE_META_PIXEL_ID?.trim() || "1532952792196130";
 
 let initialized = false;
+
+function loadMetaPixel(pixelId: string) {
+  if (document.querySelector(`script[data-trovr-meta="${pixelId}"]`)) return;
+  const fbq: MetaPixel = window.fbq ?? Object.assign((...args: unknown[]) => {
+    if (fbq.callMethod) fbq.callMethod(...args);
+    else fbq.queue?.push(args);
+  }, { queue: [] as unknown[][], loaded: true, version: "2.0" });
+  fbq.push = fbq;
+  window.fbq = fbq;
+  window._fbq = fbq;
+  // Explicit events only: no automatic button/form capture or advanced matching.
+  fbq("set", "autoConfig", false, pixelId);
+  fbq("consent", "grant");
+  fbq("init", pixelId);
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = "https://connect.facebook.net/en_US/fbevents.js";
+  script.dataset.trovrMeta = pixelId;
+  document.head.appendChild(script);
+}
 
 export function getAnalyticsConsent(): AnalyticsConsent {
   if (typeof window === "undefined") return null;
@@ -45,6 +76,7 @@ export function getAnalyticsConsent(): AnalyticsConsent {
 }
 
 export function setAnalyticsConsent(value: Exclude<AnalyticsConsent, null>) {
+  if (value === "rejected") window.fbq?.("consent", "revoke");
   window.localStorage.setItem(ANALYTICS_CONSENT_KEY, value);
   window.dispatchEvent(new CustomEvent(ANALYTICS_CONSENT_EVENT, { detail: value }));
 }
@@ -91,11 +123,13 @@ export function initializeAnalytics() {
 
   if (measurementId) loadGoogleAnalytics(measurementId);
   if (clarityProjectId) loadClarity(clarityProjectId);
-  initialized = Boolean(measurementId || clarityProjectId);
+  if (META_PIXEL_ID) loadMetaPixel(META_PIXEL_ID);
+  initialized = Boolean(measurementId || clarityProjectId || META_PIXEL_ID);
 }
 
 export function trackPageView(path: string, title = document.title) {
   if (getAnalyticsConsent() !== "accepted") return;
+  window.fbq?.("trackSingle", META_PIXEL_ID, "PageView");
   const measurementId = GA_MEASUREMENT_ID;
   if (measurementId) {
     const query = new URLSearchParams(path.split("?")[1]?.split("#")[0] || "");
@@ -121,6 +155,7 @@ export function trackPageView(path: string, title = document.title) {
 // or pass names, email addresses or free-text briefing to analytics.
 export function trackViagemLead() {
   if (getAnalyticsConsent() !== "accepted") return;
+  window.fbq?.("trackSingle", META_PIXEL_ID, "Lead", { content_name: "Viagem Trovr" });
   window.gtag?.("event", "generate_lead", {
     form_name: "viagem_trovr",
     lead_source: "website",

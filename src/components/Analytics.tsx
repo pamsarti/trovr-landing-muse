@@ -93,7 +93,8 @@ export function AnalyticsManager() {
       <p className="font-serif text-2xl">Sua privacidade importa.</p>
       <p className="mt-3 max-w-2xl text-sm leading-6 text-paper/80">
         Usamos recursos essenciais para o funcionamento do site e, com sua autorização, métricas
-        opcionais para entender visitas, cliques e como melhorar a Trovr. Você pode mudar sua
+        opcionais (Google Analytics e Clarity) e o Pixel da Meta para medir anúncios e formar
+        públicos de publicidade. Você pode mudar sua
         escolha a qualquer momento.
       </p>
       <div className="mt-5 flex flex-wrap items-center gap-3">

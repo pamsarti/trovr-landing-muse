@@ -50,8 +50,12 @@ function PrivacyPage() {
             <h2 className="font-serif text-3xl text-ink">Ferramentas de métricas</h2>
             <p className="mt-4">
               Podemos utilizar Netlify Web Analytics, Google Analytics e Microsoft Clarity para
-              entender o desempenho e melhorar a experiência. Google Analytics e Clarity só são
-              carregados depois do seu consentimento no site.
+              entender o desempenho e melhorar a experiência. Também utilizamos o Pixel da Meta
+              para medir visitas e solicitações recebidas a partir dos anúncios e formar públicos
+              de publicidade. Google Analytics, Clarity e o Pixel da Meta só são carregados depois
+              do seu consentimento no site. O Pixel recebe eventos de navegação e de solicitação,
+              além de informações técnicas do navegador; não enviamos nome, e-mail, orçamento
+              ou respostas do formulário como parâmetros desses eventos.
             </p>
           </section>
           <section>
