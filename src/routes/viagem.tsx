@@ -212,6 +212,7 @@ function ViagemPage() {
       <SiteHeader transparent />
 
       <div className="viagem-story-stage">
+        <div className="viagem-story-backdrop" aria-hidden />
         <section className="viagem-scene viagem-hero">
           <img
             src={isSeaVersion ? "/images/providencia-hero.jpg" : "/images/alula-fante.jpg"}
