@@ -335,32 +335,16 @@
       rgb(43 43 43 / 0.62) 30%,
       rgb(43 43 43 / 0.72) 100%
     ),
-    url("/images/alula-hero.jpg");
+    url("/images/providencia-cayo-cangrejo.jpg");
   background-position: center;
   background-size: cover;
   background-attachment: fixed;
 }
 
-.viagem-visual-alula .viagem-story-stage {
-  background-image: url("/images/alula-fante.jpg");
-  background-position: center 62%;
-}
-
+.viagem-visual-alula .viagem-story-stage,
 .viagem-visual-mar .viagem-story-stage {
-  background-image: url("/images/providencia-hero.jpg");
-  background-position: center 58%;
-}
-
-.viagem-visual-mar .viagem-final-stage {
-  background-image:
-    linear-gradient(
-      180deg,
-      rgb(43 43 43 / 0.42) 0%,
-      rgb(43 43 43 / 0.62) 30%,
-      rgb(43 43 43 / 0.72) 100%
-    ),
-    url("/images/alaska-whale.jpg");
   background-position: center;
+  background-image: url("/images/providencia-cayo-cangrejo.jpg");
 }
 
 .viagem-final-stage::before {

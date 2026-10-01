@@ -124,7 +124,6 @@ const STEPS = [
 
 function ViagemPage() {
   const { visual } = Route.useSearch();
-  const isSeaVersion = visual === "mar";
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -215,12 +214,8 @@ function ViagemPage() {
         <div className="viagem-story-backdrop" aria-hidden />
         <section className="viagem-scene viagem-hero">
           <img
-            src={isSeaVersion ? "/images/providencia-hero.jpg" : "/images/alula-fante.jpg"}
-            alt={
-              isSeaVersion
-                ? "Mar azul-turquesa visto de Providencia"
-                : "A formação Elephant Rock em AlUla"
-            }
+            src="/images/providencia-cayo-cangrejo.jpg"
+            alt="Mar azul-turquesa visto de Providencia"
             className="sr-only"
           />
           <div className="viagem-hero-veil" aria-hidden />
@@ -253,7 +248,7 @@ function ViagemPage() {
 
         <section className="viagem-scene viagem-blend-top viagem-kite">
           <img
-            src={isSeaVersion ? "/images/providencia-hero.jpg" : "/images/alula-fante.jpg"}
+            src="/images/providencia-cayo-cangrejo.jpg"
             alt="A fotografia da viagem permanece enquanto a narrativa avança"
             loading="lazy"
             className="sr-only"
@@ -293,7 +288,7 @@ function ViagemPage() {
           aria-labelledby="included-title"
         >
           <img
-            src={isSeaVersion ? "/images/providencia-hero.jpg" : "/images/alula-fante.jpg"}
+            src="/images/providencia-cayo-cangrejo.jpg"
             alt="A fotografia da viagem permanece enquanto a narrativa avança"
             loading="lazy"
             className="sr-only"
