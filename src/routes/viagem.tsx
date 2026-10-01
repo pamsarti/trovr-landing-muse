@@ -331,10 +331,7 @@ function ViagemPage() {
             </div>
           </div>
         </section>
-      </div>
-
-      <div className="viagem-final-stage">
-        <section className="viagem-method relative z-10 px-6 pb-24 pt-20 text-paper sm:pb-28 sm:pt-24">
+        <section className="viagem-method relative z-10 px-6 pb-24 pt-8 text-paper sm:pb-28 sm:pt-10">
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
             <div>
               <p className="text-[11px] uppercase tracking-[0.28em] text-paper/70">Como funciona</p>
@@ -376,7 +373,9 @@ function ViagemPage() {
             </div>
           </div>
         </section>
+      </div>
 
+      <div className="viagem-final-stage">
         <div className="viagem-final-surface relative z-10 mx-auto max-w-6xl text-ink">
           <section
             className="px-6 pt-20 pb-12 sm:px-12 sm:pt-28 sm:pb-16"

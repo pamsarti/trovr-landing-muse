@@ -308,7 +308,7 @@
 }
 
 .viagem-horizon {
-  min-height: 112svh;
+  min-height: auto;
   background: transparent;
 }
 
