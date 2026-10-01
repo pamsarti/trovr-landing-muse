@@ -10,8 +10,8 @@ import {
 } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { trackEvent } from "@/lib/analytics";
-import { DEFAULT_OG_IMAGE, SITE_URL } from "@/lib/seo";
+import { trackEvent, trackViagemLead } from "@/lib/analytics";
+import { SITE_URL } from "@/lib/seo";
 
 const TITLE = "Roteiro de viagem personalizado e fora do óbvio | Trovr";
 const DESCRIPTION =
@@ -56,8 +56,12 @@ export const Route = createFileRoute("/viagem")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: `${SITE_URL}/viagem` },
-      { property: "og:image", content: DEFAULT_OG_IMAGE },
+      { property: "og:image", content: `${SITE_URL}/images/providencia-cayo-cangrejo.jpg` },
+      { property: "og:image:alt", content: "Mar de Providencia: viagens fora do óbvio com a Trovr" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: TITLE },
+      { name: "twitter:description", content: DESCRIPTION },
+      { name: "twitter:image", content: `${SITE_URL}/images/providencia-cayo-cangrejo.jpg` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/viagem` }],
     scripts: [
@@ -70,10 +74,24 @@ export const Route = createFileRoute("/viagem")({
             name: "Viagem Trovr — roteiro de viagem personalizado",
             serviceType: "Curadoria e planejamento personalizado de viagem",
             description: DESCRIPTION,
-            provider: { "@type": "Organization", name: "Trovr", url: SITE_URL },
+            provider: { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "Trovr", url: SITE_URL },
             areaServed: "BR",
-            offers: { "@type": "Offer", priceCurrency: "BRL", price: "1990" },
+            offers: {
+              "@type": "Offer",
+              url: `${SITE_URL}/viagem`,
+              priceCurrency: "BRL",
+              price: "1990",
+              description: "Projetos personalizados a partir de R$ 1.990. Valor final confirmado na proposta conforme escopo.",
+            },
             url: `${SITE_URL}/viagem`,
+          },
+          {
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              { "@type": "ListItem", position: 1, name: "Trovr", item: SITE_URL },
+              { "@type": "ListItem", position: 2, name: "Viagem Trovr", item: `${SITE_URL}/viagem` },
+            ],
           },
           {
             "@context": "https://schema.org",
@@ -185,6 +203,7 @@ function ViagemPage() {
         response.ok && (response.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Formulário não capturado");
 
+      trackViagemLead();
       trackEvent("submit_viagem_application", {
         offer: "viagem_trovr",
         visual_variant: visual,

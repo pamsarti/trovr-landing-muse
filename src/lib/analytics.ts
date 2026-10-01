@@ -98,12 +98,33 @@ export function trackPageView(path: string, title = document.title) {
   if (getAnalyticsConsent() !== "accepted") return;
   const measurementId = GA_MEASUREMENT_ID;
   if (measurementId) {
+    const query = new URLSearchParams(path.split("?")[1]?.split("#")[0] || "");
+    const campaign: Record<string, string> = {};
+    for (const key of ["source", "medium", "campaign", "content", "term"] as const) {
+      const value = query.get(`utm_${key}`);
+      // Campaign identifiers are deliberately constrained; arbitrary query data
+      // and email addresses must not be forwarded to analytics.
+      if (value && /^[a-zA-Z0-9_-]{1,100}$/.test(value)) {
+        campaign[key === "campaign" ? "campaign_name" : `campaign_${key}`] = value;
+      }
+    }
     window.gtag?.("event", "page_view", {
-      page_location: window.location.href,
-      page_path: path,
+      ...campaign,
+      page_location: `${window.location.origin}${path.split(/[?#]/)[0]}`,
+      page_path: path.split(/[?#]/)[0],
       page_title: title,
     });
   }
+}
+
+// A request is a lead, not a purchase. Never send the travel budget as revenue,
+// or pass names, email addresses or free-text briefing to analytics.
+export function trackViagemLead() {
+  if (getAnalyticsConsent() !== "accepted") return;
+  window.gtag?.("event", "generate_lead", {
+    form_name: "viagem_trovr",
+    lead_source: "website",
+  });
 }
 
 export function trackEvent(name: AnalyticsEventName, parameters: AnalyticsParameters = {}) {
