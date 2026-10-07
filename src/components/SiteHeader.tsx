@@ -131,6 +131,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             })}
             <Link
               to="/viagem"
+              search={{}}
               data-analytics-event="open_viagem_offer"
               data-analytics-name="header_desktop"
               className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink"
@@ -203,6 +204,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             })}
             <Link
               to="/viagem"
+              search={{}}
               onClick={() => setOpen(false)}
               data-analytics-event="open_viagem_offer"
               data-analytics-name="header_mobile"

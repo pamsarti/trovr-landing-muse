@@ -12,7 +12,7 @@ export const pt = {
   nav: {
     spots: "Lugares",
     sports: "Viagens",
-    journal: "Conteúdo",
+    journal: "Histórias",
     about: "Sobre",
     itinerary: "Crie sua viagem",
     openMenu: "Abrir menu",
@@ -69,11 +69,11 @@ export const pt = {
       "Não procuramos apenas destinos bonitos. Escolhemos lugares onde existe algo para viver: uma atividade, uma cultura, uma paisagem ou uma história que justifique o deslocamento.",
     allPlaces: "Ver todos os lugares",
     placeCta: "Conhecer este destino",
-    storiesKicker: "Conteúdo Trovr",
+    storiesKicker: "Diário de campo",
     storiesTitle: "Contexto para entender um lugar antes de chegar.",
     storiesBody:
       "Artigos, guias, notícias selecionadas e escolhas práticas para conhecer destinos para além dos pontos turísticos.",
-    storiesCta: "Ver todo o conteúdo",
+    storiesCta: "Ver todas as histórias",
     manifestoKicker: "Viajar além do óbvio",
     manifestoHeadline: () => (
       <>
@@ -175,7 +175,7 @@ export const pt = {
     curateIntro2: "Nossa curadoria segue três critérios que aparecem em tudo o que publicamos:",
     principle1Title: "Tem que te transformar.",
     principle1Body:
-      "O lugar precisa oferecer algo que você possa viver, aprender ou levar de volta — pelo esporte, pela cultura ou por um encontro que mude a perspectiva.",
+      "O lugar precisa oferecer algo que você possa viver, aprender ou levar de volta, pelo esporte, pela cultura ou por um encontro que mude a perspectivaiva.",
     principle2Title: "Precisa ir além do roteiro de sempre.",
     principle2Body:
       "Procuramos alternativas com personalidade e contexto, mesmo quando estão perto de destinos conhecidos. Sair do óbvio não precisa complicar a viagem.",
@@ -217,13 +217,13 @@ export const pt = {
   },
 
   journalIndex: {
-    title: "Conteúdo para viajar além do óbvio.",
+    title: "Histórias para viajar além do óbvio.",
     subtitle:
       "Cultura local, experiências, notícias selecionadas e informação prática para entender o que existe além dos pontos turísticos.",
     moreHeading: "Mais conteúdos e guias.",
-    story: "conteúdo",
-    stories: "conteúdos",
-    readTheStory: "Ler conteúdo",
+    story: "história",
+    stories: "histórias",
+    readTheStory: "Ler história",
   },
 
   inquiry: {

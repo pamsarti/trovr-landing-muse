@@ -170,6 +170,7 @@ function Hero() {
               </Link>
               <Link
                 to="/viagem"
+                search={{}}
                 data-analytics-event="open_viagem_offer"
                 data-analytics-name="hero"
                 className="inline-flex items-center rounded-full border border-paper/70 px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
@@ -501,7 +502,7 @@ function Founder() {
             {t.home.founderTitle}
           </h2>
           <p className="mt-7 text-base leading-7 text-coffee sm:text-lg">{t.home.founderBody}</p>
-          <p className="mt-5 text-sm text-coffee">— Curadoria Trovr</p>
+          <p className="mt-5 text-sm text-coffee">Curadoria Trovr</p>
           <Link
             to="/about"
             className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee hover:text-ink"
@@ -531,6 +532,7 @@ function ItineraryService() {
         </p>
         <Link
           to="/viagem"
+          search={{}}
           data-analytics-event="open_viagem_offer"
           data-analytics-name="home_service"
           className="mt-9 inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"

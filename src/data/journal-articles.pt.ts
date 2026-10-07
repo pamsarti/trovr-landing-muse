@@ -1,3 +1,5 @@
+import type { JournalArticle } from "@/lib/journal-data";
+
 export const JOURNAL_ARTICLES_PT = {
   "providencia-colombia-island-guide": {
     title: "Providencia, Colômbia: a ilha que o tempo esqueceu",
@@ -86,4 +88,4 @@ export const JOURNAL_ARTICLES_PT = {
       {question:"Quem tem medo de água consegue aprender?",answer:"Sim. Bons cursos priorizam respiração, relaxamento e segurança. Informe a escola sobre o medo antes de começar."}
     ],
   },
-} as const;
+} satisfies Record<string, Partial<JournalArticle>>;

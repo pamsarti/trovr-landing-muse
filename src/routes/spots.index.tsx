@@ -139,13 +139,13 @@ function SpotsIndex() {
 
   const points: MapSpotPoint[] = useMemo(
     () =>
-      spotsWithCoords.map((s) => ({
+      spotsWithCoords.flatMap((s) => s.coordinates ? [{
         id: s.id,
-        lat: s.coordinates!.lat,
-        lng: s.coordinates!.lng,
-        label: s.name,
+        lat: s.coordinates.lat,
+        lng: s.coordinates.lng,
+        label: `${s.name} · ${ACTIVITIES.find((a) => a.id === s.activity)?.label ?? ""}`,
         color: colorForActivity(s.activity),
-      })),
+      }] : []),
     [spotsWithCoords],
   );
 
@@ -458,7 +458,7 @@ function DetailPanel({ spot, onClose }: { spot: Spot; onClose: () => void }) {
         }`}
       />
       <aside
-        className={`absolute right-0 top-0 flex h-full w-full flex-col border-l border-white/40 bg-paper/88 text-ink shadow-2xl backdrop-blur-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
+        className={`absolute right-0 top-0 flex h-full w-full flex-col border-l border-sand/40 bg-paper/88 text-ink shadow-2xl backdrop-blur-2xl transition-transform duration-300 ease-out motion-reduce:transition-none sm:max-w-[520px] ${
           mountedIn ? "translate-x-0" : "translate-x-full"
         }`}
       >
