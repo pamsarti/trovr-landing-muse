@@ -57,7 +57,10 @@ export const Route = createFileRoute("/viagem")({
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: `${SITE_URL}/viagem` },
       { property: "og:image", content: `${SITE_URL}/images/providencia-cayo-cangrejo.jpg` },
-      { property: "og:image:alt", content: "Mar de Providencia: viagens fora do óbvio com a Trovr" },
+      {
+        property: "og:image:alt",
+        content: "Mar de Providencia: viagens fora do óbvio com a Trovr",
+      },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
@@ -74,14 +77,20 @@ export const Route = createFileRoute("/viagem")({
             name: "Viagem Trovr — roteiro de viagem personalizado",
             serviceType: "Curadoria e planejamento personalizado de viagem",
             description: DESCRIPTION,
-            provider: { "@type": "Organization", "@id": `${SITE_URL}/#organization`, name: "Trovr", url: SITE_URL },
+            provider: {
+              "@type": "Organization",
+              "@id": `${SITE_URL}/#organization`,
+              name: "Trovr",
+              url: SITE_URL,
+            },
             areaServed: "BR",
             offers: {
               "@type": "Offer",
               url: `${SITE_URL}/viagem`,
               priceCurrency: "BRL",
               price: "1990",
-              description: "Projetos personalizados a partir de R$ 1.990. Valor final confirmado na proposta conforme escopo.",
+              description:
+                "Projetos personalizados a partir de R$ 1.990. Valor final confirmado na proposta conforme escopo.",
             },
             url: `${SITE_URL}/viagem`,
           },
@@ -90,7 +99,12 @@ export const Route = createFileRoute("/viagem")({
             "@type": "BreadcrumbList",
             itemListElement: [
               { "@type": "ListItem", position: 1, name: "Trovr", item: SITE_URL },
-              { "@type": "ListItem", position: 2, name: "Viagem Trovr", item: `${SITE_URL}/viagem` },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: "Viagem Trovr",
+                item: `${SITE_URL}/viagem`,
+              },
             ],
           },
           {
@@ -392,327 +406,346 @@ function ViagemPage() {
             </div>
           </div>
         </section>
-      </div>
 
-      <div className="viagem-final-stage">
-        <div className="viagem-final-surface relative z-10 mx-auto max-w-6xl text-ink">
-          <section
-            className="px-6 pt-20 pb-12 sm:px-12 sm:pt-28 sm:pb-16"
-            aria-labelledby="faq-title"
-          >
-            <div className="mx-auto max-w-4xl">
-              <div className="mx-auto max-w-2xl text-center">
-                <p className="text-xs uppercase tracking-[0.24em] text-coffee">Antes de começar</p>
-                <h2 id="faq-title" className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">
-                  O que você precisa saber sobre a Viagem Trovr.
-                </h2>
-              </div>
-              <div className="mt-12 border-t border-coffee/25">
-                {FAQ.map((item) => (
-                  <details key={item.question} className="group border-b border-coffee/25 py-5">
-                    <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl marker:hidden">
-                      {item.question}
-                      <span
-                        aria-hidden
-                        className="text-2xl font-light text-sage transition-transform group-open:rotate-45"
-                      >
-                        +
-                      </span>
-                    </summary>
-                    <p className="max-w-2xl pt-4 text-sm leading-6 text-coffee sm:text-base sm:leading-7">
-                      {item.answer}
-                    </p>
-                  </details>
-                ))}
-              </div>
-            </div>
-          </section>
-
-          <section
-            id="candidatura"
-            className="scroll-mt-20 border-t border-coffee/20 px-6 pt-12 pb-20 sm:px-12 sm:pt-16 sm:pb-24"
-            aria-labelledby="application-title"
-          >
-            <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
-              <div>
-                <p className="text-xs uppercase tracking-[0.24em] text-coffee">
-                  Sua próxima viagem começa aqui
-                </p>
-                <h2
-                  id="application-title"
-                  className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl"
-                >
-                  Dê o primeiro passo. A direção aparece na conversa.
-                </h2>
-                <p className="mt-5 max-w-md text-sm leading-6 text-coffee/75">
-                  São três etapas curtas. Você pode começar mesmo sem destino definido.
-                </p>
-                <div className="mt-8 grid gap-5 text-sm leading-6 text-coffee">
-                  <p className="flex gap-3">
-                    <Compass className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> Você pode chegar sem
-                    destino definido.
+        <div className="viagem-final-stage">
+          <div className="viagem-final-surface relative z-10 mx-auto max-w-6xl text-ink">
+            <section
+              className="px-6 pt-20 pb-12 sm:px-12 sm:pt-28 sm:pb-16"
+              aria-labelledby="faq-title"
+            >
+              <div className="mx-auto max-w-4xl">
+                <div className="mx-auto max-w-2xl text-center">
+                  <p className="text-xs uppercase tracking-[0.24em] text-coffee">
+                    Antes de começar
                   </p>
-                  <p className="flex gap-3">
-                    <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> A conversa de 30
-                    minutos acontece apenas quando houver aderência.
-                  </p>
-                  <p className="flex gap-3">
-                    <RouteIcon className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> O envio não gera
-                    cobrança nem contratação automática.
-                  </p>
+                  <h2
+                    id="faq-title"
+                    className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl"
+                  >
+                    O que você precisa saber sobre a Viagem Trovr.
+                  </h2>
+                </div>
+                <div className="mt-12 border-t border-coffee/25">
+                  {FAQ.map((item) => (
+                    <details key={item.question} className="group border-b border-coffee/25 py-5">
+                      <summary className="flex cursor-pointer list-none items-center justify-between gap-6 font-serif text-xl marker:hidden">
+                        {item.question}
+                        <span
+                          aria-hidden
+                          className="text-2xl font-light text-sage transition-transform group-open:rotate-45"
+                        >
+                          +
+                        </span>
+                      </summary>
+                      <p className="max-w-2xl pt-4 text-sm leading-6 text-coffee sm:text-base sm:leading-7">
+                        {item.answer}
+                      </p>
+                    </details>
+                  ))}
                 </div>
               </div>
+            </section>
 
-              {done ? (
-                <div role="status" className="self-start rounded-sm bg-sage p-8 text-paper sm:p-10">
-                  <p className="text-xs uppercase tracking-[0.22em] text-paper/75">
-                    Candidatura recebida
+            <section
+              id="candidatura"
+              className="scroll-mt-20 border-t border-coffee/20 px-6 pt-12 pb-20 sm:px-12 sm:pt-16 sm:pb-24"
+              aria-labelledby="application-title"
+            >
+              <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
+                <div>
+                  <p className="text-xs uppercase tracking-[0.24em] text-coffee">
+                    Sua próxima viagem começa aqui
                   </p>
-                  <h3 className="mt-5 font-serif text-3xl sm:text-4xl">
-                    Agora a Trovr vai ler a sua viagem com calma.
-                  </h3>
-                  <p className="mt-5 text-base leading-7 text-paper/90">
-                    Se a Viagem Trovr fizer sentido para o que você procura, entraremos em contato
-                    para marcar a conversa de 30 minutos e confirmar o próximo passo.
+                  <h2
+                    id="application-title"
+                    className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl"
+                  >
+                    Dê o primeiro passo. A direção aparece na conversa.
+                  </h2>
+                  <p className="mt-5 max-w-md text-sm leading-6 text-coffee/75">
+                    São três etapas curtas. Você pode começar mesmo sem destino definido.
                   </p>
-                </div>
-              ) : (
-                <form
-                  ref={formRef}
-                  name="viagem-trovr"
-                  method="POST"
-                  data-netlify="true"
-                  netlify-honeypot="bot-field"
-                  onFocus={markStarted}
-                  onSubmit={onSubmit}
-                  className="grid gap-6"
-                >
-                  <input type="hidden" name="form-name" value="viagem-trovr" />
-                  <input type="hidden" name="source_page" value="/viagem" />
-                  <input type="hidden" name="offer" value="viagem_trovr" />
-                  <input type="hidden" name="visual_variant" value={visual} />
-                  <input type="hidden" name="utm_source" />
-                  <input type="hidden" name="utm_medium" />
-                  <input type="hidden" name="utm_campaign" />
-                  <input type="hidden" name="utm_content" />
-                  <input type="hidden" name="referrer" />
-                  <p className="hidden">
-                    <label>
-                      Não preencha: <input name="bot-field" />
-                    </label>
-                  </p>
-
-                  <fieldset data-form-step="1" hidden={formStep !== 1} className="grid gap-6">
-                    <legend className="mb-6 font-serif text-2xl">Vamos desenhar o contorno.</legend>
-                    <div className="grid gap-6 sm:grid-cols-2">
-                      <Field label="Quando você quer viajar?" id="travel_period">
-                        <input
-                          id="travel_period"
-                          name="travel_period"
-                          required
-                          placeholder="Ex.: março de 2027 ou ainda flexível"
-                          className="form-field"
-                        />
-                      </Field>
-                      <Field label="De onde você sai?" id="departure_city">
-                        <input
-                          id="departure_city"
-                          name="departure_city"
-                          required
-                          placeholder="Cidade e país"
-                          className="form-field"
-                        />
-                      </Field>
-                      <Field label="Quantas pessoas vão viajar?" id="travelers">
-                        <input
-                          id="travelers"
-                          name="travelers"
-                          required
-                          placeholder="Conte também quem viaja com você"
-                          className="form-field"
-                        />
-                      </Field>
-                      <Field label="Quanto tempo a viagem deve durar?" id="trip_length">
-                        <select id="trip_length" name="trip_length" required className="form-field">
-                          <option value="">Selecione</option>
-                          <option value="ate-7">Até 7 dias</option>
-                          <option value="8-14">De 8 a 14 dias</option>
-                          <option value="15-mais">15 dias ou mais</option>
-                          <option value="nao-sei">Ainda não sei</option>
-                        </select>
-                      </Field>
-                      <Field label="Você já escolheu o destino?" id="destination_status">
-                        <select
-                          id="destination_status"
-                          name="destination_status"
-                          required
-                          className="form-field"
-                        >
-                          <option value="">Selecione</option>
-                          <option value="defined">Sim, já está definido</option>
-                          <option value="options">Tenho algumas opções</option>
-                          <option value="open">Estou aberto a descobrir</option>
-                        </select>
-                      </Field>
-                      <Field label="Qual ideia está na sua cabeça?" id="destination_idea" optional>
-                        <input
-                          id="destination_idea"
-                          name="destination_idea"
-                          placeholder="Lugar, clima, esporte ou sensação"
-                          className="form-field"
-                        />
-                      </Field>
-                    </div>
-                  </fieldset>
-
-                  <fieldset data-form-step="2" hidden={formStep !== 2} className="grid gap-6">
-                    <legend className="mb-6 font-serif text-2xl">
-                      Agora, o que precisa fazer sentido.
-                    </legend>
-                    <Field
-                      label="Qual é o orçamento total estimado para a viagem?"
-                      id="trip_budget"
-                    >
-                      <select id="trip_budget" name="trip_budget" required className="form-field">
-                        <option value="">Selecione uma faixa, sem incluir a curadoria</option>
-                        <option value="ate-15k">Até R$ 15 mil</option>
-                        <option value="15k-30k">De R$ 15 mil a R$ 30 mil</option>
-                        <option value="30k-60k">De R$ 30 mil a R$ 60 mil</option>
-                        <option value="60k-mais">Acima de R$ 60 mil</option>
-                        <option value="nao-sei">Ainda não sei estimar</option>
-                      </select>
-                    </Field>
-                    <Field
-                      label="O que você quer viver — e por que essa viagem importa agora?"
-                      id="desired_experience"
-                    >
-                      <textarea
-                        id="desired_experience"
-                        name="desired_experience"
-                        required
-                        rows={5}
-                        placeholder="Não procure a resposta perfeita. Conte o que está acontecendo e o que você espera encontrar."
-                        className="form-field resize-y"
-                      />
-                    </Field>
-                    <Field label="Em que momento você está?" id="readiness">
-                      <select id="readiness" name="readiness" required className="form-field">
-                        <option value="">Selecione</option>
-                        <option value="ready">Quero começar agora</option>
-                        <option value="30-days">Quero decidir nos próximos 30 dias</option>
-                        <option value="researching">Ainda estou pesquisando</option>
-                      </select>
-                    </Field>
-                  </fieldset>
-
-                  <fieldset data-form-step="3" hidden={formStep !== 3} className="grid gap-6">
-                    <legend className="mb-6 font-serif text-2xl">
-                      Para a Trovr continuar a conversa.
-                    </legend>
-                    <div className="grid gap-6 sm:grid-cols-2">
-                      <Field label="Como podemos chamar você?" id="name">
-                        <input
-                          id="name"
-                          name="name"
-                          required
-                          autoComplete="name"
-                          className="form-field"
-                        />
-                      </Field>
-                      <Field label="Email" id="email">
-                        <input
-                          id="email"
-                          name="email"
-                          type="email"
-                          required
-                          autoComplete="email"
-                          className="form-field"
-                        />
-                      </Field>
-                      <Field label="WhatsApp" id="phone">
-                        <input
-                          id="phone"
-                          name="phone"
-                          type="tel"
-                          required
-                          autoComplete="tel"
-                          placeholder="Com DDD"
-                          aria-describedby="phone-help"
-                          className="form-field"
-                        />
-                        <p id="phone-help" className="mt-2 text-xs leading-5 text-coffee/65">
-                          Usaremos apenas para combinar a conversa, se houver aderência.
-                        </p>
-                      </Field>
-                      <Field label="Como você conheceu a Trovr?" id="discovery_source" optional>
-                        <select
-                          id="discovery_source"
-                          name="discovery_source"
-                          className="form-field"
-                        >
-                          <option value="">Selecione</option>
-                          <option value="instagram">Instagram da Trovr</option>
-                          <option value="founder">Perfil da Pamela</option>
-                          <option value="tiktok">TikTok</option>
-                          <option value="search">Busca</option>
-                          <option value="recommendation">Indicação</option>
-                          <option value="other">Outro</option>
-                        </select>
-                      </Field>
-                    </div>
-                    <p className="text-xs leading-5 text-coffee/75">
-                      Ao enviar, você autoriza a Trovr a usar estes dados para avaliar e responder
-                      sua solicitação. Consulte nossa{" "}
-                      <a
-                        href="/privacidade"
-                        className="underline underline-offset-2 hover:text-ink"
-                      >
-                        política de privacidade
-                      </a>
-                      .
+                  <div className="mt-8 grid gap-5 text-sm leading-6 text-coffee">
+                    <p className="flex gap-3">
+                      <Compass className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> Você pode chegar sem
+                      destino definido.
                     </p>
-                  </fieldset>
-
-                  <div className="flex flex-wrap items-center justify-between gap-4">
-                    {formStep > 1 ? (
-                      <button
-                        type="button"
-                        onClick={() => setFormStep((step) => Math.max(1, step - 1))}
-                        className="inline-flex min-h-12 items-center gap-2 px-2 text-xs uppercase tracking-[0.14em] text-coffee hover:text-ink"
-                      >
-                        <ArrowLeft className="h-4 w-4" /> Voltar
-                      </button>
-                    ) : (
-                      <span />
-                    )}
-                    {formStep < 3 ? (
-                      <button
-                        type="button"
-                        onClick={() => formRef.current && advanceForm(formRef.current)}
-                        className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink"
-                      >
-                        Continuar <ArrowRight className="h-4 w-4" />
-                      </button>
-                    ) : (
-                      <button
-                        type="submit"
-                        disabled={submitting}
-                        className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink disabled:opacity-60"
-                      >
-                        {submitting ? "Enviando…" : "Enviar minha viagem"}
-                        {!submitting && <ArrowRight className="h-4 w-4" />}
-                      </button>
-                    )}
+                    <p className="flex gap-3">
+                      <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> A conversa de
+                      30 minutos acontece apenas quando houver aderência.
+                    </p>
+                    <p className="flex gap-3">
+                      <RouteIcon className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> O envio não gera
+                      cobrança nem contratação automática.
+                    </p>
                   </div>
-                  {error && (
-                    <p role="alert" className="text-sm text-terracotta">
-                      {error}
+                </div>
+
+                {done ? (
+                  <div
+                    role="status"
+                    className="self-start rounded-sm bg-sage p-8 text-paper sm:p-10"
+                  >
+                    <p className="text-xs uppercase tracking-[0.22em] text-paper/75">
+                      Candidatura recebida
                     </p>
-                  )}
-                </form>
-              )}
-            </div>
-          </section>
+                    <h3 className="mt-5 font-serif text-3xl sm:text-4xl">
+                      Agora a Trovr vai ler a sua viagem com calma.
+                    </h3>
+                    <p className="mt-5 text-base leading-7 text-paper/90">
+                      Se a Viagem Trovr fizer sentido para o que você procura, entraremos em contato
+                      para marcar a conversa de 30 minutos e confirmar o próximo passo.
+                    </p>
+                  </div>
+                ) : (
+                  <form
+                    ref={formRef}
+                    name="viagem-trovr"
+                    method="POST"
+                    data-netlify="true"
+                    netlify-honeypot="bot-field"
+                    onFocus={markStarted}
+                    onSubmit={onSubmit}
+                    className="grid gap-6"
+                  >
+                    <input type="hidden" name="form-name" value="viagem-trovr" />
+                    <input type="hidden" name="source_page" value="/viagem" />
+                    <input type="hidden" name="offer" value="viagem_trovr" />
+                    <input type="hidden" name="visual_variant" value={visual} />
+                    <input type="hidden" name="utm_source" />
+                    <input type="hidden" name="utm_medium" />
+                    <input type="hidden" name="utm_campaign" />
+                    <input type="hidden" name="utm_content" />
+                    <input type="hidden" name="referrer" />
+                    <p className="hidden">
+                      <label>
+                        Não preencha: <input name="bot-field" />
+                      </label>
+                    </p>
+
+                    <fieldset data-form-step="1" hidden={formStep !== 1} className="grid gap-6">
+                      <legend className="mb-6 font-serif text-2xl">
+                        Vamos desenhar o contorno.
+                      </legend>
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <Field label="Quando você quer viajar?" id="travel_period">
+                          <input
+                            id="travel_period"
+                            name="travel_period"
+                            required
+                            placeholder="Ex.: março de 2027 ou ainda flexível"
+                            className="form-field"
+                          />
+                        </Field>
+                        <Field label="De onde você sai?" id="departure_city">
+                          <input
+                            id="departure_city"
+                            name="departure_city"
+                            required
+                            placeholder="Cidade e país"
+                            className="form-field"
+                          />
+                        </Field>
+                        <Field label="Quantas pessoas vão viajar?" id="travelers">
+                          <input
+                            id="travelers"
+                            name="travelers"
+                            required
+                            placeholder="Conte também quem viaja com você"
+                            className="form-field"
+                          />
+                        </Field>
+                        <Field label="Quanto tempo a viagem deve durar?" id="trip_length">
+                          <select
+                            id="trip_length"
+                            name="trip_length"
+                            required
+                            className="form-field"
+                          >
+                            <option value="">Selecione</option>
+                            <option value="ate-7">Até 7 dias</option>
+                            <option value="8-14">De 8 a 14 dias</option>
+                            <option value="15-mais">15 dias ou mais</option>
+                            <option value="nao-sei">Ainda não sei</option>
+                          </select>
+                        </Field>
+                        <Field label="Você já escolheu o destino?" id="destination_status">
+                          <select
+                            id="destination_status"
+                            name="destination_status"
+                            required
+                            className="form-field"
+                          >
+                            <option value="">Selecione</option>
+                            <option value="defined">Sim, já está definido</option>
+                            <option value="options">Tenho algumas opções</option>
+                            <option value="open">Estou aberto a descobrir</option>
+                          </select>
+                        </Field>
+                        <Field
+                          label="Qual ideia está na sua cabeça?"
+                          id="destination_idea"
+                          optional
+                        >
+                          <input
+                            id="destination_idea"
+                            name="destination_idea"
+                            placeholder="Lugar, clima, esporte ou sensação"
+                            className="form-field"
+                          />
+                        </Field>
+                      </div>
+                    </fieldset>
+
+                    <fieldset data-form-step="2" hidden={formStep !== 2} className="grid gap-6">
+                      <legend className="mb-6 font-serif text-2xl">
+                        Agora, o que precisa fazer sentido.
+                      </legend>
+                      <Field
+                        label="Qual é o orçamento total estimado para a viagem?"
+                        id="trip_budget"
+                      >
+                        <select id="trip_budget" name="trip_budget" required className="form-field">
+                          <option value="">Selecione uma faixa, sem incluir a curadoria</option>
+                          <option value="ate-15k">Até R$ 15 mil</option>
+                          <option value="15k-30k">De R$ 15 mil a R$ 30 mil</option>
+                          <option value="30k-60k">De R$ 30 mil a R$ 60 mil</option>
+                          <option value="60k-mais">Acima de R$ 60 mil</option>
+                          <option value="nao-sei">Ainda não sei estimar</option>
+                        </select>
+                      </Field>
+                      <Field
+                        label="O que você quer viver — e por que essa viagem importa agora?"
+                        id="desired_experience"
+                      >
+                        <textarea
+                          id="desired_experience"
+                          name="desired_experience"
+                          required
+                          rows={5}
+                          placeholder="Não procure a resposta perfeita. Conte o que está acontecendo e o que você espera encontrar."
+                          className="form-field resize-y"
+                        />
+                      </Field>
+                      <Field label="Em que momento você está?" id="readiness">
+                        <select id="readiness" name="readiness" required className="form-field">
+                          <option value="">Selecione</option>
+                          <option value="ready">Quero começar agora</option>
+                          <option value="30-days">Quero decidir nos próximos 30 dias</option>
+                          <option value="researching">Ainda estou pesquisando</option>
+                        </select>
+                      </Field>
+                    </fieldset>
+
+                    <fieldset data-form-step="3" hidden={formStep !== 3} className="grid gap-6">
+                      <legend className="mb-6 font-serif text-2xl">
+                        Para a Trovr continuar a conversa.
+                      </legend>
+                      <div className="grid gap-6 sm:grid-cols-2">
+                        <Field label="Como podemos chamar você?" id="name">
+                          <input
+                            id="name"
+                            name="name"
+                            required
+                            autoComplete="name"
+                            className="form-field"
+                          />
+                        </Field>
+                        <Field label="Email" id="email">
+                          <input
+                            id="email"
+                            name="email"
+                            type="email"
+                            required
+                            autoComplete="email"
+                            className="form-field"
+                          />
+                        </Field>
+                        <Field label="WhatsApp" id="phone">
+                          <input
+                            id="phone"
+                            name="phone"
+                            type="tel"
+                            required
+                            autoComplete="tel"
+                            placeholder="Com DDD"
+                            aria-describedby="phone-help"
+                            className="form-field"
+                          />
+                          <p id="phone-help" className="mt-2 text-xs leading-5 text-coffee/65">
+                            Usaremos apenas para combinar a conversa, se houver aderência.
+                          </p>
+                        </Field>
+                        <Field label="Como você conheceu a Trovr?" id="discovery_source" optional>
+                          <select
+                            id="discovery_source"
+                            name="discovery_source"
+                            className="form-field"
+                          >
+                            <option value="">Selecione</option>
+                            <option value="instagram">Instagram da Trovr</option>
+                            <option value="founder">Perfil da Pamela</option>
+                            <option value="tiktok">TikTok</option>
+                            <option value="search">Busca</option>
+                            <option value="recommendation">Indicação</option>
+                            <option value="other">Outro</option>
+                          </select>
+                        </Field>
+                      </div>
+                      <p className="text-xs leading-5 text-coffee/75">
+                        Ao enviar, você autoriza a Trovr a usar estes dados para avaliar e responder
+                        sua solicitação. Consulte nossa{" "}
+                        <a
+                          href="/privacidade"
+                          className="underline underline-offset-2 hover:text-ink"
+                        >
+                          política de privacidade
+                        </a>
+                        .
+                      </p>
+                    </fieldset>
+
+                    <div className="flex flex-wrap items-center justify-between gap-4">
+                      {formStep > 1 ? (
+                        <button
+                          type="button"
+                          onClick={() => setFormStep((step) => Math.max(1, step - 1))}
+                          className="inline-flex min-h-12 items-center gap-2 px-2 text-xs uppercase tracking-[0.14em] text-coffee hover:text-ink"
+                        >
+                          <ArrowLeft className="h-4 w-4" /> Voltar
+                        </button>
+                      ) : (
+                        <span />
+                      )}
+                      {formStep < 3 ? (
+                        <button
+                          type="button"
+                          onClick={() => formRef.current && advanceForm(formRef.current)}
+                          className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink"
+                        >
+                          Continuar <ArrowRight className="h-4 w-4" />
+                        </button>
+                      ) : (
+                        <button
+                          type="submit"
+                          disabled={submitting}
+                          className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink disabled:opacity-60"
+                        >
+                          {submitting ? "Enviando…" : "Enviar minha viagem"}
+                          {!submitting && <ArrowRight className="h-4 w-4" />}
+                        </button>
+                      )}
+                    </div>
+                    {error && (
+                      <p role="alert" className="text-sm text-terracotta">
+                        {error}
+                      </p>
+                    )}
+                  </form>
+                )}
+              </div>
+            </section>
+          </div>
         </div>
       </div>
 
