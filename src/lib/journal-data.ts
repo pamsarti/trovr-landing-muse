@@ -47,7 +47,7 @@ type ArticlePtOverlay = Partial<
     "title" | "dek" | "body" | "seoTitle" | "seoDescription" | "faq" | "keyFacts"
   >
 >;
-const articleOverlays = JOURNAL_ARTICLES_PT as Record<string, ArticlePtOverlay>;
+const articleOverlays: Record<string, ArticlePtOverlay> = structuredClone(JOURNAL_ARTICLES_PT);
 const ALL = (articlesJson as unknown as JournalArticle[]).map((article) => ({
   ...article,
   ...articleOverlays[article.slug],

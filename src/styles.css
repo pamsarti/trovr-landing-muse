@@ -1,21 +1,7 @@
 @import "tailwindcss" source(none);
 @import "tw-animate-css";
-
-@font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-VF.ttf") format("truetype");
-  font-style: normal;
-  font-weight: 100 900;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: "Fraunces";
-  src: url("/fonts/Fraunces-Italic-VF.ttf") format("truetype");
-  font-style: italic;
-  font-weight: 100 900;
-  font-display: swap;
-}
+@import "@fontsource-variable/fraunces";
+@import "@fontsource-variable/fraunces/standard-italic.css";
 
 @source "../src";
 
@@ -36,9 +22,9 @@
  */
 
 @theme inline {
-  --font-serif: "Fraunces", serif;
-  --font-sans: "Fraunces", serif;
-  --font-mono: "Fraunces", serif;
+  --font-serif: "Fraunces Variable", serif;
+  --font-sans: "Fraunces Variable", serif;
+  --font-mono: "Fraunces Variable", serif;
   --color-ink: var(--ink);
   --color-paper: var(--paper);
   --color-stone: var(--stone);
@@ -169,7 +155,8 @@
   body {
     background-color: var(--color-background);
     color: var(--color-foreground);
-    font-family: "Fraunces", serif;
+    font-family: var(--font-serif);
+    font-weight: 400;
     -webkit-font-smoothing: antialiased;
   }
 
