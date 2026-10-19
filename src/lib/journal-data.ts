@@ -28,8 +28,8 @@ export type JournalArticle = {
   seoTitle?: string;
   seoDescription?: string;
   ogImage?: string;
-  faq?: JournalFaqItem[];
-  keyFacts?: Array<JournalKeyFact | string>;
+  faq?: readonly JournalFaqItem[];
+  keyFacts?: ReadonlyArray<JournalKeyFact | string>;
   /** Geographic pin for the world map on /spots */
   location?: JournalLocation;
 };
@@ -47,7 +47,7 @@ type ArticlePtOverlay = Partial<
     "title" | "dek" | "body" | "seoTitle" | "seoDescription" | "faq" | "keyFacts"
   >
 >;
-const articleOverlays: Record<string, ArticlePtOverlay> = JOURNAL_ARTICLES_PT;
+const articleOverlays: Readonly<Record<string, ArticlePtOverlay>> = JOURNAL_ARTICLES_PT;
 const ALL = (articlesJson as unknown as JournalArticle[]).map((article) => ({
   ...article,
   ...articleOverlays[article.slug],

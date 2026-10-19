@@ -275,6 +275,40 @@ function SpotsIndex() {
         )}
       </div>
 
+      {/* Keep curated places and crawlable links available before the map loads. */}
+      <section aria-labelledby="spots-directory-title" className="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+        <h2 id="spots-directory-title" className="font-serif text-3xl text-ink sm:text-4xl">
+          Explore os lugares
+        </h2>
+        <p className="mt-4 max-w-2xl text-base text-stone">
+          Conheça cada lugar, suas condições e o que faz a viagem valer a pena.
+        </p>
+        <ul className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {allSpots.map((spot) => (
+            <li key={spot.id} className="border-t border-stone/20 pt-5">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone">
+                {placeLabel(spot.city)}
+              </p>
+              <h3 className="mt-2 font-serif text-2xl text-ink">
+                <Link
+                  to="/spots/$continent/$region/$spot"
+                  params={{
+                    continent: slugify(spot.region),
+                    region: slugify(spot.city),
+                    spot: slugify(spot.name),
+                  }}
+                  search={activity ? { activity } : {}}
+                  className="underline-offset-4 hover:underline focus-visible:underline"
+                >
+                  {spot.name}
+                </Link>
+              </h3>
+              <p className="mt-3 text-sm leading-relaxed text-stone">{spot.description}</p>
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {selectedSpot && <DetailPanel spot={selectedSpot} onClose={() => setSelectedId(null)} />}
     </div>
   );

@@ -6,50 +6,33 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
+import { applySpotOverlay, isPublicSpot, slugify, PUBLIC_STATIC_PATHS } from "../src/lib/public-content.ts";
+
 const SITE = "https://trovr.com.br";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const root = resolve(__dirname, "..");
 
-// NOTE: keep in sync with slugify() in src/lib/spots-data.ts and
-// src/lib/trips-data.ts. Duplicated here because this script is plain
-// Node ESM and cannot import the TS module without a transpiler.
-function slugify(value) {
-  return String(value)
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
-}
-
 function readJson(rel) {
   return JSON.parse(readFileSync(resolve(root, rel), "utf8"));
 }
 
-function isPublicSpot(spot) {
-  const hasDescription = typeof spot.description === "string" && spot.description.trim().length > 0;
-  const activitySpecific = spot.conditions?.activitySpecific;
-  const hasCuratedConditions = activitySpecific && Object.keys(activitySpecific).length > 0;
-  return hasDescription && hasCuratedConditions;
-}
-
 const journal = readJson("src/data/journal-articles.json");
-const spots = readJson("src/data/spots.json");
+const overlays = readJson("src/data/spots.pt.json").spots;
+const spots = readJson("src/data/spots.json").map((spot) => applySpotOverlay(spot, overlays[spot.id]));
 
 const urls = [];
 const push = (path) => urls.push(`${SITE}${path}`);
 
 // Static routes
-const staticPaths = ["/", "/about", "/journal", "/spots", "/viagem", "/roteiro", "/privacidade"];
+const staticPaths = PUBLIC_STATIC_PATHS;
 staticPaths.forEach(push);
 
 // Journal (published only)
 const publishedJournal = journal.filter((a) => a.status === "published");
 publishedJournal.forEach((a) => push(`/journal/${a.slug}`));
 
-// Spots with public editorial content — keep this criterion aligned with
-// isPublic() in src/lib/spots-data.ts. Legacy imports stay out of the sitemap.
+// Use the same translated content, slugs and visibility rules as public loaders.
 const publicSpots = spots.filter(isPublicSpot);
 publicSpots.forEach((s) => {
   const continent = slugify(s.region);

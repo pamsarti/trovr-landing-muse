@@ -1,4 +1,4 @@
-import { createFileRoute, Link, notFound, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { useState, type FormEvent } from "react";
 import {
   ACTIVITY_LABEL,
@@ -15,7 +15,8 @@ import { useT } from "@/i18n/useT";
 
 export const Route = createFileRoute("/trips/$id")({
   beforeLoad: () => {
-    throw redirect({ to: "/" });
+    // Hidden catalogue entries have no equivalent public detail page.
+    throw notFound();
   },
   loader: ({ params }) => {
     const trip = findTrip(params.id);
@@ -42,8 +43,8 @@ function TripNotFound() {
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <h1 className="font-serif text-4xl">{t.inquiry.notFound}</h1>
-        <Link to="/trips" className="mt-6 inline-block text-stone underline">
-          Voltar para todas as viagens
+        <Link to="/viagem" className="mt-6 inline-block text-stone underline">
+          Conhecer a Viagem Trovr
         </Link>
       </div>
       <TripsFooter />

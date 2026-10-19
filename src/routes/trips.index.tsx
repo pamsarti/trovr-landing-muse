@@ -28,7 +28,8 @@ import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
   beforeLoad: () => {
-    throw redirect({ to: "/" });
+    // The catalogue remains temporarily hidden; offer the current travel service.
+    throw redirect({ to: "/viagem", statusCode: 307 });
   },
   loader: ({ context }) => ({ locale: (context as { locale?: Locale }).locale }),
   head: ({ loaderData }) => {

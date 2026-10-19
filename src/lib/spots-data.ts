@@ -1,3 +1,5 @@
+import { applySpotOverlay, isPublicSpot, slugify } from "./public-content";
+export { slugify } from "./public-content";
 import rawSpots from "@/data/spots.json";
 import rawSpotsPt from "@/data/spots.pt.json";
 
@@ -50,41 +52,12 @@ type SpotPtOverlay = {
 };
 
 const spotOverlays = (rawSpotsPt as { spots: Record<string, SpotPtOverlay> }).spots;
-const ALL_SPOTS = (rawSpots as Spot[]).map((spot) => {
-  const overlay = spotOverlays[spot.id];
-  if (!overlay) return spot;
-  return {
-    ...spot,
-    description: overlay.description ?? spot.description,
-    conditions: {
-      ...spot.conditions,
-      bestMonths: overlay.bestMonths ?? spot.conditions.bestMonths,
-      activitySpecific: {
-        ...spot.conditions.activitySpecific,
-        ...overlay.activitySpecific,
-      },
-    },
-  };
-});
+const ALL_SPOTS = (rawSpots as Spot[]).map((spot) =>
+  applySpotOverlay(spot, spotOverlays[spot.id]),
+);
 
-/**
- * A spot is considered "public" once it has curated editorial content.
- * Legacy imports without a `descriptionRaw` (rich body) are hidden from
- * every public listing/map/detail until an editor fills them in. Nothing
- * is deleted — flip the data and they reappear.
- */
-function isPublic(spot: Spot): boolean {
-  // A spot is only public once an editor has added curated conditions
-  // (activitySpecific fields) AND a written description. Legacy scraped
-  // entries — even those with a raw source blob or just a sourceUrl — stay
-  // hidden until they are properly filled in. Nothing is deleted.
-  const hasDescription = typeof spot.description === "string" && spot.description.trim().length > 0;
-  const activitySpecific = spot.conditions?.activitySpecific;
-  const hasCuratedConditions = !!activitySpecific && Object.keys(activitySpecific).length > 0;
-  return hasDescription && hasCuratedConditions;
-}
-
-const PUBLIC_SPOTS = ALL_SPOTS.filter(isPublic);
+// Only curated descriptions + conditions are public. Legacy imports stay hidden.
+const PUBLIC_SPOTS = ALL_SPOTS.filter(isPublicSpot);
 
 /** Optional activity filter. When null/undefined, returns every spot. */
 export type ActivityFilter = Activity | null | undefined;
@@ -92,15 +65,6 @@ export type ActivityFilter = Activity | null | undefined;
 /** Single data accessor. Pass an Activity to filter; pass null/undefined for all. */
 export function getSpotsByActivity(activity: ActivityFilter): Spot[] {
   return activity ? PUBLIC_SPOTS.filter((s) => s.activity === activity) : PUBLIC_SPOTS;
-}
-
-export function slugify(value: string): string {
-  return value
-    .toLowerCase()
-    .normalize("NFD")
-    .replace(/[\u0300-\u036f]/g, "")
-    .replace(/[^a-z0-9]+/g, "-")
-    .replace(/(^-|-$)/g, "");
 }
 
 export type Continent = {

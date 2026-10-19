@@ -46,9 +46,12 @@ const FAQ = [
 ];
 
 export const Route = createFileRoute("/viagem")({
-  validateSearch: (search: Record<string, unknown>) => ({
-    visual: search.visual === "mar" ? ("mar" as const) : ("alula" as const),
-  }),
+  // Keep the default out of the URL so /viagem remains a 200 canonical page.
+  // Explicit visual variants still work; the component supplies the default.
+  validateSearch: (search: Record<string, unknown>): { visual?: "alula" | "mar" } =>
+    search.visual === undefined
+      ? {}
+      : { visual: search.visual === "mar" ? "mar" : "alula" },
   head: () => ({
     meta: [
       { title: TITLE },
@@ -155,7 +158,7 @@ const STEPS = [
 ];
 
 function ViagemPage() {
-  const { visual } = Route.useSearch();
+  const { visual = "alula" } = Route.useSearch();
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
