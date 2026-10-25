@@ -178,7 +178,7 @@ export function trackEvent(name: AnalyticsEventName, parameters: AnalyticsParame
   window.clarity?.("event", name);
 }
 
-// Payment events are intentionally absent until a real approved payment flow exists.
+// Offer events never imply payment approval.
 export function trackViagemOffer(event: "ViewContent" | "SelectPlan", plan?: ViagemPlan) {
   if (getAnalyticsConsent() !== "accepted") return;
   const parameters = {
@@ -192,4 +192,13 @@ export function trackViagemOffer(event: "ViewContent" | "SelectPlan", plan?: Via
     parameters,
   );
   window.gtag?.("event", event === "SelectPlan" ? "SelectPlan" : "view_item", parameters);
+}
+
+// Opening the approved external checkout starts payment; it is not a purchase.
+export function trackViagemCheckout(plan: ViagemPlan) {
+  if (getAnalyticsConsent() !== "accepted") return;
+  const item = VIAGEM_PLANS[plan];
+  const parameters = { content_name: item.name, plan, value: item.price, currency: "BRL" };
+  window.fbq?.("trackSingle", META_PIXEL_ID, "InitiateCheckout", parameters);
+  window.gtag?.("event", "begin_checkout", parameters);
 }

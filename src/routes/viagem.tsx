@@ -16,6 +16,7 @@ import {
   trackViagemOffer,
   trackEvent,
   trackViagemLead,
+  trackViagemCheckout,
 } from "@/lib/analytics";
 import { VIAGEM_PLANS, formatPlanPrice, type ViagemPlan } from "@/lib/viagem-plans";
 import { SITE_URL } from "@/lib/seo";
@@ -25,6 +26,11 @@ const DESCRIPTION =
   "Curadoria personalizada para sua viagem: Essencial por R$ 499 ou Premium por R$ 1.499. Descubra destinos ou planeje seu roteiro fora do óbvio.";
 
 const FAQ = [
+  {
+    question: "Como faço o pagamento da curadoria?",
+    answer:
+      "Após enviar o formulário, você acessa o checkout seguro da InfinitePay para pagar com Pix ou cartão. Essencial: R$ 499, em 1x sem juros ou de 2 a 12x com juros. Premium: R$ 1.499, em até 2x sem juros ou de 3 a 12x com juros. O total com juros é informado no checkout antes de você pagar. A produção começa após a confirmação do pagamento e o recebimento das informações necessárias; na Premium, também há reunião de briefing.",
+  },
   {
     question: "Como funcionam os ajustes e o suporte?",
     answer:
@@ -151,7 +157,7 @@ const STEPS = [
   [
     "02",
     "Você escolhe como começar",
-    "Na Essencial, o briefing é por formulário. Na Premium, aprofundamos o briefing em uma reunião de até 45 minutos. Confirmamos o escopo e orientamos o pagamento antes de começar.",
+    "Na Essencial, o briefing é por formulário. Na Premium, aprofundamos o briefing em uma reunião de até 45 minutos. Após enviar o formulário, você acessa o pagamento seguro. A produção começa com pagamento confirmado e informações completas.",
   ],
   [
     "03",
@@ -213,6 +219,8 @@ function ViagemPage() {
   };
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [submittedPlan, setSubmittedPlan] = useState<ViagemPlan | null>(null);
+  const completedPlan = submittedPlan ? VIAGEM_PLANS[submittedPlan] : null;
   const confirmationRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!done) return;
@@ -325,6 +333,7 @@ function ViagemPage() {
         budget: String(data.get("trip_budget") || "não informado"),
         readiness: String(data.get("readiness") || "não informado"),
       });
+      setSubmittedPlan(plan);
       setDone(true);
     } catch {
       setError("Não foi possível enviar agora. Tente novamente em alguns minutos.");
@@ -527,8 +536,9 @@ function ViagemPage() {
                 >
                   <p className="text-sm uppercase tracking-widest">{item.name}</p>
                   <p className="mt-4 text-2xl">
-                    {formatPlanPrice(item.price)} <span className="text-sm">· Pagamento único</span>
+                    {formatPlanPrice(item.price)} <span className="text-sm">· Valor total</span>
                   </p>
+                  <p className="mt-3 text-sm leading-6">{item.paymentTerms}</p>
                   <h3 className="mt-6 text-3xl">{item.title}</h3>
                   <p className="mt-4 leading-7">{item.description}</p>
                   <ul className="my-6 list-disc space-y-3 pl-5 text-sm leading-6">
@@ -536,7 +546,9 @@ function ViagemPage() {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                  <p className="viagem-plan-exclusions mb-8 text-sm leading-6 text-ink">{item.exclusions}</p>
+                  <p className="viagem-plan-exclusions mb-8 text-sm leading-6 text-ink">
+                    {item.exclusions}
+                  </p>
                   <a
                     href="#candidatura"
                     onClick={() => choosePlan(id as ViagemPlan)}
@@ -639,16 +651,39 @@ function ViagemPage() {
                       Candidatura recebida
                     </p>
                     <h3 className="mt-5 font-serif text-3xl sm:text-4xl">
-                      Agora a Trovr vai ler a sua viagem com calma.
+                      Seu próximo passo: confirmar a curadoria.
                     </h3>
                     <p className="mt-5 text-base leading-7 text-paper/90">
-                      {selected?.name} · {selected && formatPlanPrice(selected.price)}. Entraremos
-                      em contato para confirmar o escopo e orientar os próximos passos.{" "}
-                      {plan === "premium"
-                        ? "A Premium inclui reunião de até 45 minutos e entrega em até 10 dias úteis após briefing completo e reunião."
-                        : "A Essencial tem entrega em até 5 dias úteis após briefing e pagamento."}{" "}
-                      Nenhuma cobrança foi realizada.
+                      {completedPlan?.name} ·{" "}
+                      {completedPlan && formatPlanPrice(completedPlan.price)}. Seu formulário foi
+                      recebido. Para começar, conclua o pagamento na InfinitePay. A produção começa
+                      após a confirmação do pagamento e o recebimento das informações necessárias.
+                      {submittedPlan === "premium"
+                        ? " A Premium inclui reunião de até 45 minutos e entrega em até 10 dias úteis após briefing completo e reunião."
+                        : " A Essencial tem entrega em até 5 dias úteis após briefing e pagamento."}
                     </p>
+                    {completedPlan && submittedPlan && (
+                      <>
+                        <p className="mt-4 text-sm leading-6 text-paper">
+                          {completedPlan.paymentTerms} Confira o total no checkout e use o mesmo
+                          e-mail informado no formulário.
+                        </p>
+                        <a
+                          href={completedPlan.paymentUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          onClick={() => trackViagemCheckout(submittedPlan)}
+                          className="mt-6 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-paper px-6 py-4 text-center text-sm font-medium text-ink hover:bg-sand"
+                        >
+                          Pagar {completedPlan.name} <ArrowRight className="h-4 w-4" />
+                        </a>
+                        <p className="mt-4 text-xs leading-5 text-paper">
+                          O checkout abre em outra aba. Enviar o formulário ou abrir o checkout não
+                          realiza cobrança automática. Você recebe o comprovante na InfinitePay após
+                          a aprovação do pagamento.
+                        </p>
+                      </>
+                    )}
                   </div>
                 ) : (
                   <form
