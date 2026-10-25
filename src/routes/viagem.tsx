@@ -338,7 +338,7 @@ function ViagemPage() {
               <h1 className="mt-6 max-w-[14ch] text-[3rem] leading-[0.98] sm:text-6xl md:text-[5.7rem]">
                 Sua próxima viagem não começa no mapa. <em>Começa em você.</em>
               </h1>
-              <p className="mt-7 max-w-xl text-base leading-7 text-paper/82 sm:text-lg">
+              <p className="viagem-lead-copy mt-7 max-w-xl">
                 A Trovr transforma o que você quer viver em um roteiro de viagem personalizado,
                 possível e fora do óbvio, mesmo quando você ainda não sabe para onde ir.
               </p>
@@ -503,7 +503,7 @@ function ViagemPage() {
                 <article
                   id={id}
                   key={id}
-                  className="flex flex-col rounded-sm border border-paper/30 bg-ink p-6 sm:p-8"
+                  className="viagem-plan-card flex flex-col rounded-sm border border-coffee/25 p-6 text-ink sm:p-8"
                 >
                   <p className="text-sm uppercase tracking-widest">{item.name}</p>
                   <p className="mt-4 text-2xl">
@@ -516,7 +516,7 @@ function ViagemPage() {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                  <p className="mb-8 text-sm leading-6 text-paper/80">{item.exclusions}</p>
+                  <p className="mb-8 text-sm leading-6 text-coffee">{item.exclusions}</p>
                   <a
                     href="#candidatura"
                     onClick={() => choosePlan(id as ViagemPlan)}
