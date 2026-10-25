@@ -590,3 +590,103 @@
     transition: none !important;
   }
 }
+
+/* Keep the photograph atmospheric while giving editorial copy a quiet surface. */
+.viagem-immersive .viagem-hero-veil,
+.viagem-immersive .viagem-kite-veil,
+.viagem-immersive .viagem-horizon-veil {
+  background: linear-gradient(90deg, rgb(12 22 23 / 0.78), rgb(12 22 23 / 0.5) 58%, rgb(12 22 23 / 0.28));
+  -webkit-backdrop-filter: blur(1.5px);
+  backdrop-filter: blur(1.5px);
+}
+
+.viagem-immersive .viagem-kite-veil,
+.viagem-immersive .viagem-horizon-veil {
+  background: rgb(12 22 23 / 0.64);
+}
+
+.viagem-immersive .viagem-scene h1,
+.viagem-immersive .viagem-scene h2 {
+  font-weight: 520;
+  text-shadow: 0 2px 18px rgb(0 0 0 / 0.4);
+}
+
+.viagem-immersive .viagem-scene p,
+.viagem-immersive .viagem-scene li,
+.viagem-immersive .viagem-method p,
+.viagem-immersive #modalidades p,
+.viagem-immersive #modalidades li,
+.viagem-immersive .viagem-final-surface p,
+.viagem-immersive .viagem-final-surface label,
+.viagem-immersive .viagem-final-surface input,
+.viagem-immersive .viagem-final-surface select,
+.viagem-immersive .viagem-final-surface textarea {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+.viagem-immersive .viagem-scene p,
+.viagem-immersive .viagem-scene li {
+  color: var(--color-paper, #f7f4ee);
+  text-shadow: 0 1px 3px rgb(0 0 0 / 0.35);
+}
+
+.viagem-immersive .viagem-method,
+.viagem-immersive #modalidades {
+  background: rgb(18 28 28 / 0.92);
+}
+
+@media (max-width: 767px) {
+  .viagem-immersive .viagem-hero-veil {
+    background: linear-gradient(180deg, rgb(12 22 23 / 0.48), rgb(12 22 23 / 0.76) 42%, rgb(12 22 23 / 0.6));
+  }
+}
+
+
+/* Stronger letterforms and calm surfaces, without outlining the letters. */
+.viagem-immersive .viagem-scene .viagem-lead-copy,
+.viagem-immersive .viagem-scene .viagem-readable-copy {
+  color: #fff;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.75;
+  letter-spacing: 0;
+  text-shadow: none;
+  background: linear-gradient(90deg, rgb(12 22 23 / 0.7), rgb(12 22 23 / 0.42));
+  padding: 1rem 1.25rem;
+  border-radius: 0.25rem;
+  text-wrap: pretty;
+}
+
+.viagem-immersive .viagem-scene p.uppercase {
+  color: #fff;
+  font-size: 0.8125rem;
+  font-weight: 650;
+  letter-spacing: 0.16em;
+  line-height: 1.7;
+  text-shadow: none;
+}
+
+.viagem-immersive #modalidades .viagem-plan-card {
+  background: rgb(216 200 174 / 0.9);
+  -webkit-backdrop-filter: blur(18px) saturate(112%);
+  backdrop-filter: blur(18px) saturate(112%);
+  text-shadow: none;
+}
+
+@media (max-width: 767px) {
+  .viagem-immersive .viagem-scene .viagem-lead-copy,
+  .viagem-immersive .viagem-scene .viagem-readable-copy {
+    font-size: 1.125rem;
+    line-height: 1.8;
+    padding: 1rem;
+  }
+}
+
+
+.viagem-immersive [data-form-step] {
+  scroll-margin-top: 7rem;
+}
+
+.viagem-immersive .viagem-plan-exclusions {
+  color: #2b2b2b;
+}
