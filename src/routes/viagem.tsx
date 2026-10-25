@@ -1,5 +1,5 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useRef, useState, type FormEvent, type ReactNode } from "react";
+import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
   ArrowLeft,
   ArrowDown,
@@ -10,14 +10,26 @@ import {
 } from "lucide-react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
-import { trackEvent, trackViagemLead } from "@/lib/analytics";
+import {
+  ANALYTICS_CONSENT_EVENT,
+  getAnalyticsConsent,
+  trackViagemOffer,
+  trackEvent,
+  trackViagemLead,
+} from "@/lib/analytics";
+import { VIAGEM_PLANS, formatPlanPrice, type ViagemPlan } from "@/lib/viagem-plans";
 import { SITE_URL } from "@/lib/seo";
 
 const TITLE = "Roteiro de viagem personalizado e fora do óbvio | Trovr";
 const DESCRIPTION =
-  "A Trovr cria seu roteiro de viagem personalizado a partir do que você quer viver, com curadoria fora do óbvio, hospedagens, restaurantes e caminhos para reservar.";
+  "Curadoria personalizada para sua viagem: Essencial por R$ 499 ou Premium por R$ 1.499. Descubra destinos ou planeje seu roteiro fora do óbvio.";
 
 const FAQ = [
+  {
+    question: "Como funcionam os ajustes e o suporte?",
+    answer:
+      "A Essencial inclui uma rodada de esclarecimentos. A Premium inclui até 2 rodadas de ajustes e suporte para dúvidas por 15 dias após entrega. Nenhuma modalidade inclui concierge durante a viagem ou alterações ilimitadas.",
+  },
   {
     question: "O que é a Viagem Trovr?",
     answer:
@@ -36,12 +48,12 @@ const FAQ = [
   {
     question: "Quanto custa um roteiro personalizado?",
     answer:
-      "Os projetos personalizados começam em R$ 1.990. Duração, número de viajantes e destinos, complexidade e urgência definem o valor final, sempre confirmado antes da contratação.",
+      "A Curadoria Essencial custa R$ 499 e a Premium R$ 1.499, em pagamento único. Ambas contemplam inicialmente até dois viajantes com o mesmo roteiro. Escopos mais complexos são avaliados separadamente, antes da contratação.",
   },
   {
     question: "Em quanto tempo recebo minha viagem?",
     answer:
-      "A primeira versão é entregue em uma página privada e navegável em até 10 a 15 dias úteis após a contratação e o briefing.",
+      "Essencial: documento digital em até 5 dias úteis após briefing e pagamento. Premium: página privada e PDF em até 10 dias úteis após briefing completo e reunião de até 45 minutos.",
   },
 ];
 
@@ -49,9 +61,7 @@ export const Route = createFileRoute("/viagem")({
   // Keep the default out of the URL so /viagem remains a 200 canonical page.
   // Explicit visual variants still work; the component supplies the default.
   validateSearch: (search: Record<string, unknown>): { visual?: "alula" | "mar" } =>
-    search.visual === undefined
-      ? {}
-      : { visual: search.visual === "mar" ? "mar" : "alula" },
+    search.visual === undefined ? {} : { visual: search.visual === "mar" ? "mar" : "alula" },
   head: () => ({
     meta: [
       { title: TITLE },
@@ -87,14 +97,14 @@ export const Route = createFileRoute("/viagem")({
               url: SITE_URL,
             },
             areaServed: "BR",
-            offers: {
+            offers: Object.entries(VIAGEM_PLANS).map(([id, plan]) => ({
               "@type": "Offer",
-              url: `${SITE_URL}/viagem`,
+              name: plan.name,
+              price: plan.price,
               priceCurrency: "BRL",
-              price: "1990",
-              description:
-                "Projetos personalizados a partir de R$ 1.990. Valor final confirmado na proposta conforme escopo.",
-            },
+              url: `${SITE_URL}/viagem#${id}`,
+              description: `${plan.description} ${plan.items.join(" ")} ${plan.exclusions}`,
+            })),
             url: `${SITE_URL}/viagem`,
           },
           {
@@ -127,11 +137,9 @@ export const Route = createFileRoute("/viagem")({
 });
 
 const INCLUDED = [
-  "Uma direção de viagem coerente com o seu momento, não uma lista genérica de atrações.",
-  "Roteiro dia a dia com experiências, deslocamentos e ritmo pensados em conjunto.",
-  "Recomendações de hospedagem, restaurantes e caminhos para fazer cada reserva.",
-  "Página privada e navegável para consultar antes e durante a viagem.",
-  "Até quatro rodadas de ajustes em 15 dias e suporte para dúvidas até a sua volta.",
+  "Essencial: sugestões de destinos, atividades e hospedagens, operadores e estimativa geral de orçamento em documento digital.",
+  "Premium: roteiro dia a dia de até 10 dias, experiências, hospedagens comparadas, logística e orçamento detalhado em página privada e PDF.",
+  "Essencial: uma rodada de esclarecimentos. Premium: até 2 rodadas de ajustes e suporte para dúvidas por 15 dias após entrega.",
 ];
 
 const STEPS = [
@@ -142,13 +150,13 @@ const STEPS = [
   ],
   [
     "02",
-    "A gente conversa por 30 minutos",
-    "Se houver aderência, aprofundamos o briefing e confirmamos escopo, prazo e investimento antes da contratação.",
+    "Você escolhe como começar",
+    "Na Essencial, o briefing é por formulário. Na Premium, aprofundamos o briefing em uma reunião de até 45 minutos. Confirmamos o escopo e orientamos o pagamento antes de começar.",
   ],
   [
     "03",
     "A Trovr constrói a viagem",
-    "Você recebe a primeira versão em até 10 a 15 dias úteis, apresentada em uma página privada e fácil de usar.",
+    "Essencial: entrega em até 5 dias úteis após briefing e pagamento. Premium: até 10 dias úteis após briefing completo e reunião, em página privada e PDF.",
   ],
   [
     "04",
@@ -159,6 +167,50 @@ const STEPS = [
 
 function ViagemPage() {
   const { visual = "alula" } = Route.useSearch();
+  const [plan, setPlan] = useState<ViagemPlan | "">("");
+  const selected = plan ? VIAGEM_PLANS[plan] : null;
+  const viewed = useRef(false);
+  const inFlight = useRef(false);
+  useEffect(() => {
+    let saved: string | null = null;
+    try {
+      saved = window.sessionStorage.getItem("trovr-viagem-plan");
+    } catch {
+      /* Storage can be unavailable in private browsing. */
+    }
+    if (saved === "essencial" || saved === "premium") setPlan(saved);
+    const observeOffer = () => {
+      if (!viewed.current && getAnalyticsConsent() === "accepted") {
+        viewed.current = true;
+        trackViagemOffer("ViewContent");
+      }
+    };
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting) observeOffer();
+    });
+    const element = document.getElementById("modalidades");
+    if (element) observer.observe(element);
+    const onConsent = () => {
+      if (element) {
+        const rect = element.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) observeOffer();
+      }
+    };
+    window.addEventListener(ANALYTICS_CONSENT_EVENT, onConsent);
+    return () => {
+      observer.disconnect();
+      window.removeEventListener(ANALYTICS_CONSENT_EVENT, onConsent);
+    };
+  }, []);
+  const choosePlan = (value: ViagemPlan) => {
+    setPlan(value);
+    try {
+      window.sessionStorage.setItem("trovr-viagem-plan", value);
+    } catch {
+      /* The in-memory selection still works. */
+    }
+    trackViagemOffer("SelectPlan", value);
+  };
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -173,6 +225,11 @@ function ViagemPage() {
   };
 
   const advanceForm = (form: HTMLFormElement) => {
+    if (!plan) {
+      document.getElementById("plan")?.focus();
+      (document.getElementById("plan") as HTMLSelectElement)?.reportValidity();
+      return;
+    }
     const currentFields = Array.from(
       form.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>(
         `[data-form-step="${formStep}"] input, [data-form-step="${formStep}"] select, [data-form-step="${formStep}"] textarea`,
@@ -198,16 +255,33 @@ function ViagemPage() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    if (inFlight.current || !plan) return;
+    const invalid = Array.from(event.currentTarget.elements).find((field) =>
+      field instanceof HTMLInputElement ||
+      field instanceof HTMLSelectElement ||
+      field instanceof HTMLTextAreaElement
+        ? !field.checkValidity()
+        : false,
+    ) as HTMLInputElement | undefined;
+    if (invalid) {
+      setFormStep(Number(invalid.closest("[data-form-step]")?.getAttribute("data-form-step") || 1));
+      requestAnimationFrame(() => invalid.reportValidity());
+      return;
+    }
+    inFlight.current = true;
     setSubmitting(true);
     setError(null);
 
     const data = new FormData(event.currentTarget);
     const search = new URLSearchParams(window.location.search);
-    data.set("utm_source", search.get("utm_source") || "");
-    data.set("utm_medium", search.get("utm_medium") || "");
-    data.set("utm_campaign", search.get("utm_campaign") || "");
-    data.set("utm_content", search.get("utm_content") || "");
-    data.set("referrer", document.referrer || "direto");
+    data.set("plan", plan);
+    data.set("price", String(VIAGEM_PLANS[plan].price));
+    data.set("currency", "BRL");
+    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content"]) {
+      const value = search.get(key) || "";
+      data.set(key, /^[a-zA-Z0-9_-]{1,100}$/.test(value) ? value : "");
+    }
+    data.set("referrer", document.referrer ? new URL(document.referrer).origin : "direto");
 
     try {
       const response = await fetch("/__forms.html", {
@@ -220,7 +294,7 @@ function ViagemPage() {
         response.ok && (response.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Formulário não capturado");
 
-      trackViagemLead();
+      trackViagemLead(plan);
       trackEvent("submit_viagem_application", {
         offer: "viagem_trovr",
         visual_variant: visual,
@@ -235,6 +309,7 @@ function ViagemPage() {
     } catch {
       setError("Não foi possível enviar agora. Tente novamente em alguns minutos.");
     } finally {
+      inFlight.current = false;
       setSubmitting(false);
     }
   };
@@ -269,7 +344,7 @@ function ViagemPage() {
               </p>
               <div className="mt-9 flex flex-wrap items-center gap-5">
                 <a
-                  href="#candidatura"
+                  href="#modalidades"
                   data-analytics-event="open_viagem_offer"
                   data-analytics-name="viagem_hero"
                   data-analytics-variant={visual}
@@ -394,19 +469,68 @@ function ViagemPage() {
               </ol>
               <div className="mt-10 flex flex-col items-start gap-5 sm:flex-row sm:items-center sm:justify-between">
                 <p className="font-serif text-2xl sm:text-3xl">
-                  Projetos personalizados a partir de R$ 1.990.
+                  Essencial · R$ 499. Premium · R$ 1.499.
                 </p>
                 <a
-                  href="#candidatura"
+                  href="#modalidades"
                   data-analytics-event="open_viagem_offer"
                   data-analytics-name="viagem_method"
                   data-analytics-variant={visual}
                   className="inline-flex shrink-0 items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-xs uppercase tracking-[0.16em] text-paper transition-colors hover:bg-terracotta"
                 >
-                  Quero conversar <ArrowDown className="h-4 w-4" />
+                  Escolher minha curadoria <ArrowDown className="h-4 w-4" />
                 </a>
               </div>
             </div>
+          </div>
+        </section>
+
+        <section
+          id="modalidades"
+          aria-labelledby="plans-title"
+          className="relative z-10 scroll-mt-24 px-6 py-16 text-paper sm:px-12"
+        >
+          <div className="mx-auto max-w-6xl">
+            <h2 id="plans-title" className="max-w-3xl text-4xl leading-tight sm:text-5xl">
+              Sua próxima viagem começa com a escolha certa.
+            </h2>
+            <p className="mt-6 max-w-3xl leading-7">
+              Da descoberta de novas possibilidades ao planejamento completo da sua viagem. Escolha
+              como a Trovr pode ajudar você a viver algo fora do óbvio.
+            </p>
+            <div className="mt-10 grid gap-6 md:grid-cols-2">
+              {Object.entries(VIAGEM_PLANS).map(([id, item]) => (
+                <article
+                  id={id}
+                  key={id}
+                  className="flex flex-col rounded-sm border border-paper/30 bg-ink p-6 sm:p-8"
+                >
+                  <p className="text-sm uppercase tracking-widest">{item.name}</p>
+                  <p className="mt-4 text-2xl">
+                    {formatPlanPrice(item.price)} <span className="text-sm">· Pagamento único</span>
+                  </p>
+                  <h3 className="mt-6 text-3xl">{item.title}</h3>
+                  <p className="mt-4 leading-7">{item.description}</p>
+                  <ul className="my-6 list-disc space-y-3 pl-5 text-sm leading-6">
+                    {item.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                  <p className="mb-8 text-sm leading-6 text-paper/80">{item.exclusions}</p>
+                  <a
+                    href="#candidatura"
+                    onClick={() => choosePlan(id as ViagemPlan)}
+                    className="mt-auto inline-flex min-h-12 items-center justify-center rounded-full bg-sage px-6 py-4 text-center text-sm text-paper hover:bg-terracotta"
+                  >
+                    {item.cta}
+                  </a>
+                </article>
+              ))}
+            </div>
+            <p className="mt-6 text-sm leading-6">
+              Ambas as modalidades contemplam inicialmente até dois viajantes com o mesmo roteiro.
+              Escopos mais complexos devem ser avaliados separadamente.
+            </p>
           </div>
         </section>
 
@@ -474,8 +598,8 @@ function ViagemPage() {
                       destino definido.
                     </p>
                     <p className="flex gap-3">
-                      <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> A conversa de
-                      30 minutos acontece apenas quando houver aderência.
+                      <MessageCircle className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> A Essencial
+                      começa pelo formulário. A Premium inclui reunião de até 45 minutos.
                     </p>
                     <p className="flex gap-3">
                       <RouteIcon className="mt-0.5 h-5 w-5 shrink-0 text-sage" /> O envio não gera
@@ -496,12 +620,17 @@ function ViagemPage() {
                       Agora a Trovr vai ler a sua viagem com calma.
                     </h3>
                     <p className="mt-5 text-base leading-7 text-paper/90">
-                      Se a Viagem Trovr fizer sentido para o que você procura, entraremos em contato
-                      para marcar a conversa de 30 minutos e confirmar o próximo passo.
+                      {selected?.name} · {selected && formatPlanPrice(selected.price)}. Entraremos
+                      em contato para confirmar o escopo e orientar os próximos passos.{" "}
+                      {plan === "premium"
+                        ? "A Premium inclui reunião de até 45 minutos e entrega em até 10 dias úteis após briefing completo e reunião."
+                        : "A Essencial tem entrega em até 5 dias úteis após briefing e pagamento."}{" "}
+                      Nenhuma cobrança foi realizada.
                     </p>
                   </div>
                 ) : (
                   <form
+                    noValidate
                     ref={formRef}
                     name="viagem-trovr"
                     method="POST"
@@ -511,6 +640,30 @@ function ViagemPage() {
                     onSubmit={onSubmit}
                     className="grid gap-6"
                   >
+                    <Field label="Escolha sua modalidade" id="plan">
+                      <select
+                        id="plan"
+                        name="plan"
+                        required
+                        value={plan}
+                        onChange={(event) => choosePlan(event.target.value as ViagemPlan)}
+                        className="form-field"
+                      >
+                        <option value="" disabled>
+                          Selecione sua curadoria
+                        </option>
+                        <option value="essencial">Curadoria Essencial · R$ 499</option>
+                        <option value="premium">Curadoria Premium · R$ 1.499</option>
+                      </select>
+                    </Field>
+                    {selected && (
+                      <p className="text-sm leading-6 text-coffee" role="status">
+                        {selected.items.at(-1)} {selected.exclusions} Até dois viajantes com o mesmo
+                        roteiro; escopos mais complexos são avaliados separadamente.
+                      </p>
+                    )}
+                    <input type="hidden" name="price" value={selected?.price ?? ""} />
+                    <input type="hidden" name="currency" value="BRL" />
                     <input type="hidden" name="form-name" value="viagem-trovr" />
                     <input type="hidden" name="source_page" value="/viagem" />
                     <input type="hidden" name="offer" value="viagem_trovr" />
@@ -567,7 +720,8 @@ function ViagemPage() {
                           >
                             <option value="">Selecione</option>
                             <option value="ate-7">Até 7 dias</option>
-                            <option value="8-14">De 8 a 14 dias</option>
+                            <option value="8-10">De 8 a 10 dias</option>
+                            <option value="11-14">De 11 a 14 dias — avaliação de escopo</option>
                             <option value="15-mais">15 dias ou mais</option>
                             <option value="nao-sei">Ainda não sei</option>
                           </select>
@@ -676,7 +830,7 @@ function ViagemPage() {
                             className="form-field"
                           />
                           <p id="phone-help" className="mt-2 text-xs leading-5 text-coffee/65">
-                            Usaremos apenas para combinar a conversa, se houver aderência.
+                            Usaremos para responder sua solicitação e combinar os próximos passos.
                           </p>
                         </Field>
                         <Field label="Como você conheceu a Trovr?" id="discovery_source" optional>
