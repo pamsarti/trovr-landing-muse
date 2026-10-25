@@ -326,7 +326,7 @@
 .viagem-visual-alula .viagem-story-stage,
 .viagem-visual-mar .viagem-story-stage {
   background-position: center;
-  background-image: url("/images/providencia-cayo-cangrejo.jpg");
+  background-image: url("/images/seychelles-island-5039305.webp");
 }
 
 .viagem-final-stage::before {
@@ -396,7 +396,7 @@
 
   .viagem-visual-alula .viagem-story-backdrop,
   .viagem-visual-mar .viagem-story-backdrop {
-    background-image: url("/images/providencia-cayo-cangrejo.jpg");
+    background-image: url("/images/seychelles-island-5039305.webp");
     background-position: center;
   }
 

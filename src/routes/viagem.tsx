@@ -69,15 +69,15 @@ export const Route = createFileRoute("/viagem")({
       { property: "og:title", content: TITLE },
       { property: "og:description", content: DESCRIPTION },
       { property: "og:url", content: `${SITE_URL}/viagem` },
-      { property: "og:image", content: `${SITE_URL}/images/providencia-cayo-cangrejo.jpg` },
+      { property: "og:image", content: `${SITE_URL}/images/seychelles-island-5039305.webp` },
       {
         property: "og:image:alt",
-        content: "Mar de Providencia: viagens fora do óbvio com a Trovr",
+        content: "Ilha rochosa cercada por mar turquesa em Seychelles — Trovr",
       },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:title", content: TITLE },
       { name: "twitter:description", content: DESCRIPTION },
-      { name: "twitter:image", content: `${SITE_URL}/images/providencia-cayo-cangrejo.jpg` },
+      { name: "twitter:image", content: `${SITE_URL}/images/seychelles-island-5039305.webp` },
     ],
     links: [{ rel: "canonical", href: `${SITE_URL}/viagem` }],
     scripts: [
@@ -325,8 +325,8 @@ function ViagemPage() {
         <div className="viagem-story-backdrop" aria-hidden />
         <section className="viagem-scene viagem-hero">
           <img
-            src="/images/providencia-cayo-cangrejo.jpg"
-            alt="Mar azul-turquesa visto de Providencia"
+            src="/images/seychelles-island-5039305.webp"
+            alt="Ilha rochosa com vegetação cercada por mar turquesa em Seychelles"
             className="sr-only"
           />
           <div className="viagem-hero-veil" aria-hidden />
@@ -359,7 +359,7 @@ function ViagemPage() {
 
         <section className="viagem-scene viagem-blend-top viagem-kite">
           <img
-            src="/images/providencia-cayo-cangrejo.jpg"
+            src="/images/seychelles-island-5039305.webp"
             alt="A fotografia da viagem permanece enquanto a narrativa avança"
             loading="lazy"
             className="sr-only"
@@ -399,7 +399,7 @@ function ViagemPage() {
           aria-labelledby="included-title"
         >
           <img
-            src="/images/providencia-cayo-cangrejo.jpg"
+            src="/images/seychelles-island-5039305.webp"
             alt="A fotografia da viagem permanece enquanto a narrativa avança"
             loading="lazy"
             className="sr-only"

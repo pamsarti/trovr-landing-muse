@@ -30,4 +30,8 @@ O formulário mantém `viagem-trovr`, todos os campos anteriores e POST para `/_
 2. Configurar/aprovar links reais de pagamento por plano. Somente ao implementar essa etapa conectar InitiateCheckout ao início efetivo do checkout; Purchase deve depender de confirmação confiável do provedor. Não inserir evento Purchase no CTA.
 3. Validar os eventos na ferramenta de testes da Meta/GA com consentimento após o deploy autorizado.
 
-Não houve merge, build hook, publicação no Netlify nem mudança de integração. `netlify.toml` mantém `ignore = "exit 0"`, evitando deploy automático por push. Não foi criada prévia pública porque exigiria publicação adicional.
+Na revisão inicial não houve merge, build hook, publicação no Netlify nem mudança de integração. `netlify.toml` mantém `ignore = "exit 0"`, evitando deploy automático por push. Não foi criada prévia pública porque exigiria publicação adicional.
+
+## Imagem aprovada e publicação
+
+Em 25/10/2026, Pamela aprovou a substituição da foto e a publicação. Foto: Sebastian Flegl, Pexels 5039305, https://www.pexels.com/photo/trees-on-island-5039305/. Licença: https://www.pexels.com/license/. Original 4000×3000 preservado localmente; derivada WebP otimizada 1920×1440 para o site. Fundo desktop/mobile, imagens acessíveis e compartilhamento social atualizados. A foto anterior permanece no projeto.
