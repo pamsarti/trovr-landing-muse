@@ -217,6 +217,22 @@ function ViagemPage() {
   const [formStep, setFormStep] = useState(1);
   const started = useRef(false);
   const formRef = useRef<HTMLFormElement>(null);
+  const focusNextStep = useRef(false);
+
+  useEffect(() => {
+    if (!focusNextStep.current) return;
+    focusNextStep.current = false;
+    const step = formRef.current?.querySelector<HTMLFieldSetElement>(
+      `[data-form-step="${formStep}"]`,
+    );
+    step?.querySelector<HTMLElement>("legend")?.focus({ preventScroll: true });
+    step?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [formStep]);
+
+  const goToFormStep = (step: number) => {
+    focusNextStep.current = true;
+    setFormStep(step);
+  };
 
   const markStarted = () => {
     if (started.current) return;
@@ -237,19 +253,17 @@ function ViagemPage() {
     ).filter((field) => field.type !== "hidden");
     const firstInvalid = currentFields.find((field) => !field.checkValidity());
     if (firstInvalid) {
+      firstInvalid.focus({ preventScroll: true });
+      firstInvalid.scrollIntoView({ block: "center", behavior: "instant" });
       firstInvalid.reportValidity();
       return;
     }
     const nextStep = Math.min(formStep + 1, 3);
-    setFormStep(nextStep);
+    goToFormStep(nextStep);
     trackEvent("advance_viagem_application", {
       offer: "viagem_trovr",
       step: nextStep,
       visual_variant: visual,
-    });
-    formRef.current?.scrollIntoView({
-      behavior: "smooth",
-      block: "center",
     });
   };
 
@@ -265,7 +279,11 @@ function ViagemPage() {
     ) as HTMLInputElement | undefined;
     if (invalid) {
       setFormStep(Number(invalid.closest("[data-form-step]")?.getAttribute("data-form-step") || 1));
-      requestAnimationFrame(() => invalid.reportValidity());
+      requestAnimationFrame(() => {
+        invalid.focus({ preventScroll: true });
+        invalid.scrollIntoView({ block: "center", behavior: "instant" });
+        invalid.reportValidity();
+      });
       return;
     }
     inFlight.current = true;
@@ -516,7 +534,7 @@ function ViagemPage() {
                       <li key={item}>{item}</li>
                     ))}
                   </ul>
-                  <p className="mb-8 text-sm leading-6 text-coffee">{item.exclusions}</p>
+                  <p className="viagem-plan-exclusions mb-8 text-sm leading-6 text-ink">{item.exclusions}</p>
                   <a
                     href="#candidatura"
                     onClick={() => choosePlan(id as ViagemPlan)}
@@ -680,7 +698,7 @@ function ViagemPage() {
                     </p>
 
                     <fieldset data-form-step="1" hidden={formStep !== 1} className="grid gap-6">
-                      <legend className="mb-6 font-serif text-2xl">
+                      <legend tabIndex={-1} className="mb-6 font-serif text-2xl">
                         Vamos desenhar o contorno.
                       </legend>
                       <div className="grid gap-6 sm:grid-cols-2">
@@ -755,7 +773,7 @@ function ViagemPage() {
                     </fieldset>
 
                     <fieldset data-form-step="2" hidden={formStep !== 2} className="grid gap-6">
-                      <legend className="mb-6 font-serif text-2xl">
+                      <legend tabIndex={-1} className="mb-6 font-serif text-2xl">
                         Agora, o que precisa fazer sentido.
                       </legend>
                       <Field
@@ -795,7 +813,7 @@ function ViagemPage() {
                     </fieldset>
 
                     <fieldset data-form-step="3" hidden={formStep !== 3} className="grid gap-6">
-                      <legend className="mb-6 font-serif text-2xl">
+                      <legend tabIndex={-1} className="mb-6 font-serif text-2xl">
                         Para a Trovr continuar a conversa.
                       </legend>
                       <div className="grid gap-6 sm:grid-cols-2">
@@ -866,7 +884,7 @@ function ViagemPage() {
                       {formStep > 1 ? (
                         <button
                           type="button"
-                          onClick={() => setFormStep((step) => Math.max(1, step - 1))}
+                          onClick={() => goToFormStep(Math.max(1, formStep - 1))}
                           className="inline-flex min-h-12 items-center gap-2 px-2 text-xs uppercase tracking-[0.14em] text-coffee hover:text-ink"
                         >
                           <ArrowLeft className="h-4 w-4" /> Voltar
@@ -876,14 +894,19 @@ function ViagemPage() {
                       )}
                       {formStep < 3 ? (
                         <button
+                          key="continue-application"
                           type="button"
-                          onClick={() => formRef.current && advanceForm(formRef.current)}
+                          onClick={(event) => {
+                            event.preventDefault();
+                            if (formRef.current) advanceForm(formRef.current);
+                          }}
                           className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink"
                         >
                           Continuar <ArrowRight className="h-4 w-4" />
                         </button>
                       ) : (
                         <button
+                          key="submit-application"
                           type="submit"
                           disabled={submitting}
                           className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-8 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-ink disabled:opacity-60"

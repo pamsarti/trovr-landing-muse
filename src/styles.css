@@ -681,3 +681,12 @@
     padding: 1rem;
   }
 }
+
+
+.viagem-immersive [data-form-step] {
+  scroll-margin-top: 7rem;
+}
+
+.viagem-immersive .viagem-plan-exclusions {
+  color: #2b2b2b;
+}
