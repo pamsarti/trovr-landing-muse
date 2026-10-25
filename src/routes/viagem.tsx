@@ -213,6 +213,12 @@ function ViagemPage() {
   };
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const confirmationRef = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    if (!done) return;
+    confirmationRef.current?.focus({ preventScroll: true });
+    confirmationRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [done]);
   const [error, setError] = useState<string | null>(null);
   const [formStep, setFormStep] = useState(1);
   const started = useRef(false);
@@ -320,10 +326,6 @@ function ViagemPage() {
         readiness: String(data.get("readiness") || "não informado"),
       });
       setDone(true);
-      window.scrollTo({
-        top: document.getElementById("candidatura")?.offsetTop ?? 0,
-        behavior: "smooth",
-      });
     } catch {
       setError("Não foi possível enviar agora. Tente novamente em alguns minutos.");
     } finally {
@@ -628,8 +630,10 @@ function ViagemPage() {
 
                 {done ? (
                   <div
+                    ref={confirmationRef}
+                    tabIndex={-1}
                     role="status"
-                    className="self-start rounded-sm bg-sage p-8 text-paper sm:p-10"
+                    className="scroll-mt-28 self-start rounded-sm bg-sage p-8 text-paper sm:p-10"
                   >
                     <p className="text-xs uppercase tracking-[0.22em] text-paper/75">
                       Candidatura recebida
