@@ -675,7 +675,7 @@ function ViagemPage() {
                           onClick={() => trackViagemCheckout(submittedPlan)}
                           className="mt-6 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-paper px-6 py-4 text-center text-sm font-medium text-ink hover:bg-sand"
                         >
-                          Pagar {completedPlan.name} <ArrowRight className="h-4 w-4" />
+                          Quero começar minha viagem <ArrowRight className="h-4 w-4" />
                         </a>
                         <p className="mt-4 text-xs leading-5 text-paper">
                           O checkout abre em outra aba. Enviar o formulário ou abrir o checkout não
