@@ -1,3 +1,4 @@
+import { VIAGEM_PLANS, type ViagemPlan } from "./viagem-plans";
 export type AnalyticsConsent = "accepted" | "rejected" | null;
 
 export type AnalyticsEventName =
@@ -51,10 +52,15 @@ let initialized = false;
 
 function loadMetaPixel(pixelId: string) {
   if (document.querySelector(`script[data-trovr-meta="${pixelId}"]`)) return;
-  const fbq: MetaPixel = window.fbq ?? Object.assign((...args: unknown[]) => {
-    if (fbq.callMethod) fbq.callMethod(...args);
-    else fbq.queue?.push(args);
-  }, { queue: [] as unknown[][], loaded: true, version: "2.0" });
+  const fbq: MetaPixel =
+    window.fbq ??
+    Object.assign(
+      (...args: unknown[]) => {
+        if (fbq.callMethod) fbq.callMethod(...args);
+        else fbq.queue?.push(args);
+      },
+      { queue: [] as unknown[][], loaded: true, version: "2.0" },
+    );
   fbq.push = fbq;
   window.fbq = fbq;
   window._fbq = fbq;
@@ -153,10 +159,14 @@ export function trackPageView(path: string, title = document.title) {
 
 // A request is a lead, not a purchase. Never send the travel budget as revenue,
 // or pass names, email addresses or free-text briefing to analytics.
-export function trackViagemLead() {
+export function trackViagemLead(plan?: ViagemPlan) {
   if (getAnalyticsConsent() !== "accepted") return;
-  window.fbq?.("trackSingle", META_PIXEL_ID, "Lead", { content_name: "Viagem Trovr" });
+  window.fbq?.("trackSingle", META_PIXEL_ID, "Lead", {
+    content_name: "Viagem Trovr",
+    ...(plan ? { plan, value: VIAGEM_PLANS[plan].price, currency: "BRL" } : {}),
+  });
   window.gtag?.("event", "generate_lead", {
+    ...(plan ? { plan, value: VIAGEM_PLANS[plan].price, currency: "BRL" } : {}),
     form_name: "viagem_trovr",
     lead_source: "website",
   });
@@ -166,4 +176,20 @@ export function trackEvent(name: AnalyticsEventName, parameters: AnalyticsParame
   if (getAnalyticsConsent() !== "accepted") return;
   window.gtag?.("event", name, parameters);
   window.clarity?.("event", name);
+}
+
+// Payment events are intentionally absent until a real approved payment flow exists.
+export function trackViagemOffer(event: "ViewContent" | "SelectPlan", plan?: ViagemPlan) {
+  if (getAnalyticsConsent() !== "accepted") return;
+  const parameters = {
+    content_name: "Viagem Trovr",
+    ...(plan ? { plan, value: VIAGEM_PLANS[plan].price, currency: "BRL" } : {}),
+  };
+  window.fbq?.(
+    event === "SelectPlan" ? "trackSingleCustom" : "trackSingle",
+    META_PIXEL_ID,
+    event,
+    parameters,
+  );
+  window.gtag?.("event", event === "SelectPlan" ? "SelectPlan" : "view_item", parameters);
 }
