@@ -29,7 +29,7 @@ const FAQ = [
   {
     question: "Como faço o pagamento da curadoria?",
     answer:
-      "Após enviar o formulário, você acessa o checkout seguro da InfinitePay para pagar com Pix ou cartão. Essencial: R$ 499, em 1x sem juros ou de 2 a 12x com juros. Premium: R$ 1.499, em até 2x sem juros ou de 3 a 12x com juros. O total com juros é informado no checkout antes de você pagar. A produção começa após a confirmação do pagamento e o recebimento das informações necessárias; na Premium, também há reunião de briefing.",
+      "Após enviar o formulário, você acessa o checkout seguro da InfinitePay para pagar com Pix ou cartão. Essencial: R$ 499, à vista no Pix ou em 1x sem juros no cartão. Premium: R$ 1.499, à vista no Pix ou em até 2x sem juros no cartão. Confira as condições disponíveis no checkout antes de pagar. A produção começa após a confirmação do pagamento e o recebimento das informações necessárias; na Premium, também há reunião de briefing.",
   },
   {
     question: "Como funcionam os ajustes e o suporte?",
