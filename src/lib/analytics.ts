@@ -90,7 +90,10 @@ export function setAnalyticsConsent(value: Exclude<AnalyticsConsent, null>) {
 function loadGoogleAnalytics(measurementId: string) {
   if (document.querySelector(`script[data-trovr-ga="${measurementId}"]`)) return;
   window.dataLayer = window.dataLayer ?? [];
-  window.gtag = (...args: unknown[]) => window.dataLayer?.push(args);
+  window.gtag = function (..._args: unknown[]) {
+    // gtag.js consumes Arguments commands; arrays are data-layer method messages.
+    window.dataLayer?.push(arguments);
+  };
   window.gtag("js", new Date());
   window.gtag("config", measurementId, {
     anonymize_ip: true,
