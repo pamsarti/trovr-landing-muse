@@ -54,3 +54,36 @@ describe("commercial measurement", () => {
     expect(window.fbq).toHaveBeenCalledExactlyOnceWith("trackSingle", META_PIXEL_ID, "PageView");
   });
 });
+
+
+it("queues Google commands in the documented Arguments format", async () => {
+  vi.resetModules();
+  vi.stubGlobal("window", {
+    localStorage: { getItem: () => "accepted" },
+    location: { origin: "https://trovr.com.br" },
+  });
+  vi.stubGlobal("document", {
+    querySelector: () => null,
+    createElement: () => ({ dataset: {} }),
+    head: { appendChild: vi.fn() },
+    title: "Trovr",
+  });
+  const analytics = await import("./analytics");
+  analytics.initializeAnalytics();
+  analytics.trackViagemLead("premium");
+  const commands = window.dataLayer as IArguments[];
+  expect(commands).toHaveLength(3);
+  for (const command of commands) {
+    expect(Object.prototype.toString.call(command)).toBe("[object Arguments]");
+    expect(Array.isArray(command)).toBe(false);
+  }
+  expect(Array.from(commands[1])).toEqual([
+    "config", analytics.GA_MEASUREMENT_ID, { anonymize_ip: true, send_page_view: false },
+  ]);
+  expect(Array.from(commands[2])).toEqual([
+    "event", "generate_lead", {
+      plan: "premium", value: 1499, currency: "BRL",
+      form_name: "viagem_trovr", lead_source: "website",
+    },
+  ]);
+});
