@@ -642,7 +642,7 @@
 }
 
 
-/* Stronger letterforms and calm surfaces, without outlining the letters. */
+/* Keep editorial copy legible directly over the photograph. */
 .viagem-immersive .viagem-scene .viagem-lead-copy,
 .viagem-immersive .viagem-scene .viagem-readable-copy {
   color: #fff;
@@ -651,9 +651,9 @@
   line-height: 1.75;
   letter-spacing: 0;
   text-shadow: none;
-  background: linear-gradient(90deg, rgb(12 22 23 / 0.7), rgb(12 22 23 / 0.42));
-  padding: 1rem 1.25rem;
-  border-radius: 0.25rem;
+  background: transparent;
+  padding: 0;
+  border-radius: 0;
   text-wrap: pretty;
 }
 
@@ -678,7 +678,6 @@
   .viagem-immersive .viagem-scene .viagem-readable-copy {
     font-size: 1.125rem;
     line-height: 1.8;
-    padding: 1rem;
   }
 }
 
