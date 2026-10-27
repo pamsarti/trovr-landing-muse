@@ -20,6 +20,7 @@ import {
 } from "@/lib/analytics";
 import { VIAGEM_PLANS, formatPlanPrice, type ViagemPlan } from "@/lib/viagem-plans";
 import { SITE_URL } from "@/lib/seo";
+import { beginPaymentFn } from "@/lib/payments/functions";
 
 const TITLE = "Roteiro de viagem personalizado e fora do óbvio | Trovr";
 const DESCRIPTION =
@@ -29,7 +30,7 @@ const FAQ = [
   {
     question: "Como faço o pagamento da curadoria?",
     answer:
-      "Após enviar o formulário, você acessa o checkout seguro da InfinitePay para pagar com Pix ou cartão. Essencial: R$ 499, em 1x sem juros ou de 2 a 12x com juros. Premium: R$ 1.499, em até 2x sem juros ou de 3 a 12x com juros. O total com juros é informado no checkout antes de você pagar. A produção começa após a confirmação do pagamento e o recebimento das informações necessárias; na Premium, também há reunião de briefing.",
+      "Após enviar o formulário, você acessa o checkout seguro da InfinitePay para pagar com Pix ou cartão. Essencial: R$ 499, em 1x sem juros. Premium: R$ 1.499, em até 2x sem juros. A produção começa após a confirmação do pagamento e o recebimento das informações necessárias; na Premium, também há reunião de briefing.",
   },
   {
     question: "Como funcionam os ajustes e o suporte?",
@@ -221,6 +222,26 @@ function ViagemPage() {
   const [done, setDone] = useState(false);
   const [submittedPlan, setSubmittedPlan] = useState<ViagemPlan | null>(null);
   const completedPlan = submittedPlan ? VIAGEM_PLANS[submittedPlan] : null;
+  const [openingPayment, setOpeningPayment] = useState(false);
+  const [paymentError, setPaymentError] = useState<string | null>(null);
+  const paymentInFlight = useRef(false);
+  async function openPayment() {
+    if (!submittedPlan || paymentInFlight.current) return;
+    paymentInFlight.current = true;
+    setOpeningPayment(true);
+    setPaymentError(null);
+    try {
+      const result = await beginPaymentFn({ data: { plan: submittedPlan } });
+      if (result.status !== "ready") throw new Error("unavailable");
+      trackViagemCheckout(submittedPlan);
+      window.location.assign(result.url);
+    } catch {
+      setPaymentError("O pagamento online está temporariamente indisponível. Seu formulário foi recebido. Fale com a Trovr para continuar, sem enviar dados de cartão por mensagem.");
+    } finally {
+      paymentInFlight.current = false;
+      setOpeningPayment(false);
+    }
+  }
   const confirmationRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
     if (!done) return;
@@ -673,17 +694,17 @@ function ViagemPage() {
                           {completedPlan.paymentTerms} Confira o total no checkout e use o mesmo
                           e-mail informado no formulário.
                         </p>
-                        <a
-                          href={completedPlan.paymentUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          onClick={() => trackViagemCheckout(submittedPlan)}
+                        <button
+                          type="button"
+                          disabled={openingPayment}
+                          onClick={() => void openPayment()}
                           className="mt-6 inline-flex min-h-12 items-center justify-center gap-3 rounded-full bg-paper px-6 py-4 text-center text-sm font-medium text-ink hover:bg-sand"
                         >
-                          Quero começar minha viagem <ArrowRight className="h-4 w-4" />
-                        </a>
+                          {openingPayment ? "Preparando pagamento…" : "Quero começar minha viagem"} <ArrowRight className="h-4 w-4" />
+                        </button>
+                        {paymentError && <p role="alert" className="mt-4 text-sm">{paymentError} <a href="/roteiro" className="underline">Falar com a Trovr</a></p>}
                         <p className="mt-4 text-xs leading-5 text-paper">
-                          O checkout abre em outra aba. Enviar o formulário ou abrir o checkout não
+                          Você será direcionado ao checkout seguro. Enviar o formulário ou abrir o checkout não
                           realiza cobrança automática. Você recebe o comprovante na InfinitePay após
                           a aprovação do pagamento.
                         </p>

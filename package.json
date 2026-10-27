@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite dev",
+    "dev:payment": "node --env-file-if-exists=.env.payment.local node_modules/vite/bin/vite.js",
     "build": "npm run typecheck && node scripts/generate-stats.mjs && node scripts/optimize-images.mjs && npm run check:sitemap && vite build",
     "build:dev": "vite build --mode development",
     "preview": "vite preview",

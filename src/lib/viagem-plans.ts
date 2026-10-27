@@ -19,7 +19,9 @@ export const VIAGEM_PLANS = {
     exclusions: "Não inclui roteiro dia a dia, reservas ou acompanhamento durante a viagem.",
     cta: "Quero minha curadoria.",
     paymentUrl: "https://checkout.infinitepay.io/pamela-sarti/qwdE2x8Bo4",
-    paymentTerms: "Pix ou cartão. 1x sem juros; de 2 a 12x com juros.",
+    interestFreeInstallments: 1,
+    maxInstallments: 1,
+    paymentTerms: "Pix ou cartão em 1x sem juros.",
   },
   premium: {
     name: "Curadoria Premium",
@@ -46,7 +48,9 @@ export const VIAGEM_PLANS = {
       "Não inclui reservas, pagamentos a fornecedores, concierge durante a viagem ou alterações ilimitadas.",
     cta: "Quero planejar minha viagem.",
     paymentUrl: "https://checkout.infinitepay.io/pamela-sarti/h1xVnrDBZz",
-    paymentTerms: "Pix ou cartão. Até 2x sem juros; de 3 a 12x com juros.",
+    interestFreeInstallments: 2,
+    maxInstallments: 2,
+    paymentTerms: "Pix ou cartão em até 2x sem juros.",
   },
 } as const;
 export type ViagemPlan = keyof typeof VIAGEM_PLANS;

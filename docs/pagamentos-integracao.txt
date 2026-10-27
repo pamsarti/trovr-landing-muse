@@ -1,0 +1,39 @@
+Integração de pagamento Trovr — rascunho local, 27/10/2026
+
+Não publicar ou ativar sem aprovação expressa. Não habilitar o novo checkout antes de validar as condições de parcelamento do provedor por plano.
+
+Fluxo preparado:
+1. Após o formulário recebido, botão chama beginPaymentFn, que cria um pedido com identificador aleatório, plano e data definidos no servidor. Nenhum dado de cartão ou briefing é enviado por essa função.
+2. Pedido guardado em cookie criptografado HttpOnly, SameSite=Lax, expiração 24h. Até 4 pedidos por sessão. Repetir clique reutiliza o link do pedido pendente. Resultado ambíguo de geração não cria outro link automaticamente.
+3. Checkout integrado individual, de pagamento único, com order_nsu do pedido e redirect_url /pagamento. O domínio de resposta é validado antes de direcionar o comprador.
+4. Retorno remove referências da URL antes de carregar medição opcional. Nenhum receipt_url recebido é aberto ou transmitido.
+5. verifyPaymentFn exige pedido correspondente na sessão e consulta payment_check do provedor no servidor. Só paid=true com valor, parcelas e condições compatíveis produz status paid.
+6. Tela informa confirmado só após validação. Falha ou pendência orienta não pagar novamente e permite conferir de novo.
+7. Purchase Meta/GA depende de resposta validada e consentimento. Deduplicação por transação no navegador; Meta eventID e GA transaction_id estáveis. Nenhum dado pessoal ou valor de orçamento de viagem vai para o evento.
+
+Chave exclusiva criada com autorização de Pamela: Trovr - checkout site - 2026-10-27.
+Chave e segredo de sessão salvos apenas em .env.payment.local (ignorados pelo Git, permissão0600). Também configurados na Netlify com autorização específica em 27/10/2026, como segredos somente de produção no projeto trovragency. APP_URL de produção conferido: https://trovr.com.br. INFINITEPAY_CHECKOUT_ENABLED e INFINITEPAY_INSTALLMENT_LIMITS_VERIFIED salvos como false. Nenhum deploy iniciado. Para testar localmente sem gerar cobrança: npm run dev:payment. Os flags continuam false.
+
+Configuração necessária no servidor (não VITE_):
+PAYMENT_SESSION_SECRET — segredo aleatório de pelo menos 32 caracteres.
+INFINITEPAY_API_KEY — chave exclusiva do Checkout Integrado.
+APP_URL=https://trovr.com.br
+INFINITEPAY_CHECKOUT_ENABLED=false por padrão.
+INFINITEPAY_INSTALLMENT_LIMITS_VERIFIED=false por padrão.
+Os dois flags só podem ser true após validação funcional das condições no provedor e autorização de publicação. Esta rodada NÃO criou links de checkout de produção pela integração e NÃO efetuou pagamentos.
+
+Decisão final de Pamela em27/10/2026: manter plano Sem Antecipação atual, sem migração financeira. EssencialR$499 em1x sem juros; PremiumR$1499 ematé2x sem juros. Substitui autorização anterior de12x. Metadados, textos, FAQ, parâmetrosassured_installments1/2 e validação do retorno alinhados localmente. O suporte confirmou que nesse regime somente parcelas absorvidas aparecem, consistente com a verificação anterior dos links existentes. Nenhuma alteração de taxas, antecipação ou recebíveis realizada. Flags continuamfalse enquanto publicação permanece sem autorização. A pendência de decidir migração financeira está encerrada.
+
+Limites:
+- Cookie deve voltar no mesmo navegador. Se perdido/expirado, o site não declara falha financeira nem confirmação; a conferência é manual no painel do provedor.
+- Não há webhook ou banco durável de pedidos nesta implementação. Se o comprador não clicar Continuar no provedor e retornar ao site, não há Purchase automático no navegador. Isso não impede pagamento aprovado no provedor, mas exige conciliação comercial manual. Não afirmar automação completa de entrega/CRM.
+- Deduplicação de medição no navegador não é um livro-razão financeiro. Nenhuma ação de entrega, reembolso ou liberação de produto é disparada pelo evento analytics.
+- A compra Essencial aprovada em 27/10 às08h48 ocorreu no fluxo antigo e foi confirmada no painel. Não possui o novo pedido de sessão e não foi retroativamente emitida como Purchase.
+- Testes locais usam respostas simuladas do provedor para cobertura de sucesso/pendência/falha. Isso não prova integração financeira de produção.
+
+Validação executada: TypeScript; 36 testes de pagamento, analytics e contrato comercial; página local /pagamento recebeu referências inválidas, removeu query e não declarou pagamento confirmado. Console local registra falta de variáveis Supabase já exigidas pelo site, sem configurar novo serviço nesta rodada.
+
+Referências oficiais:
+https://www.infinitepay.io/checkout-documentacao
+
+Históricos de8x e12x foram substituídos pela decisão final de1x/2x no plano atual. Não houve deploy, cobrança nova ou alteração do plano financeiro.

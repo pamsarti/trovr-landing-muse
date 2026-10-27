@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as ViagemRouteImport } from './routes/viagem'
 import { Route as RoteiroRouteImport } from './routes/roteiro'
 import { Route as PrivacidadeRouteImport } from './routes/privacidade'
+import { Route as PagamentoRouteImport } from './routes/pagamento'
 import { Route as ComingSoonRouteImport } from './routes/coming-soon'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
@@ -43,6 +44,11 @@ const RoteiroRoute = RoteiroRouteImport.update({
 const PrivacidadeRoute = PrivacidadeRouteImport.update({
   id: '/privacidade',
   path: '/privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PagamentoRoute = PagamentoRouteImport.update({
+  id: '/pagamento',
+  path: '/pagamento',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ComingSoonRoute = ComingSoonRouteImport.update({
@@ -136,6 +142,7 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/pagamento': typeof PagamentoRoute
   '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
   '/viagem': typeof ViagemRoute
@@ -158,6 +165,7 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/pagamento': typeof PagamentoRoute
   '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
   '/viagem': typeof ViagemRoute
@@ -181,6 +189,7 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/about': typeof AboutRoute
   '/coming-soon': typeof ComingSoonRoute
+  '/pagamento': typeof PagamentoRoute
   '/privacidade': typeof PrivacidadeRoute
   '/roteiro': typeof RoteiroRoute
   '/viagem': typeof ViagemRoute
@@ -205,6 +214,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/pagamento'
     | '/privacidade'
     | '/roteiro'
     | '/viagem'
@@ -227,6 +237,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/pagamento'
     | '/privacidade'
     | '/roteiro'
     | '/viagem'
@@ -249,6 +260,7 @@ export interface FileRouteTypes {
     | '/'
     | '/about'
     | '/coming-soon'
+    | '/pagamento'
     | '/privacidade'
     | '/roteiro'
     | '/viagem'
@@ -272,6 +284,7 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AboutRoute: typeof AboutRoute
   ComingSoonRoute: typeof ComingSoonRoute
+  PagamentoRoute: typeof PagamentoRoute
   PrivacidadeRoute: typeof PrivacidadeRoute
   RoteiroRoute: typeof RoteiroRoute
   ViagemRoute: typeof ViagemRoute
@@ -311,6 +324,13 @@ declare module '@tanstack/react-router' {
       path: '/privacidade'
       fullPath: '/privacidade'
       preLoaderRoute: typeof PrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/pagamento': {
+      id: '/pagamento'
+      path: '/pagamento'
+      fullPath: '/pagamento'
+      preLoaderRoute: typeof PagamentoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/coming-soon': {
@@ -450,6 +470,7 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AboutRoute: AboutRoute,
   ComingSoonRoute: ComingSoonRoute,
+  PagamentoRoute: PagamentoRoute,
   PrivacidadeRoute: PrivacidadeRoute,
   RoteiroRoute: RoteiroRoute,
   ViagemRoute: ViagemRoute,

@@ -14,8 +14,11 @@ describe("curadoria contracts", () => {
     for (const plan of Object.values(VIAGEM_PLANS)) {
       expect(new URL(plan.paymentUrl).hostname).toBe("checkout.infinitepay.io");
     }
-    expect(VIAGEM_PLANS.essencial.paymentTerms).toContain("2 a 12x com juros");
-    expect(VIAGEM_PLANS.premium.paymentTerms).toContain("Até 2x sem juros");
+    expect(VIAGEM_PLANS.essencial.paymentTerms).toContain("1x sem juros");
+    expect(VIAGEM_PLANS.essencial.maxInstallments).toBe(1);
+    expect(VIAGEM_PLANS.premium.paymentTerms).toContain("até 2x sem juros");
+    expect(VIAGEM_PLANS.premium.maxInstallments).toBe(2);
+    expect(page).not.toMatch(/12x com juros|3 a 8x/i);
   });
   it.each(["rejected", null])("blocks offer and lead events without consent %s", (consent) => {
     vi.stubGlobal("window", {

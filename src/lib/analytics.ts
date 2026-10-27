@@ -126,6 +126,8 @@ function loadClarity(projectId: string) {
 
 export function initializeAnalytics() {
   if (initialized || typeof window === "undefined" || getAnalyticsConsent() !== "accepted") return;
+  // Strip provider references before loading third-party scripts on the return page.
+  if (window.location.pathname === "/pagamento" && window.location.search) return;
 
   const measurementId = GA_MEASUREMENT_ID;
   const clarityProjectId = CLARITY_PROJECT_ID;
@@ -204,4 +206,26 @@ export function trackViagemCheckout(plan: ViagemPlan) {
   const parameters = { content_name: item.name, plan, value: item.price, currency: "BRL" };
   window.fbq?.("trackSingle", META_PIXEL_ID, "InitiateCheckout", parameters);
   window.gtag?.("event", "begin_checkout", parameters);
+}
+
+const measuredPayments = new Set<string>();
+export function trackVerifiedPurchase(payment: import("./payments/infinitepay.server").VerifiedPayment) {
+  if (getAnalyticsConsent() !== "accepted" || payment.status !== "paid" ||
+      !["essencial", "premium"].includes(payment.plan) ||
+      payment.value !== VIAGEM_PLANS[payment.plan]?.price || payment.currency !== "BRL" ||
+      !/^[a-zA-Z0-9-]{8,100}$/.test(payment.transactionId)) return;
+  const eventId = `trovr_purchase_${payment.transactionId}`;
+  if (measuredPayments.has(eventId) || (!window.fbq && !window.gtag)) return;
+  try {
+    if (window.localStorage.getItem(eventId)) return;
+    // Fail closed if durable browser deduplication is unavailable.
+    window.localStorage.setItem(eventId, "sent");
+  } catch { return; }
+  measuredPayments.add(eventId);
+  const item = VIAGEM_PLANS[payment.plan];
+  const parameters = { content_name: item.name, value: item.price, currency: "BRL" };
+  window.fbq?.("trackSingle", META_PIXEL_ID, "Purchase", parameters, { eventID: eventId });
+  window.gtag?.("event", "purchase", { transaction_id: payment.transactionId,
+    value: item.price, currency: "BRL", items: [{ item_id: payment.plan, item_name: item.name,
+      price: item.price, quantity: 1 }] });
 }
