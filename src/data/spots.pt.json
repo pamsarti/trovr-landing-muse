@@ -369,6 +369,159 @@
         "hazards_launch": "Vento terral e água muito rasa no setor liso; barcos, boias e banhistas na alta temporada. Escolher a zona de decolagem conforme o setor.",
         "kite_wing": "Kitesurf e wingfoil documentados."
       }
+    },
+    "barcadera-abc-isla": {
+      "description": "Litoral ao sul do aeroporto de Aruba; não confundir com Surfside. Mais lisa junto à margem; chop mais marcado ao se afastar.",
+      "bestMonths": [
+        "Dezembro a agosto."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Alísios na temporada; a janela é a referência climática de Aruba.",
+        "best_season": "Dezembro a agosto.",
+        "wind_direction": "Lateral a terral, com variação local e rajadas.",
+        "water_type": "Mais lisa junto à margem; chop mais marcado ao se afastar.",
+        "bottom_water": "Água salgada. Composição do fundo na área de navegação: não foi possível determinar.",
+        "tide_current": "Influência local da maré e correnteza: não foi possível determinar.",
+        "level_discipline": "Prática de kite documentada. Recomendado a quem já navega com autonomia, pelo vento terral e tráfego de barcos.",
+        "hazards_launch": "Barcos atravessam a lagoa; vento pode afastar da costa. Manter distância das rotas de navegação.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "boca-grandi-abc-isla": {
+      "description": "Sudeste de Aruba, próximo a San Nicolas. Chop, ondas e quebra junto à praia.",
+      "bestMonths": [
+        "Dezembro a agosto."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Alísios na temporada principal de Aruba.",
+        "best_season": "Dezembro a agosto.",
+        "wind_direction": "Maral a lateral-maral.",
+        "water_type": "Chop, ondas e quebra junto à praia.",
+        "bottom_water": "Praia de areia; água salgada. Não há confirmação para declarar todo o fundo livre de pedras.",
+        "tide_current": "Correntes fortes documentadas. Efeito específico da maré sobre o kite: não foi possível determinar.",
+        "level_discipline": "Avançados; navegação com ondas.",
+        "hazards_launch": "Correnteza, ondas e shorebreak. O órgão de turismo desaconselha nadar no local.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "fisherman-huts-kite-and-windsufing-abc-isla": {
+      "description": "Noord, além do Marriott, na costa noroeste de Aruba. Rasa e geralmente calma junto à praia; pode haver ondulação.",
+      "bestMonths": [
+        "Dezembro a agosto."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Alísios; vento pode chegar rajado pela influência das construções.",
+        "best_season": "Dezembro a agosto.",
+        "wind_direction": "Vento terral, que leva para longe da praia; pode ser rajado.",
+        "water_type": "Rasa e geralmente calma junto à praia; pode haver ondulação.",
+        "bottom_water": "Água salgada; trechos rasos e costa com rochas. Não tratar toda a área como fundo limpo.",
+        "tide_current": "Correnteza e efeito local da maré: não foi possível determinar.",
+        "level_discipline": "Há ensino para iniciantes. Para navegar com autonomia, considerar o vento terral e as rajadas.",
+        "hazards_launch": "Rochas, outros usuários e deriva para longe da costa. Não classificado como praia segura para iniciante independente.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "kiteboarding-bonaire-abc-isla": {
+      "description": "Sudoeste de Bonaire. O cadastro “Kiteboarding Bonaire” corresponde a esta praia. Geralmente lisa e quente.",
+      "bestMonths": [
+        "Dezembro a agosto."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Alísios durante a temporada principal.",
+        "best_season": "Dezembro a agosto.",
+        "wind_direction": "Nordeste; terral no spot.",
+        "water_type": "Geralmente lisa e quente.",
+        "bottom_water": "Água salgada. Composição e profundidade do fundo na faixa de kite: não foi possível determinar com segurança.",
+        "tide_current": "Correnteza e efeito da maré: não foi possível determinar.",
+        "level_discipline": "Aprendizagem com acompanhamento; progressão e manobras. O vento terral exige atenção também dos independentes.",
+        "hazards_launch": "O vento afasta da costa. A existência de aulas não torna o local adequado a iniciantes desacompanhados.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "sint-joris-baai-abc-isla": {
+      "description": "Baía no nordeste de Curaçao; os setores de entrada têm orientações diferentes. Baía abrigada, relativamente lisa, com áreas rasas e outras profundas.",
+      "bestMonths": [
+        "Janeiro a agosto."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Alísios de leste/nordeste na temporada principal.",
+        "best_season": "Janeiro a agosto; janela ampliada indicada localmente de meados de dezembro a meados de setembro.",
+        "wind_direction": "Leste a nordeste. Lateral ou maral conforme o setor da margem usado para entrar.",
+        "water_type": "Baía abrigada, relativamente lisa, com áreas rasas e outras profundas.",
+        "bottom_water": "Água salgada; areia e vegetação submersa em trechos da baía, pedras cortantes nas margens.",
+        "tide_current": "Correnteza e efeito local da maré: não foi possível determinar.",
+        "level_discipline": "Iniciantes com instrução e praticantes experientes; freeride.",
+        "hazards_launch": "Pedras na entrada e junto às margens; verificar o setor antes de entrar. Calçado aquático é recomendado no relato de visita.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "north-haven-beach-adelaide": {
+      "description": "North Haven, Adelaide, South Australia; região dos quebra-mares. Varia com o vento: áreas mais lisas junto à proteção e chop/ondas nas partes expostas.",
+      "bestMonths": [
+        "Verão austral."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisas de verão à tarde na costa de Adelaide.",
+        "best_season": "Fim de outubro ao início de abril — janela regional das brisas.",
+        "wind_direction": "Sudoeste nas brisas regionais; noroeste também é usado no local.",
+        "water_type": "Varia com o vento: áreas mais lisas junto à proteção e chop/ondas nas partes expostas.",
+        "bottom_water": "Água salgada; há acúmulo ocasional de algas. Composição detalhada do fundo: não foi possível determinar.",
+        "tide_current": "Correnteza e efeito local da maré: não foi possível determinar.",
+        "level_discipline": "Kite com navegação autônoma; ondas e chop exigem controle. Não classificado como spot de aprendizagem.",
+        "hazards_launch": "Quebra-mares são obstáculos, especialmente com vento de sul. Não decolar junto às estruturas.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "largs-bay-adelaide": {
+      "description": "Praia junto ao Largs Bay Sailing Club, ao norte do píer, Adelaide, South Australia. Áreas rasas junto à praia; mar do golfo relativamente abrigado, sujeito ao vento.",
+      "bestMonths": [
+        "Verão austral."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisas de verão à tarde na costa de Adelaide.",
+        "best_season": "Fim de outubro ao início de abril — janela regional das brisas.",
+        "wind_direction": "Sudoeste nas brisas de verão.",
+        "water_type": "Áreas rasas junto à praia; mar do golfo relativamente abrigado, sujeito ao vento.",
+        "bottom_water": "Água salgada e faixa costeira rasa. Não foi possível confirmar a composição de todo o fundo.",
+        "tide_current": "Correnteza e efeito local da maré: não foi possível determinar.",
+        "level_discipline": "Iniciantes com instrução e praticantes em progressão.",
+        "hazards_launch": "Píer e outros usuários da praia: manter distância ao decolar e navegar.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "grange-adelaide": {
+      "description": "Grange, Adelaide, South Australia; praia com píer e clube de vela. Praia do golfo descrita pelo turismo local como de águas calmas. Isso não garante água lisa em dia de kite.",
+      "bestMonths": [
+        "Verão austral — referência regional."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisas de verão à tarde na costa de Adelaide.",
+        "best_season": "Fim de outubro ao início de abril — janela regional das brisas.",
+        "wind_direction": "Sudoeste nas brisas regionais.",
+        "water_type": "Praia do golfo descrita pelo turismo local como de águas calmas. Isso não garante água lisa em dia de kite.",
+        "bottom_water": "Água salgada. Composição do fundo na faixa de navegação: não foi possível determinar.",
+        "tide_current": "Correnteza e efeito local da maré: não foi possível determinar.",
+        "level_discipline": "Freestyle documentado em campeonato local. Classificação para iniciantes: não foi possível determinar.",
+        "hazards_launch": "Píer, banhistas e pescadores. Manter a decolagem e navegação afastadas desses usos.",
+        "kite_wing": "Kitesurf, com registro de competição local."
+      }
+    },
+    "victor-harbor-adelaide": {
+      "description": "Kent Reserve, Encounter Bay, Victor Harbor, South Australia. Mais lisa sobre o recife coberto; chop e ondas mais ao largo.",
+      "bestMonths": [
+        "Verão austral."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisas e padrões de sudeste no verão.",
+        "best_season": "Novembro a abril; período indicado para o spot.",
+        "wind_direction": "Sul-sudoeste a sudeste. Oeste/sudoeste e norte não recomendados: podem ser terrais.",
+        "water_type": "Mais lisa sobre o recife coberto; chop e ondas mais ao largo.",
+        "bottom_water": "Água salgada; recife rochoso com areia e vegetação submersa.",
+        "tide_current": "Maré baixa pode expor o recife e inviabilizar a navegação rasa. Correnteza: não foi possível determinar.",
+        "level_discipline": "Recomendado para quem já navega com autonomia; freeride e ondas para experientes.",
+        "hazards_launch": "Recifes rasos, barcos ancorados e banhistas. Usar o extremo sul para decolar, afastado das famílias e da sombra de vento.",
+        "kite_wing": "Kitesurf."
+      }
     }
   }
 }

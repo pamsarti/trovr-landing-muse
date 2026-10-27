@@ -4,93 +4,173 @@
     "activity": "kite",
     "name": "Barcadera",
     "region": "Caribbean",
-    "city": "ABC islands (Aruba)",
-    "country": "ABC islands (Aruba)",
-    "coordinates": {
-      "lat": 12.52,
-      "lng": -70.04
-    },
+    "city": "Aruba",
+    "country": "Aruba",
+    "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/abc-islands/",
-    "status": "active"
+    "status": "active",
+    "sources": [
+      "https://aruba-active-vacations.com/kitesurfing/beginners-guide-to-kitesurfing-in-aruba/",
+      "https://www.surf-magazin.de/en/spots-and-areas/international/overseas/spot-guide-the-best-windsurfing-spots-in-aruba/",
+      "https://web.kite-and-windsurfing-guide.com/spots/kiteboarding-windsurfing-sup/barcadera-aruba.html",
+      "https://www.thekitemag.com/videos/escape-to-aruba/"
+    ]
   },
   {
     "id": "boca-grandi-abc-isla",
     "activity": "kite",
     "name": "Boca Grandi",
     "region": "Caribbean",
-    "city": "ABC islands (Aruba)",
-    "country": "ABC islands (Aruba)",
+    "city": "Aruba",
+    "country": "Aruba",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/abc-islands/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://aruba-active-vacations.com/kitesurfing/beginners-guide-to-kitesurfing-in-aruba/",
+      "https://www.surf-magazin.de/en/spots-and-areas/international/overseas/spot-guide-the-best-windsurfing-spots-in-aruba/",
+      "https://web.kite-and-windsurfing-guide.com/spots/kiteboarding-windsurfing-sup/barcadera-aruba.html",
+      "https://www.aruba.com/us/explore/boca-grandi"
+    ]
   },
   {
     "id": "fisherman-huts-kite-and-windsufing-abc-isla",
     "activity": "kite",
-    "name": "Fisherman Huts (kite and windsufing)",
+    "name": "Fisherman’s Huts / Hadicurari",
     "region": "Caribbean",
-    "city": "ABC islands (Aruba)",
-    "country": "ABC islands (Aruba)",
+    "city": "Aruba",
+    "country": "Aruba",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/abc-islands/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://aruba-active-vacations.com/kitesurfing/beginners-guide-to-kitesurfing-in-aruba/",
+      "https://www.surf-magazin.de/en/spots-and-areas/international/overseas/spot-guide-the-best-windsurfing-spots-in-aruba/",
+      "https://www.aruba.com/uk/explore/hadicurari-beach"
+    ]
   },
   {
     "id": "kiteboarding-bonaire-abc-isla",
     "activity": "kite",
-    "name": "Kiteboarding Bonaire",
+    "name": "Atlantis Beach / Kite Beach",
     "region": "Caribbean",
-    "city": "ABC islands (Aruba)",
-    "country": "ABC islands (Aruba)",
+    "city": "Bonaire",
+    "country": "Bonaire",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/abc-islands/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitersparadise.com/surfspot/",
+      "https://kitersparadise.com/faq/",
+      "https://www.kiteboardingbonaire.com/"
+    ]
   },
   {
     "id": "sint-joris-baai-abc-isla",
     "activity": "kite",
-    "name": "Sint Joris Baai",
+    "name": "Sint Joris Bay / Sint Joris Baai",
     "region": "Caribbean",
-    "city": "ABC islands (Aruba)",
-    "country": "ABC islands (Aruba)",
+    "city": "Curaçao",
+    "country": "Curaçao",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/abc-islands/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.bluewavekitesurfing.com/location-contact",
+      "https://jbay-kiteboarding-curacao.com/st-joris-bay/",
+      "https://www.kitereisen.tv/kitereisen/curacao-kitesurfen-karibik-kitespots/",
+      "https://awasalu-kiteboarding.com/kitespot/"
+    ]
   },
   {
     "id": "north-haven-beach-adelaide",
@@ -98,17 +178,34 @@
     "name": "North Haven Beach",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Australia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://www.windsurfing.org/sa_beaches_metro.htm",
+      "https://www.seabreeze.com.au/forums/Kitesurfing/South-Australia/Kiting-zones-Adelaide-and-surrounds?page=1",
+      "https://web.kite-and-windsurfing-guide.com/spots/kiteboarding-windsurfing-sup/the-point-kite-beach-adelaide-south-australia-australia.html"
+    ]
   },
   {
     "id": "largs-bay-adelaide",
@@ -116,17 +213,34 @@
     "name": "Largs Bay",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Australia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://www.windsurfing.org/sa_beaches_metro.htm",
+      "https://web.kite-and-windsurfing-guide.com/spots/kiteboarding-windsurfing-sup/the-point-kite-beach-adelaide-south-australia-australia.html",
+      "https://ridekitesurfing.com.au/pages/kitesurfing-lessons-adelaide"
+    ]
   },
   {
     "id": "grange-adelaide",
@@ -134,17 +248,35 @@
     "name": "Grange",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Australia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://www.windsurfing.org/sa_beaches_metro.htm",
+      "https://www.adelaidebeaches.com.au/our-beaches",
+      "https://www.seabreeze.com.au/forums/Kitesurfing/South-Australia/SAKSA-STATE-FREESTYLE-TITLES-8th9th-Feb?fromPage=1&fromTopic=126582&groupID=2423",
+      "https://beachsafe.org.au/beach/sa/charles-sturt/grange/grange"
+    ]
   },
   {
     "id": "henley-beach-south-adelaide",
@@ -167,20 +299,36 @@
   {
     "id": "victor-harbor-adelaide",
     "activity": "kite",
-    "name": "Victor Harbor",
+    "name": "Kent Reserve / Victor Harbor",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Australia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.southcentralkiteboarders.com/page-3.html",
+      "https://se.kiteforum.com/kitesurf/spot/kent_reserve",
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia"
+    ]
   },
   {
     "id": "goolwa-beach-adelaide",
