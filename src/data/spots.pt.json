@@ -3,7 +3,9 @@
   "spots": {
     "uluwatu-surf": {
       "region": "Ásia",
-      "bestMonths": ["Estação seca, de maio a outubro; auge em agosto"],
+      "bestMonths": [
+        "Estação seca, de maio a outubro; auge em agosto"
+      ],
       "description": "Uluwatu não é uma única onda. São cinco, alinhadas diante de uma muralha de calcário na ponta de Bukit, e a escolha depende da maré e da ondulação do dia. A remada começa por uma caverna sob o penhasco, um acesso que já faz sua própria seleção: quando a maré sobe, a entrada desaparece, e errar a hora pode significar remar até a praia seguinte. As esquerdas correm rápidas e ocas sobre coral raso. Racetracks entrega tubos na maré baixa; The Peak abre sua parede na cheia. A constância e a qualidade mantêm o lugar sempre cheio. Entre cedo, use botinhas e respeite o recife: ele é a razão da onda perfeita e também do risco.",
       "activitySpecific": {
         "break_type": "Reef break de esquerda, com The Peak, Racetracks e Temples",
@@ -20,7 +22,9 @@
       "region": "Europa",
       "city": "Islândia",
       "country": "Islândia",
-      "bestMonths": ["25 de junho a 15 de setembro; ideal em julho e agosto"],
+      "bestMonths": [
+        "25 de junho a 15 de setembro; ideal em julho e agosto"
+      ],
       "description": "A trilha cabe em quatro dias e reúne quase tudo que há de estranho na Islândia. Você sai das águas termais de Landmannalaugar por montanhas de riolito que parecem pintadas à mão, atravessa neve e obsidiana no ponto mais alto e desce por desertos de areia negra até a floresta de bétulas de Þórsmörk. O desafio não é a orientação, porque a rota é bem marcada, mas os rios: três travessias são feitas a pé e o nível pode mudar no mesmo dia com chuva ou sol. Vá em julho ou agosto, reserve os abrigos cedo e leia o quadro de condições dos guardas antes de cada vau.",
       "activitySpecific": {
         "distance": "54 km",
@@ -36,7 +40,9 @@
       "region": "Europa",
       "city": "Alpes Franceses",
       "country": "França",
-      "bestMonths": ["Realizada uma vez por ano, no fim de agosto"],
+      "bestMonths": [
+        "Realizada uma vez por ano, no fim de agosto"
+      ],
       "description": "Correr a UTMB é dar uma volta completa no Mont Blanc, cruzando três fronteiras entre a largada e a chegada no mesmo lugar, em Chamonix. O terreno mente com gentileza: os primeiros 30 quilômetros são generosos, e é justamente ali que estreantes gastam as pernas de que vão precisar nos quatro colos acima de 2.400 metros, já na segunda noite sem dormir. Entre um colo e outro, o single track pelos refúgios Bertone e Bonatti, com a face italiana do maciço à esquerda, está entre os trechos mais bonitos do esporte. Mais de um terço dos participantes não cruza o arco final. Esse é o acordo: uma das paisagens mais fotografadas da corrida de trilha e um preço cobrado por inteiro.",
       "activitySpecific": {
         "distance": "174 km, com variação anual",
@@ -50,7 +56,9 @@
     },
     "a-line-bike": {
       "region": "América do Norte",
-      "bestMonths": ["Temporada do parque de maio a outubro"],
+      "bestMonths": [
+        "Temporada do parque de maio a outubro"
+      ],
       "description": "Alguns trechos de terra não são apenas percorridos. Eles ensinam a linguagem que todos os outros repetem. A-Line foi onde uma geração inteira entendeu o significado de flow. O Fitzsimmons leva você ao alto sem uma pedalada, e lá começa uma sequência moldada de mesas e curvas elevadas feita para manter a mão longe do freio. A classificação é preta, mas flow acessível e saltos obrigatórios convivem na mesma linha; o encontro depende da velocidade que você aceita carregar. A pista abre por etapas, dividida em zonas que nem sempre funcionam juntas. Aqui, o acesso é conquistado por teleférico, não pela subida.",
       "activitySpecific": {
         "distance_shape": "Cerca de 2,9 km; ponto a ponto, apenas descida",
@@ -83,7 +91,9 @@
     },
     "cumbuco-kite": {
       "region": "América do Sul",
-      "bestMonths": ["Agosto a dezembro; janela de julho a janeiro; auge em agosto e setembro"],
+      "bestMonths": [
+        "Agosto a dezembro; janela de julho a janeiro; auge em agosto e setembro"
+      ],
       "description": "Cumbuco cumpre sua promessa sem espetáculo: de agosto a dezembro, o vento alísio chega de manhã, ganha força durante a tarde até a faixa de 15 a 22 nós e fica até a luz acabar. O mar é mexido e bom para saltos; alguns quilômetros ao norte, a lagoa do Cauípe oferece o oposto, com água lisa, rasa e fundo de areia. É ali que iniciantes encontram apoio e quem passa ao wingfoil encontra um dos palcos mais tolerantes do Brasil. A constância cobra seu preço: no fim da manhã, a lagoa enche. Este é um lugar para repetição, para acumular horas diante de um vento em que se pode confiar.",
       "activitySpecific": {
         "wind_by_month": "Alísios diários na estação seca, com auge em agosto e setembro. À tarde, normalmente 15 a 22 nós, com rajadas de 28 a 30. Não há estação meteorológica no próprio pico",
@@ -101,7 +111,9 @@
       "region": "Europa",
       "city": "Ilhas Baleares",
       "country": "Espanha",
-      "bestMonths": ["Verão, apenas com tempo estável e vento leste"],
+      "bestMonths": [
+        "Verão, apenas com tempo estável e vento leste"
+      ],
       "description": "Cala Saona trai o próprio cartão-postal: uma ferradura de areia entre penhascos cor de ferrugem e pinheiros. A calma só permanece com vento leste. Sob o Levante, a água fica lisa e o pôr do sol a oeste explica a fama. Quando entra o Ponent, a mesma abertura canaliza a ondulação para dentro; a areia segura bem, mas o barco passa a rolar. Quem ancora aqui lê a previsão antes de romantizar o lugar. A regra de ouro das Baleares é fundear apenas na areia, longe das pradarias de posidônia. Não é etiqueta, mas proteção ambiental com multas altas. É parada diurna, não porto de abrigo.",
       "activitySpecific": {
         "depth": "Cerca de 3 a 8 m; fundeio entre 3 e 5 m sobre areia, a aproximadamente 100 m da praia",
@@ -117,7 +129,9 @@
       "region": "Europa",
       "city": "Alpes Franceses",
       "country": "França",
-      "bestMonths": ["Temporada de 22/11/2025 a 03/05/2026"],
+      "bestMonths": [
+        "Temporada de 22/11/2025 a 03/05/2026"
+      ],
       "description": "Val Thorens não pede desculpas pelo que é: concreto a 2.300 metros, sem floresta nem charme de aldeia. É exatamente por isso que resiste quando o resto dos Alpes ainda espera pela neve. A altitude é o argumento inteiro. Você esquia em um anfiteatro de circos glaciais acima da linha das árvores, com pistas largas descendo da Cime Caron e uma base que costuma durar até maio. É terreno para quem busca volume e muitos quilômetros, não um couloir preto secreto. O domínio vive de suas pistas azuis e vermelhas e da ligação que abre 600 km com um único passe. O vento pode fechar a parte alta rapidamente, e o après-ski é intenso.",
       "activitySpecific": {
         "km_by_difficulty": "150 km de pistas próprias e mais de 600 km com o passe 3 Vallées; cerca de 87% para iniciantes e intermediários",
@@ -133,7 +147,9 @@
       "region": "Europa",
       "city": "Dodecaneso, Grécia",
       "country": "Grécia",
-      "bestMonths": ["Outono, de outubro a novembro, e primavera, de abril a junho"],
+      "bestMonths": [
+        "Outono, de outubro a novembro, e primavera, de abril a junho"
+      ],
       "description": "Kalymnos não é uma falésia. É uma ilha inteira organizada em torno da escalada, e isso muda o ritmo dos dias. Você dorme em Masouri, toma café olhando Telendos do outro lado do canal e caminha vinte minutos até paredes de calcário cobertas de tufas e estalactites. A força do lugar não está no topo da escala, mas no volume de vias intermediárias bem protegidas. Quem escala entre 6a e 6b+ pode passar semanas sem repetir um setor, dividindo o estacionamento com escaladores de 8a sem atrito. Vá no outono; outubro traz dias secos. No verão, escolha a sombra conforme a orientação da parede. Leve corda de 70 m e conte as costuras antes de sair do chão.",
       "activitySpecific": {
         "discipline": "Escalada esportiva; ilha praticamente 100% dedicada a vias protegidas",
@@ -182,6 +198,176 @@
         "duration": "Fontes variam de uma a duas horas, em aproximadamente 6 km; saídas às 9h ou 16h",
         "best_season": "Inverno, aproximadamente de outubro a março; dias entre 15 e 25 °C",
         "whats_included": "Guia credenciado, traslado de ida e volta entre hotel e Hegra, entradas e cavalo; água, café e tâmaras variam por operador; refeições não incluídas"
+      }
+    },
+    "g-kova-turkey": {
+      "description": "Praia de Akçapınar, no golfo de Gökova, junto à região de Akyaka. Rasa e mais lisa perto da praia; pequenas ondas e água mexida conforme o vento aumenta e se avança na baía.",
+      "bestMonths": [
+        "Junho a setembro, dentro da janela de abril a novembro."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisa térmica ganha força com o aquecimento do dia. Verão mais consistente; perde regularidade no outono. A janela documentada vai de abril a novembro, sem promessa de vento diário.",
+        "best_season": "Abril a novembro; priorizar junho a setembro.",
+        "wind_direction": "Maral (onshore): do mar em direção à praia, no regime térmico habitual.",
+        "water_type": "Rasa e mais lisa perto da praia; pequenas ondas e água mexida conforme o vento aumenta e se avança na baía.",
+        "bottom_water": "Fundo arenoso. Água marinha com influência dos rios, reduzindo a salinidade junto à costa.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Iniciante com instrução ao avançado; freeride e freestyle. Foil nas áreas com profundidade suficiente.",
+        "hazards_launch": "Praia arenosa; dividir espaço com aulas e outros praticantes. O vento maral exige margem de manobra antes da areia; atenção à pouca profundidade.",
+        "kite_wing": "Kitesurf, kitefoil e wingfoil documentados no local."
+      }
+    },
+    "urla-turkey": {
+      "description": "Praia de Gülbahçe, no município de Urla, região de İzmir. Predominantemente lisa e rasa no setor de kite; água mexida e pequenas ondas mais adiante, com vento forte.",
+      "bestMonths": [
+        "Junho a setembro."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi de verão, frequentemente mais forte pela manhã e enfraquecendo depois. Maio e outubro são mais variáveis; fora do verão também entram ventos de sul e nordeste.",
+        "best_season": "Meados de maio a outubro; período central de junho a setembro.",
+        "wind_direction": "Norte no Meltemi, lateral à praia (side-shore). Vento de sul pode ficar terral; nordeste pode entrar forte.",
+        "water_type": "Predominantemente lisa e rasa no setor de kite; água mexida e pequenas ondas mais adiante, com vento forte.",
+        "bottom_water": "Areia e lama, com banco de areia e algas antes da parte profunda. Água salgada.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Iniciante com instrução ao avançado; freeride, freestyle e wakestyle. Foil no setor mais profundo, a barlavento.",
+        "hazards_launch": "Bancos rasos limitam o foil; respeitar a separação entre aulas e navegação. Atenção ao vento terral de sul.",
+        "kite_wing": "Kitesurf, kitefoil e wingfoil; usar o setor profundo para os foils."
+      }
+    },
+    "ayvalik-turkey": {
+      "description": "Keremköy, na costa de Ayvalık, província de Balıkesir. Água rasa, lisa a levemente mexida no setor de kite de Keremköy.",
+      "bestMonths": [
+        "Julho e agosto; junho a setembro também favoráveis."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi e reforço térmico no verão. Maior consistência de meados de junho a meados de setembro; maio e outubro são bordas da temporada.",
+        "best_season": "Maio ao fim de outubro, priorizando junho a setembro.",
+        "wind_direction": "Norte a noroeste; no pico principal, lateral a lateral-maral.",
+        "water_type": "Água rasa, lisa a levemente mexida no setor de kite de Keremköy.",
+        "bottom_water": "Praia arenosa com pedrinhas/cascalho descritos na entrada. Água salgada; não tratar toda a área como areia sem obstáculos.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Iniciante com instrução ao avançado; freeride e freestyle.",
+        "hazards_launch": "Naufrágio na área de navegação e espaço limitado para decolar em alguns trechos. Evitar aproximar-se do casco e das pedras.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "imbros-turkey": {
+      "description": "Praia de Aydıncık, também chamada Kefalos, na ilha de Gökçeada. Água muito lisa. O pico de ondas de Eşelek é outro setor, a cerca de 2 km, e não representa esta praia.",
+      "bestMonths": [
+        "Junho a setembro."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Vento de nordeste reforçado pelo relevo e aquecimento. No verão tende a ser mais forte pela manhã e cair à tarde; frentes podem trazer vento muito mais forte.",
+        "best_season": "Maio a outubro, com núcleo de verão de junho a setembro.",
+        "wind_direction": "Nordeste, terral (offshore) no setor de água lisa de Aydıncık.",
+        "water_type": "Água muito lisa. O pico de ondas de Eşelek é outro setor, a cerca de 2 km, e não representa esta praia.",
+        "bottom_water": "Fundo arenoso e água salgada.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Freestyle e race. Para velejar de forma independente, exige experiência com vento terral; iniciantes apenas em contexto de instrução.",
+        "hazards_launch": "O vento afasta da costa. Praia arenosa; a água lisa não elimina o risco de deriva nem as rajadas de frentes.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "rameswaram-india": {
+      "description": "Região de Rameswaram, Tamil Nadu. Referência aproximada em Pirappanvalasai, na costa continental da Palk Bay. Baías abrigadas com água lisa; setores expostos com ondas. Na Palk Bay, o verão tende a ser mais calmo e o inverno mais ondulado.",
+      "bestMonths": [
+        "Abril a setembro para a monção de sudoeste; dezembro a março é a segunda janela."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Dois regimes: sudoeste de abril a setembro e norte no período dezembro–março. Outubro a meados de dezembro é a transição mais chuvosa.",
+        "best_season": "Abril–setembro e dezembro–março, escolhendo a praia conforme a direção do dia.",
+        "wind_direction": "Sudoeste no primeiro período; norte no segundo. A orientação em relação à praia muda entre Palk Bay e a costa do golfo de Mannar.",
+        "water_type": "Baías abrigadas com água lisa; setores expostos com ondas. Na Palk Bay, o verão tende a ser mais calmo e o inverno mais ondulado.",
+        "bottom_water": "Praias de areia e água salgada; há recifes nos setores insulares e de ondas. Não generalizar fundo só de areia para toda a região.",
+        "tide_current": "Maré predominantemente semidiurna na Palk Bay. Correntes regionais variam com monções e canais, especialmente junto a Pamban; não há uma condição única para toda a costa.",
+        "level_discipline": "Iniciante com instrução em baía abrigada ao avançado; freeride, freestyle e ondas nos setores adequados.",
+        "hazards_launch": "Escolher o lado com vento favorável à costa; atenção aos recifes e passagens entre ilhas. Evitar usar canais como área de aprendizado.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "prasonisi-beach-greece": {
+      "description": "Extremo sul da ilha de Rodes. Lado ocidental com ondas; lado oriental abrigado, mais liso. Não são setores intercambiáveis para um kitesurfista independente.",
+      "bestMonths": [
+        "Junho a setembro."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi consistente no verão. Maio já oferece vento; outubro pode continuar forte, mas é menos previsível. Fora dessa janela, não presumir o mesmo padrão.",
+        "best_season": "Maio a outubro, priorizando junho a setembro.",
+        "wind_direction": "Noroeste no regime habitual: maral no lado de ondas e terral no lado liso.",
+        "water_type": "Lado ocidental com ondas; lado oriental abrigado, mais liso. Não são setores intercambiáveis para um kitesurfista independente.",
+        "bottom_water": "Fundo arenoso nas áreas de praia; água salgada. Há pedras e ouriços junto aos trechos rochosos.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Freeride, freestyle e ondas conforme o lado. Navegação independente exige domínio das condições; iniciação em área de aula.",
+        "hazards_launch": "Vento terral no lado liso, ondas no lado exposto e tráfego de praticantes. Há restrições de uso do lado liso; decolar na zona destinada ao kite.",
+        "kite_wing": "Kitesurf e wingfoil documentados."
+      }
+    },
+    "kremasti-greece": {
+      "description": "Praia de Kremasti, na ilha de Rodes. Mais lisa no início do vento, depois mexida; ondas de vento mais afastadas. A água aprofunda rapidamente.",
+      "bestMonths": [
+        "Junho a setembro."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi de verão com reforço à tarde. Primavera e outono podem trazer Tramontana de norte e maior quebra na praia. Janela ampla de vento: março a novembro.",
+        "best_season": "Junho a setembro; março–maio e outubro–novembro dependem mais da previsão e do nível.",
+        "wind_direction": "Oeste no regime local de verão: lateral a levemente terral. Norte em episódios de Tramontana.",
+        "water_type": "Mais lisa no início do vento, depois mexida; ondas de vento mais afastadas. A água aprofunda rapidamente.",
+        "bottom_water": "Areia e seixos/pedras na entrada; água salgada.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Intermediário ao avançado para prática independente; iniciantes com instrução. Freeride, freestyle, wakestyle e strapless nas ondas externas.",
+        "hazards_launch": "Pedras na entrada, pouca área onde se alcança o fundo e shorebreak em certos dias. Atenção quando o vento fica ligeiramente terral.",
+        "kite_wing": "Kitesurf e wingfoil documentados; twintip, prancha direcional e foil conforme as condições."
+      }
+    },
+    "naxos-greece": {
+      "description": "Setor de kite de Mikri Vigla, na ilha de Naxos. Água mexida e pequenas ondas de vento na baía de kite; não é uma lagoa permanentemente lisa.",
+      "bestMonths": [
+        "Junho a setembro; junho a agosto concentram o pico do Meltemi."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi de maio a outubro, reforçado localmente. No verão tende a crescer da manhã para a tarde; outubro é menos previsível.",
+        "best_season": "Maio a outubro, com maior consistência de junho a setembro.",
+        "wind_direction": "Norte a noroeste, lateral-maral (side-onshore) na baía de kite.",
+        "water_type": "Água mexida e pequenas ondas de vento na baía de kite; não é uma lagoa permanentemente lisa.",
+        "bottom_water": "Praia arenosa, água salgada e promontório rochoso delimitando a baía.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Iniciante com instrução ao avançado; freeride, freestyle, big air e foil.",
+        "hazards_launch": "Lotação na alta temporada, vento forte e pedras junto à ilhota de Parthena. Manter distância da ilhota e dos demais praticantes na decolagem.",
+        "kite_wing": "Kitesurf, kitefoil e wingfoil documentados."
+      }
+    },
+    "paros-greece": {
+      "description": "Costa oeste de Paros, diante de Antiparos. Mais lisa com vento moderado; água mexida com vento forte e mais afastado da margem.",
+      "bestMonths": [
+        "Junho a setembro."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi de norte no verão, acelerado pelo canal Paros–Antiparos. Há sessões no restante do ano; inverno com ventos de outros quadrantes e episódios de temporal.",
+        "best_season": "Junho a setembro; janela mais ampla de março a novembro, com condições menos regulares fora do verão.",
+        "wind_direction": "Norte no verão, paralelo ao canal e lateral à praia. Vento de sul também pode funcionar, invertendo o sentido.",
+        "water_type": "Mais lisa com vento moderado; água mexida com vento forte e mais afastado da margem.",
+        "bottom_water": "Fundo arenoso e água salgada; faixa rasa perto da praia, depois maior profundidade no canal.",
+        "tide_current": "Maré e corrente descritas como pequenas na área de kite por praticante local. Isso não equivale a ausência de corrente em todo o canal.",
+        "level_discipline": "Iniciante com instrução ao avançado; freeride, freestyle, big air, strapless e foil.",
+        "hazards_launch": "Praia arenosa com área de montagem e decolagem. Respeitar a área de ensino e prioridades entre praticantes; manter-se fora da rota de embarcações no canal.",
+        "kite_wing": "Kitesurf, kitefoil e wingfoil documentados."
+      }
+    },
+    "limnos-greece": {
+      "description": "Praia de Keros, na ilha de Limnos. Três setores: muito liso ao norte/barlavento, pequenas ondulações no centro e ondas ao sul, maiores nos dias fortes.",
+      "bestMonths": [
+        "Junho a agosto; setembro também favorável."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Meltemi de norte/nordeste domina no verão. Setembro prolonga a janela.",
+        "best_season": "Junho a setembro.",
+        "wind_direction": "Norte a nordeste. Terral no setor mais liso a barlavento; lateral no setor de ondas ao sul.",
+        "water_type": "Três setores: muito liso ao norte/barlavento, pequenas ondulações no centro e ondas ao sul, maiores nos dias fortes.",
+        "bottom_water": "Fundo arenoso, com trechos muito rasos; água salgada.",
+        "tide_current": "Maré de pequena amplitude no contexto regional do Egeu. Corrente local: não foi possível determinar.",
+        "level_discipline": "Iniciante com instrução no setor central ao avançado; freeride, freestyle, ondas e foil em profundidade adequada.",
+        "hazards_launch": "Vento terral e água muito rasa no setor liso; barcos, boias e banhistas na alta temporada. Escolher a zona de decolagem conforme o setor.",
+        "kite_wing": "Kitesurf e wingfoil documentados."
       }
     }
   }

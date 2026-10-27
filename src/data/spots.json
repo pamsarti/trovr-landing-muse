@@ -334,8 +334,8 @@
     "city": "Bahamas",
     "country": "Bahamas",
     "coordinates": {
-      "lat": 24.0,
-      "lng": -76.0
+      "lat": 24,
+      "lng": -76
     },
     "conditions": {
       "windConsistency": null,
@@ -3073,8 +3073,8 @@
     "city": "Cyprus",
     "country": "Cyprus",
     "coordinates": {
-      "lat": 35.0,
-      "lng": 33.0
+      "lat": 35,
+      "lng": 33
     },
     "conditions": {
       "windConsistency": null,
@@ -3555,7 +3555,7 @@
     "city": "Florida",
     "country": "Florida",
     "coordinates": {
-      "lat": 26.0,
+      "lat": 26,
       "lng": -80.1
     },
     "conditions": {
@@ -4384,42 +4384,82 @@
   {
     "id": "prasonisi-beach-greece",
     "activity": "kite",
-    "name": "Prasonisi Beach",
+    "name": "Prasonisi / Rodes",
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
     "coordinates": {
-      "lat": 37.0,
-      "lng": 25.36
+      "lat": 35.89,
+      "lng": 27.772
     },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/greece/",
-    "status": "active"
+    "status": "active",
+    "sources": [
+      "https://prasonisicenter.com/faq",
+      "https://www.surf-magazin.de/spots/rhodos-prasonisi/",
+      "https://www.kiteprasonisi.com/prasonisi-spot-guide",
+      "https://www.kiteprasonisi.com/faq",
+      "https://www.iksurfmag.com/travel-guides/europe/greece/kremasti/",
+      "https://prasonisi-beach.com/en/prasonisi/area/",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf"
+    ]
   },
   {
     "id": "kremasti-greece",
     "activity": "kite",
-    "name": "Kremasti",
+    "name": "Kremasti / Rodes",
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.42,
+      "lng": 28.124
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/greece/",
-    "status": "coming-soon",
-    "descriptionRaw": "Why Visit?\nIf you're looking for a summer kitesurf destination with never ending wind, then Rhodes is the place to be. Kremasti is a very nice village in the north of the island which is not so touristic and where the IKO/VDWS licenced Air Riders Kite Pro Center is stocked with the latest North Kiteboarding gear. Going there is like visiting your kite family, the whole team is amazingly friendly and ready to help all the time and you will feel comfortable from the first moment onwards. Besides that, the island offers heaps of other possibilities to get active from hiking, biking, windsurfing, island safaris and of course enjoy swimming and sunbathing at one of the amazing bays. Beneath that, the so called “Island of the Knights” has numerous cultural and archaeological sites. Not to forget the City of Rhodes, where the atmosphere is a very special blend of traditional and cosmopolitan. So all in all it’s a perfect summer destination whether you are a kite addict or not. There's something for everyone so no one will get bored here, that’s for sure.\nWind and Weather\nThe Meltemi is the name of the summer wind in the Ägäis, which in Kremasti is coming side shore, slightly side from the left. Between the island Rhodos and Turkey, it turns into a western direction and is pressed through the straits. The result? An amazing jet effect. In the afternoon the thermal pushes the wind additionally, so you can expect 5 to 7 bft. On strong days the wind starts already in the morning with 3 to 5 bft. In spring and autumn sometimes the Tramontana is blowing from the north. In Kremasti this type of wind leads to a quite large shore break, however, this is not recommendable for beginners.\nWhen the Meltemi starts the water stays quite flat in the beginning. The stronger the wind gets, the more chop you have on the water – but still the conditions are good for freestyle (freestyle and wake style are the main styles you find at this spot). Further outside you can enjoy the wind swell whi"
+    "status": "active",
+    "descriptionRaw": "Why Visit?\nIf you're looking for a summer kitesurf destination with never ending wind, then Rhodes is the place to be. Kremasti is a very nice village in the north of the island which is not so touristic and where the IKO/VDWS licenced Air Riders Kite Pro Center is stocked with the latest North Kiteboarding gear. Going there is like visiting your kite family, the whole team is amazingly friendly and ready to help all the time and you will feel comfortable from the first moment onwards. Besides that, the island offers heaps of other possibilities to get active from hiking, biking, windsurfing, island safaris and of course enjoy swimming and sunbathing at one of the amazing bays. Beneath that, the so called “Island of the Knights” has numerous cultural and archaeological sites. Not to forget the City of Rhodes, where the atmosphere is a very special blend of traditional and cosmopolitan. So all in all it’s a perfect summer destination whether you are a kite addict or not. There's something for everyone so no one will get bored here, that’s for sure.\nWind and Weather\nThe Meltemi is the name of the summer wind in the Ägäis, which in Kremasti is coming side shore, slightly side from the left. Between the island Rhodos and Turkey, it turns into a western direction and is pressed through the straits. The result? An amazing jet effect. In the afternoon the thermal pushes the wind additionally, so you can expect 5 to 7 bft. On strong days the wind starts already in the morning with 3 to 5 bft. In spring and autumn sometimes the Tramontana is blowing from the north. In Kremasti this type of wind leads to a quite large shore break, however, this is not recommendable for beginners.\nWhen the Meltemi starts the water stays quite flat in the beginning. The stronger the wind gets, the more chop you have on the water – but still the conditions are good for freestyle (freestyle and wake style are the main styles you find at this spot). Further outside you can enjoy the wind swell whi",
+    "sources": [
+      "https://kiteprocenter.gr/conditions/",
+      "https://www.iksurfmag.com/travel-guides/europe/greece/kremasti/",
+      "https://www.kitereisen.tv/spot/kremasti/",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf"
+    ]
   },
   {
     "id": "kos-greece",
@@ -4479,39 +4519,79 @@
   {
     "id": "naxos-greece",
     "activity": "kite",
-    "name": "Naxos",
+    "name": "Mikri Vigla / Naxos",
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.026,
+      "lng": 25.372
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/greece/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://naxoskitelife.com/naxos-kite-spot/",
+      "https://www.naxos.gr/flisvos-sportclub-mikri-vigla-beach/?lang=en",
+      "https://www.ikointl.com/destinations/kitesurfing-greece",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf"
+    ]
   },
   {
     "id": "paros-greece",
     "activity": "kite",
-    "name": "Paros",
+    "name": "Pounda ocidental / Paros",
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.032,
+      "lng": 25.098
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/greece/",
-    "status": "coming-soon",
-    "descriptionRaw": "Why Visit?\nThe Island of Paros has been growing in popularity over the years as more kitesurfers and windsurfers learn about the amazing wind conditions over July and August. With its authentic Greek cuisine, lively community and warm weather, there are very few reasons not to go!\nHow to get to Paros\nAthens Airport is the main airport for international flights arriving from all over the world and a connecting flight to Paros is easy to find. Otherwise, a taxi to the port of Piraeus; which is about an hour’s drive away, and a ferry across (3-4 hours) is the most common way to get to most islands in Greece.\nWind and Weather\nThe high season for kitesurfing on the island is a short one, only about 8 weeks, but it is said that the “Meltemi” wind blows from mid-May to mid-September. Meltemi is a wind that blows strong and dry from the North in the Aegean Sea and other parts of the Mediterranean Sea. This helps to cool down the usually hot and humid Greek Islands, making summer much more bearable. Known to pick up and gain strength in the afternoons, Meltemi wind usually blows up to 20 knots and more.\nParos Kite Pro Center\nGetting Around\nParos is a small island and it is easy to get around. The most popular forms of transport are by car, scooter or small boat taxis. There are buses that run on a frequent schedule and take passengers all around the island, and the price range anywhere between €1.50 to €3. There are rental cars, scooters and quad bikes on the island, but during high season it can be a nightmare to find parking near your accommodation!\nFood and Drink\nGreek cuisine is fresh and delicious, and Paros has an abundance of traditional Greek restaurants that offer everything from Spanakopita to Greek Salads and freshly caught fish. Wash that down with a local Ouzo, Mastika or one of the many beers or wines they produce in the country. Aside from Greek food, there are plenty of other restaurants serving Italian, Asian, Middle-Eastern cuisine and more.\nFeeling slightl"
+    "status": "active",
+    "descriptionRaw": "Why Visit?\nThe Island of Paros has been growing in popularity over the years as more kitesurfers and windsurfers learn about the amazing wind conditions over July and August. With its authentic Greek cuisine, lively community and warm weather, there are very few reasons not to go!\nHow to get to Paros\nAthens Airport is the main airport for international flights arriving from all over the world and a connecting flight to Paros is easy to find. Otherwise, a taxi to the port of Piraeus; which is about an hour’s drive away, and a ferry across (3-4 hours) is the most common way to get to most islands in Greece.\nWind and Weather\nThe high season for kitesurfing on the island is a short one, only about 8 weeks, but it is said that the “Meltemi” wind blows from mid-May to mid-September. Meltemi is a wind that blows strong and dry from the North in the Aegean Sea and other parts of the Mediterranean Sea. This helps to cool down the usually hot and humid Greek Islands, making summer much more bearable. Known to pick up and gain strength in the afternoons, Meltemi wind usually blows up to 20 knots and more.\nParos Kite Pro Center\nGetting Around\nParos is a small island and it is easy to get around. The most popular forms of transport are by car, scooter or small boat taxis. There are buses that run on a frequent schedule and take passengers all around the island, and the price range anywhere between €1.50 to €3. There are rental cars, scooters and quad bikes on the island, but during high season it can be a nightmare to find parking near your accommodation!\nFood and Drink\nGreek cuisine is fresh and delicious, and Paros has an abundance of traditional Greek restaurants that offer everything from Spanakopita to Greek Salads and freshly caught fish. Wash that down with a local Ouzo, Mastika or one of the many beers or wines they produce in the country. Aside from Greek food, there are plenty of other restaurants serving Italian, Asian, Middle-Eastern cuisine and more.\nFeeling slightl",
+    "sources": [
+      "https://www.thekitemag.com/travel-list/paros/",
+      "https://paroskite-procenter.com/services/pounta-kite-beach/",
+      "https://www.paroskite.com/resort/",
+      "https://paroskite-procenter.com/services/paros-kite-pro-center/"
+    ]
   },
   {
     "id": "sigri-beach-greece",
@@ -10247,38 +10327,77 @@
   {
     "id": "imbros-turkey",
     "activity": "kite",
-    "name": "Imbros",
+    "name": "Aydıncık / Gökçeada",
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.128,
+      "lng": 25.945
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/kitesurfing-turkey/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://crazy-island.com/en/gokceada/",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf",
+      "https://www.radikal-surf.com/kitesurf"
+    ]
   },
   {
     "id": "urla-turkey",
     "activity": "kite",
-    "name": "Urla",
+    "name": "Gülbahçe / Urla",
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.331,
+      "lng": 26.651
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/kitesurfing-turkey/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kiteacademy.wixsite.com/urlasurfhouse/kite-house",
+      "https://www.wingreisen.com/wingsurfspots/tuerkei/urla-guelbahce/",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf",
+      "https://urlasurfhouse.com/kitesurf/"
+    ]
   },
   {
     "id": "ayval-k-turkey",
@@ -10794,21 +10913,42 @@
   {
     "id": "g-kova-turkey",
     "activity": "kite",
-    "name": "Gökova",
+    "name": "Akçapınar / Gökova",
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.039,
+      "lng": 28.33
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "descriptionRaw": "Why Visit?\nGökova Bay is situated in the west of Turkey and surrounded by the warm and clear Aegean Sea, amazingly it is still one of the relatively unknown spots in Europe which means you can enjoy riding here without battling amongst the crowds. The bay itself is 3km wide which means there is plenty of space for everyone! Each afternoon from about noon onwards a thermal wind fills the bay offering clean and consistent winds for you to enjoy. The water is flat and shallow making it the perfect spot to learn freestyle and enjoy freeriding. You’ll find a peaceful village next to the spot called Akyaka it is steeped in the traditional Turkish style and filled with restaurants and bars with a laid back cosmopolitan atmosphere.\nGetting Around\nAlthough there is no accommodation at the kite beach, as it is a nature reserve, it is within walking distance, however a hire car is recommended if you also wish to explore the area.\nFood and Drink\nThere are plenty of restaurants in the village of Akyaka, mainly serving delicious Turkish cuisine with a few also serving more familiar European dishes. This area is famous for its fish restaurants, you’ll find them along the river Azmak, and they are not to be missed.\nNo Wind?\nWhat do you mean no wind? It’s always windy here but if you are unfortunate to have a no wind day, there is plenty to see and do. SUPs are available for hire along with mountain bikes and there are many tracks to walk along, up through the pine forests. Jump in the car and within 45 minutes you can be at the river delta and mud baths in Dalyan or only 30 minutes away is the lively town of Marmaris. Day trips can also be organised locally to Cleopatra’s Island, Effesus and Pamukkale.\nInternet\nADSL is available nearly everywhere in the village. With plenty of Wi-Fi hot spots in the bars and restaurants.\nAccommodation\nThere is a huge range on offer, depending on your budget you can choose between self-catering, bed & breakfast, hotels and private villas.\nWind and W",
     "sourceUrl": "https://www.iksurfmag.com/travel-guides/europe/turkey/gokova/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.kiteboardgokova.com/kite-beach",
+      "https://www.iksurfmag.com/travel-guides/europe/turkey/gokova/",
+      "https://www.kiteacademy.com/eng/kiteboard-beach",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf",
+      "https://www.kiteboardgokova.com/"
+    ]
   },
   {
     "id": "hood-river-usa",
@@ -10854,40 +10994,78 @@
   {
     "id": "limnos-greece",
     "activity": "kite",
-    "name": "Limnos",
+    "name": "Keros / Limnos",
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.912,
+      "lng": 25.362
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "descriptionRaw": "Why Visit?\nWith the island’s nickname being ‘wind-ridden one’, it is no surprise that Keros bay is an idyllic kitesurfing destination during the European summer season. Boasting postcard-worthy beaches, crystal-clear waters, ancient archaeological sites and home to some fantastic wildlife, Limnos Island is a pearl of the Aegean Sea! The island vibes are so chilled here that they are, in fact, artic. But the water isn’t! Keros Bay has warm, waist-deep water, 3km of beach to play with and an awesome beach crew. Keros Bay boasts ‘three spots in one’ - flat water, small chop and a wave spot. Surf Club Keros have a great set up at their IKO-affiliated surf station there, stocked with all the latest Cabrinha gear and a super friendly, non-judgmental team of riders and instructors. The Surf Camp itself is in a pretty special location, with dunes, wetlands and salt flats all nearby. The windy conditions along with the camp’s safari tents, delicious food and laidback atmosphere offer the ultimate kite retreat.\nWind and Weather\nThe summer season runs from the middle of May to September. The Meltemi wind from the North is expected during this time. It goes in cycles, so you tend to get four days of wind per week, but you can get 7 out of 7 if you’re lucky (and only 1 or 2 if you’re not)! Things quiet down by October, and although colder and less reliable wind-wise, the winter season can make for some great kiting too.\nGetting Around\nCars are available to hire if you want to explore the whole island, but they are not a necessity. Surf Camp Keros can organise a transfer from the airport to the camp. Once you are there, you can get to the local village Kalliopi and - most importantly - the beach, by foot. There is motorbike hire if you want to go further afield, or bicycle hires for those who don’t mind a bit of thigh-burn on the sandy tracks.\nFood and Drink\nThe island’s harbours deserve a visit for their seafood. You can sit by the water’s edge and order a couple of huge fish to",
     "sourceUrl": "https://www.iksurfmag.com/travel-guides/europe/greece/limnos/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.surfclubkeros.com/spot/",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf"
+    ]
   },
   {
     "id": "ayvalik-turkey",
     "activity": "kite",
-    "name": "Ayvalik",
+    "name": "Keremköy / Ayvalık",
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.367,
+      "lng": 26.765
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "descriptionRaw": "Why Visit?\nAyvalik is a traditional seaside town on the Northern Aegean sea in Turkey. It is located on the southern coast of the Gulf of Edremit, just across from the eastern coast of the Greek island of Lesbos. It is situated on a narrow coastal plain surrounded by low hills to the east which is covered with pine and olive trees.\nIt is a place steeped in history as it was an important trade centre during Ottoman times, with the cities inhabitants then being almost wholly Greek. When a population swap was mandated between the governments of Turkey and Greece in 1923, the Turks from Crete moved in.\nThe fusion of local Greek and Cretan cultures have created a wonderful character that is today’s Ayvalik. While most of the physical, historical heritage is Greek, the everyday culture lived on the streets between those buildings, including the local food, is mainly Cretan.\nAyvalik is undoubtedly Turkey’s secret spot, which means you can enjoy riding here with realistically only and a handful of kiters around you. The water is flat as a lagoon and crystal clear, with pumping winds up to 30 knots. One of its highlights has to be the fantastic sunset sessions. There’s nothing like riding into the sunset, but here you can watch the sun disappear behind a small island as you are kiting.\nThe kiting area around kite beach is approximately three nautical miles (over 5 km!) which means there is plenty of space for everyone! Ayvalik relies mainly on the Meltemi which blows through the Greek islands in the summertime, however, here it is accelerated by a thermal wind making it that little bit stronger and more reliable. The water is flat and shallow making it the perfect spot to learn to kitesurf, freestyle and enjoy freeriding. The town of Ayvalik is split in two; Cunda island and downtown Ayvalik. Whichever end of town you decided to stay there are plenty of restaurants and bars all serving up delicious traditional cuisine.\nAaron Hadlow and Sam Light have both visited the spot an",
     "sourceUrl": "https://www.iksurfmag.com/travel-guides/europe/turkey/ayvalik/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://ayvalikkitesurf.com/",
+      "https://www.iksurfmag.com/travel-guides/europe/turkey/ayvalik/",
+      "https://www.spots4kite.com/spots/ayvalik/",
+      "https://ejournals.epublishing.ekt.gr/index.php/hcmr-med-mar-sc/article/download/12257/12266.pdf"
+    ]
   },
   {
     "id": "mui-ne-vietnam",
@@ -11367,21 +11545,42 @@
   {
     "id": "rameswaram-india",
     "activity": "kite",
-    "name": "Rameswaram",
+    "name": "Rameswaram / região da Palk Bay",
     "region": "Asia",
     "city": "India",
     "country": "India",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.303,
+      "lng": 79.045
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "fieldStatus": {
+        "wind_by_month": "verified",
+        "best_season": "verified",
+        "wind_direction": "verified",
+        "water_type": "verified",
+        "bottom_water": "verified",
+        "tide_current": "verified",
+        "level_discipline": "verified",
+        "hazards_launch": "verified",
+        "kite_wing": "verified"
+      }
     },
     "description": "",
     "descriptionRaw": "Why Visit?\nRameswaram is a well-kept secret and one of the best kitesurfing spots in India. The eastern coast of India receives stable and steady trade winds for almost nine months every year, giving us a long kiteboarding season. Here you feel like real explorers, with so much on offer. You can indulge in the ancient history which features fabulous architecture and monuments to ogle at or merely enjoy the pristine secluded coastline. However, the main show involves clear blue waters, flat water lagoons, fantastic surf and just you to fill the space. There plenty of kite spots on this island which is nestled in the Gulf of Mannar Marine Reserve making it a paradise for beginners & pro-riders who would like to explore. All being said, the location is just 30 km across the bay from the world famous kite spots of Kalpitiya in Sri Lanka but a better-kept secret with only a handful of kiteboarders. Kitesurfing in the area requires permits which can be managed through the local kite school.\nWind and Weather\nRameswaram has two wind seasons, each for 4-5 months, sometimes more. The south-west winds start around April and last until September with winds blowing in the 18-25 knots range, while the north wind blows between December and March ranging 15-20 knots. Being an island has it's perks, as you can exploit wind from all directions. It rains a little from October to mid-December.\nAll in all, Rameswaram stays quite dry for the rest of the year. The air temperature stays warm throughout the day (no wetsuits!) with board shorts & bikini weather for all sessions. In the shade, it’s cold with the wind keeping the temperature pleasant. The islands near the kite spots create sheltered bays with flat water & a scenic backdrop for sunset sessions. With a good swell pre and post-monsoon, there are some excellent reef breaks which create awesome kickers for mega jumps.\nFlat water heaven!\nGetting Around\nTuk-Tuks or Autos as they call them are readily available for transport around th",
     "sourceUrl": "https://www.iksurfmag.com/travel-guides/asia/india/rameswaram/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.quest-asia.com/kitesurfing-school",
+      "https://www.iksurfmag.com/travel-guides/asia/india/rameswaram/",
+      "https://www.quest-asia.com/seasons",
+      "https://pmc.ncbi.nlm.nih.gov/articles/PMC5595744/",
+      "https://www.sciencedirect.com/science/article/pii/S0272771425000320"
+    ]
   },
   {
     "id": "st-petersburg-usa",

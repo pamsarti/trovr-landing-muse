@@ -241,6 +241,8 @@ const PLACE_LABEL_PT: Record<string, string> = {
   Spain: "Espanha",
   "Dodecanese (Greece)": "Dodecaneso, Grécia",
   Greece: "Grécia",
+  Turkey: "Turquia",
+  India: "Índia",
   "Saudi Arabia": "Arábia Saudita",
   Brazil: "Brasil",
   Canada: "Canadá",
