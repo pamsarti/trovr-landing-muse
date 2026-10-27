@@ -220,6 +220,7 @@
 
 /* Viagem Trovr — one continuous cinematic journey built with real brand photography. */
 .viagem-immersive {
+  --viagem-photo-veil: linear-gradient(90deg, rgb(12 22 23 / 0.72), rgb(12 22 23 / 0.62) 58%, rgb(12 22 23 / 0.52));
   overflow: clip;
 }
 
@@ -250,7 +251,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
-  background: rgb(43 43 43 / 0.42);
+  background: var(--viagem-photo-veil);
   content: "";
   pointer-events: none;
 }
@@ -315,12 +316,7 @@
   margin-top: 0;
   padding-bottom: 5rem;
   overflow: hidden;
-  background: linear-gradient(
-    180deg,
-    transparent 0%,
-    rgb(43 43 43 / 0.2) 30%,
-    rgb(43 43 43 / 0.3) 100%
-  );
+  background: transparent;
 }
 
 .viagem-visual-alula .viagem-story-stage,
@@ -385,7 +381,7 @@
   .viagem-story-backdrop::after {
     position: absolute;
     inset: 0;
-    background: rgb(43 43 43 / 0.42);
+    background: var(--viagem-photo-veil);
     content: "";
     pointer-events: none;
   }
@@ -591,18 +587,11 @@
   }
 }
 
-/* Keep the photograph atmospheric while giving editorial copy a quiet surface. */
+/* One shared veil spans the full story; section veils must not create seams. */
 .viagem-immersive .viagem-hero-veil,
 .viagem-immersive .viagem-kite-veil,
 .viagem-immersive .viagem-horizon-veil {
-  background: linear-gradient(90deg, rgb(12 22 23 / 0.78), rgb(12 22 23 / 0.5) 58%, rgb(12 22 23 / 0.28));
-  -webkit-backdrop-filter: blur(1.5px);
-  backdrop-filter: blur(1.5px);
-}
-
-.viagem-immersive .viagem-kite-veil,
-.viagem-immersive .viagem-horizon-veil {
-  background: rgb(12 22 23 / 0.64);
+  background: transparent;
 }
 
 .viagem-immersive .viagem-scene h1,
@@ -632,14 +621,9 @@
 
 .viagem-immersive .viagem-method,
 .viagem-immersive #modalidades {
-  background: rgb(18 28 28 / 0.92);
+  background: transparent;
 }
 
-@media (max-width: 767px) {
-  .viagem-immersive .viagem-hero-veil {
-    background: linear-gradient(180deg, rgb(12 22 23 / 0.48), rgb(12 22 23 / 0.76) 42%, rgb(12 22 23 / 0.6));
-  }
-}
 
 
 /* Keep editorial copy legible directly over the photograph. */
