@@ -359,7 +359,7 @@ function ViagemPage() {
             className="sr-only"
           />
           <div className="viagem-hero-veil" aria-hidden />
-          <div className="relative z-10 mx-auto flex min-h-[78svh] max-w-7xl items-center px-6 pt-24 pb-10 sm:px-12 md:pt-28">
+          <div className="viagem-hero-content relative z-10 mx-auto max-w-7xl px-6 sm:px-12">
             <div className="max-w-4xl">
               <p className="text-[11px] uppercase tracking-[0.28em] text-paper/75">
                 Roteiro personalizado · curadoria fora do óbvio
@@ -394,7 +394,7 @@ function ViagemPage() {
             className="sr-only"
           />
           <div className="viagem-kite-veil" aria-hidden />
-          <div className="relative z-10 mx-auto grid min-h-[88svh] max-w-7xl content-between px-6 py-12 sm:px-12 md:py-14">
+          <div className="viagem-narrative-content relative z-10 mx-auto grid max-w-7xl px-6 sm:px-12">
             <div className="ml-auto max-w-xl">
               <p className="text-[11px] uppercase tracking-[0.28em] text-paper/70">
                 O desejo é simples
@@ -434,7 +434,7 @@ function ViagemPage() {
             className="sr-only"
           />
           <div className="viagem-horizon-veil" aria-hidden />
-          <div className="relative z-10 mx-auto max-w-7xl px-6 pt-16 pb-14 sm:px-12 md:pt-20 md:pb-16">
+          <div className="viagem-included-content relative z-10 mx-auto max-w-7xl px-6 sm:px-12">
             <div className="ml-auto max-w-3xl text-right">
               <p className="text-[11px] uppercase tracking-[0.28em] text-paper/70">
                 O que você recebe
@@ -459,19 +459,24 @@ function ViagemPage() {
               fornecedores continuam sob responsabilidade do viajante.
             </p>
 
-            <div className="mx-auto mt-12 max-w-2xl text-center">
-              <p className="text-[11px] uppercase tracking-[0.28em] text-paper/65">A origem</p>
-              <h2 className="mt-4 text-3xl leading-[1.06] sm:text-4xl">
-                A vida é irada demais para não ser vivida.
-              </h2>
-              <p className="mt-4 text-sm leading-6 text-paper/72 sm:text-base">
-                A Trovr nasceu da forma como Pamela aprendeu a viajar: não para fugir da vida, mas
-                para voltar a ela com mais energia, repertório e vontade.
-              </p>
-            </div>
+            <figure className="viagem-origin mx-auto max-w-4xl text-center">
+              <p className="text-[11px] uppercase tracking-[0.28em] text-paper/75">A origem</p>
+              <blockquote>
+                <h2 className="mt-6 text-4xl leading-[1.08] sm:text-5xl md:text-6xl">
+                  “A vida é irada demais para não ser vivida.”
+                </h2>
+                <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-paper sm:text-xl">
+                  Viajar, pra mim, nunca foi fugir da vida. É voltar com mais energia,
+                  repertório e vontade.
+                </p>
+              </blockquote>
+              <figcaption className="mt-6 text-sm tracking-wide text-paper/80">
+                Pamela · fundadora da Trovr
+              </figcaption>
+            </figure>
           </div>
         </section>
-        <section className="viagem-method relative z-10 px-6 pb-24 pt-8 text-paper sm:pb-28 sm:pt-10">
+        <section className="viagem-method relative z-10 px-6 text-paper">
           <div className="mx-auto grid max-w-6xl gap-12 lg:grid-cols-[.72fr_1.28fr] lg:gap-20">
             <div>
               <p className="text-[11px] uppercase tracking-[0.28em] text-paper/70">Como funciona</p>
@@ -517,7 +522,7 @@ function ViagemPage() {
         <section
           id="modalidades"
           aria-labelledby="plans-title"
-          className="relative z-10 scroll-mt-24 px-6 py-16 text-paper sm:px-12"
+          className="viagem-plans-section relative z-10 scroll-mt-24 px-6 text-paper sm:px-12"
         >
           <div className="mx-auto max-w-6xl">
             <h2 id="plans-title" className="max-w-3xl text-4xl leading-tight sm:text-5xl">
@@ -569,7 +574,7 @@ function ViagemPage() {
         <div className="viagem-final-stage">
           <div className="viagem-final-surface relative z-10 mx-auto max-w-6xl text-ink">
             <section
-              className="px-6 pt-20 pb-12 sm:px-12 sm:pt-28 sm:pb-16"
+              className="px-6 py-8 sm:px-8 sm:py-10"
               aria-labelledby="faq-title"
             >
               <div className="mx-auto max-w-4xl">
