@@ -1,3 +1,4 @@
+import { isTrackingTest, prepareViagemSubmission } from "@/lib/tracking-context";
 import { createFileRoute } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type ReactNode } from "react";
 import {
@@ -220,13 +221,15 @@ function ViagemPage() {
   };
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const [testCompleted, setTestCompleted] = useState(false);
+  const submissionId = useRef<string | null>(null);
   const [submittedPlan, setSubmittedPlan] = useState<ViagemPlan | null>(null);
   const completedPlan = submittedPlan ? VIAGEM_PLANS[submittedPlan] : null;
   const [openingPayment, setOpeningPayment] = useState(false);
   const [paymentError, setPaymentError] = useState<string | null>(null);
   const paymentInFlight = useRef(false);
   async function openPayment() {
-    if (!submittedPlan || paymentInFlight.current) return;
+    if (isTrackingTest() || testCompleted || !submittedPlan || paymentInFlight.current) return;
     paymentInFlight.current = true;
     setOpeningPayment(true);
     setPaymentError(null);
@@ -304,7 +307,7 @@ function ViagemPage() {
 
   const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    if (inFlight.current || !plan) return;
+    if (inFlight.current || done || !plan) return;
     const invalid = Array.from(event.currentTarget.elements).find((field) =>
       field instanceof HTMLInputElement ||
       field instanceof HTMLSelectElement ||
@@ -326,14 +329,11 @@ function ViagemPage() {
     setError(null);
 
     const data = new FormData(event.currentTarget);
-    const search = new URLSearchParams(window.location.search);
+    submissionId.current ??= crypto.randomUUID();
+    const isTest = prepareViagemSubmission(data, window.location.search, submissionId.current);
     data.set("plan", plan);
     data.set("price", String(VIAGEM_PLANS[plan].price));
     data.set("currency", "BRL");
-    for (const key of ["utm_source", "utm_medium", "utm_campaign", "utm_content"]) {
-      const value = search.get(key) || "";
-      data.set(key, /^[a-zA-Z0-9_-]{1,100}$/.test(value) ? value : "");
-    }
     data.set("referrer", document.referrer ? new URL(document.referrer).origin : "direto");
 
     try {
@@ -347,13 +347,17 @@ function ViagemPage() {
         response.ok && (response.redirected || /form submission has been received/i.test(body));
       if (!captured) throw new Error("Formulário não capturado");
 
-      trackViagemLead(plan);
-      trackEvent("submit_viagem_application", {
-        offer: "viagem_trovr",
-        visual_variant: visual,
-        budget: String(data.get("trip_budget") || "não informado"),
-        readiness: String(data.get("readiness") || "não informado"),
-      });
+      if (!isTest) {
+        trackViagemLead(plan, submissionId.current);
+        trackEvent("submit_viagem_application", {
+          offer: "viagem_trovr",
+          submission_id: submissionId.current,
+          visual_variant: visual,
+          budget: String(data.get("trip_budget") || "não informado"),
+          readiness: String(data.get("readiness") || "não informado"),
+        });
+      }
+      setTestCompleted(isTest);
       setSubmittedPlan(plan);
       setDone(true);
     } catch {
@@ -674,12 +678,12 @@ function ViagemPage() {
                     className="scroll-mt-28 self-start rounded-sm bg-sage p-8 text-paper sm:p-10"
                   >
                     <p className="text-xs uppercase tracking-[0.22em] text-paper/75">
-                      Candidatura recebida
+                      {testCompleted ? "Teste recebido" : "Candidatura recebida"}
                     </p>
                     <h3 className="mt-5 font-serif text-3xl sm:text-4xl">
-                      Seu próximo passo: confirmar a curadoria.
+                      {testCompleted ? "Validação do formulário concluída." : "Seu próximo passo: confirmar a curadoria."}
                     </h3>
-                    <p className="mt-5 text-base leading-7 text-paper/90">
+                    {!testCompleted && <p className="mt-5 text-base leading-7 text-paper/90">
                       {completedPlan?.name} ·{" "}
                       {completedPlan && formatPlanPrice(completedPlan.price)}. Seu formulário foi
                       recebido. Para começar, conclua o pagamento na InfinitePay. A produção começa
@@ -687,8 +691,9 @@ function ViagemPage() {
                       {submittedPlan === "premium"
                         ? " A Premium inclui reunião de até 45 minutos e entrega em até 10 dias úteis após briefing completo e reunião."
                         : " A Essencial tem entrega em até 5 dias úteis após briefing e pagamento."}
-                    </p>
-                    {completedPlan && submittedPlan && (
+                    </p>}
+                    {testCompleted && <p role="status" className="mt-4 text-sm">Teste QA recebido separadamente. Nenhum evento de lead foi enviado ao Analytics ou à Meta. Referência: {submissionId.current}</p>}
+                    {completedPlan && submittedPlan && !testCompleted && (
                       <>
                         <p className="mt-4 text-sm leading-6 text-paper">
                           {completedPlan.paymentTerms} Confira o total no checkout e use o mesmo

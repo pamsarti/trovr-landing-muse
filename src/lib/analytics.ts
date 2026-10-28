@@ -1,3 +1,4 @@
+import { isTrackingTest } from "./tracking-context";
 import { VIAGEM_PLANS, type ViagemPlan } from "./viagem-plans";
 export type AnalyticsConsent = "accepted" | "rejected" | null;
 
@@ -125,7 +126,7 @@ function loadClarity(projectId: string) {
 }
 
 export function initializeAnalytics() {
-  if (initialized || typeof window === "undefined" || getAnalyticsConsent() !== "accepted") return;
+  if (initialized || typeof window === "undefined" || isTrackingTest() || getAnalyticsConsent() !== "accepted") return;
   // Strip provider references before loading third-party scripts on the return page.
   if (window.location.pathname === "/pagamento" && window.location.search) return;
 
@@ -139,13 +140,13 @@ export function initializeAnalytics() {
 }
 
 export function trackPageView(path: string, title = document.title) {
-  if (getAnalyticsConsent() !== "accepted") return;
+  if (isTrackingTest() || getAnalyticsConsent() !== "accepted") return;
   window.fbq?.("trackSingle", META_PIXEL_ID, "PageView");
   const measurementId = GA_MEASUREMENT_ID;
   if (measurementId) {
     const query = new URLSearchParams(path.split("?")[1]?.split("#")[0] || "");
     const campaign: Record<string, string> = {};
-    for (const key of ["source", "medium", "campaign", "content", "term"] as const) {
+    for (const key of ["source", "medium", "campaign", "id", "content", "term"] as const) {
       const value = query.get(`utm_${key}`);
       // Campaign identifiers are deliberately constrained; arbitrary query data
       // and email addresses must not be forwarded to analytics.
@@ -164,13 +165,22 @@ export function trackPageView(path: string, title = document.title) {
 
 // A request is a lead, not a purchase. Never send the travel budget as revenue,
 // or pass names, email addresses or free-text briefing to analytics.
-export function trackViagemLead(plan?: ViagemPlan) {
-  if (getAnalyticsConsent() !== "accepted") return;
-  window.fbq?.("trackSingle", META_PIXEL_ID, "Lead", {
+const measuredLeads = new Set<string>();
+export function trackViagemLead(plan?: ViagemPlan, submissionId?: string) {
+  if (isTrackingTest() || getAnalyticsConsent() !== "accepted") return;
+  const eventId = submissionId && /^[a-zA-Z0-9-]{8,100}$/.test(submissionId) ? `trovr_lead_${submissionId}` : undefined;
+  if (eventId) {
+    if (measuredLeads.has(eventId)) return;
+    measuredLeads.add(eventId);
+  }
+  const metaParameters = {
     content_name: "Viagem Trovr",
     ...(plan ? { plan, value: VIAGEM_PLANS[plan].price, currency: "BRL" } : {}),
-  });
+  };
+  if (eventId) window.fbq?.("trackSingle", META_PIXEL_ID, "Lead", metaParameters, { eventID: eventId });
+  else window.fbq?.("trackSingle", META_PIXEL_ID, "Lead", metaParameters);
   window.gtag?.("event", "generate_lead", {
+    ...(eventId ? { submission_id: submissionId } : {}),
     ...(plan ? { plan, value: VIAGEM_PLANS[plan].price, currency: "BRL" } : {}),
     form_name: "viagem_trovr",
     lead_source: "website",
@@ -178,14 +188,14 @@ export function trackViagemLead(plan?: ViagemPlan) {
 }
 
 export function trackEvent(name: AnalyticsEventName, parameters: AnalyticsParameters = {}) {
-  if (getAnalyticsConsent() !== "accepted") return;
+  if (isTrackingTest() || getAnalyticsConsent() !== "accepted") return;
   window.gtag?.("event", name, parameters);
   window.clarity?.("event", name);
 }
 
 // Offer events never imply payment approval.
 export function trackViagemOffer(event: "ViewContent" | "SelectPlan", plan?: ViagemPlan) {
-  if (getAnalyticsConsent() !== "accepted") return;
+  if (isTrackingTest() || getAnalyticsConsent() !== "accepted") return;
   const parameters = {
     content_name: "Viagem Trovr",
     ...(plan ? { plan, value: VIAGEM_PLANS[plan].price, currency: "BRL" } : {}),
@@ -201,7 +211,7 @@ export function trackViagemOffer(event: "ViewContent" | "SelectPlan", plan?: Via
 
 // Opening the approved external checkout starts payment; it is not a purchase.
 export function trackViagemCheckout(plan: ViagemPlan) {
-  if (getAnalyticsConsent() !== "accepted") return;
+  if (isTrackingTest() || getAnalyticsConsent() !== "accepted") return;
   const item = VIAGEM_PLANS[plan];
   const parameters = { content_name: item.name, plan, value: item.price, currency: "BRL" };
   window.fbq?.("trackSingle", META_PIXEL_ID, "InitiateCheckout", parameters);
@@ -210,7 +220,7 @@ export function trackViagemCheckout(plan: ViagemPlan) {
 
 const measuredPayments = new Set<string>();
 export function trackVerifiedPurchase(payment: import("./payments/infinitepay.server").VerifiedPayment) {
-  if (getAnalyticsConsent() !== "accepted" || payment.status !== "paid" ||
+  if (isTrackingTest() || getAnalyticsConsent() !== "accepted" || payment.status !== "paid" ||
       !["essencial", "premium"].includes(payment.plan) ||
       payment.value !== VIAGEM_PLANS[payment.plan]?.price || payment.currency !== "BRL" ||
       !/^[a-zA-Z0-9-]{8,100}$/.test(payment.transactionId)) return;

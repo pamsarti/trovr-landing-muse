@@ -87,3 +87,19 @@ it("queues Google commands in the documented Arguments format", async () => {
     },
   ]);
 });
+
+it("correlates and deduplicates a captured request without contact data", () => {
+  const gtag = browser("accepted");
+  trackViagemLead("essencial", "qa-unit-submission-001");
+  trackViagemLead("essencial", "qa-unit-submission-001");
+  expect(gtag).toHaveBeenCalledTimes(1);
+  expect(gtag).toHaveBeenCalledWith("event", "generate_lead", expect.objectContaining({ submission_id: "qa-unit-submission-001" }));
+  expect(window.fbq).toHaveBeenCalledTimes(1);
+  expect(window.fbq).toHaveBeenCalledWith("trackSingle", META_PIXEL_ID, "Lead", expect.any(Object), { eventID: "trovr_lead_qa-unit-submission-001" });
+});
+
+it("keeps the Meta campaign ID in GA attribution", () => {
+  const gtag = browser("accepted");
+  trackPageView("/viagem?utm_source=ig&utm_medium=paid_social&utm_id=120249466799260302", "Viagem");
+  expect(gtag).toHaveBeenCalledWith("event", "page_view", expect.objectContaining({ campaign_id: "120249466799260302", campaign_source: "ig", campaign_medium: "paid_social" }));
+});
