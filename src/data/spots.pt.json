@@ -522,6 +522,290 @@
         "hazards_launch": "Recifes rasos, barcos ancorados e banhistas. Usar o extremo sul para decolar, afastado das famílias e da sombra de vento.",
         "kite_wing": "Kitesurf."
       }
+    },
+    "goolwa-beach-adelaide": {
+      "description": "Goolwa Beach. Ondas; mais irregular com SW.",
+      "bestMonths": [
+        "Verão austral, como janela regional de brisas."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisas de verão documentadas regionalmente.",
+        "best_season": "Verão austral; conferir vento e ondas do dia.",
+        "wind_direction": "SE ou SW.",
+        "water_type": "Ondas; mais irregular com SW.",
+        "bottom_water": "Areia fina e bancos arenosos na zona de arrebentação.",
+        "tide_current": "Correntes de retorno documentadas na zona de arrebentação.",
+        "level_discipline": "Kite em ondas.",
+        "hazards_launch": "Ondas e correntes de retorno; manter distância de banhistas, surfistas e áreas sinalizadas.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "robe-adelaide": {
+      "description": "Robe — Long Beach / 3rd Ramp. Ondas.",
+      "bestMonths": [
+        "Verão austral."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Condições de verão.",
+        "best_season": "Verão austral.",
+        "wind_direction": "SE a SW; orientação varia na curva da baía.",
+        "water_type": "Ondas.",
+        "tide_current": "Maré alta reduz a faixa disponível. Corrente local: não foi possível determinar.",
+        "level_discipline": "Navegação em ondas.",
+        "hazards_launch": "Ondulação forte, banhistas e circulação de veículos na praia.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "beachport-adelaide": {
+      "description": "Beachport — Rivoli Bay / Surfbeach. Ondas e quebra junto à praia.",
+      "bestMonths": [
+        "Outubro a março."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Temporada de outubro a março.",
+        "best_season": "Outubro a março.",
+        "wind_direction": "Oeste é indicado no guia de kite; a posição na baía altera o ângulo.",
+        "water_type": "Ondas e quebra junto à praia.",
+        "bottom_water": "Fundo arenoso; água salgada.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Kite em ondas.",
+        "hazards_launch": "Shorebreak.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "milang-adelaide": {
+      "description": "Milang — Lake Alexandrina. Trechos lisos, podendo haver chop.",
+      "bestMonths": [
+        "Verão austral."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisa de SE no verão.",
+        "best_season": "Verão austral.",
+        "wind_direction": "SE; evitar oeste, que sopra para fora da margem.",
+        "water_type": "Trechos lisos, podendo haver chop.",
+        "bottom_water": "Água doce; obstáculos submersos documentados.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Iniciantes apenas com apoio experiente.",
+        "hazards_launch": "Grama escorregadia, árvores, píer e barcos.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "boggy-lake-adelaide": {
+      "description": "Boggy Lake. Água lisa a ondulada pelo vento.",
+      "bestMonths": [
+        "Verão austral, sujeito ao nível da água."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisa com componente sul.",
+        "best_season": "Verão austral.",
+        "wind_direction": "SSW e SSE; evitar ventos de norte.",
+        "water_type": "Água lisa a ondulada pelo vento.",
+        "bottom_water": "Água doce; podem existir galhos submersos.",
+        "tide_current": "Sem maré oceânica; profundidade varia com o nível do lago. Corrente não determinada.",
+        "level_discipline": "Praticantes que já conseguem manter barlavento; não indicado para aprendizado independente.",
+        "hazards_launch": "Cercas, carros, grama escorregadia e ausência de praia de retorno a sotavento. Decolar com ajuda.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "yorke-peninsula-adelaide": {
+      "description": "Sultana Point — Yorke Peninsula. Condições com ondas na baía.",
+      "bestMonths": [
+        "Novembro a março."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Ventos do quadrante sul favorecem a prática no verão.",
+        "best_season": "Novembro a março.",
+        "wind_direction": "SE a S; a orientação muda ao longo da baía.",
+        "water_type": "Condições com ondas na baía.",
+        "bottom_water": "Praia arenosa; composição integral do fundo não determinada.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Kite em ondas.",
+        "hazards_launch": "Praia também usada por pescadores; manter a área de lançamento afastada deles.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "eyre-peninsula-adelaide": {
+      "description": "Long Nose — Eyre Peninsula. Rasa, lisa a chop.",
+      "bestMonths": [
+        "Novembro a março."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Janela de novembro a março documentada.",
+        "best_season": "Novembro a março.",
+        "wind_direction": "N, NW, S e SE; escolher o lado da língua de areia conforme o vento.",
+        "water_type": "Rasa, lisa a chop.",
+        "bottom_water": "Areia e água salgada.",
+        "tide_current": "Correntes e bancos de areia documentados; há canais com forte fluxo de maré em Coffin Bay.",
+        "level_discipline": "Freeride e velocidade em água lisa.",
+        "hazards_launch": "Bancos rasos e corrente; travessia do canal exposta. O guia local também relata presença de tubarões.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "new-providence-bahamas": {
+      "description": "South Beach / Blue Hill — New Providence. Água rasa e lisa.",
+      "bestMonths": [
+        "Novembro a abril como referência regional; este ponto depende de vento com componente sul."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Os ventos de sul favoráveis ao ponto são ocasionais.",
+        "best_season": "Novembro a abril, condicionada à previsão de SE, S ou SW.",
+        "wind_direction": "SE, S ou SW.",
+        "water_type": "Água rasa e lisa.",
+        "bottom_water": "Bancos de areia expostos na baixa-mar.",
+        "tide_current": "Meia-maré favorece a navegação; na baixa-mar, os bancos ficam expostos. Corrente local: não foi possível determinar.",
+        "level_discipline": "Água lisa para navegação e aprendizado acompanhado.",
+        "hazards_launch": "Área pequena para decolagem e árvores junto à praia.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "exuma-bahamas": {
+      "description": "Coco Plum Beach — Exuma. Água lisa entre bancos de areia.",
+      "bestMonths": [
+        "Novembro a abril, janela principal informada pela escola para Exuma."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Alísios e alterações com frentes frias; sem promessa de frequência diária.",
+        "best_season": "Novembro a abril; escola também registra julho e agosto na região.",
+        "wind_direction": "N, NE e E neste ponto.",
+        "water_type": "Água lisa entre bancos de areia.",
+        "bottom_water": "Água rasa sobre areia.",
+        "tide_current": "A profundidade varia com a maré; foil depende de água suficiente. Corrente não determinada.",
+        "level_discipline": "Freestyle.",
+        "hazards_launch": "Pouca profundidade nos bancos; frentes frias mudam o vento.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "eleuthera-bahamas": {
+      "description": "Savannah Sound — Eleuthera. Água rasa e lisa, protegida por Windermere Island.",
+      "bestMonths": [
+        "Inverno do hemisfério norte."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "O inverno concentra as melhores condições descritas pela escola local.",
+        "best_season": "Inverno do hemisfério norte.",
+        "wind_direction": "Maral na área de prática descrita pela escola.",
+        "water_type": "Água rasa e lisa, protegida por Windermere Island.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Aprendizado com instrução e navegação em água lisa.",
+        "hazards_launch": "Água rasa e vento maral: reservar distância da margem para manobras e decolagem.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "port-howe-bahamas": {
+      "description": "Port Howe. Rasa e lisa.",
+      "bestMonths": [
+        "Outubro a maio, janela regional de Cat Island."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Vento de leste predominante na ilha.",
+        "best_season": "Outubro a maio.",
+        "wind_direction": "Lateral à praia no regime descrito.",
+        "water_type": "Rasa e lisa.",
+        "bottom_water": "Areia.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Aprendizado e freestyle.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "greenwood-beach-resort-bahamas": {
+      "description": "Greenwood Beach. Ondas na área do recife.",
+      "bestMonths": [
+        "Outubro a maio, janela regional de Cat Island."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Predomínio de leste.",
+        "best_season": "Outubro a maio.",
+        "wind_direction": "Leste, maral.",
+        "water_type": "Ondas na área do recife.",
+        "bottom_water": "Praia arenosa; recife ao largo.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Praticantes independentes.",
+        "hazards_launch": "Recife e vento maral.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "cha-upy-baltic-s": {
+      "description": "Chałupy — lado da Baía de Puck. Rasa e predominantemente lisa, podendo ficar mexida pelo vento.",
+      "bestMonths": [
+        "Maio a setembro como recomendação de viagem; não é limite de ocorrência de vento."
+      ],
+      "activitySpecific": {
+        "best_season": "Maio a setembro como recomendação de viagem; não é limite de ocorrência de vento.",
+        "wind_direction": "SE ou SW no lado da baía.",
+        "water_type": "Rasa e predominantemente lisa, podendo ficar mexida pelo vento.",
+        "bottom_water": "Praia de areia.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Aprendizado com instrução e praticantes experientes.",
+        "hazards_launch": "Faixa de praia estreita no lado da baía e concentração de praticantes.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "rewa-baltic-s": {
+      "description": "Rewa — Cypel Rewski. Lisa a sotavento; chop na face exposta.",
+      "bestMonths": [
+        "Maio a outubro, favorecendo temperaturas mais amenas."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "W/NW predominantes; brisa de E em dias quentes e ensolarados.",
+        "best_season": "Maio a outubro, favorecendo temperaturas mais amenas.",
+        "wind_direction": "NW ou E; escolher o lado conforme o vento.",
+        "water_type": "Lisa a sotavento; chop na face exposta.",
+        "bottom_water": "Língua de areia.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Aprendizado com instrução, freestyle e velocidade.",
+        "hazards_launch": "S/SW podem ser rajados. Água lisa a sotavento exige atenção ao vento terral.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "gotland-baltic-s": {
+      "description": "Tofta — Gotland. Água lisa a mexida; ondas variam com as condições.",
+      "bestMonths": [
+        "Primavera e início do outono, fora do período mais cheio de banhistas."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Vento associado à passagem de sistemas meteorológicos; não é brisa diária garantida.",
+        "best_season": "Abril a junho e setembro a outubro; julho e agosto têm maior ocupação da praia.",
+        "wind_direction": "SW, WSW e W.",
+        "water_type": "Água lisa a mexida; ondas variam com as condições.",
+        "bottom_water": "Fundo arenoso com pedras grandes dispersas.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Kitesurf; aprendizado acompanhado e navegação independente conforme as condições.",
+        "hazards_launch": "Pedras submersas, praia estreita e banhistas. Respeitar a zona sem surf indicada no painel local.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "saaremaa-baltic-s": {
+      "description": "Mändjala — Saaremaa. Trechos rasos e lisos; também podem ocorrer pequenas ondas.",
+      "bestMonths": [
+        "Maio a outubro."
+      ],
+      "activitySpecific": {
+        "best_season": "Maio a outubro.",
+        "wind_direction": "ESE a SW, conforme referência regional especializada.",
+        "water_type": "Trechos rasos e lisos; também podem ocorrer pequenas ondas.",
+        "bottom_water": "Areia e água rasa.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Aprendizado com instrução e freestyle.",
+        "hazards_launch": "Praia oficial de banho: manter distância dos banhistas e separar a área de decolagem.",
+        "kite_wing": "Kitesurf."
+      }
+    },
+    "m-rbyl-nga-baltic-s": {
+      "description": "Sandbergen — Mörbylånga / Öland. Rasa e lisa; fica mexida após vento persistente.",
+      "bestMonths": [
+        "Primavera e início do outono."
+      ],
+      "activitySpecific": {
+        "wind_by_month": "Brisa de sul favorecida na primavera.",
+        "best_season": "Março a junho e setembro a outubro, conforme o guia do ponto.",
+        "wind_direction": "S, SSW e SW.",
+        "water_type": "Rasa e lisa; fica mexida após vento persistente.",
+        "bottom_water": "Fundo arenoso; margem com grama e pequenos seixos.",
+        "tide_current": "Corrente local: não foi possível determinar.",
+        "level_discipline": "Do iniciante acompanhado ao experiente; navegação em água lisa.",
+        "hazards_launch": "Árvores, arbustos e margem pequena. Decolar e pousar com ajuda, afastado da vegetação.",
+        "kite_wing": "Kitesurf."
+      }
     }
   }
 }

@@ -336,71 +336,133 @@
     "name": "Goolwa Beach",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://southcentralkiteboarders.com/page-3.html",
+      "https://beachsafe.org.au/beach/sa/alexandrina/goolwa-beach/goolwa"
+    ]
   },
   {
     "id": "robe-adelaide",
     "activity": "kite",
-    "name": "Robe",
+    "name": "Robe — Long Beach / 3rd Ramp",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://beachsafe.org.au/beach/sa/robe/mount-benson/long-5"
+    ]
   },
   {
     "id": "beachport-adelaide",
     "activity": "kite",
-    "name": "Beachport",
+    "name": "Beachport — Rivoli Bay / Surfbeach",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://wind-hounds.com/sailing-spots/south-australia/rivoli-bay-beachport/",
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia"
+    ]
   },
   {
     "id": "milang-adelaide",
     "activity": "kite",
-    "name": "Milang",
+    "name": "Milang — Lake Alexandrina",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://southcentralkiteboarders.com/page-3.html"
+    ]
   },
   {
     "id": "boggy-lake-adelaide",
@@ -408,17 +470,34 @@
     "name": "Boggy Lake",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitenation.com/kitespots/boggy-lake/",
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://southcentralkiteboarders.com/page-3.html"
+    ]
   },
   {
     "id": "lakeside-goolwa-adelaide",
@@ -441,64 +520,109 @@
   {
     "id": "yorke-peninsula-adelaide",
     "activity": "kite",
-    "name": "Yorke Peninsula",
+    "name": "Sultana Point — Yorke Peninsula",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://edithburgh.org.au/activities/",
+      "https://kitesurfing-handbook.peterskiteboarding.com/kitesurfing-locations/australia/south-australia",
+      "https://yorke.sa.gov.au/content/uploads/2022/06/20-98717-IS272-Sand-Sea-Surf-and-Snorkel.pdf"
+    ]
   },
   {
     "id": "eyre-peninsula-adelaide",
     "activity": "kite",
-    "name": "Eyre Peninsula",
+    "name": "Long Nose — Eyre Peninsula",
     "region": "Oceania",
     "city": "Adelaide",
-    "country": "Adelaide",
+    "country": "Austrália",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/adelaide/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://wind-hounds.com/sailing-spots/south-australia/long-nose-eyre-peninsula-sa/",
+      "https://anchorageguidesa.com.au/wp-content/uploads/2022/02/Eyre-Peninsula-and-Offshore-Islands-2.pdf"
+    ]
   },
   {
     "id": "new-providence-bahamas",
     "activity": "kite",
-    "name": "New Providence",
+    "name": "South Beach / Blue Hill — New Providence",
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": {
-      "lat": 24,
-      "lng": -76
-    },
+    "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/bahamas/",
-    "status": "active"
+    "status": "active",
+    "sources": [
+      "https://www.outislandlifebahamas.com/blog/kiteboarding-in-the-bahamas",
+      "https://crossshore.wordpress.com/"
+    ]
   },
   {
     "id": "exuma-bahamas",
     "activity": "kite",
-    "name": "Exuma",
+    "name": "Coco Plum Beach — Exuma",
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
@@ -507,16 +631,32 @@
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "tide_current": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/bahamas/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://exumakitesurfing.com/",
+      "https://www.iksurfmag.com/articles/issue64/exuma-where-pirates-go-to-bury-their-treasure/"
+    ]
   },
   {
     "id": "eleuthera-bahamas",
     "activity": "kite",
-    "name": "Eleuthera",
+    "name": "Savannah Sound — Eleuthera",
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
@@ -525,11 +665,24 @@
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/bahamas/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.eleutherasailingacademy.com/kitesurf"
+    ]
   },
   {
     "id": "sandbank-bahamas",
@@ -579,16 +732,29 @@
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/bahamas/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.iksurfmag.com/travel-guides/caribbean/bahamas/cat-island/"
+    ]
   },
   {
     "id": "greenwood-beach-resort-bahamas",
     "activity": "kite",
-    "name": "Greenwood Beach Resort",
+    "name": "Greenwood Beach",
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
@@ -597,101 +763,196 @@
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/bahamas/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.iksurfmag.com/travel-guides/caribbean/bahamas/cat-island/",
+      "https://greenwoodbeachresort.com/activities/"
+    ]
   },
   {
     "id": "cha-upy-baltic-s",
     "activity": "kite",
-    "name": "Chałupy",
+    "name": "Chałupy — lado da Baía de Puck",
     "region": "Europe",
     "city": "Baltic Sea",
-    "country": "Baltic Sea",
+    "country": "Polônia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/northern-europe/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.ikointl.com/pt-br/destinos/kitesurf-na-polonia",
+      "https://www.spots4kite.com/spots/chalupy/",
+      "https://pomorskie.travel/artykuly/chalupy/",
+      "https://www.easy-surfcenter.pl/"
+    ]
   },
   {
     "id": "rewa-baltic-s",
     "activity": "kite",
-    "name": "Rewa",
+    "name": "Rewa — Cypel Rewski",
     "region": "Europe",
     "city": "Baltic Sea",
-    "country": "Baltic Sea",
+    "country": "Polônia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/northern-europe/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://kitesurftheworld.com/kitespots/poland/rewa/",
+      "https://aloha.pl/info/",
+      "https://web.kite-and-windsurfing-guide.com/spots/kiteboarding-windsurfing-sup/rewa-pommerania-poland.html",
+      "https://rewasurf.pl/"
+    ]
   },
   {
     "id": "gotland-baltic-s",
     "activity": "kite",
-    "name": "Gotland",
+    "name": "Tofta — Gotland",
     "region": "Europe",
     "city": "Baltic Sea",
-    "country": "Baltic Sea",
+    "country": "Suécia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/northern-europe/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://se.kiteforum.com/kitesurf/spot/gotland___tofta",
+      "https://web.kite-and-windsurfing-guide.com/europe/sweden/oeland-gotland0.html"
+    ]
   },
   {
     "id": "saaremaa-baltic-s",
     "activity": "kite",
-    "name": "Saaremaa",
+    "name": "Mändjala — Saaremaa",
     "region": "Europe",
     "city": "Baltic Sea",
-    "country": "Baltic Sea",
+    "country": "Estônia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/northern-europe/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://www.ikointl.com/de/destinationen/kitesurfing-estonia/spots/mandjala-beach-saaremaa",
+      "https://reedinbaltics.com/en/best-kitesurfing-spots-in-estonia/",
+      "https://letskite.be/en/spots/3519/snowkite/saaremaa-mandjala",
+      "https://visitestonia.com/en/mandjala-beach"
+    ]
   },
   {
     "id": "m-rbyl-nga-baltic-s",
     "activity": "kite",
-    "name": "Mörbylånga",
+    "name": "Sandbergen — Mörbylånga / Öland",
     "region": "Europe",
     "city": "Baltic Sea",
-    "country": "Baltic Sea",
+    "country": "Suécia",
     "coordinates": null,
     "conditions": {
       "windConsistency": null,
       "waterType": [],
       "waterTemp": null,
-      "bestMonths": []
+      "bestMonths": [],
+      "activitySpecific": {},
+      "fieldStatus": {
+        "wind_by_month": "source_claims",
+        "best_season": "source_claims",
+        "wind_direction": "source_claims",
+        "water_type": "source_claims",
+        "bottom_water": "source_claims",
+        "level_discipline": "source_claims",
+        "hazards_launch": "source_claims",
+        "kite_wing": "source_claims"
+      }
     },
     "description": "",
     "sourceUrl": "https://globalkitespots.com/global-kitesurf-spots-and-regions/northern-europe/",
-    "status": "coming-soon"
+    "status": "active",
+    "sources": [
+      "https://se.kiteforum.com/kitesurf/spot/oeland___sandbergen",
+      "https://web.kite-and-windsurfing-guide.com/de/surfspots/kitesurfen-windsurfen-sup/haga-park-sandbergen-oeland-oeland-gotland-schweden.html",
+      "https://www.morbylanga.se/wp-content/uploads/2023/05/645cb0468ed83.pdf"
+    ]
   },
   {
     "id": "borrby-strandbad-baltic-s",
