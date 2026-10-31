@@ -6,7 +6,10 @@
     "region": "Caribbean",
     "city": "Aruba",
     "country": "Aruba",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.48259,
+      "lng": -69.98183
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -41,7 +44,10 @@
     "region": "Caribbean",
     "city": "Aruba",
     "country": "Aruba",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.43951,
+      "lng": -69.87389
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -76,7 +82,10 @@
     "region": "Caribbean",
     "city": "Aruba",
     "country": "Aruba",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.58509,
+      "lng": -70.04572
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -110,7 +119,10 @@
     "region": "Caribbean",
     "city": "Bonaire",
     "country": "Bonaire",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.04426,
+      "lng": -68.26632
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -144,7 +156,10 @@
     "region": "Caribbean",
     "city": "Curaçao",
     "country": "Curaçao",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.12115,
+      "lng": -68.81536
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -179,7 +194,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Australia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.78647,
+      "lng": 138.49372
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -214,7 +232,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Australia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.821,
+      "lng": 138.494
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -249,7 +270,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Australia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.9,
+      "lng": 138.489
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -303,7 +327,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Australia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -35.5654,
+      "lng": 138.6124
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -337,7 +364,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -35.51215,
+      "lng": 138.76182
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -372,7 +402,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -37.13361,
+      "lng": 139.79659
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -405,7 +438,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -37.47425,
+      "lng": 140.03112
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -438,7 +474,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -35.40651,
+      "lng": 138.96406
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -471,7 +510,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -35.31861,
+      "lng": 139.1925
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -524,7 +566,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -35.11401,
+      "lng": 137.75589
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -558,7 +603,10 @@
     "region": "Oceania",
     "city": "Adelaide",
     "country": "Austrália",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.52219,
+      "lng": 135.35337
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -592,7 +640,10 @@
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.0028,
+      "lng": -77.349
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -626,7 +677,10 @@
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.66231,
+      "lng": -75.96614
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -660,7 +714,10 @@
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.08713,
+      "lng": -76.12666
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -727,7 +784,10 @@
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.15616,
+      "lng": -75.331
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -758,7 +818,10 @@
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.19113,
+      "lng": -75.31274
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -791,7 +854,10 @@
     "region": "Europe",
     "city": "Baltic Sea",
     "country": "Polônia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 54.75916,
+      "lng": 18.50896
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -825,7 +891,10 @@
     "region": "Europe",
     "city": "Baltic Sea",
     "country": "Polônia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 54.63082,
+      "lng": 18.49684
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -860,7 +929,10 @@
     "region": "Europe",
     "city": "Baltic Sea",
     "country": "Suécia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 57.4916,
+      "lng": 18.1262
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -893,7 +965,10 @@
     "region": "Europe",
     "city": "Baltic Sea",
     "country": "Estônia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 58.21471,
+      "lng": 22.33338
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -927,7 +1002,10 @@
     "region": "Europe",
     "city": "Baltic Sea",
     "country": "Suécia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 56.5753,
+      "lng": 16.4041
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1325,7 +1403,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.38056,
+      "lng": -37.85415
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1350,7 +1431,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -2.81329,
+      "lng": -40.37889
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1376,7 +1460,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -2.80359,
+      "lng": -40.51879
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1400,7 +1487,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -3.47223,
+      "lng": -38.93199
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1423,7 +1513,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -3.35128,
+      "lng": -39.14264
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1446,7 +1539,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -3.2383,
+      "lng": -39.2367
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1469,7 +1565,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -3.21984,
+      "lng": -39.27061
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1492,7 +1591,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -3.1858,
+      "lng": -39.3836
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1515,7 +1617,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.22393,
+      "lng": -38.04308
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1539,7 +1644,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.4251,
+      "lng": -37.7683
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1562,7 +1670,10 @@
     "region": "South America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.52584,
+      "lng": -37.70564
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1585,7 +1696,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -26.432,
+      "lng": 153.101
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1664,7 +1778,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -26.38245,
+      "lng": 153.07918
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1690,7 +1807,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -26.65279,
+      "lng": 153.09937
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1731,7 +1851,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -26.43843,
+      "lng": 153.07595
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1755,7 +1878,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -26.28578,
+      "lng": 152.99697
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1778,7 +1904,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -27.299,
+      "lng": 153.057
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1801,7 +1930,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -27.3238,
+      "lng": 153.071
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1842,7 +1974,10 @@
     "region": "Oceania",
     "city": "Brisbane & Gold Coast",
     "country": "Brisbane & Gold Coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -27.487,
+      "lng": 153.239
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1866,7 +2001,10 @@
     "region": "Asia",
     "city": "Cambodia",
     "country": "Cambodia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.5567,
+      "lng": 104.1487
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1908,7 +2046,10 @@
     "region": "North America",
     "city": "Canada East-coast",
     "country": "Canada East-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 47.27969,
+      "lng": -61.94666
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1933,7 +2074,10 @@
     "region": "North America",
     "city": "Canada West-coast",
     "country": "Canada West-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 49.6863,
+      "lng": -123.17815
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1959,7 +2103,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.95395,
+      "lng": -13.59142
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -1982,7 +2129,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.11556,
+      "lng": -13.55634
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2006,7 +2156,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.11069,
+      "lng": -14.2642
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2030,7 +2183,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.13213,
+      "lng": -14.24554
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2056,7 +2212,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.53873,
+      "lng": -13.83938
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2080,7 +2239,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.71935,
+      "lng": -13.8412
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2106,7 +2268,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.04136,
+      "lng": -16.54283
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2130,7 +2295,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.67675,
+      "lng": -14.00896
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2155,7 +2323,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.73926,
+      "lng": -13.9396
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2196,7 +2367,10 @@
     "region": "Africa",
     "city": "Canary islands",
     "country": "Canary islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.17066,
+      "lng": -14.20461
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2221,7 +2395,10 @@
     "region": "Africa",
     "city": "Cape Verde",
     "country": "Cape Verde",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 16.6254,
+      "lng": -22.89985
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2246,7 +2423,10 @@
     "region": "Africa",
     "city": "Cape Verde",
     "country": "Cape Verde",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 16.17073,
+      "lng": -22.915
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2271,7 +2451,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.16438,
+      "lng": -61.79993
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2296,7 +2479,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.02885,
+      "lng": -61.88481
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2318,7 +2504,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.15221,
+      "lng": -61.78832
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2342,7 +2531,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.04607,
+      "lng": -61.68136
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2367,7 +2559,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.08887,
+      "lng": -63.01623
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2411,7 +2606,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.17151,
+      "lng": -63.11338
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2437,7 +2635,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.27834,
+      "lng": -63.2533
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2464,7 +2665,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.26667,
+      "lng": -63.18333
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2490,7 +2694,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.21249,
+      "lng": -63.11826
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2516,7 +2723,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.74567,
+      "lng": -64.37933
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2542,7 +2752,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.4499,
+      "lng": -64.7087
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2566,7 +2779,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.49927,
+      "lng": -64.3577
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2592,7 +2808,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.28704,
+      "lng": -62.67821
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2616,7 +2835,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.23558,
+      "lng": -62.62766
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2677,7 +2899,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 16.33353,
+      "lng": -61.3361
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2701,7 +2926,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Leeward islands",
     "country": "Caribbean – Leeward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 16.23639,
+      "lng": -61.34917
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2729,7 +2957,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 14.08826,
+      "lng": -60.92828
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2755,7 +2986,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 13.74258,
+      "lng": -60.93923
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2782,7 +3016,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 13.73165,
+      "lng": -60.94071
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2809,7 +3046,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.59861,
+      "lng": -61.41206
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2835,7 +3075,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.64821,
+      "lng": -61.38924
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2861,7 +3104,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 13.04893,
+      "lng": -59.51393
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2887,7 +3133,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 13.05665,
+      "lng": -59.50136
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2914,7 +3163,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 13.07118,
+      "lng": -59.58305
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2938,7 +3190,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.58032,
+      "lng": -61.43662
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2964,7 +3219,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.62971,
+      "lng": -61.35748
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -2991,7 +3249,10 @@
     "region": "Caribbean",
     "city": "Caribbean – Windward islands",
     "country": "Caribbean – Windward islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 14.5417,
+      "lng": -60.82886
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3036,7 +3297,10 @@
     "region": "Caribbean",
     "city": "Cayman islands",
     "country": "Cayman islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 19.38899,
+      "lng": -81.36928
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3061,7 +3325,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -30.00569,
+      "lng": -70.82019
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3088,7 +3355,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.96359,
+      "lng": -71.87557
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3115,7 +3385,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.9833,
+      "lng": -71.8833
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3142,7 +3415,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.6401,
+      "lng": -71.6349
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3166,7 +3442,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -27.1277,
+      "lng": -70.8606
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3192,7 +3471,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -30.29434,
+      "lng": -71.61095
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3216,7 +3498,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.49705,
+      "lng": -72.01138
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3242,7 +3527,10 @@
     "region": "South America",
     "city": "Chile",
     "country": "Chile",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -32.1333,
+      "lng": -71.5333
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3266,7 +3554,10 @@
     "region": "Asia",
     "city": "China – Hainan",
     "country": "China – Hainan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.0383,
+      "lng": 110.23514
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3293,7 +3584,10 @@
     "region": "Asia",
     "city": "China – Hainan",
     "country": "China – Hainan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 19.97868,
+      "lng": 110.47097
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3318,7 +3612,10 @@
     "region": "Asia",
     "city": "China – Hainan",
     "country": "China – Hainan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.27589,
+      "lng": 109.72671
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3341,7 +3638,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.19548,
+      "lng": -72.14722
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3368,7 +3668,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 3.89457,
+      "lng": -76.49488
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3393,7 +3696,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.51407,
+      "lng": -75.49864
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3419,7 +3725,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.47113,
+      "lng": -75.49687
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3462,7 +3771,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.55369,
+      "lng": -72.9067
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3487,7 +3799,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.26191,
+      "lng": -73.76871
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3512,7 +3827,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.4317,
+      "lng": -73.08354
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3572,7 +3890,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.95198,
+      "lng": -75.02937
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3599,7 +3920,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.79472,
+      "lng": -75.25744
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3642,7 +3966,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.14284,
+      "lng": -75.68482
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3669,7 +3996,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.73713,
+      "lng": -75.74813
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3695,7 +4025,10 @@
     "region": "Caribbean",
     "city": "Colombia",
     "country": "Colombia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.4026,
+      "lng": -75.68164
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3720,7 +4053,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.02532,
+      "lng": -85.70383
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3744,7 +4080,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.02694,
+      "lng": -85.68787
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3768,7 +4107,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.52832,
+      "lng": -84.91527
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3793,7 +4135,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.04867,
+      "lng": -85.7096
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3855,7 +4200,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.64632,
+      "lng": -85.16738
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3881,7 +4229,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.62552,
+      "lng": -85.15149
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3941,7 +4292,10 @@
     "region": "Central America",
     "city": "Costa Rica",
     "country": "Costa Rica",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 8.43237,
+      "lng": -83.1049
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3965,7 +4319,10 @@
     "region": "Europe",
     "city": "Croatia",
     "country": "Croatia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.25709,
+      "lng": 16.63465
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -3989,7 +4346,10 @@
     "region": "Europe",
     "city": "Croatia",
     "country": "Croatia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.01213,
+      "lng": 17.46921
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4014,7 +4374,10 @@
     "region": "Europe",
     "city": "Croatia",
     "country": "Croatia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.01941,
+      "lng": 17.44644
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4038,7 +4401,10 @@
     "region": "Europe",
     "city": "Croatia",
     "country": "Croatia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.24762,
+      "lng": 15.18843
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4062,7 +4428,10 @@
     "region": "Caribbean",
     "city": "Cuba",
     "country": "Cuba",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.14682,
+      "lng": -81.26533
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4088,7 +4457,10 @@
     "region": "Caribbean",
     "city": "Cuba",
     "country": "Cuba",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.5403,
+      "lng": -78.3657
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4114,7 +4486,10 @@
     "region": "Caribbean",
     "city": "Cuba",
     "country": "Cuba",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 22.5892,
+      "lng": -78.6522
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4157,7 +4532,10 @@
     "region": "Europe",
     "city": "Cyprus",
     "country": "Cyprus",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.66201,
+      "lng": 32.80331
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4182,7 +4560,10 @@
     "region": "Europe",
     "city": "Cyprus",
     "country": "Cyprus",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.7342,
+      "lng": 32.4491
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4242,7 +4623,10 @@
     "region": "Europe",
     "city": "Cyprus",
     "country": "Cyprus",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.61469,
+      "lng": 33.00537
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4267,7 +4651,10 @@
     "region": "Europe",
     "city": "Cyprus",
     "country": "Cyprus",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.5922,
+      "lng": 32.9365
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4291,7 +4678,10 @@
     "region": "Caribbean",
     "city": "Dominican Republic",
     "country": "Dominican Republic",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 19.76268,
+      "lng": -70.42203
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4317,7 +4707,10 @@
     "region": "South America",
     "city": "Ecuador",
     "country": "Ecuador",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -0.97319,
+      "lng": -80.83814
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4361,7 +4754,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.8628,
+      "lng": 33.97152
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4423,7 +4819,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.3431,
+      "lng": 33.69026
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4448,7 +4847,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.79116,
+      "lng": 33.93467
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4471,7 +4873,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.0488,
+      "lng": 34.4375
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4495,7 +4900,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.47628,
+      "lng": 34.50417
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4522,7 +4930,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.38266,
+      "lng": 32.82502
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4548,7 +4959,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.3007,
+      "lng": 34.7538
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4573,7 +4987,10 @@
     "region": "Oceania",
     "city": "Fiji",
     "country": "Fiji",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -18.47685,
+      "lng": 177.92637
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4614,7 +5031,10 @@
     "region": "Oceania",
     "city": "Fiji",
     "country": "Fiji",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -17.31196,
+      "lng": 178.17475
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4639,7 +5059,10 @@
     "region": "Oceania",
     "city": "Fiji",
     "country": "Fiji",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -17.84419,
+      "lng": 177.18349
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4681,7 +5104,10 @@
     "region": "Oceania",
     "city": "Fiji",
     "country": "Fiji",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -17.2867,
+      "lng": 178.2182
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4723,7 +5149,10 @@
     "region": "Oceania",
     "city": "Fiji",
     "country": "Fiji",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -16.69659,
+      "lng": -179.89321
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4747,7 +5176,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.70944,
+      "lng": -80.15616
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4790,7 +5222,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.04496,
+      "lng": -80.11414
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4814,7 +5249,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.905,
+      "lng": -80.0604
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4856,7 +5294,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.40657,
+      "lng": -80.59401
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4881,7 +5322,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 28.65552,
+      "lng": -80.63183
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4904,7 +5348,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.84832,
+      "lng": -80.74126
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4929,7 +5376,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.33142,
+      "lng": -81.05827
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4952,7 +5402,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.8221,
+      "lng": -81.2629
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4975,7 +5428,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.2825,
+      "lng": -81.38778
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -4998,7 +5454,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 30.31191,
+      "lng": -81.39647
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5022,7 +5481,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.94572,
+      "lng": -84.34039
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5044,7 +5506,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.89557,
+      "lng": -84.38204
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5068,7 +5533,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.85336,
+      "lng": -82.54593
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5093,7 +5561,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.75119,
+      "lng": -82.63015
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5117,7 +5588,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.69569,
+      "lng": -82.73674
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5141,7 +5615,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.55198,
+      "lng": -81.76873
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5183,7 +5660,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.45297,
+      "lng": -82.01422
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5206,7 +5686,10 @@
     "region": "North America",
     "city": "Florida",
     "country": "Florida",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.9559,
+      "lng": -81.7532
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5230,7 +5713,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.25216,
+      "lng": 5.37275
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5252,7 +5738,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.18768,
+      "lng": 3.20339
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5275,7 +5764,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.94295,
+      "lng": 3.03816
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5297,7 +5789,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.40028,
+      "lng": 4.59585
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5322,7 +5817,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.3317,
+      "lng": 5.04331
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5345,7 +5843,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.35406,
+      "lng": 4.88415
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5368,7 +5869,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.1872,
+      "lng": 5.6247
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5408,7 +5912,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.06842,
+      "lng": 6.13
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5432,7 +5939,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.0932,
+      "lng": 6.32211
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5492,7 +6002,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.41077,
+      "lng": 6.73764
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5516,7 +6029,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.53604,
+      "lng": 7.03742
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5540,7 +6056,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.65792,
+      "lng": 7.19388
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5582,7 +6101,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.5563,
+      "lng": 4.0787
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5605,7 +6127,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.51483,
+      "lng": 4.1252
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5630,7 +6155,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.40231,
+      "lng": 3.66009
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5654,7 +6182,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.36623,
+      "lng": 3.61469
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5678,7 +6209,10 @@
     "region": "Europe",
     "city": "France South-coast",
     "country": "France South-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.27335,
+      "lng": 3.505
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5738,7 +6272,10 @@
     "region": "Oceania",
     "city": "French Polynesia",
     "country": "French Polynesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -17.4906,
+      "lng": -149.9045
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5762,7 +6299,10 @@
     "region": "Oceania",
     "city": "French Polynesia",
     "country": "French Polynesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -16.8136,
+      "lng": -150.9807
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5865,7 +6405,10 @@
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.8549,
+      "lng": 27.0991
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5889,7 +6432,10 @@
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.43,
+      "lng": 27.1106
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -5913,7 +6459,10 @@
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.84192,
+      "lng": 20.68248
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6042,7 +6591,10 @@
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.4265,
+      "lng": 25.322
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6067,7 +6619,10 @@
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.37406,
+      "lng": 28.0365
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6120,7 +6675,10 @@
     "region": "Europe",
     "city": "Greece",
     "country": "Greece",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.3387,
+      "lng": 21.8496
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6281,7 +6839,10 @@
     "region": "Africa",
     "city": "Gulf of Aqaba / Eilat",
     "country": "Gulf of Aqaba / Eilat",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 29.5101,
+      "lng": 34.9234
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6326,7 +6887,10 @@
     "region": "Caribbean",
     "city": "Honduras – Bay Islands",
     "country": "Honduras – Bay Islands",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 16.42923,
+      "lng": -86.30178
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6388,7 +6952,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -8.7128,
+      "lng": 115.2493
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6412,7 +6979,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -8.9159,
+      "lng": 116.4834
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6439,7 +7009,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -8.806,
+      "lng": 118.3825
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6464,7 +7037,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 5.4773,
+      "lng": 95.2347
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6487,7 +7063,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -10.9233,
+      "lng": 122.8592
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6513,7 +7092,10 @@
     "region": "Asia",
     "city": "Indonesia",
     "country": "Indonesia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -5.64922,
+      "lng": 119.58449
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6554,7 +7136,10 @@
     "region": "Europe",
     "city": "Israel",
     "country": "Israel",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.07202,
+      "lng": 34.76371
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6577,7 +7162,10 @@
     "region": "Europe",
     "city": "Israel",
     "country": "Israel",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.3931,
+      "lng": 34.8664
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6602,7 +7190,10 @@
     "region": "Europe",
     "city": "Israel",
     "country": "Israel",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.83525,
+      "lng": 34.97825
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6627,7 +7218,10 @@
     "region": "Europe",
     "city": "Israel",
     "country": "Israel",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.8502,
+      "lng": 35.0624
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6652,7 +7246,10 @@
     "region": "Europe",
     "city": "Israel",
     "country": "Israel",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 32.83412,
+      "lng": 35.64064
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6694,7 +7291,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 45.75564,
+      "lng": 10.75068
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6717,7 +7317,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 45.72232,
+      "lng": 10.78016
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6741,7 +7344,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 46.14211,
+      "lng": 9.37432
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6767,7 +7373,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.69,
+      "lng": 13.26583
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6790,7 +7399,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.73015,
+      "lng": 10.96448
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6815,7 +7427,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 46.11946,
+      "lng": 12.3518
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6858,7 +7473,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.0206,
+      "lng": 15.6388
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6883,7 +7501,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.1542,
+      "lng": 17.1207
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6907,7 +7528,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.55619,
+      "lng": 12.53841
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6933,7 +7557,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.22204,
+      "lng": 18.45765
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -6960,7 +7587,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.27174,
+      "lng": 17.87077
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7023,7 +7653,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.30203,
+      "lng": 18.40364
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7049,7 +7682,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 44.49837,
+      "lng": 12.28158
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7075,7 +7711,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.99611,
+      "lng": 10.50694
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7099,7 +7738,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.38599,
+      "lng": 10.43051
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7125,7 +7767,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.17534,
+      "lng": 10.53885
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7168,7 +7813,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.95452,
+      "lng": 10.61656
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7192,7 +7840,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.55553,
+      "lng": 11.13169
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7217,7 +7868,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.59935,
+      "lng": 10.29507
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7244,7 +7898,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 43.2375,
+      "lng": 10.52749
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7269,7 +7926,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.89657,
+      "lng": 10.7833
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7294,7 +7954,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.8116,
+      "lng": 10.7613
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7318,7 +7981,10 @@
     "region": "Europe",
     "city": "Italy mainland",
     "country": "Italy mainland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 45.67755,
+      "lng": 13.41237
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7343,7 +8009,10 @@
     "region": "Africa",
     "city": "Kenya",
     "country": "Kenya",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.31799,
+      "lng": 39.57535
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7370,7 +8039,10 @@
     "region": "Africa",
     "city": "Kenya",
     "country": "Kenya",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.04816,
+      "lng": 39.71001
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7395,7 +8067,10 @@
     "region": "Africa",
     "city": "Kenya",
     "country": "Kenya",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -2.3013,
+      "lng": 40.9113
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7420,7 +8095,10 @@
     "region": "Africa",
     "city": "Kenya",
     "country": "Kenya",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.35659,
+      "lng": 39.55626
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7446,7 +8124,10 @@
     "region": "Africa",
     "city": "Kenya",
     "country": "Kenya",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -3.38646,
+      "lng": 39.97921
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7551,7 +8232,10 @@
     "region": "Africa",
     "city": "Madagascar",
     "country": "Madagascar",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -23.04667,
+      "lng": 43.56958
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7575,7 +8259,10 @@
     "region": "Africa",
     "city": "Madagascar",
     "country": "Madagascar",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -23.661,
+      "lng": 43.64953
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7599,7 +8286,10 @@
     "region": "Africa",
     "city": "Madagascar",
     "country": "Madagascar",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -25.42926,
+      "lng": 44.94521
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7625,7 +8315,10 @@
     "region": "Africa",
     "city": "Madagascar",
     "country": "Madagascar",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -25.0517,
+      "lng": 46.9323
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7679,7 +8372,10 @@
     "region": "Asia",
     "city": "Malaysia",
     "country": "Malaysia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 2.79733,
+      "lng": 104.20499
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7703,7 +8399,10 @@
     "region": "Asia",
     "city": "Malaysia",
     "country": "Malaysia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 3.99097,
+      "lng": 103.37611
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7728,7 +8427,10 @@
     "region": "Asia",
     "city": "Malaysia",
     "country": "Malaysia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 2.57524,
+      "lng": 103.81191
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7772,7 +8474,10 @@
     "region": "Asia",
     "city": "Malaysia",
     "country": "Malaysia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 1.89761,
+      "lng": 104.10407
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7796,7 +8501,10 @@
     "region": "Asia",
     "city": "Malaysia",
     "country": "Malaysia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 4.12959,
+      "lng": 103.38674
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7820,7 +8528,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -20.46305,
+      "lng": 57.32
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7847,7 +8558,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -20.50101,
+      "lng": 57.42596
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7874,7 +8588,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -20.1889,
+      "lng": 57.7738
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7900,7 +8617,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -20.27409,
+      "lng": 57.80773
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7925,7 +8645,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -19.98965,
+      "lng": 57.63288
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7951,7 +8674,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -20.46591,
+      "lng": 57.30843
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -7977,7 +8703,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -19.74018,
+      "lng": 63.4674
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8003,7 +8732,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -20.92757,
+      "lng": 55.33036
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8028,7 +8760,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.02841,
+      "lng": 55.22627
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8055,7 +8790,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.09801,
+      "lng": 55.24006
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8082,7 +8820,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.17145,
+      "lng": 55.27634
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8109,7 +8850,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.27187,
+      "lng": 55.35307
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8135,7 +8879,10 @@
     "region": "Africa",
     "city": "Mascarene islands (Mauritius)",
     "country": "Mascarene islands (Mauritius)",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.33498,
+      "lng": 55.46239
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8160,7 +8907,10 @@
     "region": "Oceania",
     "city": "Maui",
     "country": "Maui",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.9313,
+      "lng": -156.3634
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8188,7 +8938,10 @@
     "region": "Oceania",
     "city": "Maui",
     "country": "Maui",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.94858,
+      "lng": -156.29963
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8233,7 +8986,10 @@
     "region": "Oceania",
     "city": "Maui",
     "country": "Maui",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.90265,
+      "lng": -156.43752
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8281,7 +9037,10 @@
     "region": "Oceania",
     "city": "Maui",
     "country": "Maui",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.91309,
+      "lng": -156.39255
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8309,7 +9068,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -38.40966,
+      "lng": 144.18252
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8338,7 +9100,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -37.868,
+      "lng": 144.83
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8367,7 +9132,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -37.92654,
+      "lng": 144.98901
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8397,7 +9165,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -38.35441,
+      "lng": 144.9028
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8425,7 +9196,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -38.3701,
+      "lng": 144.8288
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8454,7 +9228,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -38.8525,
+      "lng": 146.16
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8482,7 +9259,10 @@
     "region": "Oceania",
     "city": "Melbourne",
     "country": "Melbourne",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -37.86788,
+      "lng": 144.974
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8513,7 +9293,10 @@
     "region": "North America",
     "city": "Mexico – Baja California Sur",
     "country": "Mexico – Baja California Sur",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.04648,
+      "lng": -109.99435
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8540,7 +9323,10 @@
     "region": "North America",
     "city": "Mexico – Baja California Sur",
     "country": "Mexico – Baja California Sur",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.68107,
+      "lng": -109.70262
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8565,7 +9351,10 @@
     "region": "Caribbean",
     "city": "Mexico – Yucatan",
     "country": "Mexico – Yucatan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.5537,
+      "lng": -86.922
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8590,7 +9379,10 @@
     "region": "Caribbean",
     "city": "Mexico – Yucatan",
     "country": "Mexico – Yucatan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.15204,
+      "lng": -87.45757
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8616,7 +9408,10 @@
     "region": "Caribbean",
     "city": "Mexico – Yucatan",
     "country": "Mexico – Yucatan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.47667,
+      "lng": -87.26167
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8688,7 +9483,10 @@
     "region": "Caribbean",
     "city": "Mexico – Yucatan",
     "country": "Mexico – Yucatan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 21.1654,
+      "lng": -86.80461
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8740,7 +9538,10 @@
     "region": "Caribbean",
     "city": "Mexico – Yucatan",
     "country": "Mexico – Yucatan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 21.56313,
+      "lng": -87.33602
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8766,7 +9567,10 @@
     "region": "Caribbean",
     "city": "Mexico – Yucatan",
     "country": "Mexico – Yucatan",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 21.51583,
+      "lng": -87.67833
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8792,7 +9596,10 @@
     "region": "Europe",
     "city": "Montenegro",
     "country": "Montenegro",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.86813,
+      "lng": 19.33636
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8818,7 +9625,10 @@
     "region": "Europe",
     "city": "Montenegro",
     "country": "Montenegro",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.89436,
+      "lng": 19.29022
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8843,7 +9653,10 @@
     "region": "Africa",
     "city": "Morocco",
     "country": "Morocco",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.8937,
+      "lng": -15.77124
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8869,7 +9682,10 @@
     "region": "Africa",
     "city": "Morocco",
     "country": "Morocco",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.90359,
+      "lng": -15.78522
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8894,7 +9710,10 @@
     "region": "Africa",
     "city": "Morocco",
     "country": "Morocco",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.91479,
+      "lng": -15.76336
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8920,7 +9739,10 @@
     "region": "Africa",
     "city": "Morocco",
     "country": "Morocco",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.9145,
+      "lng": -15.77825
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8946,7 +9768,10 @@
     "region": "Africa",
     "city": "Morocco",
     "country": "Morocco",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.63894,
+      "lng": -15.85508
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -8973,7 +9798,10 @@
     "region": "Africa",
     "city": "Morocco",
     "country": "Morocco",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 31.49695,
+      "lng": -9.76339
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9000,7 +9828,10 @@
     "region": "Africa",
     "city": "Namibia",
     "country": "Namibia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -22.9664,
+      "lng": 14.4879
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9030,7 +9861,10 @@
     "region": "Africa",
     "city": "Namibia",
     "country": "Namibia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -26.6893,
+      "lng": 15.148
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9055,7 +9889,10 @@
     "region": "Oceania",
     "city": "New Caledonia",
     "country": "New Caledonia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -22.31125,
+      "lng": 166.45276
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9084,7 +9921,10 @@
     "region": "Oceania",
     "city": "New Caledonia",
     "country": "New Caledonia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -22.31132,
+      "lng": 166.44854
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9112,7 +9952,10 @@
     "region": "Oceania",
     "city": "New Caledonia",
     "country": "New Caledonia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -22.33341,
+      "lng": 166.4101
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9141,7 +9984,10 @@
     "region": "Oceania",
     "city": "New Caledonia",
     "country": "New Caledonia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.86667,
+      "lng": 165.8
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9170,7 +10016,10 @@
     "region": "Oceania",
     "city": "New Caledonia",
     "country": "New Caledonia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -21.61213,
+      "lng": 165.40097
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9201,7 +10050,10 @@
     "region": "Oceania",
     "city": "New Caledonia",
     "country": "New Caledonia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -22.00982,
+      "lng": 165.93834
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9231,7 +10083,10 @@
     "region": "Oceania",
     "city": "New Zealand",
     "country": "New Zealand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -36.86923,
+      "lng": 174.69766
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9257,7 +10112,10 @@
     "region": "Oceania",
     "city": "New Zealand",
     "country": "New Zealand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -37.80397,
+      "lng": 174.84432
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9286,7 +10144,10 @@
     "region": "Oceania",
     "city": "New Zealand",
     "country": "New Zealand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -41.2811,
+      "lng": 173.23457
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9313,7 +10174,10 @@
     "region": "Oceania",
     "city": "New Zealand",
     "country": "New Zealand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -40.4734,
+      "lng": 175.2148
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9388,7 +10252,10 @@
     "region": "Caribbean",
     "city": "Nicaragua",
     "country": "Nicaragua",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.16155,
+      "lng": -83.05226
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9467,7 +10334,10 @@
     "region": "Caribbean",
     "city": "Nicaragua",
     "country": "Nicaragua",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.50245,
+      "lng": -85.54943
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9493,7 +10363,10 @@
     "region": "Caribbean",
     "city": "Nicaragua",
     "country": "Nicaragua",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.9438,
+      "lng": -85.9455
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9518,7 +10391,10 @@
     "region": "Caribbean",
     "city": "Nicaragua",
     "country": "Nicaragua",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.32519,
+      "lng": -85.70736
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9543,7 +10419,10 @@
     "region": "Caribbean",
     "city": "Nicaragua",
     "country": "Nicaragua",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.4606,
+      "lng": -85.7904
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9568,7 +10447,10 @@
     "region": "North America",
     "city": "North Carolina",
     "country": "North Carolina",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.29246,
+      "lng": -75.51518
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9594,7 +10476,10 @@
     "region": "North America",
     "city": "North Carolina",
     "country": "North Carolina",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.53337,
+      "lng": -75.47473
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9619,7 +10504,10 @@
     "region": "North America",
     "city": "North Carolina",
     "country": "North Carolina",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.1638,
+      "lng": -75.8452
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9643,7 +10531,10 @@
     "region": "North America",
     "city": "North Carolina",
     "country": "North Carolina",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 34.1877,
+      "lng": -77.8089
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9685,7 +10576,10 @@
     "region": "Asia",
     "city": "Oman",
     "country": "Oman",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.42976,
+      "lng": 58.71718
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9709,7 +10603,10 @@
     "region": "Asia",
     "city": "Oman",
     "country": "Oman",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.64819,
+      "lng": 58.23641
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9732,7 +10629,10 @@
     "region": "Asia",
     "city": "Oman",
     "country": "Oman",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 20.49777,
+      "lng": 58.38247
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9775,7 +10675,10 @@
     "region": "Asia",
     "city": "Oman",
     "country": "Oman",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.80441,
+      "lng": 57.5685
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9799,7 +10702,10 @@
     "region": "Asia",
     "city": "Oman",
     "country": "Oman",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 23.16821,
+      "lng": 58.87479
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9840,7 +10746,10 @@
     "region": "Central America",
     "city": "Panama",
     "country": "Panama",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 8.64337,
+      "lng": -79.70773
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9902,7 +10811,10 @@
     "region": "Asia",
     "city": "Persian Gulf",
     "country": "Persian Gulf",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.18278,
+      "lng": 55.22366
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9925,7 +10837,10 @@
     "region": "Asia",
     "city": "Persian Gulf",
     "country": "Persian Gulf",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.01873,
+      "lng": 51.38404
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9950,7 +10865,10 @@
     "region": "Asia",
     "city": "Persian Gulf",
     "country": "Persian Gulf",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.3,
+      "lng": 50.6583
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9973,7 +10891,10 @@
     "region": "Asia",
     "city": "Persian Gulf",
     "country": "Persian Gulf",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 25.987,
+      "lng": 50.0019
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -9996,7 +10917,10 @@
     "region": "Asia",
     "city": "Persian Gulf",
     "country": "Persian Gulf",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.51236,
+      "lng": 54.55207
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10020,7 +10944,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -32.29788,
+      "lng": 115.70297
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10043,7 +10970,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -32.304,
+      "lng": 115.721
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10067,7 +10997,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -30.50921,
+      "lng": 115.05998
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10092,7 +11025,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -29.28361,
+      "lng": 114.91889
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10115,7 +11051,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -28.78271,
+      "lng": 114.57939
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10138,7 +11077,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.32167,
+      "lng": 115.18156
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10161,7 +11103,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -31.014,
+      "lng": 115.33
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10184,7 +11129,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.88809,
+      "lng": 121.85216
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10207,7 +11155,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -23.8214,
+      "lng": 113.5239
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10231,7 +11182,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -32.01107,
+      "lng": 115.78646
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10254,7 +11208,10 @@
     "region": "Oceania",
     "city": "Perth",
     "country": "Perth",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -31.98758,
+      "lng": 115.82724
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10277,7 +11234,10 @@
     "region": "South America",
     "city": "Peru North",
     "country": "Peru North",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.10298,
+      "lng": -81.05369
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10301,7 +11261,10 @@
     "region": "South America",
     "city": "Peru North",
     "country": "Peru North",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -7.41433,
+      "lng": -79.58877
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10398,7 +11361,10 @@
     "region": "South America",
     "city": "Peru South",
     "country": "Peru South",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -13.85901,
+      "lng": -76.25506
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10441,7 +11407,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.96368,
+      "lng": 121.93026
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10465,7 +11434,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 14.13517,
+      "lng": 122.98422
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10506,7 +11478,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.8572,
+      "lng": 121.0047
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10529,7 +11504,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.25832,
+      "lng": 119.56305
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10570,7 +11548,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.79067,
+      "lng": 118.77201
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10595,7 +11576,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.31417,
+      "lng": 121.67611
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10620,7 +11604,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.79159,
+      "lng": 126.16209
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10661,7 +11648,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.63268,
+      "lng": 120.79985
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10702,7 +11692,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.64317,
+      "lng": 122.72338
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10726,7 +11719,10 @@
     "region": "Europe",
     "city": "Portugal",
     "country": "Portugal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.1221,
+      "lng": -8.6157
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10749,7 +11745,10 @@
     "region": "Europe",
     "city": "Portugal",
     "country": "Portugal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.73247,
+      "lng": -9.47248
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10774,7 +11773,10 @@
     "region": "Europe",
     "city": "Portugal",
     "country": "Portugal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.36331,
+      "lng": -9.37138
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10833,7 +11835,10 @@
     "region": "Caribbean",
     "city": "Puerto Rico",
     "country": "Puerto Rico",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.4547,
+      "lng": -66.0558
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10858,7 +11863,10 @@
     "region": "Caribbean",
     "city": "Puerto Rico",
     "country": "Puerto Rico",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 17.97497,
+      "lng": -67.04657
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10881,7 +11889,10 @@
     "region": "Caribbean",
     "city": "Puerto Rico",
     "country": "Puerto Rico",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.47374,
+      "lng": -66.29423
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10904,7 +11915,10 @@
     "region": "Caribbean",
     "city": "Puerto Rico",
     "country": "Puerto Rico",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 18.45411,
+      "lng": -66.03933
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10928,7 +11942,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.05297,
+      "lng": 8.56439
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10954,7 +11971,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.11174,
+      "lng": 8.43691
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -10980,7 +12000,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 41.19298,
+      "lng": 9.31911
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11003,7 +12026,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.9636,
+      "lng": 8.59546
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11028,7 +12054,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.21141,
+      "lng": 9.17731
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11052,7 +12081,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.15207,
+      "lng": 9.02021
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11075,7 +12107,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.88401,
+      "lng": 8.86348
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11098,7 +12133,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 39.12744,
+      "lng": 9.50764
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11121,7 +12159,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.9737,
+      "lng": 8.85341
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11144,7 +12185,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 40.78516,
+      "lng": 9.67103
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11168,7 +12212,10 @@
     "region": "Europe",
     "city": "Sardinia",
     "country": "Sardinia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.96544,
+      "lng": 8.97819
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11190,7 +12237,10 @@
     "region": "Africa",
     "city": "Senegal",
     "country": "Senegal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 15.99373,
+      "lng": -16.51014
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11213,7 +12263,10 @@
     "region": "Africa",
     "city": "Senegal",
     "country": "Senegal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 14.7494,
+      "lng": -17.5114
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11237,7 +12290,10 @@
     "region": "Africa",
     "city": "Senegal",
     "country": "Senegal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 14.4926,
+      "lng": -17.0865
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11279,7 +12335,10 @@
     "region": "Africa",
     "city": "Senegal",
     "country": "Senegal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 13.93347,
+      "lng": -16.76092
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11320,7 +12379,10 @@
     "region": "Africa",
     "city": "Senegal",
     "country": "Senegal",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.43537,
+      "lng": -16.78033
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11344,7 +12406,10 @@
     "region": "Africa",
     "city": "Seychelles",
     "country": "Seychelles",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.69004,
+      "lng": 55.51503
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11367,7 +12432,10 @@
     "region": "Africa",
     "city": "Seychelles",
     "country": "Seychelles",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.3261,
+      "lng": 55.6938
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11392,7 +12460,10 @@
     "region": "Africa",
     "city": "Seychelles",
     "country": "Seychelles",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.37546,
+      "lng": 55.83008
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11435,7 +12506,10 @@
     "region": "Africa",
     "city": "Seychelles",
     "country": "Seychelles",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -4.624,
+      "lng": 55.504
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11459,7 +12533,10 @@
     "region": "Europe",
     "city": "Sicily",
     "country": "Sicily",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.85144,
+      "lng": 12.47184
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11484,7 +12561,10 @@
     "region": "Europe",
     "city": "Sicily",
     "country": "Sicily",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.55968,
+      "lng": 12.67916
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11507,7 +12587,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.1042,
+      "lng": 18.4813
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11531,7 +12614,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.39715,
+      "lng": 20.85538
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11558,7 +12644,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.374,
+      "lng": 21.4283
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11581,7 +12670,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.0859,
+      "lng": 22.9741
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11605,7 +12697,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.0524,
+      "lng": 24.925
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11629,7 +12724,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.85513,
+      "lng": 18.49141
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11654,7 +12752,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.79009,
+      "lng": 18.45876
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11679,7 +12780,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.83117,
+      "lng": 18.48259
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11704,7 +12808,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.81002,
+      "lng": 18.46913
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11729,7 +12836,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.76638,
+      "lng": 18.44492
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11772,7 +12882,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.7125,
+      "lng": 19.41583
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11795,7 +12908,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.83069,
+      "lng": 18.48237
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11820,7 +12936,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.13263,
+      "lng": 18.33452
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11842,7 +12961,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.1018,
+      "lng": 18.8135
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11864,7 +12986,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.03533,
+      "lng": 22.80683
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11889,7 +13014,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.12563,
+      "lng": 22.1181
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11914,7 +13042,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.11282,
+      "lng": 18.04373
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11940,7 +13071,10 @@
     "region": "Africa",
     "city": "South Africa",
     "country": "South Africa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.09068,
+      "lng": 18.03028
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -11967,7 +13101,10 @@
     "region": "Europe",
     "city": "Spain",
     "country": "Spain",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 42.17878,
+      "lng": 3.10948
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12027,7 +13164,10 @@
     "region": "Europe",
     "city": "Spain",
     "country": "Spain",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.18516,
+      "lng": -6.02855
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12068,7 +13208,10 @@
     "region": "Asia",
     "city": "Sri Lanka",
     "country": "Sri Lanka",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 8.24021,
+      "lng": 79.74118
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12094,7 +13237,10 @@
     "region": "Asia",
     "city": "Sri Lanka",
     "country": "Sri Lanka",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 8.13664,
+      "lng": 79.71006
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12119,7 +13265,10 @@
     "region": "Asia",
     "city": "Sri Lanka",
     "country": "Sri Lanka",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 7.23493,
+      "lng": 79.83991
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12144,7 +13293,10 @@
     "region": "Asia",
     "city": "Sri Lanka",
     "country": "Sri Lanka",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 8.04079,
+      "lng": 79.83939
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12171,7 +13323,10 @@
     "region": "Asia",
     "city": "Sri Lanka",
     "country": "Sri Lanka",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 8.40458,
+      "lng": 79.80852
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12196,7 +13351,10 @@
     "region": "Asia",
     "city": "Sri Lanka",
     "country": "Sri Lanka",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.0814,
+      "lng": 79.6986
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12250,7 +13408,10 @@
     "region": "Oceania",
     "city": "Sydney",
     "country": "Sydney",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.73,
+      "lng": 151.3
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12275,7 +13436,10 @@
     "region": "Oceania",
     "city": "Sydney",
     "country": "Sydney",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -34.0417,
+      "lng": 151.1642
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12301,7 +13465,10 @@
     "region": "Oceania",
     "city": "Sydney",
     "country": "Sydney",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.99642,
+      "lng": 151.14626
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12354,7 +13521,10 @@
     "region": "Oceania",
     "city": "Sydney",
     "country": "Sydney",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -33.74608,
+      "lng": 151.30407
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12617,7 +13787,10 @@
     "region": "Europe",
     "city": "Tarifa",
     "country": "Tarifa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.06568,
+      "lng": -5.68173
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12662,7 +13835,10 @@
     "region": "Europe",
     "city": "Tarifa",
     "country": "Tarifa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.1759,
+      "lng": -5.42865
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12689,7 +13865,10 @@
     "region": "Europe",
     "city": "Tarifa",
     "country": "Tarifa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.09598,
+      "lng": -5.44338
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12732,7 +13911,10 @@
     "region": "Europe",
     "city": "Tarifa",
     "country": "Tarifa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.04424,
+      "lng": -5.63925
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12759,7 +13941,10 @@
     "region": "Europe",
     "city": "Tarifa",
     "country": "Tarifa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.00884,
+      "lng": -5.60904
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12802,7 +13987,10 @@
     "region": "Europe",
     "city": "Tarifa",
     "country": "Tarifa",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.06797,
+      "lng": -5.68954
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12860,7 +14048,10 @@
     "region": "North America",
     "city": "Texas",
     "country": "Texas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 26.1067,
+      "lng": -97.1639
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12886,7 +14077,10 @@
     "region": "North America",
     "city": "Texas",
     "country": "Texas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.8238,
+      "lng": -97.38522
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12931,7 +14125,10 @@
     "region": "North America",
     "city": "Texas",
     "country": "Texas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.62366,
+      "lng": -97.19819
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -12957,7 +14154,10 @@
     "region": "North America",
     "city": "Texas",
     "country": "Texas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 27.8319,
+      "lng": -97.0496
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13013,7 +14213,10 @@
     "region": "Asia",
     "city": "Thailand",
     "country": "Thailand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.5539,
+      "lng": 99.9641
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13067,7 +14270,10 @@
     "region": "Asia",
     "city": "Thailand",
     "country": "Thailand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 9.6945,
+      "lng": 100.0283
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13092,7 +14298,10 @@
     "region": "Asia",
     "city": "Thailand",
     "country": "Thailand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 7.7985,
+      "lng": 98.337
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13119,7 +14328,10 @@
     "region": "Asia",
     "city": "Thailand",
     "country": "Thailand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.8417,
+      "lng": 100.9043
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13173,7 +14385,10 @@
     "region": "Asia",
     "city": "Thailand",
     "country": "Thailand",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 10.5694,
+      "lng": 99.275
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13215,7 +14430,10 @@
     "region": "Caribbean",
     "city": "Tobago",
     "country": "Tobago",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 11.18227,
+      "lng": -60.83332
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13393,7 +14611,10 @@
     "region": "Africa",
     "city": "Tunisia",
     "country": "Tunisia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 35.8702,
+      "lng": 10.6086
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13417,7 +14638,10 @@
     "region": "Africa",
     "city": "Tunisia",
     "country": "Tunisia",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.9415,
+      "lng": 10.2541
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13562,7 +14786,10 @@
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 38.2849,
+      "lng": 26.2501
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13698,7 +14925,10 @@
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.9643,
+      "lng": 27.2666
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13722,7 +14952,10 @@
     "region": "Europe",
     "city": "Turkey",
     "country": "Turkey",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 36.6704,
+      "lng": 29.1031
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13778,7 +15011,10 @@
     "region": "Caribbean",
     "city": "Turks & Caicos",
     "country": "Turks & Caicos",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 21.79514,
+      "lng": -72.18754
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -13840,7 +15076,10 @@
     "region": "Caribbean",
     "city": "Turks & Caicos",
     "country": "Turks & Caicos",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 21.7622,
+      "lng": -72.18959
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -14008,7 +15247,10 @@
     "region": "North America",
     "city": "USA West-coast",
     "country": "USA West-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 45.7159,
+      "lng": -121.5088
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -14034,7 +15276,10 @@
     "region": "North America",
     "city": "USA West-coast",
     "country": "USA West-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.8052,
+      "lng": -122.4594
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -14059,7 +15304,10 @@
     "region": "North America",
     "city": "USA West-coast",
     "country": "USA West-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 37.0938,
+      "lng": -122.2773
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -14083,7 +15331,10 @@
     "region": "North America",
     "city": "USA West-coast",
     "country": "USA West-coast",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 33.7409,
+      "lng": -118.1148
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -14723,7 +15974,10 @@
     "region": "Africa",
     "city": "Cape Verde",
     "country": "Cape Verde",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 16.90753,
+      "lng": -24.94504
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -15186,7 +16440,10 @@
     "region": "Africa",
     "city": "Egypt",
     "country": "Egypt",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.321,
+      "lng": 35.35568
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -15538,7 +16795,10 @@
     "region": "Europe",
     "city": "Switzerland",
     "country": "Switzerland",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 46.4514,
+      "lng": 9.79451
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -15583,7 +16843,10 @@
     "region": "Caribbean",
     "city": "Bahamas",
     "country": "Bahamas",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 24.19113,
+      "lng": -75.31274
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -15841,7 +17104,10 @@
     "region": "North America",
     "city": "Argentina",
     "country": "Argentina",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -41.129,
+      "lng": -71.28356
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -15967,7 +17233,10 @@
     "region": "Europe",
     "city": "Austria",
     "country": "Austria",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 47.86611,
+      "lng": 16.83476
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -16249,7 +17518,10 @@
     "region": "North America",
     "city": "Brazil",
     "country": "Brazil",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -5.11571,
+      "lng": -35.6171
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -16359,7 +17631,10 @@
     "region": "Africa",
     "city": "Mozambique",
     "country": "Mozambique",
-    "coordinates": null,
+    "coordinates": {
+      "lat": -25.2766,
+      "lng": 33.25275
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
@@ -16384,7 +17659,10 @@
     "region": "Asia",
     "city": "Philippines",
     "country": "Philippines",
-    "coordinates": null,
+    "coordinates": {
+      "lat": 12.30887,
+      "lng": 121.38792
+    },
     "conditions": {
       "windConsistency": null,
       "waterType": [],
