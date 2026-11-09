@@ -44,11 +44,11 @@ export const pt = {
     heroKicker: "Hub de viagens fora do óbvio",
     heroHeadline: () => (
       <>
-        Descubra o mundo além dos <em className="italic font-normal">roteiros de sempre.</em>
+        Viagem para se descobrir, <em className="italic font-normal">não para fugir.</em>
       </>
     ),
     heroBody:
-      "A Trovr reúne lugares, experiências, esportes, histórias e informação prática para quem quer sair dos circuitos turísticos tradicionais sem viajar no escuro.",
+      "Cavalgar pelo deserto de AlUla, nadar com baleias jubartes em Tonga ou surfar a longa esquerda de Chicama. Comece pelo que você quer viver, descubra lugares no mapa e conte com a Trovr para criar uma viagem no seu ritmo.",
     primaryCta: "Explorar lugares",
     secondaryCta: "Crie sua viagem",
     pauseGallery: "Pausar galeria de imagens",
