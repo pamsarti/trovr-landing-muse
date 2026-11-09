@@ -82,6 +82,11 @@ async function main() {
 
   for (const file of files) {
     const rel = file.slice(root.length + 1).replace(/\\/g, "/");
+    // Preserve the selected hero originals at their full resolution.
+    if (rel.startsWith("public/images/experiencias/")) {
+      skipped++;
+      continue;
+    }
     const buf = readFileSync(file);
     const hash = hashFile(buf);
 

@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useState, type FormEvent } from "react";
 import { ArrowRight, ArrowUpRight, Pause, Play } from "lucide-react";
 import {
   ACTIVITIES,
@@ -8,7 +8,6 @@ import {
   placeLabel,
   slugify,
   spotImage,
-  type Spot,
 } from "@/lib/spots-data";
 import { CATEGORY_LABEL, getPublishedArticles, type JournalArticle } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
@@ -77,13 +76,48 @@ export const Route = createFileRoute("/")({
 
 type HeroSlide = { src: string; alt: string; caption: string };
 
-function heroSlides(spots: Spot[]): HeroSlide[] {
-  return spots.slice(0, 6).map((spot) => ({
-    src: spotImage(spot, 1800, 1200),
-    alt: `${spot.name}, ${placeLabel(spot.country)}`,
-    caption: `${placeLabel(spot.country)} · ${activityLabel(spot.activity)}`,
-  }));
-}
+const HERO_SLIDES: HeroSlide[] = [
+  {
+    src: "/images/experiencias/alula-cavalgada.jpg",
+    alt: "Cavaleiros no deserto de AlUla",
+    caption: "Cavalgar no deserto de AlUla · Arábia Saudita",
+  },
+  {
+    src: "/images/experiencias/tonga-jubartes.jpg",
+    alt: "Pessoa com snorkel junto a uma baleia jubarte",
+    caption: "Sair de barco para nadar com baleias jubartes · Tonga",
+  },
+  {
+    src: "/images/experiencias/noruega-esqui-vela.webp",
+    alt: "Esquiadores e veleiro em um fiorde norueguês",
+    caption: "Combinar esqui e navegação à vela · Noruega",
+  },
+  {
+    src: "/images/experiencias/andean-explorer.jpg",
+    alt: "Trem Andean Explorer atravessando os Andes",
+    caption: "Fazer um retiro a bordo do trem Andean Explorer · Peru",
+  },
+  {
+    src: "/images/experiencias/chicama-surfe.jpg",
+    alt: "Onda na costa de Chicama",
+    caption: "Surfar a longa esquerda de Chicama · Peru",
+  },
+  {
+    src: "/images/experiencias/kite-a-bordo.jpg",
+    alt: "Kitesurf no Mar Vermelho",
+    caption: "Praticar kitesurf em uma viagem a bordo",
+  },
+  {
+    src: "/images/experiencias/serengeti-balao.jpg",
+    alt: "Balão sobre o Serengeti ao amanhecer",
+    caption: "Fazer um safári de balão no Serengeti · Tanzânia",
+  },
+  {
+    src: "/images/experiencias/providencia-tubaroes.jpg",
+    alt: "Tubarão fotografado durante um mergulho em Providencia",
+    caption: "Mergulhar com tubarões em Providencia · Colômbia",
+  },
+];
 
 function firstSentence(text: string): string {
   const match = text.match(/^.*?[.!?](\s|$)/);
@@ -112,7 +146,7 @@ function Index() {
 
 function Hero() {
   const t = useT();
-  const slides = useMemo(() => heroSlides(getPublicSpots()), []);
+  const slides = HERO_SLIDES;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);

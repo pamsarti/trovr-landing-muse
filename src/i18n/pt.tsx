@@ -95,7 +95,7 @@ export const pt = {
     serviceKicker: "Viagem Trovr",
     serviceTitle: "Uma viagem que começa pelo que você quer viver.",
     serviceBody:
-      "A Trovr transforma seu momento, seus desejos e seus limites em uma viagem possível, com curadoria fora do óbvio e um roteiro construído no seu ritmo.",
+      "Talvez você queira surfar a longa esquerda de Chicama, passar alguns dias fazendo kitesurf a bordo, ver o Serengeti de balão ao amanhecer ou sair de barco para mergulhar com tubarões em Providencia. A Trovr ajuda a transformar o que você quer viver num roteiro que caiba nas suas datas e no seu ritmo.",
     serviceDisclaimer:
       "Você pode começar mesmo sem destino definido. A candidatura não gera cobrança nem contratação automática.",
     serviceCta: "Conhecer a Viagem Trovr",
@@ -115,7 +115,7 @@ export const pt = {
       {
         question: "Como encontrar destinos por esporte, experiência ou época do ano?",
         answer:
-          "Use o mapa e os filtros da Trovr para explorar lugares por modalidade, região e temporada. Cada destino reúne condições, melhores épocas e informações úteis para comparar possibilidades antes de planejar a viagem.",
+          "Use o Mapa Trovr para descobrir onde praticar um esporte. Você pode filtrar por modalidade, região e época do ano e consultar as condições de cada lugar. Se quiser ajuda para planejar uma das experiências da seleção da Trovr, o caminho é Crie sua viagem.",
       },
       {
         question: "Como a Trovr escolhe os lugares e experiências que publica?",

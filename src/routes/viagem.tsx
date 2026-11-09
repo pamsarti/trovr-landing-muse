@@ -441,11 +441,9 @@ function ViagemPage() {
                 Não é “para onde você quer ir?”. É “o que você <em>precisa encontrar?</em>”
               </h2>
               <p className="viagem-readable-copy mt-6 max-w-xl text-base leading-7 text-paper/90 sm:text-lg">
-                Na Noruega, o veleiro faz parte da viagem de esqui. Numa viagem de kitesurf a
-                bordo, você dorme no barco e navega entre os pontos de kite. O ritmo pode ser
-                outro, com um retiro a bordo do Andean Explorer, nos Andes peruanos, ou um voo
-                de balão ao amanhecer no Serengeti. A Trovr pega essa ideia e ajuda a decidir
-                quando ir, como chegar e o que cabe no seu roteiro.
+                O que você quer viver muda o jeito de montar a viagem. Na Noruega, o veleiro leva
+                você até onde vai esquiar. Nos Andes peruanos, o trem é parte da experiência. A
+                Trovr ajuda a decidir quando ir, como chegar e o que vale combinar no mesmo roteiro.
               </p>
             </div>
           </div>
