@@ -441,8 +441,11 @@ function ViagemPage() {
                 Não é “para onde você quer ir?”. É “o que você <em>precisa encontrar?</em>”
               </h2>
               <p className="viagem-readable-copy mt-6 max-w-xl text-base leading-7 text-paper/90 sm:text-lg">
-                Talvez seja desafio. Silêncio. Reencontro. Celebração. Ou só a sensação de voltar
-                pensando: caraca, olha tudo que eu vivi. O destino vem depois.
+                Na Noruega, o veleiro faz parte da viagem de esqui. Numa viagem de kitesurf a
+                bordo, você dorme no barco e navega entre os pontos de kite. O ritmo pode ser
+                outro, com um retiro a bordo do Andean Explorer, nos Andes peruanos, ou um voo
+                de balão ao amanhecer no Serengeti. A Trovr pega essa ideia e ajuda a decidir
+                quando ir, como chegar e o que cabe no seu roteiro.
               </p>
             </div>
           </div>

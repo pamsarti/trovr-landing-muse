@@ -48,7 +48,7 @@ export const pt = {
       </>
     ),
     heroBody:
-      "Cavalgar pelo deserto de AlUla, nadar com baleias jubartes em Tonga ou surfar a longa esquerda de Chicama. Comece pelo que você quer viver, descubra lugares no mapa e conte com a Trovr para criar uma viagem no seu ritmo.",
+      "Cavalgar no deserto de AlUla, sair de barco para nadar com baleias jubartes em Tonga ou surfar a longa esquerda de Chicama. Escolha o que você quer viver e descubra onde essa viagem pode começar.",
     primaryCta: "Explorar lugares",
     secondaryCta: "Crie sua viagem",
     pauseGallery: "Pausar galeria de imagens",
@@ -61,7 +61,7 @@ export const pt = {
     mapKicker: "Mapa Trovr",
     mapTitle: "Um mundo de possibilidades fora da rota habitual.",
     mapBody:
-      "Explore lugares por esporte, região e época do ano. Cada ponto reúne contexto local e informações para ajudar você a entender se aquela viagem combina com você.",
+      "Escolha o esporte, a região ou a época do ano. No mapa, você encontra lugares para praticar e informações sobre as condições de cada lugar.",
     mapCta: "Explorar o mapa",
     placesKicker: "Curadoria Trovr",
     placesTitle: "Lugares com uma razão verdadeira para ir.",
@@ -72,7 +72,7 @@ export const pt = {
     storiesKicker: "Diário de campo",
     storiesTitle: "Contexto para entender um lugar antes de chegar.",
     storiesBody:
-      "Artigos, guias, notícias selecionadas e escolhas práticas para conhecer destinos para além dos pontos turísticos.",
+      "Em Providencia, saímos de barco para mergulhar com tubarões. Em Koh Tao, a viagem virou uma história sobre aprender a mergulhar em apneia. No Diário de Campo, você encontra relatos de quem esteve lá e guias para planejar a sua viagem.",
     storiesCta: "Ver todas as histórias",
     manifestoKicker: "Viajar além do óbvio",
     manifestoHeadline: () => (
