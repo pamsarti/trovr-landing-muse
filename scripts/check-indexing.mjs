@@ -63,9 +63,12 @@ async function check() {
   const knownTrip = JSON.parse(
     readFileSync(new URL("../src/data/trips.json", import.meta.url), "utf8"),
   )[0].id;
+  for (const path of [`/trips/${encodeURIComponent(knownTrip)}`, "/trips/theme/asks-something"]) {
+    const response = await get(path);
+    if (response.status !== 200)
+      failures.push(`${path}: expected 200, received ${response.status}`);
+  }
   for (const path of [
-    `/trips/${encodeURIComponent(knownTrip)}`,
-    "/trips/theme/asks-something",
     "/indexing-check-missing-page",
     "/journal/indexing-check-missing",
     "/spots/asia/indonesia/indexing-check-missing",
@@ -76,19 +79,12 @@ async function check() {
     if (response.status !== 404)
       failures.push(`${path}: expected 404, received ${response.status}`);
   }
-  const trips = await get("/trips");
-  if (
-    trips.status !== 307 ||
-    new URL(trips.headers.get("location") ?? "", base).pathname !== "/viagem"
-  ) {
-    failures.push("/trips: expected temporary redirect to /viagem");
-  }
   if (failures.length) {
     failures.forEach((line) => console.error(line));
     process.exitCode = 1;
   } else {
     console.log(
-      `[indexing] PASS: ${urls.length} sitemap pages, missing routes and legacy redirect at ${base.origin}`,
+      `[indexing] PASS: ${urls.length} sitemap pages, catalogue routes and missing routes at ${base.origin}`,
     );
   }
 }

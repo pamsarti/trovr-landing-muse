@@ -14,10 +14,6 @@ import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChro
 import { useT } from "@/i18n/useT";
 
 export const Route = createFileRoute("/trips/$id")({
-  beforeLoad: () => {
-    // Hidden catalogue entries have no equivalent public detail page.
-    throw notFound();
-  },
   loader: ({ params }) => {
     const trip = findTrip(params.id);
     if (!trip) throw notFound();

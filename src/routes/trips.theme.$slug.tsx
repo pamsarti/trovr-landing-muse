@@ -4,10 +4,6 @@ import type { Trip } from "@/lib/trips-data";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 
 export const Route = createFileRoute("/trips/theme/$slug")({
-  beforeLoad: () => {
-    // Hidden catalogue entries have no equivalent public detail page.
-    throw notFound();
-  },
   loader: ({ params }) => {
     const theme = findTheme(params.slug);
     if (!theme) throw notFound();
