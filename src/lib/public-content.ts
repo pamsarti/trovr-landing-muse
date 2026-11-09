@@ -49,6 +49,7 @@ export const PUBLIC_STATIC_PATHS = [
   "/about",
   "/journal",
   "/spots",
+  "/trips",
   "/viagem",
   "/roteiro",
   "/privacidade",

@@ -1,4 +1,4 @@
-import { createFileRoute, Link, redirect } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { seoT } from "@/i18n/seoT";
 import type { Locale } from "@/i18n";
@@ -27,11 +27,10 @@ import {
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
-  beforeLoad: () => {
-    // The catalogue remains temporarily hidden; offer the current travel service.
-    throw redirect({ to: "/viagem", statusCode: 307 });
-  },
-  loader: ({ context }) => ({ locale: (context as { locale?: Locale }).locale }),
+  loader: ({ context }) => ({
+    locale: (context as { locale?: Locale }).locale,
+    month: new Date().getUTCMonth() + 1,
+  }),
   head: ({ loaderData }) => {
     const t = seoT(loaderData?.locale);
     return {
@@ -54,11 +53,12 @@ export const Route = createFileRoute("/trips/")({
 });
 
 function TripsIndex() {
+  const { month } = Route.useLoaderData();
   return (
     <main className="bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" />
       <HeroRotator />
-      <SeasonBand />
+      <SeasonBand month={month} />
       <ThemesGrid />
       <AllTripsSection />
       <TripsFooter />
@@ -142,12 +142,10 @@ function HeroRotator() {
 
 /* ----- Section 2: in-season band ----- */
 
-const CURRENT_MONTH = 5; // hardcoded May for now
-
-function SeasonBand() {
+function SeasonBand({ month }: { month: number }) {
   const inSeason = useMemo(
-    () => ALL_TRIPS.filter((t) => isInSeason(t, CURRENT_MONTH)).slice(0, 4),
-    [],
+    () => ALL_TRIPS.filter((t) => isInSeason(t, month)).slice(0, 4),
+    [month],
   );
   if (inSeason.length === 0) return null;
   return (
