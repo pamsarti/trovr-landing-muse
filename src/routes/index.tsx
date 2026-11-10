@@ -12,6 +12,7 @@ import {
 import { CATEGORY_LABEL, getPublishedArticles, type JournalArticle } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
+import { TripPhotoCredits } from "@/components/trips/TripPhotoCredits";
 import { TrovrWelcomeWall } from "@/components/TrovrWelcomeWall";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { useT } from "@/i18n/useT";
@@ -78,7 +79,7 @@ type HeroSlide = { src: string; alt: string; caption: string };
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    src: "/images/hero/alula-cavalgada-v2.webp",
+    src: "/images/hero/alula-cavalgada-v3.webp",
     alt: "Cavaleiros no deserto de AlUla",
     caption: "Cavalgar no deserto de AlUla · Arábia Saudita",
   },
@@ -93,27 +94,27 @@ const HERO_SLIDES: HeroSlide[] = [
     caption: "Combinar esqui e navegação à vela · Noruega",
   },
   {
-    src: "/images/hero/andean-explorer-v2.webp",
+    src: "/images/hero/andean-explorer-v3.webp",
     alt: "Trem Andean Explorer atravessando os Andes",
     caption: "Fazer um retiro a bordo do trem Andean Explorer · Peru",
   },
   {
-    src: "/images/hero/chicama-surfe-v2.webp",
+    src: "/images/hero/chicama-surfe-v3.webp",
     alt: "Onda na costa de Chicama",
     caption: "Surfar a longa esquerda de Chicama · Peru",
   },
   {
-    src: "/images/hero/kite-a-bordo-v2.webp",
+    src: "/images/hero/kite-a-bordo-v3.webp",
     alt: "Kitesurf no Mar Vermelho",
     caption: "Praticar kitesurf em uma viagem a bordo",
   },
   {
-    src: "/images/hero/serengeti-balao-v2.webp",
-    alt: "Balão sobre o Serengeti ao amanhecer",
+    src: "/images/hero/serengeti-balao-v3.webp",
+    alt: "Balão sobre o Serengeti",
     caption: "Fazer um safári de balão no Serengeti · Tanzânia",
   },
   {
-    src: "/images/hero/providencia-tubaroes-v2.webp",
+    src: "/images/hero/providencia-tubaroes-v3.webp",
     alt: "Tubarão fotografado durante um mergulho em Providencia",
     caption: "Mergulhar com tubarões em Providencia · Colômbia",
   },
@@ -139,6 +140,7 @@ function Index() {
       <ItineraryService />
       <Newsletter />
       <HomeFaq />
+      <TripPhotoCredits />
       <SiteFooter />
     </main>
   );
@@ -203,7 +205,7 @@ function Hero() {
           alt={index === active ? slide.alt : ""}
           aria-hidden={index !== active}
           fetchPriority={index === 0 ? "high" : "auto"}
-          className="hero-slide ken-burns absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none"
+          className="hero-slide absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none"
           style={{ opacity: index === active ? 1 : 0 }}
         />
       ))}

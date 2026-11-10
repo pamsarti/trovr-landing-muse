@@ -1,3 +1,4 @@
+import { TripPhotoCredits } from "./TripPhotoCredits";
 import { Link } from "@tanstack/react-router";
 import type { Trip } from "@/lib/trips-data";
 import { tripImage, tripTag, ACTIVITY_LABEL, durationLabel } from "@/lib/trips-data";
@@ -15,6 +16,7 @@ export function TripsFooter() {
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
         <p className="font-serif text-4xl uppercase tracking-[0.04em] text-ink">TROVR</p>
         <p className="font-serif text-sm italic text-stone">{t.footer.tagline}</p>
+        <TripPhotoCredits />
       </div>
     </footer>
   );
