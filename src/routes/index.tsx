@@ -78,42 +78,42 @@ type HeroSlide = { src: string; alt: string; caption: string };
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    src: "/images/experiencias/alula-cavalgada.jpg",
+    src: "/images/hero/alula-cavalgada-v2.webp",
     alt: "Cavaleiros no deserto de AlUla",
     caption: "Cavalgar no deserto de AlUla · Arábia Saudita",
   },
   {
-    src: "/images/experiencias/tonga-jubartes.jpg",
+    src: "/images/hero/tonga-jubartes-v2.webp",
     alt: "Pessoa com snorkel junto a uma baleia jubarte",
     caption: "Sair de barco para nadar com baleias jubartes · Tonga",
   },
   {
-    src: "/images/experiencias/noruega-esqui-vela.webp",
+    src: "/images/hero/noruega-esqui-vela-v2.webp",
     alt: "Esquiadores e veleiro em um fiorde norueguês",
     caption: "Combinar esqui e navegação à vela · Noruega",
   },
   {
-    src: "/images/experiencias/andean-explorer.jpg",
+    src: "/images/hero/andean-explorer-v2.webp",
     alt: "Trem Andean Explorer atravessando os Andes",
     caption: "Fazer um retiro a bordo do trem Andean Explorer · Peru",
   },
   {
-    src: "/images/experiencias/chicama-surfe.jpg",
+    src: "/images/hero/chicama-surfe-v2.webp",
     alt: "Onda na costa de Chicama",
     caption: "Surfar a longa esquerda de Chicama · Peru",
   },
   {
-    src: "/images/experiencias/kite-a-bordo.jpg",
+    src: "/images/hero/kite-a-bordo-v2.webp",
     alt: "Kitesurf no Mar Vermelho",
     caption: "Praticar kitesurf em uma viagem a bordo",
   },
   {
-    src: "/images/experiencias/serengeti-balao.jpg",
+    src: "/images/hero/serengeti-balao-v2.webp",
     alt: "Balão sobre o Serengeti ao amanhecer",
     caption: "Fazer um safári de balão no Serengeti · Tanzânia",
   },
   {
-    src: "/images/experiencias/providencia-tubaroes.jpg",
+    src: "/images/hero/providencia-tubaroes-v2.webp",
     alt: "Tubarão fotografado durante um mergulho em Providencia",
     caption: "Mergulhar com tubarões em Providencia · Colômbia",
   },
