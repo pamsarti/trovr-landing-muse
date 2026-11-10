@@ -203,7 +203,7 @@ function Hero() {
           alt={index === active ? slide.alt : ""}
           aria-hidden={index !== active}
           fetchPriority={index === 0 ? "high" : "auto"}
-          className="hero-slide ken-burns absolute inset-0 h-full w-full object-cover transition-opacity duration-700"
+          className="hero-slide ken-burns absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none"
           style={{ opacity: index === active ? 1 : 0 }}
         />
       ))}
@@ -212,18 +212,18 @@ function Hero() {
         className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_top,rgba(15,24,21,0.82),transparent_42%),linear-gradient(to_bottom,rgba(15,24,21,0.48),transparent_20%)]"
       />
 
-      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-5 pb-2 pt-28 sm:px-12">
-        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-5 pb-16 pt-28 sm:px-12">
+        <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
           <h1 className="font-serif text-[1.625rem] leading-[1.08] tracking-tight text-paper sm:text-[2rem] lg:text-[2.35rem] [&>em]:block">
             {t.home.heroHeadline()}
           </h1>
-          <p aria-live={paused ? "polite" : "off"} className="max-w-64 self-end text-right text-xs leading-snug text-paper sm:text-sm">
+          <p aria-live={paused ? "polite" : "off"} className="max-w-72 text-pretty text-sm leading-snug text-paper md:text-right">
             {slides[active].caption}
           </p>
         </div>
 
-        <div className="relative flex items-center justify-between text-paper sm:justify-center">
-          <div role="group" aria-label="Escolher experiência" className="flex">
+        <div className="mt-2 flex items-center justify-center text-paper">
+          <div role="group" aria-label="Escolher experiência" className="flex min-w-0">
             {slides.map((slide, index) => (
               <button
                 key={slide.src}
@@ -231,7 +231,7 @@ function Hero() {
                 aria-label={slide.caption}
                 aria-pressed={index === active}
                 onClick={() => { setActive(index); setPaused(true); }}
-                className="flex h-11 w-7 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper sm:w-10"
+                className="flex h-11 w-8 min-w-0 items-center justify-center rounded-full transition-colors hover:bg-paper/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-paper sm:w-11"
               >
                 <span aria-hidden className={index === active ? "size-2 rounded-full bg-paper" : "size-1.5 rounded-full bg-paper/60"} />
               </button>
@@ -241,10 +241,10 @@ function Hero() {
             <button
               type="button"
               onClick={() => setPaused((value) => !value)}
-              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-paper/85 sm:absolute sm:right-0 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-paper transition-colors hover:bg-paper/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
               aria-label={paused ? t.home.playGallery : t.home.pauseGallery}
             >
-              {paused ? <Play className="size-3.5" /> : <Pause className="size-3.5" />}
+              {paused ? <Play aria-hidden className="size-4 translate-x-px" /> : <Pause aria-hidden className="size-4" />}
             </button>
           )}
         </div>
@@ -257,8 +257,8 @@ function SectionIntro({ kicker, title, body }: { kicker: string; title: string; 
   return (
     <div className="max-w-3xl">
       <p className="text-xs uppercase tracking-[0.24em] text-coffee">{kicker}</p>
-      <h2 className="mt-5 font-serif text-4xl leading-[1.08] text-ink sm:text-5xl">{title}</h2>
-      <p className="mt-6 max-w-2xl text-base leading-7 text-coffee sm:text-lg">{body}</p>
+      <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] text-ink sm:text-5xl">{title}</h2>
+      <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-coffee sm:text-lg">{body}</p>
     </div>
   );
 }
@@ -286,9 +286,9 @@ function SportsEntry() {
                 data-analytics-event="select_sport"
                 data-analytics-name={activity.label}
                 data-analytics-category={activity.id}
-                className="group flex min-h-28 items-center gap-4 border-b border-coffee/20 py-5 transition-colors last:border-b-0 hover:bg-sand/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sage md:px-6 md:[&:nth-last-child(-n+2)]:border-b-0"
+                className="group flex min-h-28 items-center gap-3 border-b border-coffee/20 py-5 sm:gap-4 transition-colors last:border-b-0 hover:bg-sand/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sage md:px-6 md:[&:nth-last-child(-n+2)]:border-b-0"
               >
-                <span className="w-7 shrink-0 text-[10px] tracking-[0.2em] text-coffee/70">
+                <span className="w-5 shrink-0 text-[11px] tabular-nums text-coffee">
                   {String(index + 1).padStart(2, "0")}
                 </span>
                 {spot && (
@@ -296,7 +296,7 @@ function SportsEntry() {
                     src={spotImage(spot, 360, 240)}
                     alt=""
                     loading="lazy"
-                    className="h-16 w-24 shrink-0 rounded-sm object-cover grayscale-[20%] transition-all duration-500 group-hover:grayscale-0 sm:h-20 sm:w-32"
+                    className="h-16 w-16 shrink-0 rounded-sm object-cover grayscale-[20%] transition-[filter] duration-300 sm:w-24 group-hover:grayscale-0 sm:h-20 sm:w-32"
                   />
                 )}
                 <span className="min-w-0 flex-1">
@@ -304,12 +304,12 @@ function SportsEntry() {
                     {activity.label}
                   </span>
                   {spot && (
-                    <span className="mt-1 block truncate text-xs uppercase tracking-[0.14em] text-coffee">
+                    <span className="mt-1 block text-pretty text-xs uppercase tracking-[0.14em] text-coffee">
                       {spot.name} · {placeLabel(spot.country)}
                     </span>
                   )}
                 </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-coffee transition-transform group-hover:translate-x-1" />
+                <ArrowRight className="h-4 w-4 shrink-0 text-coffee motion-safe:transition-transform motion-safe:group-hover:translate-x-1" />
               </Link>
             );
           })}
@@ -337,10 +337,10 @@ function MapEntry() {
         <div className="relative z-10 flex min-h-[520px] max-w-3xl flex-col justify-end p-5 text-paper sm:p-8">
           <div className="trovr-glass-dark rounded-2xl p-6 sm:p-8">
             <p className="text-xs uppercase tracking-[0.24em] text-paper/80">{t.home.mapKicker}</p>
-            <h2 className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">
+            <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] sm:text-5xl">
               {t.home.mapTitle}
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-paper/90 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-paper/90 sm:text-lg">
               {t.home.mapBody}
             </p>
             <Link
@@ -368,16 +368,16 @@ function FeaturedPlaces() {
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div className="max-w-3xl">
             <p className="text-xs uppercase tracking-[0.24em] text-sand">{t.home.placesKicker}</p>
-            <h2 className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">
+            <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] sm:text-5xl">
               {t.home.placesTitle}
             </h2>
-            <p className="mt-6 max-w-2xl text-base leading-7 text-paper/80 sm:text-lg">
+            <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-paper/80 sm:text-lg">
               {t.home.placesBody}
             </p>
           </div>
           <Link
             to="/spots"
-            className="inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-sand hover:text-paper"
+            className="inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-sand hover:text-paper"
           >
             {t.home.allPlaces} <ArrowRight className="h-4 w-4" />
           </Link>
@@ -402,10 +402,10 @@ function FeaturedPlaces() {
                 src={spotImage(spot, 900, 1125)}
                 alt={`${spot.name}, ${placeLabel(spot.country)}`}
                 loading="lazy"
-                className="card-img absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                className="card-img absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
               />
               <div aria-hidden className="brand-photo-overlay absolute inset-0" />
-              <div className="trovr-glass-dark absolute inset-x-4 bottom-4 rounded-xl p-5">
+              <div className="trovr-glass-dark absolute inset-x-4 bottom-4 rounded-sm p-5">
                 <p className="text-xs uppercase tracking-[0.18em] text-paper/80">
                   {activityLabel(spot.activity)} · {placeLabel(spot.country)}
                 </p>
@@ -413,7 +413,7 @@ function FeaturedPlaces() {
                 <p className="mt-3 line-clamp-2 text-base leading-6 text-paper/85">
                   {firstSentence(spot.description)}
                 </p>
-                <span className="mt-6 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-sand">
+                <span className="mt-6 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-sand">
                   {t.home.placeCta} <ArrowUpRight className="h-4 w-4" />
                 </span>
               </div>
@@ -452,7 +452,7 @@ function Stories() {
                   src={articles[0].heroImage}
                   alt={articles[0].title}
                   loading="lazy"
-                  className="card-img h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  className="card-img h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
                 />
               </div>
               <p className="mt-5 text-xs uppercase tracking-[0.18em] text-coffee">
@@ -480,7 +480,7 @@ function Stories() {
                     src={article.heroImage}
                     alt={article.title}
                     loading="lazy"
-                    className="card-img h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    className="card-img h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
                   />
                 </div>
                 <div>
@@ -500,7 +500,7 @@ function Stories() {
         </div>
         <Link
           to="/journal"
-          className="mt-10 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee hover:text-ink"
+          className="mt-10 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee hover:text-ink"
         >
           {t.home.storiesCta} <ArrowRight className="h-4 w-4" />
         </Link>
@@ -518,7 +518,7 @@ function Manifesto() {
           <p className="text-xs uppercase tracking-[0.24em] text-coffee">
             {t.home.manifestoKicker}
           </p>
-          <h2 className="mt-5 font-serif text-4xl leading-[1.08] text-ink sm:text-5xl">
+          <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] text-ink sm:text-5xl">
             {t.home.manifestoHeadline()}
           </h2>
         </div>
@@ -547,14 +547,14 @@ function Founder() {
         </div>
         <div>
           <p className="text-xs uppercase tracking-[0.24em] text-coffee">{t.home.founderKicker}</p>
-          <h2 className="mt-5 font-serif text-4xl leading-[1.08] text-ink sm:text-5xl">
+          <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] text-ink sm:text-5xl">
             {t.home.founderTitle}
           </h2>
           <p className="mt-7 text-base leading-7 text-coffee sm:text-lg">{t.home.founderBody}</p>
           <p className="mt-5 text-sm text-coffee">Curadoria Trovr</p>
           <Link
             to="/about"
-            className="mt-8 inline-flex items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee hover:text-ink"
+            className="mt-8 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-coffee hover:text-ink"
           >
             {t.home.founderCta} <ArrowRight className="h-4 w-4" />
           </Link>
@@ -570,7 +570,7 @@ function ItineraryService() {
     <section className="border-y border-coffee/10 bg-sand/55 px-6 py-20 text-ink sm:py-28">
       <div className="mx-auto max-w-5xl text-center">
         <p className="text-xs uppercase tracking-[0.24em] text-coffee">{t.home.serviceKicker}</p>
-        <h2 className="mx-auto mt-5 max-w-4xl font-serif text-4xl leading-[1.08] sm:text-5xl">
+        <h2 className="mx-auto mt-5 max-w-4xl text-balance font-serif text-4xl leading-[1.08] sm:text-5xl">
           {t.home.serviceTitle}
         </h2>
         <p className="mx-auto mt-7 max-w-3xl text-base leading-7 text-coffee sm:text-lg">
@@ -628,10 +628,10 @@ function Newsletter() {
     <section id="newsletter" className="bg-ink px-6 py-20 text-paper sm:py-28">
       <div className="mx-auto max-w-3xl text-center">
         <p className="text-xs uppercase tracking-[0.24em] text-sand">{t.newsletter.kicker}</p>
-        <h2 className="mt-5 font-serif text-4xl leading-[1.08] sm:text-5xl">
+        <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] sm:text-5xl">
           {t.newsletter.headline()}
         </h2>
-        <p className="mx-auto mt-6 max-w-2xl text-base leading-7 text-paper/80 sm:text-lg">
+        <p className="mx-auto mt-6 max-w-2xl text-pretty text-base leading-7 text-paper/80 sm:text-lg">
           {t.newsletter.subtext}
         </p>
         {done ? (
@@ -691,7 +691,7 @@ function HomeFaq() {
         <p className="text-xs uppercase tracking-[0.24em] text-coffee">{t.home.faqKicker}</p>
         <h2
           id="home-faq-title"
-          className="mt-5 font-serif text-4xl leading-[1.08] text-ink sm:text-5xl"
+          className="mt-5 text-balance font-serif text-4xl leading-[1.08] text-ink sm:text-5xl"
         >
           {t.home.faqTitle}
         </h2>

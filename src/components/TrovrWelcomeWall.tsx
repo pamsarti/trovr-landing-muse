@@ -102,10 +102,10 @@ function ChoiceButton({
       type="button"
       aria-pressed={selected}
       onClick={onClick}
-      className={`flex min-h-14 items-center justify-center rounded-xl border px-5 py-3 text-center text-sm leading-[1.35] backdrop-blur-sm transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 ${
+      className={`flex min-h-14 items-center justify-center rounded-xl border px-3 py-3 text-center text-sm sm:px-5 leading-[1.35] transition-colors motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 ${
         selected
           ? "border-sage bg-sage text-paper"
-          : "border-white/65 bg-paper/35 text-ink shadow-sm hover:border-sage/70 hover:bg-paper/55"
+          : "border-coffee/30 bg-paper text-ink hover:border-sage hover:bg-sand/40"
       }`}
     >
       {children}
@@ -224,7 +224,7 @@ export function TrovrWelcomeWall() {
     <Dialog.Root open={open} onOpenChange={handleOpenChange}>
       <Dialog.Portal>
         <Dialog.Overlay className="fixed inset-0 z-[90] bg-ink/65 backdrop-blur-sm data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 motion-reduce:animate-none" />
-        <Dialog.Content className="fixed left-1/2 top-1/2 z-[100] h-[min(86vh,700px)] w-[min(82vw,640px)] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-paper/35 bg-ink text-ink shadow-2xl focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 motion-reduce:animate-none">
+        <Dialog.Content className="fixed left-1/2 top-1/2 z-[100] h-[min(90dvh,700px)] w-[calc(100%-1.5rem)] max-w-[640px] -translate-x-1/2 -translate-y-1/2 overflow-hidden rounded-[1.75rem] border border-coffee/15 bg-paper text-ink shadow-2xl focus:outline-none data-[state=open]:animate-in data-[state=closed]:animate-out data-[state=closed]:fade-out-0 data-[state=open]:fade-in-0 motion-reduce:animate-none">
           <Dialog.Title className="sr-only">
             Bússola Trovr: descubra seu perfil de viagem
           </Dialog.Title>
@@ -235,34 +235,34 @@ export function TrovrWelcomeWall() {
 
           <img
             src={HERO_BACKGROUND}
-            alt="Onda em Uluwatu, uma das viagens em destaque no Hero da Trovr"
-            className="absolute inset-0 h-full w-full object-cover"
+            alt=""
+            className="pointer-events-none absolute inset-0 h-full w-full object-cover"
           />
-          <div aria-hidden className="absolute inset-0 bg-paper/30 backdrop-blur-[6px]" />
+          <div aria-hidden className="absolute inset-0 bg-paper/95 backdrop-blur-[6px]" />
 
           <button
             type="button"
             aria-label="Fechar a Bússola e continuar no site"
             title="Fechar"
             onClick={() => close("close_button")}
-            className="absolute right-3 top-3 z-20 inline-flex h-9 w-9 items-center justify-center rounded-full text-coffee/25 transition-colors hover:bg-white/25 hover:text-coffee/55 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage/50 sm:right-5 sm:top-5"
+            className="absolute right-3 top-3 z-20 inline-flex size-11 items-center justify-center rounded-full border border-coffee/20 bg-paper text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage sm:right-5 sm:top-5"
           >
-            <X className="h-4 w-4 stroke-[1.5]" aria-hidden />
+            <X className="size-5" aria-hidden />
           </button>
 
           <p className="sr-only">Etapa {step} de 4</p>
 
-          <div className="relative z-10 flex h-full overflow-y-auto px-5 py-6 sm:px-10 sm:py-8 lg:px-12">
+          <div className="relative z-10 flex h-full overscroll-contain overflow-y-auto px-5 pb-6 pt-16 sm:px-10 sm:pb-8 sm:pt-20">
             <div className="my-auto mx-auto w-full max-w-[560px]">
               {phase === "quiz" && (
                 <section aria-labelledby="compass-question">
                   <h2
                     id="compass-question"
-                    className="text-center font-serif text-2xl leading-[1.08] sm:whitespace-nowrap sm:text-[1.7rem]"
+                    className="text-balance text-center font-serif text-2xl leading-tight sm:text-[1.7rem]"
                   >
                     Qual viagem combina com o seu momento?
                   </h2>
-                  <p className="mt-2 text-center text-sm leading-5 text-coffee/75">
+                  <p className="mt-2 text-pretty text-center text-sm leading-6 text-coffee">
                     Duas escolhas revelam seu perfil e uma experiência para começar.
                   </p>
 
@@ -270,7 +270,7 @@ export function TrovrWelcomeWall() {
                     <legend className="font-serif text-lg">
                       O que faria esta viagem valer a pena agora?
                     </legend>
-                    <div className="mt-2.5 grid gap-2.5 min-[480px]:grid-cols-2">
+                    <div className="mt-2.5 grid gap-2.5 min-[360px]:grid-cols-2">
                       {intents.map((item) => (
                         <ChoiceButton
                           key={item.value}
@@ -287,7 +287,7 @@ export function TrovrWelcomeWall() {
                     <legend className="font-serif text-lg">
                       Qual ritmo combina com este momento?
                     </legend>
-                    <div className="mt-2.5 grid gap-2.5 min-[480px]:grid-cols-2">
+                    <div className="mt-2.5 grid gap-2.5 min-[360px]:grid-cols-2">
                       {energies.map((item) => (
                         <ChoiceButton
                           key={item.value}
@@ -304,7 +304,7 @@ export function TrovrWelcomeWall() {
                     type="button"
                     disabled={!canContinue}
                     onClick={goToCapture}
-                    className="ml-auto mt-5 flex min-h-11 w-fit items-center gap-3 rounded-full bg-sage px-6 text-sm text-paper transition-colors hover:bg-terracotta disabled:cursor-not-allowed disabled:opacity-40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
+                    className="ml-auto mt-5 flex min-h-11 w-fit items-center gap-3 rounded-full bg-sage px-6 text-sm text-paper transition-colors enabled:hover:bg-ink disabled:cursor-not-allowed disabled:bg-sand disabled:text-coffee focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2"
                   >
                     Revelar minha direção <ArrowRight className="h-4 w-4" aria-hidden />
                   </button>
@@ -316,7 +316,7 @@ export function TrovrWelcomeWall() {
                   <button
                     type="button"
                     onClick={() => setPhase("quiz")}
-                    className="mb-5 inline-flex items-center gap-2 text-sm text-coffee hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
+                    className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm text-coffee hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden /> Voltar às respostas
                   </button>
@@ -449,7 +449,7 @@ export function TrovrWelcomeWall() {
                       <h3 className="mt-2 font-serif text-2xl">{profile.experience}</h3>
                       <p className="mt-3 leading-6 text-paper/85">{profile.example}</p>
                     </div>
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-paper/40 font-serif text-2xl">
+                    <div className="flex h-20 w-20 items-center justify-center rounded-full border border-paper/40 font-serif text-2xl tabular-nums">
                       {profile.score}%<span className="sr-only"> de compatibilidade</span>
                     </div>
                   </div>
@@ -513,7 +513,7 @@ export function TrovrWelcomeWall() {
                   <button
                     type="button"
                     onClick={() => setPhase("result")}
-                    className="mb-5 inline-flex items-center gap-2 text-sm text-coffee hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
+                    className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm text-coffee hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
                   >
                     <ArrowLeft className="h-4 w-4" aria-hidden /> Voltar ao resultado
                   </button>
@@ -535,7 +535,7 @@ export function TrovrWelcomeWall() {
                     <article className="flex flex-col rounded-2xl border border-white/55 bg-paper/55 p-5 backdrop-blur-md">
                       <p className="text-xs uppercase tracking-[0.18em] text-sage">Mapa completo</p>
                       <h3 className="mt-3 font-serif text-3xl">Explorar possibilidades</h3>
-                      <p className="mt-3 font-serif text-3xl">R$ 79</p>
+                      <p className="mt-3 font-serif text-3xl tabular-nums">R$ 79</p>
                       <ul className="mt-5 flex-1 space-y-3 text-sm leading-6 text-coffee">
                         {[
                           "5 experiências alinhadas ao seu perfil",
@@ -563,7 +563,7 @@ export function TrovrWelcomeWall() {
                     <article className="flex flex-col rounded-2xl border-2 border-sage bg-paper/45 p-5 backdrop-blur-md">
                       <p className="text-xs uppercase tracking-[0.18em] text-sage">Plano pessoal</p>
                       <h3 className="mt-3 font-serif text-3xl">Transformar em viagem</h3>
-                      <p className="mt-3 font-serif text-3xl">R$ 249</p>
+                      <p className="mt-3 font-serif text-3xl tabular-nums">R$ 249</p>
                       <ul className="mt-5 flex-1 space-y-3 text-sm leading-6 text-coffee">
                         {[
                           "tudo o que está no Mapa completo",
@@ -621,7 +621,7 @@ export function TrovrWelcomeWall() {
         <button
           type="button"
           onClick={() => handleOpenChange(true)}
-          className="fixed bottom-5 right-5 z-40 inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-5 text-sm text-paper shadow-lg transition-transform hover:-translate-y-0.5 hover:bg-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-sage"
+          className="fixed bottom-5 right-5 z-40 inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-5 text-sm text-paper shadow-lg transition-colors hover:bg-ink motion-safe:active:scale-[0.98] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper focus-visible:ring-offset-2 focus-visible:ring-offset-sage"
         >
           Bússola Trovr <ArrowRight className="h-4 w-4" aria-hidden />
         </button>

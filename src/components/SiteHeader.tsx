@@ -89,7 +89,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
     <>
       <header
         className={[
-          "fixed top-0 left-0 right-0 z-40 transition-all duration-300",
+          "fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:transition-none",
           scrolled ? "border-b border-[var(--line)]" : "border-b border-transparent",
         ].join(" ")}
         style={{
@@ -97,7 +97,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           backdropFilter: transparent && !scrolled ? "none" : "blur(20px)",
         }}
       >
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4 sm:py-5">
+        <div className="mx-auto flex max-w-7xl items-center justify-between h-16 px-6 sm:h-[72px]">
           <Link
             to="/"
             className={[
@@ -107,19 +107,20 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           >
             TROVR
           </Link>
-          <nav className="hidden items-center gap-10 md:flex">
+          <nav className="hidden items-center gap-7 md:flex">
             {NAV.map((item) => {
               const active = item.match ? isActive(pathname, item.match) : false;
               return (
                 <a
                   key={item.href}
                   href={item.href}
+                  aria-current={active ? "page" : undefined}
                   className={[
-                    "text-[10.5px] uppercase tracking-[0.22em] transition-colors",
+                    "inline-flex min-h-11 items-center text-xs uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 aria-[current=page]:underline aria-[current=page]:underline-offset-4",
                     transparent && !scrolled
                       ? active
                         ? "text-paper"
-                        : "text-paper/70 hover:text-paper"
+                        : "text-paper/90 hover:text-paper"
                       : active
                         ? "text-ink"
                         : "text-mid hover:text-ink",
@@ -134,7 +135,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               search={{}}
               data-analytics-event="open_viagem_offer"
               data-analytics-name="header_desktop"
-              className="inline-flex items-center rounded-full bg-sage px-5 py-2.5 text-[10.5px] uppercase tracking-[0.22em] text-paper transition-colors hover:bg-ink"
+              className="inline-flex min-h-11 items-center rounded-full bg-sage px-5 text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-ink"
             >
               {t.nav.itinerary}
             </Link>
@@ -147,7 +148,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
             aria-controls="mobile-navigation"
             onClick={() => setOpen(true)}
             className={[
-              "md:hidden inline-flex items-center justify-center p-2 -mr-2",
+              "md:hidden inline-flex size-11 items-center justify-center -mr-2 rounded-full focus-visible:outline-2 focus-visible:outline-offset-2",
               transparent && !scrolled ? "text-paper" : "text-ink",
             ].join(" ")}
           >
@@ -165,7 +166,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
           role="dialog"
           aria-modal="true"
           aria-label="Menu principal"
-          className="fixed inset-0 z-[3000] bg-paper md:hidden"
+          className="fixed inset-0 z-[3000] overflow-y-auto bg-paper md:hidden"
         >
           <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
             <Link
@@ -180,21 +181,22 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               type="button"
               aria-label={t.nav.closeMenu}
               onClick={() => setOpen(false)}
-              className="inline-flex items-center justify-center p-2 -mr-2 text-ink"
+              className="inline-flex size-11 items-center justify-center -mr-2 rounded-full text-ink hover:bg-sand/40 focus-visible:outline-2 focus-visible:outline-offset-2"
             >
               <X className="h-5 w-5" />
             </button>
           </div>
-          <nav className="flex flex-col items-center justify-center gap-10 px-6 py-20">
+          <nav className="flex flex-col items-center justify-center gap-6 px-6 py-12">
             {NAV.map((item) => {
               const active = item.match ? isActive(pathname, item.match) : false;
               return (
                 <a
                   key={item.href}
                   href={item.href}
+                  aria-current={active ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={[
-                    "font-serif text-3xl lowercase tracking-tight",
+                    "inline-flex min-h-11 items-center font-serif text-3xl lowercase tracking-tight focus-visible:outline-2 focus-visible:outline-offset-4 aria-[current=page]:underline aria-[current=page]:underline-offset-8",
                     active ? "text-ink" : "text-mid",
                   ].join(" ")}
                 >
@@ -208,7 +210,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               onClick={() => setOpen(false)}
               data-analytics-event="open_viagem_offer"
               data-analytics-name="header_mobile"
-              className="mt-4 inline-flex items-center rounded-full bg-sage px-6 py-3 text-[11px] uppercase tracking-[0.22em] text-paper"
+              className="mt-4 inline-flex min-h-11 items-center rounded-full bg-sage px-6 py-3 text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage"
             >
               {t.nav.itinerary}
             </Link>
