@@ -58,8 +58,8 @@ function TripsIndex() {
       <TripsHeader current="trips" />
       <HeroRotator />
       <SeasonBand month={month} />
-      <ThemesGrid />
       <AllTripsSection />
+      <ThemesGrid />
       <TripsFooter />
     </main>
   );
