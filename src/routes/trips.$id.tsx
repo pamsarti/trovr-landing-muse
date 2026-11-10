@@ -20,8 +20,8 @@ export const Route = createFileRoute("/trips/$id")({
   head: ({ loaderData }) => ({
     meta: loaderData
       ? [
-          { title: `${loaderData.trip.destination} — Trovr` },
-          { name: "description", content: loaderData.trip.summary },
+          { title: loaderData.trip.seoTitle },
+          { name: "description", content: loaderData.trip.seoDescription },
         ]
       : [],
   }),
@@ -110,12 +110,9 @@ function TripDetail() {
           {trip.detail}
         </p>
 
-        <dl className="mt-12 grid grid-cols-1 gap-y-6 border-y border-stone/20 py-10 sm:grid-cols-2">
-          <Fact label={t.inquiry.factOperator} value={trip.operator} />
+        <dl className="mt-12 grid grid-cols-2 gap-x-6 border-y border-stone/20 py-7">
           <Fact label={t.inquiry.factSeason} value={trip.season} />
-          <Fact label={t.inquiry.factLevel} value={trip.level} />
           <Fact label={t.inquiry.factDuration} value={durationLabel(trip)} />
-          <Fact label={t.inquiry.factPrice} value={trip.price_range} />
         </dl>
 
         <InquireForm tripId={trip.id} tripName={trip.destination} operator={trip.operator} />

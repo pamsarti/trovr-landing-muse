@@ -26,6 +26,8 @@ export type Trip = {
   level: string;
   summary: string;
   detail: string;
+  seoTitle: string;
+  seoDescription: string;
   image: string;
   source_url: string;
   status: "coming-soon" | "active";
