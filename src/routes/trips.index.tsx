@@ -11,7 +11,6 @@ import {
   allContinents,
   allCountries,
   durationBucket,
-  isInSeason,
   tripImage,
   type DurationBucket,
   type Trip,
@@ -21,14 +20,12 @@ import {
   TripsHeader,
   TripsFooter,
   TripCard,
-  SmallSeasonCard,
 } from "@/components/trips/TripsChrome";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
   loader: ({ context }) => ({
     locale: (context as { locale?: Locale }).locale,
-    month: new Date().getUTCMonth() + 1,
   }),
   head: ({ loaderData }) => {
     const t = seoT(loaderData?.locale);
@@ -52,12 +49,10 @@ export const Route = createFileRoute("/trips/")({
 });
 
 function TripsIndex() {
-  const { month } = Route.useLoaderData();
   return (
     <main className="bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" />
       <HeroRotator />
-      <SeasonBand month={month} />
       <AllTripsSection />
       <ThemesGrid />
       <TripsFooter />
@@ -138,29 +133,7 @@ function HeroRotator() {
   );
 }
 
-/* ----- Section 2: in-season band ----- */
-
-function SeasonBand({ month }: { month: number }) {
-  const inSeason = useMemo(
-    () => ALL_TRIPS.filter((t) => isInSeason(t, month)).slice(0, 4),
-    [month],
-  );
-  const picks = inSeason.length ? inSeason : ALL_TRIPS.slice(0, 4);
-  return (
-    <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
-      <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-3xl text-ink sm:text-4xl">{inSeason.length ? "Boas ideias para esta época" : "Da nossa seleção de viagens"}</h2>
-        <div className="mt-10 flex gap-6 overflow-x-auto pb-2 sm:gap-8">
-          {picks.map((t) => (
-            <SmallSeasonCard key={t.id} trip={t} />
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* ----- Section 3: themes ----- */
+/* ----- Themes ----- */
 
 function ThemesGrid() {
   return (
@@ -202,7 +175,7 @@ function ThemesGrid() {
   );
 }
 
-/* ----- Section 4: all trips grid ----- */
+/* ----- All trips grid ----- */
 
 type Filters = {
   activities: Set<TripActivity>;
