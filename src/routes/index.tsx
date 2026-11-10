@@ -1,5 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import { useEffect, useState, type FormEvent } from "react";
+import { useEffect, useRef, useState, type FormEvent, type PointerEvent } from "react";
 import { ArrowRight, ArrowUpRight, Pause, Play } from "lucide-react";
 import {
   ACTIVITIES,
@@ -150,6 +150,26 @@ function Hero() {
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
+  const dragStart = useRef<{ x: number; y: number } | null>(null);
+
+  function startDrag(event: PointerEvent<HTMLElement>) {
+    if (!event.isPrimary || event.button !== 0 || (event.target as HTMLElement).closest("button")) {
+      return;
+    }
+    dragStart.current = { x: event.clientX, y: event.clientY };
+    event.currentTarget.setPointerCapture(event.pointerId);
+  }
+
+  function finishDrag(event: PointerEvent<HTMLElement>) {
+    const start = dragStart.current;
+    dragStart.current = null;
+    if (!start) return;
+    const dx = event.clientX - start.x;
+    const dy = event.clientY - start.y;
+    if (Math.abs(dx) < 45 || Math.abs(dx) <= Math.abs(dy)) return;
+    setPaused(true);
+    setActive((value) => (value + (dx < 0 ? 1 : -1) + slides.length) % slides.length);
+  }
 
   useEffect(() => {
     const media = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -168,11 +188,18 @@ function Hero() {
   if (!slides.length) return null;
 
   return (
-    <section className="relative isolate min-h-[100svh] overflow-hidden bg-ink">
+    <section
+      className="relative isolate min-h-[100svh] touch-pan-y select-none overflow-hidden bg-ink"
+      onPointerDown={startDrag}
+      onPointerUp={finishDrag}
+      onPointerCancel={() => { dragStart.current = null; }}
+      onLostPointerCapture={() => { dragStart.current = null; }}
+    >
       {slides.map((slide, index) => (
         <img
           key={slide.src}
           src={slide.src}
+          draggable={false}
           alt={index === active ? slide.alt : ""}
           aria-hidden={index !== active}
           fetchPriority={index === 0 ? "high" : "auto"}
@@ -180,58 +207,46 @@ function Hero() {
           style={{ opacity: index === active ? 1 : 0 }}
         />
       ))}
-      <div aria-hidden className="brand-photo-overlay absolute inset-0 z-[1]" />
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_top,rgba(15,24,21,0.82),transparent_42%),linear-gradient(to_bottom,rgba(15,24,21,0.48),transparent_20%)]"
+      />
 
-      <div className="relative z-10 flex min-h-[100svh] items-end px-6 pb-14 pt-28 sm:px-12 sm:pb-20">
-        <div className="mx-auto flex w-full max-w-7xl flex-col justify-between gap-12 md:flex-row md:items-end">
-          <div className="trovr-glass-dark max-w-3xl rounded-2xl p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-paper/85">{t.home.heroKicker}</p>
-            <h1 className="mt-6 max-w-[13ch] font-serif text-[2.8rem] leading-[1.02] text-paper sm:text-6xl md:text-7xl">
-              {t.home.heroHeadline()}
-            </h1>
-            <p className="mt-7 max-w-2xl text-base leading-7 text-paper/90 sm:text-lg">
-              {t.home.heroBody}
-            </p>
-            <div className="mt-9 flex flex-wrap gap-4">
-              <Link
-                to="/spots"
-                data-analytics-event="select_sport"
-                data-analytics-name="hero_all_sports"
-                className="group inline-flex items-center gap-3 rounded-full bg-sage px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-terracotta focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+      <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-5 pb-2 pt-28 sm:px-12">
+        <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+          <h1 className="font-serif text-[1.625rem] leading-[1.08] tracking-tight text-paper sm:text-[2rem] lg:text-[2.35rem] [&>em]:block">
+            {t.home.heroHeadline()}
+          </h1>
+          <p aria-live={paused ? "polite" : "off"} className="max-w-64 self-end text-right text-xs leading-snug text-paper sm:text-sm">
+            {slides[active].caption}
+          </p>
+        </div>
+
+        <div className="relative flex items-center justify-between text-paper sm:justify-center">
+          <div role="group" aria-label="Escolher experiência" className="flex">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.src}
+                type="button"
+                aria-label={slide.caption}
+                aria-pressed={index === active}
+                onClick={() => { setActive(index); setPaused(true); }}
+                className="flex h-11 w-7 items-center justify-center rounded-full focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper sm:w-10"
               >
-                {t.home.primaryCta}
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-              </Link>
-              <Link
-                to="/viagem"
-                search={{}}
-                data-analytics-event="open_viagem_offer"
-                data-analytics-name="hero"
-                className="inline-flex items-center rounded-full border border-paper/70 px-7 py-3.5 text-xs font-medium uppercase tracking-[0.16em] text-paper transition-colors hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-              >
-                {t.home.secondaryCta}
-              </Link>
-            </div>
+                <span aria-hidden className={index === active ? "size-2 rounded-full bg-paper" : "size-1.5 rounded-full bg-paper/60"} />
+              </button>
+            ))}
           </div>
-
-          <div className="flex items-center gap-4 text-paper">
+          {!reduceMotion && (
             <button
               type="button"
               onClick={() => setPaused((value) => !value)}
-              className="inline-flex min-h-11 min-w-11 items-center justify-center rounded-full border border-paper/50 transition-colors hover:bg-paper hover:text-ink focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
+              className="inline-flex size-11 shrink-0 items-center justify-center rounded-full text-paper/85 sm:absolute sm:right-0 hover:text-paper focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
               aria-label={paused ? t.home.playGallery : t.home.pauseGallery}
             >
-              {paused ? <Play className="h-4 w-4" /> : <Pause className="h-4 w-4" />}
+              {paused ? <Play className="size-3.5" /> : <Pause className="size-3.5" />}
             </button>
-            <div>
-              <p className="font-serif text-xl">
-                {String(active + 1).padStart(2, "0")} / {String(slides.length).padStart(2, "0")}
-              </p>
-              <p className="mt-1 text-xs uppercase tracking-[0.18em] text-paper/80">
-                {slides[active].caption}
-              </p>
-            </div>
-          </div>
+          )}
         </div>
       </div>
     </section>
