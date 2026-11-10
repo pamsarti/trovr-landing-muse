@@ -1,14 +1,14 @@
 import * as Dialog from "@radix-ui/react-dialog";
 import { Link } from "@tanstack/react-router";
-import { ArrowLeft, ArrowRight, Check, LockKeyhole, X } from "lucide-react";
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { ArrowLeft, ArrowRight, Check, X } from "lucide-react";
+import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { trackEvent } from "@/lib/analytics";
 import { getPublicSpots, spotImage } from "@/lib/spots-data";
+import { VIAGEM_PLANS, formatPlanPrice } from "@/lib/viagem-plans";
 
 type Phase = "quiz" | "capture" | "result" | "plans";
 type Intent = "challenge" | "slow" | "learn" | "reconnect";
 type Energy = "light" | "active" | "physical" | "unsure";
-type Plan = "mapa-completo" | "plano-pessoal";
 
 const STORAGE_KEY = "trovr-welcome-wall-v3";
 const DISMISSAL_WINDOW = 30 * 24 * 60 * 60 * 1000;
@@ -117,14 +117,15 @@ export function TrovrWelcomeWall() {
   const [open, setOpen] = useState(false);
   const [canShowWall, setCanShowWall] = useState(false);
   const [phase, setPhase] = useState<Phase>("quiz");
+  const contentRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    contentRef.current?.scrollTo({ top: 0 });
+  }, [phase]);
   const [intent, setIntent] = useState<Intent | null>(null);
   const [energy, setEnergy] = useState<Energy | null>(null);
-  const [email, setEmail] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [selectedPlan, setSelectedPlan] = useState<Plan | null>(null);
-  const [planSubmitting, setPlanSubmitting] = useState<Plan | null>(null);
-  const [planError, setPlanError] = useState<string | null>(null);
 
   useEffect(() => {
     setCanShowWall(true);
@@ -196,28 +197,6 @@ export function TrovrWelcomeWall() {
     }
   };
 
-  const registerPlanInterest = async (plan: Plan) => {
-    if (!intent || !energy || !email) return;
-    setPlanSubmitting(plan);
-    setPlanError(null);
-    const data = new FormData();
-    data.set("form-name", "bussola-interesse");
-    data.set("email", email);
-    data.set("produto", plan);
-    data.set("intent", intent);
-    data.set("energy", energy);
-    data.set("source_page", "/");
-    try {
-      await submitNetlifyForm(data);
-      trackEvent("select_compass_plan", { plan, intent, energy });
-      setSelectedPlan(plan);
-    } catch {
-      setPlanError("Não conseguimos registrar seu interesse. Tente novamente em instantes.");
-    } finally {
-      setPlanSubmitting(null);
-    }
-  };
-
   const step = phase === "quiz" ? 1 : phase === "capture" ? 2 : phase === "result" ? 3 : 4;
 
   return (
@@ -252,7 +231,7 @@ export function TrovrWelcomeWall() {
 
           <p className="sr-only">Etapa {step} de 4</p>
 
-          <div className="relative z-10 flex h-full overscroll-contain overflow-y-auto px-5 pb-6 pt-16 sm:px-10 sm:pb-8 sm:pt-20">
+          <div ref={contentRef} className="relative z-10 flex h-full overscroll-contain overflow-y-auto px-5 pb-6 pt-16 sm:px-10 sm:pb-8 sm:pt-20">
             <div className="my-auto mx-auto w-full max-w-[560px]">
               {phase === "quiz" && (
                 <section aria-labelledby="compass-question">
@@ -381,8 +360,6 @@ export function TrovrWelcomeWall() {
                         type="email"
                         autoComplete="email"
                         required
-                        value={email}
-                        onChange={(event) => setEmail(event.target.value)}
                         className="form-field"
                       />
                     </div>
@@ -454,40 +431,10 @@ export function TrovrWelcomeWall() {
                     </div>
                   </div>
 
-                  <div className="mt-5 divide-y divide-coffee/15 border-y border-coffee/15">
-                    {[
-                      [
-                        "Outras 4 experiências que combinam com você",
-                        "e por que cada uma faz sentido para este momento",
-                      ],
-                      [
-                        "12 destinos e as melhores épocas para ir",
-                        "comparados por clima, investimento e nível de preparo",
-                      ],
-                      ["Faixas de investimento", "uma visão realista antes de escolher"],
-                      [
-                        "Perguntas essenciais antes de reservar",
-                        "o que verificar com operadores e anfitriões",
-                      ],
-                    ].map(([title, detail]) => (
-                      <div
-                        key={title}
-                        className="grid grid-cols-[auto_1fr_auto] items-center gap-3 py-3"
-                      >
-                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-sand/35 text-coffee">
-                          <LockKeyhole className="h-4 w-4" aria-hidden />
-                        </span>
-                        <div>
-                          <p className="font-serif text-lg">{title}</p>
-                          <p className="text-sm text-coffee">{detail}</p>
-                        </div>
-                        <span
-                          aria-hidden
-                          className="hidden h-2 w-16 rounded-full bg-coffee/15 blur-[1px] sm:block"
-                        />
-                      </div>
-                    ))}
-                  </div>
+                  <p className="mt-5 text-sm leading-6 text-coffee">
+                    Quer ajuda para escolher um destino ou planejar seu roteiro? Conheça as duas
+                    modalidades de curadoria personalizada da Viagem Trovr.
+                  </p>
 
                   <div className="mt-6 flex flex-wrap gap-3">
                     <button
@@ -495,7 +442,7 @@ export function TrovrWelcomeWall() {
                       onClick={() => setPhase("plans")}
                       className="inline-flex min-h-12 items-center gap-3 rounded-full bg-sage px-7 text-sm text-paper transition-colors hover:bg-terracotta"
                     >
-                      Ver meu mapa completo <ArrowRight className="h-4 w-4" aria-hidden />
+                      Ver as curadorias da Viagem Trovr <ArrowRight className="h-4 w-4" aria-hidden />
                     </button>
                     <button
                       type="button"
@@ -518,98 +465,61 @@ export function TrovrWelcomeWall() {
                     <ArrowLeft className="h-4 w-4" aria-hidden /> Voltar ao resultado
                   </button>
                   <p className="text-xs uppercase tracking-[0.22em] text-sage">
-                    Transforme descoberta em decisão
+                    Viagem Trovr
                   </p>
                   <h2
                     id="plans-title"
                     className="mt-3 font-serif text-3xl leading-[1.04] sm:text-4xl"
                   >
-                    Escolha até onde quer levar sua próxima viagem.
+                    Escolha sua curadoria personalizada.
                   </h2>
                   <p className="mt-4 max-w-2xl text-sm leading-6 text-coffee sm:text-base">
-                    Comece comparando experiências e destinos ou avance para um roteiro pensado para
-                    suas datas, orçamento e forma de viajar.
+                    Aqui você encontra as mesmas curadorias da página Viagem Trovr. Escolha uma
+                    modalidade para continuar no formulário da Viagem Trovr.
                   </p>
 
-                  <div className="mt-6 grid gap-4 md:grid-cols-2">
-                    <article className="flex flex-col rounded-2xl border border-white/55 bg-paper/55 p-5 backdrop-blur-md">
-                      <p className="text-xs uppercase tracking-[0.18em] text-sage">Mapa completo</p>
-                      <h3 className="mt-3 font-serif text-3xl">Explorar possibilidades</h3>
-                      <p className="mt-3 font-serif text-3xl tabular-nums">R$ 79</p>
-                      <ul className="mt-5 flex-1 space-y-3 text-sm leading-6 text-coffee">
-                        {[
-                          "5 experiências alinhadas ao seu perfil",
-                          "12 destinos comparados lado a lado",
-                          "melhores épocas, custos e nível de preparo",
-                          "perguntas essenciais antes de reservar",
-                        ].map((item) => (
-                          <li key={item} className="flex gap-2">
-                            <Check className="mt-1 h-4 w-4 shrink-0 text-sage" aria-hidden /> {item}
-                          </li>
-                        ))}
-                      </ul>
-                      <button
-                        type="button"
-                        disabled={planSubmitting !== null}
-                        onClick={() => registerPlanInterest("mapa-completo")}
-                        className="mt-6 min-h-12 rounded-full border border-sage px-5 text-sm text-sage transition-colors hover:bg-sage hover:text-paper disabled:opacity-50"
-                      >
-                        {planSubmitting === "mapa-completo"
-                          ? "Registrando..."
-                          : "Quero destravar meu Mapa"}
-                      </button>
-                    </article>
-
-                    <article className="flex flex-col rounded-2xl border-2 border-sage bg-paper/45 p-5 backdrop-blur-md">
-                      <p className="text-xs uppercase tracking-[0.18em] text-sage">Plano pessoal</p>
-                      <h3 className="mt-3 font-serif text-3xl">Transformar em viagem</h3>
-                      <p className="mt-3 font-serif text-3xl tabular-nums">R$ 249</p>
-                      <ul className="mt-5 flex-1 space-y-3 text-sm leading-6 text-coffee">
-                        {[
-                          "tudo o que está no Mapa completo",
-                          "suas datas e seu orçamento considerados",
-                          "3 caminhos possíveis para comparar",
-                          "1 recomendação final da curadoria Trovr",
-                        ].map((item) => (
-                          <li key={item} className="flex gap-2">
-                            <Check className="mt-1 h-4 w-4 shrink-0 text-sage" aria-hidden /> {item}
-                          </li>
-                        ))}
-                      </ul>
-                      <button
-                        type="button"
-                        disabled={planSubmitting !== null}
-                        onClick={() => registerPlanInterest("plano-pessoal")}
-                        className="mt-6 min-h-12 rounded-full bg-sage px-5 text-sm text-paper transition-colors hover:bg-terracotta disabled:opacity-50"
-                      >
-                        {planSubmitting === "plano-pessoal"
-                          ? "Registrando..."
-                          : "Quero meu Plano pessoal"}
-                      </button>
-                    </article>
-                  </div>
-
-                  {selectedPlan && (
-                    <div className="mt-5 rounded-xl bg-sage px-5 py-4 text-sm leading-6 text-paper">
-                      Sua próxima viagem já começou. A Trovr entrará em contato pelo email
-                      informado.
-                      {selectedPlan === "plano-pessoal" && (
-                        <>
-                          {" "}
-                          Se preferir, você já pode{" "}
-                          <Link to="/roteiro" className="underline underline-offset-4">
-                            contar mais sobre a viagem
+                  <div className="mt-6 grid gap-4">
+                    {(["essencial", "premium"] as const).map((id) => {
+                      const item = VIAGEM_PLANS[id];
+                      return (
+                        <article key={id} className="rounded-2xl border border-coffee/25 bg-paper p-5">
+                          <p className="text-xs uppercase tracking-[0.18em] text-sage">{item.name}</p>
+                          <h3 className="mt-3 text-balance font-serif text-2xl">{item.title}</h3>
+                          <p className="mt-3 text-2xl tabular-nums">
+                            {formatPlanPrice(item.price)} <span className="text-sm">· Valor total</span>
+                          </p>
+                          <p className="mt-2 text-sm text-coffee">{item.paymentTerms}</p>
+                          <p className="mt-4 text-pretty text-sm leading-6 text-coffee">
+                            {item.description}
+                          </p>
+                          <ul className="mt-4 space-y-2 text-sm leading-6 text-coffee">
+                            {item.items.map((detail) => (
+                              <li key={detail} className="flex gap-2">
+                                <Check className="mt-1 size-4 shrink-0 text-sage" aria-hidden />
+                                {detail}
+                              </li>
+                            ))}
+                          </ul>
+                          <p className="mt-4 text-sm leading-6 text-coffee">{item.exclusions}</p>
+                          <Link
+                            to="/viagem"
+                            search={{ plan: id }}
+                            hash="candidatura"
+                            onClick={() =>
+                              trackEvent("select_compass_plan", {
+                                plan: id,
+                                intent: intent ?? undefined,
+                                energy: energy ?? undefined,
+                              })
+                            }
+                            className="mt-5 inline-flex min-h-12 w-full items-center justify-center rounded-full bg-sage px-5 py-2 text-center text-sm text-paper transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage"
+                          >
+                            {item.cta}
                           </Link>
-                          .
-                        </>
-                      )}
-                    </div>
-                  )}
-                  {planError && (
-                    <p role="alert" className="mt-5 text-sm text-terracotta">
-                      {planError}
-                    </p>
-                  )}
+                        </article>
+                      );
+                    })}
+                  </div>
                 </section>
               )}
             </div>

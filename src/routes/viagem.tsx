@@ -68,8 +68,11 @@ const FAQ = [
 export const Route = createFileRoute("/viagem")({
   // Keep the default out of the URL so /viagem remains a 200 canonical page.
   // Explicit visual variants still work; the component supplies the default.
-  validateSearch: (search: Record<string, unknown>): { visual?: "alula" | "mar" } =>
-    search.visual === undefined ? {} : { visual: search.visual === "mar" ? "mar" : "alula" },
+  validateSearch: (search: Record<string, unknown>): { visual?: "alula" | "mar"; plan?: ViagemPlan } => {
+    const visual = search.visual === undefined ? undefined : search.visual === "mar" ? "mar" : "alula";
+    const plan = search.plan === "essencial" || search.plan === "premium" ? search.plan : undefined;
+    return { visual, plan };
+  },
   head: () => ({
     meta: [
       { title: TITLE },
@@ -174,12 +177,16 @@ const STEPS = [
 ];
 
 function ViagemPage() {
-  const { visual = "alula" } = Route.useSearch();
-  const [plan, setPlan] = useState<ViagemPlan | "">("");
+  const { visual = "alula", plan: requestedPlan } = Route.useSearch();
+  const [plan, setPlan] = useState<ViagemPlan | "">(requestedPlan ?? "");
   const selected = plan ? VIAGEM_PLANS[plan] : null;
   const viewed = useRef(false);
   const inFlight = useRef(false);
   useEffect(() => {
+    if (requestedPlan) {
+      setPlan(requestedPlan);
+      return;
+    }
     let saved: string | null = null;
     try {
       saved = window.sessionStorage.getItem("trovr-viagem-plan");
@@ -187,6 +194,9 @@ function ViagemPage() {
       /* Storage can be unavailable in private browsing. */
     }
     if (saved === "essencial" || saved === "premium") setPlan(saved);
+  }, [requestedPlan]);
+
+  useEffect(() => {
     const observeOffer = () => {
       if (!viewed.current && getAnalyticsConsent() === "accepted") {
         viewed.current = true;
@@ -741,8 +751,11 @@ function ViagemPage() {
                         <option value="" disabled>
                           Selecione sua curadoria
                         </option>
-                        <option value="essencial">Curadoria Essencial · R$ 499</option>
-                        <option value="premium">Curadoria Premium · R$ 1.499</option>
+                        {Object.entries(VIAGEM_PLANS).map(([id, item]) => (
+                          <option key={id} value={id}>
+                            {item.name} · {formatPlanPrice(item.price)}
+                          </option>
+                        ))}
                       </select>
                     </Field>
                     {selected && (
