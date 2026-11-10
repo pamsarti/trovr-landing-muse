@@ -5,11 +5,9 @@ import {
   durationLabel,
   findTrip,
   ALL_TRIPS,
-  tripExtraImages,
   tripImage,
   type Trip,
 } from "@/lib/trips-data";
-import { editorialFor, priceSymbol } from "@/data/trip-editorials";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
 import { useT } from "@/i18n/useT";
 
@@ -85,7 +83,6 @@ function relatedFor(trip: Trip, n = 3): Trip[] {
 function TripDetail() {
   const { trip } = Route.useLoaderData() as { trip: Trip };
   const t = useT();
-  const extra = tripExtraImages(trip);
   const related = relatedFor(trip);
 
   return (
@@ -95,7 +92,7 @@ function TripDetail() {
       <div className="w-full">
         <div className="aspect-video w-full overflow-hidden bg-stone/10">
           <img
-            src={tripImage(trip, 1920, 1080)}
+            src={tripImage(trip)}
             alt={trip.destination}
             className="h-full w-full object-cover"
           />
@@ -104,13 +101,13 @@ function TripDetail() {
 
       <article className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
         <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-          {trip.country} · {ACTIVITY_LABEL[trip.activity]} · {durationLabel(trip)} · {trip.level}
+          {[trip.country, ACTIVITY_LABEL[trip.activity]].filter(Boolean).join(" · ")}
         </p>
         <h1 className="mt-4 font-serif text-4xl leading-tight text-ink sm:text-5xl">
           {trip.destination}
         </h1>
         <p className="mt-8 font-serif text-lg leading-relaxed text-ink/90 sm:text-xl">
-          {editorialFor(trip.id)}
+          {trip.detail}
         </p>
 
         <dl className="mt-12 grid grid-cols-1 gap-y-6 border-y border-stone/20 py-10 sm:grid-cols-2">
@@ -118,16 +115,8 @@ function TripDetail() {
           <Fact label={t.inquiry.factSeason} value={trip.season} />
           <Fact label={t.inquiry.factLevel} value={trip.level} />
           <Fact label={t.inquiry.factDuration} value={durationLabel(trip)} />
-          <Fact label={t.inquiry.factPrice} value={priceSymbol(trip.price_range)} />
+          <Fact label={t.inquiry.factPrice} value={trip.price_range} />
         </dl>
-
-        <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-3">
-          {extra.map((src, i) => (
-            <div key={i} className="aspect-square overflow-hidden bg-stone/10">
-              <img src={src} alt="" loading="lazy" className="h-full w-full object-cover" />
-            </div>
-          ))}
-        </div>
 
         <InquireForm tripId={trip.id} tripName={trip.destination} operator={trip.operator} />
       </article>
@@ -154,7 +143,7 @@ function Fact({ label, value }: { label: string; value: string }) {
   return (
     <div>
       <dt className="text-[11px] uppercase tracking-[0.2em] text-stone">{label}</dt>
-      <dd className="mt-2 font-serif text-base text-ink">{value}</dd>
+      <dd className="mt-2 font-serif text-base text-ink">{value || "A consultar"}</dd>
     </div>
   );
 }

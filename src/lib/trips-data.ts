@@ -6,8 +6,10 @@ export type TripActivity =
   | "surf"
   | "horseback"
   | "wildlife"
-  | "martial-arts"
-  | "river-cruise";
+  | "ski-sail"
+  | "rail"
+  | "balloon"
+  | "diving";
 
 export type Trip = {
   id: string;
@@ -23,6 +25,8 @@ export type Trip = {
   price_range: string;
   level: string;
   summary: string;
+  detail: string;
+  image: string;
   source_url: string;
   status: "coming-soon" | "active";
 };
@@ -56,49 +60,14 @@ export const ACTIVITY_LABEL: Record<TripActivity, string> = {
   surf: "Surf",
   horseback: "Cavalgada",
   wildlife: "Vida selvagem",
-  "martial-arts": "Artes marciais",
-  "river-cruise": "Cruzeiro fluvial",
+  "ski-sail": "Esqui e vela",
+  rail: "Viagem de trem",
+  balloon: "Balonismo",
+  diving: "Mergulho",
 };
 
-/** Curated Unsplash photo IDs, picked per activity + country combo. */
-const IMAGE_KEY: Record<string, string> = {
-  "kite|Egypt": "photo-1530541930197-ff16ac917b0e",
-  "kite|Venezuela": "photo-1502933691298-84fc14542831",
-  "surf|Maldives": "photo-1505228395891-9a51e7e86bf6",
-  "surf|Costa Rica": "photo-1502680390469-be75c86b636f",
-  "horseback|Egypt": "photo-1518709268805-4e9042af2176",
-  "horseback|Kyrgyzstan": "photo-1547471080-7cc2caa01a7e",
-  "wildlife|USA (Alaska)": "photo-1531176175-2c2fda35d5b8",
-  "martial-arts|China": "photo-1555597673-b21d5c935865",
-  "river-cruise|Egypt": "photo-1568797629192-aa3d54e5e0a3",
-};
-
-const FALLBACK_BY_ACTIVITY: Record<TripActivity, string> = {
-  kite: "photo-1502933691298-84fc14542831",
-  surf: "photo-1502680390469-be75c86b636f",
-  horseback: "photo-1553284965-83fd3e82fa5a",
-  wildlife: "photo-1456926631375-92c8ce872def",
-  "martial-arts": "photo-1555597673-b21d5c935865",
-  "river-cruise": "photo-1539635278303-d4002c07eae3",
-};
-
-export function tripImage(trip: Trip, w = 1600, h = 900): string {
-  if (trip.id === "alaska-wildlife-geographic") {
-    return "/images/alaska-whale.jpg";
-  }
-  const id = IMAGE_KEY[`${trip.activity}|${trip.country}`] ?? FALLBACK_BY_ACTIVITY[trip.activity];
-  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&h=${h}&q=70`;
-}
-
-/** Extra placeholder photos for trip detail page. */
-export function tripExtraImages(trip: Trip): string[] {
-  const base = tripImage(trip, 1200, 800);
-  // vary by appending different sig via crop tweaks
-  return [
-    base,
-    `https://images.unsplash.com/${FALLBACK_BY_ACTIVITY[trip.activity]}?auto=format&fit=crop&w=1200&h=800&q=70`,
-    `https://images.unsplash.com/${IMAGE_KEY[`${trip.activity}|${trip.country}`] ?? FALLBACK_BY_ACTIVITY[trip.activity]}?auto=format&fit=crop&w=1200&h=800&q=70&sat=-20`,
-  ];
+export function tripImage(trip: Trip): string {
+  return trip.image;
 }
 
 /** Duration helpers. */
@@ -111,6 +80,7 @@ export function durationMinDays(trip: Trip): number {
 
 export function durationLabel(trip: Trip): string {
   const d = trip.duration_days;
+  if (d === "") return "Duração a consultar";
   if (typeof d === "number") return `${d} ${d === 1 ? "dia" : "dias"}`;
   if (/^\d+$/.test(String(d))) return `${d} ${String(d) === "1" ? "dia" : "dias"}`;
   if (String(d).toLowerCase() === "varies") return "duração variável";
@@ -124,8 +94,10 @@ const ACTIVITY_TAG: Record<TripActivity, string> = {
   surf: "na água",
   horseback: "a cavalo",
   wildlife: "em vida selvagem",
-  "martial-arts": "em treinamento",
-  "river-cruise": "no rio",
+  "ski-sail": "nos fiordes",
+  rail: "a bordo",
+  balloon: "na savana",
+  diving: "no recife",
 };
 
 export function tripTag(trip: Trip): string {
@@ -206,50 +178,34 @@ export type Theme = {
   matches: (t: Trip) => boolean;
 };
 
-const BOAT_RE = /\b(boat|cruise|charter|live[- ]?aboard|yacht|ship|safari)\b/i;
-const REMOTE_RE = /\b(remote|desert|wilderness|nomad|backcountry|expedition)\b/i;
-const CULTURE_RE = /\b(temple|heritage|nomadic|tradition|ancient|monastery)\b/i;
-
 export const THEMES: Theme[] = [
   {
     slug: "asks-something",
-    title: "Viagens que exigem algo de você",
-    subtitle: "Para o corpo, não para o resort.",
-    image:
-      "https://images.unsplash.com/photo-1547471080-7cc2caa01a7e?auto=format&fit=crop&w=1600&h=1000&q=70",
-    matches: (t) =>
-      /advanced|intermediate/i.test(t.level) ||
-      durationMinDays(t) >= 7 ||
-      t.activity === "martial-arts",
+    title: "Nas ondas e na neve",
+    subtitle: "Surfe em Chicama ou combine esqui e vela na Noruega.",
+    image: "/images/hero/noruega-esqui-vela-v2.webp",
+    matches: (t) => t.activity === "surf" || t.activity === "ski-sail",
   },
   {
     slug: "live-aboard",
-    title: "Viver a bordo",
-    subtitle: "Durma onde você navega.",
-    image:
-      "https://images.unsplash.com/photo-1505228395891-9a51e7e86bf6?auto=format&fit=crop&w=1600&h=1000&q=70",
-    matches: (t) => BOAT_RE.test(`${t.destination} ${t.operator} ${t.summary}`),
+    title: "Dias a bordo",
+    subtitle: "Navegue entre pontos de kite ou atravesse os Andes de trem.",
+    image: "/images/hero/andean-explorer-v2.webp",
+    matches: (t) => t.activity === "kite" || t.activity === "rail",
   },
   {
     slug: "off-grid",
-    title: "Fora da rede",
-    subtitle: "Onde o sinal deixa de importar.",
-    image:
-      "https://images.unsplash.com/photo-1531176175-2c2fda35d5b8?auto=format&fit=crop&w=1600&h=1000&q=70",
-    matches: (t) =>
-      ["Kyrgyzstan", "USA (Alaska)"].includes(t.country) ||
-      REMOTE_RE.test(`${t.destination} ${t.summary}`),
+    title: "Do deserto à savana",
+    subtitle: "Cavalgue em AlUla ou sobrevoe o Serengeti de balão.",
+    image: "/images/hero/alula-cavalgada-v2.webp",
+    matches: (t) => t.activity === "horseback" || t.activity === "balloon",
   },
   {
     slug: "cultural-depth",
-    title: "Profundidade cultural",
-    subtitle: "O lugar faz parte da prática.",
-    image:
-      "https://images.unsplash.com/photo-1555597673-b21d5c935865?auto=format&fit=crop&w=1600&h=1000&q=70",
-    matches: (t) =>
-      t.activity === "martial-arts" ||
-      t.activity === "river-cruise" ||
-      CULTURE_RE.test(`${t.destination} ${t.summary}`),
+    title: "Encontros debaixo d’água",
+    subtitle: "Nade com jubartes em Tonga ou mergulhe com tubarões em Providencia.",
+    image: "/images/hero/providencia-tubaroes-v2.webp",
+    matches: (t) => t.activity === "wildlife" || t.activity === "diving",
   },
 ];
 
@@ -264,32 +220,15 @@ export function tripsByTheme(theme: Theme): Trip[] {
 /** Featured (hero rotator) trips + editorial lines. */
 export type Featured = { trip: Trip; line: string };
 
-export const FEATURED: Featured[] = [
-  {
-    trip: findTrip("kyrgyzstan-horse-tatosh")!,
-    line: "Onde a estepe ainda pertence a quem a atravessa.",
-  },
-  {
-    trip: findTrip("egypt-kite-dragonfly")!,
-    line: "Um vento que dura mais do que o seu medo dele.",
-  },
-  {
-    trip: findTrip("maldives-surf-surftribe")!,
-    line: "Um oceano que paga em uma moeda que o escritório não aceita.",
-  },
-  {
-    trip: findTrip("alaska-wildlife-geographic")!,
-    line: "O silêncio é uma espécie de catedral.",
-  },
-].filter((f): f is Featured => !!f.trip);
+export const FEATURED: Featured[] = ALL_TRIPS.map((trip) => ({ trip, line: trip.summary }));
 
 /** Continents & countries (sorted unique). */
 export function allContinents(): string[] {
-  return Array.from(new Set(ALL_TRIPS.map((t) => t.continent))).sort();
+  return Array.from(new Set(ALL_TRIPS.map((t) => t.continent).filter(Boolean))).sort();
 }
 
 export function allCountries(): string[] {
-  return Array.from(new Set(ALL_TRIPS.map((t) => t.country))).sort();
+  return Array.from(new Set(ALL_TRIPS.map((t) => t.country).filter(Boolean))).sort();
 }
 
 export function allActivities(): TripActivity[] {
@@ -297,9 +236,10 @@ export function allActivities(): TripActivity[] {
 }
 
 /** Duration buckets. */
-export type DurationBucket = "short" | "mid" | "long";
+export type DurationBucket = "short" | "mid" | "long" | "consult";
 export function durationBucket(t: Trip): DurationBucket {
   const d = durationMinDays(t);
+  if (!d) return "consult";
   if (d <= 3) return "short";
   if (d <= 7) return "mid";
   return "long";

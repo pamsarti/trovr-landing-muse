@@ -11,7 +11,6 @@ import {
   allContinents,
   allCountries,
   durationBucket,
-  durationLabel,
   isInSeason,
   tripImage,
   type DurationBucket,
@@ -92,7 +91,7 @@ function HeroRotator() {
           aria-hidden={idx !== i}
         >
           <img
-            src={tripImage(f.trip, 1920, 1080)}
+            src={tripImage(f.trip)}
             alt={f.trip.destination}
             className="h-full w-full object-cover"
           />
@@ -100,8 +99,7 @@ function HeroRotator() {
           <div className="absolute inset-0 flex flex-col justify-end px-6 pb-20 sm:px-12 sm:pb-24">
             <div className="mx-auto w-full max-w-5xl">
               <p className="text-[10px] uppercase tracking-[0.25em] text-paper/80">
-                {f.trip.country} · {durationLabel(f.trip)} ·{" "}
-                {ACTIVITY_LABEL[f.trip.activity].toLowerCase()}
+                {[f.trip.country, ACTIVITY_LABEL[f.trip.activity]].filter(Boolean).join(" · ")}
               </p>
               <h2 className="mt-4 font-serif text-4xl leading-tight text-paper sm:text-6xl">
                 {f.trip.destination}
@@ -147,13 +145,13 @@ function SeasonBand({ month }: { month: number }) {
     () => ALL_TRIPS.filter((t) => isInSeason(t, month)).slice(0, 4),
     [month],
   );
-  if (inSeason.length === 0) return null;
+  const picks = inSeason.length ? inSeason : ALL_TRIPS.slice(0, 4);
   return (
     <section className="border-b border-stone/15 px-6 py-12 sm:py-16">
       <div className="mx-auto max-w-6xl">
-        <h2 className="font-serif text-3xl text-ink sm:text-4xl">Boas ideias para esta época</h2>
+        <h2 className="font-serif text-3xl text-ink sm:text-4xl">{inSeason.length ? "Boas ideias para esta época" : "Da nossa seleção de viagens"}</h2>
         <div className="mt-10 flex gap-6 overflow-x-auto pb-2 sm:gap-8">
-          {inSeason.map((t) => (
+          {picks.map((t) => (
             <SmallSeasonCard key={t.id} trip={t} />
           ))}
         </div>
@@ -249,7 +247,7 @@ function AllTripsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between">
           <h2 className="font-serif text-3xl text-ink sm:text-4xl">
-            Explore todas as possibilidades.
+            Explore as oito experiências.
           </h2>
           <button
             onClick={() => setDrawerOpen((v) => !v)}
@@ -300,6 +298,7 @@ function AllTripsSection() {
                 { id: "short", label: "Curta, 1 a 3 dias" },
                 { id: "mid", label: "Média, 4 a 7 dias" },
                 { id: "long", label: "Longa, 8 dias ou mais" },
+                { id: "consult", label: "A consultar" },
               ]}
               selected={filters.durations as Set<string>}
               onToggle={(v) => setFilters((f) => toggle(f, "durations", v as DurationBucket))}

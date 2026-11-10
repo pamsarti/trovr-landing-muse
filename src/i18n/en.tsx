@@ -377,7 +377,7 @@ export const en = {
       "Articles, news, guides, local culture and experiences for knowing destinations beyond tourist attractions and planning travel beyond the obvious.",
     tripsTitle: "Trips by sport, experience and concept | Trovr",
     tripsDescription:
-      "Discover trips and experiences organised by sport, concept and destination with Trovr.",
+      "Explore Trovr’s eight travel experiences, from horseback riding in the AlUla desert to diving with sharks in Providencia.",
     comingSoonTitle: "Coming Soon — Trovr",
     comingSoonDescription: "This expedition is coming soon.",
   },

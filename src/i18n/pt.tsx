@@ -377,7 +377,7 @@ export const pt = {
       "Artigos, notícias, guias, cultura local e experiências para conhecer destinos além dos pontos turísticos e planejar viagens fora do óbvio.",
     tripsTitle: "Viagens por esporte, experiência e conceito | Trovr",
     tripsDescription:
-      "Descubra viagens fora do óbvio organizadas por esporte, experiência, conceito e destino no hub da Trovr.",
+      "Conheça as oito experiências de viagem da Trovr, da cavalgada no deserto de AlUla ao mergulho com tubarões em Providencia.",
     comingSoonTitle: "Em Breve — Trovr",
     comingSoonDescription: "Esta expedição chega em breve.",
   },
