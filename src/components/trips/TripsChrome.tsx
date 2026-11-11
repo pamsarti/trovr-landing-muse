@@ -1,3 +1,5 @@
+import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
+import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
 import { TripPhotoCredits } from "./TripPhotoCredits";
 import { Link } from "@tanstack/react-router";
 import type { Trip } from "@/lib/trips-data";
@@ -5,8 +7,8 @@ import { tripImage, tripTag, ACTIVITY_LABEL, durationLabel } from "@/lib/trips-d
 import { SiteHeader } from "@/components/SiteHeader";
 import { useT } from "@/i18n/useT";
 
-export function TripsHeader(_props?: { current?: string }) {
-  return <SiteHeader />;
+export function TripsHeader({ experience = false }: { current?: string; experience?: boolean } = {}) {
+  return <SiteHeader experience={experience} />;
 }
 
 export function TripsFooter() {
@@ -22,7 +24,9 @@ export function TripsFooter() {
   );
 }
 
-export function TripCard({ trip }: { trip: Trip }) {
+export function TripCard({ trip, presentation = false }: { trip: Trip; presentation?: boolean }) {
+  const copy = presentation ? TRIP_PRESENTATION[trip.id] : undefined;
+  const photo = copy ? TRIP_HERO_PHOTOS[trip.id] : undefined;
   const comingSoon = trip.id === "kite-a-bordo";
   return (
     <Link
@@ -32,8 +36,10 @@ export function TripCard({ trip }: { trip: Trip }) {
     >
       <div className="relative aspect-video w-full overflow-hidden bg-stone/10">
         <img
-          src={tripImage(trip)}
-          alt={trip.destination}
+          src={photo?.src ?? tripImage(trip)}
+          alt={photo?.alt ?? trip.destination}
+          style={{ objectPosition: photo?.objectPosition }}
+          data-photo={photo?.src.split("/").pop()?.split(".")[0]}
           loading="lazy"
           className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] ${comingSoon ? "grayscale-[35%]" : ""}`}
         />
@@ -44,12 +50,12 @@ export function TripCard({ trip }: { trip: Trip }) {
         )}
       </div>
       <div className="px-1 py-4">
-        <h3 className="font-serif text-xl text-ink">{trip.destination}</h3>
+        <h3 className="font-serif text-xl text-ink">{copy?.title ?? trip.destination}</h3>
         <p className="mt-1 text-[11px] uppercase tracking-[0.2em] text-stone">
-          {[trip.country, ACTIVITY_LABEL[trip.activity], durationLabel(trip)].filter(Boolean).join(" · ")}
+          {(copy ? [copy.place, copy.type] : [trip.country, ACTIVITY_LABEL[trip.activity], durationLabel(trip)]).filter(Boolean).join(" · ")}
         </p>
-        <p className="mt-3 font-serif text-sm italic leading-[1.35] text-ink/80 line-clamp-2">
-          {trip.summary}
+        <p className={"mt-3 font-serif text-sm italic leading-[1.35] text-ink/80" + (copy ? "" : " line-clamp-2")}>
+          {copy?.summary ?? trip.summary}
         </p>
       </div>
     </Link>

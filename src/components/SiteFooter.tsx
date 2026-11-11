@@ -6,7 +6,7 @@ import { useT } from "@/i18n/useT";
  * selects the tagline: "default" (Travel to find…) or "spots" (A guide to the
  * places worth the journey).
  */
-export function SiteFooter({ variant = "default" }: { variant?: "default" | "spots" }) {
+export function SiteFooter({ variant = "default", experience = false }: { variant?: "default" | "spots"; experience?: boolean }) {
   const t = useT();
   const tagline = variant === "spots" ? t.footer.spotsTagline : t.footer.tagline;
 
@@ -22,7 +22,8 @@ export function SiteFooter({ variant = "default" }: { variant?: "default" | "spo
         <p className="font-serif text-base italic text-stone sm:text-lg">{tagline}</p>
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
           <Link
-            to="/roteiro"
+            to={experience ? "/" : "/roteiro"}
+            hash={experience ? "contato" : undefined}
             className="text-[11px] uppercase tracking-[0.16em] text-stone hover:text-ink"
           >
             Fale com a Trovr

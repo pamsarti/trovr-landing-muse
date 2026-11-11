@@ -697,3 +697,53 @@
   .viagem-hero-content { padding-top: 8rem; }
   .viagem-final-stage { padding-inline: 3rem; }
 }
+
+.experience-site {
+  --paper: #fbf9f4;
+  --ink: #343d37;
+  --stone: #645b4f;
+  --mid: #645b4f;
+  font-weight: 350;
+}
+
+.experience-site :is(h1, h2, h3) { font-weight: 350; }
+.experience-site .experience-header nav a:last-child,
+.experience-button-filled {
+  border-radius: 999px;
+  background: #e7ebdf;
+  color: #394837;
+}
+
+.experience-section {
+  width: min(1152px, calc(100% - 48px));
+  margin-inline: auto;
+  padding-block: clamp(48px, 6vw, 64px);
+}
+
+.experience-section + .experience-section { padding-top: clamp(16px, 3vw, 32px); }
+.experience-section :is(h1, h2) { margin-bottom: .45em; font-size: clamp(1.875rem, 4vw, 2.25rem); line-height: 1.12; }
+.experience-section h3 { font-size: 1.35rem; margin-bottom: .3em; }
+.experience-section a h3 { font-size: 1.25rem; }
+.experience-lead { max-width: 640px; color: var(--stone); font-size: 1.07rem; }
+.experience-label { font-size: .75rem; text-transform: uppercase; letter-spacing: .16em; margin-bottom: 12px; }
+.experience-button { display: inline-block; border: 1px solid #a8afa1; padding: 9px 15px; font-size: .75rem; text-transform: uppercase; letter-spacing: .14em; }
+.experience-button:hover { background: #e7ebdf; color: #394837; }
+.experience-form { max-width: 720px; }
+.experience-form h2, .experience-site article section h2 { font-size: clamp(1.55rem, 3vw, 2.1rem); margin-bottom: .4em; }
+.experience-form label { color: var(--stone); font-size: 11px; letter-spacing: .16em; text-transform: uppercase; }
+.experience-field { display: block; width: 100%; margin-top: 8px; border: 1px solid rgb(109 86 69 / .3); background: transparent; padding: 8px 12px; font: inherit; font-size: 1rem; text-transform: none; letter-spacing: normal; }
+.experience-site :is(#contato, #interesse) { scroll-margin-top: 96px; }
+.experience-site footer { border-top: 0; }
+.experience-home-overlay {
+  background: linear-gradient(to top, rgb(18 31 26 / .72), transparent 49%), linear-gradient(to bottom, rgb(18 31 26 / .46), transparent 15%);
+}
+.experience-trips-overlay { background: linear-gradient(to top, rgb(18 31 26 / .74), rgb(18 31 26 / .44) 23%, transparent 58%); }
+.experience-site img[data-photo="s11"] { filter: saturate(.90) brightness(1.04) contrast(.96); }
+.experience-site img[data-photo="t5"] { filter: saturate(.84) brightness(1.13) contrast(.93); }
+.experience-site img[data-photo="p2"] { filter: saturate(.88) brightness(1.08) contrast(.94); }
+.experience-site img[data-photo="k1"] { filter: saturate(.87) brightness(1.04) contrast(.95); }
+.experience-site img[data-photo="k1"]:is(.experience-photo-muted, [class*="grayscale"]) {
+  filter: grayscale(.35) saturate(.87) brightness(1.04) contrast(.95);
+}
+
+.experience-site #sobre { scroll-margin-top: 96px; }

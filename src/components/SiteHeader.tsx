@@ -17,7 +17,7 @@ function isActive(pathname: string, match: string) {
   return pathname === match || pathname.startsWith(match + "/");
 }
 
-export function SiteHeader({ transparent = false }: { transparent?: boolean } = {}) {
+export function SiteHeader({ transparent = false, experience = false }: { transparent?: boolean; experience?: boolean } = {}) {
   const pathname = useActivePath();
   const t = useT();
   const [scrolled, setScrolled] = useState(false);
@@ -88,6 +88,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
     <>
       <header
         className={[
+          experience ? "experience-header" : "",
           "fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:transition-none",
           scrolled ? "border-b border-[var(--line)]" : "border-b border-transparent",
         ].join(" ")}
@@ -112,7 +113,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               return (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={experience && item.key === "about" ? "/#sobre" : item.href}
                   aria-current={active ? "page" : undefined}
                   className={[
                     "inline-flex min-h-11 items-center text-xs uppercase tracking-[0.14em] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 aria-[current=page]:underline aria-[current=page]:underline-offset-4",
@@ -130,13 +131,13 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               );
             })}
             <Link
-              to="/viagem"
-              search={{}}
-              data-analytics-event="open_viagem_offer"
+              to={experience ? "/" : "/viagem"}
+              hash={experience ? "contato" : undefined}
+              data-analytics-event={experience ? "open_contact" : "open_viagem_offer"}
               data-analytics-name="header_desktop"
               className="inline-flex min-h-11 items-center rounded-full bg-sage px-5 text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-ink"
             >
-              {t.nav.itinerary}
+              {experience ? "Fale com a Trovr" : t.nav.itinerary}
             </Link>
           </nav>
           <button
@@ -191,7 +192,7 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               return (
                 <a
                   key={item.href}
-                  href={item.href}
+                  href={experience && item.key === "about" ? "/#sobre" : item.href}
                   aria-current={active ? "page" : undefined}
                   onClick={() => setOpen(false)}
                   className={[
@@ -204,14 +205,14 @@ export function SiteHeader({ transparent = false }: { transparent?: boolean } = 
               );
             })}
             <Link
-              to="/viagem"
-              search={{}}
+              to={experience ? "/" : "/viagem"}
+              hash={experience ? "contato" : undefined}
               onClick={() => setOpen(false)}
-              data-analytics-event="open_viagem_offer"
+              data-analytics-event={experience ? "open_contact" : "open_viagem_offer"}
               data-analytics-name="header_mobile"
               className="mt-4 inline-flex min-h-11 items-center rounded-full bg-sage px-6 py-3 text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage"
             >
-              {t.nav.itinerary}
+              {experience ? "Fale com a Trovr" : t.nav.itinerary}
             </Link>
           </nav>
         </div>

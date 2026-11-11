@@ -1,3 +1,6 @@
+import { Pause, Play } from "lucide-react";
+import { experiences, ExperienceGrid, HowToTravel } from "@/components/trips/ExperienceSections";
+import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { seoT } from "@/i18n/seoT";
@@ -51,11 +54,11 @@ export const Route = createFileRoute("/trips/")({
 
 function TripsIndex() {
   return (
-    <main className="bg-paper text-ink font-sans antialiased">
-      <TripsHeader current="trips" />
+    <main className="experience-site bg-paper text-ink font-sans antialiased">
+      <TripsHeader current="trips" experience />
       <HeroRotator />
-      <AllTripsSection />
-      <ThemesGrid />
+      <ExperienceGrid />
+      <HowToTravel />
       <TripsFooter />
     </main>
   );
@@ -63,14 +66,18 @@ function TripsIndex() {
 
 /* ----- Section 1: hero rotator ----- */
 
-const featuredSlides = FEATURED.map((slide) => ({
-  ...slide,
-  photo: TRIP_HERO_PHOTOS[slide.trip.id],
+const featuredSlides = experiences.map((trip) => ({
+  trip,
+  copy: TRIP_PRESENTATION[trip.id],
+  photo: TRIP_HERO_PHOTOS[trip.id],
 }));
 
 function HeroRotator() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
+  useEffect(() => {
+    setPaused(window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+  }, []);
 
   useEffect(() => {
     if (paused) return;
@@ -81,8 +88,7 @@ function HeroRotator() {
   return (
     <section
       className="relative h-[100svh] w-full overflow-hidden bg-ink"
-      onMouseEnter={() => setPaused(true)}
-      onMouseLeave={() => setPaused(false)}
+      aria-label="Experiências em destaque"
     >
       {featuredSlides.map((f, idx) => (
         <div
@@ -90,24 +96,26 @@ function HeroRotator() {
           className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
           style={{ opacity: idx === i ? 1 : 0 }}
           aria-hidden={idx !== i}
+          inert={idx !== i}
         >
           <img
             src={f.photo?.src ?? tripImage(f.trip)}
             alt={f.photo?.alt ?? f.trip.destination}
             style={{ objectPosition: f.photo?.objectPosition }}
-            className="h-full w-full object-cover"
+            data-photo={f.photo?.src.split("/").pop()?.split(".")[0]}
+            className={f.copy?.soon ? "experience-photo-muted h-full w-full object-cover" : "h-full w-full object-cover"}
           />
-          <div className="brand-photo-overlay absolute inset-0" />
+          <div className="experience-trips-overlay absolute inset-0" />
           <div className="absolute inset-0 flex flex-col justify-end px-6 pb-20 sm:px-12 sm:pb-24">
             <div className="mx-auto w-full max-w-5xl">
               <p className="text-[10px] uppercase tracking-[0.25em] text-paper/80">
-                {[f.trip.country, ACTIVITY_LABEL[f.trip.activity], f.photo && "Foto ilustrativa"].filter(Boolean).join(" · ")}
+                {[f.copy?.place, f.copy?.type, f.copy?.soon && "Em breve"].filter(Boolean).join(" · ")}
               </p>
               <h2 className="mt-4 font-serif text-4xl leading-tight text-paper sm:text-6xl">
-                {f.trip.destination}
+                {f.copy?.title ?? f.trip.destination}
               </h2>
               <p className="mt-4 max-w-2xl font-serif text-lg italic text-paper/90 sm:text-2xl">
-                {f.line}
+                {f.copy?.summary ?? f.trip.summary}
               </p>
               <div className="mt-8 flex justify-end">
                 <Link
@@ -118,23 +126,28 @@ function HeroRotator() {
                   Entender a experiência →
                 </Link>
               </div>
+              {f.photo && <small className="text-paper">Foto ilustrativa</small>}
             </div>
           </div>
         </div>
       ))}
 
-      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-        {featuredSlides.map((_, idx) => (
+      <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
+        {featuredSlides.map(({ trip }, idx) => (
           <button
             key={idx}
-            onClick={() => setI(idx)}
-            aria-label={`Imagem ${idx + 1}`}
-            className="h-[2px] w-8 transition-colors"
+            onClick={() => { setI(idx); setPaused(true); }}
+            aria-label={TRIP_PRESENTATION[trip.id]?.title ?? trip.destination}
+            aria-pressed={idx === i}
+            className="h-8 w-8 border-y-[15px] border-transparent bg-clip-padding transition-colors"
             style={{
               background: idx === i ? "#F7F4EE" : "rgb(247 244 238 / 0.35)",
             }}
           />
         ))}
+        <button type="button" className="flex size-8 items-center justify-center text-paper" onClick={() => setPaused(!paused)} aria-label={paused ? "Reproduzir carrossel" : "Pausar carrossel"}>
+          {paused ? <Play size={16} /> : <Pause size={16} />}
+        </button>
       </div>
     </section>
   );

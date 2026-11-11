@@ -1,3 +1,5 @@
+import { ExperienceGrid, HowToTravel, ExperienceAbout } from "@/components/trips/ExperienceSections";
+import { InquireForm } from "@/components/trips/InquireForm";
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type PointerEvent } from "react";
 import { ArrowRight, Pause, Play } from "lucide-react";
@@ -50,18 +52,7 @@ export const Route = createFileRoute("/")({
             ],
           }),
         },
-        {
-          type: "application/ld+json",
-          children: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: t.home.faq.map((item) => ({
-              "@type": "Question",
-              name: item.question,
-              acceptedAnswer: { "@type": "Answer", text: item.answer },
-            })),
-          }),
-        },
+
       ],
     };
   },
@@ -69,27 +60,15 @@ export const Route = createFileRoute("/")({
 });
 
 const HERO_SLIDES = [
-  {
-    id: "tonga-jubartes",
-    caption: "Sair de barco para nadar com baleias jubartes · Tonga",
-  },
-  {
-    id: "chicama-surfe",
-    caption: "Surfar a longa esquerda de Chicama · Peru",
-  },
-  {
-    id: "kite-a-bordo",
-    caption: "Praticar kitesurf em uma viagem a bordo",
-  },
-  {
-    id: "providencia-tubaroes",
-    caption: "Mergulhar com tubarões em Providencia · Colômbia",
-  },
+  { id: "chicama-surfe", caption: "Surfar a longa esquerda de Chicama · Puerto Malabrigo, Peru" },
+  { id: "tonga-jubartes", caption: "Sair de barco para nadar com baleias jubartes · Tonga" },
+  { id: "providencia-tubaroes", caption: "Mergulhar com tubarões em Providencia · Colômbia" },
+  { id: "kite-a-bordo", caption: "Praticar kitesurf em uma viagem a bordo" },
 ];
 
 const slidesWithPhotos = HERO_SLIDES.flatMap(({ id, caption }) => {
   const photo = TRIP_HERO_PHOTOS[id];
-  return photo ? [{ ...photo, caption }] : [];
+  return photo ? [{ ...photo, id, caption }] : [];
 });
 
 function firstSentence(text: string): string {
@@ -99,18 +78,16 @@ function firstSentence(text: string): string {
 
 function Index() {
   return (
-    <main className="bg-paper text-ink font-sans antialiased">
+    <main className="experience-site bg-paper text-ink font-sans antialiased">
       <TrovrWelcomeWall />
-      <SiteHeader transparent />
+      <SiteHeader transparent experience />
       <Hero />
-      <Stories />
-      <Manifesto />
-      <Founder />
-      <ItineraryService />
-      <Newsletter />
-      <HomeFaq />
+      <ExperienceGrid home />
+      <HowToTravel />
+      <ExperienceAbout />
+      <div className="experience-section"><InquireForm /></div>
       <TripPhotoCredits />
-      <SiteFooter />
+      <SiteFooter experience />
     </main>
   );
 }
@@ -124,7 +101,7 @@ function Hero() {
   const dragStart = useRef<{ x: number; y: number } | null>(null);
 
   function startDrag(event: PointerEvent<HTMLElement>) {
-    if (!event.isPrimary || event.button !== 0 || (event.target as HTMLElement).closest("button")) {
+    if (!event.isPrimary || event.button !== 0 || (event.target as HTMLElement).closest("a, button")) {
       return;
     }
     dragStart.current = { x: event.clientX, y: event.clientY };
@@ -170,6 +147,7 @@ function Hero() {
         <img
           key={slide.src}
           src={slide.src}
+          data-photo={slide.src.split("/").pop()?.split(".")[0]}
           draggable={false}
           alt={index === active ? slide.alt : ""}
           aria-hidden={index !== active}
@@ -180,16 +158,19 @@ function Hero() {
       ))}
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-0 z-[1] bg-[linear-gradient(to_top,rgba(15,24,21,0.82),transparent_42%),linear-gradient(to_bottom,rgba(15,24,21,0.48),transparent_20%)]"
+        className="experience-home-overlay pointer-events-none absolute inset-0 z-[1]"
       />
 
       <div className="relative z-10 mx-auto flex min-h-[100svh] w-full max-w-7xl flex-col justify-end px-5 pb-16 pt-28 sm:px-12">
         <div className="flex flex-col gap-2 md:flex-row md:items-end md:justify-between">
+          <div>
           <h1 className="font-serif text-[1.625rem] leading-[1.08] tracking-tight text-paper sm:text-[2rem] lg:text-[2.35rem] [&>em]:block">
             {t.home.heroHeadline()}
           </h1>
+          <Link to="/trips" className="experience-button experience-button-filled mt-3">Explorar experiências</Link>
+          </div>
           <p aria-live={paused ? "polite" : "off"} className="max-w-72 text-pretty text-sm leading-snug text-paper md:text-right">
-            {slides[active].caption}
+            <Link to="/trips/$id" params={{ id: slides[active].id }} className="underline underline-offset-4">{slides[active].caption}</Link>
             <span className="block text-xs text-paper/80">Foto ilustrativa</span>
           </p>
         </div>
