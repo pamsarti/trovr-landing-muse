@@ -23,19 +23,25 @@ export function TripsFooter() {
 }
 
 export function TripCard({ trip }: { trip: Trip }) {
+  const comingSoon = trip.id === "kite-a-bordo";
   return (
     <Link
       to="/trips/$id"
       params={{ id: trip.id }}
       className="group block border border-transparent transition-colors duration-300 hover:border-stone/30"
     >
-      <div className="aspect-video w-full overflow-hidden bg-stone/10">
+      <div className="relative aspect-video w-full overflow-hidden bg-stone/10">
         <img
           src={tripImage(trip)}
           alt={trip.destination}
           loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+          className={`h-full w-full object-cover transition-transform duration-500 group-hover:scale-[1.02] ${comingSoon ? "grayscale-[35%]" : ""}`}
         />
+        {comingSoon && (
+          <span className="absolute left-3 top-3 rounded-full bg-paper px-3 py-1 text-xs font-semibold text-ink">
+            Em breve
+          </span>
+        )}
       </div>
       <div className="px-1 py-4">
         <h3 className="font-serif text-xl text-ink">{trip.destination}</h3>

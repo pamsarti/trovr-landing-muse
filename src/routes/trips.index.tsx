@@ -220,7 +220,7 @@ function AllTripsSection() {
       <div className="mx-auto max-w-6xl">
         <div className="flex items-end justify-between">
           <h2 className="font-serif text-3xl text-ink sm:text-4xl">
-            Explore as oito experiências.
+            Explore as experiências.
           </h2>
           <button
             onClick={() => setDrawerOpen((v) => !v)}

@@ -3,7 +3,6 @@ import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check, X } from "lucide-react";
 import { useEffect, useMemo, useRef, useState, type FormEvent } from "react";
 import { trackEvent } from "@/lib/analytics";
-import { getPublicSpots, spotImage } from "@/lib/spots-data";
 import { VIAGEM_PLANS, formatPlanPrice } from "@/lib/viagem-plans";
 
 type Phase = "quiz" | "capture" | "result" | "plans";
@@ -12,8 +11,7 @@ type Energy = "light" | "active" | "physical" | "unsure";
 
 const STORAGE_KEY = "trovr-welcome-wall-v3";
 const DISMISSAL_WINDOW = 30 * 24 * 60 * 60 * 1000;
-const HERO_SPOT = getPublicSpots()[0];
-const HERO_BACKGROUND = HERO_SPOT ? spotImage(HERO_SPOT, 1800, 1200) : "/images/alula-hero.jpg";
+const HERO_BACKGROUND = "/images/hero/providencia-licensed.webp";
 
 const intents: Array<{ value: Intent; label: string }> = [
   { value: "challenge", label: "Me desafiar a ir além" },

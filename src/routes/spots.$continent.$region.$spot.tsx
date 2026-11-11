@@ -9,6 +9,9 @@ import {
 import { SpotPanel } from "@/components/spots/SpotPanel";
 
 export const Route = createFileRoute("/spots/$continent/$region/$spot")({
+  beforeLoad: () => {
+    throw notFound();
+  },
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {

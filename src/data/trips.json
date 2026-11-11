@@ -1,6 +1,7 @@
 [
   {
     "id": "alula-cavalgada",
+    "hidden": true,
     "activity": "horseback",
     "destination": "Cavalgada no deserto de AlUla",
     "country": "Arábia Saudita",
@@ -34,13 +35,14 @@
     "level": "",
     "source_url": "",
     "status": "coming-soon",
-    "image": "/images/hero/tonga-jubartes-v2.webp",
+    "image": "/images/hero/tonga-licensed.webp",
     "detail": "Entre julho e outubro, as baleias jubartes chegam às águas de Tonga para se reproduzir e ter seus filhotes. Você sai de barco e começa a procurar sinais na superfície. Se o mar estiver em boas condições e o guia liberar, é hora de colocar a máscara e o snorkel para observar as baleias na água.",
     "seoDescription": "Saiba quando as jubartes chegam a Tonga e como funciona a saída de barco para observá-las na água com máscara e snorkel.",
     "seoTitle": "Nadar com baleias jubartes em Tonga | Trovr"
   },
   {
     "id": "noruega-esqui-vela",
+    "hidden": true,
     "activity": "ski-sail",
     "destination": "Esqui e navegação à vela",
     "country": "Noruega",
@@ -61,6 +63,7 @@
   },
   {
     "id": "andean-explorer",
+    "hidden": true,
     "activity": "rail",
     "destination": "Retiro a bordo do Andean Explorer",
     "country": "Peru",
@@ -114,13 +117,14 @@
     "level": "",
     "source_url": "",
     "status": "coming-soon",
-    "image": "/images/hero/kite-a-bordo-v3.webp",
+    "image": "/images/hero/kite-licensed.webp",
     "detail": "Você dorme no barco e navega entre pontos de kitesurf. O vento ajuda a decidir onde parar e quando entrar na água. Depois da sessão, você volta para o barco, que segue com você até o próximo ponto.",
     "seoDescription": "Veja como funciona uma viagem de kitesurf a bordo, com hospedagem no barco e navegação entre pontos de prática conforme o vento.",
     "seoTitle": "Viagem de kitesurf a bordo | Trovr"
   },
   {
     "id": "serengeti-balao",
+    "hidden": true,
     "activity": "balloon",
     "destination": "Safári de balão no Serengeti",
     "country": "Tanzânia",
@@ -154,7 +158,7 @@
     "level": "",
     "source_url": "",
     "status": "coming-soon",
-    "image": "/images/hero/providencia-tubaroes-v3.webp",
+    "image": "/images/hero/providencia-licensed.webp",
     "detail": "Em Providencia, no Caribe colombiano, você sai de barco para mergulhar com cilindro. O percurso passa por recifes de coral e, dependendo do ponto, por paredões submersos. É nesse ambiente que você pode avistar tubarões cruzando o recife durante o mergulho.",
     "seoDescription": "Saiba como é sair de barco para mergulhar com cilindro nos recifes de Providencia, na Colômbia, onde há registros de tubarões.",
     "seoTitle": "Mergulho com tubarões em Providencia | Trovr"

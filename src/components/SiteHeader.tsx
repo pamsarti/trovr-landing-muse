@@ -4,7 +4,6 @@ import { Menu, X } from "lucide-react";
 import { useT } from "@/i18n/useT";
 
 const NAV = [
-  { href: "/spots", key: "spots", match: "/spots" },
   { href: "/trips", key: "sports", match: "/trips" },
   { href: "/about", key: "about", match: "/about" },
 ] as const;

@@ -1,14 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useRef, useState, type FormEvent, type PointerEvent } from "react";
-import { ArrowRight, ArrowUpRight, Pause, Play } from "lucide-react";
-import {
-  ACTIVITIES,
-  activityLabel,
-  getPublicSpots,
-  placeLabel,
-  slugify,
-  spotImage,
-} from "@/lib/spots-data";
+import { ArrowRight, Pause, Play } from "lucide-react";
 import { CATEGORY_LABEL, getPublishedArticles, type JournalArticle } from "@/lib/journal-data";
 import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
@@ -79,24 +71,9 @@ type HeroSlide = { src: string; alt: string; caption: string };
 
 const HERO_SLIDES: HeroSlide[] = [
   {
-    src: "/images/hero/alula-cavalgada-v3.webp",
-    alt: "Cavaleiros no deserto de AlUla",
-    caption: "Cavalgar no deserto de AlUla · Arábia Saudita",
-  },
-  {
-    src: "/images/hero/tonga-jubartes-v2.webp",
-    alt: "Pessoa com snorkel junto a uma baleia jubarte",
+    src: "/images/hero/tonga-licensed.webp",
+    alt: "Baleia jubarte nas águas de Vava’u, Tonga",
     caption: "Sair de barco para nadar com baleias jubartes · Tonga",
-  },
-  {
-    src: "/images/hero/noruega-esqui-vela-v2.webp",
-    alt: "Esquiadores e veleiro em um fiorde norueguês",
-    caption: "Combinar esqui e navegação à vela · Noruega",
-  },
-  {
-    src: "/images/hero/andean-explorer-v3.webp",
-    alt: "Trem Andean Explorer atravessando os Andes",
-    caption: "Fazer um retiro a bordo do trem Andean Explorer · Peru",
   },
   {
     src: "/images/hero/chicama-surfe-v3.webp",
@@ -104,18 +81,13 @@ const HERO_SLIDES: HeroSlide[] = [
     caption: "Surfar a longa esquerda de Chicama · Peru",
   },
   {
-    src: "/images/hero/kite-a-bordo-v3.webp",
+    src: "/images/hero/kite-licensed.webp",
     alt: "Kitesurf no Mar Vermelho",
     caption: "Praticar kitesurf em uma viagem a bordo",
   },
   {
-    src: "/images/hero/serengeti-balao-v3.webp",
-    alt: "Balão sobre o Serengeti",
-    caption: "Fazer um safári de balão no Serengeti · Tanzânia",
-  },
-  {
-    src: "/images/hero/providencia-tubaroes-v3.webp",
-    alt: "Tubarão fotografado durante um mergulho em Providencia",
+    src: "/images/hero/providencia-licensed.webp",
+    alt: "Cayo Cangrejo e o mar de Providencia",
     caption: "Mergulhar com tubarões em Providencia · Colômbia",
   },
 ];
@@ -131,9 +103,6 @@ function Index() {
       <TrovrWelcomeWall />
       <SiteHeader transparent />
       <Hero />
-      <SportsEntry />
-      <MapEntry />
-      <FeaturedPlaces />
       <Stories />
       <Manifesto />
       <Founder />
@@ -265,168 +234,6 @@ function SectionIntro({ kicker, title, body }: { kicker: string; title: string; 
   );
 }
 
-function SportsEntry() {
-  const t = useT();
-  const activities = ACTIVITIES.filter((activity) => activity.active);
-  const spots = getPublicSpots();
-  return (
-    <section id="sports" className="px-6 py-20 sm:py-28">
-      <div className="mx-auto max-w-7xl">
-        <SectionIntro
-          kicker={t.home.sportsKicker}
-          title={t.home.sportsTitle}
-          body={t.home.sportsBody}
-        />
-        <div className="mt-12 grid border-y border-coffee/20 md:grid-cols-2 md:divide-x md:divide-coffee/20">
-          {activities.map((activity, index) => {
-            const spot = spots.find((candidate) => candidate.activity === activity.id);
-            return (
-              <Link
-                key={activity.id}
-                to="/spots"
-                search={{ activity: activity.id }}
-                data-analytics-event="select_sport"
-                data-analytics-name={activity.label}
-                data-analytics-category={activity.id}
-                className="group flex min-h-28 items-center gap-3 border-b border-coffee/20 py-5 sm:gap-4 transition-colors last:border-b-0 hover:bg-sand/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-sage md:px-6 md:[&:nth-last-child(-n+2)]:border-b-0"
-              >
-                <span className="w-5 shrink-0 text-[11px] tabular-nums text-coffee">
-                  {String(index + 1).padStart(2, "0")}
-                </span>
-                {spot && (
-                  <img
-                    src={spotImage(spot, 360, 240)}
-                    alt=""
-                    loading="lazy"
-                    className="h-16 w-16 shrink-0 rounded-sm object-cover grayscale-[20%] transition-[filter] duration-300 sm:w-24 group-hover:grayscale-0 sm:h-20 sm:w-32"
-                  />
-                )}
-                <span className="min-w-0 flex-1">
-                  <span className="block font-serif text-2xl leading-tight text-ink sm:text-3xl">
-                    {activity.label}
-                  </span>
-                  {spot && (
-                    <span className="mt-1 block text-pretty text-xs uppercase tracking-[0.14em] text-coffee">
-                      {spot.name} · {placeLabel(spot.country)}
-                    </span>
-                  )}
-                </span>
-                <ArrowRight className="h-4 w-4 shrink-0 text-coffee motion-safe:transition-transform motion-safe:group-hover:translate-x-1" />
-              </Link>
-            );
-          })}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function MapEntry() {
-  const t = useT();
-  const spot = getPublicSpots()[0];
-  return (
-    <section className="px-6 pb-20 sm:pb-28">
-      <div className="relative mx-auto min-h-[520px] max-w-7xl overflow-hidden rounded-2xl bg-ink">
-        {spot && (
-          <img
-            src={spotImage(spot, 1800, 1000)}
-            alt=""
-            loading="lazy"
-            className="absolute inset-0 h-full w-full object-cover"
-          />
-        )}
-        <div aria-hidden className="brand-photo-overlay absolute inset-0" />
-        <div className="relative z-10 flex min-h-[520px] max-w-3xl flex-col justify-end p-5 text-paper sm:p-8">
-          <div className="trovr-glass-dark rounded-2xl p-6 sm:p-8">
-            <p className="text-xs uppercase tracking-[0.24em] text-paper/80">{t.home.mapKicker}</p>
-            <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] sm:text-5xl">
-              {t.home.mapTitle}
-            </h2>
-            <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-paper/90 sm:text-lg">
-              {t.home.mapBody}
-            </p>
-            <Link
-              to="/spots"
-              data-analytics-event="open_map"
-              data-analytics-name="home_map"
-              className="mt-8 inline-flex w-fit items-center gap-3 rounded-full bg-paper px-6 py-3 text-xs font-medium uppercase tracking-[0.16em] text-ink transition-colors hover:bg-sand focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-paper"
-            >
-              {t.home.mapCta}
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-          </div>
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FeaturedPlaces() {
-  const t = useT();
-  const spots = getPublicSpots().slice(0, 6);
-  return (
-    <section className="bg-ink px-6 py-20 text-paper sm:py-28">
-      <div className="mx-auto max-w-7xl">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
-          <div className="max-w-3xl">
-            <p className="text-xs uppercase tracking-[0.24em] text-sand">{t.home.placesKicker}</p>
-            <h2 className="mt-5 text-balance font-serif text-4xl leading-[1.08] sm:text-5xl">
-              {t.home.placesTitle}
-            </h2>
-            <p className="mt-6 max-w-2xl text-pretty text-base leading-7 text-paper/80 sm:text-lg">
-              {t.home.placesBody}
-            </p>
-          </div>
-          <Link
-            to="/spots"
-            className="inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-sand hover:text-paper"
-          >
-            {t.home.allPlaces} <ArrowRight className="h-4 w-4" />
-          </Link>
-        </div>
-
-        <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-          {spots.map((spot) => (
-            <Link
-              key={spot.id}
-              to="/spots/$continent/$region/$spot"
-              params={{
-                continent: slugify(spot.region),
-                region: slugify(spot.city),
-                spot: slugify(spot.name),
-              }}
-              data-analytics-event="view_place"
-              data-analytics-name={spot.name}
-              data-analytics-category={spot.activity}
-              className="group relative aspect-[4/5] overflow-hidden rounded-2xl bg-coffee shadow-[0_18px_50px_rgb(0_0_0/0.16)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sand"
-            >
-              <img
-                src={spotImage(spot, 900, 1125)}
-                alt={`${spot.name}, ${placeLabel(spot.country)}`}
-                loading="lazy"
-                className="card-img absolute inset-0 h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
-              />
-              <div aria-hidden className="brand-photo-overlay absolute inset-0" />
-              <div className="trovr-glass-dark absolute inset-x-4 bottom-4 rounded-sm p-5">
-                <p className="text-xs uppercase tracking-[0.18em] text-paper/80">
-                  {activityLabel(spot.activity)} · {placeLabel(spot.country)}
-                </p>
-                <h3 className="mt-3 font-serif text-3xl leading-tight text-paper">{spot.name}</h3>
-                <p className="mt-3 line-clamp-2 text-base leading-6 text-paper/85">
-                  {firstSentence(spot.description)}
-                </p>
-                <span className="mt-6 inline-flex min-h-11 items-center gap-2 text-xs uppercase tracking-[0.16em] text-sand">
-                  {t.home.placeCta} <ArrowUpRight className="h-4 w-4" />
-                </span>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
 function Stories() {
   const t = useT();
   const articles = getPublishedArticles().slice(0, 3);
@@ -449,14 +256,16 @@ function Stories() {
               data-analytics-category={articles[0].category}
               className="group block focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
             >
-              <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink sm:aspect-[16/10]">
-                <img
-                  src={articles[0].heroImage}
-                  alt={articles[0].title}
-                  loading="lazy"
-                  className="card-img h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
-                />
-              </div>
+              {articles[0].heroImage && (
+                <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink sm:aspect-[16/10]">
+                  <img
+                    src={articles[0].heroImage}
+                    alt={articles[0].title}
+                    loading="lazy"
+                    className="card-img h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
+                  />
+                </div>
+              )}
               <p className="mt-5 text-xs uppercase tracking-[0.18em] text-coffee">
                 {CATEGORY_LABEL[articles[0].category]} · {articles[0].readTime} min de leitura
               </p>
@@ -475,16 +284,18 @@ function Stories() {
                 data-analytics-event="read_article"
                 data-analytics-name={article.title}
                 data-analytics-category={article.category}
-                className="group grid grid-cols-[7rem_1fr] gap-5 py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage lg:grid-cols-1"
+                className="group block py-6 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage"
               >
-                <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink lg:aspect-[16/7]">
-                  <img
-                    src={article.heroImage}
-                    alt={article.title}
-                    loading="lazy"
-                    className="card-img h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
-                  />
-                </div>
+                {article.heroImage && (
+                  <div className="aspect-[4/3] overflow-hidden rounded-sm bg-ink lg:aspect-[16/7]">
+                    <img
+                      src={article.heroImage}
+                      alt={article.title}
+                      loading="lazy"
+                      className="card-img h-full w-full object-cover motion-safe:transition-transform motion-safe:duration-500 motion-safe:group-hover:scale-105"
+                    />
+                  </div>
+                )}
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.18em] text-coffee">
                     {CATEGORY_LABEL[article.category]} · {article.readTime} min
@@ -541,8 +352,8 @@ function Founder() {
       <div className="mx-auto grid max-w-7xl items-center gap-12 md:grid-cols-2 md:gap-20">
         <div className="aspect-[4/5] overflow-hidden rounded-sm bg-sand">
           <img
-            src="/images/founder-kite.jpg"
-            alt="Pamela Sarti praticando kitesurf"
+            src="/images/hero/kite-licensed.webp"
+            alt=""
             loading="lazy"
             className="h-full w-full object-cover"
           />

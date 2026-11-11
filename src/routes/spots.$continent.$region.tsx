@@ -17,6 +17,9 @@ import {
 import { ACTIVITIES } from "@/lib/spots-data";
 
 export const Route = createFileRoute("/spots/$continent/$region")({
+  beforeLoad: () => {
+    throw notFound();
+  },
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {

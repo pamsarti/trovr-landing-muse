@@ -102,11 +102,13 @@ function Featured({ article }: { article: JournalArticle }) {
       params={{ slug: article.slug }}
       className="group relative block h-[100svh] min-h-[560px] w-full overflow-hidden bg-ink"
     >
-      <img
-        src={article.heroImage}
-        alt={article.title}
-        className="ken-burns absolute inset-0 h-full w-full object-cover"
-      />
+      {article.heroImage && (
+        <img
+          src={article.heroImage}
+          alt={article.title}
+          className="ken-burns absolute inset-0 h-full w-full object-cover"
+        />
+      )}
       <div className="brand-photo-overlay absolute inset-0" />
 
       <div className="absolute inset-x-0 bottom-0 px-6 pb-14 sm:pb-20">
@@ -143,14 +145,16 @@ function Featured({ article }: { article: JournalArticle }) {
 function ArticleCard({ article }: { article: JournalArticle }) {
   return (
     <Link to="/journal/$slug" params={{ slug: article.slug }} className="group block">
-      <div className="aspect-[3/2] overflow-hidden bg-stone/20">
-        <img
-          src={article.heroImage}
-          alt={article.title}
-          loading="lazy"
-          className="card-img h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
-        />
-      </div>
+      {article.heroImage && (
+        <div className="aspect-[3/2] overflow-hidden bg-stone/20">
+          <img
+            src={article.heroImage}
+            alt={article.title}
+            loading="lazy"
+            className="card-img h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.03]"
+          />
+        </div>
+      )}
       <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-sage">
         {CATEGORY_LABEL[article.category]}
       </p>

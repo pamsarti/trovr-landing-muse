@@ -1,4 +1,4 @@
-import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, Link, useNavigate, notFound } from "@tanstack/react-router";
 import { lazy, Suspense, useEffect, useMemo, useRef, useState } from "react";
 import {
   ACTIVITIES,
@@ -20,6 +20,9 @@ const SpotsMap = lazy(() =>
 );
 
 export const Route = createFileRoute("/spots/")({
+  beforeLoad: () => {
+    throw notFound();
+  },
   validateSearch: validateSpotsSearch,
   head: () => ({
     meta: [

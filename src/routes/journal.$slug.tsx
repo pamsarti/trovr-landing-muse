@@ -26,7 +26,7 @@ export const Route = createFileRoute("/journal/$slug")({
       "Conteúdo, guias e contexto para conhecer lugares além dos roteiros turísticos de sempre.";
     const path = `/journal/${params.slug}`;
     const url = absoluteUrl(path);
-    const image = a ? absoluteUrl(a.ogImage ?? a.heroImage) : undefined;
+    const image = a?.heroImage ? absoluteUrl(a.heroImage) : undefined;
     const meta: Array<Record<string, string>> = [
       { title },
       { name: "description", content: desc },
@@ -170,15 +170,17 @@ function ArticlePage() {
           </p>
         </header>
 
-        <figure className="mx-auto mt-12 max-w-5xl px-0 sm:mt-16 sm:px-6">
-          <div className="aspect-[16/9] overflow-hidden bg-stone/20">
-            <img
-              src={article.heroImage}
-              alt={article.title}
-              className="h-full w-full object-cover"
-            />
-          </div>
-        </figure>
+        {article.heroImage && (
+          <figure className="mx-auto mt-12 max-w-5xl px-0 sm:mt-16 sm:px-6">
+            <div className="aspect-[16/9] overflow-hidden bg-stone/20">
+              <img
+                src={article.heroImage}
+                alt={article.title}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          </figure>
+        )}
 
         {article.keyFacts && article.keyFacts.length > 0 && (
           <aside
@@ -277,14 +279,16 @@ function ArticlePage() {
 function ReadNextCard({ article }: { article: JournalArticle }) {
   return (
     <Link to="/journal/$slug" params={{ slug: article.slug }} className="group block">
-      <div className="aspect-[16/9] overflow-hidden bg-stone/20">
-        <img
-          src={article.heroImage}
-          alt={article.title}
-          loading="lazy"
-          className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
-        />
-      </div>
+      {article.heroImage && (
+        <div className="aspect-[16/9] overflow-hidden bg-stone/20">
+          <img
+            src={article.heroImage}
+            alt={article.title}
+            loading="lazy"
+            className="h-full w-full object-cover transition-transform duration-[1200ms] group-hover:scale-[1.02]"
+          />
+        </div>
+      )}
       <p className="mt-5 text-[11px] uppercase tracking-[0.2em] text-stone">
         {CATEGORY_LABEL[article.category]}
       </p>

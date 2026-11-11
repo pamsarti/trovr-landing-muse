@@ -14,6 +14,9 @@ import {
 } from "@/components/spots/SpotsChrome";
 
 export const Route = createFileRoute("/spots/$continent/")({
+  beforeLoad: () => {
+    throw notFound();
+  },
   validateSearch: validateSpotsSearch,
   loaderDeps: ({ search }) => ({ activity: search.activity }),
   head: ({ params, loaderData }) => {

@@ -48,9 +48,23 @@ type ArticlePtOverlay = Partial<
   >
 >;
 const articleOverlays: Readonly<Record<string, ArticlePtOverlay>> = JOURNAL_ARTICLES_PT;
+function withoutUnverifiedPhotos(body: string): string {
+  return body
+      .replace(/<figure\b[^>]*>[\s\S]*?<\/figure>/gi, (figure) =>
+        /<img\b/i.test(figure) ? "" : figure,
+      )
+      .replace(/<img\b[^>]*>/gi, "")
+      .replace(/<div\b[^>]*>\s*<\/div>/gi, "");
+}
+
 const ALL = (articlesJson as unknown as JournalArticle[]).map((article) => ({
   ...article,
   ...articleOverlays[article.slug],
+  body: withoutUnverifiedPhotos(articleOverlays[article.slug]?.body ?? article.body),
+  heroImage: article.slug === "providencia-colombia-island-guide"
+    ? "/images/hero/providencia-licensed.webp"
+    : "",
+  ogImage: undefined,
 }));
 
 export function getPublishedArticles(): JournalArticle[] {

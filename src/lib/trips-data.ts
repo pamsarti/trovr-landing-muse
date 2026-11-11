@@ -31,6 +31,7 @@ export type Trip = {
   image: string;
   source_url: string;
   status: "coming-soon" | "active";
+  hidden?: boolean;
 };
 
 type TripPtOverlay = Partial<
@@ -38,7 +39,7 @@ type TripPtOverlay = Partial<
 > & { seasonDisplay?: string };
 
 const tripOverlays = (rawTripsPt as { trips: Record<string, TripPtOverlay> }).trips;
-export const ALL_TRIPS = (rawTrips as Trip[]).map((trip) => {
+export const ALL_TRIPS = (rawTrips as Trip[]).filter((trip) => !trip.hidden).map((trip) => {
   const overlay = tripOverlays[trip.id];
   return {
     ...trip,
@@ -183,30 +184,23 @@ export type Theme = {
 export const THEMES: Theme[] = [
   {
     slug: "asks-something",
-    title: "Nas ondas e na neve",
-    subtitle: "Surfe em Chicama ou combine esqui e vela na Noruega.",
-    image: "/images/hero/noruega-esqui-vela-v2.webp",
-    matches: (t) => t.activity === "surf" || t.activity === "ski-sail",
+    title: "Nas ondas",
+    subtitle: "Surfe a longa esquerda de Chicama.",
+    image: "/images/hero/chicama-surfe-v3.webp",
+    matches: (t) => t.activity === "surf",
   },
   {
     slug: "live-aboard",
     title: "Dias a bordo",
-    subtitle: "Navegue entre pontos de kite ou atravesse os Andes de trem.",
-    image: "/images/hero/andean-explorer-v3.webp",
-    matches: (t) => t.activity === "kite" || t.activity === "rail",
-  },
-  {
-    slug: "off-grid",
-    title: "Do deserto à savana",
-    subtitle: "Cavalgue em AlUla ou sobrevoe o Serengeti de balão.",
-    image: "/images/hero/alula-cavalgada-v3.webp",
-    matches: (t) => t.activity === "horseback" || t.activity === "balloon",
+    subtitle: "Navegue entre pontos de kitesurf.",
+    image: "/images/hero/kite-licensed.webp",
+    matches: (t) => t.activity === "kite",
   },
   {
     slug: "cultural-depth",
     title: "Encontros debaixo d’água",
     subtitle: "Nade com jubartes em Tonga ou mergulhe com tubarões em Providencia.",
-    image: "/images/hero/providencia-tubaroes-v3.webp",
+    image: "/images/hero/providencia-licensed.webp",
     matches: (t) => t.activity === "wildlife" || t.activity === "diving",
   },
 ];

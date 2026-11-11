@@ -113,7 +113,6 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
                 "@id": "https://trovr.com.br/#organization",
                 name: "Trovr",
                 url: "https://trovr.com.br",
-                logo: "https://trovr.com.br/images/providencia-hero.jpg",
                 description: t.seo.siteDescription,
                 founder: { "@type": "Person", name: "Pamela Sarti" },
               },

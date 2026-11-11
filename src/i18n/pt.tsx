@@ -48,7 +48,7 @@ export const pt = {
       </>
     ),
     heroBody:
-      "Cavalgar no deserto de AlUla, sair de barco para nadar com baleias jubartes em Tonga ou surfar a longa esquerda de Chicama. Escolha o que você quer viver e descubra onde essa viagem pode começar.",
+      "Sair de barco para nadar com baleias jubartes em Tonga, surfar a longa esquerda de Chicama ou mergulhar com tubarões em Providencia. Escolha o que você quer viver e descubra onde essa viagem pode começar.",
     primaryCta: "Explorar lugares",
     secondaryCta: "Crie sua viagem",
     pauseGallery: "Pausar galeria de imagens",
@@ -95,7 +95,7 @@ export const pt = {
     serviceKicker: "Viagem Trovr",
     serviceTitle: "Uma viagem que começa pelo que você quer viver.",
     serviceBody:
-      "Talvez você queira surfar a longa esquerda de Chicama, passar alguns dias fazendo kitesurf a bordo, ver o Serengeti de balão ao amanhecer ou sair de barco para mergulhar com tubarões em Providencia. A Trovr ajuda a transformar o que você quer viver num roteiro que caiba nas suas datas e no seu ritmo.",
+      "Talvez você queira surfar a longa esquerda de Chicama, passar alguns dias fazendo kitesurf a bordo ou sair de barco para mergulhar com tubarões em Providencia. A Trovr ajuda a transformar o que você quer viver num roteiro que caiba nas suas datas e no seu ritmo.",
     serviceDisclaimer:
       "Você pode começar mesmo sem destino definido. A candidatura não gera cobrança nem contratação automática.",
     serviceCta: "Conhecer a Viagem Trovr",
@@ -377,7 +377,7 @@ export const pt = {
       "Artigos, notícias, guias, cultura local e experiências para conhecer destinos além dos pontos turísticos e planejar viagens fora do óbvio.",
     tripsTitle: "Viagens por esporte, experiência e conceito | Trovr",
     tripsDescription:
-      "Conheça as oito experiências de viagem da Trovr, da cavalgada no deserto de AlUla ao mergulho com tubarões em Providencia.",
+      "Conheça as experiências da Trovr ligadas ao mar, do surfe em Chicama ao mergulho com tubarões em Providencia.",
     comingSoonTitle: "Em Breve — Trovr",
     comingSoonDescription: "Esta expedição chega em breve.",
   },

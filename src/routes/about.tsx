@@ -68,18 +68,8 @@ function AboutPage() {
 }
 
 const HERO_SLIDES = [
-  {
-    src: "/images/providencia-hero.jpg",
-    alt: "Mar azul e natureza em Providencia, Colômbia",
-  },
-  {
-    src: "/images/thailand-hero.jpg",
-    alt: "Mar e formações naturais na Tailândia",
-  },
-  {
-    src: "/images/alula-horseback-1.jpg",
-    alt: "Cavalgada entre as formações rochosas de AlUla",
-  },
+  { src: "/images/hero/providencia-licensed.webp", alt: "Cayo Cangrejo, Providencia" },
+  { src: "/images/seychelles-island-5039305.webp", alt: "Ilha nas Seychelles" },
 ];
 
 function Hero() {

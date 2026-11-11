@@ -6,7 +6,7 @@ import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
 
-import { applySpotOverlay, isPublicSpot, slugify, PUBLIC_STATIC_PATHS } from "../src/lib/public-content.ts";
+import { PUBLIC_STATIC_PATHS } from "../src/lib/public-content.ts";
 
 const SITE = "https://trovr.com.br";
 
@@ -18,8 +18,6 @@ function readJson(rel) {
 }
 
 const journal = readJson("src/data/journal-articles.json");
-const overlays = readJson("src/data/spots.pt.json").spots;
-const spots = readJson("src/data/spots.json").map((spot) => applySpotOverlay(spot, overlays[spot.id]));
 
 const urls = [];
 const push = (path) => urls.push(`${SITE}${path}`);
@@ -31,15 +29,6 @@ staticPaths.forEach(push);
 // Journal (published only)
 const publishedJournal = journal.filter((a) => a.status === "published");
 publishedJournal.forEach((a) => push(`/journal/${a.slug}`));
-
-// Use the same translated content, slugs and visibility rules as public loaders.
-const publicSpots = spots.filter(isPublicSpot);
-publicSpots.forEach((s) => {
-  const continent = slugify(s.region);
-  const region = slugify(s.city);
-  const spot = slugify(s.name);
-  push(`/spots/${continent}/${region}/${spot}`);
-});
 
 // Build XML
 const xml = [
@@ -57,5 +46,4 @@ writeFileSync(resolve(outDir, "sitemap.xml"), xml, "utf8");
 console.log("[sitemap] Written to public/sitemap.xml");
 console.log(`  static routes : ${staticPaths.length}`);
 console.log(`  journal posts : ${publishedJournal.length}`);
-console.log(`  spots         : ${publicSpots.length}`);
 console.log(`  TOTAL urls    : ${urls.length}`);
