@@ -9,6 +9,7 @@ import { TrovrWelcomeWall } from "@/components/TrovrWelcomeWall";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { useT } from "@/i18n/useT";
 import { seoT } from "@/i18n/seoT";
+import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
 import { trackEvent } from "@/lib/analytics";
 
 export const Route = createFileRoute("/")({
@@ -67,30 +68,29 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-type HeroSlide = { src: string; alt: string; caption: string };
-
-const HERO_SLIDES: HeroSlide[] = [
+const HERO_SLIDES = [
   {
-    src: "/images/hero/tonga-licensed.webp",
-    alt: "Baleia jubarte nas águas de Vava’u, Tonga",
+    id: "tonga-jubartes",
     caption: "Sair de barco para nadar com baleias jubartes · Tonga",
   },
   {
-    src: "/images/hero/chicama-surfe-v3.webp",
-    alt: "Onda na costa de Chicama",
+    id: "chicama-surfe",
     caption: "Surfar a longa esquerda de Chicama · Peru",
   },
   {
-    src: "/images/hero/kite-licensed.webp",
-    alt: "Kitesurf no Mar Vermelho",
+    id: "kite-a-bordo",
     caption: "Praticar kitesurf em uma viagem a bordo",
   },
   {
-    src: "/images/hero/providencia-licensed.webp",
-    alt: "Cayo Cangrejo e o mar de Providencia",
+    id: "providencia-tubaroes",
     caption: "Mergulhar com tubarões em Providencia · Colômbia",
   },
 ];
+
+const slidesWithPhotos = HERO_SLIDES.flatMap(({ id, caption }) => {
+  const photo = TRIP_HERO_PHOTOS[id];
+  return photo ? [{ ...photo, caption }] : [];
+});
 
 function firstSentence(text: string): string {
   const match = text.match(/^.*?[.!?](\s|$)/);
@@ -117,7 +117,7 @@ function Index() {
 
 function Hero() {
   const t = useT();
-  const slides = HERO_SLIDES;
+  const slides = slidesWithPhotos;
   const [active, setActive] = useState(0);
   const [paused, setPaused] = useState(false);
   const [reduceMotion, setReduceMotion] = useState(false);
@@ -175,7 +175,7 @@ function Hero() {
           aria-hidden={index !== active}
           fetchPriority={index === 0 ? "high" : "auto"}
           className="hero-slide absolute inset-0 h-full w-full object-cover transition-opacity duration-700 motion-reduce:transition-none"
-          style={{ opacity: index === active ? 1 : 0 }}
+          style={{ opacity: index === active ? 1 : 0, objectPosition: slide.objectPosition }}
         />
       ))}
       <div
@@ -190,6 +190,7 @@ function Hero() {
           </h1>
           <p aria-live={paused ? "polite" : "off"} className="max-w-72 text-pretty text-sm leading-snug text-paper md:text-right">
             {slides[active].caption}
+            <span className="block text-xs text-paper/80">Foto ilustrativa</span>
           </p>
         </div>
 

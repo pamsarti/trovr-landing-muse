@@ -1,3 +1,5 @@
+import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
+
 export function TripPhotoCredits() {
   return (
     <p className="px-6 py-3 text-center text-xs text-stone">
@@ -18,6 +20,13 @@ export function TripPhotoCredits() {
       <a className="underline" href="https://unsplash.com/photos/person-surfing-on-sea-during-daytime-mC-VMdFSr1w">
         Kitesurf, Raimond Klavins
       </a>.
+      {" Fotos ilustrativas dos carrosséis: "}
+      {Object.values(TRIP_HERO_PHOTOS).map((photo, index) => photo && (
+        <span key={photo.src}>
+          {index > 0 && " · "}
+          <a className="underline" href={photo.source}>{photo.credit}</a>
+        </span>
+      ))}.
       Imagens em WebP, com recorte na exibição.
     </p>
   );

@@ -21,6 +21,7 @@ import {
   TripsFooter,
   TripCard,
 } from "@/components/trips/TripsChrome";
+import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 
 export const Route = createFileRoute("/trips/")({
@@ -62,13 +63,18 @@ function TripsIndex() {
 
 /* ----- Section 1: hero rotator ----- */
 
+const featuredSlides = FEATURED.map((slide) => ({
+  ...slide,
+  photo: TRIP_HERO_PHOTOS[slide.trip.id],
+}));
+
 function HeroRotator() {
   const [i, setI] = useState(0);
   const [paused, setPaused] = useState(false);
 
   useEffect(() => {
     if (paused) return;
-    const t = setInterval(() => setI((n) => (n + 1) % FEATURED.length), 7000);
+    const t = setInterval(() => setI((n) => (n + 1) % featuredSlides.length), 7000);
     return () => clearInterval(t);
   }, [paused]);
 
@@ -78,7 +84,7 @@ function HeroRotator() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {FEATURED.map((f, idx) => (
+      {featuredSlides.map((f, idx) => (
         <div
           key={f.trip.id}
           className="absolute inset-0 transition-opacity duration-1000 ease-in-out"
@@ -86,15 +92,16 @@ function HeroRotator() {
           aria-hidden={idx !== i}
         >
           <img
-            src={tripImage(f.trip)}
-            alt={f.trip.destination}
+            src={f.photo?.src ?? tripImage(f.trip)}
+            alt={f.photo?.alt ?? f.trip.destination}
+            style={{ objectPosition: f.photo?.objectPosition }}
             className="h-full w-full object-cover"
           />
           <div className="brand-photo-overlay absolute inset-0" />
           <div className="absolute inset-0 flex flex-col justify-end px-6 pb-20 sm:px-12 sm:pb-24">
             <div className="mx-auto w-full max-w-5xl">
               <p className="text-[10px] uppercase tracking-[0.25em] text-paper/80">
-                {[f.trip.country, ACTIVITY_LABEL[f.trip.activity]].filter(Boolean).join(" · ")}
+                {[f.trip.country, ACTIVITY_LABEL[f.trip.activity], f.photo && "Foto ilustrativa"].filter(Boolean).join(" · ")}
               </p>
               <h2 className="mt-4 font-serif text-4xl leading-tight text-paper sm:text-6xl">
                 {f.trip.destination}
@@ -117,7 +124,7 @@ function HeroRotator() {
       ))}
 
       <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 gap-2">
-        {FEATURED.map((_, idx) => (
+        {featuredSlides.map((_, idx) => (
           <button
             key={idx}
             onClick={() => setI(idx)}
