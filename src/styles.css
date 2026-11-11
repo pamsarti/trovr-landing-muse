@@ -707,6 +707,7 @@
 }
 
 .experience-site :is(h1, h2, h3) { font-weight: 350; }
+.experience-site :is(em, i, .italic) { font-style: normal; }
 .experience-site .experience-header nav a:last-child,
 .experience-button-filled {
   border-radius: 999px;
