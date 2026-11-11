@@ -121,7 +121,7 @@ function TripDetail() {
         {copy ? (
           <>
             <a href="#interesse" className="experience-button mt-6">
-              {copy.soon ? "Quero receber novidades" : "Quero conversar sobre essa experiência"}
+              {copy.soon ? "Quero receber novidades" : "Conversar sobre esta viagem"}
             </a>
             <section className="mt-9"><h2>O que você vai viver</h2><p>{copy.scene}</p></section>
             <section className="mt-9"><h2>O que vale saber</h2><p>{copy.practical}</p></section>

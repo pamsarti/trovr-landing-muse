@@ -118,6 +118,11 @@ export function InquireForm({
           </>
         )}
       </div>
+      {tripId && !soon && (
+        <p className="mt-5 text-sm text-stone">
+          Depois do envio, a Trovr entra em contato por e-mail para conversar sobre a época, como você quer viajar e os próximos passos.
+        </p>
+      )}
       {error && <p className="mt-4 text-sm text-red-600">{t.inquiry.error}</p>}
       <button
         type="submit"

@@ -106,7 +106,7 @@ function HeroRotator() {
             className={f.copy?.soon ? "experience-photo-muted h-full w-full object-cover" : "h-full w-full object-cover"}
           />
           <div className="experience-trips-overlay absolute inset-0" />
-          <div className="absolute inset-0 flex flex-col justify-end px-6 pb-20 sm:px-12 sm:pb-24">
+          <div className="absolute inset-0 flex flex-col justify-end px-6 pb-28 sm:px-12 sm:pb-28">
             <div className="mx-auto w-full max-w-5xl">
               <p className="text-[10px] uppercase tracking-[0.25em] text-paper/80">
                 {[f.copy?.place, f.copy?.type, f.copy?.soon && "Em breve"].filter(Boolean).join(" · ")}
@@ -123,13 +123,20 @@ function HeroRotator() {
                   params={{ id: f.trip.id }}
                   className="text-[11px] uppercase tracking-[0.2em] text-paper/90 underline-offset-4 hover:underline"
                 >
-                  Entender a experiência →
+                  Ver esta viagem →
                 </Link>
               </div>
             </div>
           </div>
         </div>
       ))}
+
+      <a
+        href="#experiencias"
+        className="absolute bottom-16 left-6 z-10 text-xs text-paper underline underline-offset-4 sm:left-12"
+      >
+        Ver todas as experiências ↓
+      </a>
 
       <div className="absolute bottom-6 left-1/2 z-10 flex -translate-x-1/2 items-center gap-2">
         {featuredSlides.map(({ trip }, idx) => (

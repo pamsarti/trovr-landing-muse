@@ -10,7 +10,7 @@ export const experiences = Object.keys(TRIP_PRESENTATION).flatMap((id) => {
 
 export function ExperienceGrid({ home = false }: { home?: boolean }) {
   return (
-    <section className="experience-section">
+    <section className="experience-section scroll-mt-20" id={home ? undefined : "experiencias"}>
       {home ? (
         <>
           <h2>O que você quer viver na próxima viagem?</h2>
@@ -24,7 +24,24 @@ export function ExperienceGrid({ home = false }: { home?: boolean }) {
         </>
       )}
       <div className={home ? "mt-10 grid gap-10 sm:grid-cols-2" : "mt-10 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"}>
-        {experiences.map((trip) => <TripCard key={trip.id} trip={trip} presentation />)}
+        {experiences.map((trip) => {
+          const copy = TRIP_PRESENTATION[trip.id];
+          return (
+            <div key={trip.id}>
+              <TripCard trip={trip} presentation />
+              {!home && copy?.story && (
+                <Link to="/journal/$slug" params={{ slug: "providencia-colombia-island-guide" }} className="mx-1 text-sm underline underline-offset-4">
+                  Ler o relato de Providencia →
+                </Link>
+              )}
+              {!home && copy?.soon && (
+                <Link to="/trips/$id" params={{ id: trip.id }} hash="interesse" className="mx-1 text-sm underline underline-offset-4">
+                  Quero receber novidades →
+                </Link>
+              )}
+            </div>
+          );
+        })}
       </div>
     </section>
   );
