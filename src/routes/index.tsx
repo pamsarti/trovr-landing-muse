@@ -171,7 +171,6 @@ function Hero() {
           </div>
           <p aria-live={paused ? "polite" : "off"} className="max-w-72 text-pretty text-sm leading-snug text-paper md:text-right">
             <Link to="/trips/$id" params={{ id: slides[active].id }} className="underline underline-offset-4">{slides[active].caption}</Link>
-            <span className="block text-xs text-paper/80">Foto ilustrativa</span>
           </p>
         </div>
 

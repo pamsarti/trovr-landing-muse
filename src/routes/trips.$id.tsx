@@ -102,7 +102,6 @@ function TripDetail() {
             style={{ objectPosition: photo?.objectPosition }}
             className={copy?.soon ? "experience-photo-muted h-full w-full object-cover" : "h-full w-full object-cover"}
           />
-          {photo && <small className="absolute bottom-4 right-6 bg-paper px-2 py-1">Foto ilustrativa</small>}
         </div>
       </div>
 

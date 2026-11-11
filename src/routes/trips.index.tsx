@@ -126,7 +126,6 @@ function HeroRotator() {
                   Entender a experiência →
                 </Link>
               </div>
-              {f.photo && <small className="text-paper">Foto ilustrativa</small>}
             </div>
           </div>
         </div>
