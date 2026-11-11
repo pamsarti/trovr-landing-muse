@@ -175,7 +175,7 @@ function Hero() {
           </p>
         </div>
 
-        <div className="mt-2 flex items-center justify-center text-paper">
+        <div className="mt-2 flex items-center justify-end text-paper">
           <div role="group" aria-label="Escolher experiência" className="flex min-w-0">
             {slides.map((slide, index) => (
               <button
