@@ -1,3 +1,4 @@
+import { KiteTripPage } from "@/components/trips/KiteTripPage";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { InquireForm } from "@/components/trips/InquireForm";
 import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
@@ -88,6 +89,8 @@ function TripDetail() {
   const copy = TRIP_PRESENTATION[trip.id];
   const photo = copy ? TRIP_HERO_PHOTOS[trip.id] : undefined;
   const related = copy ? [] : relatedFor(trip);
+
+  if (trip.id === "kite-a-bordo") return <KiteTripPage trip={trip} />;
 
   return (
     <main className="experience-site bg-paper text-ink font-sans antialiased">
