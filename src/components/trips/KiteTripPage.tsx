@@ -1,26 +1,17 @@
 import { Link } from "@tanstack/react-router";
-import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
+import { TripOpening } from "./TripOpening";
 import type { Trip } from "@/lib/trips-data";
 import { InquireForm } from "./InquireForm";
 import { TripsFooter, TripsHeader } from "./TripsChrome";
 import "./kite-trip.css";
 
 export function KiteTripPage({ trip }: { trip: Trip }) {
-  const photo = TRIP_HERO_PHOTOS[trip.id];
-  if (!photo) throw new Error("Missing kite trip hero photo");
 
   return (
     <main className="experience-site bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" experience />
     <div className="kite-page">
-      <section className="kite-hero">
-        <img src={photo.src} alt={photo.alt} data-photo="k1" style={{ objectPosition: photo.objectPosition }} />
-        <div className="kite-hero-copy">
-          <p className="kite-kicker">Trovr · Em breve</p>
-          <h1>Kitesurf<br />a bordo</h1>
-          <a href="#experiencia">Conheça a experiência ↓</a>
-        </div>
-      </section>
+      <TripOpening trip={trip} />
       <figure className="kite-wide"><img src="https://images.pexels.com/photos/7941991/pexels-photo-7941991.jpeg?auto=compress&w=2400" alt="Catamarã visto de cima sobre um recife" loading="lazy" /></figure>
       <nav className="kite-nav" aria-label="Nesta ficha">
         <a href="#experiencia">A experiência</a><a href="#dia-a-dia">Dia a dia</a>

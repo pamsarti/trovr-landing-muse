@@ -2,13 +2,11 @@ import { KiteTripPage } from "@/components/trips/KiteTripPage";
 import { createFileRoute, Link, notFound } from "@tanstack/react-router";
 import { InquireForm } from "@/components/trips/InquireForm";
 import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
-import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
+import { TripOpening } from "@/components/trips/TripOpening";
 import {
-  ACTIVITY_LABEL,
   durationLabel,
   findTrip,
   ALL_TRIPS,
-  tripImage,
   type Trip,
 } from "@/lib/trips-data";
 import { TripsHeader, TripsFooter, TripCard } from "@/components/trips/TripsChrome";
@@ -87,7 +85,6 @@ function TripDetail() {
   const { trip } = Route.useLoaderData() as { trip: Trip };
   const t = useT();
   const copy = TRIP_PRESENTATION[trip.id];
-  const photo = copy ? TRIP_HERO_PHOTOS[trip.id] : undefined;
   const related = copy ? [] : relatedFor(trip);
 
   if (trip.id === "kite-a-bordo") return <KiteTripPage trip={trip} />;
@@ -96,36 +93,12 @@ function TripDetail() {
     <main className="experience-site bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" experience />
 
-      <div className="w-full">
-        <div className="relative aspect-video w-full overflow-hidden bg-stone/10">
-          <img
-            src={photo?.src ?? tripImage(trip)}
-            alt={photo?.alt ?? trip.destination}
-            data-photo={photo?.src.split("/").pop()?.split(".")[0]}
-            style={{ objectPosition: photo?.objectPosition }}
-            className={copy?.soon ? "experience-photo-muted h-full w-full object-cover" : "h-full w-full object-cover"}
-          />
-        </div>
-      </div>
+      <TripOpening trip={trip} />
 
       <article className="mx-auto max-w-3xl px-6 py-12 sm:py-16">
         <Link to="/trips" className="mb-5 inline-block underline">← Todas as experiências</Link>
-        {copy?.soon && <p className="mb-3 text-sm">Em breve</p>}
-        <p className="text-[11px] uppercase tracking-[0.2em] text-stone">
-          {(copy ? [copy.place, copy.type] : [trip.country, ACTIVITY_LABEL[trip.activity]]).filter(Boolean).join(" · ")}
-        </p>
-        <h1 className="mt-4 font-serif text-4xl leading-tight text-ink sm:text-5xl">
-          {copy?.title ?? trip.destination}
-        </h1>
-        <p className="mt-8 font-serif text-lg leading-relaxed text-ink/90 sm:text-xl">
-          {copy?.summary ?? trip.detail}
-        </p>
-
         {copy ? (
           <>
-            <a href="#interesse" className="experience-button mt-6">
-              {copy.soon ? "Quero receber novidades" : "Conversar sobre esta viagem"}
-            </a>
             <section className="mt-9"><h2>O que você vai viver</h2><p>{copy.scene}</p></section>
             <section className="mt-9"><h2>O que vale saber</h2><p>{copy.practical}</p></section>
             {copy.story && (

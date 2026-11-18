@@ -1,0 +1,60 @@
+.trip-opening {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  align-items: end;
+  min-height: 78svh;
+  overflow: hidden;
+  background: #234d4b;
+  color: #fff;
+}
+.trip-opening > img {
+  position: absolute;
+  inset: 0;
+  z-index: -2;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.trip-opening::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: linear-gradient(0deg, rgb(10 26 28 / .88), rgb(10 26 28 / .35) 58%, transparent);
+}
+.trip-opening-copy {
+  width: min(1320px, 92%);
+  margin-inline: auto;
+  padding-block: clamp(40px, 6vw, 80px);
+}
+.trip-opening-status { margin-bottom: 12px; font-size: 1rem; }
+.trip-opening-label { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; }
+.experience-site .trip-opening h1 {
+  max-width: 1050px;
+  margin: 18px 0 24px;
+  font-family: var(--font-serif);
+  font-size: clamp(2.35rem, 5.3vw, 5.5rem);
+  font-weight: 350;
+  line-height: 1.08;
+  letter-spacing: -.035em;
+  color: inherit;
+}
+.trip-opening-summary {
+  max-width: 760px;
+  margin-bottom: 24px;
+  font-size: clamp(1.05rem, 1.65vw, 1.4rem);
+  line-height: 1.5;
+}
+.trip-opening .experience-button {
+  max-width: 100%;
+  border-color: rgb(255 255 255 / .7);
+  color: white;
+  text-align: center;
+}
+.trip-opening .experience-button:hover { background: #e7ebdf; color: #394837; }
+@media (max-width: 700px) {
+  .trip-opening { min-height: 78svh; }
+  .trip-opening-copy { padding-block: 36px; }
+}
