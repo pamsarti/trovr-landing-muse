@@ -62,7 +62,7 @@ export function KiteTripPage({ trip }: { trip: Trip }) {
           <h2>Sua próxima viagem<br />começa com uma conversa.</h2>
           <p>Fale com a Trovr e acompanhe o que vem por aí.</p>
           <div className="kite-contact-actions">
-            <button type="button" aria-disabled="true" title="Prévia visual — link do WhatsApp em configuração"><MessageCircle aria-hidden="true" size={22} />WhatsApp</button>
+            <a href="https://wa.me/5511936215678" target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" size={22} />WhatsApp</a>
             <a href="https://www.instagram.com/_trovr/" target="_blank" rel="noopener noreferrer"><Instagram aria-hidden="true" size={22} />Instagram</a>
           </div>
           <details className="kite-contact-email">
