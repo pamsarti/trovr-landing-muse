@@ -1,1 +1,2 @@
 https://trovragency.netlify.app/*  https://trovr.com.br/:splat  301!
+/oauth/tiktok/callback  https://backend.composio.dev/api/v3/toolkits/auth/callback  302!
