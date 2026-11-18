@@ -91,7 +91,7 @@ function TripDetail() {
 
   return (
     <main className="experience-site bg-paper text-ink font-sans antialiased">
-      <TripsHeader current="trips" experience />
+      <TripsHeader current="trips" experience transparent />
 
       <TripOpening trip={trip} />
 

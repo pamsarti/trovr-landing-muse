@@ -7,8 +7,8 @@ import { tripImage, tripTag, ACTIVITY_LABEL, durationLabel } from "@/lib/trips-d
 import { SiteHeader } from "@/components/SiteHeader";
 import { useT } from "@/i18n/useT";
 
-export function TripsHeader({ experience = false }: { current?: string; experience?: boolean } = {}) {
-  return <SiteHeader experience={experience} />;
+export function TripsHeader({ experience = false, transparent = false }: { current?: string; experience?: boolean; transparent?: boolean } = {}) {
+  return <SiteHeader experience={experience} transparent={transparent} fixed={!transparent} />;
 }
 
 export function TripsFooter() {
@@ -16,8 +16,8 @@ export function TripsFooter() {
   return (
     <footer className="border-t border-stone/20 px-6 py-16">
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
-        <p className="font-serif text-4xl uppercase tracking-[0.04em] text-ink">TROVR</p>
-        <p className="font-serif text-sm italic text-stone">{t.footer.tagline}</p>
+        <p className="font-serif text-5xl sm:text-6xl uppercase tracking-[0.04em] text-ink">TROVR</p>
+        <p className="font-serif text-xl sm:text-2xl text-ink">{t.footer.tagline}</p>
         <TripPhotoCredits />
       </div>
     </footer>

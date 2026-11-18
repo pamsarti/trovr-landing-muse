@@ -1,32 +1,31 @@
-import { Link } from "@tanstack/react-router";
 import { TripOpening } from "./TripOpening";
 import type { Trip } from "@/lib/trips-data";
 import { InquireForm } from "./InquireForm";
-import { TripsFooter, TripsHeader } from "./TripsChrome";
+import { Instagram, MessageCircle } from "lucide-react";
+import { TripsHeader } from "./TripsChrome";
 import "./kite-trip.css";
 
 export function KiteTripPage({ trip }: { trip: Trip }) {
 
   return (
     <main className="experience-site bg-paper text-ink font-sans antialiased">
-      <TripsHeader current="trips" experience />
+      <TripsHeader current="trips" experience transparent />
     <div className="kite-page">
       <TripOpening trip={trip} />
-      <figure className="kite-wide"><img src="https://images.pexels.com/photos/7941991/pexels-photo-7941991.jpeg?auto=compress&w=2400" alt="Catamarã visto de cima sobre um recife" loading="lazy" /></figure>
       <nav className="kite-nav" aria-label="Nesta ficha">
         <a href="#experiencia">A experiência</a><a href="#dia-a-dia">Dia a dia</a>
         <a href="#gastronomia">Gastronomia</a><a href="#mais-tempo">Mais tempo no mar</a>
         <a href="#inclusoes">O que está incluído</a>
       </nav>
-      <section id="experiencia" className="kite-shell kite-section">
-        <div className="kite-intro">
+      <section id="experiencia" className="kite-shell kite-section kite-split kite-experience">
+        <div>
           <p className="kite-kicker">A experiência</p>
-          <div><h2>Do convés<br />para a água.</h2><p className="kite-lead">Você dorme a bordo e navega entre pontos de kitesurf. As condições do dia ajudam a definir onde velejar. Terminou a sessão? O barco é onde você volta para descansar.</p></div>
+          <h2>Do convés<br />para a água.</h2><p className="kite-lead">Você dorme a bordo e navega entre pontos de kitesurf. As condições do dia ajudam a definir onde velejar. Terminou a sessão? O barco é onde você volta para descansar.</p>
         </div>
         <figure className="kite-wide"><img src="https://images.pexels.com/photos/14762105/pexels-photo-14762105.jpeg?auto=compress&w=1800" alt="Kitesurfista velejando em mar turquesa, visto de cima" /></figure>
       </section>
       <section id="dia-a-dia" className="kite-shell kite-section kite-split">
-        <figure><img src="https://images.pexels.com/photos/35010455/pexels-photo-35010455.jpeg?auto=compress&w=1800" alt="Catamarã navegando em águas de Barbados" loading="lazy" /></figure>
+        <figure><img src="https://images.pexels.com/photos/7941991/pexels-photo-7941991.jpeg?auto=compress&w=1800" alt="Catamarã visto de cima sobre um recife" loading="lazy" /></figure>
         <div>
           <h2>Dia a dia</h2>
           <dl className="kite-rhythm">
@@ -56,26 +55,25 @@ export function KiteTripPage({ trip }: { trip: Trip }) {
         <ul className="kite-inclusions"><li>Hospedagem e refeições</li><li>Equipamento de kite</li><li>Apoio durante as sessões</li></ul>
         <figure className="kite-wide"><img src="https://images.pexels.com/photos/14762515/pexels-photo-14762515.jpeg?auto=compress&w=2400" alt="Kitesurfista velejando perto de uma faixa de areia, visto de cima" loading="lazy" /></figure>
       </section>
-      <figure className="kite-wide"><img src="https://images.pexels.com/photos/14762444/pexels-photo-14762444.jpeg?auto=compress&w=2400" alt="Vista aérea de kitesurf e de um iate junto à praia" loading="lazy" /></figure>
-      <section id="interesse" className="kite-section kite-close">
-        <div className="kite-shell"><InquireForm tripId={trip.id} tripName="Kitesurf a bordo" operator={trip.operator} soon /></div>
+      <section id="interesse" className="kite-contact">
+        <img src="https://images.pexels.com/photos/14762444/pexels-photo-14762444.jpeg?auto=compress&w=2400" alt="Vista aérea de kitesurf e de um iate junto à praia" loading="lazy" />
+        <div className="kite-contact-content">
+          <p className="kite-kicker">Kitesurf a bordo · Em breve</p>
+          <h2>Sua próxima viagem<br />começa com uma conversa.</h2>
+          <p>Fale com a Trovr e acompanhe o que vem por aí.</p>
+          <div className="kite-contact-actions">
+            <button type="button" aria-disabled="true" title="Prévia visual — link do WhatsApp em configuração"><MessageCircle aria-hidden="true" size={22} />WhatsApp</button>
+            <a href="https://www.instagram.com/_trovr/" target="_blank" rel="noopener noreferrer"><Instagram aria-hidden="true" size={22} />Instagram</a>
+          </div>
+          <details className="kite-contact-email">
+            <summary>Prefiro receber novidades por e-mail</summary>
+            <InquireForm tripId={trip.id} tripName="Kitesurf a bordo" operator={trip.operator} soon />
+          </details>
+          <p className="kite-contact-brand">TROVR</p>
+        </div>
       </section>
-      <div className="kite-shell kite-credits">
-        <Link to="/trips">← Todas as experiências</Link>
-        <p>Fotos no Pexels
-          {" · "}<a href="https://www.pexels.com/photo/14762450/">Iate</a>
-          {" · "}<a href="https://www.pexels.com/photo/7941991/">Recife</a>
-          {" · "}<a href="https://www.pexels.com/photo/14762105/">Sessão de kite</a>
-          {" · "}<a href="https://www.pexels.com/photo/35010455/">Barbados</a>
-          {" · "}<a href="https://www.pexels.com/photo/31372386/">Peixe</a>
-          {" · "}<a href="https://www.pexels.com/photo/37363605/">Brunch</a>
-          {" · "}<a href="https://www.pexels.com/photo/4784342/">Catamarã</a>
-          {" · "}<a href="https://www.pexels.com/photo/14762515/">Kite junto à ilha</a>
-          {" · "}<a href="https://www.pexels.com/photo/14762444/">Vista aérea</a>
-        </p>
-      </div>
+
     </div>
-      <TripsFooter />
     </main>
   );
 }

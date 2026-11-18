@@ -22,14 +22,14 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: linear-gradient(0deg, rgb(10 26 28 / .88), rgb(10 26 28 / .35) 58%, transparent);
+  background: linear-gradient(180deg, rgb(10 26 28 / .55), transparent 25%), linear-gradient(0deg, rgb(10 26 28 / .88), rgb(10 26 28 / .35) 58%, transparent);
 }
 .trip-opening-copy {
   width: min(1320px, 92%);
   margin-inline: auto;
-  padding-block: clamp(40px, 6vw, 80px);
+  padding-block: max(100px, 8vw) clamp(40px, 6vw, 80px);
 }
-.trip-opening-status { margin-bottom: 12px; font-size: 1rem; }
+.trip-opening-status { font-weight: 600; }
 .trip-opening-label { font-size: .75rem; letter-spacing: .16em; text-transform: uppercase; }
 .experience-site .trip-opening h1 {
   max-width: 1050px;
@@ -56,5 +56,9 @@
 .trip-opening .experience-button:hover { background: #e7ebdf; color: #394837; }
 @media (max-width: 700px) {
   .trip-opening { min-height: 78svh; }
-  .trip-opening-copy { padding-block: 36px; }
+  .trip-opening-copy { padding-block: 100px 36px; }
 }
+
+.trip-opening-copy { text-align: center; }
+.experience-site .trip-opening h1,
+.trip-opening-summary { margin-inline: auto; }

@@ -17,7 +17,7 @@ function isActive(pathname: string, match: string) {
   return pathname === match || pathname.startsWith(match + "/");
 }
 
-export function SiteHeader({ transparent = false, experience = false }: { transparent?: boolean; experience?: boolean } = {}) {
+export function SiteHeader({ transparent = false, experience = false, fixed = true }: { transparent?: boolean; experience?: boolean; fixed?: boolean } = {}) {
   const pathname = useActivePath();
   const t = useT();
   const [scrolled, setScrolled] = useState(false);
@@ -89,7 +89,7 @@ export function SiteHeader({ transparent = false, experience = false }: { transp
       <header
         className={[
           experience ? "experience-header" : "",
-          "fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:transition-none",
+          fixed ? "fixed top-0 left-0 right-0 z-40 transition-[background-color,border-color,backdrop-filter] duration-200 motion-reduce:transition-none" : "absolute top-0 left-0 right-0 z-40",
           scrolled ? "border-b border-[var(--line)]" : "border-b border-transparent",
         ].join(" ")}
         style={{

@@ -22,8 +22,7 @@ export function TripOpening({ trip }: { trip: Trip }) {
         fetchPriority="high"
       />
       <div className="trip-opening-copy">
-        {copy?.soon && <p className="trip-opening-status">Em breve</p>}
-        <p className="trip-opening-label">{label}</p>
+        <p className="trip-opening-label">{label}{copy?.soon && <span className="trip-opening-status"> — Em breve</span>}</p>
         <h1>{copy?.title ?? trip.destination}</h1>
         <p className="trip-opening-summary">{copy?.summary ?? trip.detail}</p>
         {copy && (

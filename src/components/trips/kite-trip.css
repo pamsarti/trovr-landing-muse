@@ -46,3 +46,40 @@
   .kite-food-pair figure:last-child { margin-top: 0; }
   .kite-wide img { aspect-ratio: 4/3; }
 }
+
+.kite-nav { justify-content: center; }
+.kite-food h2,
+#inclusoes { text-align: center; }
+#inclusoes .kite-lead { margin-inline: auto; }
+.kite-feature .kite-shell { text-align: center; }
+.kite-feature p { margin-inline: auto; }
+.kite-close .experience-form { margin-inline: auto; }
+.kite-close .experience-form h2,
+.kite-close .experience-form > p { text-align: center; }
+
+.kite-experience { padding-top: clamp(32px, 4vw, 56px); }
+.kite-experience h2 { font-size: clamp(2.7rem, 5vw, 4.8rem); }
+.kite-experience { padding-bottom: clamp(40px, 5vw, 64px); }
+#dia-a-dia { padding-top: 0; }
+#dia-a-dia img { object-position: 75% center; }
+
+.kite-signature { margin-top: 24px; text-align: center; font-family: var(--font-serif); font-size: 1.5rem; line-height: 1; letter-spacing: .04em; }
+.kite-close { padding-bottom: 24px; }
+
+
+.kite-contact { position: relative; isolation: isolate; padding: clamp(64px, 8vw, 112px) 24px 28px; background: #143938; color: #fff; text-align: center; }
+.kite-contact > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+.kite-contact::after { content: ""; position: absolute; inset: 0; background: linear-gradient(0deg, rgb(9 28 30 / .9), rgb(9 28 30 / .52)); z-index: -1; }
+.kite-contact-content { max-width: 900px; margin-inline: auto; }
+.kite-contact h2 { font-size: clamp(2.4rem, 5vw, 4.2rem); line-height: 1.1; margin-bottom: 24px; }
+.kite-contact-content > p:not(.kite-kicker):not(.kite-contact-brand) { font-size: 1.05rem; line-height: 1.5; }
+.kite-contact-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; max-width: 560px; margin: 36px auto 24px; }
+.kite-contact-actions :is(a, button) { display: flex; align-items: center; justify-content: center; gap: 14px; min-height: 64px; padding: 16px 24px; border: 1px solid rgb(255 255 255 / .65); background: rgb(251 249 244 / .08); color: #fff; font: 400 1rem/1.2 system-ui, sans-serif; text-decoration: none; transition: background .2s; }
+.kite-contact-actions a:hover { background: rgb(251 249 244 / .2); }
+.kite-contact-actions button[aria-disabled="true"] { cursor: default; }
+.kite-contact-email { max-width: 560px; margin-inline: auto; }
+.kite-contact-email summary { cursor: pointer; font-size: .85rem; text-underline-offset: 4px; text-decoration: underline; }
+.kite-contact-email .experience-form { margin-top: 32px; text-align: left; color: var(--ink); background: var(--paper); padding: 24px; }
+.kite-contact-email .experience-form h2 { font-size: 1.8rem; }
+.kite-contact-brand { margin-top: 64px; font-family: var(--font-serif); font-size: 1.5rem; letter-spacing: .04em; }
+@media (max-width: 480px) { .kite-contact-actions { gap: 12px; } .kite-contact-actions :is(a, button) { padding-inline: 10px; gap: 8px; } }
