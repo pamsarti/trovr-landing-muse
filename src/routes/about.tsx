@@ -5,6 +5,7 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SITE_URL, DEFAULT_OG_IMAGE } from "@/lib/seo";
 import { useT } from "@/i18n/useT";
+import { AboutStory } from "@/components/about/AboutStory";
 import { seoT } from "@/i18n/seoT";
 
 export const Route = createFileRoute("/about")({
@@ -137,18 +138,10 @@ function Hero() {
 
 function WhyExists() {
   const t = useT();
-  const paragraphs = [t.about.whyP1, t.about.whyP2, t.about.whyP3];
   return (
     <section className="relative bg-paper px-6 py-10 sm:py-14 md:py-16">
       <div className="mx-auto max-w-[720px] space-y-8">
-        {paragraphs.map((p, i) => (
-          <p
-            key={i}
-            className="font-serif text-lg leading-[1.6] text-ink sm:text-xl md:text-[22px]"
-          >
-            {p}
-          </p>
-        ))}
+        <AboutStory className="space-y-8 font-serif text-lg leading-[1.6] text-ink sm:text-xl md:text-[22px]" />
         <Link
           to="/roteiro"
           data-analytics-event="open_contact"

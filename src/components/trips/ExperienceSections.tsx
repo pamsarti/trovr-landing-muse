@@ -1,3 +1,4 @@
+import { AboutStory } from "@/components/about/AboutStory";
 import { Link } from "@tanstack/react-router";
 import { ALL_TRIPS } from "@/lib/trips-data";
 import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
@@ -65,7 +66,7 @@ export function ExperienceAbout() {
     <section className="experience-section" id="sobre">
       <p className="experience-label">Sobre a Trovr</p>
       <h2>A vontade de viver algo dá o primeiro passo.</h2>
-      <p className="experience-lead">A Trovr nasceu das viagens da Pamela e da curiosidade de saber o que muda quando a gente escolhe um lugar pelo que pode viver ali. Selecionamos experiências em que o esporte e a natureza dão forma à viagem e conversamos com você sobre como torná-la possível.</p>
+      <AboutStory className="experience-lead space-y-6" />
       <Link to="/journal/$slug" params={{ slug: "providencia-colombia-island-guide" }} className="mt-4 inline-block underline">Leia o relato de Providencia no Diário de Campo →</Link>
     </section>
   );
