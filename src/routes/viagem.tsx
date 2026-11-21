@@ -380,7 +380,7 @@ function ViagemPage() {
 
   return (
     <main
-      className={`viagem-immersive viagem-visual-${visual} bg-ink text-paper`}
+      className={`trovr-public viagem-immersive viagem-visual-${visual} bg-ink text-paper`}
       data-visual-variant={visual}
     >
       <SiteHeader transparent />

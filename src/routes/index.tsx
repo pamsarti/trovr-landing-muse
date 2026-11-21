@@ -44,10 +44,10 @@ export const Route = createFileRoute("/")({
             isPartOf: { "@type": "WebSite", name: "Trovr", url: SITE_URL },
             about: [
               "viagens fora do óbvio",
-              "lugares além dos circuitos turísticos tradicionais",
+              "viagens individuais e em grupo",
               "experiências de viagem",
               "esportes",
-              "cultura local",
+              "natureza",
               "roteiros personalizados",
             ],
           }),
@@ -78,7 +78,7 @@ function firstSentence(text: string): string {
 
 function Index() {
   return (
-    <main className="experience-site bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public experience-site bg-paper text-ink font-sans antialiased">
       <TrovrWelcomeWall />
       <SiteHeader transparent experience />
       <Hero />

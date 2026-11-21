@@ -1,3 +1,4 @@
+import { ContactChannels } from "@/components/ContactChannels";
 import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
 import { TRIP_HERO_PHOTOS } from "@/lib/trip-hero-photos";
 import { TripPhotoCredits } from "./TripPhotoCredits";
@@ -18,6 +19,7 @@ export function TripsFooter() {
       <div className="mx-auto flex max-w-3xl flex-col items-center gap-4 text-center">
         <p className="font-serif text-5xl sm:text-6xl uppercase tracking-[0.04em] text-ink">TROVR</p>
         <p className="font-serif text-xl sm:text-2xl text-ink">{t.footer.tagline}</p>
+        <ContactChannels />
         <TripPhotoCredits />
       </div>
     </footer>

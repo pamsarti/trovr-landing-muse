@@ -1,21 +1,21 @@
 import { TripOpening } from "./TripOpening";
 import type { Trip } from "@/lib/trips-data";
 import { InquireForm } from "./InquireForm";
-import { Instagram, MessageCircle } from "lucide-react";
+import { ContactChannels } from "@/components/ContactChannels";
 import { TripsHeader } from "./TripsChrome";
 import "./kite-trip.css";
 
 export function KiteTripPage({ trip }: { trip: Trip }) {
 
   return (
-    <main className="experience-site bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public experience-site bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" experience transparent />
     <div className="kite-page">
       <TripOpening trip={trip} />
       <nav className="kite-nav" aria-label="Nesta ficha">
         <a href="#experiencia">A experiência</a><a href="#dia-a-dia">Dia a dia</a>
         <a href="#gastronomia">Gastronomia</a><a href="#mais-tempo">Mais tempo no mar</a>
-        <a href="#inclusoes">O que está incluído</a>
+        <a href="#inclusoes">O que estamos preparando</a>
       </nav>
       <section id="experiencia" className="kite-shell kite-section kite-split kite-experience">
         <div>
@@ -49,8 +49,8 @@ export function KiteTripPage({ trip }: { trip: Trip }) {
         <div className="kite-shell"><h2>Mais tempo no mar</h2><p>O barco vai com você. Dá para mudar de ponto de kite sem refazer as malas e passar o intervalo entre sessões com o mar à sua volta.</p></div>
       </section>
       <section id="inclusoes" className="kite-shell kite-section">
-        <h2>O que está incluído</h2>
-        <p className="kite-lead">A viagem está em preparação. Os detalhes da saída serão divulgados quando estiverem confirmados.</p>
+        <h2>O que estamos preparando</h2>
+        <p className="kite-lead">A viagem está em preparação. Destino, embarcação, temporada e duração ainda estão em definição. Os detalhes da saída serão divulgados quando estiverem confirmados.</p>
         <p className="kite-kicker">Itens em definição</p>
         <ul className="kite-inclusions"><li>Hospedagem e refeições</li><li>Equipamento de kite</li><li>Apoio durante as sessões</li></ul>
         <figure className="kite-wide"><img src="https://images.pexels.com/photos/14762515/pexels-photo-14762515.jpeg?auto=compress&w=2400" alt="Kitesurfista velejando perto de uma faixa de areia, visto de cima" loading="lazy" /></figure>
@@ -61,10 +61,7 @@ export function KiteTripPage({ trip }: { trip: Trip }) {
           <p className="kite-kicker">Kitesurf a bordo · Em breve</p>
           <h2>Sua próxima viagem<br />começa com uma conversa.</h2>
           <p>Fale com a Trovr e acompanhe o que vem por aí.</p>
-          <div className="kite-contact-actions">
-            <a href="https://wa.me/5511936215678" target="_blank" rel="noopener noreferrer"><MessageCircle aria-hidden="true" size={22} />WhatsApp</a>
-            <a href="https://www.instagram.com/_trovr/" target="_blank" rel="noopener noreferrer"><Instagram aria-hidden="true" size={22} />Instagram</a>
-          </div>
+          <ContactChannels context="Kitesurf a bordo" dark />
           <details className="kite-contact-email">
             <summary>Prefiro receber novidades por e-mail</summary>
             <InquireForm tripId={trip.id} tripName="Kitesurf a bordo" operator={trip.operator} soon />

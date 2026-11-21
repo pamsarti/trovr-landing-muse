@@ -114,7 +114,7 @@ export const Route = createFileRoute("/journal/$slug")({
 
 function NotFound() {
   return (
-    <main className="min-h-screen bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public min-h-screen bg-paper text-ink font-sans antialiased">
       <SiteHeader />
       <section className="mx-auto max-w-3xl px-6 py-32 text-center sm:py-40">
         <h1 className="font-serif text-4xl text-ink sm:text-5xl">Conteúdo não encontrado.</h1>
@@ -142,7 +142,7 @@ function ArticlePage() {
   const readNext = (sameCategory.length >= 2 ? sameCategory : others).slice(0, 2);
 
   return (
-    <main className="min-h-screen bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public min-h-screen bg-paper text-ink font-sans antialiased">
       <SiteHeader />
 
       <article>

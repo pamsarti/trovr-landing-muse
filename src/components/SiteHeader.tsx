@@ -6,6 +6,7 @@ import { useT } from "@/i18n/useT";
 const NAV = [
   { href: "/trips", key: "sports", match: "/trips" },
   { href: "/about", key: "about", match: "/about" },
+  { href: "/viagem", key: "itinerary", match: "/viagem" },
 ] as const;
 
 function useActivePath() {
@@ -131,13 +132,13 @@ export function SiteHeader({ transparent = false, experience = false, fixed = tr
               );
             })}
             <Link
-              to={experience ? "/" : "/viagem"}
-              hash={experience ? "contato" : undefined}
-              data-analytics-event={experience ? "open_contact" : "open_viagem_offer"}
+              to="/"
+              hash="contato"
+              data-analytics-event="open_contact"
               data-analytics-name="header_desktop"
               className="inline-flex min-h-11 items-center rounded-full bg-sage px-5 text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-ink"
             >
-              {experience ? "Fale com a Trovr" : t.nav.itinerary}
+              Fale com a Trovr
             </Link>
           </nav>
           <button
@@ -205,14 +206,14 @@ export function SiteHeader({ transparent = false, experience = false, fixed = tr
               );
             })}
             <Link
-              to={experience ? "/" : "/viagem"}
-              hash={experience ? "contato" : undefined}
+              to="/"
+              hash="contato"
               onClick={() => setOpen(false)}
-              data-analytics-event={experience ? "open_contact" : "open_viagem_offer"}
+              data-analytics-event="open_contact"
               data-analytics-name="header_mobile"
               className="mt-4 inline-flex min-h-11 items-center rounded-full bg-sage px-6 py-3 text-xs uppercase tracking-[0.14em] text-paper transition-colors hover:bg-ink focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sage"
             >
-              {experience ? "Fale com a Trovr" : t.nav.itinerary}
+              Fale com a Trovr
             </Link>
           </nav>
         </div>

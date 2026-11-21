@@ -54,7 +54,7 @@ export const Route = createFileRoute("/trips/")({
 
 function TripsIndex() {
   return (
-    <main className="experience-site bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public experience-site bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" experience />
       <HeroRotator />
       <ExperienceGrid />

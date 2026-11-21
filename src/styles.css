@@ -748,3 +748,18 @@
 }
 
 .experience-site #sobre { scroll-margin-top: 96px; }
+
+/* Acabamento público aprovado: texto sem itálico, contatos equivalentes. */
+.trovr-public :is(em, i, .italic) { font-style: normal; }
+.contact-channels { width: 100%; max-width: 560px; margin: 24px auto; color: var(--ink); }
+.contact-channel-actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; }
+.contact-channel-actions a { display: flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 12px; border: 1px solid #a8afa1; font: 400 1rem/1.3 system-ui, sans-serif; text-decoration: none; }
+.contact-channel-actions a:hover { background: #e7ebdf; color: #394837; }
+.contact-channel-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px 20px; margin-top: 16px; font-size: .8rem; line-height: 1.5; text-align: center; }
+.contact-channel-links :is(a, button) { text-decoration: underline; text-underline-offset: 4px; min-height: 32px; }
+.contact-channel-links button { font: inherit; cursor: pointer; }
+.contact-channels-dark { color: #fff; margin-block: 36px 24px; }
+.contact-channels-dark .contact-channel-actions a { min-height: 64px; border-color: rgb(255 255 255 / .65); background: rgb(251 249 244 / .08); }
+.contact-channels-dark .contact-channel-actions a:hover { background: rgb(251 249 244 / .2); color: #fff; }
+.trip-planning-facts dt { font-size: .75rem; text-transform: uppercase; letter-spacing: .14em; }
+.trip-planning-facts dd { margin-top: 8px; }

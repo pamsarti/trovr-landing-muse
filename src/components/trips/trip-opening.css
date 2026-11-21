@@ -62,3 +62,8 @@
 .trip-opening-copy { text-align: center; }
 .experience-site .trip-opening h1,
 .trip-opening-summary { margin-inline: auto; }
+
+@media (max-width: 700px) {
+  .trip-opening-whale { min-height: 92svh; }
+  .trip-opening-whale .trip-opening-copy { padding-top: 220px; }
+}

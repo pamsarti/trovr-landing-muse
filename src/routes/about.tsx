@@ -56,7 +56,7 @@ export const Route = createFileRoute("/about")({
 
 function AboutPage() {
   return (
-    <main className="bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public bg-paper text-ink font-sans antialiased">
       <SiteHeader transparent />
       <Hero />
       <WhyExists />

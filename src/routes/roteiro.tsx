@@ -92,7 +92,7 @@ function ItineraryPage() {
   };
 
   return (
-    <main className="bg-paper text-ink">
+    <main className="trovr-public bg-paper text-ink">
       <SiteHeader />
       <section className="px-6 pb-16 pt-16 sm:pb-24 sm:pt-24">
         <div className="mx-auto max-w-5xl text-center">

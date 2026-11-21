@@ -1,3 +1,4 @@
+import { useContactInView } from "@/hooks/useContactInView";
 import { useEffect, useState } from "react";
 import { useRouterState } from "@tanstack/react-router";
 import {
@@ -19,6 +20,7 @@ export function AnalyticsManager() {
   const location = useRouterState({
     select: (state) => `${state.location.pathname}${state.location.searchStr || ""}`,
   });
+  const contactInView = useContactInView(location);
   const [consent, setConsent] = useState<AnalyticsConsent>(null);
   const [showPreferences, setShowPreferences] = useState(false);
 
@@ -58,6 +60,12 @@ export function AnalyticsManager() {
     return () => document.removeEventListener("click", onClick);
   }, [consent]);
 
+  useEffect(() => {
+    const open = () => setShowPreferences(true);
+    window.addEventListener("trovr-open-privacy", open);
+    return () => window.removeEventListener("trovr-open-privacy", open);
+  }, []);
+
   if (!hasAnalyticsProviders) return null;
 
   const choose = (value: Exclude<AnalyticsConsent, null>) => {
@@ -72,6 +80,7 @@ export function AnalyticsManager() {
   };
 
   if (consent && !showPreferences) {
+    if (contactInView) return null;
     return (
       <button
         type="button"

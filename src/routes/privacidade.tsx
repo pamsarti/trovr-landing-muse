@@ -20,7 +20,7 @@ export const Route = createFileRoute("/privacidade")({
 
 function PrivacyPage() {
   return (
-    <main className="bg-paper text-ink">
+    <main className="trovr-public bg-paper text-ink">
       <SiteHeader />
       <article className="mx-auto max-w-3xl px-6 py-16 sm:py-24">
         <p className="text-xs uppercase tracking-[0.24em] text-coffee">Privacidade</p>

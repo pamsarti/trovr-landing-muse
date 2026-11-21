@@ -34,7 +34,7 @@ export const Route = createFileRoute("/trips/$id")({
 function TripNotFound() {
   const t = useT();
   return (
-    <main className="bg-paper text-ink font-sans">
+    <main className="trovr-public bg-paper text-ink font-sans">
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <h1 className="font-serif text-4xl">{t.inquiry.notFound}</h1>
@@ -50,7 +50,7 @@ function TripNotFound() {
 function TripLoadError({ reset }: { reset: () => void }) {
   const t = useT();
   return (
-    <main className="bg-paper text-ink font-sans">
+    <main className="trovr-public bg-paper text-ink font-sans">
       <TripsHeader current="trips" />
       <div className="mx-auto max-w-3xl px-6 py-32 text-center">
         <h1 className="font-serif text-3xl">{t.inquiry.loadError}</h1>
@@ -90,7 +90,7 @@ function TripDetail() {
   if (trip.id === "kite-a-bordo") return <KiteTripPage trip={trip} />;
 
   return (
-    <main className="experience-site bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public experience-site bg-paper text-ink font-sans antialiased">
       <TripsHeader current="trips" experience transparent />
 
       <TripOpening trip={trip} />
@@ -101,6 +101,12 @@ function TripDetail() {
           <>
             <section className="mt-9"><h2>O que você vai viver</h2><p>{copy.scene}</p></section>
             <section className="mt-9"><h2>O que vale saber</h2><p>{copy.practical}</p></section>
+            <dl className="trip-planning-facts mt-9 grid gap-6 border-y border-stone/20 py-7 sm:grid-cols-2">
+              <Fact label="Temporada" value={copy.season ?? "A consultar"} />
+              <Fact label="Duração" value={copy.duration ?? "A combinar"} />
+            </dl>
+            <section className="mt-9"><h2>Como imaginar seus dias</h2><p>{copy.days}</p></section>
+            <section className="mt-9"><h2>Da vontade ao planejamento</h2><p>{copy.planning}</p></section>
             {copy.story && (
               <section className="mt-9">
                 <h2>Providencia no Diário de Campo</h2>

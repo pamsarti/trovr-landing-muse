@@ -1,3 +1,4 @@
+import { useContactInView } from "@/hooks/useContactInView";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Link } from "@tanstack/react-router";
 import { ArrowLeft, ArrowRight, Check, X } from "lucide-react";
@@ -112,6 +113,7 @@ function ChoiceButton({
 }
 
 export function TrovrWelcomeWall() {
+  const contactInView = useContactInView();
   const [open, setOpen] = useState(false);
   const [canShowWall, setCanShowWall] = useState(false);
   const [phase, setPhase] = useState<Phase>("quiz");
@@ -525,7 +527,7 @@ export function TrovrWelcomeWall() {
         </Dialog.Content>
       </Dialog.Portal>
 
-      {!open && canShowWall && (
+      {!open && canShowWall && !contactInView && (
         <button
           type="button"
           onClick={() => handleOpenChange(true)}

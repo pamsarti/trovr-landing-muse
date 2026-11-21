@@ -12,7 +12,7 @@ export function TripOpening({ trip }: { trip: Trip }) {
   ).filter(Boolean).join(" · ");
 
   return (
-    <section className="trip-opening">
+    <section className={`trip-opening${trip.id === "tonga-jubartes" ? " trip-opening-whale" : ""}`}>
       <img
         src={photo?.src ?? tripImage(trip)}
         alt={photo?.alt ?? trip.destination}

@@ -1,5 +1,6 @@
 import { useState, type FormEvent } from "react";
 import { useT } from "@/i18n/useT";
+import { ContactChannels } from "@/components/ContactChannels";
 import { TRIP_PRESENTATION } from "@/lib/trip-presentation";
 
 export function InquireForm({
@@ -83,6 +84,7 @@ export function InquireForm({
       </p>
       <h2>{soon ? "Receba novidades sobre o kitesurf a bordo" : tripId ? "Vamos falar sobre essa experiência?" : "Conte o que você quer viver"}</h2>
       <p className="mt-3 text-stone">{soon ? "Deixe seu e-mail para receber novidades quando a viagem ganhar forma." : "Compartilhe o que você tem em mente. A conversa começa com a experiência que você quer viver."}</p>
+      {!soon && <ContactChannels context={tripName} />}
       <div className="mt-6 grid gap-4">
         <Field name="name" label="Nome" required />
         <Field name="email" label="E-mail" type="email" required />

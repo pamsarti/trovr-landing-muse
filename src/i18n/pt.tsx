@@ -155,7 +155,7 @@ export const pt = {
   about: {
     heroHeadline: "A Trovr existe para tornar o mundo menos óbvio.",
     heroSubtext:
-      "Conteúdo, curadoria de lugares e experiências, pesquisa de roteiros e conexões para quem quer conhecer o mundo além dos circuitos turísticos tradicionais.",
+      "Viagens que começam com o que você quer viver. A gente seleciona experiências de esporte e natureza e conecta você a quem conhece cada destino de perto, para ir por conta própria ou com a sua turma.",
 
     whyP1:
       "A Trovr reúne, em um só lugar, conteúdo sobre destinos, esportes, temporadas e cultura local, curadoria de experiências e apoio para transformar uma ideia de viagem em um caminho possível.",
@@ -175,7 +175,7 @@ export const pt = {
     curateIntro2: "Nossa curadoria segue três critérios que aparecem em tudo o que publicamos:",
     principle1Title: "Tem que te transformar.",
     principle1Body:
-      "O lugar precisa oferecer algo que você possa viver, aprender ou levar de volta, pelo esporte, pela cultura ou por um encontro que mude a perspectivaiva.",
+      "O lugar precisa oferecer algo que você possa viver, aprender ou levar de volta, pelo esporte, pela cultura ou por um encontro que mude a perspectiva.",
     principle2Title: "Precisa ir além do roteiro de sempre.",
     principle2Body:
       "Procuramos alternativas com personalidade e contexto, mesmo quando estão perto de destinos conhecidos. Sair do óbvio não precisa complicar a viagem.",
@@ -194,12 +194,12 @@ export const pt = {
       {
         question: "O que é a Trovr?",
         answer:
-          "A Trovr é um hub de viagens fora do óbvio. Reunimos conteúdo, curadoria de lugares e experiências, pesquisa de roteiros e conexões para ajudar diferentes pessoas e projetos a encontrar o próximo caminho.",
+          "A Trovr seleciona experiências de esporte e natureza e conecta viajantes a quem conhece cada destino de perto. Você pode chegar com uma vontade só sua ou com um grupo que quer viver a viagem junto.",
       },
       {
-        question: "A Trovr vende ou opera viagens?",
+        question: "Qual é o papel da Trovr e de quem opera a viagem?",
         answer:
-          "Não. A Trovr faz curadoria editorial e pode ajudar a planejar um roteiro personalizado. Reservas, pagamentos e a operação da viagem ficam sob a escolha do viajante e de seus fornecedores.",
+          "A Trovr faz a curadoria das experiências, entende o que você quer viver e ajuda a conectar a viagem aos profissionais do destino. A operação das atividades fica com os fornecedores responsáveis. Datas, disponibilidade, valores e condições de reserva são confirmados antes de qualquer contratação. A curadoria de roteiros personalizados é um serviço próprio da Trovr, com escopo e preços apresentados na página Crie sua viagem.",
       },
       {
         question: "Quem pode entrar em contato com a Trovr?",
@@ -363,15 +363,15 @@ export const pt = {
     "Informações sinalizadas vêm da fonte original ou são estimativas e ainda não foram verificadas de forma independente pela Trovr.",
 
   seo: {
-    siteTitle: "Trovr | Hub de viagens fora do óbvio",
+    siteTitle: "Trovr | Viagens de esporte e natureza",
     siteDescription:
-      "Descubra lugares, experiências, esportes, histórias e roteiros para viajar além dos circuitos turísticos tradicionais com a Trovr.",
-    homeTitle: "Trovr | Hub de viagens fora do óbvio",
+      "Descubra experiências de esporte e natureza para viajar por conta própria ou em grupo. Conheça a curadoria da Trovr e converse sobre sua próxima viagem.",
+    homeTitle: "Trovr | Viagens de esporte e natureza",
     homeDescription:
-      "Explore lugares fora do óbvio, experiências por esporte, cultura local, melhores épocas e roteiros personalizados com a Trovr.",
-    aboutTitle: "Sobre a Trovr | Hub de viagens fora do óbvio",
+      "Surfe em Chicama, nade com jubartes em Tonga ou mergulhe em Providencia. Conheça as experiências da Trovr para viajar por conta própria ou em grupo.",
+    aboutTitle: "Sobre a Trovr | Viagens de esporte e natureza",
     aboutDescription:
-      "Conheça a Trovr, um hub de lugares, experiências e histórias para viajar além dos circuitos turísticos tradicionais.",
+      "Conheça a história da Trovr e como selecionamos experiências de esporte e natureza para conectar você a quem conhece cada destino de perto.",
     journalTitle: "Conteúdo de viagem fora do óbvio | Trovr",
     journalDescription:
       "Artigos, notícias, guias, cultura local e experiências para conhecer destinos além dos pontos turísticos e planejar viagens fora do óbvio.",

@@ -1,4 +1,5 @@
 import { Link } from "@tanstack/react-router";
+import { ContactChannels } from "@/components/ContactChannels";
 import { useT } from "@/i18n/useT";
 
 /**
@@ -20,10 +21,11 @@ export function SiteFooter({ variant = "default", experience = false }: { varian
           TROVR
         </Link>
         <p className="font-serif text-base italic text-stone sm:text-lg">{tagline}</p>
+        <ContactChannels />
         <div className="flex flex-wrap justify-center gap-x-6 gap-y-3">
           <Link
-            to={experience ? "/" : "/roteiro"}
-            hash={experience ? "contato" : undefined}
+            to="/"
+            hash="contato"
             className="text-[11px] uppercase tracking-[0.16em] text-stone hover:text-ink"
           >
             Fale com a Trovr

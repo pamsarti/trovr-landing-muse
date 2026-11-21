@@ -50,7 +50,7 @@ function JournalPage() {
   const [featured, ...rest] = articles;
 
   return (
-    <main className="min-h-screen bg-paper text-ink font-sans antialiased">
+    <main className="trovr-public min-h-screen bg-paper text-ink font-sans antialiased">
       <SiteHeader />
 
       {/* Editorial intro — the calm beat before the scene. */}
